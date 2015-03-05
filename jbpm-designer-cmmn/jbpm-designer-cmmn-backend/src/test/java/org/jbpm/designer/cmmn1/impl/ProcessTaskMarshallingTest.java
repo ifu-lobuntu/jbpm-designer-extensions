@@ -11,8 +11,6 @@ import org.eclipse.cmmn1.TPlanItem;
 import org.eclipse.cmmn1.TProcess;
 import org.eclipse.cmmn1.TProcessParameter;
 import org.eclipse.cmmn1.TProcessTask;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.Test;
 
 public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTest {

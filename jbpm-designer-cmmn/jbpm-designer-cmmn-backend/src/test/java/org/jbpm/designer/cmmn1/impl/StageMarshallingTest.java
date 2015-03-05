@@ -1,23 +1,13 @@
 package org.jbpm.designer.cmmn1.impl;
 
-import org.eclipse.cmmn1.CaseFileItemTransition;
 import org.eclipse.cmmn1.Cmmn1Factory;
-import org.eclipse.cmmn1.MultiplicityEnum;
 import org.eclipse.cmmn1.PlanItemTransition;
-import org.eclipse.cmmn1.TCaseFileItem;
-import org.eclipse.cmmn1.TCaseFileItemDefinition;
-import org.eclipse.cmmn1.TCaseFileItemOnPart;
-import org.eclipse.cmmn1.TCaseFileItemStartTrigger;
 import org.eclipse.cmmn1.TDiscretionaryItem;
 import org.eclipse.cmmn1.THumanTask;
 import org.eclipse.cmmn1.TPlanItem;
 import org.eclipse.cmmn1.TPlanItemOnPart;
-import org.eclipse.cmmn1.TPlanItemStartTrigger;
-import org.eclipse.cmmn1.TProperty;
 import org.eclipse.cmmn1.TSentry;
 import org.eclipse.cmmn1.TStage;
-import org.eclipse.cmmn1.TTimerEvent;
-import org.eclipse.cmmn1.util.Cmmn1ResourceImpl;
 import org.junit.Test;
 
 public class StageMarshallingTest extends AbstractCmmnDiagramMarshallingTest {

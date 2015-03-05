@@ -122,6 +122,11 @@
 				<artifactId>jbpm-designer-vdml-emf</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+		<dependency>
+			<groupId>org.eclipse.uml2</groupId>
+			<artifactId>org.eclipse.uml2.uml</artifactId>
+			<version>3.1.0.v201006071150</version>
+		</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>

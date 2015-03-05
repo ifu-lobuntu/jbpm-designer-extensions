@@ -12,13 +12,7 @@ import org.eclipse.cmmn1.TExpression;
 import org.eclipse.cmmn1.THumanTask;
 import org.eclipse.cmmn1.TParameterMapping;
 import org.eclipse.cmmn1.TPlanItem;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIHandler;
-import org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.junit.Test;
 
 public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshallingTest {

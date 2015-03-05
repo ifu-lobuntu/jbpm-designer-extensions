@@ -1,7 +1,5 @@
 package org.jbpm.designer.stencilset.linkage;
 
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
