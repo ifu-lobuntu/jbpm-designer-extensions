@@ -80,7 +80,7 @@ public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshalling
     }
     @Test
     public void testCaseTask() throws Exception {
-        URI testUri = URI.createPlatformResourceURI("/jbpm-designer-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledCase.cmmn", true);
+        URI testUri = URI.createPlatformResourceURI("/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledCase.cmmn", true);
         DocumentRoot root = (DocumentRoot) resourceSet.getResource(testUri, true).getContents().get(0);
         TCase calledCase = root.getDefinitions().getCase().get(0);
         TPlanItem ctpi = addCaseTaskPlanItem(tCase, casePlanModel);

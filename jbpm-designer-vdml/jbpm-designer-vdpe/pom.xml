@@ -19,7 +19,7 @@
 	<artifactId>jbpm-designer-vdpe</artifactId>
 	<packaging>pom</packaging>
 
-	<name>jBPM Designer UML Extensions</name>
+	<name>jBPM Designer VDML Proposition Exchange Extensions</name>
 	<dependencyManagement>
 		<dependencies>
 

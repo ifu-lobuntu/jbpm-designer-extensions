@@ -27,7 +27,7 @@
   <artifactId>jbpm-designer-vdan-client</artifactId>
   <packaging>jar</packaging>
 
-  <name>jBPM Designer UML Client</name>
+  <name>jBPM Designer VDML Activity Network Client</name>
 
   <dependencies>
     <dependency>

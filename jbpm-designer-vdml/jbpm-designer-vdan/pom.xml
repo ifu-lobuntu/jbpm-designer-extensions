@@ -19,7 +19,7 @@
 	<artifactId>jbpm-designer-vdan</artifactId>
 	<packaging>pom</packaging>
 
-	<name>jBPM Designer UML Extensions</name>
+	<name>jBPM Designer VDML Activity Network Extensions</name>
 	<dependencyManagement>
 		<dependencies>
 

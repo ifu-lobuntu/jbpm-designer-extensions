@@ -19,7 +19,7 @@
 
   <artifactId>jbpm-designer-cmmn-backend</artifactId>
 
-  <name>jBPM Designer UML Backend</name>
+  <name>jBPM Designer CMMN Backend</name>
 
   <dependencies>
     <dependency>
@@ -74,6 +74,34 @@
 	<dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-cmmn-emf-metamodel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse</groupId>
+      <artifactId>org.eclipse.bpmn2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-core-asl</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.jackson</groupId>
+      <artifactId>jackson-mapper-asl</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>        
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-bpmn2-emfextmodel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
     </dependency>
   </dependencies>
 

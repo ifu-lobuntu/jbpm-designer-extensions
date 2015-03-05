@@ -45,6 +45,10 @@
  - Select Language in fourth column
  - Type expression (CaseParamater.bindingRefinement) in 5 th column
 
+## Modularization
+ - Implement different projects for CMMN and UML - Client/API/Backend
+ - Implement processRequest method on profile to delegate to the appropriate action handler
+
 
 ##1.2. In Progress
 
@@ -57,11 +61,9 @@
  - See if there is a way to have a consistent unique id for a resource irrespective of location
 
 ## Modularization
- - Implement DiagramStencilFactory
- - Inject JS dependencies at runtime into inlineditor.jsp
+ - inlineditor.jsp
+ - 
  - Implement redirection logic in StencilSetServiceServlet that can be customized to point to workspace
- - Implement different projects for CMMN and UML - Client/API/Backend
- - Implement processRequest method on profile to delegate to the appropriate action handler
 
 ###Stencils for:
  - Connector from HumanTask to related DiscretionaryItems in its PlanningTable

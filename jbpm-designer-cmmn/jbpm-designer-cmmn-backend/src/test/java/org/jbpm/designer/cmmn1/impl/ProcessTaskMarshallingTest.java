@@ -19,7 +19,7 @@ public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTe
     public void testProcessTask() throws Exception {
         TPlanItem ctpi = addProcessTaskPlanItem(tCase, casePlanModel);
         TProcessTask task = (TProcessTask) ctpi.getDefinitionRef();
-        TProcess calledProcess = CmmnJsonToEmfHelper.syncProcessInDefinitions(task, "scrum.CalledProcess|/jbpm-designer-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledProcess.bpmn2", super.inputDefinitions);
+        TProcess calledProcess = CmmnJsonToEmfHelper.syncProcessInDefinitions(task, "scrum.CalledProcess|/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledProcess.bpmn2", super.inputDefinitions);
         task.setProcessRef(calledProcess);
         TCaseFileItemDefinition childDef = Cmmn1Factory.eINSTANCE.createTCaseFileItemDefinition();
         inputDefinitions.getCaseFileItemDefinition().add(childDef);

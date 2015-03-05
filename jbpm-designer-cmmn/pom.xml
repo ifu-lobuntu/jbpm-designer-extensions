@@ -19,7 +19,7 @@
 	<artifactId>jbpm-designer-cmmn</artifactId>
 	<packaging>pom</packaging>
 
-	<name>jBPM Designer UML Extensions</name>
+	<name>jBPM Designer CMMN Extensions</name>
 	<dependencyManagement>
 		<dependencies>
 
@@ -27,6 +27,7 @@
 	</dependencyManagement>
 	<modules>
 		<module>jbpm-designer-cmmn-api</module>
+		<module>jbpm-designer-cmmn-emf</module>
 		<module>jbpm-designer-cmmn-client</module>
 		<module>jbpm-designer-cmmn-backend</module>
 	</modules>

@@ -87,7 +87,7 @@ public class AbstractCmmnDiagramMarshallingTest {
         CMMNPlane casePlane = CmmnDiFactory.eINSTANCE.createCMMNPlane();
         inputDiagram.setCMMNPlane(casePlane);
         elementDiagramElementMap.put(inputDefinitions, casePlane);
-        profile.loadLinkedStencilSet("../jbpm-designer-client/src/main/resources/org/jbpm/designer/public/stencilsets/cmmn1.0/cmmn1.0.json");
+        profile.loadLinkedStencilSet("../jbpm-designer-cmmn-client/src/main/resources/org/jbpm/designer/public/stencilsets/cmmn1.0/cmmn1.0.json");
         this.tCase = createCase();
         this.plane = createPlane();
         this.casePlanModel = createCasePlanModel();

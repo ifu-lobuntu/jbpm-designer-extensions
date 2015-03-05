@@ -14,7 +14,7 @@ public class CmmnStencilSetTest {
     @Test
     public void testStencilset() throws Exception {
         BufferedReader reader = new BufferedReader(new FileReader(
-                "../jbpm-designer-client/src/main/resources/org/jbpm/designer/public/stencilsets/cmmn1.0/cmmn1.0.json"));
+                "../jbpm-designer-cmmn-client/src/main/resources/org/jbpm/designer/public/stencilsets/cmmn1.0/cmmn1.0.json"));
         String line = null;
         StringBuilder sb = new StringBuilder();
         while ((line = reader.readLine()) != null) {

@@ -19,7 +19,7 @@
 
   <artifactId>jbpm-designer-vdpe-backend</artifactId>
 
-  <name>jBPM Designer UML Backend</name>
+  <name>jBPM Designer VDML Proposition Exchange Backend</name>
 
   <dependencies>
     <dependency>

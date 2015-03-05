@@ -26,7 +26,7 @@
 
   <artifactId>jbpm-designer-vdpe-api</artifactId>
   <packaging>jar</packaging>
-  <name>jBPM Designer UML API</name>
+  <name>jBPM Designer VDML Proposition Exchange API</name>
 
   <dependencies>
     <dependency>

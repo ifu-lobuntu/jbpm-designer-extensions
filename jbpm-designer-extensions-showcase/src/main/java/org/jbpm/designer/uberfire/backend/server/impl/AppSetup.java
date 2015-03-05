@@ -26,12 +26,8 @@ import org.uberfire.io.IOService;
 @Startup(StartupType.BOOTSTRAP)
 public class AppSetup {
 
-    private static final String JBPM_REPO_PLAYGROUND = "jbpm-playground";
-    //    private static final String GUVNOR_REPO_PLAYGROUND = "uf-playground";
-    // default repository section - start
-    private static final String JBPM_URL = "https://github.com/ifu-lobuntu/jbpm-playground.git";
-//    private static final String JBPM_URL = "https://github.com/guvnorngtestuser1/jbpm-console-ng-playground-kjar.git";
-//    private static final String GUVNOR_URL = "https://github.com/guvnorngtestuser1/guvnorng-playground.git";
+    private static final String JBPM_REPO_PLAYGROUND = "examples";
+    private static final String JBPM_URL = "https://github.com/ifu-lobuntu/examples.git";
 
     private final String userName = "guvnorngtestuser1";
     private final String password = "test1234";
