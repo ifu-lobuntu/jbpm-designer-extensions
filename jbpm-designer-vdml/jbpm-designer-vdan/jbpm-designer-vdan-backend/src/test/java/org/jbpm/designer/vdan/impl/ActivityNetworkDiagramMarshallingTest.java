@@ -1,0 +1,95 @@
+package org.jbpm.designer.vdan.impl;
+
+import org.junit.Test;
+import org.pavanecce.vdml.metamodel.vdml.Activity;
+import org.pavanecce.vdml.metamodel.vdml.DeliverableFlow;
+import org.pavanecce.vdml.metamodel.vdml.InputDelegation;
+import org.pavanecce.vdml.metamodel.vdml.InputPort;
+import org.pavanecce.vdml.metamodel.vdml.OrgUnit;
+import org.pavanecce.vdml.metamodel.vdml.OutputDelegation;
+import org.pavanecce.vdml.metamodel.vdml.OutputPort;
+import org.pavanecce.vdml.metamodel.vdml.PortContainer;
+import org.pavanecce.vdml.metamodel.vdml.Role;
+import org.pavanecce.vdml.metamodel.vdml.Store;
+import org.pavanecce.vdml.metamodel.vdml.VdmlElement;
+import org.pavanecce.vdml.metamodel.vdml.VdmlFactory;
+
+public class ActivityNetworkDiagramMarshallingTest extends AbstractVdmlDiagramMarshallingTest {
+    @Test
+    public void testIt() throws Exception{
+        Role role = VdmlFactory.eINSTANCE.createRole();
+        role.setName("myRole");
+        role.setDescription("My Role's Description");
+        capabilityMethod.getCollaborationRole().add(role);
+        addShapeFor(capabilityMethod, role);
+        Store store = VdmlFactory.eINSTANCE.createStore();
+        store.setName("MyStore");
+        store.setDescription("My store description");
+        OrgUnit orgUnit=VdmlFactory.eINSTANCE.createOrgUnit();
+        valueDeliveryModel.getCollaboration().add(orgUnit);
+        orgUnit.setName(capabilityMethod.getName()+"OrgUnit");
+        orgUnit.getOwnedStore().add(store);
+        addShapeFor(role, store);
+        addPorts("MyStore", role, store);
+        Activity activity1 = VdmlFactory.eINSTANCE.createActivity();
+        activity1.setName("MyActivity1");
+        activity1.setDescription("My Activity's description");
+        capabilityMethod.getActivity().add(activity1);
+        addShapeFor(role, activity1);
+        addPorts("MyActivity1", role, activity1);
+        role.getPerformedWork().add(activity1);
+        addPorts("MyCollaboration",role,  capabilityMethod);
+        DeliverableFlow deliverableFlow1 = VdmlFactory.eINSTANCE.createDeliverableFlow();
+        deliverableFlow1.setName("Safd");
+        deliverableFlow1.setProvider((OutputPort) store.getContainedPort().get(1));
+        deliverableFlow1.setRecipient((InputPort) activity1.getContainedPort().get(0));
+        capabilityMethod.getFlow().add(deliverableFlow1);
+        addEdge(deliverableFlow1, store.getContainedPort().get(1), activity1.getContainedPort().get(0));
+        DeliverableFlow deliverableFlow2 = VdmlFactory.eINSTANCE.createDeliverableFlow();
+        deliverableFlow2.setName("Safd");
+        deliverableFlow2.setProvider((OutputPort) activity1.getContainedPort().get(1));
+        deliverableFlow2.setRecipient((InputPort) store.getContainedPort().get(0));
+        capabilityMethod.getFlow().add(deliverableFlow2);
+        addEdge(deliverableFlow2, activity1.getContainedPort().get(1), store.getContainedPort().get(0));
+        super.assertOutputValid();
+    }
+    @Test
+    public void testDelegations() throws Exception{
+        Role role = VdmlFactory.eINSTANCE.createRole();
+        role.setName("myRole");
+        role.setDescription("My Role's Description");
+        capabilityMethod.getCollaborationRole().add(role);
+        addShapeFor(capabilityMethod, role);
+        addPorts("MyCollaboration", role, capabilityMethod);
+        Activity activity2 = VdmlFactory.eINSTANCE.createActivity();
+        activity2.setName("MyActivity2");
+        activity2.setDescription("My Activity2's description");
+        role.getPerformedWork().add(activity2);
+        capabilityMethod.getActivity().add(activity2);
+        addShapeFor(role, activity2);
+        addPorts("MyActivity2",role,  activity2);
+        InputDelegation inputDelegation = VdmlFactory.eINSTANCE.createInputDelegation();
+        inputDelegation.setSource((InputPort) capabilityMethod.getContainedPort().get(0));
+        inputDelegation.setTarget((InputPort) activity2.getContainedPort().get(0));
+        capabilityMethod.getInternalPortDelegation().add(inputDelegation);
+        addEdge(inputDelegation, capabilityMethod.getContainedPort().get(0), activity2.getContainedPort().get(0));
+
+        OutputDelegation outputDelegation = VdmlFactory.eINSTANCE.createOutputDelegation();
+        outputDelegation.setSource((OutputPort) activity2.getContainedPort().get(1));
+        outputDelegation.setTarget((OutputPort) capabilityMethod.getContainedPort().get(1));
+        capabilityMethod.getInternalPortDelegation().add(outputDelegation);
+        addEdge(outputDelegation, activity2.getContainedPort().get(1), capabilityMethod.getContainedPort().get(1));
+        super.assertOutputValid();
+    }
+
+    private void addPorts(String prefix,VdmlElement parent, PortContainer pc) {
+        InputPort activityInputPort = VdmlFactory.eINSTANCE.createInputPort();
+        activityInputPort.setName(prefix +  "InputPort");
+        pc.getContainedPort().add(activityInputPort);
+        addShapeFor(parent,activityInputPort);
+        OutputPort activityOutputPort = VdmlFactory.eINSTANCE.createOutputPort();
+        activityOutputPort.setName(prefix+ "OutputPort");
+        pc.getContainedPort().add(activityOutputPort);
+        addShapeFor(parent, activityOutputPort);
+    }
+}

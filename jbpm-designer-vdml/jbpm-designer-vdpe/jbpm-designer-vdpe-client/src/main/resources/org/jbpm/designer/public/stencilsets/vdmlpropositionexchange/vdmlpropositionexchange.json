@@ -1,0 +1,336 @@
+{
+	"title" : "VDML Proposition Exchange",
+	"namespace" : "http://b3mn.org/stencilset/emptyset.0#",
+	"description" : "This is an empty stencil set to start new diagrams with",
+	"propertyPackages" : [
+	        {
+	        	"name" : "elementBase",
+	        	"properties": [
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "",
+						"description" : "The descriptive name of the VDML element.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					},
+					{
+						"id" : "diagramElementId",
+						"type" : "String",
+						"title" : "DiagramElementId",
+						"value" : "",
+						"description" : "This is the unique id of the diagram element used to display the CMMN Element.",
+						"readonly" : true,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"hidden" : true
+					}
+				]
+			},
+			{
+				"name" : "color",
+				"properties" : [
+						{
+							"id" : "bgcolor",
+							"type" : "Color",
+							"title" : "Background Color",
+							"value" : "#ffffff",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"fill_el"
+							],
+							"fill" : true,
+							"stroke" : false
+						},
+						{
+							"id" : "bordercolor",
+							"type" : "Color",
+							"title" : "Border Color",
+							"value" : "#000000",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+									"edge", "fill_border", "bg_frame"
+							],
+							"fill" : false,
+							"stroke" : true
+						}, {
+							"id" : "fontcolor",
+							"type" : "Color",
+							"title" : "Font Color",
+							"value" : "#000000",
+							"description" : "Font color",
+							"description_ja" : "フォントの色",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"fill" : true,
+							"stroke" : false
+						}, {
+							"id" : "fontsize",
+							"type" : "Choice",
+							"title" : "Font Size",
+							"value" : "",
+							"description" : "The Font Size",
+							"description_ja" : "フォントのサイズ",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"items" : [
+									{
+										"id" : "c1",
+										"title" : "8",
+										"value" : "8"
+									}, {
+										"id" : "c2",
+										"title" : "9",
+										"value" : "9"
+									}, {
+										"id" : "c3",
+										"title" : "10",
+										"value" : "10"
+									}, {
+										"id" : "c4",
+										"title" : "11",
+										"value" : "11"
+									}, {
+										"id" : "c5",
+										"title" : "12",
+										"value" : "12"
+									}, {
+										"id" : "c6",
+										"title" : "14",
+										"value" : "14"
+									}, {
+										"id" : "c7",
+										"title" : "18",
+										"value" : "18"
+									}, {
+										"id" : "c8",
+										"title" : "20",
+										"value" : "20"
+									}, {
+										"id" : "c9",
+										"title" : "24",
+										"value" : "24"
+									}, {
+										"id" : "c10",
+										"title" : "36",
+										"value" : "36"
+									}, {
+										"id" : "c11",
+										"title" : "48",
+										"value" : "48"
+									}, {
+										"id" : "c12",
+										"title" : "72",
+										"value" : "72"
+									}
+							]
+						}
+				]
+			}
+	],
+	"stencils" : [
+			{
+				"type" : "node",
+				"id" : "VdmlPropositionExchangeDiagram",
+				"title" : "VdmlPropositionExchangeDiagram",
+				"groups" : [
+					"Diagram"
+				],
+				"description" : "A Value Proposition Exchange  Diagram.",
+				"view" : "diagram.svg",
+				"icon" : "diagram.png",
+				"mayBeRoot" : true,
+				"hide" : true,
+				"propertyPackages" : [
+                      "elementBase",
+                      "color"
+				],
+				"roles" : [
+					"diagram"
+				],
+				"properties" : [
+
+
+				],
+				"layout": [
+				 ]
+
+			},
+			{
+				"type" : "node",
+				"id" : "Role",
+				"title" : "Role",
+				"position" : 1,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"role"
+				],
+				"description" : "A Role",
+				"view" : "role.svg",
+				"icon" : "role.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase",
+						"color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "ValueProposition",
+				"title" : "Value Proposition",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"valueProposition"
+				],
+				"description" : "A Value Proposition",
+				"view" : "value_proposition.svg",
+				"icon" : "value_proposition.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase",
+						"color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "ProvidedProposition",
+				"title" : "ProvidedProposition",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"providedProposition"
+				],
+				"description" : "A Providing of a Value Proposition",
+				"view" : "provided_proposition.svg",
+				"icon" : "provided_proposition.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase",
+						"color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "Recipient",
+				"title" : "Recipient",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"recipient"
+				],
+				"description" : "A Providing of a Value Proposition",
+				"view" : "recipient.svg",
+				"icon" : "recipient.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase",
+						"color"
+				],
+				"properties" : [
+				]
+			}
+	],
+
+	"rules" : {
+		"cardinalityRules" : [
+		      				{
+		    					"role" : "valueProposition",
+		    					"incomingEdges" : [
+		    							{
+		    								"role" : "providedProposition",
+		    								"maximum" : 1
+		    							}
+		    					],
+		    					"outgoingEdges" : [
+		    							{
+		    								"role" : "recipient",
+		    								"maximum" : 1
+		    							}
+		    					]
+		    				}
+		],
+		"connectionRules" : [
+		     				{
+		     					"role" : "providedProposition",
+		     					"connects" : [
+		     							{
+		     								"from" : "role",
+		     								"to" : [
+		     									"valueProposition"
+		     								]
+		     							}
+		     					]
+		     				},
+		     				{
+		     					"role" : "recipient",
+		     					"connects" : [
+		     							{
+		     								"from" : "valueProposition",
+		     								"to" : [
+		     									"role"
+		     								]
+		     							}
+		     					]
+		     				}
+
+		],
+		"containmentRules" : [
+				{
+					"role" : "diagram",
+					"contains" : [
+						"role","valueProposition"
+					]
+				}
+		],
+		"morphingRules" : [],
+		"layoutRules" : []
+	}
+}

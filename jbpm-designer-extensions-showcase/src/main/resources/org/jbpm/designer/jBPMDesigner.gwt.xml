@@ -43,7 +43,8 @@
   <!-- designer -->
   <inherits name="org.jbpm.designer.jBPMDesignerAPI"/>
   <inherits name="org.jbpm.designer.jBPMDesignerClient"/>
-
+  <!-- Designer extensions -->
+  <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
   <!-- Form-Modeler -->
   <inherits name="org.jbpm.formModeler.editor.FormModelerEditorClient"/>
   <inherits name="org.jbpm.formModeler.renderer.FormRendererClient"/>

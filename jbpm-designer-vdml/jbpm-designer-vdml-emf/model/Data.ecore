@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Data" nsURI="http:///Data.ecore" nsPrefix="Data">
+  <eSubpackages name="vdml" nsURI="http://www.omg.org/spec/VDML/20131201/vdml.xmi"
+      nsPrefix="vdml">
+    <eClassifiers xsi:type="ecore:EClass" name="ValueDeliveryModel" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="metricsModel" ordered="false"
+          upperBound="-1" eType="#//smm/SmmModel" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueLibrary" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueLibrary" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilitylibrary" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityLibrary" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="businessItemLibrary"
+          ordered="false" upperBound="-1" eType="#//vdml/BusinessItemLibrary" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actor" ordered="false"
+          upperBound="-1" eType="#//vdml/Actor" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="practiceLibrary" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeLibrary" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="scenario" ordered="false"
+          lowerBound="1" upperBound="-1" eType="#//vdml/Scenario" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="collaboration" ordered="false"
+          upperBound="-1" eType="#//vdml/Collaboration" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roleLibrary" ordered="false"
+          upperBound="-1" eType="#//vdml/RoleLibrary" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" upperBound="-1"
+          eType="ecore:EClass VDMLDI.ecore#//VDMLDiagram" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VdmlElement" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
+          upperBound="-1" eType="#//vdml/Attribute" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" ordered="false"
+          upperBound="-1" eType="#//vdml/Annotation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"
+          iD="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="anyAttribute" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Annotation" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueLibrary" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueDefinition" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueDefinition" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueCategory" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueDefinition" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="category" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueCategory" eOpposite="#//vdml/ValueCategory/categoryValue"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+          ordered="false" upperBound="-1" eType="#//smm/Characteristic"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueCategory" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueCategory" eOpposite="#//vdml/ValueCategory/childCategory"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="childCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueCategory" eOpposite="#//vdml/ValueCategory/parentCategory"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="categoryValue" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueDefinition" eOpposite="#//vdml/ValueDefinition/category"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CapabilityLibrary" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+          upperBound="-1" eType="#//vdml/Capability" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityDependency"
+          ordered="false" upperBound="-1" eType="#//vdml/CapabilityDependency" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Capability" abstract="true" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentCabability" ordered="false"
+          upperBound="-1" eType="#//vdml/Capability" eOpposite="#//vdml/Capability/childCapability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="childCapability" ordered="false"
+          upperBound="-1" eType="#//vdml/Capability" eOpposite="#//vdml/Capability/parentCabability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+          ordered="false" upperBound="-1" eType="#//smm/Characteristic"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CapabilityDependency" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTangible" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="deliverableDefinition"
+          ordered="false" lowerBound="1" eType="#//vdml/BusinessItemDefinition" eOpposite="#//vdml/BusinessItemDefinition/capabilityDependency"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+          eType="#//vdml/CapabilityDefinition" eOpposite="#//vdml/CapabilityDefinition/output"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+          eType="#//vdml/CapabilityDefinition" eOpposite="#//vdml/CapabilityDefinition/input"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFromExternalSource"
+          ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isForExternalTarget"
+          ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessItemDefinition" eSuperTypes="#//vdml/BusinessItemLibraryElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="practiceDefinition" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeDefinition" eOpposite="#//vdml/PracticeDefinition/resourceDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="supportedCapability"
+          ordered="false" upperBound="-1" eType="#//vdml/CapabilityDefinition" eOpposite="#//vdml/CapabilityDefinition/capabilityResourceDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFungible" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="category" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItemCategory" eOpposite="#//vdml/BusinessItemCategory/categoryItem"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+          ordered="false" upperBound="-1" eType="#//smm/Characteristic"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isShareable" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityDependency"
+          ordered="false" upperBound="-1" eType="#//vdml/CapabilityDependency" eOpposite="#//vdml/CapabilityDependency/deliverableDefinition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessItemLibraryElement" abstract="true"
+        eSuperTypes="#//vdml/VdmlElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="PracticeDefinition" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="category" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeCategory" eOpposite="#//vdml/PracticeCategory/categoryPractice"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityDefinition" eOpposite="#//vdml/CapabilityDefinition/practiceDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceDefinition" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItemDefinition" eOpposite="#//vdml/BusinessItemDefinition/practiceDefinition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PracticeCategory" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeCategory" eOpposite="#//vdml/PracticeCategory/childCategory"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="childCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeCategory" eOpposite="#//vdml/PracticeCategory/parentCategory"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="categoryPractice" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeDefinition" eOpposite="#//vdml/PracticeDefinition/category"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CapabilityDefinition" eSuperTypes="#//vdml/Capability">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityDependency" eOpposite="#//vdml/CapabilityDependency/source"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityDependency" eOpposite="#//vdml/CapabilityDependency/target"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityResourceDefinition"
+          ordered="false" upperBound="-1" eType="#//vdml/BusinessItemDefinition" eOpposite="#//vdml/BusinessItemDefinition/supportedCapability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="practiceDefinition" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeDefinition" eOpposite="#//vdml/PracticeDefinition/capability"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessItemCategory" eSuperTypes="#//vdml/BusinessItemLibraryElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItemCategory" eOpposite="#//vdml/BusinessItemCategory/childCategory"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="childCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItemCategory" eOpposite="#//vdml/BusinessItemCategory/parentCategory"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="categoryItem" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItemDefinition" eOpposite="#//vdml/BusinessItemDefinition/category"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessItemLibrary" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="businessItemLibraryElement"
+          ordered="false" upperBound="-1" eType="#//vdml/BusinessItemLibraryElement"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//vdml/Participant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="scenario" ordered="false"
+          upperBound="-1" eType="#//vdml/Scenario" eOpposite="#//vdml/Scenario/contextActor"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Participant" abstract="true" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignment" ordered="false"
+          upperBound="-1" eType="#//vdml/Assignment" eOpposite="#//vdml/Assignment/participant"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participantCalendar"
+          ordered="false" eType="#//vdml/CalendarService" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MeasurableElement" abstract="true"
+        eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measuredCharacteristic"
+          ordered="false" upperBound="-1" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MeasuredCharacteristic" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measurement" ordered="false"
+          upperBound="-1" eType="#//smm/Measurement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+          ordered="false" eType="#//smm/Characteristic"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignedRole" ordered="false"
+          lowerBound="1" eType="#//vdml/Role" eOpposite="#//vdml/Role/roleAssignment"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roleResource" ordered="false"
+          upperBound="-1" eType="#//vdml/InputPort" eOpposite="#//vdml/InputPort/assignment"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participant" ordered="false"
+          eType="#//vdml/Participant" eOpposite="#//vdml/Participant/assignment"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//vdml/Participant">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="performedWork" ordered="false"
+          upperBound="-1" eType="#//vdml/Activity" eOpposite="#//vdml/Activity/performingRole"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="port" ordered="false"
+          upperBound="-1" eType="#//vdml/Port" eOpposite="#//vdml/Port/handler"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedProposition"
+          ordered="false" upperBound="-1" eType="#//vdml/ValueProposition" containment="true"
+          eOpposite="#//vdml/ValueProposition/provider"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="receivedProposition"
+          ordered="false" upperBound="-1" eType="#//vdml/ValueProposition" eOpposite="#//vdml/ValueProposition/recipient"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLead" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roleDefinition" ordered="false"
+          eType="#//vdml/RoleDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roleAssignment" ordered="false"
+          upperBound="-1" eType="#//vdml/Assignment" eOpposite="#//vdml/Assignment/assignedRole"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="#//vdml/PortContainer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityRequirement"
+          ordered="false" eType="#//vdml/Capability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceUse" ordered="false"
+          upperBound="-1" eType="#//vdml/ResourceUse" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegationContext" ordered="false"
+          upperBound="-1" eType="#//vdml/DelegationContext" eOpposite="#//vdml/DelegationContext/delegatedActivity"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="appliedCapabilityOffer"
+          ordered="false" eType="#//vdml/CapabilityOffer" eOpposite="#//vdml/CapabilityOffer/applyingActivity"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="duration" ordered="false"
+          lowerBound="1" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implementedPractice"
+          ordered="false" upperBound="-1" eType="#//vdml/PracticeDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recurrenceInterval" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="performingRole" ordered="false"
+          eType="#//vdml/Role" eOpposite="#//vdml/Role/performedWork"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PortContainer" abstract="true" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="containedPort" ordered="false"
+          upperBound="-1" eType="#//vdml/Port" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Port" abstract="true" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIntermediate" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="planningPercentage" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="batchSize" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="offset" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" ordered="false"
+          eType="#//vdml/Expression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="handler" ordered="false"
+          eType="#//vdml/Role" eOpposite="#//vdml/Role/port"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
+          upperBound="-1" eType="#//vdml/Operand" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Operand" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measuredCharacteristic"
+          ordered="false" lowerBound="1" eType="#//vdml/MeasuredCharacteristic"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ResourceUse" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="deliverable" ordered="false"
+          eType="#//vdml/OutputPort" eOpposite="#//vdml/OutputPort/resourceUse"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resource" upperBound="-1"
+          eType="#//vdml/InputPort" eOpposite="#//vdml/InputPort/resourceUse"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="quantity" ordered="false"
+          lowerBound="1" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="duration" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="planningPercentage" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputDriven" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" ordered="false"
+          eType="#//vdml/Expression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExclusive" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceIsConsumed" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OutputPort" eSuperTypes="#//vdml/Port">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
+          eType="#//vdml/DeliverableFlow" eOpposite="#//vdml/DeliverableFlow/provider"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outputDefinition" ordered="false"
+          eType="#//vdml/BusinessItemLibraryElement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueAdd" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueAdd" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegatedOutput" ordered="false"
+          upperBound="-1" eType="#//vdml/OutputDelegation" eOpposite="#//vdml/OutputDelegation/target"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outputDelegation" ordered="false"
+          upperBound="-1" eType="#//vdml/OutputDelegation" eOpposite="#//vdml/OutputDelegation/source"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceUse" ordered="false"
+          upperBound="-1" eType="#//vdml/ResourceUse" eOpposite="#//vdml/ResourceUse/deliverable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DeliverableFlow" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recipient" ordered="false"
+          lowerBound="1" eType="#//vdml/InputPort" eOpposite="#//vdml/InputPort/input"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTangible" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="deliverable" ordered="false"
+          lowerBound="1" eType="#//vdml/BusinessItem" eOpposite="#//vdml/BusinessItem/flow"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="duration" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="provider" ordered="false"
+          lowerBound="1" eType="#//vdml/OutputPort" eOpposite="#//vdml/OutputPort/output"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="channel" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InputPort" eSuperTypes="#//vdml/Port">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resourceUse" ordered="false"
+          upperBound="-1" eType="#//vdml/ResourceUse" eOpposite="#//vdml/ResourceUse/resource"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegatedInput" ordered="false"
+          upperBound="-1" eType="#//vdml/InputDelegation" eOpposite="#//vdml/InputDelegation/target"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inputDelegation" ordered="false"
+          upperBound="-1" eType="#//vdml/InputDelegation" eOpposite="#//vdml/InputDelegation/source"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inputDefinition" ordered="false"
+          eType="#//vdml/BusinessItemLibraryElement"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="correlationExpression"
+          ordered="false" eType="#//vdml/Expression" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignment" ordered="false"
+          upperBound="-1" eType="#//vdml/Assignment" eOpposite="#//vdml/Assignment/roleResource"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
+          eType="#//vdml/DeliverableFlow" eOpposite="#//vdml/DeliverableFlow/recipient"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InputDelegation" eSuperTypes="#//vdml/PortDelegation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+          lowerBound="1" eType="#//vdml/InputPort" eOpposite="#//vdml/InputPort/inputDelegation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+          lowerBound="1" eType="#//vdml/InputPort" eOpposite="#//vdml/InputPort/delegatedInput"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PortDelegation" abstract="true" eSuperTypes="#//vdml/VdmlElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessItem" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+          eType="#//vdml/BusinessItemDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isFungible" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="store" ordered="false"
+          upperBound="-1" eType="#//vdml/Store" eOpposite="#//vdml/Store/resource"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="method" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityMethod" eOpposite="#//vdml/CapabilityMethod/methodResource"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isShareable" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="flow" ordered="false"
+          upperBound="-1" eType="#//vdml/DeliverableFlow" eOpposite="#//vdml/DeliverableFlow/deliverable"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Store" eSuperTypes="#//vdml/PortContainer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="storeOwner" ordered="false"
+          lowerBound="1" eType="#//vdml/OrgUnit" eOpposite="#//vdml/OrgUnit/ownedStore"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="storeContext" ordered="false"
+          upperBound="-1" eType="#//vdml/AnalysisContext" eOpposite="#//vdml/AnalysisContext/contextStore"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="supportedCapability"
+          ordered="false" upperBound="-1" eType="#//vdml/CapabilityOffer" eOpposite="#//vdml/CapabilityOffer/capabilityResource"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="duration" ordered="false"
+          lowerBound="1" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="inventoryLevel" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="resource" ordered="false"
+          lowerBound="1" eType="#//vdml/BusinessItem" eOpposite="#//vdml/BusinessItem/store"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OrgUnit" eSuperTypes="#//vdml/Collaboration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityOffer" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityOffer" containment="true" eOpposite="#//vdml/CapabilityOffer/capabilityProvider"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMethod" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityMethod" containment="true" eOpposite="#//vdml/CapabilityMethod/methodOwner"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+          upperBound="-1" eType="#//vdml/Position" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStore" ordered="false"
+          upperBound="-1" eType="#//vdml/Store" containment="true" eOpposite="#//vdml/Store/storeOwner"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Collaboration" eSuperTypes="#//vdml/Participant #//vdml/PortContainer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="collaborationRole" ordered="false"
+          upperBound="-1" eType="#//vdml/Role" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="activity" ordered="false"
+          upperBound="-1" eType="#//vdml/Activity" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="flow" ordered="false"
+          upperBound="-1" eType="#//vdml/DeliverableFlow" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="businessItem" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItem" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="internalPortDelegation"
+          ordered="false" upperBound="-1" eType="#//vdml/PortDelegation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegationContext" ordered="false"
+          upperBound="-1" eType="#//vdml/DelegationContext" eOpposite="#//vdml/DelegationContext/contextCollaboration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="scenario" ordered="false"
+          upperBound="-1" eType="#//vdml/Scenario" eOpposite="#//vdml/Scenario/contextCollaboration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAssignment" ordered="false"
+          upperBound="-1" eType="#//vdml/Assignment" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="DelegationContext" eSuperTypes="#//vdml/AnalysisContext">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parentContext" ordered="false"
+          lowerBound="1" eType="#//vdml/AnalysisContext" eOpposite="#//vdml/AnalysisContext/delegationtContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextBasedPortDelegation"
+          ordered="false" upperBound="-1" eType="#//vdml/PortDelegation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegatedActivity" ordered="false"
+          lowerBound="1" eType="#//vdml/Activity" eOpposite="#//vdml/Activity/delegationContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextCollaboration"
+          ordered="false" lowerBound="1" eType="#//vdml/Collaboration" eOpposite="#//vdml/Collaboration/delegationContext"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AnalysisContext" abstract="true" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegationtContext" ordered="false"
+          upperBound="-1" eType="#//vdml/DelegationContext" containment="true" eOpposite="#//vdml/DelegationContext/parentContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextObservation" ordered="false"
+          eType="#//smm/Observation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextStore" ordered="false"
+          upperBound="-1" eType="#//vdml/Store" eOpposite="#//vdml/Store/storeContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextBasedAssignment"
+          ordered="false" upperBound="-1" eType="#//vdml/Assignment" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#//vdml/AnalysisContext">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="horizon" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="releaseControl" ordered="false"
+          upperBound="-1" eType="#//vdml/ReleaseControl" eOpposite="#//vdml/ReleaseControl/scenario"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDefault" ordered="false"
+          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
+          defaultValueLiteral="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="heatThreshold" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextActor" ordered="false"
+          upperBound="-1" eType="#//vdml/Actor" eOpposite="#//vdml/Actor/scenario"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contextCollaboration"
+          ordered="false" upperBound="-1" eType="#//vdml/Collaboration" eOpposite="#//vdml/Collaboration/scenario"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ReleaseControl" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="scenario" ordered="false"
+          upperBound="-1" eType="#//vdml/Scenario" eOpposite="#//vdml/Scenario/releaseControl"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="strategy" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CapabilityOffer" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+          eType="#//vdml/Capability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityResource" ordered="false"
+          upperBound="-1" eType="#//vdml/Store" eOpposite="#//vdml/Store/supportedCapability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="method" ordered="false"
+          upperBound="-1" eType="#//vdml/CapabilityMethod" eOpposite="#//vdml/CapabilityMethod/supportedCapability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="releaseControl" ordered="false"
+          upperBound="-1" eType="#//vdml/ReleaseControl" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="applyingActivity" ordered="false"
+          upperBound="-1" eType="#//vdml/Activity" eOpposite="#//vdml/Activity/appliedCapabilityOffer"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="heatIndex" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityProvider" ordered="false"
+          lowerBound="1" eType="#//vdml/OrgUnit" eOpposite="#//vdml/OrgUnit/capabilityOffer"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CapabilityMethod" eSuperTypes="#//vdml/Collaboration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="performer" ordered="false"
+          upperBound="-1" eType="#//vdml/Performer" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="methodOwner" ordered="false"
+          lowerBound="1" eType="#//vdml/OrgUnit" eOpposite="#//vdml/OrgUnit/ownedMethod"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implementedPractice"
+          ordered="false" upperBound="-1" eType="#//vdml/PracticeDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="methodResource" ordered="false"
+          upperBound="-1" eType="#//vdml/BusinessItem" eOpposite="#//vdml/BusinessItem/method"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+          eType="#//vdml/Capability"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="supportedCapability"
+          ordered="false" upperBound="-1" eType="#//vdml/CapabilityOffer" eOpposite="#//vdml/CapabilityOffer/method"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Performer" eSuperTypes="#//vdml/Role"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Position" eSuperTypes="#//vdml/Role">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actorPool" ordered="false"
+          upperBound="-1" eType="#//vdml/Pool" eOpposite="#//vdml/Pool/position"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Pool" eSuperTypes="#//vdml/Store">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="poolCalendar" ordered="false"
+          eType="#//vdml/CalendarService" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="poolSize" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+          upperBound="-1" eType="#//vdml/Position" eOpposite="#//vdml/Position/actorPool"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CalendarService" eSuperTypes="#//vdml/VdmlElement"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueAdd" eSuperTypes="#//vdml/ValueElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="propositionComponent"
+          ordered="false" upperBound="-1" eType="#//vdml/ValuePropositionComponent"
+          eOpposite="#//vdml/ValuePropositionComponent/articulatedValue"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="aggregatedFrom" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueAdd" eOpposite="#//vdml/ValueAdd/aggregatedTo"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="aggregatedTo" ordered="false"
+          upperBound="-1" eType="#//vdml/ValueAdd" eOpposite="#//vdml/ValueAdd/aggregatedFrom"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueElement" abstract="true" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueDefinition" ordered="false"
+          eType="#//vdml/ValueDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueMeasurement" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="benchmark" ordered="false"
+          upperBound="-1" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValuePropositionComponent" eSuperTypes="#//vdml/ValueElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="percentageWeight" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="satisfactionLevel" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueImpactForProvider"
+          ordered="false" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueImpactForRecipient"
+          ordered="false" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="articulatedValue" ordered="false"
+          eType="#//vdml/ValueAdd" eOpposite="#//vdml/ValueAdd/propositionComponent"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OutputDelegation" eSuperTypes="#//vdml/PortDelegation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+          lowerBound="1" eType="#//vdml/OutputPort" eOpposite="#//vdml/OutputPort/outputDelegation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+          lowerBound="1" eType="#//vdml/OutputPort" eOpposite="#//vdml/OutputPort/delegatedOutput"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueProposition" eSuperTypes="#//vdml/MeasurableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
+          upperBound="-1" eType="#//vdml/ValuePropositionComponent" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recipient" ordered="false"
+          eType="#//vdml/Role" eOpposite="#//vdml/Role/receivedProposition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="propositionValue" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="satisfactionLevel" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueImpactForProvider"
+          ordered="false" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueImpactForRecipient"
+          ordered="false" eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="provider" ordered="false"
+          lowerBound="1" eType="#//vdml/Role" eOpposite="#//vdml/Role/providedProposition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleDefinition" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="category" ordered="false"
+          upperBound="-1" eType="#//vdml/RoleCategory" eOpposite="#//vdml/RoleCategory/categoryRole"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+          ordered="false" upperBound="-1" eType="#//smm/Characteristic"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleCategory" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="categoryRole" ordered="false"
+          upperBound="-1" eType="#//vdml/RoleDefinition" eOpposite="#//vdml/RoleDefinition/category"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PracticeLibrary" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="practiceDefinition" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeDefinition" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="practiceCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/PracticeCategory" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="RoleLibrary" eSuperTypes="#//vdml/VdmlElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roleDefinition" ordered="false"
+          upperBound="-1" eType="#//vdml/RoleDefinition" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="roleCategory" ordered="false"
+          upperBound="-1" eType="#//vdml/RoleCategory" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessNetwork" eSuperTypes="#//vdml/Collaboration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="party" ordered="false"
+          upperBound="-1" eType="#//vdml/Party" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Party" eSuperTypes="#//vdml/Role">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueMargin" ordered="false"
+          eType="#//vdml/MeasuredCharacteristic" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Community" eSuperTypes="#//vdml/Collaboration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="member" ordered="false"
+          upperBound="-1" eType="#//vdml/Member" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Member" eSuperTypes="#//vdml/Role"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//vdml/Actor"/>
+    <eClassifiers xsi:type="ecore:EClass" name="CapabilityCategory" eSuperTypes="#//vdml/Capability"/>
+    <eClassifiers xsi:type="ecore:EClass" name="integer"/>
+  </eSubpackages>
+  <eSubpackages name="smm" nsURI="http://www.omg.org/spec/SMM/20131201/SMM.cmof" nsPrefix="smm">
+    <eClassifiers xsi:type="ecore:EClass" name="Characteristic" eSuperTypes="#//smm/AbstractMeasureElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measure" ordered="false"
+          upperBound="-1" eType="#//smm/Measure" eOpposite="#//smm/Measure/trait"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractMeasureElement" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="library" ordered="false"
+          lowerBound="1" eType="#//smm/MeasureLibrary" eOpposite="#//smm/MeasureLibrary/measureElement"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MeasureLibrary">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
+          lowerBound="1" eType="#//smm/SmmModel" eOpposite="#//smm/SmmModel/library"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measureElement" ordered="false"
+          upperBound="-1" eType="#//smm/AbstractMeasureElement" containment="true"
+          eOpposite="#//smm/AbstractMeasureElement/library"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Measure" abstract="true" eSuperTypes="#//smm/AbstractMeasureElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="observedMeasure" ordered="false"
+          upperBound="-1" eType="#//smm/ObservedMeasure" eOpposite="#//smm/ObservedMeasure/measure"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="trait" ordered="false"
+          lowerBound="1" eType="#//smm/Characteristic" eOpposite="#//smm/Characteristic/measure"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ObservedMeasure">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="observation" ordered="false"
+          lowerBound="1" eType="#//smm/Observation" eOpposite="#//smm/Observation/observedMeasure"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measurement" ordered="false"
+          upperBound="-1" eType="#//smm/Measurement" containment="true" eOpposite="#//smm/Measurement/observedMeasure"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measure" ordered="false"
+          lowerBound="1" eType="#//smm/Measure" eOpposite="#//smm/Measure/observedMeasure"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Observation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="smmModel" ordered="false"
+          lowerBound="1" eType="#//smm/SmmModel" eOpposite="#//smm/SmmModel/observation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="observedMeasure" ordered="false"
+          upperBound="-1" eType="#//smm/ObservedMeasure" containment="true" eOpposite="#//smm/ObservedMeasure/observation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Measurement" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="observedMeasure" ordered="false"
+          lowerBound="1" eType="#//smm/ObservedMeasure" eOpposite="#//smm/ObservedMeasure/measurement"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SmmModel">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="library" ordered="false"
+          upperBound="-1" eType="#//smm/MeasureLibrary" containment="true" eOpposite="#//smm/MeasureLibrary/model"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="observation" ordered="false"
+          upperBound="-1" eType="#//smm/Observation" containment="true" eOpposite="#//smm/Observation/smmModel"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="cmof" nsURI="http:///Data/CMOF.ecore" nsPrefix="cmof">
+    <eClassifiers xsi:type="ecore:EClass" name="Element">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="measurement" ordered="false"
+          upperBound="-1" eType="#//smm/Measurement"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

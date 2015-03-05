@@ -1,0 +1,565 @@
+{
+	"title" : "VDML Activity Network",
+	"namespace" : "http://b3mn.org/stencilset/vdmlactivitynetwork.0#",
+	"description" : "This is the VDML Activity Network stencil set specification.",
+	"propertyPackages" : [
+	        {
+	        	"name" : "vdmlElement",
+	        	"properties": [
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "",
+						"description" : "The descriptive name of the VDML element.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the CMMN element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					},
+					{
+						"id" : "diagramElementId",
+						"type" : "String",
+						"title" : "DiagramElementId",
+						"value" : "",
+						"description" : "This is the unique id of the diagram element used to display the CMMN Element.",
+						"readonly" : true,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"hidden" : true
+					}
+				]
+			},
+			{
+				"name" : "color",
+				"properties" : [
+						{
+							"id" : "bgcolor",
+							"type" : "Color",
+							"title" : "Background Color",
+							"value" : "#ffffff",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"fill_el"
+							],
+							"fill" : true,
+							"stroke" : false
+						},
+						{
+							"id" : "bordercolor",
+							"type" : "Color",
+							"title" : "Border Color",
+							"value" : "#000000",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+									"edge", "fill_border", "bg_frame"
+							],
+							"fill" : false,
+							"stroke" : true
+						}, {
+							"id" : "fontcolor",
+							"type" : "Color",
+							"title" : "Font Color",
+							"value" : "#000000",
+							"description" : "Font color",
+							"description_ja" : "フォントの色",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"fill" : true,
+							"stroke" : false
+						}, {
+							"id" : "fontsize",
+							"type" : "Choice",
+							"title" : "Font Size",
+							"value" : "",
+							"description" : "The Font Size",
+							"description_ja" : "フォントのサイズ",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"items" : [
+									{
+										"id" : "c1",
+										"title" : "8",
+										"value" : "8"
+									}, {
+										"id" : "c2",
+										"title" : "9",
+										"value" : "9"
+									}, {
+										"id" : "c3",
+										"title" : "10",
+										"value" : "10"
+									}, {
+										"id" : "c4",
+										"title" : "11",
+										"value" : "11"
+									}, {
+										"id" : "c5",
+										"title" : "12",
+										"value" : "12"
+									}, {
+										"id" : "c6",
+										"title" : "14",
+										"value" : "14"
+									}, {
+										"id" : "c7",
+										"title" : "18",
+										"value" : "18"
+									}, {
+										"id" : "c8",
+										"title" : "20",
+										"value" : "20"
+									}, {
+										"id" : "c9",
+										"title" : "24",
+										"value" : "24"
+									}, {
+										"id" : "c10",
+										"title" : "36",
+										"value" : "36"
+									}, {
+										"id" : "c11",
+										"title" : "48",
+										"value" : "48"
+									}, {
+										"id" : "c12",
+										"title" : "72",
+										"value" : "72"
+									}
+							]
+						}
+				]
+			}
+	],
+	"stencils" : [
+			{
+				"type" : "node",
+				"id" : "VdmlActivityNetworkDiagram",
+				"title" : "VdmlActivityNetworkDiagram",
+				"groups" : [
+					"Diagram"
+				],
+				"description" : "A VdmlActivityNetwork  Diagram.",
+				"view" : "diagram.svg",
+				"icon" : "diagram.png",
+				"mayBeRoot" : true,
+				"hide" : true,
+				"propertyPackages" : ["vdmlElement"
+				],
+				"roles" : [
+					"collaboration"
+				],
+				"properties" : [
+					{
+						"id" : "collaborationType",
+						"type" : "String",
+						"title" : "CollaborationType",
+						"value" : "",
+						"description" : "",
+						"readonly" : true,
+						"optional" : false,
+						"hidden" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"refToView" : [
+							"text_name"
+						]
+					}
+
+				],
+				"layout": [
+				 ]
+
+			},
+			{
+				"type" : "node",
+				"id" : "Role",
+				"title" : "Role",
+				"position" : 1,
+				"groups" : [
+					"General"
+				],
+				"roles" : [
+					"role"
+				],
+				"description" : "A Role",
+				"view" : "role.svg",
+				"icon" : "role.png",
+				"layout" : [
+							{"type" : "layout.vdml.role_lane"},
+							{
+								"type" : "layout.container.minBounds",
+								"options" : {
+									"ignoreChildsWithId" : [
+										"http://b3mn.org/stencilset/bpmn2.0#Lane"
+									]
+								}
+							}
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "CollaborationInputPort",
+				"title" : "Collaboration Input Port",
+				"position" : 6,
+				"groups" : [
+					"General"
+				],
+				"roles" : [
+					"collaborationInputPort"
+				],
+				"description" : "Input Port",
+				"view" : "collaboration_input_port.svg",
+				"icon" : "collaboration_input_port.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "CollaborationOutputPort",
+				"title" : "Collaboration Output Port",
+				"position" : 7,
+				"groups" : [
+					"General"
+				],
+				"roles" : [
+					"collaborationOutputPort"
+				],
+				"description" : "Collaboration Output Port",
+				"view" : "collaboration_output_port.svg",
+				"icon" : "collaboration_output_port.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "Activity",
+				"title" : "Activity",
+				"position" : 2,
+				"groups" : [
+					"Activity"
+				],
+				"roles" : [
+					"activity"
+				],
+				"description" : "Acitivity",
+				"view" : "activity.svg",
+				"icon" : "activity.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "ActivityInputPort",
+				"title" : "Activity Input",
+				"position" : 4,
+				"groups" : [
+					"Activity"
+				],
+				"roles" : [
+					"activityInputPort","activityPort"
+				],
+				"description" : "Input Port to an Activity",
+				"view" : "input_port.svg",
+				"icon" : "input_port.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "ActivityOutputPort",
+				"title" : "Activity Output",
+				"position" : 5,
+				"groups" : [
+					"Activity"
+				],
+				"roles" : [
+					"activityOutputPort","activityPort"
+				],
+				"description" : "Output Port",
+				"view" : "output_port.svg",
+				"icon" : "output_port.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "Store",
+				"title" : "Store",
+				"position" : 3,
+				"groups" : [
+					"Store"
+				],
+				"roles" : [
+					"store"
+				],
+				"description" : "Store",
+				"view" : "store.svg",
+				"icon" : "store.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "StoreInputPort",
+				"title" : "Store Input",
+				"position" : 4,
+				"groups" : [
+					"Store"
+				],
+				"roles" : [
+					"storeInputPort","storePort"
+				],
+				"description" : "Input Port to a Store",
+				"view" : "input_port.svg",
+				"icon" : "input_port.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "StoreOutputPort",
+				"title" : "Store Output",
+				"position" : 5,
+				"groups" : [
+					"Store"
+				],
+				"roles" : [
+					"storeOutputPort","storePort"
+				],
+				"description" : "Store Output Port",
+				"view" : "output_port.svg",
+				"icon" : "output_port.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "DeliverableFlow",
+				"title" : "DeliverableFlow",
+				"position" : 7,
+				"groups" : [
+					"Flows"
+				],
+				"roles" : [
+					"deliverableFlow"
+				],
+				"description" : "Deliverable Flow",
+				"view" : "deliverable_flow.svg",
+				"icon" : "deliverable_flow.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "InputDelegation",
+				"title" : "Input Delegation",
+				"position" : 7,
+				"groups" : [
+					"Flows"
+				],
+				"roles" : [
+					"inputDelegation"
+				],
+				"description" : "Input Delegation",
+				"view" : "deliverable_flow.svg",
+				"icon" : "deliverable_flow.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "OutputDelegation",
+				"title" : "Output Delegation",
+				"position" : 7,
+				"groups" : [
+					"Flows"
+				],
+				"roles" : [
+					"outputDelegation"
+				],
+				"description" : "Output Delegation",
+				"view" : "deliverable_flow.svg",
+				"icon" : "deliverable_flow.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"vdmlElement","color"
+				],
+				"properties" : [
+				]
+			}
+
+	],
+
+	"rules" : {
+		"cardinalityRules" : [
+		],
+		"connectionRules" : [
+		    {
+				"role" : "activityPort",
+				"connects" : [
+						{
+							"from" : "activity",
+							"to" : [
+								"activityPort"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "storePort",
+				"connects" : [
+						{
+							"from" : "store",
+							"to" : [
+								"storePort"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "deliverableFlow",
+				"connects" : [
+						{
+							"from" : "activityOutputPort",
+							"to" : [
+								"storeInputPort","activityInputPort"
+							]
+						},
+						{
+							"from" : "storeOutputPort",
+							"to" : [
+								"activityInputPort"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "inputDelegation",
+				"connects" : [
+						{
+							"from" : "collaborationInputPort",
+							"to" : [
+								"activityInputPort"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "outputDelegation",
+				"connects" : [
+						{
+							"from" : "activityOutputPort",
+							"to" : [
+								"collaborationOutputPort"
+							]
+						}
+
+				]
+			}
+
+		],
+		"containmentRules" : [
+				{
+					"role" : "collaboration",
+					"contains" : [
+						"role"
+					]
+				},
+				{
+					"role" : "role",
+					"contains" : [
+						"store","activityPort", "storePort","collaborationInputPort","collaborationOutputPort","activity"
+					]
+				}
+		],
+		"morphingRules" : [],
+		"layoutRules" : []
+	}
+}

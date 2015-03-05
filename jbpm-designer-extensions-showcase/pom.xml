@@ -26,6 +26,30 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdan-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdan-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdan-client</artifactId>
+    </dependency>
+	<dependency>
+		<groupId>org.jbpm</groupId>
+		<artifactId>jbpm-designer-vdpe-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.jbpm</groupId>
+		<artifactId>jbpm-designer-vdpe-client</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.jbpm</groupId>
+		<artifactId>jbpm-designer-vdpe-backend</artifactId>
+	</dependency>
+	<dependency>
+      <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
     </dependency>
     <dependency>
@@ -44,6 +68,10 @@
     <dependency>
       <groupId>org.jboss.errai</groupId>
       <artifactId>errai-bus</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-marshalling</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jboss.errai</groupId>
@@ -136,6 +164,14 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-wb-workitems-editor-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-workitems-editor-api</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.drools</groupId>
+    	<artifactId>drools-workbench-models-datamodel-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
@@ -284,6 +320,10 @@
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-structure-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-asset-mgmt-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
@@ -559,6 +599,12 @@
             <!-- designer -->
             <compileSourcesArtifact>org.jbpm:jbpm-designer-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdan-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdan-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdpe-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdpe-client</compileSourcesArtifact>
 
             <compileSourcesArtifact>org.jbpm:jbpm-form-modeler-editor-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-form-modeler-editor-client</compileSourcesArtifact>

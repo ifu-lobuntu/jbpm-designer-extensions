@@ -27,34 +27,6 @@
       <artifactId>jbpm-designer-backend</artifactId>
     </dependency>
     <!-- dependencies added because of illegal transitive dependency check -->
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>drools-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-kie-services</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-bus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-    </dependency>
   </dependencies>
 
 </project>

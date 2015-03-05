@@ -30,43 +30,46 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
     </dependency>
-    <!-- dependencies added because of new illegal transitive dependency check -->
+    <!-- Transitive dependency -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-api</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-backend-api</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-backend</artifactId>
     </dependency>
+	<dependency>
+		<groupId>org.eclipse.uml2</groupId>
+		<artifactId>org.eclipse.uml2.uml</artifactId>
+	</dependency>
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
+      <groupId>org.eclipse.emf</groupId>
+      <artifactId>org.eclipse.emf.common</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>drools-core</artifactId>
+      <groupId>org.eclipse.emf</groupId>
+      <artifactId>org.eclipse.emf.ecore</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.eclipse.emf</groupId>
+      <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+    </dependency>
+	<dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-cmmn-emf-metamodel</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie</groupId>
-      <artifactId>kie-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-kie-services</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-bus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
     </dependency>
   </dependencies>
 

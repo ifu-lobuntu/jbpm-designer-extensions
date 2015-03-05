@@ -3,3 +3,7 @@
 .classpath
 .metainfo
 target/
+.errai
+.niogit
+.index
+.security

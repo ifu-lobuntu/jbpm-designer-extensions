@@ -38,27 +38,25 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-client</artifactId>
     </dependency>
-
-    <!-- dependencies added because of new illegal transitive dependency check -->
+    <!-- Transitive dependencies -->
+    <!-- jBPM Designer -->
     <dependency>
-      <groupId>com.github.gwtbootstrap</groupId>
-      <artifactId>gwt-bootstrap</artifactId>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-bus</artifactId>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-client</artifactId>
     </dependency>
+    <!-- Errai -->
     <dependency>
       <groupId>org.jboss.errai</groupId>
       <artifactId>errai-common</artifactId>
     </dependency>
+    <!-- Uberfire -->
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-widgets-commons</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-widgets-service-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.uberfire</groupId>
@@ -66,47 +64,28 @@
     </dependency>
     <dependency>
       <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-backend-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-workbench-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-workbench-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-workbench-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.uberfire</groupId>
       <artifactId>uberfire-client-api</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-workbench-client</artifactId>
+    </dependency>
+    <!-- Guvner and WB -->
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-project-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.kie.workbench.widgets</groupId>
       <artifactId>kie-wb-common-ui</artifactId>
     </dependency>
-
-    <!-- Errai UI -->
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-ui</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-data-binding</artifactId>
-    </dependency>
-
-    <!-- GWT and GWT Extensions -->
+    <!-- Misc -->
     <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
       <scope>provided</scope>
     </dependency>
+
   </dependencies>
 
   <build>

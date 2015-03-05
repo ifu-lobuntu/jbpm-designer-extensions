@@ -1,0 +1,684 @@
+{
+	"title" : "VDML Activity Network",
+	"namespace" : "http://b3mn.org/stencilset/emptyset.0#",
+	"description" : "This is an empty stencil set to start new diagrams with",
+	"propertyPackages" : [
+	        {
+	        	"name" : "elementBase",
+	        	"properties": [
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "",
+						"description" : "The descriptive name of the UML element.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : false,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					},
+					{
+						"id" : "diagramElementId",
+						"type" : "String",
+						"title" : "DiagramElementId",
+						"value" : "",
+						"description" : "This is the unique id of the diagram element used to display the UML Element.",
+						"readonly" : true,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"hidden" : true
+					}
+				]
+			},
+	        {
+	        	"name" : "compartment",
+	        	"properties": [
+					{
+						"id" : "isExpanded",
+						"type" : "Boolean",
+						"title" : "Is Expanded",
+						"value" : "true",
+						"description" : "Is Expanded",
+						"hidden" : true
+					}
+				]
+			},
+			{
+				"name" : "bgColor",
+				"properties" : [
+						{
+							"id" : "bgcolor",
+							"type" : "Color",
+							"title" : "Background Color",
+							"value" : "#ffffff",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"fill_el"
+							],
+							"fill" : true,
+							"stroke" : false,
+							"display" : true
+						},
+						{
+							"id" : "bordercolor",
+							"type" : "Color",
+							"title" : "Border Color",
+							"value" : "#000000",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+									"edge", "fill_border", "bg_frame", "frame",
+									"frame2", "frame3", "frame4", "frame5",
+									"frame6", "frame7", "frame8", "frame9",
+									"frame10", "frame11", "frame12", "frame13",
+									"frame14", "frame15", "frame16", "frame17",
+									"frame18", "frame19", "frame20", "frame21",
+									"frame22", "frame23", "frame24", "frame25",
+									"frame26", "border"
+							],
+							"fill" : false,
+							"stroke" : true,
+							"display" : true
+						}, {
+							"id" : "fontcolor",
+							"type" : "Color",
+							"title" : "Font Color",
+							"value" : "#000000",
+							"description" : "Font color",
+							"description_ja" : "フォントの色",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"fill" : true,
+							"stroke" : false,
+							"display" : true
+						}, {
+							"id" : "fontsize",
+							"type" : "Choice",
+							"title" : "Font Size",
+							"value" : "",
+							"description" : "The Font Size",
+							"description_ja" : "フォントのサイズ",
+							"readonly" : false,
+							"optional" : false,
+							"display" : true,
+							"refToView" : [
+								"text_name"
+							],
+							"items" : [
+									{
+										"id" : "c1",
+										"title" : "8",
+										"value" : "8"
+									}, {
+										"id" : "c2",
+										"title" : "9",
+										"value" : "9"
+									}, {
+										"id" : "c3",
+										"title" : "10",
+										"value" : "10"
+									}, {
+										"id" : "c4",
+										"title" : "11",
+										"value" : "11"
+									}, {
+										"id" : "c5",
+										"title" : "12",
+										"value" : "12"
+									}, {
+										"id" : "c6",
+										"title" : "14",
+										"value" : "14"
+									}, {
+										"id" : "c7",
+										"title" : "18",
+										"value" : "18"
+									}, {
+										"id" : "c8",
+										"title" : "20",
+										"value" : "20"
+									}, {
+										"id" : "c9",
+										"title" : "24",
+										"value" : "24"
+									}, {
+										"id" : "c10",
+										"title" : "36",
+										"value" : "36"
+									}, {
+										"id" : "c11",
+										"title" : "48",
+										"value" : "48"
+									}, {
+										"id" : "c12",
+										"title" : "72",
+										"value" : "72"
+									}
+							]
+						}
+				]
+			},
+	        {
+	        	"name" : "association",
+	        	"properties": [
+					{
+						"id" : "end1Name",
+						"type" : "String",
+						"title" : "End1 Name",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"binding" : "memberEnd[0].name",
+						"refToView" : [
+							"end1_name"
+						]
+					},
+					{
+						"id" : "end2Name",
+						"type" : "String",
+						"title" : "End2 Name",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"binding" : "memberEnd[1].name",
+						"refToView" : [
+							"end2_name"
+						]
+					}
+
+				]
+			}
+	],
+	"stencils" : [
+			{
+				"type" : "node",
+				"id" : "ClassDiagram",
+				"title" : "ClassDiagram",
+				"groups" : [
+					"Diagram"
+				],
+				"description" : "A Class  Diagram.",
+				"view" : "diagram.svg",
+				"icon" : "diagram.png",
+				"mayBeRoot" : true,
+				"hide" : true,
+				"propertyPackages" : ["elementBase"
+				],
+				"roles" : [
+					"diagram"
+				],
+				"properties" : [
+				],
+				"layout": [
+
+				 ]
+
+			},
+			{
+				"type" : "node",
+				"id" : "Class",
+				"title" : "Class",
+				"position" : 1,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"class","classifier"
+				],
+				"description" : "A Class",
+				"view" : "class.svg",
+				"icon" : "class.png",
+				"layout" : [
+							{
+								"type" : "layout.compartments"
+							}
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "Interface",
+				"title" : "Interface",
+				"position" : 1,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"interface","classifier"
+				],
+				"description" : "A Class",
+				"view" : "interface.svg",
+				"icon" : "interface.png",
+				"layout" : [
+							{
+								"type" : "layout.compartments"
+							}
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "Enumeration",
+				"title" : "Enumeration",
+				"position" : 1,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"enumeration","classifier","bgColor"
+				],
+				"description" : "A Class",
+				"view" : "enumeration.svg",
+				"icon" : "enumeration.png",
+				"layout" : [
+							{
+								"type" : "layout.compartments"
+							}
+				],
+			    "propertyPackages" : [
+						"elementBase"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "Property",
+				"title" : "Property",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"property"
+				],
+				"description" : "A Property",
+				"view" : "property.svg",
+				"icon" : "property.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "EnumerationLiteral",
+				"title" : "EnumerationLiteral",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"enumerationLiteral"
+				],
+				"description" : "An Enumeration Literal",
+				"view" : "enumeration_literal.svg",
+				"icon" : "enumeration_literal.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "Operation",
+				"title" : "Operation",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"operation"
+				],
+				"description" : "An Operation",
+				"view" : "operation.svg",
+				"icon" : "operation.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "OwnedAttribute",
+				"title" : "OwnedAttribute",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"ownedAttribute"
+				],
+				"description" : "A Property Compartment",
+				"view" : "owned_attribute.svg",
+				"icon" : "owned_attribute.png",
+				"layout" : [
+							{
+								"type" : "layout.compartment.list"
+							}
+				],
+			    "propertyPackages" : [
+			          "compartment"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "OwnedLiteral",
+				"title" : "OwnedLiteral",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"ownedLiteral"
+				],
+				"description" : "The Owned Enumeration Literal Compartment",
+				"view" : "owned_literal.svg",
+				"icon" : "owned_literal.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+			          "compartment"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "OwnedOperation",
+				"title" : "OwnedOperation",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"ownedOperation"
+				],
+				"description" : "An Operation Compartment",
+				"view" : "owned_operation.svg",
+				"icon" : "owned_operation.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+			           "compartment"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "Composition",
+				"title" : "Composition",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"composition"
+				],
+				"description" : "A Compositional Association",
+				"view" : "composition.svg",
+				"icon" : "composition.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase",
+						"association","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "Association",
+				"title" : "Association",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"association"
+				],
+				"description" : "An Association",
+				"view" : "association.svg",
+				"icon" : "association.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase",
+						"association",
+						"bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "Generalization",
+				"title" : "Generalization",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"generalization"
+				],
+				"description" : "A Generalization",
+				"view" : "generalization.svg",
+				"icon" : "generalization.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "InterfaceRealization",
+				"title" : "InterfaceRealization",
+				"position" : 2,
+				"groups" : [
+					"Elements"
+				],
+				"roles" : [
+					"interfaceRealization"
+				],
+				"description" : "An InterfaceRealization",
+				"view" : "interface_realization.svg",
+				"icon" : "interface_realization.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"elementBase","bgColor"
+				],
+				"properties" : [
+				]
+			}
+
+	],
+
+	"rules" : {
+		"cardinalityRules" : [
+			{
+				"role":"class",
+				"incomingEdges": [
+					{
+						"role":"composition",
+						"maximum":1
+
+					}
+				]
+			},
+			{
+				"role":"class",
+				"outgoingEdges": [
+					{
+						"role":"generalization",
+						"maximum":1
+
+					}
+				]
+			}
+		],
+		"connectionRules" : [
+			{
+				"role" : "interfaceRealization",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface"
+						]
+					}
+				]
+			},
+			{
+				"role" : "generalization",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface"
+						]
+					}
+				]
+			},
+			{
+				"role" : "composition",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class"
+						]
+					}
+				]
+			},
+			{
+				"role" : "association",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"enumeration"
+						]
+					},
+					{
+						"from" : "class",
+						"to" : [
+							"enumeration"
+						]
+					}
+				]
+			}
+		],
+		"containmentRules" : [
+				{
+					"role" : "diagram",
+					"contains" : [
+						"class","interface"
+					]
+				},
+				{
+					"role" : "classifier",
+					"contains" : [
+						"ownedAttribute", "ownedOperation"
+					]
+				},
+				{
+					"role" : "enumeration",
+					"contains" : [
+						"ownedAttribute", "ownedOperation", "ownedLiteral"
+					]
+				},
+				{
+					"role" : "ownedAttribute",
+					"contains" : [
+						"property"
+					]
+				},
+				{
+					"role" : "ownedOperation",
+					"contains" : [
+						"operation"
+					]
+				},
+				{
+					"role" : "ownedLiteral",
+					"contains" : [
+						"enumerationLiteral"
+					]
+				}
+
+		],
+		"morphingRules" : [],
+		"layoutRules" : []
+	}
+}
