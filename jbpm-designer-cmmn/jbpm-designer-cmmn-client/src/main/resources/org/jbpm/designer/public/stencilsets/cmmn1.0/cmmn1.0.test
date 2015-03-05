@@ -1,0 +1,390 @@
+{
+	"title" : "CMMN 1.0",
+	"namespace" : "http://b3mn.org/stencilset/cmmn1.0#",
+	"description" : "This is the CMMN 1.0 stencil set specification.",
+	"propertyPackages" : [
+			{
+				"name" : "baseAttributes",
+				"properties" : [
+						{
+							"id" : "name",
+							"type" : "String",
+							"title" : "Name",
+							"value" : "",
+							"description" : "The descriptive name of the CMMN element.",
+							"readonly" : false,
+							"optional" : true,
+							"length" : "",
+							"wrapLines" : true,
+							"refToView" : "text_name"
+						},
+						{
+							"id" : "description",
+							"type" : "Text",
+							"title" : "description",
+							"value" : "",
+							"description" : "This attribute is used to annotate the CMMN element, such as descriptions and other documentation.",
+							"readonly" : false,
+							"optional" : true,
+							"length" : "",
+							"wrapLines" : true,
+							"popular" : true
+						} ]
+			},
+			{
+				"name" : "bgColor",
+				"properties" : [
+						{
+							"id" : "bgcolor",
+							"type" : "Color",
+							"title" : "BackgroundColor",
+							"value" : "#ffffff",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : "fill_el",
+							"fill" : true,
+							"stroke" : false
+						},
+						{
+							"id" : "bordercolor",
+							"type" : "Color",
+							"title" : "BorderColor",
+							"value" : "#000000",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [ "edge", "fill_border", "bg_frame",
+									"frame", "frame2", "frame3", "frame4",
+									"frame5", "frame6", "frame7", "frame8",
+									"frame9", "frame10", "frame11", "frame12",
+									"frame13", "frame14", "frame15", "frame16",
+									"frame17", "frame18", "frame19", "frame20",
+									"frame21", "frame22", "frame23", "frame24",
+									"frame25", "frame26", "border" ],
+							"fill" : false,
+							"stroke" : true
+						}, {
+							"id" : "fontcolor",
+							"type" : "Color",
+							"title" : "Font Color",
+							"value" : "#000000",
+							"description" : "Font color",
+							"description_ja" : "フォントの色",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [ "text_name" ],
+							"fill" : true,
+							"stroke" : false
+						}, {
+							"id" : "fontsize",
+							"type" : "Choice",
+							"title" : "Font Size",
+							"value" : "",
+							"description" : "The Font Size",
+							"description_ja" : "フォントのサイズ",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : "text_name",
+							"items" : [ {
+								"id" : "c1",
+								"title" : "8",
+								"value" : "8"
+							}, {
+								"id" : "c2",
+								"title" : "9",
+								"value" : "9"
+							}, {
+								"id" : "c3",
+								"title" : "10",
+								"value" : "10"
+							}, {
+								"id" : "c4",
+								"title" : "11",
+								"value" : "11"
+							}, {
+								"id" : "c5",
+								"title" : "12",
+								"value" : "12"
+							}, {
+								"id" : "c6",
+								"title" : "14",
+								"value" : "14"
+							}, {
+								"id" : "c7",
+								"title" : "18",
+								"value" : "18"
+							}, {
+								"id" : "c8",
+								"title" : "20",
+								"value" : "20"
+							}, {
+								"id" : "c9",
+								"title" : "24",
+								"value" : "24"
+							}, {
+								"id" : "c10",
+								"title" : "36",
+								"value" : "36"
+							}, {
+								"id" : "c11",
+								"title" : "48",
+								"value" : "48"
+							}, {
+								"id" : "c12",
+								"title" : "72",
+								"value" : "72"
+							} ]
+						} ]
+			},
+			{
+				"name" : "diagram",
+				"properties" : [
+						{
+							"id" : "package",
+							"type" : "String",
+							"title" : "Package",
+							"value" : "/defaultPackage/defaultPackage",
+							"description" : "Package",
+							"description_ja" : "パッケージ",
+							"readonly" : false,
+							"optional" : true
+						},
+						{
+							"id" : "caseFileItems",
+							"type" : "Vardef",
+							"title" : "Case File Items",
+							"value" : "",
+							"description" : "Case File Items",
+							"description_ja" : "変数定義",
+							"readonly" : false,
+							"optional" : true
+						},
+						{
+							"id" : "id",
+							"type" : "String",
+							"title" : "ID",
+							"value" : "[/defaultPackage, /defaultPackage].CMMN2-SampleCase",
+							"description" : "ID",
+							"description_ja" : "ID",
+							"readonly" : false,
+							"optional" : true
+						},
+						{
+							"id" : "version",
+							"type" : "String",
+							"title" : "Version",
+							"value" : "",
+							"description" : "This defines the Version number of the Diagram.",
+							"description_ja" : "ダイアグラムのバージョン番号を定義します。",
+							"readonly" : false,
+							"optional" : true,
+							"length" : "50"
+						},
+						{
+							"id" : "targetnamespace",
+							"type" : "String",
+							"title" : "Target Namespace",
+							"value" : "http://www.omg.org/CMMN20",
+							"description" : "Defines the XML namespace of the elements inside the document.",
+							"description_ja" : "ドキュメント内の要素のXML名前空間を定義します。",
+							"readonly" : true,
+							"optional" : true,
+							"length" : "50"
+						} ]
+			},
+			{
+				"name" : "task",
+				"properties" : [
+						{
+							"id" : "tasktype",
+							"type" : "Choice",
+							"title" : "TaskType",
+							"value" : "None",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : "",
+							"directlyEditable" : false,
+							"items" : [ {
+								"id" : "c4",
+								"title" : "Human Task",
+								"value" : "Human",
+								"icon" : "activity/list/type.user.png",
+								"refToView" : "userTask"
+							}, {
+								"id" : "c6",
+								"title" : "Case Task",
+								"value" : "Case",
+								"icon" : "activity/list/type.service.png",
+								"refToView" : "serviceTask"
+							}, {
+								"id" : "c6",
+								"title" : "Process Task",
+								"value" : "Process",
+								"icon" : "activity/list/type.service.png",
+								"refToView" : "serviceTask"
+							} ]
+						},
+						{
+							"id" : "bgcolor",
+							"type" : "Color",
+							"title" : "BackgroundColor",
+							"value" : "#b1c2d6",
+							"gradient" : true,
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : "fill_el",
+							"fill" : true,
+							"stroke" : false
+						},
+						{
+							"id" : "bordercolor",
+							"type" : "Color",
+							"title" : "BorderColor",
+							"value" : "#000000",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [ "edge", "fill_border", "bg_frame",
+									"frame", "frame2", "frame3", "frame4",
+									"frame5", "frame6", "frame7", "frame8",
+									"frame9", "frame10", "frame11", "frame12",
+									"frame13", "frame14", "frame15", "frame16",
+									"frame17", "frame18", "frame19", "frame20",
+									"frame21", "frame22", "frame23", "frame24",
+									"frame25", "frame26", "border" ],
+							"fill" : false,
+							"stroke" : true
+						}, {
+							"id" : "fontcolor",
+							"type" : "Color",
+							"title" : "Font Color",
+							"value" : "#000000",
+							"description" : "Font color",
+							"description_ja" : "フォントの色",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [ "text_name" ],
+							"fill" : true,
+							"stroke" : false
+						}, {
+							"id" : "fontsize",
+							"type" : "Choice",
+							"title" : "Font Size",
+							"value" : "",
+							"description" : "The Font Size",
+							"description_ja" : "フォントのサイズ",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : "text_name",
+							"items" : [ {
+								"id" : "c1",
+								"title" : "8",
+								"value" : "8"
+							}, {
+								"id" : "c2",
+								"title" : "9",
+								"value" : "9"
+							}, {
+								"id" : "c3",
+								"title" : "10",
+								"value" : "10"
+							}, {
+								"id" : "c4",
+								"title" : "11",
+								"value" : "11"
+							}, {
+								"id" : "c5",
+								"title" : "12",
+								"value" : "12"
+							}, {
+								"id" : "c6",
+								"title" : "14",
+								"value" : "14"
+							}, {
+								"id" : "c7",
+								"title" : "18",
+								"value" : "18"
+							}, {
+								"id" : "c8",
+								"title" : "20",
+								"value" : "20"
+							}, {
+								"id" : "c9",
+								"title" : "24",
+								"value" : "24"
+							}, {
+								"id" : "c10",
+								"title" : "36",
+								"value" : "36"
+							}, {
+								"id" : "c11",
+								"title" : "48",
+								"value" : "48"
+							}, {
+								"id" : "c12",
+								"title" : "72",
+								"value" : "72"
+							} ]
+						} ]
+			}, {
+				"name" : "stage",
+				"properties" : [ {
+					"id" : "isclosed",
+					"type" : "Boolean",
+					"title" : "isAutoComplete",
+					"value" : false,
+					"description" : "A .",
+					"readonly" : false,
+					"optional" : false
+				} ]
+			}, {
+				"name" : "case",
+				"properties" : [ {
+					"id" : "isAutoComplete",
+					"type" : "Boolean",
+					"title" : "isAutoComplete",
+					"value" : false,
+					"description" : "A .",
+					"readonly" : false,
+					"optional" : false
+				} ]
+			}, {
+				"name" : "parameterMapping",
+				"properties" : [ {
+					"id" : "mapping",
+					"type" : "Dataassignment",
+					"title" : "Mapping",
+					"value" : "",
+					"description" : "",
+					"readonly" : false,
+					"optional" : true,
+					"popular" : true,
+					"complexItems" : [ {
+						"id" : "to",
+						"name" : "To",
+						"type" : "String",
+						"value" : "",
+						"width" : 100,
+						"optional" : false
+					}, {
+						"id" : "from",
+						"name" : "From",
+						"type" : "String",
+						"value" : "",
+						"width" : 100,
+						"optional" : false
+					} ]
+				}, {
+					"id" : "transformation",
+					"title" : "Transformation",
+					"type" : "String",
+					"value" : "",
+					"optional" : true,
+					"popular" : true
+				} ]
+			} ]
+	}
+}

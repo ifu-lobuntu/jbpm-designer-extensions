@@ -26,6 +26,11 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-backend</artifactId>
     </dependency>
+    <!-- TODO remove this dependency -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-emf</artifactId>
+    </dependency>
     <!-- dependencies added because of illegal transitive dependency check -->
   </dependencies>
 

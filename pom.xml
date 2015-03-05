@@ -62,6 +62,26 @@
 				<artifactId>jbpm-designer-uml-backend</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+            <dependency>
+                  <groupId>org.jbpm</groupId>
+                  <artifactId>jbpm-designer-cmmn-emf</artifactId>
+				<version>${project.version}</version>
+            </dependency>
+    		<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-cmmn-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-cmmn-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-cmmn-backend</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.jbpm</groupId>
 				<artifactId>jbpm-designer-vdan-api</artifactId>

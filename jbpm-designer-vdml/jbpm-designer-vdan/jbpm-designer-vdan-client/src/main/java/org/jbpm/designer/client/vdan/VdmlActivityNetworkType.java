@@ -3,7 +3,6 @@ package org.jbpm.designer.client.vdan;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.jbpm.designer.client.resources.DesignerEditorResources;
-import org.jbpm.designer.type.Cmmn1TypeDefinition;
 import org.jbpm.designer.type.VdmlActivityNetworkTypeDefinition;
 import org.uberfire.client.workbench.type.ClientResourceType;
 

@@ -599,6 +599,8 @@
             <!-- designer -->
             <compileSourcesArtifact>org.jbpm:jbpm-designer-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-cmmn-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-cmmn-client</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-client</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-vdan-api</compileSourcesArtifact>

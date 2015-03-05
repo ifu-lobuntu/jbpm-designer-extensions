@@ -1,0 +1,42 @@
+[
+        {
+            "title":"jBPM BPMN2 (Full)",
+            "namespace":"http://b3mn.org/stencilset/bpmn2.0#",
+            "description":"This is the jBPM BPMN 2.0 stencil set specification.",
+            "uri":"/bpmn2.0jbpm/bpmn2.0jbpm.json",
+            "icon_url":"/bpmn2.0jbpm/bpmn2.0jbpm.png",
+            "visible":true
+        },
+        {
+            "title":"CMMN 1.0",
+            "namespace":"http://b3mn.org/stencilset/cmmn1.0#",
+            "description":"This is the jBPM CMMN 1.0 stencil set specification.",
+            "uri":"/cmmn1.0/cmmn1.0.json",
+            "icon_url":"/cmmn1.0/cmmn1.0.png",
+            "visible":true
+        },
+        {
+            "title":"VDML Activity Network",
+            "namespace":"http://b3mn.org/stencilset/vdmlactivitynetwork.0#",
+            "description":"This is the jBPM VDML Activity Network stencil set specification.",
+            "uri":"/vdmlactitivitynetwork/vdmlactitivitynetwork.json",
+            "icon_url":"/vdmlactitivitynetwork/vdmlactitivitynetwork.png",
+            "visible":true
+        },
+        {
+            "title":"VDML Proposition Exchange",
+            "namespace":"http://b3mn.org/stencilset/vdmlpropositionexchange.0#",
+            "description":"This is the jBPM VDML  Value Proposition Exchange stencil set specification.",
+            "uri":"/vdmlpropositionexchange/vdmlpropositionexchange.json",
+            "icon_url":"/vdmlpropositionexchange/vdmlpropositionexchange.png",
+            "visible":true
+        },
+        {
+            "title":"Class Diagram",
+            "namespace":"http://b3mn.org/stencilset/classdiagram.0#",
+            "description":"This is the jBPM Class Diagram stencilset.",
+            "uri":"/classdiagram/classdiagram.json",
+            "icon_url":"/classdiagram/classdiagram.png",
+            "visible":true
+        }
+]

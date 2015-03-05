@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmmn1:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DC="http://www.omg.org/spec/DD/20150101/DC" xmlns:DI="http://www.omg.org/spec/DD/20150101/DI"
+	xmlns:cmmn1="http://www.omg.org/spec/CMMN/20131201/MODEL" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20131201/DI" id="_8v7bILJvEeSsAbolkFjXoQ" targetNamespace="http://asdf.com/">
+	<cmmn1:caseFileItemDefinition description="Desc" id="_8v7bIbJvEeSsAbolkFjXoQ" name="MyChildCaseFileItemDefinition" />
+	<cmmn1:case id="MyCalledCase" name="MyCalledCase">
+		<cmmn1:caseFileModel>
+			<cmmn1:caseFileItem id="_8v7bI7JvEeSsAbolkFjXoQ" definitionRef="#_8v7bIbJvEeSsAbolkFjXoQ" multiplicity="OneOrMore" name="MyCaseFileItem" />
+		</cmmn1:caseFileModel>
+		<cmmn1:casePlanModel id="_8v7bJLJvEeSsAbolkFjXoQ" autoComplete="true" />
+		<cmmn1:input id="_8v7bJbJvEeSsAbolkFjXoQ" name="CaseInputParm1" bindingRef="#_8v7bI7JvEeSsAbolkFjXoQ">
+			<cmmn1:bindingRefinement language="java">
+				<cmmn1:body>return caseFileItem.getAll()</cmmn1:body>
+			</cmmn1:bindingRefinement>
+		</cmmn1:input>
+		<cmmn1:output id="_8v8CMLJvEeSsAbolkFjXoQ" name="CaseOutputParm1" bindingRef="#_8v7bI7JvEeSsAbolkFjXoQ">
+			<cmmn1:bindingRefinement language="java">
+				<cmmn1:body>return caseFileItem.getAll()</cmmn1:body>
+			</cmmn1:bindingRefinement>
+		</cmmn1:output>
+	</cmmn1:case>
+	<cmmndi:CMMNDiagram>
+		<cmmndi:CMMNPlane CMMNElement="#_8v7bILJvEeSsAbolkFjXoQ">
+			<DI:DiagramElement xsi:type="cmmndi:CMMNShape" id="_8v8CMbJvEeSsAbolkFjXoQ" CMMNElement="#MyCalledCase">
+				<DC:Bounds height="300.0" width="300.0" x="10.0" y="10.0" />
+			</DI:DiagramElement>
+			<DI:DiagramElement xsi:type="cmmndi:CMMNShape" id="_8v8pQLJvEeSsAbolkFjXoQ" CMMNElement="#_8v7bI7JvEeSsAbolkFjXoQ">
+				<DC:Bounds height="300.0" width="300.0" x="10.0" y="10.0" />
+			</DI:DiagramElement>
+		</cmmndi:CMMNPlane>
+	</cmmndi:CMMNDiagram>
+</cmmn1:definitions>
