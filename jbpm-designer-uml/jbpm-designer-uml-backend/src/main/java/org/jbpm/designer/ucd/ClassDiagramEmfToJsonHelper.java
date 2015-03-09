@@ -1,18 +1,19 @@
 package org.jbpm.designer.ucd;
 
-import org.eclipse.dd.cmmn.di.Diagram;
-import org.eclipse.dd.cmmn.di.DiagramElement;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.di.umldi.DocumentRoot;
-import org.eclipse.uml2.di.umldi.UMLCompartment;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLSwitch;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.StencilInfo;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.jbpm.uml2.dd.umldi.UMLCompartment;
+import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.omg.dd.di.Diagram;
+import org.omg.dd.di.DiagramElement;
 
 public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements EmfToJsonHelper {
     private ShapeMap shapeMap;
@@ -35,8 +36,17 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
 
     @Override
     public Diagram getDiagram(int i) {
-        DocumentRoot dr = (DocumentRoot) shapeMap.getResource().getContents().get(0);
-        return dr.getDiagram().get(i);
+        EList<EObject> contents = shapeMap.getResource().getContents();
+        for (EObject eObject : contents) {
+            if(eObject instanceof UMLDiagram){
+                if(i==0){
+                    return (Diagram) eObject;
+                }else{
+                    i--;
+                }
+            }
+        }
+        return null;
     }
     @Override
     public Object caseProperty(Property object) {

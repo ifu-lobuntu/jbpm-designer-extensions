@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="umldi" nsURI="http://www.omg.org/spec/UML/20131201/DI" nsPrefix="umldi">
+  <eClassifiers xsi:type="ecore:EClass" name="UMLDiagram" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Diagram #//UMLDiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedUmlDiagramElement"
+        upperBound="-1" eType="#//UMLDiagramElement" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedUmlStyle" upperBound="-1"
+        eType="#//UMLStyle" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLEdge" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Edge #//UMLDiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceShape" eType="#//UMLShape"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetShape" eType="#//UMLShape"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLShape" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Shape #//UMLDiagramElement ../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//CollapsibleShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCompartment" upperBound="-1"
+        eType="#//UMLCompartment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLCompartment" eSuperTypes="../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//Compartment #//UMLDiagramElement ../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//CollapsibleShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedShape" upperBound="-1"
+        eType="#//UMLShape" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureName" lowerBound="1"
+        eType="ecore:EDataType UML.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLStyle" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Style"/>
+  <eClassifiers xsi:type="ecore:EClass" name="UMLDiagramElement" abstract="true" interface="true"
+      eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//DiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="umlElement" eType="ecore:EClass UML.ecore#//Element"/>
+  </eClassifiers>
+</ecore:EPackage>

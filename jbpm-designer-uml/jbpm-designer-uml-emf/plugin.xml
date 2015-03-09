@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated UMLDI -->
+      <package
+            uri="http://www.omg.org/spec/UML/20131201/DI"
+            class="org.jbpm.uml2.dd.umldi.UMLDIPackage"
+            genModel="models/UMLDI.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated UMLDI -->
+      <parser
+            type="umldi"
+            class="org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

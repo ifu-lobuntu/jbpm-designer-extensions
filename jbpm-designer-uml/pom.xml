@@ -27,6 +27,7 @@
 	</dependencyManagement>
 	<modules>
 		<module>jbpm-designer-uml-api</module>
+		<module>jbpm-designer-uml-emf</module>
 		<module>jbpm-designer-uml-client</module>
 		<module>jbpm-designer-uml-backend</module>
 	</modules>

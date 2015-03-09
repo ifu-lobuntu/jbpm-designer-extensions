@@ -1,25 +1,23 @@
 package org.jbpm.designer.ucd;
 
-import java.beans.Beans;
-import java.beans.Introspector;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.dd.cmmn.di.DiagramElement;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.uml2.di.umldi.UMLCompartment;
-import org.eclipse.uml2.di.umldi.UMLDIFactory;
-import org.eclipse.uml2.di.umldi.UMLDIPackage;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.jbpm.designer.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.uml2.dd.umldi.UMLCompartment;
+import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.omg.dd.di.DiagramElement;
 
 public enum ClassDiagramStencil implements StencilInfo {
     CLASS_DIAGRAM(UMLPackage.eINSTANCE.getPackage(), UMLDIPackage.eINSTANCE.getUMLDiagram(), "ClassDiagram"),

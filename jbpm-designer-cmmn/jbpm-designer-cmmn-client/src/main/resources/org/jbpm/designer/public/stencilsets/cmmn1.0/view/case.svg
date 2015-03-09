@@ -106,7 +106,7 @@
 			oryx:fittoelem="tab"
 			stroke="black"></text>
 		<rect
-			id="bg_frame"
+			id="diagramcanvas"
 			oryx:anchors="bottom top right left"
 			x="0"
 			y="15"

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/jbpm-designer-cmmn-emf/src/main/java" modelPluginID="jbpm-designer-cmmn-emf"
+    modelName="CMMNDI" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="../../jbpm-designer-extensions-emf/models/DG.genmodel#//dg ../../jbpm-designer-extensions-emf/models/DG.genmodel#//di ../../jbpm-designer-extensions-emf/models/DG.genmodel#//dc ../../jbpm-designer-extensions-emf/models/DG.genmodel#//primitivetypes ../../jbpm-designer-extensions-emf/models/jBPMDD.genmodel#//jbpmdd"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>CMMNDI.ecore</foreignModel>
+  <genPackages prefix="CMMNDI" basePackage="org.jbpm.cmmn.dd" disposableProviderFactory="true"
+      ecorePackage="CMMNDI.ecore#/">
+    <genClasses ecoreClass="CMMNDI.ecore#//CMMNDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagram/ownedCmmnDiagramElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagram/ownedCmmnStyles"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMNDI.ecore#//CMMNDiagram/isPlanningTableExpanded"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMNDI.ecore#//CMMNEdge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNEdge/sourceShape"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNEdge/targetShape"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMNDI.ecore#//CMMNShape">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNShape/ownedShape"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMNDI.ecore#//CMMNShape/isPlanningTableExpanded"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMNDI.ecore#//CMMNDiagramElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagramElement/cmmnElement"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMNDI.ecore#//CMMNStyle"/>
+  </genPackages>
+  <genPackages prefix="CMMN" basePackage="org.omg" resource="XML" disposableProviderFactory="true"
+      ecorePackage="CMMN.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CMMN.ecore#//CaseFileItemTransition">
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/addChild"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/addReference"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/create"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/delete"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/removeChild"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/removeReference"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/replace"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//CaseFileItemTransition/update"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CMMN.ecore#//DefinitionTypeEnumMember1">
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeCMISFolder"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeCMISDocument"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeCMISRelationship"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeXSDElement"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeXSDComplexType"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeXSDSimpleType"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeWSDLMessage"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeUMLClass"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeUnknown"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//DefinitionTypeEnumMember1/httpWwwOmgOrgSpecCMMNDefinitionTypeUnspecified"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CMMN.ecore#//MultiplicityEnum">
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//MultiplicityEnum/ZeroOrOne"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//MultiplicityEnum/ZeroOrMore"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//MultiplicityEnum/ExactlyOne"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//MultiplicityEnum/OneOrMore"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//MultiplicityEnum/Unspecified"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//MultiplicityEnum/Unknown"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CMMN.ecore#//PlanItemTransition">
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/close"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/complete"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/create"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/disable"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/enable"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/exit"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/fault"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/manualStart"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/occur"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/parentResume"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/parentSuspend"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/reactivate"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/reenable"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/resume"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/start"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/suspend"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//PlanItemTransition/terminate"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CMMN.ecore#//ProcessTypeEnumMember1">
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//ProcessTypeEnumMember1/httpWwwOmgOrgSpecCMMNProcessTypeBPMN20"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//ProcessTypeEnumMember1/httpWwwOmgOrgSpecCMMNProcessTypeXPDL2"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//ProcessTypeEnumMember1/httpWwwOmgOrgSpecCMMNProcessTypeWSBPEL20"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//ProcessTypeEnumMember1/httpWwwOmgOrgSpecCMMNProcessTypeWSBPEL1"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//ProcessTypeEnumMember1/httpWwwOmgOrgSpecCMMNProcessTypeUnknown"/>
+      <genEnumLiterals ecoreEnumLiteral="CMMN.ecore#//ProcessTypeEnumMember1/httpWwwOmgOrgSpecCMMNProcessTypeUnspecified"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="CMMN.ecore#//CaseFileItemTransitionObject"/>
+    <genDataTypes ecoreDataType="CMMN.ecore#//DefinitionTypeEnum"/>
+    <genDataTypes ecoreDataType="CMMN.ecore#//DefinitionTypeEnumMember1Object"/>
+    <genDataTypes ecoreDataType="CMMN.ecore#//MultiplicityEnumObject"/>
+    <genDataTypes ecoreDataType="CMMN.ecore#//PlanItemTransitionObject"/>
+    <genDataTypes ecoreDataType="CMMN.ecore#//ProcessTypeEnum"/>
+    <genDataTypes ecoreDataType="CMMN.ecore#//ProcessTypeEnumMember1Object"/>
+    <genClasses ecoreClass="CMMN.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/applicabilityRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/case"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseFile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseFileItem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseFileItemDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseFileItemOnPart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/onPart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseFileItemStartTrigger"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/timerStart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseParameter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/parameter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/caseTask"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/task"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planItemDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/definitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/discretionaryItem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/tableItem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/event"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/humanTask"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/ifPart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/import"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/manualActivationRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/milestone"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/parameterMapping"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planFragment"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planItem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planItemControl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planItemOnPart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planItemStartTrigger"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/planningTable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/process"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/processParameter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/processTask"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/repetitionRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/requiredRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/sentry"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/stage"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/timerEvent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//DocumentRoot/userEvent"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TApplicabilityRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TApplicabilityRule/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TApplicabilityRule/contextRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCase">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCase/caseFileModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCase/casePlanModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCase/caseRoles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCase/input"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCase/output"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCase/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseFile">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFile/caseFileItem"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseFileItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/children"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/definitionRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItem/multiplicity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItem/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/sourceRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/targetRefs"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseFileItemDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItemDefinition/property"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItemDefinition/definitionType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItemDefinition/importRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItemDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItemDefinition/structureRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseFileItemOnPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItemOnPart/standardEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItemOnPart/sourceRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseFileItemStartTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItemStartTrigger/standardEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItemStartTrigger/sourceRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseParameter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseParameter/bindingRefinement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseParameter/bindingRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TCaseTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseTask/parameterMapping"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseTask/caseRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TChildren">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TChildren/caseFileItem"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TCmmnElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElement/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElement/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElement/anyAttribute"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TCmmnElementWithMixedContent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElementWithMixedContent/mixed"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElementWithMixedContent/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElementWithMixedContent/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCmmnElementWithMixedContent/anyAttribute"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TDefinitions">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDefinitions/import"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDefinitions/caseFileItemDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDefinitions/case"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDefinitions/process"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/creationDate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/exporter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/exporterVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/expressionLanguage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/targetNamespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TDefinitions/anyAttribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDefinitions/diagram"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TDiscretionaryItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDiscretionaryItem/itemControl"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDiscretionaryItem/definitionRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDiscretionaryItem/entryCriteriaRefs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TDiscretionaryItem/exitCriteriaRefs"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TEvent"/>
+    <genClasses ecoreClass="CMMN.ecore#//TExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TExpression/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TExpression/language"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//THumanTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//THumanTask/planningTable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//THumanTask/performerRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TIfPart">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TIfPart/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TIfPart/contextRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TImport/importType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TImport/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TImport/namespace"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TManualActivationRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TManualActivationRule/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TManualActivationRule/contextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TManualActivationRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TMilestone"/>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TOnPart"/>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TParameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TParameter/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TParameterMapping">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TParameterMapping/transformation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TParameterMapping/sourceRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TParameterMapping/targetRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TPlanFragment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanFragment/planItem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanFragment/sentry"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TPlanItem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItem/itemControl"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItem/definitionRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItem/entryCriteriaRefs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItem/exitCriteriaRefs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TPlanItem/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TPlanItemControl">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemControl/repetitionRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemControl/requiredRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemControl/manualActivationRule"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TPlanItemDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemDefinition/defaultControl"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TPlanItemDefinition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TPlanItemOnPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TPlanItemOnPart/standardEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemOnPart/sentryRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemOnPart/sourceRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TPlanItemStartTrigger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TPlanItemStartTrigger/standardEvent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanItemStartTrigger/sourceRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TPlanningTable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TPlanningTable/tableItemGroup"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanningTable/tableItem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TPlanningTable/applicabilityRule"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TProcess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TProcess/input"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TProcess/output"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TProcess/implementationType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TProcess/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TProcessParameter"/>
+    <genClasses ecoreClass="CMMN.ecore#//TProcessTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TProcessTask/parameterMapping"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TProcessTask/processRef"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TProperty">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TProperty/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TProperty/type"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TRepetitionRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TRepetitionRule/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TRepetitionRule/contextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TRepetitionRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TRequiredRule">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TRequiredRule/condition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TRequiredRule/contextRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TRequiredRule/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TRole">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TRole/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TSentry">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TSentry/onPartGroup"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CMMN.ecore#//TSentry/onPart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TSentry/ifPart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TSentry/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TStage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TStage/planningTable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TStage/planItemDefinitionGroup"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CMMN.ecore#//TStage/planItemDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TStage/autoComplete"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TStage/exitCriteriaRefs"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TStartTrigger"/>
+    <genClasses image="false" ecoreClass="CMMN.ecore#//TTableItem">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TTableItem/applicabilityRuleRefs"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TTableItem/authorizedRoleRefs"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TTask">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TTask/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TTask/outputs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TTask/isBlocking"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TTimerEvent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TTimerEvent/timerExpression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute CMMN.ecore#//TTimerEvent/timerStartGroup"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CMMN.ecore#//TTimerEvent/timerStart"/>
+    </genClasses>
+    <genClasses ecoreClass="CMMN.ecore#//TUserEvent"/>
+  </genPackages>
+</genmodel:GenModel>

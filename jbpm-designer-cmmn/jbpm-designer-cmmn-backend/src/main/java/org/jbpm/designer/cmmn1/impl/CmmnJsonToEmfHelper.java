@@ -8,48 +8,6 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.Property;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
-import org.eclipse.cmmn1.Cmmn1Factory;
-import org.eclipse.cmmn1.Cmmn1Package;
-import org.eclipse.cmmn1.DocumentRoot;
-import org.eclipse.cmmn1.TCase;
-import org.eclipse.cmmn1.TCaseFileItem;
-import org.eclipse.cmmn1.TCaseFileItemOnPart;
-import org.eclipse.cmmn1.TCaseFileItemStartTrigger;
-import org.eclipse.cmmn1.TCaseParameter;
-import org.eclipse.cmmn1.TCaseTask;
-import org.eclipse.cmmn1.TCmmnElement;
-import org.eclipse.cmmn1.TDefinitions;
-import org.eclipse.cmmn1.TDiscretionaryItem;
-import org.eclipse.cmmn1.TEvent;
-import org.eclipse.cmmn1.TExpression;
-import org.eclipse.cmmn1.THumanTask;
-import org.eclipse.cmmn1.TMilestone;
-import org.eclipse.cmmn1.TOnPart;
-import org.eclipse.cmmn1.TParameter;
-import org.eclipse.cmmn1.TParameterMapping;
-import org.eclipse.cmmn1.TPlanItem;
-import org.eclipse.cmmn1.TPlanItemControl;
-import org.eclipse.cmmn1.TPlanItemOnPart;
-import org.eclipse.cmmn1.TPlanItemStartTrigger;
-import org.eclipse.cmmn1.TProcess;
-import org.eclipse.cmmn1.TProcessParameter;
-import org.eclipse.cmmn1.TProcessTask;
-import org.eclipse.cmmn1.TProperty;
-import org.eclipse.cmmn1.TRole;
-import org.eclipse.cmmn1.TSentry;
-import org.eclipse.cmmn1.TStage;
-import org.eclipse.cmmn1.TStartTrigger;
-import org.eclipse.cmmn1.TTimerEvent;
-import org.eclipse.cmmn1.TUserEvent;
-import org.eclipse.cmmn1.util.Cmmn1Switch;
-import org.eclipse.cmmndi.CMMNDiagram;
-import org.eclipse.cmmndi.CMMNEdge;
-import org.eclipse.cmmndi.CMMNLabel;
-import org.eclipse.cmmndi.CMMNPlane;
-import org.eclipse.cmmndi.CMMNShape;
-import org.eclipse.cmmndi.CmmnDiFactory;
-import org.eclipse.dd.cmmn.di.DiagramElement;
-import org.eclipse.dd.cmmn.di.Edge;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -57,15 +15,55 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
+import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
+import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
-import org.jbpm.designer.emf.util.JsonToEmfHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.server.diagram.json.Diagram;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.server.diagram.json.ShapeReference;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
+import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.diagram.ShapeReference;
+import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.CMMNPackage;
+import org.omg.cmmn.DocumentRoot;
+import org.omg.cmmn.TCase;
+import org.omg.cmmn.TCaseFileItem;
+import org.omg.cmmn.TCaseFileItemOnPart;
+import org.omg.cmmn.TCaseFileItemStartTrigger;
+import org.omg.cmmn.TCaseParameter;
+import org.omg.cmmn.TCaseTask;
+import org.omg.cmmn.TCmmnElement;
+import org.omg.cmmn.TDefinitions;
+import org.omg.cmmn.TDiscretionaryItem;
+import org.omg.cmmn.TEvent;
+import org.omg.cmmn.TExpression;
+import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TMilestone;
+import org.omg.cmmn.TOnPart;
+import org.omg.cmmn.TParameter;
+import org.omg.cmmn.TParameterMapping;
+import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TPlanItemControl;
+import org.omg.cmmn.TPlanItemOnPart;
+import org.omg.cmmn.TPlanItemStartTrigger;
+import org.omg.cmmn.TProcess;
+import org.omg.cmmn.TProcessParameter;
+import org.omg.cmmn.TProcessTask;
+import org.omg.cmmn.TProperty;
+import org.omg.cmmn.TRole;
+import org.omg.cmmn.TSentry;
+import org.omg.cmmn.TStage;
+import org.omg.cmmn.TStartTrigger;
+import org.omg.cmmn.TTimerEvent;
+import org.omg.cmmn.TUserEvent;
+import org.omg.cmmn.util.CMMNSwitch;
+import org.omg.cmmn.util.ImportHelper;
+import org.omg.dd.di.DiagramElement;
 
-public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEmfHelper {
+public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmfHelper {
     private ShapeMap shapeMap;
     protected Shape sourceShape;
 
@@ -74,16 +72,18 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
     public CmmnJsonToEmfHelper(ShapeMap resource) {
         this.shapeMap = resource;
     }
-
     @Override
-    public void linkElements(Shape shape, DiagramElement de, EObject modelElement) {
+    public DiagramElement createElements(Shape shape) {
+        DiagramElement de = CmmnStencil.createDiagramElement(shape.getStencilId());
+        TCmmnElement ce = CmmnStencil.createElement(shape.getStencilId());
         if (de instanceof CMMNShape) {
-            ((CMMNShape) de).setCmmnElement((TCmmnElement) modelElement);
+            ((CMMNShape) de).setCmmnElement((TCmmnElement) ce);
         } else if (de instanceof CMMNEdge) {
-            ((CMMNEdge) de).setCmmnElement((TCmmnElement) modelElement);
+            ((CMMNEdge) de).setCmmnElement((TCmmnElement) ce);
         }
+        de.setLocalStyle(CMMNDIFactory.eINSTANCE.createCMMNStyle());
+        return de;
     }
-
     private EObject getModelElement(String id) {
         return shapeMap.getModelElement(id);
     }
@@ -102,7 +102,7 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
     @Override
     public Object caseTDefinitions(TDefinitions object) {
         for (Shape shape : sourceShape.getChildShapes()) {
-            if (shape.getStencilId().equals(CmmnStencil.CASE.getStencilId())) {
+            if (shape.getStencilId().equals(CmmnStencil.CASE_DIAGRAM.getStencilId())) {
                 object.getCase().add((TCase) getModelElement(shape.getResourceId()));
             }
         }
@@ -113,10 +113,10 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
     public Object caseTCase(TCase object) {
         TStage stage = object.getCasePlanModel();
         if (stage == null) {
-            object.setCasePlanModel(stage = Cmmn1Factory.eINSTANCE.createTStage());
+            object.setCasePlanModel(stage = CMMNFactory.eINSTANCE.createTStage());
         }
         if (object.getCaseFileModel() == null) {
-            object.setCaseFileModel(Cmmn1Factory.eINSTANCE.createTCaseFile());
+            object.setCaseFileModel(CMMNFactory.eINSTANCE.createTCaseFile());
         }
         for (Shape shape : sourceShape.getChildShapes()) {
             if (shape.getStencilId().equals(CmmnStencil.CASE_FILE_ITEM.getStencilId())) {
@@ -128,7 +128,7 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
         String caseRoles = sourceShape.getProperty("caseroles");
         if (caseRoles != null && caseRoles.trim().length() > 0) {
             for (String string : caseRoles.split(",")) {
-                TRole role = Cmmn1Factory.eINSTANCE.createTRole();
+                TRole role = CMMNFactory.eINSTANCE.createTRole();
                 role.setName(string);
                 role.setId(string);
                 object.getCaseRoles().add(role);
@@ -149,10 +149,10 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
 
     private void processPlanItemInStage(TStage stage, Shape shape) {
         CmmnStencil s = CmmnStencil.findStencilById(shape.getStencilId());
-        if (s.getType() != null && Cmmn1Package.eINSTANCE.getTPlanItemDefinition().isSuperTypeOf(s.getType())) {
+        if (s.getType() != null && CMMNPackage.eINSTANCE.getTPlanItemDefinition().isSuperTypeOf(s.getType())) {
             if (s.getStencilId().startsWith("Discretionary")) {
                 if (stage.getPlanningTable() == null) {
-                    stage.setPlanningTable(Cmmn1Factory.eINSTANCE.createTPlanningTable());
+                    stage.setPlanningTable(CMMNFactory.eINSTANCE.createTPlanningTable());
                 }
                 TDiscretionaryItem di = (TDiscretionaryItem) getModelElement(shape.getResourceId());
                 stage.getPlanningTable().getTableItem().add(di);
@@ -174,7 +174,7 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
             Shape shape = shapeMap.get(sr.getResourceId());
             if (shape.getStencilId().equals(CmmnStencil.CASE_FILE_ITEM_CHILD.getStencilId())) {
                 if (object.getChildren() == null) {
-                    object.setChildren(Cmmn1Factory.eINSTANCE.createTChildren());
+                    object.setChildren(CMMNFactory.eINSTANCE.createTChildren());
                 }
                 if (shape.getOutgoing().size() == 1) {
                     object.getChildren().getCaseFileItem().add((TCaseFileItem) getModelElement(shape.getOutgoing().get(0).getResourceId()));
@@ -203,8 +203,8 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
         return super.caseTCaseFileItem(object);
     }
 
-    public TDefinitions getDefinitions() {
-        return ((DocumentRoot) shapeMap.getResource().getContents().get(0)).getDefinitions();
+    private TDefinitions getDefinitions() {
+        return ImportHelper.getDefinitions(shapeMap.getResource());
     }
 
     @Override
@@ -254,7 +254,7 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
                 om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
                 CaseParametersJson params = om.readValue(sourceShape.getProperty(paramListName), CaseParametersJson.class);
                 for (CaseParameterJson cp : params.getParameters()) {
-                    TCaseParameter p = Cmmn1Factory.eINSTANCE.createTCaseParameter();
+                    TCaseParameter p = CMMNFactory.eINSTANCE.createTCaseParameter();
                     p.setName(cp.getName());
                     p.setId(cp.getId());
                     String name = cp.getBinding();
@@ -265,13 +265,13 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
                         p.setBindingRef(found);
                     }
                     if (cp.getBindingRefinement() != null) {
-                        TExpression e = Cmmn1Factory.eINSTANCE.createTExpression();
+                        TExpression e = CMMNFactory.eINSTANCE.createTExpression();
                         e.setBody(cp.getBindingRefinement());
                         e.setLanguage(cp.getBindingRefinementLanguage());
                         p.setBindingRefinement(e);
                     }
                     if (cp.getMappedParameter() != null && cp.getMappedParameter().length() > 0) {
-                        TParameterMapping mapping = Cmmn1Factory.eINSTANCE.createTParameterMapping();
+                        TParameterMapping mapping = CMMNFactory.eINSTANCE.createTParameterMapping();
                         if (paramListName.contains("in")) {
                             mapping.setSourceRef(p);
                             mapping.setTargetRef(findParameter(cp.getMappedParameter(), mappedParameterList));
@@ -353,7 +353,7 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
         Process calledProcess = (Process) res.getEObject(processId);
         TProcess process = (TProcess) object.eResource().getEObject(processId);
         if (process == null) {
-            process = Cmmn1Factory.eINSTANCE.createTProcess();
+            process = CMMNFactory.eINSTANCE.createTProcess();
             process.setId(processId);
             td.getProcess().add(process);
         }
@@ -374,7 +374,7 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
             String parameterId = calledProcess.getId() + "." + (isEmpty(property.getName()) ? property.getId() : property.getName());
             TProcessParameter parameter = (TProcessParameter) object.eResource().getEObject(parameterId);
             if (parameter == null) {
-                parameter = Cmmn1Factory.eINSTANCE.createTProcessParameter();
+                parameter = CMMNFactory.eINSTANCE.createTProcessParameter();
                 parameter.setId(parameterId);
                 input.add(parameter);
             }
@@ -544,57 +544,36 @@ public class CmmnJsonToEmfHelper extends Cmmn1Switch<Object> implements JsonToEm
         return super.caseTPlanItemStartTrigger(object);
     }
 
-    @Override
-    public EObject createElement(String stencilId) {
-        return CmmnStencil.createElement(stencilId);
+    public CMMNDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
+        CMMNDiagram cmmnDiagram = CMMNDIFactory.eINSTANCE.createCMMNDiagram();
+        cmmnDiagram.setLocalStyle(CMMNDIFactory.eINSTANCE.createCMMNStyle());
+        TDefinitions def = CMMNFactory.eINSTANCE.createTDefinitions();
+        TCase theCase = CMMNFactory.eINSTANCE.createTCase();
+        def.getCase().add(theCase);
+        theCase.setId(json.getResourceId());
+        cmmnDiagram.setCmmnElement(theCase);
+        DocumentRoot root = CMMNFactory.eINSTANCE.createDocumentRoot();
+        root.setDefinitions(def);
+        result.getContents().add(root);
+        def.getDiagram().add(cmmnDiagram);
+        return cmmnDiagram;
     }
 
-    @Override
-    public DiagramElement createDiagramElement(String stencilId) {
-        return CmmnStencil.createDiagramElement(stencilId);
-    }
-
-    public CMMNPlane prepareEmfDiagram(Diagram json, XMLResource result) {
-        CMMNDiagram cmmnDiagram = CmmnDiFactory.eINSTANCE.createCMMNDiagram();
-        CMMNPlane cmmnPlane = CmmnDiFactory.eINSTANCE.createCMMNPlane();
-        cmmnDiagram.setCMMNPlane(cmmnPlane);
-        TDefinitions def = Cmmn1Factory.eINSTANCE.createTDefinitions();
-        def.setId(json.getResourceId());
-        cmmnPlane.setCmmnElement(def);
-        DocumentRoot dr = Cmmn1Factory.eINSTANCE.createDocumentRoot();
-        result.getContents().add(dr);
-        dr.setDefinitions(def);
-        def.getCMMNDiagram().add(cmmnDiagram);
-        linkElements(json, cmmnPlane, def);
-        return cmmnPlane;
-    }
-
-    public CMMNLabel setupDiagramElement(EObject el, DiagramElement de) {
-        CMMNLabel label = null;
+    public void setupDiagramElement(EObject el, DiagramElement de) {
         if (de instanceof CMMNShape) {
             ((CMMNShape) de).setCmmnElement((TCmmnElement) el);
             // ((CMMNShape) de).setCMMNLabel(label =
-            // CmmnDiFactory.eINSTANCE.createCMMNLabel());
+            // CMMNDIFactory.eINSTANCE.createCMMNLabel());
         } else if (de instanceof CMMNEdge) {
             ((CMMNEdge) de).setCmmnElement((TCmmnElement) el);
             // ((CMMNEdge) de).setCMMNLabel(label =
-            // CmmnDiFactory.eINSTANCE.createCMMNLabel());
+            // CMMNDIFactory.eINSTANCE.createCMMNLabel());
         }
-        return label;
     }
 
     @Override
     public EObject create(EClass eType) {
-        return Cmmn1Factory.eINSTANCE.create(eType);
+        return CMMNFactory.eINSTANCE.create(eType);
     }
 
-    @Override
-    public void setTargetElement(Edge edge, ShapeReference target) {
-        ((CMMNEdge) edge).setTargetElement(getDiagramElement(target.getResourceId()));
-    }
-
-    @Override
-    public void setSourceElement(Edge edge, Shape source) {
-        ((CMMNEdge) edge).setSourceElement(getDiagramElement(source.getResourceId()));
-    }
 }

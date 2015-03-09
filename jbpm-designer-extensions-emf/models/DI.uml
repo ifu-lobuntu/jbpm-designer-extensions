@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="DI" name="DI" URI="http://www.omg.org/spec/DD/20131001/DI">
+  <ownedComment xmi:id="_ownedComment.0">
+    <annotatedElement xmi:type="uml:Package" href="DG.uml#DG"/>
+    <annotatedElement xmi:type="uml:Package" href="#DI"/>
+  </ownedComment>
+  <packageImport xmi:id="_packageImport.1">
+    <importedPackage href="PrimitiveTypes.uml#PrimitiveTypes"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Class" xmi:id="DiagramElement" name="DiagramElement" isAbstract="true">
+    <ownedComment xmi:id="DiagramElement-_ownedComment.0" annotatedElement="DiagramElement"/>
+    <ownedAttribute xmi:id="DiagramElement-modelElement" name="modelElement" type="_eb_BQMPjEeS77N6keGtjjw" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_modelElement_diagramElement">
+      <ownedComment xmi:id="DiagramElement-modelElement-_ownedComment.0" annotatedElement="DiagramElement-modelElement"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DiagramElement-modelElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DiagramElement-modelElement-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DiagramElement-owningElement" name="owningElement" type="DiagramElement" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_ownedElement_owningElement">
+      <ownedComment xmi:id="DiagramElement-owningElement-_ownedComment.0" annotatedElement="DiagramElement-owningElement"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DiagramElement-owningElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851557_896042_1909" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DiagramElement-ownedElement" name="ownedElement" type="DiagramElement" isOrdered="true" isReadOnly="true" aggregation="composite" isDerived="true" isDerivedUnion="true" association="A_ownedElement_owningElement">
+      <ownedComment xmi:id="DiagramElement-ownedElement-_ownedComment.0" annotatedElement="DiagramElement-ownedElement"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DiagramElement-ownedElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DiagramElement-ownedElement-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DiagramElement-localStyle" name="localStyle" type="Style" aggregation="composite" association="A_localStyle_styledElement">
+      <ownedComment xmi:id="DiagramElement-localStyle-_ownedComment.0" annotatedElement="DiagramElement-localStyle"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DiagramElement-localStyle-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851556_18810_1908" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="DiagramElement-sharedStyle" name="sharedStyle" type="Style" association="A_sharedStyle_styledElement">
+      <ownedComment xmi:id="DiagramElement-sharedStyle-_ownedComment.0" annotatedElement="DiagramElement-sharedStyle"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DiagramElement-sharedStyle-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851558_162410_1919" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Edge" name="Edge" isAbstract="true">
+    <ownedComment xmi:id="Edge-_ownedComment.0" annotatedElement="Edge"/>
+    <generalization xmi:id="Edge-_generalization.0" general="DiagramElement"/>
+    <ownedAttribute xmi:id="Edge-source" name="source" type="DiagramElement" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_source_sourceEdge">
+      <ownedComment xmi:id="Edge-source-_ownedComment.0" annotatedElement="Edge-source"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851557_351624_1910" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851557_634288_1911" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Edge-target" name="target" type="DiagramElement" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_target_targetEdge">
+      <ownedComment xmi:id="Edge-target-_ownedComment.0" annotatedElement="Edge-target"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851556_334512_1906" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851556_314155_1907" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Edge-waypoint" name="waypoint" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="Edge-waypoint-_ownedComment.0" annotatedElement="Edge-waypoint"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Edge-waypoint-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Edge-waypoint-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Diagram" name="Diagram" isAbstract="true">
+    <ownedComment xmi:id="Diagram-_ownedComment.0" annotatedElement="Diagram"/>
+    <generalization xmi:id="Diagram-_generalization.0" general="Shape"/>
+    <ownedAttribute xmi:id="Diagram-name" name="name">
+      <ownedComment xmi:id="Diagram-name-_ownedComment.0" annotatedElement="Diagram-name"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851557_723920_1912" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851557_188842_1913" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="Diagram-name-_defaultValue" name="" value="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Diagram-documentation" name="documentation">
+      <ownedComment xmi:id="Diagram-documentation-_ownedComment.0" annotatedElement="Diagram-documentation"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851557_10644_1914" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851557_909279_1915" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="Diagram-documentation-_defaultValue" name="" value="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Diagram-resolution" name="resolution">
+      <ownedComment xmi:id="Diagram-resolution-_ownedComment.0" annotatedElement="Diagram-resolution"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851558_924918_1917" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851558_674219_1918" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="Diagram-resolution-_defaultValue" name="" value="300.0"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Shape" name="Shape" isAbstract="true">
+    <ownedComment xmi:id="Shape-_ownedComment.0" annotatedElement="Shape"/>
+    <generalization xmi:id="Shape-_generalization.0" general="DiagramElement"/>
+    <ownedAttribute xmi:id="Shape-bounds" name="bounds">
+      <ownedComment xmi:id="Shape-bounds-_ownedComment.0" annotatedElement="Shape-bounds"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Bounds"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Shape-bounds-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851557_383204_1916" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Style" name="Style" isAbstract="true">
+    <ownedComment xmi:id="Style-_ownedComment.0" annotatedElement="Style"/>
+    <ownedRule xmi:id="Style-valid_font_size" name="valid_font_size">
+      <ownedComment xmi:id="Style-valid_font_size-_ownedComment.0" annotatedElement="Style-valid_font_size"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Style-valid_font_size-_specification" name="">
+        <language>OCL</language>
+        <body>fontSize >=  0</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="Style-valid_fill_opacity" name="valid_fill_opacity">
+      <ownedComment xmi:id="Style-valid_fill_opacity-_ownedComment.0" annotatedElement="Style-valid_fill_opacity"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Style-valid_fill_opacity-_specification" name="">
+        <language>OCL</language>
+        <body>fillOpacity >=  0 and fillOpacity &lt;=1</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="Style-valid_stroke_width" name="valid_stroke_width">
+      <ownedComment xmi:id="Style-valid_stroke_width-_ownedComment.0" annotatedElement="Style-valid_stroke_width"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Style-valid_stroke_width-_specification" name="">
+        <language>OCL</language>
+        <body>strokeWidth >=  0</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="Style-valid_dash_length_size" name="valid_dash_length_size">
+      <ownedComment xmi:id="Style-valid_dash_length_size-_ownedComment.0" annotatedElement="Style-valid_dash_length_size"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Style-valid_dash_length_size-_specification" name="">
+        <language>OCL</language>
+        <body>strokeDashLength->size().mod(2) = 0</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="Style-valid_stroke_opacity" name="valid_stroke_opacity">
+      <ownedComment xmi:id="Style-valid_stroke_opacity-_ownedComment.0" annotatedElement="Style-valid_stroke_opacity"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Style-valid_stroke_opacity-_specification" name="">
+        <language>OCL</language>
+        <body>strokeOpacity >=  0 and strokeOpacity &lt;=1</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="Style-fill" name="fill">
+      <ownedComment xmi:id="Style-fill-_ownedComment.0" annotatedElement="Style-fill"/>
+      <type xmi:type="uml:Class" href="DG.uml#Fill"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fill-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851458_516702_1801" name="" value="1"/>
+      <association href="DG.uml#A_fill_style"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fillColor" name="fillColor">
+      <ownedComment xmi:id="Style-fillColor-_ownedComment.0" annotatedElement="Style-fillColor"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Color"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fillColor-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851471_569521_1902" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fillOpacity" name="fillOpacity">
+      <ownedComment xmi:id="Style-fillOpacity-_ownedComment.0" annotatedElement="Style-fillOpacity"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fillOpacity-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851464_926535_1846" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-strokeWidth" name="strokeWidth">
+      <ownedComment xmi:id="Style-strokeWidth-_ownedComment.0" annotatedElement="Style-strokeWidth"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-strokeWidth-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851470_224517_1892" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-strokeOpacity" name="strokeOpacity">
+      <ownedComment xmi:id="Style-strokeOpacity-_ownedComment.0" annotatedElement="Style-strokeOpacity"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-strokeOpacity-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851470_902133_1897" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-strokeColor" name="strokeColor">
+      <ownedComment xmi:id="Style-strokeColor-_ownedComment.0" annotatedElement="Style-strokeColor"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Color"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-strokeColor-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851469_788_1887" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-strokeDashLength" name="strokeDashLength" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="Style-strokeDashLength-_ownedComment.0" annotatedElement="Style-strokeDashLength"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-strokeDashLength-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Style-strokeDashLength-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontSize" name="fontSize">
+      <ownedComment xmi:id="Style-fontSize-_ownedComment.0" annotatedElement="Style-fontSize"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontSize-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851457_711113_1798" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontName" name="fontName">
+      <ownedComment xmi:id="Style-fontName-_ownedComment.0" annotatedElement="Style-fontName"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontName-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851456_606811_1786" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontColor" name="fontColor">
+      <ownedComment xmi:id="Style-fontColor-_ownedComment.0" annotatedElement="Style-fontColor"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Color"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontColor-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851465_971422_1856" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontItalic" name="fontItalic">
+      <ownedComment xmi:id="Style-fontItalic-_ownedComment.0" annotatedElement="Style-fontItalic"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontItalic-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851461_67581_1826" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontBold" name="fontBold">
+      <ownedComment xmi:id="Style-fontBold-_ownedComment.0" annotatedElement="Style-fontBold"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontBold-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851457_915473_1793" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontUnderline" name="fontUnderline">
+      <ownedComment xmi:id="Style-fontUnderline-_ownedComment.0" annotatedElement="Style-fontUnderline"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontUnderline-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851471_937412_1905" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Style-fontStrikeThrough" name="fontStrikeThrough">
+      <ownedComment xmi:id="Style-fontStrikeThrough-_ownedComment.0" annotatedElement="Style-fontStrikeThrough"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Style-fontStrikeThrough-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851467_732269_1871" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_target_targetEdge" name="A_target_targetEdge" memberEnd="Edge-target A_target_targetEdge-targetEdge">
+    <ownedEnd xmi:id="A_target_targetEdge-targetEdge" name="targetEdge" type="Edge" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_target_targetEdge">
+      <ownedComment xmi:id="A_target_targetEdge-targetEdge-_ownedComment.0" annotatedElement="A_target_targetEdge-targetEdge"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_target_targetEdge-targetEdge-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_target_targetEdge-targetEdge-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_source_sourceEdge" name="A_source_sourceEdge" memberEnd="Edge-source A_source_sourceEdge-sourceEdge">
+    <ownedEnd xmi:id="A_source_sourceEdge-sourceEdge" name="sourceEdge" type="Edge" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_source_sourceEdge">
+      <ownedComment xmi:id="A_source_sourceEdge-sourceEdge-_ownedComment.0" annotatedElement="A_source_sourceEdge-sourceEdge"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_source_sourceEdge-sourceEdge-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_source_sourceEdge-sourceEdge-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_ownedElement_owningElement" name="A_ownedElement_owningElement" memberEnd="DiagramElement-ownedElement DiagramElement-owningElement"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_modelElement_diagramElement" name="A_modelElement_diagramElement" memberEnd="DiagramElement-modelElement A_modelElement_diagramElement-diagramElement">
+    <ownedEnd xmi:id="A_modelElement_diagramElement-diagramElement" name="diagramElement" type="DiagramElement" isReadOnly="true" isDerived="true" isDerivedUnion="true" association="A_modelElement_diagramElement">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_modelElement_diagramElement-diagramElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_modelElement_diagramElement-diagramElement-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_sharedStyle_styledElement" name="A_sharedStyle_styledElement">
+    <memberEnd href="DG.uml#GraphicalElement-sharedStyle"/>
+    <memberEnd href="#DiagramElement-sharedStyle"/>
+    <memberEnd href="#A_sharedStyle_styledElement-styledElement"/>
+    <ownedEnd xmi:id="A_sharedStyle_styledElement-styledElement" name="styledElement" type="DiagramElement" association="A_sharedStyle_styledElement">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_sharedStyle_styledElement-styledElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_sharedStyle_styledElement-styledElement-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_localStyle_styledElement" name="A_localStyle_styledElement">
+    <memberEnd href="DG.uml#GraphicalElement-localStyle"/>
+    <memberEnd href="#DiagramElement-localStyle"/>
+    <memberEnd href="#A_localStyle_styledElement-styledElement"/>
+    <ownedEnd xmi:id="A_localStyle_styledElement-styledElement" name="styledElement" type="DiagramElement" association="A_localStyle_styledElement">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_localStyle_styledElement-styledElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851465_389340_1853" name="" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eb_BQMPjEeS77N6keGtjjw" name="EObject"/>
+</uml:Package>

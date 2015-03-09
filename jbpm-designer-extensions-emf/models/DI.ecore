@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="di" nsURI="http://www.omg.org/spec/DD/20131001/DI" nsPrefix="DI">
+  <eClassifiers xsi:type="ecore:EClass" name="DiagramElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningElement" ordered="false"
+        eType="#//DiagramElement" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//DiagramElement/ownedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" upperBound="-1"
+        eType="#//DiagramElement" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//DiagramElement/owningElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localStyle" ordered="false"
+        eType="#//Style" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedStyle" ordered="false"
+        eType="#//Style"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modelElement" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge" abstract="true" eSuperTypes="#//DiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        lowerBound="1" eType="#//DiagramElement" changeable="false" volatile="true"
+        transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        lowerBound="1" eType="#//DiagramElement" changeable="false" volatile="true"
+        transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="waypoint" upperBound="-1"
+        eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Diagram" abstract="true" eSuperTypes="#//Shape">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//String" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//String" defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resolution" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="300.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Shape" abstract="true" eSuperTypes="#//DiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" ordered="false"
+        eType="ecore:EClass DC.ecore#//Bounds" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Style" abstract="true">
+    <eOperations name="valid_font_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="fontSize >=  0"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_fill_opacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="fillOpacity >=  0 and fillOpacity &lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_stroke_width" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="strokeWidth >=  0"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_dash_length_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="strokeDashLength->size().mod(2) = 0"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_stroke_opacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="strokeOpacity >=  0 and strokeOpacity &lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fill" ordered="false" eType="ecore:EClass DG.ecore#//Fill"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fillColor" ordered="false"
+        eType="ecore:EClass DC.ecore#//Color" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fillOpacity" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strokeWidth" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strokeOpacity" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="strokeColor" ordered="false"
+        eType="ecore:EClass DC.ecore#//Color" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strokeDashLength" unique="false"
+        upperBound="-1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontSize" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontName" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontColor" ordered="false"
+        eType="ecore:EClass DC.ecore#//Color" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontItalic" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontBold" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontUnderline" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontStrikeThrough" ordered="false"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+  </eClassifiers>
+</ecore:EPackage>

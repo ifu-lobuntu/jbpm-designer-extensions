@@ -8,45 +8,46 @@ import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
-import org.eclipse.cmmn1.DocumentRoot;
-import org.eclipse.cmmn1.TCase;
-import org.eclipse.cmmn1.TCaseFileItem;
-import org.eclipse.cmmn1.TCaseFileItemDefinition;
-import org.eclipse.cmmn1.TCaseFileItemOnPart;
-import org.eclipse.cmmn1.TCaseParameter;
-import org.eclipse.cmmn1.TCaseTask;
-import org.eclipse.cmmn1.TCmmnElement;
-import org.eclipse.cmmn1.TDiscretionaryItem;
-import org.eclipse.cmmn1.TEvent;
-import org.eclipse.cmmn1.THumanTask;
-import org.eclipse.cmmn1.TMilestone;
-import org.eclipse.cmmn1.TParameter;
-import org.eclipse.cmmn1.TParameterMapping;
-import org.eclipse.cmmn1.TPlanItem;
-import org.eclipse.cmmn1.TPlanItemControl;
-import org.eclipse.cmmn1.TPlanItemOnPart;
-import org.eclipse.cmmn1.TProcess;
-import org.eclipse.cmmn1.TProcessTask;
-import org.eclipse.cmmn1.TSentry;
-import org.eclipse.cmmn1.TStage;
-import org.eclipse.cmmn1.TTimerEvent;
-import org.eclipse.cmmn1.TUserEvent;
-import org.eclipse.cmmn1.util.Cmmn1Switch;
-import org.eclipse.dd.cmmn.di.Diagram;
-import org.eclipse.dd.cmmn.di.DiagramElement;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.emf.util.StencilInfo;
-import org.jbpm.designer.server.diagram.json.Bounds;
-import org.jbpm.designer.server.diagram.json.Point;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
+import org.jbpm.designer.extensions.diagram.Bounds;
+import org.jbpm.designer.extensions.diagram.Point;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.omg.cmmn.DocumentRoot;
+import org.omg.cmmn.TCase;
+import org.omg.cmmn.TCaseFileItem;
+import org.omg.cmmn.TCaseFileItemDefinition;
+import org.omg.cmmn.TCaseFileItemOnPart;
+import org.omg.cmmn.TCaseParameter;
+import org.omg.cmmn.TCaseTask;
+import org.omg.cmmn.TCmmnElement;
+import org.omg.cmmn.TDiscretionaryItem;
+import org.omg.cmmn.TEvent;
+import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TMilestone;
+import org.omg.cmmn.TParameter;
+import org.omg.cmmn.TParameterMapping;
+import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TPlanItemControl;
+import org.omg.cmmn.TPlanItemOnPart;
+import org.omg.cmmn.TProcess;
+import org.omg.cmmn.TProcessTask;
+import org.omg.cmmn.TSentry;
+import org.omg.cmmn.TStage;
+import org.omg.cmmn.TTimerEvent;
+import org.omg.cmmn.TUserEvent;
+import org.omg.cmmn.util.CMMNSwitch;
+import org.omg.cmmn.util.ImportHelper;
+import org.omg.dd.di.Diagram;
+import org.omg.dd.di.DiagramElement;
 
-public class CmmnEmfToJsonHelper extends Cmmn1Switch<Object> implements EmfToJsonHelper {
+public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJsonHelper {
     protected Shape targetShape;
     private ShapeMap shapeMap;
     private Map<TSentry, TCmmnElement> sentryContainers = new HashMap<TSentry, TCmmnElement>();
@@ -65,8 +66,7 @@ public class CmmnEmfToJsonHelper extends Cmmn1Switch<Object> implements EmfToJso
 
     @Override
     public Diagram getDiagram(int i) {
-        DocumentRoot dr = (DocumentRoot) shapeMap.getResource().getContents().get(0);
-        return dr.getDefinitions().getCMMNDiagram().get(i);
+        return ImportHelper.getDefinitions(shapeMap.getResource()).getDiagram().get(0);
     }
 
     @Override
@@ -269,7 +269,7 @@ public class CmmnEmfToJsonHelper extends Cmmn1Switch<Object> implements EmfToJso
 
     @Override
     public void linkElements(DiagramElement diagramElement, Shape shape) {
-        EObject modelElement = diagramElement.getModelElement();
+        EObject modelElement = diagramElement.getModelElement().isEmpty()?null:diagramElement.getModelElement().get(0);
         if (modelElement instanceof TDiscretionaryItem) {
             putSentries(modelElement, ((TDiscretionaryItem) modelElement).getEntryCriteriaRefs());
             putSentries(modelElement, ((TDiscretionaryItem) modelElement).getExitCriteriaRefs());

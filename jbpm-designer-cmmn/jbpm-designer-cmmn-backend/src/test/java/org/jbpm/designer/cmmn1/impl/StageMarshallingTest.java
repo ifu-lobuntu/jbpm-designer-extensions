@@ -1,14 +1,14 @@
 package org.jbpm.designer.cmmn1.impl;
 
-import org.eclipse.cmmn1.Cmmn1Factory;
-import org.eclipse.cmmn1.PlanItemTransition;
-import org.eclipse.cmmn1.TDiscretionaryItem;
-import org.eclipse.cmmn1.THumanTask;
-import org.eclipse.cmmn1.TPlanItem;
-import org.eclipse.cmmn1.TPlanItemOnPart;
-import org.eclipse.cmmn1.TSentry;
-import org.eclipse.cmmn1.TStage;
 import org.junit.Test;
+import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.PlanItemTransition;
+import org.omg.cmmn.TDiscretionaryItem;
+import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TPlanItemOnPart;
+import org.omg.cmmn.TSentry;
+import org.omg.cmmn.TStage;
 
 public class StageMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
 
@@ -27,12 +27,8 @@ public class StageMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
         TStage stage = (TStage) sdi.getDefinitionRef();
         TPlanItem htpi = addHumanTaskPlanItem(sdi, stage);
         TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(sdi, stage);
-        TSentry sentry = Cmmn1Factory.eINSTANCE.createTSentry();
-        sentry.setName("Waiting for Human Task");
-        stage.getSentry().add(sentry);
-        htdi.getEntryCriteriaRefs().add(sentry);
-        addShapeFor(sdi, sentry);
-        TPlanItemOnPart onPart = Cmmn1Factory.eINSTANCE.createTPlanItemOnPart();
+        TSentry sentry = super.addEntrySentry("Waiting for Human Task",htdi);
+        TPlanItemOnPart onPart = CMMNFactory.eINSTANCE.createTPlanItemOnPart();
         onPart.setSourceRef(htpi);
         onPart.setStandardEvent(PlanItemTransition.COMPLETE);
         sentry.getOnPart().add(onPart);
@@ -46,12 +42,8 @@ public class StageMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
         TStage stage = (TStage) spi.getDefinitionRef();
         TPlanItem htpi = addHumanTaskPlanItem(spi, stage);
         TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(spi, stage);
-        TSentry sentry = Cmmn1Factory.eINSTANCE.createTSentry();
-        sentry.setName("Waiting for Human Task");
-        stage.getSentry().add(sentry);
-        htdi.getEntryCriteriaRefs().add(sentry);
-        addShapeFor(spi, sentry);
-        TPlanItemOnPart onPart = Cmmn1Factory.eINSTANCE.createTPlanItemOnPart();
+        TSentry sentry = super.addEntrySentry("Waiting for Human Task",htdi);
+        TPlanItemOnPart onPart = CMMNFactory.eINSTANCE.createTPlanItemOnPart();
         onPart.setSourceRef(htpi);
         onPart.setStandardEvent(PlanItemTransition.COMPLETE);
         sentry.getOnPart().add(onPart);

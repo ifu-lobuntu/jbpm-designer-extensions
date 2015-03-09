@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="PrimitiveTypes" name="PrimitiveTypes" URI="http://www.omg.org/spec/PrimitiveTypes/20131001">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="Boolean" name="Boolean">
+    <ownedComment xmi:id="Boolean-_ownedComment.0" annotatedElement="Boolean"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="Integer" name="Integer">
+    <ownedComment xmi:id="Integer-_ownedComment.0" annotatedElement="Integer"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="Real" name="Real">
+    <ownedComment xmi:id="Real-_ownedComment.0" annotatedElement="Real"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="String" name="String">
+    <ownedComment xmi:id="String-_ownedComment.0" annotatedElement="String"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="UnlimitedNatural" name="UnlimitedNatural">
+    <ownedComment xmi:id="UnlimitedNatural-_ownedComment.0" annotatedElement="UnlimitedNatural"/>
+  </packagedElement>
+</uml:Package>

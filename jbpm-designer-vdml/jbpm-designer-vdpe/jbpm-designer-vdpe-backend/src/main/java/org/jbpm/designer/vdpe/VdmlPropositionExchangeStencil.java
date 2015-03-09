@@ -3,26 +3,26 @@ package org.jbpm.designer.vdpe;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.dd.cmmn.di.DiagramElement;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.jbpm.designer.emf.util.StencilInfo;
-import org.pavanecce.vdml.metamodel.vdml.Role;
-import org.pavanecce.vdml.metamodel.vdml.ValueProposition;
-import org.pavanecce.vdml.metamodel.vdml.VdmlElement;
-import org.pavanecce.vdml.metamodel.vdml.VdmlFactory;
-import org.pavanecce.vdml.metamodel.vdml.VdmlPackage;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLEdge;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiFactory;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiPackage;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
+import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
+import org.omg.dd.di.DiagramElement;
+import org.omg.vdml.Role;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.VDMLPackage;
+import org.omg.vdml.ValueProposition;
+import org.omg.vdml.VdmlElement;
 
 public enum VdmlPropositionExchangeStencil implements StencilInfo {
-    VDML_PROPOSITION_EXCHANGE_DIAGRAM(VdmlPackage.eINSTANCE.getCollaboration(), VdmlDiPackage.eINSTANCE.getVDMLDiagram(), "VdmlPropositionExchangeDiagram"),
-    ROLE(VdmlPackage.eINSTANCE.getRole(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "Role"),
-    VALUE_PROPOSITION(VdmlPackage.eINSTANCE.getValueProposition(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "ValueProposition"),
-    PROVIDED_PROPOSITION(VdmlPackage.eINSTANCE.getRole_ProvidedProposition(), VdmlDiPackage.eINSTANCE.getVDMLEdge(), "ProvidedProposition"),
-    RECIPIENT(VdmlPackage.eINSTANCE.getValueProposition_Recipient(), VdmlDiPackage.eINSTANCE.getVDMLEdge(), "Recipient");
+    VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlPropositionExchangeDiagram"),
+    ROLE(VDMLPackage.eINSTANCE.getRole(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Role"),
+    VALUE_PROPOSITION(VDMLPackage.eINSTANCE.getValueProposition(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ValueProposition"),
+    PROVIDED_PROPOSITION(VDMLPackage.eINSTANCE.getRole_ProvidedProposition(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "ProvidedProposition"),
+    RECIPIENT(VDMLPackage.eINSTANCE.getValueProposition_Recipient(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "Recipient");
     private EClass type;
     private EClass shapeType;
     private String stencilId;
@@ -58,7 +58,7 @@ public enum VdmlPropositionExchangeStencil implements StencilInfo {
         if (stencil.shapeType == null) {
             return null;
         }
-        return (DiagramElement) VdmlDiFactory.eINSTANCE.create(stencil.shapeType);
+        return (DiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
     public static VdmlElement createElement(String stencilId) {
@@ -66,7 +66,7 @@ public enum VdmlPropositionExchangeStencil implements StencilInfo {
         if (stencil.type == null) {
             return null;
         }
-        return (VdmlElement) VdmlFactory.eINSTANCE.create(stencil.type);
+        return (VdmlElement) VDMLFactory.eINSTANCE.create(stencil.type);
     }
 
     public static VdmlPropositionExchangeStencil findStencilById(String stencilId) {
@@ -80,9 +80,9 @@ public enum VdmlPropositionExchangeStencil implements StencilInfo {
     public static VdmlPropositionExchangeStencil findStencilByElement(EObject me, DiagramElement de) {
         if(de instanceof VDMLEdge){
             VDMLEdge edge = (VDMLEdge) de;
-            if(edge.getSource().getModelElement() instanceof Role && edge.getTarget().getModelElement() instanceof ValueProposition){
+            if(edge.getSourceShape().getVdmlElement() instanceof Role && edge.getTargetShape().getVdmlElement() instanceof ValueProposition){
                 return PROVIDED_PROPOSITION;
-            }else if(edge.getSource().getModelElement() instanceof ValueProposition && edge.getTarget().getModelElement() instanceof Role){
+            }else if(edge.getSourceShape().getVdmlElement() instanceof ValueProposition && edge.getTargetShape().getVdmlElement() instanceof Role){
                 return RECIPIENT;
             }
         }

@@ -38,7 +38,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-cmmn-emf-metamodel</artifactId>
+			<artifactId>jbpm-designer-extensions-emf</artifactId>
 			<exclusions>
 				<exclusion>
 					<groupId>org.eclipse.emf</groupId>

@@ -1,13 +1,9 @@
 #Done and Tested
 ##Stencils
 Role
-Activity
-Store
-InputDelegation
-OutputDelegation
-DeliverableFlow
-InputPort
-OutputPort
+providedValueProposition
+receivedValueProposition
+ValueProposition
 
 ##Property Editors
 
@@ -18,8 +14,11 @@ OutputPort
 
 
 #To do
+##Misc
+Make valueproposition expandable 
+
 ##Stencils
-ValueAdd
+ValuePropositionComponent
 
 ##Property Editors
 

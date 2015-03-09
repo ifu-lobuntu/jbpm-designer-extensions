@@ -6,8 +6,8 @@ import java.io.FileReader;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.jbpm.designer.stencilset.linkage.LinkedStencilSet;
-import org.jbpm.designer.stencilset.linkage.StencilSet;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
+import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.junit.Test;
 
 public class CmmnStencilSetTest {

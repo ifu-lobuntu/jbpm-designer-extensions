@@ -14,6 +14,22 @@
   <dependencies>
     <dependency>
       <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-emf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-uml-api</artifactId>
     </dependency>
     <dependency>
@@ -88,6 +104,18 @@
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-metadata-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.uberfire</groupId>
+      <artifactId>kie-uberfire-social-activities-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.screens</groupId>
+      <artifactId>kie-wb-common-default-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.screens</groupId>
+      <artifactId>kie-wb-common-project-editor-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.kie.workbench.services</groupId>
@@ -425,6 +453,14 @@
     </dependency>
     <dependency>
       <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-datamodel-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-refactoring-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
       <artifactId>kie-wb-common-services-backend</artifactId>
     </dependency>
     <dependency>
@@ -443,6 +479,14 @@
       <type>war</type>
     </dependency>
 
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-api</artifactId>
+    </dependency>
+    <dependency>
+   		<groupId>org.uberfire</groupId>
+  		<artifactId>uberfire-widgets-service-api</artifactId>
+      </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-form-modeler-renderer-api</artifactId>

@@ -9,7 +9,7 @@
  * @param {Object} facade The facade of the editor
  */
 ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
-/** @lends ORYX.Plugins.CMMN.prototype */
+/** @lends ORYX.Plugins.CMMN.prototype */  
 {
 	/**
 	 * Creates a new instance of the CMMN plugin and registers it on the
@@ -20,6 +20,7 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 	 */
 	construct: function(facade) {
 		this.facade = facade;
+		this.facade.registerOnEvent('layout.collapsible', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent('layout.compartment.list', this.handleLayoutList.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
@@ -27,6 +28,7 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 	},
 	handleExpand : function(event, uiObj){
 		if(event.explicitOriginalTarget && event.explicitOriginalTarget.id && event.explicitOriginalTarget.id.indexOf("expand_")>=0){
+			console.log("asdf");
 			if(uiObj.properties["oryx-isexpanded"]=="false"){
 				uiObj.properties["oryx-isexpanded"]="true";
 			}else{
@@ -34,8 +36,10 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 			}
 			uiObj._update();
 			uiObj._changed();
-			uiObj.parent._update();
-			uiObj.parent._changed();
+			if(uiObj.parent instanceof ORYX.Core.Shape){
+				uiObj.parent._update();
+				uiObj.parent._changed();
+			}
 			this.facade.getCanvas().update();
 			this.facade.updateSelection();
 		}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DG -->
+      <package
+            uri="http://www.omg.org/spec/DD/20131001/DG"
+            class="org.omg.dd.dg.DGPackage"
+            genModel="models/DG.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DG -->
+      <package
+            uri="http://www.omg.org/spec/DD/20131001/DI"
+            class="org.omg.dd.di.DIPackage"
+            genModel="models/DG.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DG -->
+      <package
+            uri="http://www.omg.org/spec/DD/20131001/DC"
+            class="org.omg.dd.dc.DCPackage"
+            genModel="models/DG.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated DG -->
+      <package
+            uri="http://www.omg.org/spec/PrimitiveTypes/20131001"
+            class="org.omg.dd.primitivetypes.PrimitiveTypesPackage"
+            genModel="models/DG.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated jBPMDD -->
+      <package
+            uri="http://www.jbpm.org/DD"
+            class="org.jbpm.designer.dd.jbpmdd.JBPMDDPackage"
+            genModel="models/jBPMDD.genmodel"/>
+   </extension>
+
+</plugin>

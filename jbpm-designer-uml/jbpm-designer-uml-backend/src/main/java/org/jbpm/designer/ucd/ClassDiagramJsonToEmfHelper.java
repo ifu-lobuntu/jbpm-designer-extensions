@@ -1,23 +1,15 @@
 package org.jbpm.designer.ucd;
 
+import static org.jbpm.designer.ucd.ClassDiagramStencil.INTERFACE;
+
 import java.beans.Introspector;
 
-import org.eclipse.dd.cmmn.di.DiagramElement;
-import org.eclipse.dd.cmmn.di.Edge;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.uml2.di.umldi.DocumentRoot;
-import org.eclipse.uml2.di.umldi.UMLCompartment;
-import org.eclipse.uml2.di.umldi.UMLDIFactory;
-import org.eclipse.uml2.di.umldi.UMLDiagram;
-import org.eclipse.uml2.di.umldi.UMLEdge;
-import org.eclipse.uml2.di.umldi.UMLLabel;
-import org.eclipse.uml2.di.umldi.UMLPlane;
-import org.eclipse.uml2.di.umldi.UMLShape;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -29,12 +21,18 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.util.UMLSwitch;
-import org.jbpm.designer.emf.util.JsonToEmfHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.server.diagram.json.Diagram;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.server.diagram.json.ShapeReference;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
+import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.diagram.ShapeReference;
+import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.jbpm.uml2.dd.umldi.UMLCompartment;
+import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.jbpm.uml2.dd.umldi.UMLEdge;
+import org.jbpm.uml2.dd.umldi.UMLShape;
+import org.omg.dd.di.DiagramElement;
 
 public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements JsonToEmfHelper {
     protected Shape sourceShape;
@@ -104,22 +102,16 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
 
     @Override
     public Object caseInterfaceRealization(InterfaceRealization object) {
-        for (ShapeReference shapeReference : sourceShape.getOutgoing()) {
-            Shape shape = getShape(shapeReference.getResourceId());
-            ClassDiagramStencil stencil = ClassDiagramStencil.findStencilById(shape.getStencilId());
-            switch (stencil) {
-            case INTERFACE:
-                Interface c = (Interface) getModelElement(shapeReference.getResourceId());
-                object.setContract(c);
-                break;
-            }
+        for(Interface c:shapeMap.<Interface>getOutgoingModelElements(sourceShape, INTERFACE)){
+            object.setContract(c);
         }
         return super.caseInterfaceRealization(object);
     }
 
     @Override
     public Object caseProperty(Property object) {
-        Classifier classifier = (Classifier) shapeMap.getDiagramElement(sourceShape).getOwningElement().getOwningElement().getModelElement();
+        UMLShape classifierShape = (UMLShape) shapeMap.getDiagramElement(sourceShape).getOwningElement().getOwningElement();
+        Classifier classifier = (Classifier) classifierShape.getUmlElement();
         EStructuralFeature ownedAttributeFeature = classifier.eClass().getEStructuralFeature("ownedAttribute");
         EList<Property> feature = (EList<Property>) classifier.eGet(ownedAttributeFeature);
         object.setType(cmmnTypes.getOwnedType(sourceShape.getProperty("type")));
@@ -143,7 +135,9 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     }
 
     @Override
-    public void linkElements(Shape shape, DiagramElement de, EObject modelElement) {
+    public DiagramElement createElements(Shape shape) {
+        DiagramElement de= ClassDiagramStencil.createDiagramElement(shape.getStencilId());
+        Element modelElement=ClassDiagramStencil.createElement(shape.getStencilId());
         if (de instanceof UMLShape) {
             ((UMLShape) de).setUmlElement((Element) modelElement);
         } else if (de instanceof UMLEdge) {
@@ -152,6 +146,8 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
             ((UMLCompartment) de).setIsExpanded("true".equals(shape.getProperty("isexpanded")));
             ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(shape.getStencilId()));
         }
+        de.setLocalStyle(UMLDIFactory.eINSTANCE.createUMLStyle());
+        return de;
     }
 
     public Shape getShape(String id) {
@@ -165,62 +161,25 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
         super.doSwitch(getModelElement(sourceShape.getResourceId()));
     }
 
-    public UMLPlane prepareEmfDiagram(Diagram json, XMLResource result) {
-        UMLDiagram umlDiagram = UMLDIFactory.eINSTANCE.createUMLDiagram();
-        UMLPlane umlPlane = UMLDIFactory.eINSTANCE.createUMLPlane();
-        umlDiagram.setUmlPlane(umlPlane);
+    public UMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
+        UMLDiagram d = UMLDIFactory.eINSTANCE.createUMLDiagram();
         thisPackage = UMLFactory.eINSTANCE.createPackage();
-        DocumentRoot documentRoot = UMLDIFactory.eINSTANCE.createDocumentRoot();
-        result.getContents().add(documentRoot);
         result.setID(thisPackage, json.getResourceId());
-        umlPlane.setUmlElement(thisPackage);
-        documentRoot.getPackages().add(thisPackage);
-        documentRoot.getDiagram().add(umlDiagram);
-        linkElements(json, umlPlane, thisPackage);
+        d.setUmlElement(thisPackage);
+        result.getContents().add(thisPackage);
+        result.getContents().add(d);
         this.cmmnTypes=(Package) result.getResourceSet().getResource(URI.createURI("libraries/cmmntypes.uml"), false).getContents().get(0);
-        return umlPlane;
+        return d;
     }
 
-    public UMLLabel setupDiagramElement(EObject el, DiagramElement de) {
-        UMLLabel label = null;
-        if (de instanceof UMLShape) {
-            ((UMLShape) de).setUmlElement((Element) el);
-            // ((UMLShape) de).setUMLLabel(label =
-            // CmmnDiFactory.eINSTANCE.createUMLLabel());
-        } else if (de instanceof UMLEdge) {
-            ((UMLEdge) de).setUmlElement((Element) el);
-            // ((UMLEdge) de).setUMLLabel(label =
-            // CmmnDiFactory.eINSTANCE.createUMLLabel());
-        }
-        return label;
-    }
+
 
     @Override
     public EObject create(EClass eType) {
         return UMLFactory.eINSTANCE.create(eType);
     }
 
-    @Override
-    public void setTargetElement(Edge edge, ShapeReference target) {
-        ((UMLEdge) edge).setTargetElement(getDiagramElement(target.getResourceId()));
-    }
-
     private DiagramElement getDiagramElement(String resourceId) {
         return shapeMap.getDiagramElement(resourceId);
-    }
-
-    @Override
-    public void setSourceElement(Edge edge, Shape source) {
-        ((UMLEdge) edge).setSourceElement(getDiagramElement(source.getResourceId()));
-    }
-
-    @Override
-    public EObject createElement(String stencilId) {
-        return ClassDiagramStencil.createElement(stencilId);
-    }
-
-    @Override
-    public DiagramElement createDiagramElement(String stencilId) {
-        return ClassDiagramStencil.createDiagramElement(stencilId);
     }
 }

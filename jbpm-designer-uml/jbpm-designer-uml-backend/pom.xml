@@ -28,9 +28,17 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-emf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
     </dependency>
     <!-- Transitive dependency -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-emf</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-api</artifactId>
@@ -66,10 +74,6 @@
     <dependency>
       <groupId>org.eclipse.emf</groupId>
       <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-    </dependency>
-	<dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-cmmn-emf-metamodel</artifactId>
     </dependency>
   </dependencies>
 

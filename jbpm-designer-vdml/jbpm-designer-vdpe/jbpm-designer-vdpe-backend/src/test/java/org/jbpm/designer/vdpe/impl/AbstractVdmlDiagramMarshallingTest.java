@@ -5,43 +5,47 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.dd.cmmn.dc.Bounds;
-import org.eclipse.dd.cmmn.dc.DcFactory;
-import org.eclipse.dd.cmmn.dc.Point;
-import org.eclipse.dd.cmmn.di.DiagramElement;
-import org.eclipse.dd.cmmn.di.Shape;
-import org.eclipse.dd.color.color.ColorPackage;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.emf.util.GenericEcoreComparator;
-import org.jbpm.designer.emf.util.GenericEmfToJsonDiagramUnmarshaller;
-import org.jbpm.designer.emf.util.GenericJsonToEmfDiagramMarshaller;
-import org.jbpm.designer.emf.util.TestUriHandler;
+import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
+import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
+import org.jbpm.designer.extensions.emf.util.GenericEmfToJsonDiagramUnmarshaller;
+import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
+import org.jbpm.designer.extensions.emf.util.TestUriHandler;
+import org.jbpm.designer.vdpe.VdmlPropositionExchangeProfileImpl;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
+import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
+import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.junit.Before;
-import org.pavanecce.vdml.metamodel.vdml.CapabilityMethod;
-import org.pavanecce.vdml.metamodel.vdml.ValueDeliveryModel;
-import org.pavanecce.vdml.metamodel.vdml.VdmlElement;
-import org.pavanecce.vdml.metamodel.vdml.VdmlFactory;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLDiagram;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLEdge;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLPlane;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLShape;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiFactory;
+import org.omg.dd.dc.Bounds;
+import org.omg.dd.dc.Color;
+import org.omg.dd.dc.DCFactory;
+import org.omg.dd.dc.Point;
+import org.omg.dd.di.DiagramElement;
+import org.omg.dd.di.Style;
+import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.InputPort;
+import org.omg.vdml.OutputPort;
+import org.omg.vdml.PortContainer;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.VdmlElement;
 
-public abstract class AbstractVdmlDiagramMarshallingTest {
+public class AbstractVdmlDiagramMarshallingTest {
 
     protected XMLResource inputResource;
     protected ResourceSet resourceSet;
     protected VDMLDiagram inputDiagram;
     protected ValueDeliveryModel valueDeliveryModel;
-    protected Map<VdmlElement, DiagramElement> elementDiagramElementMap = new HashMap<VdmlElement, DiagramElement>();
+    protected Map<VdmlElement, VDMLDiagramElement> elementDiagramElementMap = new HashMap<VdmlElement, VDMLDiagramElement>();
     public CapabilityMethod capabilityMethod;
-    private VDMLPlane plane;
     private AbstractEmfDiagramProfile profile;
     private GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     private GenericJsonToEmfDiagramMarshaller marshaller;
@@ -61,23 +65,22 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
         profile.prepareResourceSet(resourceSet);
-        inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy."+profile.getSerializedModelExtension()));
-        valueDeliveryModel = VdmlFactory.eINSTANCE.createValueDeliveryModel();
-        inputDiagram = VdmlDiFactory.eINSTANCE.createVDMLDiagram();
+        inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
+        valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
         inputResource.getContents().add(valueDeliveryModel);
         valueDeliveryModel.getDiagram().add(inputDiagram);
-        plane = VdmlDiFactory.eINSTANCE.createVDMLPlane();
-        inputDiagram.setVDMLPlane(plane);
-        profile.loadLinkedStencilSet("../jbpm-designer-client/src/main/resources/org/jbpm/designer/public/"+profile.getStencilSetPath());
-        plane.setVDMLElement(valueDeliveryModel);
-        this.capabilityMethod = VdmlFactory.eINSTANCE.createCapabilityMethod();
-        plane.setVDMLElement(capabilityMethod);
+        profile.loadLinkedStencilSet("../jbpm-designer-vdpe-client/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
+        this.capabilityMethod = VDMLFactory.eINSTANCE.createCapabilityMethod();
+        inputDiagram.setVdmlElement(capabilityMethod);
         capabilityMethod.setName("MyCapability");
         valueDeliveryModel.getCollaboration().add(capabilityMethod);
-        elementDiagramElementMap.put(capabilityMethod, plane);
+        elementDiagramElementMap.put(capabilityMethod, inputDiagram);
     }
 
-    protected abstract AbstractEmfDiagramProfile createProfile();
+    protected AbstractEmfDiagramProfile createProfile() {
+        return new VdmlPropositionExchangeProfileImpl();
+    }
 
     protected void assertOutputValid() throws IOException, Exception {
         String xmlString = buildXmlString(inputResource);
@@ -85,7 +88,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         // System.out.println(xmlString);
         // System.out.println(json);
         XMLResource outputResource = marshaller.getResource(json, "");
-        // System.out.println(buildXmlString((Cmmn1ResourceImpl)
+        // System.out.println(buildXmlString((CMMNResourceImpl)
         // outputResource));
         new GenericEcoreComparator(inputResource, outputResource).validate();
         // inputResource=(XMLResource) outputResource;
@@ -104,41 +107,76 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected void addEdge(VdmlElement modelElement, VdmlElement from, VdmlElement to) {
-        VDMLEdge edge = VdmlDiFactory.eINSTANCE.createVDMLEdge();
-        Shape fromShape = (Shape) elementDiagramElementMap.get(from);
-        edge.setSourceElement(fromShape);
-        Shape toShape = (Shape) elementDiagramElementMap.get(to);
-        edge.setTargetElement(toShape);
+        VDMLEdge edge = VDMLDIFactory.eINSTANCE.createVDMLEdge();
+        VDMLShape fromShape = (VDMLShape) elementDiagramElementMap.get(from);
+        edge.setSourceShape(fromShape);
+        VDMLShape toShape = (VDMLShape) elementDiagramElementMap.get(to);
+        edge.setTargetShape(toShape);
         GenericJsonToEmfDiagramMarshaller.addWaypointToCenterOf(edge, fromShape);
-        Point middle = DcFactory.eINSTANCE.createPoint();
+        Point middle = DCFactory.eINSTANCE.createPoint();
         edge.getWaypoint().add(middle);
-        middle.setX(50);
-        middle.setY(60);
+        middle.setX(50d);
+        middle.setY(60d);
         GenericJsonToEmfDiagramMarshaller.addWaypointToCenterOf(edge, toShape);
-        plane.getPlaneElement().add(edge);
-        edge.setVDMLElement(modelElement);
-        edge.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_Color(), "#0000000");
-        edge.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_BorderColor(), "#000000");
-        edge.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_FontSize(), 12);
+        inputDiagram.getOwnedVdmlDiagramElement().add(edge);
+        edge.setVdmlElement(modelElement);
+        edge.setLocalStyle(buildTestStyle());
     }
 
-    protected void addShapeFor(VdmlElement parentElement, VdmlElement element, int... boundsInfo) {
-        DiagramElement parentDiagramElement = elementDiagramElementMap.get(parentElement);
-        VDMLShape shape = VdmlDiFactory.eINSTANCE.createVDMLShape();
+    private Style buildTestStyle() {
+        Style style = VDMLDIFactory.eINSTANCE.createVDMLStyle();
+        style.setFillColor(buildTestColor());
+        style.setStrokeColor(buildTestColor());
+        style.setFontColor(buildTestColor());
+        style.setFontSize(23d);
+        return style;
+    }
+
+    private Color buildTestColor() {
+        Color fillColor = DCFactory.eINSTANCE.createColor();
+        fillColor.setRed(77);
+        fillColor.setGreen(66);
+        fillColor.setBlue(55);
+        return fillColor;
+    }
+
+    protected VDMLShape addShapeFor(VdmlElement parentElement, VdmlElement element, int... boundsInfo) {
+        VDMLDiagramElement parentDiagramElement = elementDiagramElementMap.get(parentElement);
+        VDMLShape shape = VDMLDIFactory.eINSTANCE.createVDMLShape();
         String nsURI = shape.eClass().getESuperTypes().get(0).getEPackage().getNsURI();
         parentDiagramElement.getOwnedElement().add(shape);
-        shape.setVDMLElement(element);
-        shape.setBounds(DcFactory.eINSTANCE.createBounds());
+        shape.setVdmlElement(element);
+        shape.setBounds(DCFactory.eINSTANCE.createBounds());
         Bounds bounds = shape.getBounds();
-        bounds.setX(boundsInfo.length > 0 ? boundsInfo[0] : 10);
-        bounds.setY(boundsInfo.length > 1 ? boundsInfo[1] : 10);
-        bounds.setWidth(boundsInfo.length > 2 ? boundsInfo[2] : 300);
-        bounds.setHeight(boundsInfo.length > 3 ? boundsInfo[3] : 300);
-        shape.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_BackgroundColor(), "#FFFFFFF");
-        shape.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_Color(), "#0000000");
-        shape.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_BorderColor(), "#000000");
-        shape.getAnyAttribute().set(ColorPackage.eINSTANCE.getDocumentRoot_FontSize(), 12);
+        bounds.setX(boundsInfo.length > 0 ? boundsInfo[0] : 10d);
+        bounds.setY(boundsInfo.length > 1 ? boundsInfo[1] : 10d);
+        bounds.setWidth(boundsInfo.length > 2 ? boundsInfo[2] : 300d);
+        bounds.setHeight(boundsInfo.length > 3 ? boundsInfo[3] : 300d);
+        shape.setLocalStyle(buildTestStyle());
         this.elementDiagramElementMap.put(element, shape);
+        return shape;
+    }
+
+    protected void addOutputPort(VdmlElement parent, PortContainer pc, String outputPortName) {
+        OutputPort activityOutputPort = VDMLFactory.eINSTANCE.createOutputPort();
+        activityOutputPort.setName(outputPortName);
+        pc.getContainedPort().add(activityOutputPort);
+        DiagramElement boundariedShape = this.elementDiagramElementMap.get(pc);
+        VDMLShape portShape = addShapeFor(parent, activityOutputPort);
+        if (boundariedShape instanceof BoundariedShape) {
+            ((BoundariedShape) boundariedShape).getBoundaryShapes().add(portShape);
+        }
+    }
+
+    protected void addInputPort(VdmlElement parent, PortContainer pc, String inputPortName) {
+        InputPort activityInputPort = VDMLFactory.eINSTANCE.createInputPort();
+        activityInputPort.setName(inputPortName);
+        pc.getContainedPort().add(activityInputPort);
+        DiagramElement boundariedShape = this.elementDiagramElementMap.get(pc);
+        VDMLShape portShape = addShapeFor(parent, activityInputPort);
+        if (boundariedShape instanceof BoundariedShape) {
+            ((BoundariedShape) boundariedShape).getBoundaryShapes().add(portShape);
+        }
     }
 
 }

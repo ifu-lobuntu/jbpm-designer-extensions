@@ -30,6 +30,7 @@
  - Required Rule Decorator present when a Required Rule exists
  - AutoComplete decorator - normal refToView
  - Blocking vs non-blocking Human Task
+ - Collapse/Expand button for Stages
 
 ### Property editors:
  - PerformerRef in HumanTasks - need to define a new plugin to lookup single roles
@@ -48,13 +49,16 @@
 ## Modularization
  - Implement different projects for CMMN and UML - Client/API/Backend
  - Implement processRequest method on profile to delegate to the appropriate action handler
+ - Implement redirection logic in StencilSetServiceServlet
+
+###Collapse/Expand
+ - Collapsed Stages 
 
 
 ##1.2. In Progress
 
 ##1.3. Todo:
 ## Misc
- * - Case becomes diagram element
  * - Import CaseFile from UML Model
  * - UML Classes as CaseFileItems - select Root CaseFileItems from Containment Tree
  * - Remove git version from platformURIs
@@ -62,8 +66,6 @@
 
 ## Modularization
  - inlineditor.jsp
- - 
- - Implement redirection logic in StencilSetServiceServlet that can be customized to point to workspace
 
 ###Stencils for:
  - Connector from HumanTask to related DiscretionaryItems in its PlanningTable
@@ -73,7 +75,6 @@
 ###Decorators:
  * - PlanItemTable for Stages
  - PlanItemTable for HumanTask
- * - Collapse/Expand button for Stages
 
 
 ###Property editors:
@@ -82,7 +83,6 @@
 
 
 ###Collapse/Expand
- * - Collapsed Stages and Cases
  * - Collapsed Planning Tables for Stages and Cases
  - Collapsed Planning Table for Tasks with PlanningTable
 

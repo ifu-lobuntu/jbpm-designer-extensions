@@ -29,19 +29,21 @@
 			</radialGradient>
 		</defs>
 		<!--g transform="scale(0.8,0.8) translate(3,3)" -->
-		<polygon id="bg_frame" stroke="black" stroke-width="1" points="0,15 15,0  185,0  200,15 200,145 185,160 15,160 0,145" oryx:resize="vertical horizontal"
-			oryx:anchors="bottom top right left" fill="url(#background) #ffffcc"/>
+		<polygon id="bg_frame" stroke="black" stroke-width="1" points="0,15 15,0  185,0  200,15 200,145 185,160 15,160 0,145" oryx:resize="vertical horizontal" oryx:anchors="bottom top right left"
+			fill="url(#background) #ffffcc" />
 		<text font-size="12" id="text_name" x="8" y="10" oryx:align="top left" oryx:fittoelem="text_frame" oryx:anchors="right top" stroke="black"></text>
-
-		<text oryx:anchors="bottom" font-size="12" id="requiredText" x="74" y="168" stroke="black" display="none">!
-		</text>
-		<text oryx:anchors="bottom" font-size="12" id="repetitionText" x="80" y="168" stroke="black" display="none">#
-		</text>
-		<g id="manualActivation" >
-			<path id="manualActivationPath" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 87,146 L 95,151 L 87,156 z" display="none"/>
+		<g id="autoComplete">
+			<rect id="autoCompleteRect" oryx:anchors="bottom" x="96" y="146" fill="black" width="12" height="12" display="none" />
 		</g>
-		<g id="autoComplete" >
-			<rect id="autoCompleteRect" oryx:anchors="bottom" x="96" y="146" fill="black" width="12" height="12" display="none"/>
+		<rect id="expand_button" oryx:fittoelem="bg_frame" oryx:anchors="bottom" x="80" y="146" width="12" height="12" stroke="black" stroke-width="1" fill="none" rx="2" ry="2" />
+		<path id="expand_vertical" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 86,148 L 86,156 z" />
+		<path id="expand_horizontal" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 82,152 L 90,152 z" />
+		<g id="manualActivation">
+			<path id="manualActivationPath"  oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 112,146 L 120,151 L 112,156 z" display="none" />
 		</g>
+		<text oryx:anchors="bottom center" font-size="12" id="requiredText" x="122" y="168" stroke="black" display="none">!
+		</text>
+		<text oryx:anchors="bottom center" font-size="12" id="repetitionText" x="130" y="168" stroke="black" display="none">#
+		</text>
 	</g>
 </svg>

@@ -38,7 +38,7 @@
       <!-- @generated CMMN10 -->
       <package
             uri="http://www.omg.org/spec/CMMN/20131201/MODEL"
-            class="org.eclipse.cmmn1.Cmmn1Package"
+            class="org.omg.cmmn.Cmmn1Package"
             genModel="model/CMMN10.genmodel"/>
    </extension>
 
@@ -46,14 +46,14 @@
       <!-- @generated CMMN10 -->
       <parser
             type="cmmn1"
-            class="org.eclipse.cmmn1.util.Cmmn1ResourceFactoryImpl"/>
+            class="org.omg.cmmn.util.CMMNResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated CMMN10 -->
       <package
             uri="http://www.omg.org/spec/CMMN/20131201/DI"
-            class="org.eclipse.cmmndi.CmmnDiPackage"
+            class="org.jbpm.cmmn.dd.cmmndi.CmmnDiPackage"
             genModel="model/CMMN10.genmodel"/>
    </extension>
 
@@ -61,14 +61,14 @@
       <!-- @generated CMMN10 -->
       <parser
             type="cmmndi"
-            class="org.eclipse.cmmndi.util.CmmnDiResourceFactoryImpl"/>
+            class="org.jbpm.cmmn.dd.cmmndi.util.CmmnDiResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated CMMN10 -->
       <package
             uri="http://www.omg.org/spec/DD/20150101/DI-XMI"
-            class="org.eclipse.dd.cmmn.di.DiPackage"
+            class="org.omg.dd.di.DiPackage"
             genModel="model/CMMN10.genmodel"/>
    </extension>
 
@@ -76,14 +76,14 @@
       <!-- @generated CMMN10 -->
       <parser
             type="di"
-            class="org.eclipse.dd.cmmn.di.util.DiResourceFactoryImpl"/>
+            class="org.omg.dd.di.util.DiResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated CMMN10 -->
       <package
             uri="http://www.omg.org/spec/DD/20150101/DC-XMI"
-            class="org.eclipse.dd.cmmn.dc.DcPackage"
+            class="org.omg.dd.dc.DcPackage"
             genModel="model/CMMN10.genmodel"/>
    </extension>
 
@@ -91,7 +91,7 @@
       <!-- @generated CMMN10 -->
       <parser
             type="dc"
-            class="org.eclipse.dd.cmmn.dc.util.DcResourceFactoryImpl"/>
+            class="org.omg.dd.dc.util.DcResourceFactoryImpl"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
@@ -136,4 +136,20 @@
             type="umldi"
             class="org.eclipse.uml2.di.umldi.util.UMLDIResourceFactoryImpl"/>
    </extension>
-</plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated CMMNDI -->
+      <package
+            uri="http://www.omg.org/spec/CMMN/20131201/DI"
+            class="org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage"
+            genModel="model/CMMNDI.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated CMMNDI -->
+      <package
+            uri="http://www.omg.org/spec/CMMN/20131201/MODEL"
+            class="org.omg.cmmn.CMMNPackage"
+            genModel="model/CMMNDI.genmodel"/>
+   </extension>
+
+null</plugin>

@@ -2,11 +2,11 @@
  */
 package org.jbpm.cmmn.jbpmext.util;
 
-import org.eclipse.cmmn1.Switch;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.jbpm.cmmn.jbpmext.DocumentRoot;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
+import org.jbpm.designer.dd.util.Switch;
 
 /**
  * <!-- begin-user-doc -->

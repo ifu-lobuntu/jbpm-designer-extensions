@@ -31,6 +31,12 @@
 				<groupId>org.jbpm</groupId>
 				<artifactId>jbpm-designer-backend</artifactId>
 				<version>${project.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.eclipse</groupId>
+						<artifactId>org.eclipse.bpmn2</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.jbpm</groupId>
@@ -44,7 +50,17 @@
 			</dependency>
 			<dependency>
 				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-extensions-emf</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
 				<artifactId>jbpm-designer-uml-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-uml-emf</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -109,11 +125,6 @@
 			</dependency>
 			<dependency>
 				<groupId>org.jbpm</groupId>
-				<artifactId>jbpm-cmmn-emf-metamodel</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jbpm</groupId>
 				<artifactId>jbpm-designer-vdml-emf</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -126,10 +137,23 @@
 	</dependencyManagement>
 	<modules>
 		<module>jbpm-designer-extensions-client</module>
+		<module>jbpm-designer-extensions-emf</module>
 		<module>jbpm-designer-extensions-backend</module>
 		<module>jbpm-designer-cmmn</module>
 		<module>jbpm-designer-uml</module>
 		<module>jbpm-designer-vdml</module>
 		<module>jbpm-designer-extensions-showcase</module>
 	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-designer-backend</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>jbpm-bpmn2</artifactId>
+					<groupId>org.jbpm</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 </project>

@@ -26,12 +26,11 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-backend</artifactId>
     </dependency>
-    <!-- TODO remove this dependency -->
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-cmmn-emf</artifactId>
+      <artifactId>jbpm-designer-extensions-emf</artifactId>
     </dependency>
-    <!-- dependencies added because of illegal transitive dependency check -->
+    <!-- Transitive dependencies -->
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-api</artifactId>
@@ -59,6 +58,7 @@
     <dependency>
       <groupId>org.eclipse</groupId>
       <artifactId>org.eclipse.bpmn2</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.codehaus.jackson</groupId>

@@ -1,30 +1,28 @@
 package org.jbpm.designer.vdan;
 
-import org.eclipse.dd.cmmn.di.Diagram;
-import org.eclipse.dd.cmmn.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.emf.util.StencilInfo;
-import org.jbpm.designer.server.diagram.json.Point;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
-import org.pavanecce.vdml.metamodel.vdml.Activity;
-import org.pavanecce.vdml.metamodel.vdml.CapabilityMethod;
-import org.pavanecce.vdml.metamodel.vdml.Collaboration;
-import org.pavanecce.vdml.metamodel.vdml.DeliverableFlow;
-import org.pavanecce.vdml.metamodel.vdml.InputDelegation;
-import org.pavanecce.vdml.metamodel.vdml.InputPort;
-import org.pavanecce.vdml.metamodel.vdml.OutputDelegation;
-import org.pavanecce.vdml.metamodel.vdml.OutputPort;
-import org.pavanecce.vdml.metamodel.vdml.Port;
-import org.pavanecce.vdml.metamodel.vdml.PortContainer;
-import org.pavanecce.vdml.metamodel.vdml.Role;
-import org.pavanecce.vdml.metamodel.vdml.Store;
-import org.pavanecce.vdml.metamodel.vdml.ValueDeliveryModel;
-import org.pavanecce.vdml.metamodel.vdml.util.VdmlSwitch;
+import org.jbpm.designer.extensions.diagram.Point;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.omg.vdml.Activity;
+import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
+import org.omg.vdml.InputDelegation;
+import org.omg.vdml.InputPort;
+import org.omg.vdml.OutputDelegation;
+import org.omg.vdml.OutputPort;
+import org.omg.vdml.Port;
+import org.omg.vdml.PortContainer;
+import org.omg.vdml.Role;
+import org.omg.vdml.Store;
+import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.util.VDMLSwitch;
 
-public class VdmlActivityNetworkEmfToJsonHelper extends VdmlSwitch<Object> implements EmfToJsonHelper {
+public class VdmlActivityNetworkEmfToJsonHelper extends VDMLSwitch<Object> implements EmfToJsonHelper {
     protected Shape targetShape;
     private ShapeMap shapeMap;
     private Collaboration owningCollaboration;
@@ -106,8 +104,8 @@ public class VdmlActivityNetworkEmfToJsonHelper extends VdmlSwitch<Object> imple
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
         if (object.getRecipient() != null) {
-//            Shape out = getShape(getDiagramElement(object.getRecipient()));
-//            targetShape.addOutgoing(out);
+            // Shape out = getShape(getDiagramElement(object.getRecipient()));
+            // targetShape.addOutgoing(out);
         }
         return super.caseDeliverableFlow(object);
     }
@@ -115,8 +113,8 @@ public class VdmlActivityNetworkEmfToJsonHelper extends VdmlSwitch<Object> imple
     @Override
     public Object caseInputDelegation(InputDelegation object) {
         if (object.getTarget() != null) {
-//            Shape out = getShape(getDiagramElement(object.getTarget()));
-//            targetShape.addOutgoing(out);
+            // Shape out = getShape(getDiagramElement(object.getTarget()));
+            // targetShape.addOutgoing(out);
         }
         return super.caseInputDelegation(object);
     }
@@ -124,8 +122,8 @@ public class VdmlActivityNetworkEmfToJsonHelper extends VdmlSwitch<Object> imple
     @Override
     public Object caseOutputDelegation(OutputDelegation object) {
         if (object.getTarget() != null) {
-//            Shape out = getShape(getDiagramElement(object.getTarget()));
-//            targetShape.addOutgoing(out);
+            // Shape out = getShape(getDiagramElement(object.getTarget()));
+            // targetShape.addOutgoing(out);
         }
         return super.caseOutputDelegation(object);
     }
@@ -138,17 +136,17 @@ public class VdmlActivityNetworkEmfToJsonHelper extends VdmlSwitch<Object> imple
     }
 
     @Override
-    public void linkElements(DiagramElement diagramElement, Shape shape) {
+    public void linkElements(org.omg.dd.di.DiagramElement diagramElement, Shape shape) {
     }
 
     @Override
-    public Diagram getDiagram(int i) {
+    public org.omg.dd.di.Diagram getDiagram(int i) {
         ValueDeliveryModel dr = (ValueDeliveryModel) shapeMap.getResource().getContents().get(0);
         return dr.getDiagram().get(i);
     }
 
     @Override
-    public StencilInfo findStencilByElement(EObject me, DiagramElement de) {
+    public StencilInfo findStencilByElement(EObject me, org.omg.dd.di.DiagramElement de) {
         return VdmlActivityNetworkStencil.findStencilByElement(me, de);
     }
 }

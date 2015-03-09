@@ -2,6 +2,9 @@
 	"title" : "VDML Proposition Exchange",
 	"namespace" : "http://b3mn.org/stencilset/emptyset.0#",
 	"description" : "This is an empty stencil set to start new diagrams with",
+	"edgeTargetBinding" : "targetShape",
+	"modelElementBinding" : "vdmlElement",
+	"edgeSourceBinding" : "sourceShape",
 	"propertyPackages" : [
 	        {
 	        	"name" : "elementBase",
@@ -47,13 +50,14 @@
 				]
 			},
 			{
-				"name" : "color",
+				"name" : "localStyle",
 				"properties" : [
 						{
 							"id" : "bgcolor",
 							"type" : "Color",
 							"title" : "Background Color",
 							"value" : "#ffffff",
+							"viewBinding":"localStyle.fillColor",
 							"description" : "",
 							"readonly" : false,
 							"optional" : false,
@@ -68,11 +72,12 @@
 							"type" : "Color",
 							"title" : "Border Color",
 							"value" : "#000000",
+							"viewBinding":"localStyle.strokeColor",
 							"description" : "",
 							"readonly" : false,
 							"optional" : false,
 							"refToView" : [
-									"edge", "fill_border", "bg_frame"
+									"edge", "fill_border", "bg_frame", "frame", "border"
 							],
 							"fill" : false,
 							"stroke" : true
@@ -81,6 +86,7 @@
 							"type" : "Color",
 							"title" : "Font Color",
 							"value" : "#000000",
+							"viewBinding":"localStyle.fontColor",
 							"description" : "Font color",
 							"description_ja" : "フォントの色",
 							"readonly" : false,
@@ -95,6 +101,7 @@
 							"type" : "Choice",
 							"title" : "Font Size",
 							"value" : "",
+							"viewBinding":"localStyle.fontSize",
 							"description" : "The Font Size",
 							"description_ja" : "フォントのサイズ",
 							"readonly" : false,
@@ -172,7 +179,7 @@
 				"hide" : true,
 				"propertyPackages" : [
                       "elementBase",
-                      "color"
+                      "localStyle"
 				],
 				"roles" : [
 					"diagram"
@@ -203,7 +210,7 @@
 				],
 			    "propertyPackages" : [
 						"elementBase",
-						"color"
+						"localStyle"
 				],
 				"properties" : [
 				]
@@ -226,7 +233,7 @@
 				],
 			    "propertyPackages" : [
 						"elementBase",
-						"color"
+						"localStyle"
 				],
 				"properties" : [
 				]
@@ -249,7 +256,7 @@
 				],
 			    "propertyPackages" : [
 						"elementBase",
-						"color"
+						"localStyle"
 				],
 				"properties" : [
 				]
@@ -272,7 +279,7 @@
 				],
 			    "propertyPackages" : [
 						"elementBase",
-						"color"
+						"localStyle"
 				],
 				"properties" : [
 				]

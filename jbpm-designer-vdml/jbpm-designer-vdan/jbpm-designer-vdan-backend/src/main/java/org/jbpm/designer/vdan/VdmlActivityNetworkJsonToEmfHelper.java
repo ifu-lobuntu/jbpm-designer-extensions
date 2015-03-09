@@ -3,51 +3,47 @@ package org.jbpm.designer.vdan;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.cmmn1.Cmmn1Factory;
-import org.eclipse.dd.cmmn.di.DiagramElement;
-import org.eclipse.dd.cmmn.di.Edge;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.emf.util.JsonToEmfHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.server.diagram.json.Diagram;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.server.diagram.json.ShapeReference;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
-import org.pavanecce.vdml.metamodel.vdml.Activity;
-import org.pavanecce.vdml.metamodel.vdml.Collaboration;
-import org.pavanecce.vdml.metamodel.vdml.DeliverableFlow;
-import org.pavanecce.vdml.metamodel.vdml.InputDelegation;
-import org.pavanecce.vdml.metamodel.vdml.InputPort;
-import org.pavanecce.vdml.metamodel.vdml.OrgUnit;
-import org.pavanecce.vdml.metamodel.vdml.OutputDelegation;
-import org.pavanecce.vdml.metamodel.vdml.OutputPort;
-import org.pavanecce.vdml.metamodel.vdml.Pool;
-import org.pavanecce.vdml.metamodel.vdml.PortContainer;
-import org.pavanecce.vdml.metamodel.vdml.ResourceUse;
-import org.pavanecce.vdml.metamodel.vdml.Role;
-import org.pavanecce.vdml.metamodel.vdml.Store;
-import org.pavanecce.vdml.metamodel.vdml.ValueDeliveryModel;
-import org.pavanecce.vdml.metamodel.vdml.VdmlElement;
-import org.pavanecce.vdml.metamodel.vdml.VdmlFactory;
-import org.pavanecce.vdml.metamodel.vdml.VdmlPackage;
-import org.pavanecce.vdml.metamodel.vdml.util.VdmlSwitch;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLDiagram;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLEdge;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLLabel;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLPlane;
-import org.pavanecce.vdml.metamodel.vdmldi.VDMLShape;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiFactory;
+import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.diagram.ShapeReference;
+import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
+import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
+import org.jbpm.vdml.dd.vdmldi.VDMLShape;
+import org.omg.dd.di.DiagramElement;
+import org.omg.vdml.Activity;
+import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
+import org.omg.vdml.InputDelegation;
+import org.omg.vdml.InputPort;
+import org.omg.vdml.OrgUnit;
+import org.omg.vdml.OutputDelegation;
+import org.omg.vdml.OutputPort;
+import org.omg.vdml.Pool;
+import org.omg.vdml.PortContainer;
+import org.omg.vdml.ResourceUse;
+import org.omg.vdml.Role;
+import org.omg.vdml.Store;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.VDMLPackage;
+import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.VdmlElement;
+import org.omg.vdml.util.VDMLSwitch;
 
-public class VdmlActivityNetworkJsonToEmfHelper extends VdmlSwitch<Object> implements JsonToEmfHelper {
+public class VdmlActivityNetworkJsonToEmfHelper extends VDMLSwitch<Object> implements JsonToEmfHelper {
     private ShapeMap shapeMap;
     protected Shape sourceShape;
     private Collaboration owningCollaboration;
     private static Map<String, EClass> COLLABORATION_TYPE_MAP = new HashMap<String, EClass>();
 
     static {
-        COLLABORATION_TYPE_MAP.put("CapabilityMethod", VdmlPackage.eINSTANCE.getCapabilityMethod());
+        COLLABORATION_TYPE_MAP.put("CapabilityMethod", VDMLPackage.eINSTANCE.getCapabilityMethod());
     }
     private LinkedStencil currentStencil;
 
@@ -125,7 +121,7 @@ public class VdmlActivityNetworkJsonToEmfHelper extends VdmlSwitch<Object> imple
                     return (OrgUnit) c;
                 }
             }
-            OrgUnit orgUnit = VdmlFactory.eINSTANCE.createOrgUnit();
+            OrgUnit orgUnit = VDMLFactory.eINSTANCE.createOrgUnit();
             orgUnit.setName(owningCollaboration.getName() + "OrgUnit");
             model.getCollaboration().add(orgUnit);
             return orgUnit;
@@ -217,81 +213,40 @@ public class VdmlActivityNetworkJsonToEmfHelper extends VdmlSwitch<Object> imple
         }
         return super.caseOutputPort(object);
     }
-    //
-    //
-    // Implementation of abstract methods:
-    //
-    //
-    @Override
-    public void linkElements(Shape shape, DiagramElement de, EObject modelElement) {
-        if (this.owningCollaboration == null && modelElement instanceof Collaboration) {
-            this.owningCollaboration = (Collaboration) modelElement;
-        }
-        if (de instanceof VDMLShape) {
-            ((VDMLShape) de).setVDMLElement((VdmlElement) modelElement);
-        } else if (de instanceof VDMLEdge) {
-            ((VDMLEdge) de).setVDMLElement((VdmlElement) modelElement);
-        }
-    }
-
     public void doSwitch(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
         this.currentStencil = sv;
         super.doSwitch(shapeMap.getModelElement(sourceShape.getResourceId()));
     }
 
-    public VDMLPlane prepareEmfDiagram(Diagram json, XMLResource result) {
-        VDMLDiagram vdmlDiagram = VdmlDiFactory.eINSTANCE.createVDMLDiagram();
-        VDMLPlane vdmlPlane = VdmlDiFactory.eINSTANCE.createVDMLPlane();
-        vdmlDiagram.setVDMLPlane(vdmlPlane);
-        ValueDeliveryModel vdm = VdmlFactory.eINSTANCE.createValueDeliveryModel();
+    public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
+        VDMLDiagram vdmlDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
+        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         result.getContents().add(vdm);
         EClass eClass = COLLABORATION_TYPE_MAP.get(json.getProperty("collaborationtype"));
-        Collaboration collaboration = (Collaboration) VdmlFactory.eINSTANCE.create(eClass);
-        vdm.getCollaboration().add(collaboration);
-        collaboration.setId(json.getResourceId());
-        vdmlPlane.setVDMLElement(collaboration);
+        owningCollaboration = (Collaboration) VDMLFactory.eINSTANCE.create(eClass);
+        vdm.getCollaboration().add(owningCollaboration);
+        owningCollaboration.setId(json.getResourceId());
+        vdmlDiagram.setVdmlElement(owningCollaboration);
         vdm.getDiagram().add(vdmlDiagram);
-        linkElements(json, vdmlPlane, collaboration);
-        return vdmlPlane;
+        return vdmlDiagram;
     }
 
-    public VDMLLabel setupDiagramElement(EObject el, DiagramElement de) {
-        VDMLLabel label = null;
+    public DiagramElement createElements(Shape shape) {
+        DiagramElement de = VdmlActivityNetworkStencil.createDiagramElement(shape.getStencilId());
+        VdmlElement el = VdmlActivityNetworkStencil.createElement(shape.getStencilId());
         if (de instanceof VDMLShape) {
-            ((VDMLShape) de).setVDMLElement((VdmlElement) el);
-            // ((VDMLShape) de).setVDMLLabel(label =
-            // CmmnDiFactory.eINSTANCE.createVDMLLabel());
+            ((VDMLShape) de).setVdmlElement((VdmlElement) el);
         } else if (de instanceof VDMLEdge) {
-            ((VDMLEdge) de).setVDMLElement((VdmlElement) el);
-            // ((VDMLEdge) de).setVDMLLabel(label =
-            // CmmnDiFactory.eINSTANCE.createVDMLLabel());
+            ((VDMLEdge) de).setVdmlElement((VdmlElement) el);
         }
-        return label;
+        de.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
+        return de;
     }
 
     @Override
     public EObject create(EClass eType) {
-        return Cmmn1Factory.eINSTANCE.create(eType);
+        return VDMLFactory.eINSTANCE.create(eType);
     }
 
-    @Override
-    public void setTargetElement(Edge edge, ShapeReference target) {
-        ((VDMLEdge) edge).setTargetElement(shapeMap.getDiagramElement(target.getResourceId()));
-    }
-
-    @Override
-    public void setSourceElement(Edge edge, Shape source) {
-        ((VDMLEdge) edge).setSourceElement(shapeMap.getDiagramElement(source.getResourceId()));
-    }
-
-    @Override
-    public EObject createElement(String stencilId) {
-        return VdmlActivityNetworkStencil.createElement(stencilId);
-    }
-
-    @Override
-    public DiagramElement createDiagramElement(String stencilId) {
-        return VdmlActivityNetworkStencil.createDiagramElement(stencilId);
-    }
 }

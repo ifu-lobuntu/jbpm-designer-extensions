@@ -3,36 +3,36 @@ package org.jbpm.designer.vdan;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.dd.cmmn.di.DiagramElement;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.jbpm.designer.emf.util.StencilInfo;
-import org.pavanecce.vdml.metamodel.vdml.Collaboration;
-import org.pavanecce.vdml.metamodel.vdml.Port;
-import org.pavanecce.vdml.metamodel.vdml.Store;
-import org.pavanecce.vdml.metamodel.vdml.VdmlElement;
-import org.pavanecce.vdml.metamodel.vdml.VdmlFactory;
-import org.pavanecce.vdml.metamodel.vdml.VdmlPackage;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiFactory;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiPackage;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
+import org.omg.dd.di.DiagramElement;
+import org.omg.vdml.Collaboration;
+import org.omg.vdml.Port;
+import org.omg.vdml.Store;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.VDMLPackage;
+import org.omg.vdml.VdmlElement;
 
 public enum VdmlActivityNetworkStencil implements StencilInfo {
-    VDML_ACTIVITY_NETWORK_DIAGRAM(VdmlPackage.eINSTANCE.getCollaboration(), VdmlDiPackage.eINSTANCE.getVDMLDiagram(), "VdmlActivityNetworkDiagram"),
-    ROLE(VdmlPackage.eINSTANCE.getRole(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "Role"),
-    ACTIVITY(VdmlPackage.eINSTANCE.getActivity(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "Activity"),
-    ACTIVITY_OUTPUT_PORT(VdmlPackage.eINSTANCE.getOutputPort(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "ActivityOutputPort"),
-    ACTIVITY_INPUT_PORT(VdmlPackage.eINSTANCE.getInputPort(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "ActivityInputPort"),
-    STORE_OUTPUT_PORT(VdmlPackage.eINSTANCE.getOutputPort(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "StoreOutputPort"),
-    STORE_INPUT_PORT(VdmlPackage.eINSTANCE.getInputPort(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "StoreInputPort"),
-    COLLABORATION_OUTPUT_PORT(VdmlPackage.eINSTANCE.getOutputPort(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "CollaborationOutputPort"),
-    COLLABORATION_INPUT_PORT(VdmlPackage.eINSTANCE.getInputPort(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "CollaborationInputPort"),
-    STORE(VdmlPackage.eINSTANCE.getStore(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "Store"),
-    POOL(VdmlPackage.eINSTANCE.getPool(), VdmlDiPackage.eINSTANCE.getVDMLShape(), "Pool"),
-    DELIVERABLE_FLOW(VdmlPackage.eINSTANCE.getDeliverableFlow(), VdmlDiPackage.eINSTANCE.getVDMLEdge(), "DeliverableFlow"),
-    INPUT_DELEGATION(VdmlPackage.eINSTANCE.getInputDelegation(), VdmlDiPackage.eINSTANCE.getVDMLEdge(), "InputDelegation"),
-    OUTPUT_DELEGATION(VdmlPackage.eINSTANCE.getOutputDelegation(), VdmlDiPackage.eINSTANCE.getVDMLEdge(), "OutputDelegation"),
-    RESOURCE_USE(VdmlPackage.eINSTANCE.getResourceUse(), VdmlDiPackage.eINSTANCE.getVDMLEdge(), "ResourceUse");
+    VDML_ACTIVITY_NETWORK_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlActivityNetworkDiagram"),
+    ROLE(VDMLPackage.eINSTANCE.getRole(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Role"),
+    ACTIVITY(VDMLPackage.eINSTANCE.getActivity(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Activity"),
+    ACTIVITY_OUTPUT_PORT(VDMLPackage.eINSTANCE.getOutputPort(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ActivityOutputPort"),
+    ACTIVITY_INPUT_PORT(VDMLPackage.eINSTANCE.getInputPort(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ActivityInputPort"),
+    STORE_OUTPUT_PORT(VDMLPackage.eINSTANCE.getOutputPort(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "StoreOutputPort"),
+    STORE_INPUT_PORT(VDMLPackage.eINSTANCE.getInputPort(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "StoreInputPort"),
+    COLLABORATION_OUTPUT_PORT(VDMLPackage.eINSTANCE.getOutputPort(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "CollaborationOutputPort"),
+    COLLABORATION_INPUT_PORT(VDMLPackage.eINSTANCE.getInputPort(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "CollaborationInputPort"),
+    STORE(VDMLPackage.eINSTANCE.getStore(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Store"),
+    POOL(VDMLPackage.eINSTANCE.getPool(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Pool"),
+    DELIVERABLE_FLOW(VDMLPackage.eINSTANCE.getDeliverableFlow(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "DeliverableFlow"),
+    INPUT_DELEGATION(VDMLPackage.eINSTANCE.getInputDelegation(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "InputDelegation"),
+    OUTPUT_DELEGATION(VDMLPackage.eINSTANCE.getOutputDelegation(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "OutputDelegation"),
+    RESOURCE_USE(VDMLPackage.eINSTANCE.getResourceUse(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "ResourceUse");
 
     private EClass type;
     private EClass shapeType;
@@ -69,7 +69,7 @@ public enum VdmlActivityNetworkStencil implements StencilInfo {
         if (stencil.shapeType == null) {
             return null;
         }
-        return (DiagramElement) VdmlDiFactory.eINSTANCE.create(stencil.shapeType);
+        return (DiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
     public static VdmlElement createElement(String stencilId) {
@@ -80,7 +80,7 @@ public enum VdmlActivityNetworkStencil implements StencilInfo {
         if(stencilId.equals(COLLABORATION_INPUT_PORT.getStencilId())){
             System.out.println();
         }
-        return (VdmlElement) VdmlFactory.eINSTANCE.create(stencil.type);
+        return (VdmlElement) VDMLFactory.eINSTANCE.create(stencil.type);
     }
 
     public static VdmlActivityNetworkStencil findStencilById(String stencilId) {

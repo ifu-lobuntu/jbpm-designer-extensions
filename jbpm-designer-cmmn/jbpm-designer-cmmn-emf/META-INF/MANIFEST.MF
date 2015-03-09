@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1425568525175
+Bnd-LastModified: 1425882048811
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Thu, 5 Mar 2015 17:13:34 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -10,7 +9,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: jBPM Designer CMMN EMF Metamodel
 Bundle-SymbolicName: org.jbpm.cmmn.emf.metamodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201503051713
+Bundle-Version: 6.3.0.qualifier
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer CMMN EMF Metamodel
 Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
@@ -24,27 +23,21 @@ Import-Package: javax.xml.datatype,javax.xml.namespace,org.eclipse.emf.c
  core.plugin,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.resour
  ce.impl,org.eclipse.emf.ecore.util,org.eclipse.emf.ecore.xmi,org.eclips
  e.emf.ecore.xmi.impl,org.eclipse.emf.ecore.xmi.util,org.eclipse.emf.eco
- re.xml.type,org.eclipse.emf.ecore.xml.type.util,org.eclipse.uml2.uml,or
- g.eclipse.uml2.uml.internal.resource,org.xml.sax.helpers
-Include-Resource: libraries/cmmntypes.uml=model/libraries/cmmntypes.uml
+ re.xml.type,org.eclipse.emf.ecore.xml.type.util,org.jbpm.designer.dd.jb
+ pmdd,org.jbpm.designer.dd.util,org.omg.dd.dc,org.omg.dd.di,org.omg.dd.d
+ i.impl,org.xml.sax.helpers
 Java-Vendor: Oracle Corporation
 Java-Version: 1.7.0_71
 JBOSS_HOME: /opt/jboss-5.1.0.GA
 Os-Arch: amd64
 Os-Name: Linux
 Os-Version: 3.17.3-200.fc20.x86_64
-Private-Package: libraries,org.eclipse.cmmn1.util,org.eclipse.cmmndi,org
- .jbpm.cmmn.jbpmext.util,org.eclipse.uml2.di.umldi.impl,org.eclipse.uml2
- .di.umldi.util,org.jbpm.cmmn.jbpmext,org.eclipse.dd.color.color.util,or
- g.eclipse.dd.cmmn.dc.util,org.eclipse.dd.color.color.impl,org.eclipse.c
- mmndi.util,org.eclipse.cmmn1,org.eclipse.dd.cmmn.dc.impl,org.eclipse.dd
- .color.color,org.eclipse.cmmndi.impl,org.eclipse.dd.cmmn.di.util,org.ec
- lipse.dd.cmmn.di.impl,org.jbpm.cmmn.jbpmext.impl,org.eclipse.dd.cmmn.di
- ,org.eclipse.dd.cmmn.dc,org.eclipse.uml2.di.umldi,org.eclipse.cmmn1.imp
- l
+Private-Package: org.jbpm.cmmn.jbpmext.util,org.jbpm.cmmn.dd.cmmndi,org.
+ omg.cmmn,org.jbpm.cmmn.dd.cmmndi.impl,org.omg.cmmn.impl,org.jbpm.cmmn.j
+ bpmext.impl,org.jbpm.cmmn.jbpmext,org.jbpm.cmmn.dd.cmmndi.util,org.omg.
+ cmmn.util
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
-Scm-Revision: 99727a14489b3b341c0735d969ff20797a97a4de
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
 Specification-Title: jBPM Designer CMMN EMF Metamodel

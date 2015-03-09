@@ -22,5 +22,7 @@ OutputPort
 ValueAdd
 
 ##Property Editors
+VAluePropositionComponent.articulatedValue
+
 
 

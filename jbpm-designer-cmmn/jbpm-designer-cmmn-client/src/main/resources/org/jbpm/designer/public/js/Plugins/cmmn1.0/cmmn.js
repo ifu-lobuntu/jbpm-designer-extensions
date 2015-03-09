@@ -65,7 +65,7 @@ ORYX.Plugins.CMMN = Clazz.extend(
         if(shape._svgShapes){
 			shape._svgShapes.each(function(node){
 				if(node.element.id==shape.id+"autoCompleteRect"){
-					node.element.setAttributeNS(null, 'display', shape.properties["oryx-autocomplete"] ? 'inherit' : 'none');
+					node.element.setAttributeNS(null, 'display', Boolean(shape.properties["oryx-autocomplete"]) ? 'inherit' : 'none');
 				} else  if(node.element.id==shape.id+"manualActivationPath"){
 					var body=shape.properties["oryx-manualactivationrulebody"];
 					node.element.setAttributeNS(null, 'display',  body && body.length > 0? 'inherit' : 'none');
@@ -793,7 +793,7 @@ ORYX.Plugins.CMMN.CaseRoleRefEditorFactory = Clazz.extend({
 		var options=[];
 		try{
 			var caseShape=this.facade.getSelection().first();
-			while(!caseShape.getStencil().id().endsWith("#Case")){
+			while(!caseShape.getStencil().id().endsWith("#CaseDiagram")){
 				caseShape=caseShape.getParentShape();
 			}
 			if(caseShape.properties["oryx-caseroles"]){

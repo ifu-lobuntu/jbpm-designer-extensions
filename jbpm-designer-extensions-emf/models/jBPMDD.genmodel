@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/jbpm-designer-extensions-emf/src/main/java" modelPluginID="jbpm-designer-extensions-emf"
+    modelName="JBPMDI" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="DG.genmodel#//dg DG.genmodel#//di DG.genmodel#//dc DG.genmodel#//primitivetypes"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>jBPMDD.ecore</foreignModel>
+  <genPackages prefix="JBPMDD" basePackage="org.jbpm.designer.dd" disposableProviderFactory="true"
+      ecorePackage="jBPMDD.ecore#/">
+    <genClasses ecoreClass="jBPMDD.ecore#//BoundariedShape">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference jBPMDD.ecore#//BoundariedShape/boundaryShapes"/>
+    </genClasses>
+    <genClasses ecoreClass="jBPMDD.ecore#//Compartment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute jBPMDD.ecore#//Compartment/isExpanded"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -6,25 +6,28 @@ import java.util.Collections;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.eclipse.dd.cmmn.dc.DcPackage;
-import org.eclipse.dd.cmmn.di.DiPackage;
-import org.eclipse.dd.color.color.ColorPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.eclipse.uml2.di.umldi.UMLDIPackage;
-import org.eclipse.uml2.di.umldi.UMLDiagram;
-import org.eclipse.uml2.di.umldi.util.UMLDIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
-import org.jbpm.designer.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.IEmfDiagramProfile;
-import org.jbpm.designer.emf.util.JsonToEmfHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.ClassDiagramTypeDefinition;
 import org.jbpm.designer.web.profile.IDiagramProfile;
+import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
+import org.omg.dd.dc.DCPackage;
+import org.omg.dd.di.DIPackage;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
 /**
@@ -32,7 +35,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile implements IEmfDiagramProfile, IDiagramProfile {
+public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/classdiagram/classdiagram.json";
 
@@ -46,7 +49,9 @@ public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile implement
     public String getName() {
         return "classdiagram";
     }
-
+public static void main(String[] args) {
+    System.out.println(new ClassDiagramProfileImpl().getModelStub());
+}
 
     public String getStencilSetNamespaceURL() {
         return "http://b3mn.org/stencilset/classdiagram.0#";
@@ -58,9 +63,8 @@ public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile implement
         resourceSet.getPackageRegistry().put(UMLDIPackage.eNS_URI, UMLDIPackage.eINSTANCE);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), new UMLDIResourceFactoryImpl());
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
-        resourceSet.getPackageRegistry().put(DiPackage.eNS_URI, DiPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DcPackage.eNS_URI, DcPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(ColorPackage.eNS_URI, ColorPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
         URL url = UMLDiagram.class.getResource("/libraries/cmmntypes.uml");
         Resource cmmnTypes = resourceSet.createResource(URI.createURI("libraries/cmmntypes.uml"));
         try {
@@ -104,6 +108,16 @@ public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile implement
     @Override
     public String getProfileDefinitionFileName() {
         return "classdiagram.xml";
+    }
+
+    @Override
+    protected void populateModelStub(XMLResource rs) {
+        Package pkg = UMLFactory.eINSTANCE.createPackage();
+        pkg.setName("{processid}");
+        rs.getContents().add(pkg);
+        UMLDiagram dgm=UMLDIFactory.eINSTANCE.createUMLDiagram();
+        rs.getContents().add(dgm);
+        dgm.setUmlElement(pkg);
     }
 
 }

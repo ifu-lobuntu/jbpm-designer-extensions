@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dg" nsURI="http://www.omg.org/spec/DD/20131001/DG" nsPrefix="DG">
+  <eClassifiers xsi:type="ecore:EClass" name="RadialGradient" eSuperTypes="#//Gradient">
+    <eOperations name="valid_center_point" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="centerX>=0 and centerX&lt;=1 and centerY>=0 and centerY&lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_focus_point" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="focusX>=0 and focusX&lt;=1 and focusY>=0 and focusY&lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_radius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="radius>=0 and radius&lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="centerX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="centerY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="radius" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="focusX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.5"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="focusY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Gradient" abstract="true" eSuperTypes="#//Fill">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stop" ordered="false" lowerBound="2"
+        upperBound="-1" eType="#//GradientStop" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fill" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="canvas" ordered="false"
+        lowerBound="1" eType="#//Canvas" eOpposite="#//Canvas/packagedFill"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transform" upperBound="-1"
+        eType="#//Transform" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Canvas" eSuperTypes="#//Group">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backgroundFill" ordered="false"
+        eType="#//Fill"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="backgroundColor" ordered="false"
+        eType="ecore:EClass DC.ecore#//Color" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packagedMarker" ordered="false"
+        upperBound="-1" eType="#//Marker" containment="true" eOpposite="#//Marker/canvas"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packagedStyle" ordered="false"
+        upperBound="-1" eType="ecore:EClass DI.ecore#//Style" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packagedFill" ordered="false"
+        upperBound="-1" eType="#//Fill" containment="true" eOpposite="#//Fill/canvas"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//GraphicalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" upperBound="-1"
+        eType="#//GraphicalElement" containment="true" eOpposite="#//GraphicalElement/group"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicalElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="group" ordered="false"
+        eType="#//Group" eOpposite="#//Group/member"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localStyle" upperBound="-1"
+        eType="ecore:EClass DI.ecore#//Style" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sharedStyle" upperBound="-1"
+        eType="ecore:EClass DI.ecore#//Style"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="transform" upperBound="-1"
+        eType="#//Transform" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clipPath" ordered="false"
+        eType="#//ClipPath" containment="true" eOpposite="#//ClipPath/clippedElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transform"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClipPath" eSuperTypes="#//Group">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clippedElement" ordered="false"
+        lowerBound="1" eType="#//GraphicalElement" eOpposite="#//GraphicalElement/clipPath"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Marker" eSuperTypes="#//Group">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="size" ordered="false" lowerBound="1"
+        eType="ecore:EClass DC.ecore#//Dimension" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="canvas" ordered="false"
+        lowerBound="1" eType="#//Canvas" eOpposite="#//Canvas/packagedMarker"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GradientStop">
+    <eOperations name="valid_offset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="offset>=0 and offset&lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="valid_opacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="opacity>=0 and opacity&lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="color" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Color" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="opacity" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="1.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pattern" eSuperTypes="#//Fill">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Bounds" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tile" ordered="false" lowerBound="1"
+        eType="#//GraphicalElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinearGradient" eSuperTypes="#//Gradient">
+    <eOperations name="valid_gradient_vector" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="x1>=0 and x1&lt;=1 and x2>=0 and x2&lt;=1 and y1>=0 and y1&lt;=1 and y2>=0 and y2&lt;=1"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x1" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x2" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="1.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y1" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y2" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="1.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkedElement" abstract="true" eSuperTypes="#//GraphicalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startMarker" ordered="false"
+        eType="#//Marker"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endMarker" ordered="false"
+        eType="#//Marker"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="midMarker" ordered="false"
+        eType="#//Marker"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rectangle" eSuperTypes="#//GraphicalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Bounds" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cornerRadius" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real" defaultValueLiteral="0.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ellipse" eSuperTypes="#//GraphicalElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radii" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Dimension" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Text" eSuperTypes="#//GraphicalElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Bounds" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignment" ordered="false"
+        lowerBound="1" eType="ecore:EEnum DC.ecore#//AlignmentKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Line" eSuperTypes="#//MarkedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="end" ordered="false" lowerBound="1"
+        eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Polyline" eSuperTypes="#//MarkedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" lowerBound="2" upperBound="-1"
+        eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Polygon" eSuperTypes="#//MarkedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" lowerBound="3" upperBound="-1"
+        eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Path" eSuperTypes="#//MarkedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="command" upperBound="-1"
+        eType="#//PathCommand" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathCommand">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isRelative" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Translate" eSuperTypes="#//Transform">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deltaX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="deltaY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Scale" eSuperTypes="#//Transform">
+    <eOperations name="nonnegativescale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="non-negative-scale"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="factorX>=0 and factorY>=0"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="factorX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="factorY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Rotate" eSuperTypes="#//Transform">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="angle" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Skew" eSuperTypes="#//Transform">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="angleX" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="angleY" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Image" eSuperTypes="#//GraphicalElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="source" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bounds" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Bounds" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAspectRatioPreserved"
+        ordered="false" lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Circle" eSuperTypes="#//GraphicalElement">
+    <eOperations name="non_negative_radius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="radius >= 0"/>
+      </eAnnotations>
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The chain of diagnostics to which problems are to be appended."/>
+        </eAnnotations>
+      </eParameters>
+      <eParameters name="context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The cache of context-specific information."/>
+        </eAnnotations>
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="center" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="radius" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Matrix" eSuperTypes="#//Transform">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="a" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="b" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="c" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="d" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="e" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="f" ordered="false" lowerBound="1"
+        eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveTo" eSuperTypes="#//PathCommand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LineTo" eSuperTypes="#//PathCommand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CubicCurveTo" eSuperTypes="#//PathCommand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startControl" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endControl" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QuadraticCurveTo" eSuperTypes="#//PathCommand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EllipticalArcTo" eSuperTypes="#//PathCommand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="point" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Point" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="radii" ordered="false"
+        lowerBound="1" eType="ecore:EClass DC.ecore#//Dimension" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rotation" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Real"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLargeArc" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSweep" ordered="false"
+        lowerBound="1" eType="ecore:EDataType PrimitiveTypes.ecore#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClosePath" eSuperTypes="#//PathCommand"/>
+</ecore:EPackage>

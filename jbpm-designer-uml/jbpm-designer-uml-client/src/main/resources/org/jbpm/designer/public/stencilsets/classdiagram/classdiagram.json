@@ -2,6 +2,9 @@
 	"title" : "VDML Activity Network",
 	"namespace" : "http://b3mn.org/stencilset/emptyset.0#",
 	"description" : "This is an empty stencil set to start new diagrams with",
+	"edgeTargetBinding" : "targetShape",
+	"modelElementBinding" : "umlElement",
+	"edgeSourceBinding" : "sourceShape",
 	"propertyPackages" : [
 	        {
 	        	"name" : "elementBase",
@@ -60,13 +63,14 @@
 				]
 			},
 			{
-				"name" : "bgColor",
+				"name" : "localStyle",
 				"properties" : [
 						{
 							"id" : "bgcolor",
 							"type" : "Color",
 							"title" : "Background Color",
 							"value" : "#ffffff",
+							"viewBinding":"localStyle.fillColor",
 							"description" : "",
 							"readonly" : false,
 							"optional" : false,
@@ -74,35 +78,28 @@
 								"fill_el"
 							],
 							"fill" : true,
-							"stroke" : false,
-							"display" : true
+							"stroke" : false
 						},
 						{
 							"id" : "bordercolor",
 							"type" : "Color",
 							"title" : "Border Color",
 							"value" : "#000000",
+							"viewBinding":"localStyle.strokeColor",
 							"description" : "",
 							"readonly" : false,
 							"optional" : false,
 							"refToView" : [
-									"edge", "fill_border", "bg_frame", "frame",
-									"frame2", "frame3", "frame4", "frame5",
-									"frame6", "frame7", "frame8", "frame9",
-									"frame10", "frame11", "frame12", "frame13",
-									"frame14", "frame15", "frame16", "frame17",
-									"frame18", "frame19", "frame20", "frame21",
-									"frame22", "frame23", "frame24", "frame25",
-									"frame26", "border"
+									"edge", "fill_border", "bg_frame", "frame", "border"
 							],
 							"fill" : false,
-							"stroke" : true,
-							"display" : true
+							"stroke" : true
 						}, {
 							"id" : "fontcolor",
 							"type" : "Color",
 							"title" : "Font Color",
 							"value" : "#000000",
+							"viewBinding":"localStyle.fontColor",
 							"description" : "Font color",
 							"description_ja" : "フォントの色",
 							"readonly" : false,
@@ -111,18 +108,17 @@
 								"text_name"
 							],
 							"fill" : true,
-							"stroke" : false,
-							"display" : true
+							"stroke" : false
 						}, {
 							"id" : "fontsize",
 							"type" : "Choice",
 							"title" : "Font Size",
 							"value" : "",
+							"viewBinding":"localStyle.fontSize",
 							"description" : "The Font Size",
 							"description_ja" : "フォントのサイズ",
 							"readonly" : false,
 							"optional" : false,
-							"display" : true,
 							"refToView" : [
 								"text_name"
 							],
@@ -262,7 +258,7 @@
 							}
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -287,7 +283,7 @@
 							}
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -301,7 +297,7 @@
 					"Elements"
 				],
 				"roles" : [
-					"enumeration","classifier","bgColor"
+					"enumeration","classifier","localStyle"
 				],
 				"description" : "A Class",
 				"view" : "enumeration.svg",
@@ -334,7 +330,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -356,7 +352,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -378,7 +374,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -403,7 +399,7 @@
 							}
 				],
 			    "propertyPackages" : [
-			          "compartment"
+			          "compartment","localStyle"
 				],
 				"properties" : [
 				]
@@ -425,7 +421,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-			          "compartment"
+			          "compartment","localStyle"
 				],
 				"properties" : [
 				]
@@ -447,7 +443,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-			           "compartment"
+			           "compartment","localStyle"
 				],
 				"properties" : [
 				]
@@ -470,7 +466,7 @@
 				],
 			    "propertyPackages" : [
 						"elementBase",
-						"association","bgColor"
+						"association","localStyle"
 				],
 				"properties" : [
 				]
@@ -494,7 +490,7 @@
 			    "propertyPackages" : [
 						"elementBase",
 						"association",
-						"bgColor"
+						"localStyle"
 				],
 				"properties" : [
 				]
@@ -516,7 +512,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -538,7 +534,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase","bgColor"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]

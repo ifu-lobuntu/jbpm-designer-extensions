@@ -2,20 +2,26 @@ package org.jbpm.designer.vdpe;
 
 import javax.enterprise.context.ApplicationScoped;
 
-import org.eclipse.dd.cmmn.dc.DcPackage;
-import org.eclipse.dd.cmmn.di.DiPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.jbpm.designer.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.IEmfDiagramProfile;
-import org.jbpm.designer.emf.util.JsonToEmfHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlPropositionExchangeTypeDefinition;
 import org.jbpm.designer.web.profile.IDiagramProfile;
-import org.pavanecce.vdml.metamodel.vdml.VdmlPackage;
-import org.pavanecce.vdml.metamodel.vdml.util.VdmlResourceFactoryImpl;
-import org.pavanecce.vdml.metamodel.vdmldi.VdmlDiPackage;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
+import org.omg.dd.dc.DCPackage;
+import org.omg.dd.di.DIPackage;
+import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.VDMLPackage;
+import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.util.VDMLResourceFactoryImpl;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
 /**
@@ -23,7 +29,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfile implements IEmfDiagramProfile, IDiagramProfile {
+public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdmlpropositionexchange/vdmlpropositionexchange.json";
 
@@ -38,19 +44,20 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
         return "vdmlpropositionexchange";
     }
 
-
     public String getStencilSetNamespaceURL() {
         return "http://b3mn.org/stencilset/vdmlpropositionexchange.0#";
     }
-
+public static void main(String[] args) {
+    System.out.println(new VdmlPropositionExchangeProfileImpl().getModelStub());
+}
     @Override
     public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put(VdmlPackage.eNS_URI, VdmlPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(VdmlDiPackage.eNS_URI, VdmlDiPackage.eINSTANCE);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), new VdmlResourceFactoryImpl());
-        resourceSet.getPackageRegistry().put(DiPackage.eNS_URI, DiPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DcPackage.eNS_URI, DcPackage.eINSTANCE);
-        return new VdmlResourceFactoryImpl();
+        resourceSet.getPackageRegistry().put(VDMLPackage.eNS_URI, VDMLPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(VDMLDIPackage.eNS_URI, VDMLDIPackage.eINSTANCE);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), new VDMLResourceFactoryImpl());
+        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
+        return new VDMLResourceFactoryImpl();
     }
 
     @Override
@@ -81,6 +88,19 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
     @Override
     public String getProfileDefinitionFileName() {
         return "vdpe.xml";
+    }
+
+    @Override
+    protected void populateModelStub(XMLResource rs) {
+        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
+        vdm.getCollaboration().add(cm);
+        cm.setId("{processid}");
+        cm.setName("{processid}");
+        rs.getContents().add(vdm);
+        VDMLDiagram dgm = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
+        vdm.getDiagram().add(dgm);
+        dgm.setVdmlElement(cm);
     }
 
 }

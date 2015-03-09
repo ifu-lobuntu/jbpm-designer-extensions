@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="DG" name="DG" URI="http://www.omg.org/spec/DD/20131001/DG">
+  <packagedElement xmi:type="uml:Class" xmi:id="RadialGradient" name="RadialGradient">
+    <ownedComment xmi:id="RadialGradient-_ownedComment.0" annotatedElement="RadialGradient"/>
+    <ownedRule xmi:id="RadialGradient-valid_center_point" name="valid_center_point" constrainedElement="RadialGradient">
+      <ownedComment xmi:id="RadialGradient-valid_center_point-_ownedComment.0" annotatedElement="RadialGradient-valid_center_point"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-valid_center_point-_specification" name="">
+        <language>OCL</language>
+        <body>centerX>=0 and centerX&lt;=1 and centerY>=0 and centerY&lt;=1</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="RadialGradient-valid_focus_point" name="valid_focus_point" constrainedElement="RadialGradient">
+      <ownedComment xmi:id="RadialGradient-valid_focus_point-_ownedComment.0" annotatedElement="RadialGradient-valid_focus_point"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-valid_focus_point-_specification" name="">
+        <language>OCL</language>
+        <body>focusX>=0 and focusX&lt;=1 and focusY>=0 and focusY&lt;=1</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="RadialGradient-valid_radius" name="valid_radius" constrainedElement="RadialGradient">
+      <ownedComment xmi:id="RadialGradient-valid_radius-_ownedComment.0" annotatedElement="RadialGradient-valid_radius"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-valid_radius-_specification" name="">
+        <language>OCL</language>
+        <body>radius>=0 and radius&lt;=1</body>
+      </specification>
+    </ownedRule>
+    <generalization xmi:id="RadialGradient-_generalization.0" general="Gradient"/>
+    <ownedAttribute xmi:id="RadialGradient-centerX" name="centerX">
+      <ownedComment xmi:id="RadialGradient-centerX-_ownedComment.0" annotatedElement="RadialGradient-centerX"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851456_706887_1789" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851456_897625_1790" name="" value="1"/>
+      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-centerX-_defaultValue" name="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+        <body>0.5</body>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="RadialGradient-centerY" name="centerY">
+      <ownedComment xmi:id="RadialGradient-centerY-_ownedComment.0" annotatedElement="RadialGradient-centerY"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851457_673498_1794" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851457_883280_1795" name="" value="1"/>
+      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-centerY-_defaultValue" name="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+        <body>0.5</body>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="RadialGradient-radius" name="radius">
+      <ownedComment xmi:id="RadialGradient-radius-_ownedComment.0" annotatedElement="RadialGradient-radius"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851465_4340_1857" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851465_86946_1858" name="" value="1"/>
+      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-radius-_defaultValue" name="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+        <body>0.5</body>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="RadialGradient-focusX" name="focusX">
+      <ownedComment xmi:id="RadialGradient-focusX-_ownedComment.0" annotatedElement="RadialGradient-focusX"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851465_631217_1859" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851465_401743_1860" name="" value="1"/>
+      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-focusX-_defaultValue" name="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+        <body>0.5</body>
+      </defaultValue>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="RadialGradient-focusY" name="focusY">
+      <ownedComment xmi:id="RadialGradient-focusY-_ownedComment.0" annotatedElement="RadialGradient-focusY"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851463_342520_1843" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851463_889696_1844" name="" value="1"/>
+      <defaultValue xmi:type="uml:OpaqueExpression" xmi:id="RadialGradient-focusY-_defaultValue" name="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+        <body>0.5</body>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Pattern" name="Pattern">
+    <ownedComment xmi:id="Pattern-_ownedComment.0" annotatedElement="Pattern"/>
+    <generalization xmi:id="Pattern-_generalization.0" general="Fill"/>
+    <ownedAttribute xmi:id="Pattern-bounds" name="bounds">
+      <ownedComment xmi:id="Pattern-bounds-_ownedComment.0" annotatedElement="Pattern-bounds"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Bounds"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851454_786991_1774" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851454_758569_1775" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Pattern-tile" name="tile" type="GraphicalElement" aggregation="composite" association="A_tile_pattern">
+      <ownedComment xmi:id="Pattern-tile-_ownedComment.0" annotatedElement="Pattern-tile"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851460_412148_1815" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851460_700862_1816" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="LinearGradient" name="LinearGradient">
+    <ownedComment xmi:id="LinearGradient-_ownedComment.0" annotatedElement="LinearGradient"/>
+    <ownedRule xmi:id="LinearGradient-valid_gradient_vector" name="valid_gradient_vector" constrainedElement="LinearGradient">
+      <ownedComment xmi:id="LinearGradient-valid_gradient_vector-_ownedComment.0" annotatedElement="LinearGradient-valid_gradient_vector"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="LinearGradient-valid_gradient_vector-_specification" name="">
+        <language>OCL</language>
+        <body>x1>=0 and x1&lt;=1 and x2>=0 and x2&lt;=1 and y1>=0 and y1&lt;=1 and y2>=0 and y2&lt;=1</body>
+      </specification>
+    </ownedRule>
+    <generalization xmi:id="LinearGradient-_generalization.0" general="Gradient"/>
+    <ownedAttribute xmi:id="LinearGradient-x1" name="x1">
+      <ownedComment xmi:id="LinearGradient-x1-_ownedComment.0" annotatedElement="LinearGradient-x1"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851453_948700_1766" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851453_380113_1767" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="LinearGradient-x1-_defaultValue" name=""/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LinearGradient-x2" name="x2">
+      <ownedComment xmi:id="LinearGradient-x2-_ownedComment.0" annotatedElement="LinearGradient-x2"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851462_59339_1831" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851462_535657_1832" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="LinearGradient-x2-_defaultValue" name="" value="1.0"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LinearGradient-y1" name="y1">
+      <ownedComment xmi:id="LinearGradient-y1-_ownedComment.0" annotatedElement="LinearGradient-y1"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851466_57470_1863" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851466_432525_1864" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="LinearGradient-y1-_defaultValue" name=""/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="LinearGradient-y2" name="y2">
+      <ownedComment xmi:id="LinearGradient-y2-_ownedComment.0" annotatedElement="LinearGradient-y2"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851455_927659_1780" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851455_401373_1781" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="LinearGradient-y2-_defaultValue" name="" value="1.0"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="GradientStop" name="GradientStop">
+    <ownedComment xmi:id="GradientStop-_ownedComment.0" annotatedElement="GradientStop"/>
+    <ownedRule xmi:id="GradientStop-valid_offset" name="valid_offset" constrainedElement="GradientStop">
+      <ownedComment xmi:id="GradientStop-valid_offset-_ownedComment.0" annotatedElement="GradientStop-valid_offset"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="GradientStop-valid_offset-_specification" name="">
+        <language>OCL</language>
+        <body>offset>=0 and offset&lt;=1</body>
+      </specification>
+    </ownedRule>
+    <ownedRule xmi:id="GradientStop-valid_opacity" name="valid_opacity" constrainedElement="GradientStop">
+      <ownedComment xmi:id="GradientStop-valid_opacity-_ownedComment.0" annotatedElement="GradientStop-valid_opacity"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="GradientStop-valid_opacity-_specification" name="">
+        <language>OCL</language>
+        <body>opacity>=0 and opacity&lt;=1</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="GradientStop-color" name="color">
+      <ownedComment xmi:id="GradientStop-color-_ownedComment.0" annotatedElement="GradientStop-color"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Color"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851454_195175_1770" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851454_303659_1771" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="GradientStop-offset" name="offset">
+      <ownedComment xmi:id="GradientStop-offset-_ownedComment.0" annotatedElement="GradientStop-offset"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851461_39239_1822" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851461_403157_1823" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="GradientStop-opacity" name="opacity">
+      <ownedComment xmi:id="GradientStop-opacity-_ownedComment.0" annotatedElement="GradientStop-opacity"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851466_476977_1861" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851466_302664_1862" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="GradientStop-opacity-_defaultValue" name="" value="1.0"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Gradient" name="Gradient" isAbstract="true">
+    <ownedComment xmi:id="Gradient-_ownedComment.0" annotatedElement="Gradient"/>
+    <generalization xmi:id="Gradient-_generalization.0" general="Fill"/>
+    <ownedAttribute xmi:id="Gradient-stop" name="stop" type="GradientStop">
+      <ownedComment xmi:id="Gradient-stop-_ownedComment.0" annotatedElement="Gradient-stop"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Gradient-stop-_lowerValue" name="" value="2"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Gradient-stop-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Fill" name="Fill" isAbstract="true">
+    <ownedComment xmi:id="Fill-_ownedComment.0" annotatedElement="Fill"/>
+    <ownedAttribute xmi:id="Fill-canvas" name="canvas" type="Canvas" association="A_fill_canvas">
+      <ownedComment xmi:id="Fill-canvas-_ownedComment.0" annotatedElement="Fill-canvas"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851462_665891_1835" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851462_730159_1836" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Fill-transform" name="transform" type="Transform" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="Fill-transform-_ownedComment.0" annotatedElement="Fill-transform"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Fill-transform-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Fill-transform-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="GraphicalElement" name="GraphicalElement" isAbstract="true">
+    <ownedComment xmi:id="GraphicalElement-_ownedComment.0" annotatedElement="GraphicalElement"/>
+    <ownedAttribute xmi:id="GraphicalElement-group" name="group" type="Group" association="A_member_group">
+      <ownedComment xmi:id="GraphicalElement-group-_ownedComment.0" annotatedElement="GraphicalElement-group"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="GraphicalElement-group-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851460_750159_1819" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="GraphicalElement-localStyle" name="localStyle" isOrdered="true" aggregation="composite">
+      <ownedComment xmi:id="GraphicalElement-localStyle-_ownedComment.0" annotatedElement="GraphicalElement-localStyle"/>
+      <type xmi:type="uml:Class" href="DI.uml#Style"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="GraphicalElement-localStyle-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="GraphicalElement-localStyle-_upperValue" name="" value="*"/>
+      <association href="DI.uml#A_localStyle_styledElement"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="GraphicalElement-sharedStyle" name="sharedStyle" isOrdered="true">
+      <ownedComment xmi:id="GraphicalElement-sharedStyle-_ownedComment.0" annotatedElement="GraphicalElement-sharedStyle"/>
+      <type xmi:type="uml:Class" href="DI.uml#Style"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="GraphicalElement-sharedStyle-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="GraphicalElement-sharedStyle-_upperValue" name="" value="*"/>
+      <association href="DI.uml#A_sharedStyle_styledElement"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="GraphicalElement-transform" name="transform" type="Transform" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="GraphicalElement-transform-_ownedComment.0" annotatedElement="GraphicalElement-transform"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="GraphicalElement-transform-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="GraphicalElement-transform-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="GraphicalElement-clipPath" name="clipPath" type="ClipPath" aggregation="composite" association="A_clipPath_clippedElement">
+      <ownedComment xmi:id="GraphicalElement-clipPath-_ownedComment.0" annotatedElement="GraphicalElement-clipPath"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="GraphicalElement-clipPath-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851461_326895_1828" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Group" name="Group">
+    <ownedComment xmi:id="Group-_ownedComment.0" annotatedElement="Group"/>
+    <generalization xmi:id="Group-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="Group-member" name="member" type="GraphicalElement" isOrdered="true" aggregation="composite" association="A_member_group">
+      <ownedComment xmi:id="Group-member-_ownedComment.0" annotatedElement="Group-member"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Group-member-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Group-member-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Canvas" name="Canvas">
+    <ownedComment xmi:id="Canvas-_ownedComment.0" annotatedElement="Canvas"/>
+    <generalization xmi:id="Canvas-_generalization.0" general="Group"/>
+    <ownedAttribute xmi:id="Canvas-backgroundFill" name="backgroundFill" type="Fill" association="A_backgroundFill_canvas">
+      <ownedComment xmi:id="Canvas-backgroundFill-_ownedComment.0" annotatedElement="Canvas-backgroundFill"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Canvas-backgroundFill-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851464_32491_1848" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Canvas-backgroundColor" name="backgroundColor">
+      <ownedComment xmi:id="Canvas-backgroundColor-_ownedComment.0" annotatedElement="Canvas-backgroundColor"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Color"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Canvas-backgroundColor-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851464_419039_1847" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Canvas-packagedFill" name="packagedFill" type="Fill" aggregation="composite" association="A_fill_canvas">
+      <ownedComment xmi:id="Canvas-packagedFill-_ownedComment.0" annotatedElement="Canvas-packagedFill"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Canvas-packagedFill-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Canvas-packagedFill-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Canvas-packagedMarker" name="packagedMarker" type="Marker" aggregation="composite" association="A_marker_canvas">
+      <ownedComment xmi:id="Canvas-packagedMarker-_ownedComment.0" annotatedElement="Canvas-packagedMarker"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Canvas-packagedMarker-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Canvas-packagedMarker-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Canvas-packagedStyle" name="packagedStyle" aggregation="composite" association="A_style_canvas">
+      <ownedComment xmi:id="Canvas-packagedStyle-_ownedComment.0" annotatedElement="Canvas-packagedStyle"/>
+      <type xmi:type="uml:Class" href="DI.uml#Style"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Canvas-packagedStyle-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Canvas-packagedStyle-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Marker" name="Marker">
+    <ownedComment xmi:id="Marker-_ownedComment.0" annotatedElement="Marker"/>
+    <generalization xmi:id="Marker-_generalization.0" general="Group"/>
+    <ownedAttribute xmi:id="Marker-canvas" name="canvas" type="Canvas" association="A_marker_canvas">
+      <ownedComment xmi:id="Marker-canvas-_ownedComment.0" annotatedElement="Marker-canvas"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851459_678502_1811" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851459_643211_1812" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Marker-size" name="size">
+      <ownedComment xmi:id="Marker-size-_ownedComment.0" annotatedElement="Marker-size"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Dimension"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851455_539681_1778" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851455_223529_1779" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Marker-reference" name="reference">
+      <ownedComment xmi:id="Marker-reference-_ownedComment.0" annotatedElement="Marker-reference"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851462_26411_1833" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851462_437365_1834" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="MarkedElement" name="MarkedElement" isAbstract="true">
+    <ownedComment xmi:id="MarkedElement-_ownedComment.0" annotatedElement="MarkedElement"/>
+    <generalization xmi:id="MarkedElement-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="MarkedElement-startMarker" name="startMarker" type="Marker" association="A_startMarker_markedElement">
+      <ownedComment xmi:id="MarkedElement-startMarker-_ownedComment.0" annotatedElement="MarkedElement-startMarker"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MarkedElement-startMarker-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851463_839391_1845" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="MarkedElement-endMarker" name="endMarker" type="Marker" association="A_endMarker_markedElement">
+      <ownedComment xmi:id="MarkedElement-endMarker-_ownedComment.0" annotatedElement="MarkedElement-endMarker"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MarkedElement-endMarker-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851461_531663_1827" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="MarkedElement-midMarker" name="midMarker" type="Marker" association="A_midMarker_markedElement">
+      <ownedComment xmi:id="MarkedElement-midMarker-_ownedComment.0" annotatedElement="MarkedElement-midMarker"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MarkedElement-midMarker-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851453_583630_1763" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Rectangle" name="Rectangle">
+    <ownedComment xmi:id="Rectangle-_ownedComment.0" annotatedElement="Rectangle"/>
+    <generalization xmi:id="Rectangle-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="Rectangle-bounds" name="bounds">
+      <ownedComment xmi:id="Rectangle-bounds-_ownedComment.0" annotatedElement="Rectangle-bounds"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Bounds"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851458_293602_1799" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851458_768035_1800" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Rectangle-cornerRadius" name="cornerRadius">
+      <ownedComment xmi:id="Rectangle-cornerRadius-_ownedComment.0" annotatedElement="Rectangle-cornerRadius"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851461_349520_1829" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851462_716025_1830" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="Rectangle-cornerRadius-_defaultValue" name=""/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Ellipse" name="Ellipse">
+    <ownedComment xmi:id="Ellipse-_ownedComment.0" annotatedElement="Ellipse"/>
+    <generalization xmi:id="Ellipse-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="Ellipse-center" name="center">
+      <ownedComment xmi:id="Ellipse-center-_ownedComment.0" annotatedElement="Ellipse-center"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851453_119507_1764" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851453_625321_1765" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Ellipse-radii" name="radii">
+      <ownedComment xmi:id="Ellipse-radii-_ownedComment.0" annotatedElement="Ellipse-radii"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Dimension"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851459_800740_1809" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851459_750215_1810" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Text" name="Text">
+    <ownedComment xmi:id="Text-_ownedComment.0" annotatedElement="Text"/>
+    <generalization xmi:id="Text-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="Text-data" name="data">
+      <ownedComment xmi:id="Text-data-_ownedComment.0" annotatedElement="Text-data"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851466_556951_1867" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851467_20866_1868" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Text-bounds" name="bounds">
+      <ownedComment xmi:id="Text-bounds-_ownedComment.0" annotatedElement="Text-bounds"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Bounds"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851468_116306_1878" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851468_860252_1879" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Text-alignment" name="alignment">
+      <ownedComment xmi:id="Text-alignment-_ownedComment.0" annotatedElement="Text-alignment"/>
+      <type xmi:type="uml:Enumeration" href="DC.uml#AlignmentKind"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851463_74335_1841" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851463_224465_1842" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Line" name="Line">
+    <ownedComment xmi:id="Line-_ownedComment.0" annotatedElement="Line"/>
+    <generalization xmi:id="Line-_generalization.0" general="MarkedElement"/>
+    <ownedAttribute xmi:id="Line-start" name="start">
+      <ownedComment xmi:id="Line-start-_ownedComment.0" annotatedElement="Line-start"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851457_696142_1791" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851457_573999_1792" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Line-end" name="end">
+      <ownedComment xmi:id="Line-end-_ownedComment.0" annotatedElement="Line-end"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851460_671240_1817" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851460_852851_1818" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Polyline" name="Polyline">
+    <ownedComment xmi:id="Polyline-_ownedComment.0" annotatedElement="Polyline"/>
+    <generalization xmi:id="Polyline-_generalization.0" general="MarkedElement"/>
+    <ownedAttribute xmi:id="Polyline-point" name="point" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="Polyline-point-_ownedComment.0" annotatedElement="Polyline-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Polyline-point-_lowerValue" name="" value="2"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Polyline-point-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Polygon" name="Polygon">
+    <ownedComment xmi:id="Polygon-_ownedComment.0" annotatedElement="Polygon"/>
+    <generalization xmi:id="Polygon-_generalization.0" general="MarkedElement"/>
+    <ownedAttribute xmi:id="Polygon-point" name="point" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="Polygon-point-_ownedComment.0" annotatedElement="Polygon-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Polygon-point-_lowerValue" name="" value="3"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Polygon-point-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Path" name="Path">
+    <ownedComment xmi:id="Path-_ownedComment.0" annotatedElement="Path"/>
+    <generalization xmi:id="Path-_generalization.0" general="MarkedElement"/>
+    <ownedAttribute xmi:id="Path-command" name="command" type="PathCommand" isOrdered="true" isUnique="false">
+      <ownedComment xmi:id="Path-command-_ownedComment.0" annotatedElement="Path-command"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Path-command-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="Path-command-_upperValue" name="" value="*"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Transform" name="Transform" isAbstract="true">
+    <ownedComment xmi:id="Transform-_ownedComment.0" annotatedElement="Transform"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Translate" name="Translate">
+    <ownedComment xmi:id="Translate-_ownedComment.0" annotatedElement="Translate"/>
+    <generalization xmi:id="Translate-_generalization.0" general="Transform"/>
+    <ownedAttribute xmi:id="Translate-deltaX" name="deltaX">
+      <ownedComment xmi:id="Translate-deltaX-_ownedComment.0" annotatedElement="Translate-deltaX"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851470_379158_1893" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851470_334795_1894" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Translate-deltaY" name="deltaY">
+      <ownedComment xmi:id="Translate-deltaY-_ownedComment.0" annotatedElement="Translate-deltaY"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851456_494541_1784" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851456_462839_1785" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Scale" name="Scale">
+    <ownedComment xmi:id="Scale-_ownedComment.0" annotatedElement="Scale"/>
+    <ownedRule xmi:id="Scale-non-negative-scale" name="non-negative-scale" constrainedElement="Scale">
+      <ownedComment xmi:id="Scale-non-negative-scale-_ownedComment.0" annotatedElement="Scale-non-negative-scale"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Scale-non-negative-scale-_specification" name="">
+        <language>OCL</language>
+        <body>factorX>=0 and factorY>=0</body>
+      </specification>
+    </ownedRule>
+    <generalization xmi:id="Scale-_generalization.0" general="Transform"/>
+    <ownedAttribute xmi:id="Scale-factorX" name="factorX">
+      <ownedComment xmi:id="Scale-factorX-_ownedComment.0" annotatedElement="Scale-factorX"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851465_677158_1854" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851465_359824_1855" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Scale-factorY" name="factorY">
+      <ownedComment xmi:id="Scale-factorY-_ownedComment.0" annotatedElement="Scale-factorY"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851455_564462_1782" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851455_62808_1783" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Rotate" name="Rotate">
+    <ownedComment xmi:id="Rotate-_ownedComment.0" annotatedElement="Rotate"/>
+    <generalization xmi:id="Rotate-_generalization.0" general="Transform"/>
+    <ownedAttribute xmi:id="Rotate-angle" name="angle">
+      <ownedComment xmi:id="Rotate-angle-_ownedComment.0" annotatedElement="Rotate-angle"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851470_567103_1895" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851470_371562_1896" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Rotate-center" name="center">
+      <ownedComment xmi:id="Rotate-center-_ownedComment.0" annotatedElement="Rotate-center"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="Rotate-center-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851458_190471_1802" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_startMarker_markedElement" name="A_startMarker_markedElement" memberEnd="MarkedElement-startMarker A_startMarker_markedElement-markedElement">
+    <ownedEnd xmi:id="A_startMarker_markedElement-markedElement" name="markedElement" type="MarkedElement" association="A_startMarker_markedElement">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_startMarker_markedElement-markedElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_startMarker_markedElement-markedElement-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_endMarker_markedElement" name="A_endMarker_markedElement" memberEnd="MarkedElement-endMarker A_endMarker_markedElement-markedElement">
+    <ownedEnd xmi:id="A_endMarker_markedElement-markedElement" name="markedElement" type="MarkedElement" association="A_endMarker_markedElement">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_endMarker_markedElement-markedElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_endMarker_markedElement-markedElement-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_member_group" name="A_member_group" memberEnd="Group-member GraphicalElement-group"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Skew" name="Skew">
+    <ownedComment xmi:id="Skew-_ownedComment.0" annotatedElement="Skew"/>
+    <generalization xmi:id="Skew-_generalization.0" general="Transform"/>
+    <ownedAttribute xmi:id="Skew-angleX" name="angleX">
+      <ownedComment xmi:id="Skew-angleX-_ownedComment.0" annotatedElement="Skew-angleX"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851461_349574_1824" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851461_32130_1825" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Skew-angleY" name="angleY">
+      <ownedComment xmi:id="Skew-angleY-_ownedComment.0" annotatedElement="Skew-angleY"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851468_809136_1883" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851469_804655_1884" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_midMarker_markedElement" name="A_midMarker_markedElement" memberEnd="MarkedElement-midMarker A_midMarker_markedElement-markedElement">
+    <ownedEnd xmi:id="A_midMarker_markedElement-markedElement" name="markedElement" type="MarkedElement" association="A_midMarker_markedElement">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_midMarker_markedElement-markedElement-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_midMarker_markedElement-markedElement-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="Image" name="Image">
+    <ownedComment xmi:id="Image-_ownedComment.0" annotatedElement="Image"/>
+    <generalization xmi:id="Image-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="Image-source" name="source">
+      <ownedComment xmi:id="Image-source-_ownedComment.0" annotatedElement="Image-source"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851467_254563_1872" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851467_415753_1873" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Image-bounds" name="bounds">
+      <ownedComment xmi:id="Image-bounds-_ownedComment.0" annotatedElement="Image-bounds"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Bounds"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851457_598173_1796" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851457_356534_1797" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Image-isAspectRatioPreserved" name="isAspectRatioPreserved">
+      <ownedComment xmi:id="Image-isAspectRatioPreserved-_ownedComment.0" annotatedElement="Image-isAspectRatioPreserved"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851458_979378_1805" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851458_952682_1806" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="ClipPath" name="ClipPath">
+    <ownedComment xmi:id="ClipPath-_ownedComment.0" annotatedElement="ClipPath"/>
+    <generalization xmi:id="ClipPath-_generalization.0" general="Group"/>
+    <ownedAttribute xmi:id="ClipPath-clippedElement" name="clippedElement" type="GraphicalElement" association="A_clipPath_clippedElement">
+      <ownedComment xmi:id="ClipPath-clippedElement-_ownedComment.0" annotatedElement="ClipPath-clippedElement"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851471_787363_1900" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851471_432416_1901" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_marker_canvas" name="A_marker_canvas" memberEnd="Canvas-packagedMarker Marker-canvas"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_clipPath_clippedElement" name="A_clipPath_clippedElement" memberEnd="GraphicalElement-clipPath ClipPath-clippedElement"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="Circle" name="Circle">
+    <ownedComment xmi:id="Circle-_ownedComment.0" annotatedElement="Circle"/>
+    <ownedRule xmi:id="Circle-non_negative_radius" name="non_negative_radius" constrainedElement="Circle">
+      <ownedComment xmi:id="Circle-non_negative_radius-_ownedComment.0" annotatedElement="Circle-non_negative_radius"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Circle-non_negative_radius-_specification" name="">
+        <language>OCL</language>
+        <body>radius >= 0</body>
+      </specification>
+    </ownedRule>
+    <generalization xmi:id="Circle-_generalization.0" general="GraphicalElement"/>
+    <ownedAttribute xmi:id="Circle-center" name="center">
+      <ownedComment xmi:id="Circle-center-_ownedComment.0" annotatedElement="Circle-center"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851464_149514_1851" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851464_138368_1852" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Circle-radius" name="radius">
+      <ownedComment xmi:id="Circle-radius-_ownedComment.0" annotatedElement="Circle-radius"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851463_507005_1839" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851463_272806_1840" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Matrix" name="Matrix">
+    <ownedComment xmi:id="Matrix-_ownedComment.0" annotatedElement="Matrix"/>
+    <generalization xmi:id="Matrix-_generalization.0" general="Transform"/>
+    <ownedAttribute xmi:id="Matrix-a" name="a">
+      <ownedComment xmi:id="Matrix-a-_ownedComment.0" annotatedElement="Matrix-a"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851467_740209_1869" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851467_73932_1870" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Matrix-b" name="b">
+      <ownedComment xmi:id="Matrix-b-_ownedComment.0" annotatedElement="Matrix-b"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851454_945437_1768" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851454_903286_1769" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Matrix-c" name="c">
+      <ownedComment xmi:id="Matrix-c-_ownedComment.0" annotatedElement="Matrix-c"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851455_4264_1776" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851455_29764_1777" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Matrix-d" name="d">
+      <ownedComment xmi:id="Matrix-d-_ownedComment.0" annotatedElement="Matrix-d"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851468_745027_1876" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851468_374361_1877" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Matrix-e" name="e">
+      <ownedComment xmi:id="Matrix-e-_ownedComment.0" annotatedElement="Matrix-e"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851459_210046_1807" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851459_794467_1808" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Matrix-f" name="f">
+      <ownedComment xmi:id="Matrix-f-_ownedComment.0" annotatedElement="Matrix-f"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851454_49602_1772" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851454_86231_1773" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="PathCommand" name="PathCommand" isAbstract="true">
+    <ownedComment xmi:id="PathCommand-_ownedComment.0" annotatedElement="PathCommand"/>
+    <ownedAttribute xmi:id="PathCommand-isRelative" name="isRelative">
+      <ownedComment xmi:id="PathCommand-isRelative-_ownedComment.0" annotatedElement="PathCommand-isRelative"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851469_865267_1888" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851469_233290_1889" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="PathCommand-isRelative-_defaultValue" name="">
+        <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="MoveTo" name="MoveTo">
+    <ownedComment xmi:id="MoveTo-_ownedComment.0" annotatedElement="MoveTo"/>
+    <generalization xmi:id="MoveTo-_generalization.0" general="PathCommand"/>
+    <ownedAttribute xmi:id="MoveTo-point" name="point">
+      <ownedComment xmi:id="MoveTo-point-_ownedComment.0" annotatedElement="MoveTo-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851471_668645_1903" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851471_16385_1904" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="LineTo" name="LineTo">
+    <ownedComment xmi:id="LineTo-_ownedComment.0" annotatedElement="LineTo"/>
+    <generalization xmi:id="LineTo-_generalization.0" general="PathCommand"/>
+    <ownedAttribute xmi:id="LineTo-point" name="point">
+      <ownedComment xmi:id="LineTo-point-_ownedComment.0" annotatedElement="LineTo-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851468_675572_1880" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851468_828840_1881" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="CubicCurveTo" name="CubicCurveTo">
+    <ownedComment xmi:id="CubicCurveTo-_ownedComment.0" annotatedElement="CubicCurveTo"/>
+    <generalization xmi:id="CubicCurveTo-_generalization.0" general="PathCommand"/>
+    <ownedAttribute xmi:id="CubicCurveTo-point" name="point">
+      <ownedComment xmi:id="CubicCurveTo-point-_ownedComment.0" annotatedElement="CubicCurveTo-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851466_226199_1865" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851466_968831_1866" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CubicCurveTo-startControl" name="startControl">
+      <ownedComment xmi:id="CubicCurveTo-startControl-_ownedComment.0" annotatedElement="CubicCurveTo-startControl"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851464_152368_1849" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851464_344544_1850" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="CubicCurveTo-endControl" name="endControl">
+      <ownedComment xmi:id="CubicCurveTo-endControl-_ownedComment.0" annotatedElement="CubicCurveTo-endControl"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851460_626792_1820" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851460_262339_1821" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="QuadraticCurveTo" name="QuadraticCurveTo">
+    <ownedComment xmi:id="QuadraticCurveTo-_ownedComment.0" annotatedElement="CubicCurveTo QuadraticCurveTo"/>
+    <generalization xmi:id="QuadraticCurveTo-_generalization.0" general="PathCommand"/>
+    <ownedAttribute xmi:id="QuadraticCurveTo-point" name="point">
+      <ownedComment xmi:id="QuadraticCurveTo-point-_ownedComment.0" annotatedElement="QuadraticCurveTo-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851462_39479_1837" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851463_68248_1838" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="QuadraticCurveTo-control" name="control">
+      <ownedComment xmi:id="QuadraticCurveTo-control-_ownedComment.0" annotatedElement="QuadraticCurveTo-control"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851456_508910_1787" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851456_918527_1788" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="EllipticalArcTo" name="EllipticalArcTo">
+    <ownedComment xmi:id="EllipticalArcTo-_ownedComment.0" annotatedElement="CubicCurveTo QuadraticCurveTo"/>
+    <generalization xmi:id="EllipticalArcTo-_generalization.0" general="PathCommand"/>
+    <ownedAttribute xmi:id="EllipticalArcTo-point" name="point">
+      <ownedComment xmi:id="EllipticalArcTo-point-_ownedComment.0" annotatedElement="EllipticalArcTo-point"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Point"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851470_251685_1898" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851471_404253_1899" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="EllipticalArcTo-radii" name="radii">
+      <ownedComment xmi:id="EllipticalArcTo-radii-_ownedComment.0" annotatedElement="EllipticalArcTo-radii"/>
+      <type xmi:type="uml:DataType" href="DC.uml#Dimension"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851459_10669_1813" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851459_401052_1814" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="EllipticalArcTo-rotation" name="rotation">
+      <ownedComment xmi:id="EllipticalArcTo-rotation-_ownedComment.0" annotatedElement="EllipticalArcTo-rotation"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851469_410187_1885" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851469_322485_1886" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="EllipticalArcTo-isLargeArc" name="isLargeArc">
+      <ownedComment xmi:id="EllipticalArcTo-isLargeArc-_ownedComment.0" annotatedElement="EllipticalArcTo-isLargeArc"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851458_321827_1803" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851458_182218_1804" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="EllipticalArcTo-isSweep" name="isSweep">
+      <ownedComment xmi:id="EllipticalArcTo-isSweep-_ownedComment.0" annotatedElement="EllipticalArcTo-isSweep"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851467_820816_1874" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851467_154037_1875" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="ClosePath" name="ClosePath">
+    <ownedComment xmi:id="ClosePath-_ownedComment.0" annotatedElement="ClosePath"/>
+    <generalization xmi:id="ClosePath-_generalization.0" general="PathCommand"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_fill_canvas" name="A_fill_canvas" memberEnd="Canvas-packagedFill Fill-canvas"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_fill_style" name="A_fill_style">
+    <memberEnd href="DI.uml#Style-fill"/>
+    <memberEnd href="#A_fill_style-style"/>
+    <ownedEnd xmi:id="A_fill_style-style" name="style" association="A_fill_style">
+      <type xmi:type="uml:Class" href="DI.uml#Style"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_fill_style-style-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_fill_style-style-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_backgroundFill_canvas" name="A_backgroundFill_canvas" memberEnd="Canvas-backgroundFill A_backgroundFill_canvas-canvas">
+    <ownedEnd xmi:id="A_backgroundFill_canvas-canvas" name="canvas" type="Canvas" association="A_backgroundFill_canvas">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_backgroundFill_canvas-canvas-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="A_backgroundFill_canvas-canvas-_upperValue" name="" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_tile_pattern" name="A_tile_pattern" memberEnd="Pattern-tile A_tile_pattern-pattern">
+    <ownedEnd xmi:id="A_tile_pattern-pattern" name="pattern" type="Pattern" association="A_tile_pattern">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="A_tile_pattern-pattern-_lowerValue" name=""/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851468_451782_1882" name="" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="A_style_canvas" name="" memberEnd="Canvas-packagedStyle A_style_canvas-canvas">
+    <ownedEnd xmi:id="A_style_canvas-canvas" name="canvas" type="Canvas" association="A_style_canvas">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851469_490491_1890" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851470_991814_1891" name="" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Package>

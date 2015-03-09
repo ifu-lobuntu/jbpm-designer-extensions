@@ -1,19 +1,19 @@
 package org.jbpm.designer.vdpe;
 
-import org.eclipse.dd.cmmn.di.Diagram;
-import org.eclipse.dd.cmmn.di.DiagramElement;
 import org.eclipse.emf.ecore.EObject;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
-import org.jbpm.designer.emf.util.StencilInfo;
-import org.jbpm.designer.server.diagram.json.Shape;
-import org.jbpm.designer.stencilset.linkage.LinkedStencil;
-import org.pavanecce.vdml.metamodel.vdml.CapabilityMethod;
-import org.pavanecce.vdml.metamodel.vdml.Collaboration;
-import org.pavanecce.vdml.metamodel.vdml.ValueDeliveryModel;
-import org.pavanecce.vdml.metamodel.vdml.util.VdmlSwitch;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.omg.dd.di.Diagram;
+import org.omg.dd.di.DiagramElement;
+import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.Collaboration;
+import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.util.VDMLSwitch;
 
-public class VdmlPropositionExchangeEmfToJsonHelper extends VdmlSwitch<Object> implements EmfToJsonHelper {
+public class VdmlPropositionExchangeEmfToJsonHelper extends VDMLSwitch<Object> implements EmfToJsonHelper {
     protected Shape targetShape;
     private ShapeMap resource;
 

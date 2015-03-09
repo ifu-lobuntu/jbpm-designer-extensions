@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="/jbpm-designer-extensions-emf/src/main/java" modelPluginID="jbpm-designer-extensions-emf"
+    modelName="DG" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>DG.uml</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="DG" basePackage="org.omg.dd"
+      disposableProviderFactory="true" contentTypeIdentifier="" ecorePackage="DG.ecore#/"
+      publicationLocation="">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//RadialGradient">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//RadialGradient/centerX"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//RadialGradient/centerY"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//RadialGradient/radius"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//RadialGradient/focusX"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//RadialGradient/focusY"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//RadialGradient/valid_center_point">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//RadialGradient/valid_center_point/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//RadialGradient/valid_center_point/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//RadialGradient/valid_focus_point">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//RadialGradient/valid_focus_point/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//RadialGradient/valid_focus_point/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//RadialGradient/valid_radius">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//RadialGradient/valid_radius/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//RadialGradient/valid_radius/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DG.ecore#//Gradient">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Gradient/stop"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DG.ecore#//Fill">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference DG.ecore#//Fill/canvas"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Fill/transform"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Canvas">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DG.ecore#//Canvas/backgroundFill"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Canvas/backgroundColor"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Canvas/packagedMarker"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Canvas/packagedStyle"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Canvas/packagedFill"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Group">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Group/member"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DG.ecore#//GraphicalElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference DG.ecore#//GraphicalElement/group"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//GraphicalElement/localStyle"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DG.ecore#//GraphicalElement/sharedStyle"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//GraphicalElement/transform"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//GraphicalElement/clipPath"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Transform"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//ClipPath">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference DG.ecore#//ClipPath/clippedElement"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Marker">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Marker/size"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Marker/reference"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference DG.ecore#//Marker/canvas"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//GradientStop">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//GradientStop/color"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//GradientStop/offset"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//GradientStop/opacity"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//GradientStop/valid_offset">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//GradientStop/valid_offset/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//GradientStop/valid_offset/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//GradientStop/valid_opacity">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//GradientStop/valid_opacity/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//GradientStop/valid_opacity/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Pattern">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Pattern/bounds"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Pattern/tile"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//LinearGradient">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//LinearGradient/x1"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//LinearGradient/x2"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//LinearGradient/y1"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//LinearGradient/y2"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//LinearGradient/valid_gradient_vector">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//LinearGradient/valid_gradient_vector/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//LinearGradient/valid_gradient_vector/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DG.ecore#//MarkedElement">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DG.ecore#//MarkedElement/startMarker"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DG.ecore#//MarkedElement/endMarker"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DG.ecore#//MarkedElement/midMarker"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Rectangle">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Rectangle/bounds"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Rectangle/cornerRadius"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Ellipse">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Ellipse/center"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Ellipse/radii"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Text">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Text/data"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Text/bounds"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Text/alignment"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Line">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Line/start"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Line/end"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Polyline">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Polyline/point"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Polygon">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Polygon/point"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Path">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Path/command"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//PathCommand">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//PathCommand/isRelative"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Translate">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Translate/deltaX"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Translate/deltaY"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Scale">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Scale/factorX"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Scale/factorY"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//Scale/nonnegativescale">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//Scale/nonnegativescale/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//Scale/nonnegativescale/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Rotate">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Rotate/angle"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Rotate/center"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Skew">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Skew/angleX"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Skew/angleY"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Image">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Image/source"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Image/bounds"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Image/isAspectRatioPreserved"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Circle">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//Circle/center"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Circle/radius"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DG.ecore#//Circle/non_negative_radius">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//Circle/non_negative_radius/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DG.ecore#//Circle/non_negative_radius/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//Matrix">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Matrix/a"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Matrix/b"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Matrix/c"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Matrix/d"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Matrix/e"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//Matrix/f"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//MoveTo">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//MoveTo/point"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//LineTo">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//LineTo/point"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//CubicCurveTo">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//CubicCurveTo/point"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//CubicCurveTo/startControl"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//CubicCurveTo/endControl"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//QuadraticCurveTo">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//QuadraticCurveTo/point"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//QuadraticCurveTo/control"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//EllipticalArcTo">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//EllipticalArcTo/point"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DG.ecore#//EllipticalArcTo/radii"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//EllipticalArcTo/rotation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//EllipticalArcTo/isLargeArc"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DG.ecore#//EllipticalArcTo/isSweep"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DG.ecore#//ClosePath"/>
+  </genPackages>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="DI" basePackage="org.omg.dd"
+      disposableProviderFactory="true" ecorePackage="DI.ecore#/">
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DI.ecore#//DiagramElement">
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference DI.ecore#//DiagramElement/modelElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference DI.ecore#//DiagramElement/owningElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference DI.ecore#//DiagramElement/ownedElement"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DI.ecore#//DiagramElement/localStyle"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DI.ecore#//DiagramElement/sharedStyle"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DI.ecore#//EObject"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DI.ecore#//Edge">
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference DI.ecore#//Edge/source"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" notify="false"
+          createChild="false" ecoreFeature="ecore:EReference DI.ecore#//Edge/target"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DI.ecore#//Edge/waypoint"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DI.ecore#//Diagram">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Diagram/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Diagram/documentation"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Diagram/resolution"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DI.ecore#//Shape">
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DI.ecore#//Shape/bounds"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DI.ecore#//Style">
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference DI.ecore#//Style/fill"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DI.ecore#//Style/fillColor"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fillOpacity"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/strokeWidth"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/strokeOpacity"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DI.ecore#//Style/strokeColor"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/strokeDashLength"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fontSize"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fontName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DI.ecore#//Style/fontColor"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fontItalic"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fontBold"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fontUnderline"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DI.ecore#//Style/fontStrikeThrough"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DI.ecore#//Style/valid_font_size">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_font_size/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_font_size/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DI.ecore#//Style/valid_fill_opacity">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_fill_opacity/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_fill_opacity/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DI.ecore#//Style/valid_stroke_width">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_stroke_width/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_stroke_width/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DI.ecore#//Style/valid_dash_length_size">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_dash_length_size/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_dash_length_size/context"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DI.ecore#//Style/valid_stroke_opacity">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_stroke_opacity/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DI.ecore#//Style/valid_stroke_opacity/context"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="DC" basePackage="org.omg.dd"
+      disposableProviderFactory="true" ecorePackage="DC.ecore#/">
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="DC.ecore#//AlignmentKind">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//AlignmentKind/start"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//AlignmentKind/end"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//AlignmentKind/center"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="DC.ecore#//KnownColor">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/maroon"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/red"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/orange"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/yellow"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/olive"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/purple"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/fuchsia"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/white"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/lime"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/green"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/navy"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/blue"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/aqua"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/teal"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/black"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/silver"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="DC.ecore#//KnownColor/gray"/>
+    </genEnums>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DC.ecore#//Color">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Color/red"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Color/green"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Color/blue"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DC.ecore#//Color/valid_rgb">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DC.ecore#//Color/valid_rgb/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DC.ecore#//Color/valid_rgb/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DC.ecore#//Dimension">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Dimension/width"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Dimension/height"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DC.ecore#//Dimension/non_negative_dimension">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DC.ecore#//Dimension/non_negative_dimension/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DC.ecore#//Dimension/non_negative_dimension/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DC.ecore#//Bounds">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Bounds/x"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Bounds/y"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Bounds/width"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Bounds/height"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DC.ecore#//Bounds/non_negative_size">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DC.ecore#//Bounds/non_negative_size/diagnostics"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DC.ecore#//Bounds/non_negative_size/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DC.ecore#//Point">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Point/x"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DC.ecore#//Point/y"/>
+    </genClasses>
+  </genPackages>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="PrimitiveTypes" basePackage="org.omg.dd"
+      disposableProviderFactory="true" ecorePackage="PrimitiveTypes.ecore#/">
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="PrimitiveTypes.ecore#//Boolean"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="PrimitiveTypes.ecore#//Real"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="PrimitiveTypes.ecore#//String"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="PrimitiveTypes.ecore#//UnlimitedNatural"/>
+    <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="PrimitiveTypes.ecore#//Integer"/>
+  </genPackages>
+</genmodel:GenModel>

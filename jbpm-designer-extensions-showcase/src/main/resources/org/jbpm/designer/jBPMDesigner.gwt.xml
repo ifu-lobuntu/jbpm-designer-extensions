@@ -44,7 +44,10 @@
   <inherits name="org.jbpm.designer.jBPMDesignerAPI"/>
   <inherits name="org.jbpm.designer.jBPMDesignerClient"/>
   <!-- Designer extensions -->
+  <inherits name="org.jbpm.designer.jBPMDesignerExtensionsClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDANClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDPEClient"/>
   <!-- Form-Modeler -->
   <inherits name="org.jbpm.formModeler.editor.FormModelerEditorClient"/>
   <inherits name="org.jbpm.formModeler.renderer.FormRendererClient"/>

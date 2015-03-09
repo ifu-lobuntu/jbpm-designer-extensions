@@ -1,37 +1,38 @@
 package org.jbpm.designer.vdan.impl;
 
+import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.junit.Test;
-import org.pavanecce.vdml.metamodel.vdml.Activity;
-import org.pavanecce.vdml.metamodel.vdml.DeliverableFlow;
-import org.pavanecce.vdml.metamodel.vdml.InputDelegation;
-import org.pavanecce.vdml.metamodel.vdml.InputPort;
-import org.pavanecce.vdml.metamodel.vdml.OrgUnit;
-import org.pavanecce.vdml.metamodel.vdml.OutputDelegation;
-import org.pavanecce.vdml.metamodel.vdml.OutputPort;
-import org.pavanecce.vdml.metamodel.vdml.PortContainer;
-import org.pavanecce.vdml.metamodel.vdml.Role;
-import org.pavanecce.vdml.metamodel.vdml.Store;
-import org.pavanecce.vdml.metamodel.vdml.VdmlElement;
-import org.pavanecce.vdml.metamodel.vdml.VdmlFactory;
+import org.omg.vdml.Activity;
+import org.omg.vdml.DeliverableFlow;
+import org.omg.vdml.InputDelegation;
+import org.omg.vdml.InputPort;
+import org.omg.vdml.OrgUnit;
+import org.omg.vdml.OutputDelegation;
+import org.omg.vdml.OutputPort;
+import org.omg.vdml.PortContainer;
+import org.omg.vdml.Role;
+import org.omg.vdml.Store;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.VdmlElement;
 
 public class ActivityNetworkDiagramMarshallingTest extends AbstractVdmlDiagramMarshallingTest {
     @Test
     public void testIt() throws Exception{
-        Role role = VdmlFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createRole();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         capabilityMethod.getCollaborationRole().add(role);
         addShapeFor(capabilityMethod, role);
-        Store store = VdmlFactory.eINSTANCE.createStore();
+        Store store = VDMLFactory.eINSTANCE.createStore();
         store.setName("MyStore");
         store.setDescription("My store description");
-        OrgUnit orgUnit=VdmlFactory.eINSTANCE.createOrgUnit();
+        OrgUnit orgUnit=VDMLFactory.eINSTANCE.createOrgUnit();
         valueDeliveryModel.getCollaboration().add(orgUnit);
         orgUnit.setName(capabilityMethod.getName()+"OrgUnit");
         orgUnit.getOwnedStore().add(store);
         addShapeFor(role, store);
         addPorts("MyStore", role, store);
-        Activity activity1 = VdmlFactory.eINSTANCE.createActivity();
+        Activity activity1 = VDMLFactory.eINSTANCE.createActivity();
         activity1.setName("MyActivity1");
         activity1.setDescription("My Activity's description");
         capabilityMethod.getActivity().add(activity1);
@@ -39,13 +40,13 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdmlDiagramMa
         addPorts("MyActivity1", role, activity1);
         role.getPerformedWork().add(activity1);
         addPorts("MyCollaboration",role,  capabilityMethod);
-        DeliverableFlow deliverableFlow1 = VdmlFactory.eINSTANCE.createDeliverableFlow();
+        DeliverableFlow deliverableFlow1 = VDMLFactory.eINSTANCE.createDeliverableFlow();
         deliverableFlow1.setName("Safd");
         deliverableFlow1.setProvider((OutputPort) store.getContainedPort().get(1));
         deliverableFlow1.setRecipient((InputPort) activity1.getContainedPort().get(0));
         capabilityMethod.getFlow().add(deliverableFlow1);
         addEdge(deliverableFlow1, store.getContainedPort().get(1), activity1.getContainedPort().get(0));
-        DeliverableFlow deliverableFlow2 = VdmlFactory.eINSTANCE.createDeliverableFlow();
+        DeliverableFlow deliverableFlow2 = VDMLFactory.eINSTANCE.createDeliverableFlow();
         deliverableFlow2.setName("Safd");
         deliverableFlow2.setProvider((OutputPort) activity1.getContainedPort().get(1));
         deliverableFlow2.setRecipient((InputPort) store.getContainedPort().get(0));
@@ -55,26 +56,26 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdmlDiagramMa
     }
     @Test
     public void testDelegations() throws Exception{
-        Role role = VdmlFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createRole();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         capabilityMethod.getCollaborationRole().add(role);
         addShapeFor(capabilityMethod, role);
         addPorts("MyCollaboration", role, capabilityMethod);
-        Activity activity2 = VdmlFactory.eINSTANCE.createActivity();
+        Activity activity2 = VDMLFactory.eINSTANCE.createActivity();
         activity2.setName("MyActivity2");
         activity2.setDescription("My Activity2's description");
         role.getPerformedWork().add(activity2);
         capabilityMethod.getActivity().add(activity2);
         addShapeFor(role, activity2);
         addPorts("MyActivity2",role,  activity2);
-        InputDelegation inputDelegation = VdmlFactory.eINSTANCE.createInputDelegation();
+        InputDelegation inputDelegation = VDMLFactory.eINSTANCE.createInputDelegation();
         inputDelegation.setSource((InputPort) capabilityMethod.getContainedPort().get(0));
         inputDelegation.setTarget((InputPort) activity2.getContainedPort().get(0));
         capabilityMethod.getInternalPortDelegation().add(inputDelegation);
         addEdge(inputDelegation, capabilityMethod.getContainedPort().get(0), activity2.getContainedPort().get(0));
 
-        OutputDelegation outputDelegation = VdmlFactory.eINSTANCE.createOutputDelegation();
+        OutputDelegation outputDelegation = VDMLFactory.eINSTANCE.createOutputDelegation();
         outputDelegation.setSource((OutputPort) activity2.getContainedPort().get(1));
         outputDelegation.setTarget((OutputPort) capabilityMethod.getContainedPort().get(1));
         capabilityMethod.getInternalPortDelegation().add(outputDelegation);
@@ -83,13 +84,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdmlDiagramMa
     }
 
     private void addPorts(String prefix,VdmlElement parent, PortContainer pc) {
-        InputPort activityInputPort = VdmlFactory.eINSTANCE.createInputPort();
-        activityInputPort.setName(prefix +  "InputPort");
-        pc.getContainedPort().add(activityInputPort);
-        addShapeFor(parent,activityInputPort);
-        OutputPort activityOutputPort = VdmlFactory.eINSTANCE.createOutputPort();
-        activityOutputPort.setName(prefix+ "OutputPort");
-        pc.getContainedPort().add(activityOutputPort);
-        addShapeFor(parent, activityOutputPort);
+        addInputPort(parent, pc, prefix +  "InputPort");
+        addOutputPort(parent, pc, prefix+ "OutputPort");
     }
 }

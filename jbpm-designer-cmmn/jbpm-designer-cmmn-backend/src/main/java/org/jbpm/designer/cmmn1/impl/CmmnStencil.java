@@ -3,53 +3,53 @@ package org.jbpm.designer.cmmn1.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.cmmn1.Cmmn1Factory;
-import org.eclipse.cmmn1.Cmmn1Package;
-import org.eclipse.cmmn1.TCaseFileItem;
-import org.eclipse.cmmn1.TCmmnElement;
-import org.eclipse.cmmn1.TDiscretionaryItem;
-import org.eclipse.cmmn1.TEvent;
-import org.eclipse.cmmn1.TMilestone;
-import org.eclipse.cmmn1.TPlanItem;
-import org.eclipse.cmmn1.TPlanItemDefinition;
-import org.eclipse.cmmn1.TPlanItemOnPart;
-import org.eclipse.cmmn1.TPlanItemStartTrigger;
-import org.eclipse.cmmn1.TSentry;
-import org.eclipse.cmmndi.CmmnDiFactory;
-import org.eclipse.cmmndi.CmmnDiPackage;
-import org.eclipse.dd.cmmn.di.DiagramElement;
-import org.eclipse.dd.cmmn.di.Edge;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.jbpm.designer.emf.util.StencilInfo;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
+import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
+import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.CMMNPackage;
+import org.omg.cmmn.TCaseFileItem;
+import org.omg.cmmn.TCmmnElement;
+import org.omg.cmmn.TDiscretionaryItem;
+import org.omg.cmmn.TEvent;
+import org.omg.cmmn.TMilestone;
+import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TPlanItemDefinition;
+import org.omg.cmmn.TPlanItemOnPart;
+import org.omg.cmmn.TPlanItemStartTrigger;
+import org.omg.cmmn.TSentry;
+import org.omg.dd.di.DiagramElement;
+import org.omg.dd.di.Edge;
 
 public enum CmmnStencil implements StencilInfo {
-    CMMN_DIAGRAM(Cmmn1Package.eINSTANCE.getTDefinitions(), CmmnDiPackage.eINSTANCE.getCMMNDiagram(), "CMMNDiagram"),
-    CASE(Cmmn1Package.eINSTANCE.getTCase(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "Case"),
-    HUMAN_TASK(Cmmn1Package.eINSTANCE.getTHumanTask(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "HumanTask1"),
-    DISCRETIONARY_HUMAN_TASK(Cmmn1Package.eINSTANCE.getTHumanTask(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "DiscretionaryHumanTask1"),
-    CASE_TASK(Cmmn1Package.eINSTANCE.getTCaseTask(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "CaseTask1"),
-    DISCRETIONARY_CASE_TASK(Cmmn1Package.eINSTANCE.getTCaseTask(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "DiscretionaryCaseTask1"),
-    PROCESS_TASK(Cmmn1Package.eINSTANCE.getTProcessTask(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "ProcessTask1"),
-    DISCRETIONARY_PROCESS_TASK(Cmmn1Package.eINSTANCE.getTProcessTask(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "DiscretionaryProcessTask1"),
-    STAGE(Cmmn1Package.eINSTANCE.getTStage(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "Stage"),
-    DISCRETIONARY_STAGE(Cmmn1Package.eINSTANCE.getTStage(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "DiscretionaryStage"),
-    MILESTONE(Cmmn1Package.eINSTANCE.getTMilestone(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "Milestone"),
-    USER_EVENT(Cmmn1Package.eINSTANCE.getTUserEvent(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "UserEvent"),
-    TIMER_EVENT(Cmmn1Package.eINSTANCE.getTTimerEvent(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "TimerEvent"),
-    CASE_FILE_ITEM_START_TRIGGER(Cmmn1Package.eINSTANCE.getTCaseFileItemStartTrigger(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemStartTrigger"),
-    PLAN_ITEM_START_TRIGGER(Cmmn1Package.eINSTANCE.getTPlanItemStartTrigger(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "PlanItemStartTrigger"),
-    EVENT_START_TRIGGER(Cmmn1Package.eINSTANCE.getTPlanItemStartTrigger(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "EventStartTrigger"),
-    ENTRY_SENTRY(Cmmn1Package.eINSTANCE.getTSentry(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "EntrySentry"),
-    EXIT_SENTRY(Cmmn1Package.eINSTANCE.getTSentry(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "ExitSentry"),
-    CASE_FILE_ITEM(Cmmn1Package.eINSTANCE.getTCaseFileItem(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "CaseFileItem"),
-    PROPERTY(Cmmn1Package.eINSTANCE.getTProperty(), CmmnDiPackage.eINSTANCE.getCMMNShape(), "Property"),
-    CASE_FILE_ITEM_ON_PART(Cmmn1Package.eINSTANCE.getTCaseFileItemOnPart(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemOnPart"),
-    PLAN_ITEM_ON_PART(Cmmn1Package.eINSTANCE.getTPlanItemOnPart(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "PlanItemOnPart"),
-    EVENT_ON_PART(Cmmn1Package.eINSTANCE.getTPlanItemOnPart(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "EventOnPart"),
-    CASE_FILE_ITEM_CHILD(Cmmn1Package.eINSTANCE.getTCaseFileItem_Children(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemChild"),
-    CASE_FILE_ITEM_TARGET(Cmmn1Package.eINSTANCE.getTCaseFileItem_TargetRefs(), CmmnDiPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemTarget"), ;
+    CASE_DIAGRAM(CMMNPackage.eINSTANCE.getTCase(), CMMNDIPackage.eINSTANCE.getCMMNDiagram(), "CaseDiagram"),
+    HUMAN_TASK(CMMNPackage.eINSTANCE.getTHumanTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "HumanTask1"),
+    DISCRETIONARY_HUMAN_TASK(CMMNPackage.eINSTANCE.getTHumanTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryHumanTask1"),
+    CASE_TASK(CMMNPackage.eINSTANCE.getTCaseTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "CaseTask1"),
+    DISCRETIONARY_CASE_TASK(CMMNPackage.eINSTANCE.getTCaseTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryCaseTask1"),
+    PROCESS_TASK(CMMNPackage.eINSTANCE.getTProcessTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "ProcessTask1"),
+    DISCRETIONARY_PROCESS_TASK(CMMNPackage.eINSTANCE.getTProcessTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryProcessTask1"),
+    STAGE(CMMNPackage.eINSTANCE.getTStage(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "Stage"),
+    DISCRETIONARY_STAGE(CMMNPackage.eINSTANCE.getTStage(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryStage"),
+    MILESTONE(CMMNPackage.eINSTANCE.getTMilestone(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "Milestone"),
+    USER_EVENT(CMMNPackage.eINSTANCE.getTUserEvent(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "UserEvent"),
+    TIMER_EVENT(CMMNPackage.eINSTANCE.getTTimerEvent(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "TimerEvent"),
+    CASE_FILE_ITEM_START_TRIGGER(CMMNPackage.eINSTANCE.getTCaseFileItemStartTrigger(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemStartTrigger"),
+    PLAN_ITEM_START_TRIGGER(CMMNPackage.eINSTANCE.getTPlanItemStartTrigger(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "PlanItemStartTrigger"),
+    EVENT_START_TRIGGER(CMMNPackage.eINSTANCE.getTPlanItemStartTrigger(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "EventStartTrigger"),
+    ENTRY_SENTRY(CMMNPackage.eINSTANCE.getTSentry(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "EntrySentry"),
+    EXIT_SENTRY(CMMNPackage.eINSTANCE.getTSentry(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "ExitSentry"),
+    CASE_FILE_ITEM(CMMNPackage.eINSTANCE.getTCaseFileItem(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "CaseFileItem"),
+    PROPERTY(CMMNPackage.eINSTANCE.getTProperty(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "Property"),
+    CASE_FILE_ITEM_ON_PART(CMMNPackage.eINSTANCE.getTCaseFileItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemOnPart"),
+    PLAN_ITEM_ON_PART(CMMNPackage.eINSTANCE.getTPlanItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "PlanItemOnPart"),
+    EVENT_ON_PART(CMMNPackage.eINSTANCE.getTPlanItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "EventOnPart"),
+    CASE_FILE_ITEM_CHILD(CMMNPackage.eINSTANCE.getTCaseFileItem_Children(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemChild"),
+    CASE_FILE_ITEM_TARGET(CMMNPackage.eINSTANCE.getTCaseFileItem_TargetRefs(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemTarget"), ;
     private EClass type;
     private EClass shapeType;
     private String stencilId;
@@ -85,7 +85,7 @@ public enum CmmnStencil implements StencilInfo {
         if (stencil.shapeType == null) {
             return null;
         }
-        return (DiagramElement) CmmnDiFactory.eINSTANCE.create(stencil.shapeType);
+        return (DiagramElement) CMMNDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
     public static TCmmnElement createElement(String stencilId) {
@@ -93,19 +93,19 @@ public enum CmmnStencil implements StencilInfo {
         if (stencil.type == null) {
             return null;
         }
-        TCmmnElement elt = (TCmmnElement) Cmmn1Factory.eINSTANCE.create(stencil.type);
+        TCmmnElement elt = (TCmmnElement) CMMNFactory.eINSTANCE.create(stencil.type);
         if (elt instanceof TPlanItemDefinition) {
             if (stencilId.startsWith("Discretionary")) {
-                TDiscretionaryItem di = Cmmn1Factory.eINSTANCE.createTDiscretionaryItem();
+                TDiscretionaryItem di = CMMNFactory.eINSTANCE.createTDiscretionaryItem();
                 di.setDefinitionRef((TPlanItemDefinition) elt);
                 elt = di;
             } else {
-                TPlanItem pi = Cmmn1Factory.eINSTANCE.createTPlanItem();
+                TPlanItem pi = CMMNFactory.eINSTANCE.createTPlanItem();
                 pi.setDefinitionRef((TPlanItemDefinition) elt);
                 elt = pi;
             }
         } else if (elt instanceof TCaseFileItem) {
-            ((TCaseFileItem) elt).setDefinitionRef(Cmmn1Factory.eINSTANCE.createTCaseFileItemDefinition());
+            ((TCaseFileItem) elt).setDefinitionRef(CMMNFactory.eINSTANCE.createTCaseFileItemDefinition());
         }
         return elt;
     }
@@ -128,11 +128,11 @@ public enum CmmnStencil implements StencilInfo {
             possibilities = DISCRETIONARY_ITEMS;
         } else if (me instanceof TSentry) {
             throw new IllegalArgumentException("Sentries do not have consistent stencilIds");
-        } else if (de instanceof Edge) {
-            Edge edge = (Edge) de;
-            if (edge.getSource().getModelElement() instanceof TCaseFileItem && edge.getTarget().getModelElement() instanceof TCaseFileItem) {
-                TCaseFileItem source = (TCaseFileItem) edge.getSource().getModelElement();
-                TCaseFileItem target = (TCaseFileItem) edge.getTarget().getModelElement();
+        } else if (de instanceof CMMNEdge) {
+            CMMNEdge edge = (CMMNEdge) de;
+            if (edge.getSourceShape().getCmmnElement() instanceof TCaseFileItem && edge.getTargetShape().getCmmnElement() instanceof TCaseFileItem) {
+                TCaseFileItem source = (TCaseFileItem) edge.getSourceShape().getCmmnElement();
+                TCaseFileItem target = (TCaseFileItem) edge.getTargetShape().getCmmnElement();
                 if (source.getChildren() != null && source.getChildren().getCaseFileItem().contains(target)) {
                     return CASE_FILE_ITEM_CHILD;
                 } else if (source.getTargetRefs().contains(target)) {
@@ -172,6 +172,6 @@ public enum CmmnStencil implements StencilInfo {
     public static CmmnStencil[] DISCRETIONARY_ITEMS = new CmmnStencil[] { DISCRETIONARY_CASE_TASK, DISCRETIONARY_HUMAN_TASK, DISCRETIONARY_PROCESS_TASK,
             DISCRETIONARY_STAGE };
     public static CmmnStencil[] PLAN_ITEMS = new CmmnStencil[] { CASE_TASK, HUMAN_TASK, PROCESS_TASK, STAGE, MILESTONE, USER_EVENT, TIMER_EVENT };
-    public static CmmnStencil[] DIRECT_ITEMS = new CmmnStencil[] { CASE, CMMN_DIAGRAM, CASE_FILE_ITEM_ON_PART, CASE_FILE_ITEM, PROPERTY,
+    public static CmmnStencil[] DIRECT_ITEMS = new CmmnStencil[] { CASE_DIAGRAM, CASE_FILE_ITEM_ON_PART, CASE_FILE_ITEM, PROPERTY,
             CASE_FILE_ITEM_START_TRIGGER };
 }

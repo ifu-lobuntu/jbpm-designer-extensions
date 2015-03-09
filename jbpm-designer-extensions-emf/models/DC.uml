@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="DC" name="DC" URI="http://www.omg.org/spec/DD/20131001/DC">
+  <packagedElement xmi:type="uml:DataType" xmi:id="Color" name="Color">
+    <ownedComment xmi:id="Color-_ownedComment.0" annotatedElement="Color"/>
+    <ownedRule xmi:id="Color-valid_rgb" name="valid_rgb" constrainedElement="Color">
+      <ownedComment xmi:id="Color-valid_rgb-_ownedComment.0" annotatedElement="Color-valid_rgb"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Color-valid_rgb-_specification" name="">
+        <language>OCL</language>
+        <body>red >= 0 and red &lt;=255 and green >= 0 and green &lt;=255 and blue >= 0 and blue &lt;=255</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="Color-red" name="red">
+      <ownedComment xmi:id="Color-red-_ownedComment.0" annotatedElement="Color-red"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851422_999329_1759" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851422_104790_1760" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Color-green" name="green">
+      <ownedComment xmi:id="Color-green-_ownedComment.0" annotatedElement="Color-green"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851421_782970_1749" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851421_906263_1750" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Color-blue" name="blue">
+      <ownedComment xmi:id="Color-blue-_ownedComment.0" annotatedElement="Color-blue"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Integer"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851420_224706_1743" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851420_933173_1744" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Point" name="Point">
+    <ownedComment xmi:id="Point-_ownedComment.0" annotatedElement="Point"/>
+    <ownedAttribute xmi:id="Point-x" name="x">
+      <ownedComment xmi:id="Point-x-_ownedComment.0" annotatedElement="Point-x"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851422_571182_1757" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851422_937304_1758" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="Point-x-_defaultValue" name=""/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Point-y" name="y">
+      <ownedComment xmi:id="Point-y-_ownedComment.0" annotatedElement="Point-y"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851422_539833_1755" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851422_837930_1756" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="Point-y-_defaultValue" name=""/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Dimension" name="Dimension">
+    <ownedComment xmi:id="Dimension-_ownedComment.0" annotatedElement="Dimension"/>
+    <ownedRule xmi:id="Dimension-non_negative_dimension" name="non_negative_dimension" constrainedElement="Bounds">
+      <ownedComment xmi:id="Dimension-non_negative_dimension-_ownedComment.0" annotatedElement="Dimension-non_negative_dimension"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Dimension-non_negative_dimension-_specification" name="">
+        <language>OCL</language>
+        <body>width >= 0 and height >=0</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="Dimension-width" name="width">
+      <ownedComment xmi:id="Dimension-width-_ownedComment.0" annotatedElement="Dimension-width"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851421_221101_1751" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851421_857390_1752" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Dimension-height" name="height">
+      <ownedComment xmi:id="Dimension-height-_ownedComment.0" annotatedElement="Dimension-height"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851421_999930_1747" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851421_205160_1748" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="Bounds" name="Bounds">
+    <ownedComment xmi:id="Bounds-_ownedComment.0" annotatedElement="Bounds"/>
+    <ownedRule xmi:id="Bounds-non_negative_size" name="non_negative_size" constrainedElement="Bounds">
+      <ownedComment xmi:id="Bounds-non_negative_size-_ownedComment.0" annotatedElement="Bounds-non_negative_size"/>
+      <specification xmi:type="uml:OpaqueExpression" xmi:id="Bounds-non_negative_size-_specification" name="">
+        <language>OCL</language>
+        <body>width >= 0 and height >=0</body>
+      </specification>
+    </ownedRule>
+    <ownedAttribute xmi:id="Bounds-x" name="x">
+      <ownedComment xmi:id="Bounds-x-_ownedComment.0" annotatedElement="Bounds-x"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851420_506742_1741" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851420_807452_1742" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="Bounds-x-_defaultValue" name=""/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Bounds-y" name="y">
+      <ownedComment xmi:id="Bounds-y-_ownedComment.0" annotatedElement="Bounds-y"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851420_544511_1745" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851420_13386_1746" name="" value="1"/>
+      <defaultValue xmi:type="uml:LiteralReal" xmi:id="Bounds-y-_defaultValue" name=""/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Bounds-width" name="width">
+      <ownedComment xmi:id="Bounds-width-_ownedComment.0" annotatedElement="Bounds-width"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851422_168805_1761" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851422_344199_1762" name="" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="Bounds-height" name="height">
+      <ownedComment xmi:id="Bounds-height-_ownedComment.0" annotatedElement="Bounds-height"/>
+      <type xmi:type="uml:PrimitiveType" href="PrimitiveTypes.uml#Real"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_1_625020d_1425632851421_18504_1753" name="" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_1_625020d_1425632851421_730314_1754" name="" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="AlignmentKind" name="AlignmentKind">
+    <ownedComment xmi:id="AlignmentKind-_ownedComment.0" annotatedElement="AlignmentKind"/>
+    <ownedLiteral xmi:id="AlignmentKind-start" name="start">
+      <ownedComment xmi:id="AlignmentKind-start-_ownedComment.0" annotatedElement="AlignmentKind-start"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="AlignmentKind-end" name="end">
+      <ownedComment xmi:id="AlignmentKind-end-_ownedComment.0" annotatedElement="AlignmentKind-end"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="AlignmentKind-center" name="center">
+      <ownedComment xmi:id="AlignmentKind-center-_ownedComment.0" annotatedElement="AlignmentKind-center"/>
+    </ownedLiteral>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="KnownColor" name="KnownColor">
+    <ownedComment xmi:id="KnownColor-_ownedComment.0" annotatedElement="KnownColor"/>
+    <ownedLiteral xmi:id="KnownColor-maroon" name="maroon">
+      <ownedComment xmi:id="KnownColor-maroon-_ownedComment.0" annotatedElement="KnownColor-maroon"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-red" name="red">
+      <ownedComment xmi:id="KnownColor-red-_ownedComment.0" annotatedElement="KnownColor-red"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-orange" name="orange">
+      <ownedComment xmi:id="KnownColor-orange-_ownedComment.0" annotatedElement="KnownColor-orange"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-yellow" name="yellow">
+      <ownedComment xmi:id="KnownColor-yellow-_ownedComment.0" annotatedElement="KnownColor-yellow"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-olive" name="olive">
+      <ownedComment xmi:id="KnownColor-olive-_ownedComment.0" annotatedElement="KnownColor-olive"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-purple" name="purple">
+      <ownedComment xmi:id="KnownColor-purple-_ownedComment.0" annotatedElement="KnownColor-purple"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-fuchsia" name="fuchsia">
+      <ownedComment xmi:id="KnownColor-fuchsia-_ownedComment.0" annotatedElement="KnownColor-fuchsia"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-white" name="white">
+      <ownedComment xmi:id="KnownColor-white-_ownedComment.0" annotatedElement="KnownColor-white"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-lime" name="lime">
+      <ownedComment xmi:id="KnownColor-lime-_ownedComment.0" annotatedElement="KnownColor-lime"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-green" name="green">
+      <ownedComment xmi:id="KnownColor-green-_ownedComment.0" annotatedElement="KnownColor-green"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-navy" name="navy">
+      <ownedComment xmi:id="KnownColor-navy-_ownedComment.0" annotatedElement="KnownColor-navy"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-blue" name="blue">
+      <ownedComment xmi:id="KnownColor-blue-_ownedComment.0" annotatedElement="KnownColor-blue"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-aqua" name="aqua">
+      <ownedComment xmi:id="KnownColor-aqua-_ownedComment.0" annotatedElement="KnownColor-aqua"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-teal" name="teal">
+      <ownedComment xmi:id="KnownColor-teal-_ownedComment.0" annotatedElement="KnownColor-teal"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-black" name="black">
+      <ownedComment xmi:id="KnownColor-black-_ownedComment.0" annotatedElement="KnownColor-black"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-silver" name="silver">
+      <ownedComment xmi:id="KnownColor-silver-_ownedComment.0" annotatedElement="KnownColor-silver"/>
+    </ownedLiteral>
+    <ownedLiteral xmi:id="KnownColor-gray" name="gray">
+      <ownedComment xmi:id="KnownColor-gray-_ownedComment.0" annotatedElement="KnownColor-gray"/>
+    </ownedLiteral>
+  </packagedElement>
+</uml:Package>

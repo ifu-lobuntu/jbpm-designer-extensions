@@ -24,14 +24,13 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.Property;
 import org.eclipse.bpmn2.impl.Bpmn2PackageImpl;
-import org.eclipse.cmmn1.TCase;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.jboss.drools.impl.DroolsPackageImpl;
 import org.jbpm.designer.bpmn2.resource.JBPMBpmn2ResourceFactoryImpl;
-import org.jbpm.designer.emf.util.IEmfDiagramProfile;
-import org.jbpm.designer.emf.util.VFSUriHandler;
+import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.VFSUriHandler;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.UriUtils;
 import org.jbpm.designer.repository.filters.FilterByExtension;
@@ -40,6 +39,7 @@ import org.jbpm.designer.util.Base64Backport;
 import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.jbpm.designer.web.server.ServletUtil;
 import org.json.JSONObject;
+import org.omg.cmmn.TCase;
 
 import bpsim.impl.BpsimPackageImpl;
 

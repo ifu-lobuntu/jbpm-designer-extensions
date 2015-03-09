@@ -1,24 +1,47 @@
 package org.jbpm.designer.cmmn1.impl;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.util.HashMap;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.cmmn1.Cmmn1Package;
-import org.eclipse.cmmn1.util.Cmmn1ResourceFactoryImpl;
-import org.eclipse.cmmndi.CmmnDiPackage;
-import org.eclipse.dd.cmmn.dc.DcPackage;
-import org.eclipse.dd.cmmn.di.DiPackage;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.jbpm.designer.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.emf.util.JsonToEmfHelper;
-import org.jbpm.designer.emf.util.ShapeMap;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
+import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
+import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.type.Cmmn1TypeDefinition;
+import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.CMMNPackage;
+import org.omg.cmmn.DocumentRoot;
+import org.omg.cmmn.TCase;
+import org.omg.cmmn.TDefinitions;
+import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TStage;
+import org.omg.cmmn.util.CMMNResourceFactoryImpl;
+import org.omg.cmmn.util.CMMNResourceImpl;
+import org.omg.dd.dc.Bounds;
+import org.omg.dd.dc.DCFactory;
+import org.omg.dd.dc.DCPackage;
+import org.omg.dd.di.DIPackage;
+import org.omg.dd.di.DiagramElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
@@ -37,6 +60,33 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
 
     public CmmnProfileImpl() {
     }
+
+    protected void populateModelStub(XMLResource inputResource) {
+        TDefinitions inputDefinitions = CMMNFactory.eINSTANCE.createTDefinitions();
+        DocumentRoot root = CMMNFactory.eINSTANCE.createDocumentRoot();
+        root.setDefinitions(inputDefinitions);
+        CMMNDiagram inputDiagram = CMMNDIFactory.eINSTANCE.createCMMNDiagram();
+        inputDefinitions.getDiagram().add(inputDiagram);
+        inputResource.getContents().add(root);
+        TCase tCase = createCase(inputDefinitions);
+        inputDefinitions.getCase().add(tCase);
+        inputDiagram.setCmmnElement(tCase);
+        tCase.setCasePlanModel(CMMNFactory.eINSTANCE.createTStage());
+        TStage casePlanModel = tCase.getCasePlanModel();
+        casePlanModel.setAutoComplete(true);
+        tCase.setName("${processid}");
+        tCase.setId("${processid}");
+    }
+
+
+    private TCase createCase(TDefinitions inputDefinitions) {
+        TCase tCase = CMMNFactory.eINSTANCE.createTCase();
+        inputDefinitions.getCase().add(tCase);
+        inputDefinitions.setTargetNamespace("http://asdf.com/");
+        tCase.setCaseFileModel(CMMNFactory.eINSTANCE.createTCaseFile());
+        return tCase;
+    }
+
 
     @Override
     public String getStencilSetPath() {
@@ -59,15 +109,14 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         return "http://b3mn.org/stencilset/cmmn1.0#";
     }
 
-
     @Override
     public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put(Cmmn1Package.eNS_URI, Cmmn1Package.eINSTANCE);
-        resourceSet.getPackageRegistry().put(CmmnDiPackage.eNS_URI, CmmnDiPackage.eINSTANCE);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cmmn", new Cmmn1ResourceFactoryImpl());
-        resourceSet.getPackageRegistry().put(DiPackage.eNS_URI, DiPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DcPackage.eNS_URI, DcPackage.eINSTANCE);
-        return new Cmmn1ResourceFactoryImpl();
+        resourceSet.getPackageRegistry().put(CMMNPackage.eNS_URI, CMMNPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(CMMNDIPackage.eNS_URI, CMMNDIPackage.eINSTANCE);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cmmn", new CMMNResourceFactoryImpl());
+        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
+        return new CMMNResourceFactoryImpl();
     }
 
     @Override
@@ -77,7 +126,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
 
     @Override
     public JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource) {
-        return new CmmnJsonToEmfHelper( resource);
+        return new CmmnJsonToEmfHelper(resource);
     }
 
     @Override
@@ -87,8 +136,9 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
 
     @Override
     public String getDiagramStencilId() {
-        return "CMMNDiagram";
+        return CmmnStencil.CASE_DIAGRAM.getStencilId();
     }
+
     @Override
     public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         return calledElementHelper.processRequest(req, resp, action, processId, this);
