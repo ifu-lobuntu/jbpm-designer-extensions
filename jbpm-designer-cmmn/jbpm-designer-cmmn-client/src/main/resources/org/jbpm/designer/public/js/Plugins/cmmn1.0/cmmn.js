@@ -32,7 +32,12 @@ ORYX.Plugins.CMMN = Clazz.extend(
 	},
 	handlePropertyChanged : function(event) {
 		//TODO : clean this yp
-		if (event["key"] == "oryx-autocomplete" || event["key"] == "oryx-manualactivationrulebody" || event["key"] == "oryx-repetitionrulebody"
+		if (event["key"] == "oryx-casefileitemstructureref"){
+			var name=event.elements[0].properties["oryx-casefileitemstructureref"];
+			name=name.slice(name.indexOf("::")+2,name.indexOf("|"));
+			event.elements[0].setProperty("oryx-name", name,true);
+			event.elements[0].refresh();
+		}else if (event["key"] == "oryx-autocomplete" || event["key"] == "oryx-manualactivationrulebody" || event["key"] == "oryx-repetitionrulebody"
 			|| event["key"] == "oryx-requiredrulebody" || event["key"] == "oryx-propertytype" || event["key"] == "oryx-name" || event["key"] == "oryx-standardevent") {
 			this.updateDecorations(event.elements[0]);
 		}

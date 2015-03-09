@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.util.HashMap;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Any;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +24,7 @@ import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
@@ -111,6 +113,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
 
     @Override
     public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
+        super.getOtherProfile("classdiagram").prepareResourceSet(resourceSet);
         resourceSet.getPackageRegistry().put(CMMNPackage.eNS_URI, CMMNPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put(CMMNDIPackage.eNS_URI, CMMNDIPackage.eINSTANCE);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cmmn", new CMMNResourceFactoryImpl());

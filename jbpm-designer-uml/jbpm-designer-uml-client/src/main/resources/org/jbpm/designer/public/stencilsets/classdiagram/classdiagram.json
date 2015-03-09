@@ -1,6 +1,6 @@
 {
-	"title" : "VDML Activity Network",
-	"namespace" : "http://b3mn.org/stencilset/emptyset.0#",
+	"title" : "Class Diagram",
+	"namespace" : "http://b3mn.org/stencilset/classdiagram.0#",
 	"description" : "This is an empty stencil set to start new diagrams with",
 	"edgeTargetBinding" : "targetShape",
 	"modelElementBinding" : "umlElement",
@@ -244,7 +244,7 @@
 				"title" : "Class",
 				"position" : 1,
 				"groups" : [
-					"Elements"
+					"Types"
 				],
 				"roles" : [
 					"class","classifier"
@@ -269,7 +269,7 @@
 				"title" : "Interface",
 				"position" : 1,
 				"groups" : [
-					"Elements"
+					"Types"
 				],
 				"roles" : [
 					"interface","classifier"
@@ -294,10 +294,10 @@
 				"title" : "Enumeration",
 				"position" : 1,
 				"groups" : [
-					"Elements"
+					"Types"
 				],
 				"roles" : [
-					"enumeration","classifier","localStyle"
+					"enumeration","classifier"
 				],
 				"description" : "A Class",
 				"view" : "enumeration.svg",
@@ -308,7 +308,7 @@
 							}
 				],
 			    "propertyPackages" : [
-						"elementBase"
+						"elementBase","localStyle"
 				],
 				"properties" : [
 				]
@@ -319,7 +319,7 @@
 				"title" : "Property",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Features"
 				],
 				"roles" : [
 					"property"
@@ -333,6 +333,16 @@
 						"elementBase","localStyle"
 				],
 				"properties" : [
+	                {
+						"id" : "propertyType",
+						"type" : "propertytype",
+						"title" : "Type",
+						"value" : "",
+						"description" : "The Type of the Property.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : ""
+	                }
 				]
 			},
 			{
@@ -341,7 +351,7 @@
 				"title" : "EnumerationLiteral",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Features"
 				],
 				"roles" : [
 					"enumerationLiteral"
@@ -363,7 +373,7 @@
 				"title" : "Operation",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Features"
 				],
 				"roles" : [
 					"operation"
@@ -385,7 +395,7 @@
 				"title" : "OwnedAttribute",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Compartments"
 				],
 				"roles" : [
 					"ownedAttribute"
@@ -395,7 +405,7 @@
 				"icon" : "owned_attribute.png",
 				"layout" : [
 							{
-								"type" : "layout.compartment.list"
+								"type" : "layout.list"
 							}
 				],
 			    "propertyPackages" : [
@@ -410,7 +420,7 @@
 				"title" : "OwnedLiteral",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Compartments"
 				],
 				"roles" : [
 					"ownedLiteral"
@@ -432,7 +442,7 @@
 				"title" : "OwnedOperation",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Compartments"
 				],
 				"roles" : [
 					"ownedOperation"
@@ -454,7 +464,7 @@
 				"title" : "Composition",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Associations"
 				],
 				"roles" : [
 					"composition"
@@ -477,7 +487,7 @@
 				"title" : "Association",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Associations"
 				],
 				"roles" : [
 					"association"
@@ -499,9 +509,11 @@
 				"type" : "edge",
 				"id" : "Generalization",
 				"title" : "Generalization",
+				"sourceBinding":"specific",
+				"targetBinding":"general",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Inheritance"
 				],
 				"roles" : [
 					"generalization"
@@ -521,9 +533,11 @@
 				"type" : "edge",
 				"id" : "InterfaceRealization",
 				"title" : "InterfaceRealization",
+				"sourceBinding" : "implementingClassifier",
+				"targetBinding" : "contract",
 				"position" : 2,
 				"groups" : [
-					"Elements"
+					"Inheritance"
 				],
 				"roles" : [
 					"interfaceRealization"
@@ -639,7 +653,7 @@
 				{
 					"role" : "diagram",
 					"contains" : [
-						"class","interface"
+						"class","interface","enumeration"
 					]
 				},
 				{

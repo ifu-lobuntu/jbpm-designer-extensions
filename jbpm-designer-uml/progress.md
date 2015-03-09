@@ -8,30 +8,38 @@ Bidi Association
 Composition
 Generalization
 
+##Property Editors
+ - Property.type
+
 
 #In Progress
 
 #Todo
+
+#Misc
+Importing external models
+
 ##Stencils:
-Unidirectional Association
+* - Unidirectional Association
+* - Enumeration
+* - Owned Literal
+* - Enumeration Literal
+* - ClassReference
+* - InterfaceReference
+* - EnumerationReference
 Owned Operation
 Operation
-Enumeration
-Owned Literal
-Enumeration Literal
-Import
-ClassReference
-InterfaceReference
-EnumerationReference
 
 ##Property Editors
-Property.type
+
 End.qualifier
 
-upper
-lower
-isOrdered
-isUnique
+* - upper
+* - lower
+
+
+* - isOrdered
+* - isUnique
 
 defaultValue
 redefinedProperties

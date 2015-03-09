@@ -2,6 +2,8 @@ package org.jbpm.designer.cmmn1.impl;
 
 import java.util.ArrayList;
 
+import javax.xml.namespace.QName;
+
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -9,12 +11,15 @@ import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.Property;
 import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Package;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
@@ -72,6 +77,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     public CmmnJsonToEmfHelper(ShapeMap resource) {
         this.shapeMap = resource;
     }
+
     @Override
     public DiagramElement createElements(Shape shape) {
         DiagramElement de = CmmnStencil.createDiagramElement(shape.getStencilId());
@@ -84,6 +90,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         de.setLocalStyle(CMMNDIFactory.eINSTANCE.createCMMNStyle());
         return de;
     }
+
     private EObject getModelElement(String id) {
         return shapeMap.getModelElement(id);
     }
@@ -170,6 +177,22 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
         getDefinitions().getCaseFileItemDefinition().add(object.getDefinitionRef());
+        String structureRef = sourceShape.getProperty("caseFileItemStructureRef");
+        if(structureRef!=null && structureRef.indexOf('|')>0){
+            String qName=structureRef.split("\\|")[0];
+            String uri=structureRef.split("\\|")[1];
+            URI platformResourceUri = URI.createPlatformResourceURI(uri, true);
+            org.eclipse.uml2.uml.Package pkg= (Package) object.eResource().getResourceSet().getResource(platformResourceUri,true).getContents().get(0);
+            TreeIterator<EObject> it = pkg.eAllContents();
+            while (it.hasNext()) {
+                EObject eObject = (EObject) it.next();
+                if(eObject instanceof Classifier && ((Classifier) eObject).getQualifiedName().equals(qName)){
+                    object.getDefinitionRef().setStructureRef(new QName(platformResourceUri.toString(), pkg.eResource().getURIFragment(eObject)));
+                    Classifier c=(Classifier) eObject;
+                    object.setName(c.getName());
+                }
+            }
+        }
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(sr.getResourceId());
             if (shape.getStencilId().equals(CmmnStencil.CASE_FILE_ITEM_CHILD.getStencilId())) {
@@ -436,6 +459,16 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         object.getDefinitionRef().setName(object.getName());
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(sr.getResourceId());
+            if (shape.getStencilId().equals(CmmnStencil.EXIT_SENTRY.getStencilId())) {
+                for (ShapeReference onPartReference : shape.getOutgoing()) {
+                    Shape onPartShape = shapeMap.get(onPartReference.getResourceId());
+                    if (onPartShape.getStencilId().equals(CmmnStencil.PLAN_ITEM_ON_PART.getStencilId())) {
+                        TPlanItemOnPart onPart=(TPlanItemOnPart) getModelElement(onPartShape.getResourceId());
+                        onPart.setSentryRef((TSentry) shapeMap.getModelElement(sr.getResourceId()));
+                        onPart.setSourceRef(object);
+                    }
+                }
+            }
             if (shape.getStencilId().equals(CmmnStencil.PLAN_ITEM_ON_PART.getStencilId())
                     || shape.getStencilId().equals(CmmnStencil.EVENT_ON_PART.getStencilId())) {
                 TPlanItemOnPart onPart = (TPlanItemOnPart) this.shapeMap.getModelElement(sr.getResourceId());
@@ -496,7 +529,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTSentry(TSentry object) {
-
         return super.caseTSentry(object);
     }
 

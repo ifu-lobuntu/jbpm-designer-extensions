@@ -31,4 +31,6 @@ public interface IEmfDiagramProfile extends IExtensionDiagramProfile,IDiagramPro
 
     boolean useIdAttribute();
 
+    IEmfDiagramProfile getOtherProfile(String string);
+
 }

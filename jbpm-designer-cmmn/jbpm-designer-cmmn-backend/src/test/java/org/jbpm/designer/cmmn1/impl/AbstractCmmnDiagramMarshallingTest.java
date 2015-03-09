@@ -252,13 +252,29 @@ public class AbstractCmmnDiagramMarshallingTest {
         return fillColor;
     }
     protected TSentry addEntrySentry(String sentryName, TDiscretionaryItem htdi) {
+        EList<TSentry> sentries = htdi.getEntryCriteriaRefs();
+        return addSentry(sentryName, htdi, sentries);
+    }
+    private TSentry addSentry(String sentryName, TCmmnElement htdi, EList<TSentry> sentries) {
         TSentry sentry = CMMNFactory.eINSTANCE.createTSentry();
         sentry.setName(sentryName);
-        ((TStage)htdi.eContainer().eContainer()).getSentry().add(sentry);
-        htdi.getEntryCriteriaRefs().add(sentry);
+        TCmmnElement stage=(TCmmnElement) htdi.eContainer();
+        while(!(stage instanceof TStage)){
+            stage=(TCmmnElement) stage.eContainer();
+        }
+        ((TStage)stage).getSentry().add(sentry);
+        sentries.add(sentry);
         BoundariedShape taskShape = (BoundariedShape)this.elementDiagramElementMap.get(htdi);
         taskShape.getBoundaryShapes().add(addShapeFor(tCase,sentry));
         return sentry;
+    }
+    protected TSentry addExitSentry(String sentryName, TDiscretionaryItem htdi) {
+        EList<TSentry> sentries = htdi.getExitCriteriaRefs();
+        return addSentry(sentryName, htdi, sentries);
+    }
+    protected TSentry addExitSentry(String sentryName, TPlanItem htdi) {
+        EList<TSentry> sentries = htdi.getExitCriteriaRefs();
+        return addSentry(sentryName, htdi, sentries);
     }
 
 }

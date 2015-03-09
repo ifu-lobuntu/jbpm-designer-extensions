@@ -93,13 +93,13 @@ public class GenericEcoreComparator {
         }
     }
 
-    private void assertEquals(String string, Object eClass, Object eClass2) {
-        if(eClass!=null && eClass2 !=null){
-            if(!eClass.equals(eClass2)){
-                throw new AssertionError(string + ": " + eClass +"<>" + eClass2);
+    private void assertEquals(String string, Object expected, Object found) {
+        if(expected!=null && found !=null){
+            if(!expected.equals(found)){
+                throw new AssertionError(string + ": " + expected +"<>" + found);
             }
-        }else if(!(eClass == null && eClass2==null)){
-            throw new AssertionError(string + ": " + eClass +"<>" + eClass2);
+        }else if(!(expected == null && found==null)){
+            throw new AssertionError(string + ": " + expected +"<>" + found);
         }
     }
 

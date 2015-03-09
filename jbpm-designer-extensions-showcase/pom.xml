@@ -106,6 +106,14 @@
       <artifactId>uberfire-metadata-api</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-backend-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-commons-editor-api</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.kie.uberfire</groupId>
       <artifactId>kie-uberfire-social-activities-api</artifactId>
     </dependency>

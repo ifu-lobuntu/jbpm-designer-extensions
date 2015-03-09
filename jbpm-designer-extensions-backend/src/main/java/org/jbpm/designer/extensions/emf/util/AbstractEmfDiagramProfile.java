@@ -12,6 +12,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -69,14 +71,17 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
 
     @Inject
     private VFSService vfsServices;
-    @Inject
-    private Event<PathEvent> pathEvent;
 
     @Inject
     Event<DesignerNotificationEvent> notification;
     @Inject
     User user;
     URIHandler uriHandler;
+    
+    @Inject
+    @Any
+    Instance<IEmfDiagramProfile> otherProfiles;
+
 
     private LinkedStencilSet stencilSetValidator;
 
@@ -322,7 +327,7 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
 
     @Override
     public void logInfo(String string) {
-        _logger.info(string);
+        System.out.println(string);
     }
 
     @Override
@@ -343,7 +348,7 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
 
     public URIHandler getUriHandler() {
         if(uriHandler==null){
-            uriHandler=new VFSUriHandler(repository,this.pathEvent);
+            uriHandler=new VFSUriHandler(repository);
         }
         return uriHandler;
     }
@@ -354,5 +359,13 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     @Override
     public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         return false;
+    }
+    public IEmfDiagramProfile getOtherProfile(String string) {
+        for(IEmfDiagramProfile e:otherProfiles){
+            if(e.getName().equals(string)){
+                return e;
+            }
+        }
+        return null;
     }
 }

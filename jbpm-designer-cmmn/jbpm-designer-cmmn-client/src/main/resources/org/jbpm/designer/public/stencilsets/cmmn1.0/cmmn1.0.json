@@ -728,7 +728,7 @@
 					"type" : "Integer",
 					"title" : "Previous Width",
 					"viewBinding" : "previousWidth",
-					"value" : 100,
+					"value" : 200,
 					"description" : "Previous Width ",
 					"readonly" : false,
 					"optional" : false,
@@ -1212,6 +1212,28 @@
 				],
 				"properties" : [
 						{
+							"id" : "caseFileItemStructureRef",
+							"type" : "classref",
+							"title" : "Case File Item Structure Reference",
+							"value" : "",
+							"description" : "",
+							"readonly" : false,
+							"optional" : true,
+							"refToView" : [],
+							"length" : ""
+						},
+						{
+							"id" : "isRootItem",
+							"type" : "Boolean",
+							"title" : "Is Root Item",
+							"value" : "",
+							"description" : "Indicates that this Case File Item is stored at the root of the Case File",
+							"readonly" : false,
+							"optional" : true,
+							"refToView" : [],
+							"length" : ""
+						},
+						{
 							"id" : "caseFileItemDefinitionName",
 							"type" : "String",
 							"title" : "Case File Item Definition Name",
@@ -1507,6 +1529,7 @@
 				"type" : "node",
 				"id" : "ExitSentry",
 				"title" : "Exit Sentry",
+				"boundaryBinding":"exitCriteriaRefs",
 				"groups" : [
 					"Sentries"
 				],
@@ -1525,6 +1548,7 @@
 				"type" : "node",
 				"id" : "EntrySentry",
 				"title" : "EntrySentry",
+				"boundaryBinding":"entryCriteriaRefs",
 				"groups" : [
 					"Sentries"
 				],

@@ -18,7 +18,7 @@ public class SentryMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
     @Test
     public void testPlanItemOnPart() throws Exception {
         TPlanItem htpi = addHumanTaskPlanItem(tCase, casePlanModel);
-        TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(tCase,casePlanModel);
+        TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(tCase, casePlanModel);
         TSentry sentry = addEntrySentry("Waiting for Human Task", htdi);
         TPlanItemOnPart onPart = CMMNFactory.eINSTANCE.createTPlanItemOnPart();
         onPart.setSourceRef(htpi);
@@ -27,6 +27,22 @@ public class SentryMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
         addEdge(onPart, htpi, sentry);
         assertOutputValid();
     }
+
+    @Test
+    public void testPlanItemOnPartWithSentryRef() throws Exception {
+        TPlanItem htpi = addHumanTaskPlanItem(tCase, casePlanModel);
+        TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(tCase, casePlanModel);
+        TSentry fromSentry = addExitSentry("Waiting for God", htpi);
+        TSentry toSentry = addEntrySentry("Waiting for Human Task", htdi);
+        TPlanItemOnPart onPart = CMMNFactory.eINSTANCE.createTPlanItemOnPart();
+        onPart.setSourceRef(htpi);
+        onPart.setSentryRef(fromSentry);
+        onPart.setStandardEvent(PlanItemTransition.COMPLETE);
+        toSentry.getOnPart().add(onPart);
+        addEdge(onPart, fromSentry, toSentry);
+        assertOutputValid();
+    }
+
     @Test
     public void testCaseFileItemOnPart() throws Exception {
         TCaseFileItemDefinition def = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition();
@@ -39,7 +55,7 @@ public class SentryMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
         cfi.setName("MyCaseFileItem");
         cfi.setMultiplicity(MultiplicityEnum.ONE_OR_MORE);
         addShapeFor(tCase, cfi);
-        TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(tCase,casePlanModel);
+        TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(tCase, casePlanModel);
         TSentry sentry = addEntrySentry("Waiting for Human Task", htdi);
         TCaseFileItemOnPart onPart = CMMNFactory.eINSTANCE.createTCaseFileItemOnPart();
         onPart.setSourceRef(cfi);

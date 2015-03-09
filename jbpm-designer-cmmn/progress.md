@@ -58,9 +58,12 @@
 ##1.2. In Progress
 
 ##1.3. Todo:
+##Bugs
+ * - When we link an exitSentry to and entrySentry, the sourceRef is missing.
+ 
 ## Misc
- * - Import CaseFile from UML Model
- * - UML Classes as CaseFileItems - select Root CaseFileItems from Containment Tree
+ * - Update all property editors to read UML rather than CaseFile, or sync the CaseFile from UML model(s) on load
+ * - Use structureRef to determine where the referenced UML class is  
  * - Remove git version from platformURIs
  - See if there is a way to have a consistent unique id for a resource irrespective of location
 
@@ -70,7 +73,7 @@
 ###Stencils for:
  - Connector from HumanTask to related DiscretionaryItems in its PlanningTable
  - PlanFragment
- - Imported CaseFileItem (From UML)
+ * - Imported Root CaseFileItem (From UML)
 
 ###Decorators:
  * - PlanItemTable for Stages

@@ -147,7 +147,7 @@ public class Shape implements Stencil, Bounded {
      *         name
      */
     public String getProperty(String name) {
-        return this.getProperties().get(name);
+        return this.getProperties().get(name.toLowerCase());
     }
 
     /**
@@ -185,7 +185,7 @@ public class Shape implements Stencil, Bounded {
      *         indicate that the map previously associated null with key.)
      */
     public String putProperty(String key, String value) {
-        String r = this.getProperties().put(key, value);
+        String r = this.getProperties().put(key.toLowerCase(), value);
         return r;
     }
 

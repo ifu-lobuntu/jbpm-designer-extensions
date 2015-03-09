@@ -204,7 +204,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         EObject sourceModelElement = getModelElement(edge.getSource());
         if (hasValue(ls.getStencil().getTargetBinding())) {
             EObject elementToModify;
-            if (sourceModelElement != null) {
+            if (modelElement == null) {
                 // Directly set the target on the source
                 elementToModify = sourceModelElement;
             } else {
@@ -216,12 +216,13 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         }
         if (hasValue(ls.getStencil().getSourceBinding()) && sourceModelElement != null) {
             if (modelElement != null) {
-                writeBinding(modelElement, ls.getStencil().getTargetBinding(), sourceModelElement);
+                writeBinding(modelElement, ls.getStencil().getSourceBinding(), sourceModelElement);
             }
         }
     }
 
     private void linkEdgesRecursively(DiagramElement de, Shape shape) {
+        System.out.println(shape.getStencilId() + " " +shape.getOutgoing().size());
         if (de instanceof Edge) {
             List<ShapeReference> outgoings = shape.getOutgoing();
             Edge edge = (Edge) de;
@@ -245,6 +246,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                         throw new IllegalStateException("The type " + edge.eClass() + " does not have feature '" + ss.getEdgeTargetBinding() + "'");
                     }
                     edge.eSet(sourceFeature, de);
+                    
                 } else if (de instanceof BoundariedShape && edge instanceof org.omg.dd.di.Shape) {
                     ((BoundariedShape) de).getBoundaryShapes().add((org.omg.dd.di.Shape) edge);
                 }

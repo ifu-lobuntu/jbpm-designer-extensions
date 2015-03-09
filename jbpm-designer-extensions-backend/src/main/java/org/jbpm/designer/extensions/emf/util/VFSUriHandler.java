@@ -18,22 +18,17 @@ import org.jbpm.designer.server.service.PathEvent;
 public class VFSUriHandler extends PlatformResourceURIHandlerImpl {
 
     private Repository repository;
-    private Event<PathEvent> pathEvent;
 
-    public VFSUriHandler(Repository repository,Event<PathEvent> event) {
+    public VFSUriHandler(Repository repository) {
         super();
-        this.pathEvent=event;
         this.repository = repository;
     }
 
     @Override
     public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
         String relativeName = getRelativePath(uri);
-        pathEvent.fire(new PathEvent(relativeName));
-        if(relativeName.contains("@")){
-            relativeName=relativeName.substring(relativeName.indexOf("/", relativeName.indexOf('@')));
-        }
-        Asset asset = repository.loadAssetFromPath(relativeName);
+        @SuppressWarnings("unchecked")
+        Asset<String> asset = repository.loadAssetFromPath(relativeName);
         if(asset!=null){
             return new ByteArrayInputStream(asset.getAssetContent().toString().getBytes());
         }
@@ -42,7 +37,7 @@ public class VFSUriHandler extends PlatformResourceURIHandlerImpl {
     }
 
     private String getRelativePath(URI uri) {
-        return uri.toPlatformString(true).substring(1);//chop off the leading "/"
+        return uri.toPlatformString(true);
     }
 
     @Override

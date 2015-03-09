@@ -22,6 +22,7 @@ import org.omg.dd.di.DiagramElement;
 public enum ClassDiagramStencil implements StencilInfo {
     CLASS_DIAGRAM(UMLPackage.eINSTANCE.getPackage(), UMLDIPackage.eINSTANCE.getUMLDiagram(), "ClassDiagram"),
     CLASS(UMLPackage.eINSTANCE.getClass_(), UMLDIPackage.eINSTANCE.getUMLShape(), "Class"),
+    ENUMERATION(UMLPackage.eINSTANCE.getEnumeration(), UMLDIPackage.eINSTANCE.getUMLShape(), "Enumeration"),
     INTERFACE(UMLPackage.eINSTANCE.getInterface(), UMLDIPackage.eINSTANCE.getUMLShape(), "Interface"),
     PROPERTY(UMLPackage.eINSTANCE.getProperty(), UMLDIPackage.eINSTANCE.getUMLShape(), "Property"),
     OPERATION(UMLPackage.eINSTANCE.getOperation(), UMLDIPackage.eINSTANCE.getUMLShape(), "Operation"),

@@ -25,10 +25,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.diagram.Bounds;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Point;
 import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.diagram.StencilSet;
 import org.jbpm.designer.extensions.diagram.StencilType;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
@@ -74,6 +76,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             System.out.println(s);
             return s;
         } catch (Exception e) {
+            e.printStackTrace();
             throw e;
         }
     }
@@ -101,6 +104,20 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     private void addLinkedShapes(DiagramElement parentDiagramElement, Shape parentShape) {
+        if (parentDiagramElement instanceof BoundariedShape) {
+            for (org.omg.dd.di.Shape shape : ((BoundariedShape) parentDiagramElement).getBoundaryShapes()) {
+                Shape out = shapeMap.getShape(shape);
+                parentShape.getOutgoing().add(new ShapeReference(out.getResourceId()));
+                Point upperLeft = out.getUpperLeft();
+                Point lowerRight = out.getLowerRight();
+                if (upperLeft != null && upperLeft.getX() != null && upperLeft.getY() != null && lowerRight != null && lowerRight.getY() != null) {
+                    double absoluteX = (upperLeft.getX() + lowerRight.getX()) / 2;
+                    double absoluteY = (upperLeft.getY() + lowerRight.getY()) / 2;
+                    out.getDockers().add(
+                            new Point(absoluteX - parentShape.getBounds().getUpperLeft().getX(), absoluteY - parentShape.getBounds().getUpperLeft().getY()));
+                }
+            }
+        }
         for (DiagramElement de : parentDiagramElement.getOwnedElement()) {
             Shape shape = shapeMap.getShape(de);
             if (shape != null) {
@@ -130,9 +147,10 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     private void createShapesRecursively(Shape parentShape, DiagramElement parentDiagramElement) {
+
         for (DiagramElement de : parentDiagramElement.getOwnedElement()) {
             EObject me = getModelElement(de);
-            StencilInfo stencil=null;
+            StencilInfo stencil = null;
             try {
                 stencil = helper.findStencilByElement(me, de);
             } catch (Exception e) {
@@ -209,7 +227,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 featureName = featureName.substring(0, featureName.indexOf("["));
             }
             EStructuralFeature f = currentTarget.eClass().getEStructuralFeature(featureName);
-            if(f==null){
+            if (f == null) {
                 System.out.println();
             }
             val = currentTarget.eGet(f);
@@ -228,20 +246,21 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         }
         return val;
     }
+
     private String convertToString(Object val) {
         if (val instanceof Color) {
-            Color c= (Color) val;
+            Color c = (Color) val;
             String red = Integer.toHexString(c.getRed()).toUpperCase();
-            if(red.length()==1){
-                red="0"+red;
+            if (red.length() == 1) {
+                red = "0" + red;
             }
             String green = Integer.toHexString(c.getGreen()).toUpperCase();
-            if(green.length()==1){
-                green="0"+green;
+            if (green.length() == 1) {
+                green = "0" + green;
             }
             String blue = Integer.toHexString(c.getBlue()).toUpperCase();
-            if(blue.length()==1){
-                blue="0"+blue;
+            if (blue.length() == 1) {
+                blue = "0" + blue;
             }
             return "#" + red + green + blue;
         } else if (val instanceof EObject) {

@@ -31,7 +31,6 @@
     <rect id="classBorder" oryx:resize="vertical horizontal" x="0" y="0" width="120" height="70" stroke="black" stroke-width="1.4" fill="white" />
     <line x1="0" x2="120" y1="30" y2="30" oryx:resize="horizontal" oryx:anchors="top" />
     <text font-size="10" id="keyword" x="60" y="10" oryx:align="middle center" oryx:anchors="top" stroke="black">≪enumeration≫</text>
-    <text font-size="12" id="name" x="60" y="22" oryx:align="middle center" oryx:anchors="top" stroke="black" font-weight="bold"></text>
-    <text font-size="12" id="items" x="60" y="32" oryx:align="top center" oryx:anchors="top" stroke="black"></text>
+    <text font-size="12" id="text_name" x="60" y="22" oryx:align="middle center" oryx:anchors="top" stroke="black" font-weight="bold"></text>
   </g>
 </svg>

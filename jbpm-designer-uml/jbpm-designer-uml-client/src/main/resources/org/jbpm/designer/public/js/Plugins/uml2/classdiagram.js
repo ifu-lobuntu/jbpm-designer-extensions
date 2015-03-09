@@ -20,9 +20,7 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 	 */
 	construct: function(facade) {
 		this.facade = facade;
-		this.facade.registerOnEvent('layout.collapsible', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
-		this.facade.registerOnEvent('layout.compartment.list', this.handleLayoutList.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 	},
@@ -52,8 +50,9 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 	updateDecorations : function(shape) {
 		var labels=shape.getLabels();
 		for(var i=0 ; i < labels.length; i++){
-		    if(labels[i].id==shape.id+"text_type"){
-				var type=shape.properties["oryx-propertytype"];
+		    if(labels[i].id==shape.id+"text_fullname"){
+		    	console.log(ORYX.Plugins.Extensions.extractName);
+				var type= ORYX.Plugins.Extensions.extractName(shape.properties["oryx-propertytype"]);
 				labels[i].text(shape.properties["oryx-name"] + " : " + type);
 				labels[i].update();
 			}
@@ -116,19 +115,6 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 	},
 	handleLayoutCompartments : function(event) {
 		this.updateExpanded(event.shape);
-	},
-	handleLayoutList : function(event) {
-		var shape = event.shape;
-		var currentOffset=15;
-		shape.getChildShapes(false).forEach(function(item){
-			item.bounds.set(
-					1,
-					currentOffset,
-					shape.bounds.b.x - shape.bounds.a.x - 2,
-					currentOffset + 20
-			);
-			currentOffset+=21;
-		});
 	}
 
 });

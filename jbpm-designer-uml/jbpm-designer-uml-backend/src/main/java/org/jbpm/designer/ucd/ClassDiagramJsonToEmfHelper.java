@@ -14,6 +14,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
@@ -50,6 +51,11 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
         if (sourceShape.getStencilId().equals(ClassDiagramStencil.CLASS.getStencilId())) {
             thisPackage.getOwnedTypes().add(object);
         }
+        doAssocatiations(object);
+        return super.caseClass(object);
+    }
+
+    private void doAssocatiations(Class object) {
         for (ShapeReference shapeReference : sourceShape.getOutgoing()) {
             Shape shape = getShape(shapeReference.getResourceId());
             ClassDiagramStencil stencil = ClassDiagramStencil.findStencilById(shape.getStencilId());
@@ -60,19 +66,9 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
                 object.getOwnedAttributes().add(asso.getMemberEnds().get(1));
                 asso.getMemberEnds().get(0).setType(object);
                 break;
-            case GENERALIZATION:
-                Generalization g = (Generalization) getModelElement(shapeReference.getResourceId());
-                object.getGeneralizations().add(g);
-                break;
-            case INTERFACE_REALIZATION:
-                InterfaceRealization ir = (InterfaceRealization) getModelElement(shapeReference.getResourceId());
-                object.getInterfaceRealizations().add(ir);
-                break;
-
             default:
             }
         }
-        return super.caseClass(object);
     }
 
     private Element getModelElement(String resourceId) {
@@ -83,6 +79,11 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     public Object caseInterface(Interface object) {
         thisPackage.getOwnedTypes().add(object);
         return super.caseInterface(object);
+    }
+    @Override
+    public Object caseEnumeration(Enumeration object) {
+        thisPackage.getOwnedTypes().add(object);
+        return super.caseEnumeration(object);
     }
 
     @Override

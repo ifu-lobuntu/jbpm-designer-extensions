@@ -9,12 +9,18 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Package;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
 import org.jbpm.designer.extensions.diagram.Bounds;
 import org.jbpm.designer.extensions.diagram.Point;
 import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
@@ -79,6 +85,13 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
+        if(object.getDefinitionRef().getStructureRef()!=null){
+            String namespaceURI = object.getDefinitionRef().getStructureRef().getNamespaceURI();
+            URI uri=URI.createURI(namespaceURI,true);
+            XMLResource resource = (XMLResource) object.eResource().getResourceSet().getResource(uri, true);
+            Classifier classifier = (Classifier) resource.getEObject(object.getDefinitionRef().getStructureRef().getLocalPart());
+            targetShape.putProperty("caseFileItemStructureRef", classifier.getQualifiedName() +"|" +  uri.toPlatformString(true));
+        }
         return super.caseTCaseFileItem(object);
     }
 
@@ -218,19 +231,19 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     }
 
     private void addSentries(EList<TSentry> entryCriteriaRefs) {
-        for (TSentry s : entryCriteriaRefs) {
-            DiagramElement de = getDiagramElement(s);
-            Shape out = this.getShape(de);
-            this.targetShape.addOutgoing(out);
-            Point upperLeft = out.getUpperLeft();
-            Point lowerRight = out.getLowerRight();
-            if (upperLeft != null && upperLeft.getX() != null && upperLeft.getY() != null && lowerRight != null && lowerRight.getY() != null) {
-                double absoluteX = (upperLeft.getX() + lowerRight.getX()) / 2;
-                double absoluteY = (upperLeft.getY() + lowerRight.getY()) / 2;
-                out.getDockers().add(
-                        new Point(absoluteX - targetShape.getBounds().getUpperLeft().getX(), absoluteY - targetShape.getBounds().getUpperLeft().getY()));
-            }
-        }
+//        for (TSentry s : entryCriteriaRefs) {
+//            DiagramElement de = getDiagramElement(s);
+//            Shape out = this.getShape(de);
+//            this.targetShape.addOutgoing(out);
+//            Point upperLeft = out.getUpperLeft();
+//            Point lowerRight = out.getLowerRight();
+//            if (upperLeft != null && upperLeft.getX() != null && upperLeft.getY() != null && lowerRight != null && lowerRight.getY() != null) {
+//                double absoluteX = (upperLeft.getX() + lowerRight.getX()) / 2;
+//                double absoluteY = (upperLeft.getY() + lowerRight.getY()) / 2;
+//                out.getDockers().add(
+//                        new Point(absoluteX - targetShape.getBounds().getUpperLeft().getX(), absoluteY - targetShape.getBounds().getUpperLeft().getY()));
+//            }
+//        }
     }
 
     private DiagramElement getDiagramElement(TSentry s) {
@@ -259,6 +272,9 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public Object caseTPlanItemOnPart(TPlanItemOnPart object) {
+        if(object.getSentryRef()!=null){
+            shapeMap.getShape(object.getSentryRef()).getOutgoing().add(new ShapeReference(object.getId()));
+        }
         return super.caseTPlanItemOnPart(object);
     }
 
