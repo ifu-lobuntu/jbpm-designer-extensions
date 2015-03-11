@@ -169,22 +169,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
         getDefinitions().getCaseFileItemDefinition().add(object.getDefinitionRef());
-        String structureRef = sourceShape.getProperty("caseFileItemStructureRef");
-        if(structureRef!=null && structureRef.indexOf('|')>0){
-            String qName=structureRef.split("\\|")[0];
-            String uri=structureRef.split("\\|")[1];
-            URI platformResourceUri = URI.createPlatformResourceURI(uri, true);
-            org.eclipse.uml2.uml.Package pkg= (Package) object.eResource().getResourceSet().getResource(platformResourceUri,true).getContents().get(0);
-            TreeIterator<EObject> it = pkg.eAllContents();
-            while (it.hasNext()) {
-                EObject eObject = (EObject) it.next();
-                if(eObject instanceof Classifier && ((Classifier) eObject).getQualifiedName().equals(qName)){
-                    object.getDefinitionRef().setStructureRef(new QName(platformResourceUri.toString(), pkg.eResource().getURIFragment(eObject)));
-                    Classifier c=(Classifier) eObject;
-                    object.setName(c.getName());
-                }
-            }
-        }
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(sr.getResourceId());
             if (shape.getStencilId().equals(CmmnStencil.CASE_FILE_ITEM_CHILD.getStencilId())) {

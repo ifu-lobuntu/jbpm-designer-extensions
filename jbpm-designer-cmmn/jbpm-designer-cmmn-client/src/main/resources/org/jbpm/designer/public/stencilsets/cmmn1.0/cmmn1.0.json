@@ -18,7 +18,7 @@
 					"readonly" : false,
 					"optional" : true,
 					"length" : "",
-					"wrapLines" : true,
+					"wrapLines" : false,
 					"refToView" : [
 						"text_name"
 					]
@@ -47,9 +47,7 @@
 					"value" : "",
 					"description" : "This is the unique id of the diagram element used to display the CMMN Element.",
 					"readonly" : true,
-					"optional" : true,
 					"length" : "",
-					"wrapLines" : true,
 					"hidden" : true
 				}
 			]
@@ -803,7 +801,7 @@
 						"readonly" : false,
 						"optional" : false,
 						"reference":{
-							"targetProfile":"cmmn",
+							"targetProfile":"cmmn1.0",
 							"allowedElementTypes":"TCase",
 							"nameFeature" : "name"
 						}

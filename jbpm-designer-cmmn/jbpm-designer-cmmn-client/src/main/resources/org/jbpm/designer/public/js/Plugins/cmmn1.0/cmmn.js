@@ -77,24 +77,26 @@ ORYX.Plugins.CMMN = Clazz.extend(
 				}
 			});
         }
-		var labels=shape.getLabels();
-		for(var i=0 ; i < labels.length; i++){
-		    if(labels[i].id==shape.id+"repetitionText"){
-				var body=shape.properties["oryx-repetitionrulebody"];
-				labels[i].node.setAttributeNS(null, 'display',  body && body.length > 0? 'inherit' : 'none');
-			}else if(labels[i].id==shape.id+"requiredText"){
-				var body=shape.properties["oryx-requiredrulebody"];
-				labels[i].node.setAttributeNS(null, 'display',  body && body.length > 0? 'inherit' : 'none');
-			}else if(labels[i].id==shape.id+"text_type"){
-				var type=shape.properties["oryx-propertytype"];
-				labels[i].text(shape.properties["oryx-name"] + " : " + type.substring(type.lastIndexOf("/")+1));
-				labels[i].update();
-			}else if(labels[i].id==shape.id+"text_event"){
-				var type=shape.properties["oryx-standardevent"];
-				labels[i].text(shape.properties["oryx-standardevent"]);
-				labels[i].update();
+        if(shape.getLabels){
+			var labels=shape.getLabels();
+			for(var i=0 ; i < labels.length; i++){
+			    if(labels[i].id==shape.id+"repetitionText"){
+					var body=shape.properties["oryx-repetitionrulebody"];
+					labels[i].node.setAttributeNS(null, 'display',  body && body.length > 0? 'inherit' : 'none');
+				}else if(labels[i].id==shape.id+"requiredText"){
+					var body=shape.properties["oryx-requiredrulebody"];
+					labels[i].node.setAttributeNS(null, 'display',  body && body.length > 0? 'inherit' : 'none');
+				}else if(labels[i].id==shape.id+"text_type"){
+					var type=shape.properties["oryx-propertytype"];
+					labels[i].text(shape.properties["oryx-name"] + " : " + type.substring(type.lastIndexOf("/")+1));
+					labels[i].update();
+				}else if(labels[i].id==shape.id+"text_event"){
+					var type=shape.properties["oryx-standardevent"];
+					labels[i].text(shape.properties["oryx-standardevent"]);
+					labels[i].update();
+				}
 			}
-		}
+        }
 	},
 
 	/**

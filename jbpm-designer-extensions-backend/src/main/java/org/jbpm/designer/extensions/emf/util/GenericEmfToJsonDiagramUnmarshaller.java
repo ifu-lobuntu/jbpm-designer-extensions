@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.namespace.QName;
+
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -259,6 +261,21 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             } else {
                 return shapeMap.getId(eObject);
             }
+        } else if (val instanceof QName) {
+            if (property.getReference() != null) {
+                Resource res = shapeMap.getResource().getResourceSet().getResource(URI.createURI(((QName) val).getNamespaceURI()), true);
+                if (res != null) {
+                    EObject eObject = res.getEObject(((QName) val).getLocalPart());
+                    String platformString = res.getURI().toPlatformString(true);
+                    if (platformString == null) {
+                        platformString = res.getURI().toString();
+                    }
+                    Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
+                    return name + "|" + platformString;
+
+                }
+            }
+            return val.toString();
         } else if (val instanceof Enumerator) {
             return ((Enumerator) val).getName();
         } else if (val instanceof BasicEList) {
@@ -297,8 +314,8 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         Map<String, Object> options = buildDefaultResourceOptions();
         InputStream is = new ByteArrayInputStream(xmlModel.getBytes("UTF-8"));
         resource.load(is, options);
-//        EcoreUtil.resolveAll(resource);
-//        EcoreUtil.resolveAll(resourceSet);
+        // EcoreUtil.resolveAll(resource);
+        // EcoreUtil.resolveAll(resourceSet);
         EList<Resource> resources = resourceSet.getResources();
         for (Resource resource2 : resources) {
 

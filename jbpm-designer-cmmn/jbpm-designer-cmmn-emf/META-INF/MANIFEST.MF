@@ -1,73 +1,47 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1426067697062
+Bnd-LastModified: 1426092322861
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Wed,
-  11 Mar 2015 11:54:38 +0200
+Build-Timestamp: Wed, 11 Mar 2015 18:44:59 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: jbpm-cmmn-emf-metamodel;singleton:=true
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.jbpm.cmmn.jbpmext,
- org.jbpm.cmmn.jbpmext.impl,
- org.jbpm.cmmn.jbpmext.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport
-Bundle-ActivationPolicy: lazy
-Bundle-Version: 6.3.0.201503111154
-Bundle-ClassPath: .
+Bundle-Name: jBPM Designer CMMN EMF Metamodel
+Bundle-SymbolicName: org.jbpm.cmmn.emf.metamodel
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 6.3.0.201503111844
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer CMMN EMF Metamodel
-Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
+Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
+ igner-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
 Implementation-Vendor: JBoss by Red Hat
 Implementation-Vendor-Id: org.jbpm
 Implementation-Version: 6.3.0-SNAPSHOT
-Import-Package: javax.xml.datatype,
- javax.xml.namespace,
- org.eclipse.emf.common.notify,
- org.eclipse.emf.common.notify.impl,
- org.eclipse.emf.common.util,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.impl,
- org.eclipse.emf.ecore.plugin,
- org.eclipse.emf.ecore.resource,
- org.eclipse.emf.ecore.resource.impl,
- org.eclipse.emf.ecore.util,
- org.eclipse.emf.ecore.xmi,
- org.eclipse.emf.ecore.xmi.impl,
- org.eclipse.emf.ecore.xmi.util,
- org.eclipse.emf.ecore.xml.type,
- org.eclipse.emf.ecore.xml.type.util,
- org.jbpm.designer.dd.jbpmdd,
- org.jbpm.designer.dd.util,
- org.omg.dd.dc,
- org.omg.dd.di,
- org.omg.dd.di.impl,
- org.xml.sax.helpers
+Import-Package: javax.xml.datatype,javax.xml.namespace,org.eclipse.emf.c
+ ommon.notify,org.eclipse.emf.common.notify.impl,org.eclipse.emf.common.
+ util,org.eclipse.emf.ecore,org.eclipse.emf.ecore.impl,org.eclipse.emf.e
+ core.plugin,org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore.resour
+ ce.impl,org.eclipse.emf.ecore.util,org.eclipse.emf.ecore.xmi,org.eclips
+ e.emf.ecore.xmi.impl,org.eclipse.emf.ecore.xmi.util,org.eclipse.emf.eco
+ re.xml.type,org.eclipse.emf.ecore.xml.type.util,org.jbpm.designer.dd.jb
+ pmdd,org.jbpm.designer.dd.util,org.omg.dd.dc,org.omg.dd.di,org.omg.dd.d
+ i.impl,org.xml.sax.helpers
 Java-Vendor: Oracle Corporation
 Java-Version: 1.7.0_71
 JBOSS_HOME: /opt/jboss-5.1.0.GA
 Os-Arch: amd64
 Os-Name: Linux
 Os-Version: 3.17.3-200.fc20.x86_64
-Private-Package: org.jbpm.cmmn.jbpmext.util,
- org.jbpm.cmmn.dd.cmmndi,
- org.omg.cmmn,
- org.jbpm.cmmn.dd.cmmndi.impl,
- org.omg.cmmn.impl,
- org.jbpm.cmmn.jbpmext.impl,
- org.jbpm.cmmn.jbpmext,
- org.jbpm.cmmn.dd.cmmndi.util,
- org.omg.cmmn.util
-Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm-designer-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
-Scm-Revision: dc52c4e83381b9fd64dd27a9a6d8c0beaf33a4e3
-Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
+Private-Package: org.jbpm.cmmn.jbpmext.util,org.jbpm.cmmn.dd.cmmndi,org.
+ omg.cmmn,org.jbpm.cmmn.dd.cmmndi.impl,org.omg.cmmn.impl,org.jbpm.cmmn.j
+ bpmext.impl,org.jbpm.cmmn.jbpmext,org.jbpm.cmmn.dd.cmmndi.util,org.omg.
+ cmmn.util
+Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
+ -designer-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
+Scm-Revision: 9d5bb62ef53206ccd9335431450d248e0e265bd0
+Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
+ sions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
 Specification-Title: jBPM Designer CMMN EMF Metamodel
 Specification-Vendor: JBoss by Red Hat
 Specification-Version: 6.3.0-SNAPSHOT

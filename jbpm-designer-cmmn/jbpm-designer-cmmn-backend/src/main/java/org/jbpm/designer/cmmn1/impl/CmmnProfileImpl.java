@@ -25,6 +25,7 @@ import org.jbpm.cmmn.jbpmext.JbpmextPackage;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.Bpmn2EmfProfile;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.emf.util.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
@@ -131,6 +132,10 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         super.prepareResourceSet(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
         new Bpmn2EmfProfile().prepareResourceSet(resourceSet);
+        IEmfProfile cd = getOtherProfile("classdiagram");
+        if(cd!=null){
+            cd.prepareResourceSet(resourceSet);
+        }
         UriHelper.setPlatformUriHandler(resourceSet, getUriHandler());
     }
     @Override
