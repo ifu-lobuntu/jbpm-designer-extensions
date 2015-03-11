@@ -7,6 +7,7 @@ import org.omg.cmmn.TDiscretionaryItem;
 import org.omg.cmmn.THumanTask;
 import org.omg.cmmn.TPlanItem;
 import org.omg.cmmn.TPlanItemOnPart;
+import org.omg.cmmn.TRole;
 import org.omg.cmmn.TSentry;
 import org.omg.cmmn.TStage;
 
@@ -15,9 +16,10 @@ public class StageMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
     @Test
     public void testCaseRoles() throws Exception {
         TPlanItem htpi = addHumanTaskPlanItem(tCase, casePlanModel);
-        ((THumanTask) htpi.getDefinitionRef()).setPerformerRef(addRole("Human"));
+        TRole human = addRole("Human");
+        ((THumanTask) htpi.getDefinitionRef()).setPerformerRef(human);
         TDiscretionaryItem htdi = addHumanTaskDiscretionaryItem(tCase, casePlanModel);
-        ((THumanTask) htdi.getDefinitionRef()).setPerformerRef(addRole("Human"));
+        ((THumanTask) htdi.getDefinitionRef()).setPerformerRef(human);
         assertOutputValid();
     }
 

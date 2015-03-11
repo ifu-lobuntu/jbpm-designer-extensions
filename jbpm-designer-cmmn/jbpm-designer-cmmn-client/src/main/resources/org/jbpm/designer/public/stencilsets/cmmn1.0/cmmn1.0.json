@@ -622,6 +622,7 @@
 					"type" : "caseroleref",
 					"title" : "Performer",
 					"value" : "",
+					"bindLate": true,
 					"description" : "Performing Case Role",
 					"description_ja" : "タスク名",
 					"readonly" : false,
@@ -1213,13 +1214,19 @@
 				"properties" : [
 						{
 							"id" : "caseFileItemStructureRef",
-							"type" : "classref",
+							"type" : "eobjectref",
 							"title" : "Case File Item Structure Reference",
 							"value" : "",
 							"description" : "",
 							"readonly" : false,
 							"optional" : true,
 							"refToView" : [],
+							"binding":"definitionRef.structureRef",
+							"reference":{
+								"targetProfile":"classdiagram",
+								"allowedElementTypes":"Class|Interface",
+								"nameFeature" : "qualifiedName"
+							},
 							"length" : ""
 						},
 						{

@@ -6,6 +6,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
@@ -148,5 +149,11 @@ public class VdmlActivityNetworkEmfToJsonHelper extends VDMLSwitch<Object> imple
     @Override
     public StencilInfo findStencilByElement(EObject me, org.omg.dd.di.DiagramElement de) {
         return VdmlActivityNetworkStencil.findStencilByElement(me, de);
+    }
+
+    @Override
+    public String convertToString(LinkedProperty property, Object val) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

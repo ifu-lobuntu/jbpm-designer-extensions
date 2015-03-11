@@ -7,6 +7,7 @@ import java.util.Collections;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
@@ -37,6 +38,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
 @ApplicationScoped
 public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
 
+    public static final String CMMNTYPES_PATHMAP = "pathmap://jbpm-cmmn/libraries/cmmntypes.uml";
     private static final String STENCILSET_PATH = "stencilsets/classdiagram/classdiagram.json";
 
     public ClassDiagramProfileImpl() {
@@ -66,10 +68,12 @@ public static void main(String[] args) {
         resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
         URL url = UMLDiagram.class.getResource("/libraries/cmmntypes.uml");
-        Resource cmmnTypes = resourceSet.createResource(URI.createURI("libraries/cmmntypes.uml"));
+        URI uri = URI.createURI(CMMNTYPES_PATHMAP);
+        resourceSet.getURIConverter().getURIMap().put(uri, URI.createURI(url.toExternalForm()));
+        Resource cmmnTypes = resourceSet.createResource(uri);
         try {
             cmmnTypes.load(url.openStream(), Collections.emptyMap());
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -118,6 +122,11 @@ public static void main(String[] args) {
         UMLDiagram dgm=UMLDIFactory.eINSTANCE.createUMLDiagram();
         rs.getContents().add(dgm);
         dgm.setUmlElement(pkg);
+    }
+
+    @Override
+    public EPackage[] getEPackages() {
+        return new EPackage[]{UMLPackage.eINSTANCE,UMLDIPackage.eINSTANCE};
     }
 
 }

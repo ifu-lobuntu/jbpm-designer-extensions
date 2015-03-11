@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -24,7 +25,7 @@ import org.omg.dd.dc.DCPackage;
 public class GenericEcoreComparator {
     Map<String, EObject> outputMap = new HashMap<String, EObject>();
     Map<String, EObject> inputMap = new HashMap<String, EObject>();
-    Set<EClass> ignoreIdsFrom = new HashSet<EClass>();
+    Set<EClassifier> ignoreIdsFrom = new HashSet<EClassifier>();
     {
         ignoreIdsFrom.add(DCPackage.eINSTANCE.getPoint());
         ignoreIdsFrom.add(DCPackage.eINSTANCE.getBounds());
@@ -35,7 +36,7 @@ public class GenericEcoreComparator {
         populateMap(outputResource, this.outputMap);
     }
 
-    public GenericEcoreComparator(XMLResource inputResource, XMLResource outputResource, Set<EClass> moreIdsToIgnore) {
+    public GenericEcoreComparator(XMLResource inputResource, XMLResource outputResource, Set<EClassifier> moreIdsToIgnore) {
         ignoreIdsFrom.addAll(moreIdsToIgnore);
         populateMap(inputResource, this.inputMap);
         populateMap(outputResource, this.outputMap);

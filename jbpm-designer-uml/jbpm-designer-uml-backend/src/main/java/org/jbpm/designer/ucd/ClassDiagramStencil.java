@@ -24,12 +24,17 @@ public enum ClassDiagramStencil implements StencilInfo {
     CLASS(UMLPackage.eINSTANCE.getClass_(), UMLDIPackage.eINSTANCE.getUMLShape(), "Class"),
     ENUMERATION(UMLPackage.eINSTANCE.getEnumeration(), UMLDIPackage.eINSTANCE.getUMLShape(), "Enumeration"),
     INTERFACE(UMLPackage.eINSTANCE.getInterface(), UMLDIPackage.eINSTANCE.getUMLShape(), "Interface"),
+    IMPORTED_CLASS(UMLPackage.eINSTANCE.getClass_(), UMLDIPackage.eINSTANCE.getUMLShape(), "ImportedClass"),
+    IMPORTED_ENUMERATION(UMLPackage.eINSTANCE.getEnumeration(), UMLDIPackage.eINSTANCE.getUMLShape(), "ImportedEnumeration"),
+    IMPORTED_INTERFACE(UMLPackage.eINSTANCE.getInterface(), UMLDIPackage.eINSTANCE.getUMLShape(), "ImportedInterface"),
     PROPERTY(UMLPackage.eINSTANCE.getProperty(), UMLDIPackage.eINSTANCE.getUMLShape(), "Property"),
     OPERATION(UMLPackage.eINSTANCE.getOperation(), UMLDIPackage.eINSTANCE.getUMLShape(), "Operation"),
+    ENUMERATION_LITERAL(UMLPackage.eINSTANCE.getEnumerationLiteral(), UMLDIPackage.eINSTANCE.getUMLShape(), "EnumerationLiteral"),
     COMPOSITION(UMLPackage.eINSTANCE.getAssociation(), UMLDIPackage.eINSTANCE.getUMLEdge(), "Composition"),
     GENERALIZATION(UMLPackage.eINSTANCE.getGeneralization(), UMLDIPackage.eINSTANCE.getUMLEdge(), "Generalization"),
     INTERFACE_REALIZATION(UMLPackage.eINSTANCE.getInterfaceRealization(), UMLDIPackage.eINSTANCE.getUMLEdge(), "InterfaceRealization"),
-    ASSOCIATION(UMLPackage.eINSTANCE.getAssociation(), UMLDIPackage.eINSTANCE.getUMLEdge(), "Association"),
+    DIRECTED_ASSOCIATION(UMLPackage.eINSTANCE.getAssociation(), UMLDIPackage.eINSTANCE.getUMLEdge(), "DirectedAssociation"),
+    BI_DIRECTIONAL_ASSOCIATION(UMLPackage.eINSTANCE.getAssociation(), UMLDIPackage.eINSTANCE.getUMLEdge(), "BiDirectionalAssociation"),
     OWNED_ATTRIBUTE((EClass) null, UMLDIPackage.eINSTANCE.getUMLCompartment(), "OwnedAttribute"),
     OWNED_OPERATION((EClass) null, UMLDIPackage.eINSTANCE.getUMLCompartment(), "OwnedOperation"),
     OWNED_LITERAL((EClass) null, UMLDIPackage.eINSTANCE.getUMLCompartment(), "OwnedLiteral");
@@ -75,7 +80,7 @@ public enum ClassDiagramStencil implements StencilInfo {
         ClassDiagramStencil stencil = findStencilById(stencilId);
         if (stencil.type == null) {
             return null;
-        } else if (stencil == COMPOSITION || stencil == ASSOCIATION) {
+        } else if (stencil == COMPOSITION || stencil == DIRECTED_ASSOCIATION || stencil == BI_DIRECTIONAL_ASSOCIATION) {
             Association asso = UMLFactory.eINSTANCE.createAssociation();
             asso.getMemberEnds().add(UMLFactory.eINSTANCE.createProperty());
             asso.getMemberEnds().add(UMLFactory.eINSTANCE.createProperty());
@@ -102,19 +107,21 @@ public enum ClassDiagramStencil implements StencilInfo {
             for (Property property : memberEnds) {
                 if (property.isComposite()) {
                     return COMPOSITION;
+                } else if (!property.isNavigable()) {
+                    return DIRECTED_ASSOCIATION;
                 }
             }
-            return ASSOCIATION;
+            return BI_DIRECTIONAL_ASSOCIATION;
         } else if (de instanceof UMLCompartment) {
             char[] charArray = ((UMLCompartment) de).getFeatureName().toCharArray();
             charArray[0] = Character.toUpperCase(charArray[0]);
             return findStencilById(new String(charArray));
-        } else if (possibilities != null) {
-            for (ClassDiagramStencil umlStencil : possibilities) {
-                if (umlStencil.type!=null &&
-                        umlStencil.type.isSuperTypeOf(me.eClass())) {
-                    return umlStencil;
-                }
+        } else if (de.eResource() != me.eResource()) {
+            possibilities = new ClassDiagramStencil[] { IMPORTED_CLASS, IMPORTED_ENUMERATION, IMPORTED_INTERFACE };
+        }
+        for (ClassDiagramStencil umlStencil : possibilities) {
+            if (umlStencil.type != null && umlStencil.type.isSuperTypeOf(me.eClass())) {
+                return umlStencil;
             }
         }
         return null;

@@ -5,6 +5,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
@@ -52,5 +53,11 @@ public class VdmlPropositionExchangeEmfToJsonHelper extends VDMLSwitch<Object> i
     @Override
     public StencilInfo findStencilByElement(EObject me, DiagramElement de) {
         return VdmlPropositionExchangeStencil.findStencilByElement(me, de);
+    }
+
+    @Override
+    public String convertToString(LinkedProperty property, Object val) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

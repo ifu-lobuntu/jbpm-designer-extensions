@@ -1,47 +1,43 @@
 #Done and Tested
 ##Stencils:
-Class,
-Enumeration,
-Owned Attribute
-Property
-Bidi Association
-Composition
-Generalization
+ - Class,
+ - Enumeration,
+ - Owned Attribute
+ - Property
+ - Bidi Association
+ - Composition
+ - Generalization
+ - Unidirectional Association
+ - Enumeration
+ - Owned Literal
+ - Enumeration Literal
+ - ImportedClass
+ - ImportedInterface
+ - ImportedEnumeration
 
 ##Property Editors
  - Property.type
+ - Property.upper
+ - Property.lower
 
 
 #In Progress
 
 #Todo
-
-#Misc
-Importing external models
+ - ImportedClassifier.classref
 
 ##Stencils:
-* - Unidirectional Association
-* - Enumeration
-* - Owned Literal
-* - Enumeration Literal
-* - ClassReference
-* - InterfaceReference
-* - EnumerationReference
 Owned Operation
 Operation
 
 ##Property Editors
 
-End.qualifier
+- End.qualifier
+* - Property.isOrdered
+* - Property.isUnique
 
-* - upper
-* - lower
-
-
-* - isOrdered
-* - isUnique
-
-defaultValue
+Property.defaultValue
+Operation.bodyCondition
 redefinedProperties
 subsettedProperties
 isDerived

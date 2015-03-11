@@ -1,5 +1,6 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
@@ -32,5 +33,7 @@ public interface IEmfDiagramProfile extends IExtensionDiagramProfile,IDiagramPro
     boolean useIdAttribute();
 
     IEmfDiagramProfile getOtherProfile(String string);
+    
+    EPackage[] getEPackages();
 
 }

@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.diagram.Bounds;
@@ -33,8 +32,8 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.diagram.StencilSet;
 import org.jbpm.designer.extensions.diagram.StencilType;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
-import org.jbpm.designer.extensions.stencilset.linkage.Property;
 import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.jbpm.designer.web.profile.IDiagramProfile.IDiagramUnmarshaller;
 import org.omg.dd.dc.Color;
@@ -63,8 +62,8 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     public String parseModel(String xmlModel, IDiagramProfile profile, String preProcessingData) throws Exception {
-        System.out.println("=================XMI IN:");
-        System.out.println(xmlModel);
+        super.profile.logInfo("=================XMI IN:");
+        super.profile.logInfo(xmlModel);
         try {
             Diagram json = convert(getResource(xmlModel));
             ObjectMapper om = new ObjectMapper();
@@ -72,8 +71,8 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
             om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
             String s = om.writeValueAsString(json);
-            System.out.println("=================JSON OUT:");
-            System.out.println(s);
+            super.profile.logInfo("=================JSON OUT:");
+            super.profile.logInfo(s);
             return s;
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,13 +149,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
         for (DiagramElement de : parentDiagramElement.getOwnedElement()) {
             EObject me = getModelElement(de);
-            StencilInfo stencil = null;
-            try {
-                stencil = helper.findStencilByElement(me, de);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            StencilInfo stencil =helper.findStencilByElement(me, de);
             String resourceId = me == null ? shapeMap.getId(de) : shapeMap.getId(me);
             Shape shape = new Shape(resourceId, new StencilType(stencil.getStencilId()));
             if (de instanceof org.omg.dd.di.Shape) {
@@ -195,7 +188,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         if (sv == null) {
             throw new IllegalArgumentException("No stencil found in the stencilSet definition for '" + stencil.getStencilId() + "'");
         }
-        for (Property property : sv.getProperties().values()) {
+        for (LinkedProperty property : sv.getProperties().values()) {
             Object val = null;
             if (property.getBinding() != null && property.getBinding().trim().length() > 0) {
                 val = resolveBinding(mee, val, property.getBinding());
@@ -213,7 +206,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 }
             }
             if (val != null) {
-                shape.putProperty(property.getId().toLowerCase(), convertToString(val));
+                shape.putProperty(property.getId().toLowerCase(), convertToString(property, val));
             }
         }
     }
@@ -227,17 +220,18 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 featureName = featureName.substring(0, featureName.indexOf("["));
             }
             EStructuralFeature f = currentTarget.eClass().getEStructuralFeature(featureName);
-            if (f == null) {
-                System.out.println();
-            }
-            val = currentTarget.eGet(f);
+              val = currentTarget.eGet(f);
             if (val == null) {
                 break;
             } else {
                 if (val instanceof List && split[i].endsWith("]")) {
                     String index = split[i];
                     int idx = Integer.valueOf(index.substring(index.indexOf('[') + 1, index.length() - 1));
-                    val = ((List<?>) val).get(idx);
+                    List<?> listVal = (List<?>) val;
+                    if(listVal.size()<=idx){
+                        return null;
+                    }
+                    val = listVal.get(idx);
                 }
                 if (i < split.length - 1) {
                     currentTarget = (EObject) val;
@@ -247,39 +241,53 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         return val;
     }
 
-    private String convertToString(Object val) {
+    private String convertToString(LinkedProperty property, Object val) {
         if (val instanceof Color) {
             Color c = (Color) val;
-            String red = Integer.toHexString(c.getRed()).toUpperCase();
-            if (red.length() == 1) {
-                red = "0" + red;
-            }
-            String green = Integer.toHexString(c.getGreen()).toUpperCase();
-            if (green.length() == 1) {
-                green = "0" + green;
-            }
-            String blue = Integer.toHexString(c.getBlue()).toUpperCase();
-            if (blue.length() == 1) {
-                blue = "0" + blue;
-            }
+            String red = formatColorQuantity(c.getRed());
+            String green = formatColorQuantity(c.getGreen());
+            String blue = formatColorQuantity(c.getBlue());
             return "#" + red + green + blue;
         } else if (val instanceof EObject) {
             EObject eObject = (EObject) val;
-            return shapeMap.getId(eObject);
+            if(property.getReference()!=null){
+                String platformString = eObject.eResource().getURI().toPlatformString(true);
+                if(platformString==null){
+                    platformString=eObject.eResource().getURI().toString();
+                }
+                Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
+                return name + "|" +  platformString;
+            }else{
+                return shapeMap.getId(eObject);
+            }
         } else if (val instanceof Enumerator) {
             return ((Enumerator) val).getName();
         } else if (val instanceof BasicEList) {
+            @SuppressWarnings("rawtypes")
             BasicEList list = (BasicEList) val;
             StringBuilder sb = new StringBuilder();
             for (Object object : list) {
                 if (sb.length() > 0) {
                     sb.append(",");
                 }
-                sb.append(convertToString(object));
+                sb.append(convertToString(property, object));
             }
             return sb.toString();
+        }else{
+            String s=this.helper.convertToString(property,val);
+            if(s!=null){
+                return s;
+            }
         }
         return val.toString();
+    }
+
+    private String formatColorQuantity(Integer blue2) {
+        String blue = Integer.toHexString(blue2).toUpperCase();
+        if (blue.length() == 1) {
+            blue = "0" + blue;
+        }
+        return blue;
     }
 
     private XMLResource getResource(String xmlModel) throws UnsupportedEncodingException, IOException {

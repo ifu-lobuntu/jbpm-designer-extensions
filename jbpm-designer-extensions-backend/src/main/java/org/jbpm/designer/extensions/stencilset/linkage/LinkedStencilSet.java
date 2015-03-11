@@ -1,6 +1,7 @@
 package org.jbpm.designer.extensions.stencilset.linkage;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,42 @@ public class LinkedStencilSet {
     public LinkedStencilSet(StencilSet stencilSet) {
         super();
         this.stencilSet = stencilSet;
+        for (PropertyPackage pp : this.stencilSet.getPropertyPackages()) {
+            propertyPackages.put(pp.getName(), pp);
+        }
+        for (Stencil stencil : stencilSet.getStencils()) {
+            LinkedStencil sv = new LinkedStencil(stencil);
+            this.stencils.put(stencil.getId(), sv);
+            List<String> roles = stencil.getRoles();
+            for (String string : roles) {
+                Set<Stencil> stencilsInRole = this.roles.get(string);
+                if (stencilsInRole == null) {
+                    this.roles.put(string, stencilsInRole = new HashSet<Stencil>());
+                }
+                stencilsInRole.add(stencil);
+            }
+            for (String string : stencil.getPropertyPackages()) {
+                PropertyPackage propertyPackage = propertyPackages.get(string);
+                if (propertyPackage == null) {
+                    throw new IllegalStateException("Property Package " + string + " not found for " + stencil.getId());
+                }
+                List<Property> props = propertyPackage.getProperties();
+                for (Property property : props) {
+                    sv.putProperty(property);
+                }
+            }
+            for (ContainmentRule containmentRule : this.stencilSet.getRules().getContainmentRules()) {
+                if(stencil.getRoles().contains(containmentRule.getRole())){
+                    sv.getContainmentRules().add(containmentRule);
+                }
+            }
+            for (ConnectionRule connectionRule : this.stencilSet.getRules().getConnectionRules()) {
+                if(stencil.getRoles().contains(connectionRule.getRole())){
+                    sv.getConnectionRules().add(connectionRule);
+                }
+            }
+
+        }
     }
 
     public void validateDiagram(Diagram diagram, ShapeMap diagramStateHolder) {
@@ -179,42 +216,6 @@ public class LinkedStencilSet {
     }
 
     public void validateStencilSet() {
-        for (PropertyPackage pp : this.stencilSet.getPropertyPackages()) {
-            propertyPackages.put(pp.getName(), pp);
-        }
-        for (Stencil stencil : stencilSet.getStencils()) {
-            LinkedStencil sv = new LinkedStencil(stencil);
-            this.stencils.put(stencil.getId(), sv);
-            List<String> roles = stencil.getRoles();
-            for (String string : roles) {
-                Set<Stencil> stencilsInRole = this.roles.get(string);
-                if (stencilsInRole == null) {
-                    this.roles.put(string, stencilsInRole = new HashSet<Stencil>());
-                }
-                stencilsInRole.add(stencil);
-            }
-            for (String string : stencil.getPropertyPackages()) {
-                PropertyPackage propertyPackage = propertyPackages.get(string);
-                if (propertyPackage == null) {
-                    throw new IllegalStateException("Property Package " + string + " not found for " + stencil.getId());
-                }
-                List<Property> props = propertyPackage.getProperties();
-                for (Property property : props) {
-                    sv.getProperties().put(property.getId(), property);
-                }
-            }
-            for (ContainmentRule containmentRule : this.stencilSet.getRules().getContainmentRules()) {
-                if(stencil.getRoles().contains(containmentRule.getRole())){
-                    sv.getContainmentRules().add(containmentRule);
-                }
-            }
-            for (ConnectionRule connectionRule : this.stencilSet.getRules().getConnectionRules()) {
-                if(stencil.getRoles().contains(connectionRule.getRole())){
-                    sv.getConnectionRules().add(connectionRule);
-                }
-            }
-
-        }
         for (CardinalityRule cr : stencilSet.getRules().getCardinalityRules()) {
             String role = cr.getRole();
             validateRole(role);
@@ -268,5 +269,9 @@ public class LinkedStencilSet {
 
     public StencilSet getStencilSet() {
         return this.stencilSet;
+    }
+
+    public Collection<LinkedStencil> getLinkedStencils() {
+        return this.stencils.values();
     }
 }

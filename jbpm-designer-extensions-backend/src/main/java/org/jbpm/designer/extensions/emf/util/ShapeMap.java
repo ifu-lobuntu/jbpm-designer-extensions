@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -96,6 +95,9 @@ public class ShapeMap {
 
     public EObject getModelElement(String resourceId) {
         Mapping mapping = this.shapeMap.get(resourceId);
+        if(mapping==null){
+            System.out.println();
+        }
         DiagramElement de = mapping.diagramElement;
         return getModelElement(de);
     }
@@ -114,8 +116,8 @@ public class ShapeMap {
         if (eidAttribute != null) {
             idVal = (String) modelElement.eGet(eidAttribute);
         }
-        if (idVal == null) {
-            return resource.getID(modelElement);
+        if (idVal == null && modelElement.eResource()!=null) {
+            return modelElement.eResource().getURIFragment(modelElement);
         }
         return idVal;
     }

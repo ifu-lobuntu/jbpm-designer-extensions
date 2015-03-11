@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
@@ -84,7 +84,7 @@ public class AbstractClassDiagramMarshallingTest {
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
         profile.prepareResourceSet(resourceSet);
-        this.cmmnTypes=(Package)resourceSet.getResource(URI.createURI("libraries/cmmntypes.uml"), false).getContents().get(0);
+        this.cmmnTypes=(Package)resourceSet.getResource(URI.createURI(ClassDiagramProfileImpl.CMMNTYPES_PATHMAP), false).getContents().get(0);
         inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy.ucd"));
         inputDiagram = UMLDIFactory.eINSTANCE.createUMLDiagram();
         jbpmPackage=UMLFactory.eINSTANCE.createPackage();
@@ -98,11 +98,13 @@ public class AbstractClassDiagramMarshallingTest {
         String xmlString = buildXmlString(inputResource);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
-        Set<EClass> idsToIgnore=new HashSet<EClass>();
+        Set<EClassifier> idsToIgnore=new HashSet<EClassifier>();
         idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLDiagram());
         idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLStyle());
         idsToIgnore.add(DCPackage.eINSTANCE.getColor());
         idsToIgnore.add(UMLPackage.eINSTANCE.getProperty());//for associations
+        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
+        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralInteger());
         new GenericEcoreComparator(inputResource, outputResource,idsToIgnore).validate();
     }
 

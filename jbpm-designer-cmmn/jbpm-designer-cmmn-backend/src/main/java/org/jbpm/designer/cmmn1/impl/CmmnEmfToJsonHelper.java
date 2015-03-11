@@ -24,6 +24,7 @@ import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.cmmn.DocumentRoot;
 import org.omg.cmmn.TCase;
@@ -85,12 +86,14 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
-        if(object.getDefinitionRef().getStructureRef()!=null){
+        if (object.getDefinitionRef().getStructureRef() != null) {
             String namespaceURI = object.getDefinitionRef().getStructureRef().getNamespaceURI();
-            URI uri=URI.createURI(namespaceURI,true);
-            XMLResource resource = (XMLResource) object.eResource().getResourceSet().getResource(uri, true);
-            Classifier classifier = (Classifier) resource.getEObject(object.getDefinitionRef().getStructureRef().getLocalPart());
-            targetShape.putProperty("caseFileItemStructureRef", classifier.getQualifiedName() +"|" +  uri.toPlatformString(true));
+            URI uri = URI.createURI(namespaceURI, true);
+            if (object.eResource().getResourceSet().getURIConverter().exists(uri, null)) {
+                XMLResource resource = (XMLResource) object.eResource().getResourceSet().getResource(uri, true);
+                Classifier classifier = (Classifier) resource.getEObject(object.getDefinitionRef().getStructureRef().getLocalPart());
+                targetShape.putProperty("caseFileItemStructureRef", classifier.getQualifiedName() + "|" + uri.toPlatformString(true));
+            }
         }
         return super.caseTCaseFileItem(object);
     }
@@ -231,24 +234,27 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     }
 
     private void addSentries(EList<TSentry> entryCriteriaRefs) {
-//        for (TSentry s : entryCriteriaRefs) {
-//            DiagramElement de = getDiagramElement(s);
-//            Shape out = this.getShape(de);
-//            this.targetShape.addOutgoing(out);
-//            Point upperLeft = out.getUpperLeft();
-//            Point lowerRight = out.getLowerRight();
-//            if (upperLeft != null && upperLeft.getX() != null && upperLeft.getY() != null && lowerRight != null && lowerRight.getY() != null) {
-//                double absoluteX = (upperLeft.getX() + lowerRight.getX()) / 2;
-//                double absoluteY = (upperLeft.getY() + lowerRight.getY()) / 2;
-//                out.getDockers().add(
-//                        new Point(absoluteX - targetShape.getBounds().getUpperLeft().getX(), absoluteY - targetShape.getBounds().getUpperLeft().getY()));
-//            }
-//        }
+        // for (TSentry s : entryCriteriaRefs) {
+        // DiagramElement de = getDiagramElement(s);
+        // Shape out = this.getShape(de);
+        // this.targetShape.addOutgoing(out);
+        // Point upperLeft = out.getUpperLeft();
+        // Point lowerRight = out.getLowerRight();
+        // if (upperLeft != null && upperLeft.getX() != null && upperLeft.getY()
+        // != null && lowerRight != null && lowerRight.getY() != null) {
+        // double absoluteX = (upperLeft.getX() + lowerRight.getX()) / 2;
+        // double absoluteY = (upperLeft.getY() + lowerRight.getY()) / 2;
+        // out.getDockers().add(
+        // new Point(absoluteX - targetShape.getBounds().getUpperLeft().getX(),
+        // absoluteY - targetShape.getBounds().getUpperLeft().getY()));
+        // }
+        // }
     }
 
-    private DiagramElement getDiagramElement(TSentry s) {
-        return shapeMap.getDiagramElement(s.getId());
-    }
+    //
+    // private DiagramElement getDiagramElement(TSentry s) {
+    // return shapeMap.getDiagramElement(s.getId());
+    // }
 
     @Override
     public Object caseTDiscretionaryItem(TDiscretionaryItem object) {
@@ -272,20 +278,19 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public Object caseTPlanItemOnPart(TPlanItemOnPart object) {
-        if(object.getSentryRef()!=null){
+        if (object.getSentryRef() != null) {
             shapeMap.getShape(object.getSentryRef()).getOutgoing().add(new ShapeReference(object.getId()));
         }
         return super.caseTPlanItemOnPart(object);
     }
 
-
-    private Shape getShape(DiagramElement de) {
-        return this.shapeMap.getShape(de);
-    }
+    // private Shape getShape(DiagramElement de) {
+    // return this.shapeMap.getShape(de);
+    // }
 
     @Override
     public void linkElements(DiagramElement diagramElement, Shape shape) {
-        EObject modelElement = diagramElement.getModelElement().isEmpty()?null:diagramElement.getModelElement().get(0);
+        EObject modelElement = diagramElement.getModelElement().isEmpty() ? null : diagramElement.getModelElement().get(0);
         if (modelElement instanceof TDiscretionaryItem) {
             putSentries(modelElement, ((TDiscretionaryItem) modelElement).getEntryCriteriaRefs());
             putSentries(modelElement, ((TDiscretionaryItem) modelElement).getExitCriteriaRefs());
@@ -320,5 +325,11 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
             }
         }
         return CmmnStencil.findStencilByElement(me, de);
+    }
+
+    @Override
+    public String convertToString(LinkedProperty property, Object val) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

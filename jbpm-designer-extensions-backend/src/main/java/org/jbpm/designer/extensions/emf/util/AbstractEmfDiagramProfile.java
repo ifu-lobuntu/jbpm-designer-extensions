@@ -2,7 +2,6 @@ package org.jbpm.designer.extensions.emf.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Collection;
@@ -18,6 +17,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
@@ -33,12 +33,13 @@ import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.jbpm.designer.notification.DesignerNotificationEvent;
 import org.jbpm.designer.repository.Repository;
 import org.jbpm.designer.repository.UriUtils;
-import org.jbpm.designer.server.service.PathEvent;
 import org.jbpm.designer.util.ConfigurationProvider;
 import org.jbpm.designer.web.plugin.IDiagramPlugin;
 import org.jbpm.designer.web.plugin.impl.PluginServiceImpl;
@@ -54,7 +55,6 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, IDiagramProfile {
-
 
     static Logger _logger = LoggerFactory.getLogger(AbstractEmfDiagramProfile.class);
 
@@ -77,55 +77,58 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     @Inject
     User user;
     URIHandler uriHandler;
-    
+
     @Inject
     @Any
     Instance<IEmfDiagramProfile> otherProfiles;
 
-
     private LinkedStencilSet stencilSetValidator;
 
     private File stencilSetDefinitionfile;
-    private long stencilSetDefinitionfileLastRead;
+    private long filesLastRead;
+
+    private File profileXmlFile;
+
+    private Map<String, IDiagramPlugin> registry;
 
     public AbstractEmfDiagramProfile() {
     }
+
     public abstract String getStencilSetPath();
 
     protected abstract ResourceTypeDefinition getResourceTypeDefinition();
 
-    private void loadLinkedStencilSet(ServletContext context) {
-        String realPath = new StringBuilder(context.getRealPath("/")).append(ConfigurationProvider.getInstance().getDesignerContext()).append(getStencilSetPath())
-                .toString();
-        loadLinkedStencilSet(realPath);
-    }
+
     @Override
     public boolean useIdAttribute() {
         return true;
     }
+
     @Override
     public String getModelStub() {
         ResourceSetImpl rst = new ResourceSetImpl();
         prepareResourceSet(rst);
-        XMLResource rs = (XMLResource) rst.createResource(URI.createURI("file:///dummy."+getSerializedModelExtension()));
+        XMLResource rs = (XMLResource) rst.createResource(URI.createURI("file:///dummy." + getSerializedModelExtension()));
         populateModelStub(rs);
-        StringWriter sw =new StringWriter();
+        StringWriter sw = new StringWriter();
         try {
-            rs.save(sw,new HashMap<String,Object>());
+            rs.save(sw, new HashMap<String, Object>());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return sw.toString();
     }
 
-    protected abstract  void populateModelStub(XMLResource rs);
+    protected abstract void populateModelStub(XMLResource rs);
+
     public String getSerializedModelExtension() {
         return getResourceTypeDefinition().getSuffix();
     }
+
     public void loadLinkedStencilSet(String realPath) {
         this.stencilSetDefinitionfile = new File(realPath);
         reloadStencilSetDefinitionFile();
-        stencilSetValidator.validateSupportingFiles(this.stencilSetDefinitionfile.getParentFile() );
+        stencilSetValidator.validateSupportingFiles(this.stencilSetDefinitionfile.getParentFile());
     }
 
     private void reloadStencilSetDefinitionFile() {
@@ -136,6 +139,13 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
             StencilSet stencilSet = om.readValue(stencilSetDefinitionfile, StencilSet.class);
             this.stencilSetValidator = new LinkedStencilSet(stencilSet);
             this.stencilSetValidator.validateStencilSet();
+            for (LinkedStencil ls : this.stencilSetValidator.getLinkedStencils()) {
+                for (LinkedProperty lp : ls.getProperties().values()) {
+                    if (lp.getProperty().getReference() != null) {
+                        lp.init(getEPackages());
+                    }
+                }
+            }
         } catch (JsonParseException e) {
             throw new RuntimeException(e);
         } catch (JsonMappingException e) {
@@ -154,19 +164,28 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     }
 
     public Collection<String> getPlugins() {
+        checkFiles();
         return Collections.unmodifiableCollection(_plugins.keySet());
     }
 
-    private void initializeLocalPlugins(ServletContext context) {
-        Map<String, IDiagramPlugin> registry = PluginServiceImpl.getLocalPluginsRegistry(context);
+    private void checkFiles() throws FactoryConfigurationError {
+        if (filesLastRead < profileXmlFile.lastModified()) {
+            _plugins=new LinkedHashMap<String, IDiagramPlugin>();
+            filesLastRead = System.currentTimeMillis();
+            initializeLocalPlugins();
+            reloadStencilSetDefinitionFile();
+        }
+    }
+
+    public void initializeLocalPlugins(String string) {
+        this.profileXmlFile = new File(string);
+        initializeLocalPlugins();
+    }
+
+    private void initializeLocalPlugins() throws FactoryConfigurationError {
         FileInputStream fileStream = null;
         try {
-            try {
-                fileStream = new FileInputStream(new StringBuilder(context.getRealPath("/")).append("/")
-                        .append(ConfigurationProvider.getInstance().getDesignerContext()).append("profiles").append("/").append(getProfileDefinitionFileName()).toString());
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+             fileStream = new FileInputStream(profileXmlFile);
             XMLInputFactory factory = XMLInputFactory.newInstance();
             XMLStreamReader reader = factory.createXMLStreamReader(fileStream, "UTF-8");
             while (reader.hasNext()) {
@@ -218,6 +237,9 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
                     }
                 }
             }
+        } catch (IOException e) {
+            _logger.error(e.getMessage(), e);
+            throw new RuntimeException(e); // stop initialization
         } catch (XMLStreamException e) {
             _logger.error(e.getMessage(), e);
             throw new RuntimeException(e); // stop initialization
@@ -230,7 +252,9 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
             }
         }
     }
+
     public abstract String getProfileDefinitionFileName();
+
     public String getLocalHistoryEnabled() {
         return _localHistoryEnabled;
     }
@@ -251,8 +275,14 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     @Override
     public void init(ServletContext context) {
         if (!initializeLocalPlugins) {
-            initializeLocalPlugins(context);
-            loadLinkedStencilSet(context);
+            this.registry = PluginServiceImpl.getLocalPluginsRegistry(context);
+
+            initializeLocalPlugins(new StringBuilder(context.getRealPath("/")).append("/")
+                    .append(ConfigurationProvider.getInstance().getDesignerContext()).append("profiles").append("/").append(getProfileDefinitionFileName())
+                    .toString());
+            String realPath = new StringBuilder(context.getRealPath("/")).append(ConfigurationProvider.getInstance().getDesignerContext())
+                    .append(getStencilSetPath()).toString();
+            loadLinkedStencilSet(realPath);
             initializeLocalPlugins = true;
         }
     }
@@ -307,8 +337,6 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
         return ConfigurationProvider.getInstance().getDesignerContext() + getStencilSetPath();
     }
 
-
-
     public String getStencilSetExtensionURL() {
         return "http://oryx-editor.org/stencilsets/extensions/bpmncosts-2.0#";
     }
@@ -339,16 +367,13 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
 
     @Override
     public LinkedStencilSet getLinkedStencilSet() {
-        if (stencilSetDefinitionfileLastRead < stencilSetDefinitionfile.lastModified()) {
-            stencilSetDefinitionfileLastRead = System.currentTimeMillis();
-            reloadStencilSetDefinitionFile();
-        }
+        checkFiles();
         return stencilSetValidator;
     }
 
     public URIHandler getUriHandler() {
-        if(uriHandler==null){
-            uriHandler=new VFSUriHandler(repository);
+        if (uriHandler == null) {
+            uriHandler = new VFSUriHandler(repository);
         }
         return uriHandler;
     }
@@ -356,14 +381,18 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     public void setUriHandler(URIHandler uriHandler) {
         this.uriHandler = uriHandler;
     }
+
     @Override
     public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         return false;
     }
+
     public IEmfDiagramProfile getOtherProfile(String string) {
-        for(IEmfDiagramProfile e:otherProfiles){
-            if(e.getName().equals(string)){
-                return e;
+        if (otherProfiles != null) {
+            for (IEmfDiagramProfile e : otherProfiles) {
+                if (e.getName().equals(string)) {
+                    return e;
+                }
             }
         }
         return null;

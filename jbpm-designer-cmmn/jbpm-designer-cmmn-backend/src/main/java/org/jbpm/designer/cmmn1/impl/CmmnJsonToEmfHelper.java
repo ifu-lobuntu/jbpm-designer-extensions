@@ -30,6 +30,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
@@ -130,15 +131,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
                 object.getCaseFileModel().getCaseFileItem().add((TCaseFileItem) getModelElement(shape.getResourceId()));
             } else {
                 processPlanItemInStage(stage, shape);
-            }
-        }
-        String caseRoles = sourceShape.getProperty("caseroles");
-        if (caseRoles != null && caseRoles.trim().length() > 0) {
-            for (String string : caseRoles.split(",")) {
-                TRole role = CMMNFactory.eINSTANCE.createTRole();
-                role.setName(string);
-                role.setId(string);
-                object.getCaseRoles().add(role);
             }
         }
         this.addTaskParameters(object, object.getInput(), "inputs", null, null);
@@ -606,6 +598,17 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     @Override
     public EObject create(EClass eType) {
         return CMMNFactory.eINSTANCE.create(eType);
+    }
+
+    @Override
+    public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
+        if(TRole.class.isAssignableFrom(targetType)){
+            TRole role = CMMNFactory.eINSTANCE.createTRole();
+            role.setName(string);
+            role.setId(string);
+            return role;
+        }
+        return null;
     }
 
 }

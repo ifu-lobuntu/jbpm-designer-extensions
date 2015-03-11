@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.util.List;
 
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -27,11 +26,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
+import org.jbpm.designer.dd.jbpmdd.Compartment;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
-import org.jbpm.designer.extensions.stencilset.linkage.Property;
 import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.jbpm.designer.web.profile.IDiagramProfile.IDiagramMarshaller;
 import org.omg.dd.dc.Bounds;
@@ -103,7 +103,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         org.omg.dd.di.Diagram emfDiagram = helper.prepareEmfDiagram(json, result);
         this.shapeMap.linkElements(emfDiagram, json);
         LinkedStencil ls = getStencil(json);
-        setAttributes(json, emfDiagram, ls);
+        setAttributes(json, emfDiagram, ls,false);
         setDiagramElementId(json, emfDiagram);
         createEmfElementsFromShapes(emfDiagram, json);
         linkEdgesRecursively(emfDiagram, json);
@@ -117,7 +117,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             LinkedStencil sv = getStencil(childShape);
             DiagramElement de = createEmfElements(parentDiagramElement, childShape);
             setDiagramElementId(childShape, de);
-            setAttributes(childShape, de, sv);
+            setAttributes(childShape, de, sv,false);
             createEmfElementsFromShapes(de, childShape);
         }
     }
@@ -184,6 +184,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     private void writeChildBinding(DiagramElement de, LinkedStencil childStencil, DiagramElement childDiagramElement) {
         if (hasValue(childStencil.getStencil().getChildBinding())) {
             EObject childModelElement = getModelElement(childDiagramElement);
+            if (de instanceof Compartment) {
+                de = (DiagramElement) de.eContainer();
+            }
             writeBinding(getModelElement(de), childStencil.getStencil().getChildBinding(), childModelElement);
         }
     }
@@ -222,7 +225,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     }
 
     private void linkEdgesRecursively(DiagramElement de, Shape shape) {
-        System.out.println(shape.getStencilId() + " " +shape.getOutgoing().size());
+        System.out.println(shape.getStencilId() + " " + shape.getOutgoing().size());
         if (de instanceof Edge) {
             List<ShapeReference> outgoings = shape.getOutgoing();
             Edge edge = (Edge) de;
@@ -246,7 +249,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                         throw new IllegalStateException("The type " + edge.eClass() + " does not have feature '" + ss.getEdgeTargetBinding() + "'");
                     }
                     edge.eSet(sourceFeature, de);
-                    
+
                 } else if (de instanceof BoundariedShape && edge instanceof org.omg.dd.di.Shape) {
                     ((BoundariedShape) de).getBoundaryShapes().add((org.omg.dd.di.Shape) edge);
                 }
@@ -257,19 +260,21 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         }
     }
 
-    private void setAttributes(Shape sourceShape, DiagramElement de, LinkedStencil sv) {
+    private void setAttributes(Shape sourceShape, DiagramElement de, LinkedStencil sv, boolean late) {
         EObject me = getModelElement(de);
-        for (Property property : sv.getProperties().values()) {
-            String stringValue = sourceShape.getProperty(property.getId().toLowerCase());
-            if (hasValue(stringValue)) {
-                if (hasValue(property.getBinding())) {
-                    writeBinding(me, property.getBinding(), stringValue);
-                } else if (hasValue(property.getViewBinding())) {
-                    writeBinding(de, property.getViewBinding(), stringValue);
-                } else if (me != null) {
-                    EStructuralFeature eStructuralFeature = me.eClass().getEStructuralFeature(property.getId());
-                    if (eStructuralFeature instanceof EAttribute && !((EAttribute) eStructuralFeature).isID()) {
-                        setFeatureValue(me, eStructuralFeature, stringValue);
+        for (LinkedProperty property : sv.getProperties().values()) {
+            if (property.getProperty().isBindLate() == late) {
+                String stringValue = sourceShape.getProperty(property.getId().toLowerCase());
+                if (hasValue(stringValue)) {
+                    if (hasValue(property.getBinding())) {
+                        writeBinding(me, property, property.getBinding(), stringValue);
+                    } else if (hasValue(property.getViewBinding())) {
+                        writeBinding(de, property, property.getViewBinding(), stringValue);
+                    } else if (me != null) {
+                        EStructuralFeature eStructuralFeature = me.eClass().getEStructuralFeature(property.getId());
+                        if (eStructuralFeature != null && !(eStructuralFeature instanceof EAttribute && ((EAttribute) eStructuralFeature).isID())) {
+                            setFeatureValue(me, property, eStructuralFeature, stringValue);
+                        }
                     }
                 }
             }
@@ -280,11 +285,11 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         return binding != null && binding.trim().length() > 0;
     }
 
-    protected void writeBinding(EObject objectToModify, String binding, String stringValue) {
+    protected void writeBinding(EObject objectToModify, LinkedProperty property, String binding, String stringValue) {
         String[] split = binding.trim().split("\\.");
         EObject currentTarget = createIntermediateObjects(objectToModify, split);
         EStructuralFeature a = currentTarget.eClass().getEStructuralFeature(split[split.length - 1]);
-        setFeatureValue(currentTarget, a, stringValue);
+        setFeatureValue(currentTarget, property, a, stringValue);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
@@ -342,7 +347,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    private void setFeatureValue(EObject me, EStructuralFeature a, String stringValue) {
+    private void setFeatureValue(EObject me, LinkedProperty property, EStructuralFeature a, String stringValue) {
         Class<?> type = a.getEType().getInstanceClass();
         if (a.isMany()) {
             Object val = me.eGet(a);
@@ -350,19 +355,23 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             list.clear();
             String[] split = stringValue.split("\\,");
             for (String string : split) {
-                list.add(convert(string, type));
+                try {
+                    list.add(convert(property, string, type));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else {
-            me.eSet(a, convert(stringValue, type));
+            me.eSet(a, convert(property, stringValue, type));
         }
     }
 
     private void linkAndRefineEmfElementsRecursively(Shape sourceShape) {
         EObject me = shapeMap.getModelElement(sourceShape.getResourceId());
         DiagramElement diagramElement = shapeMap.getDiagramElement(sourceShape);
+        LinkedStencil sv = getStencil(sourceShape);
+        setAttributes(sourceShape, diagramElement, sv, true);
         if (me != null) {
-            LinkedStencil sv = getStencil(sourceShape);
-            setReferences(sourceShape, me, sv);
             helper.doSwitch(sv, sourceShape);
         }
         for (Shape shape : sourceShape.getChildShapes()) {
@@ -373,28 +382,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         }
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void setReferences(Shape sourceShape, EObject me, LinkedStencil sv) {
-        for (EReference a : me.eClass().getEAllReferences()) {
-            String val = sourceShape.getProperty(a.getName());
-            if (hasValue(val)) {
-                if (a.isMany()) {
-                    EList list = (EList) me.eGet(a);
-                    list.clear();
-                    if (val != null) {
-                        String[] split = val.split(",");
-                        for (String id : split) {
-                            list.add(shapeMap.getModelElement(id));
-                        }
-                    }
-                } else {
-                    me.eSet(a, shapeMap.getModelElement(val));
-                }
-            }
-        }
-    }
-
-    private Object convert(String string, Class<?> targetType) {
+    private Object convert(LinkedProperty property, String string, Class<?> targetType) {
         if (string == null || string.trim().isEmpty()) {
             return null;
         }
@@ -422,6 +410,13 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                 }
             }
             return null;
+        } else if (property.getReference() != null && string.indexOf("|") > 0) {
+            return UriHelper.resolveEObject(shapeMap.getResource().getResourceSet(), string.split("\\|"), property.getClassFeatureMap());
+        } else {
+            Object val = helper.convertFromString(property, string, targetType);
+            if (val != null) {
+                return val;
+            }
         }
         return string;
     }

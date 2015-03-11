@@ -9,8 +9,8 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
-import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
@@ -31,6 +31,12 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
 
     @Override
     public Object caseAssociation(Association object) {
+        if(targetShape.getStencilId().equals(ClassDiagramStencil.BI_DIRECTIONAL_ASSOCIATION.getStencilId())){
+            putMultiplicity("end1Multiplicity", object.getMemberEnds().get(0));
+            putMultiplicity("end2Multiplicity", object.getMemberEnds().get(1));
+        }else{
+            putMultiplicity("endMultiplicity", object.getMemberEnds().get(1));
+        }
         return super.caseAssociation(object);
     }
 
@@ -50,11 +56,26 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
     }
     @Override
     public Object caseProperty(Property object) {
-        if(object.getType() !=null){
-            //TODO support external types
-            targetShape.putProperty("type", object.getType().getName());
-        }
+        putMultiplicity("multiplicity", object);
         return super.caseProperty(object);
+    }
+
+    private void putMultiplicity(String key, Property object) {
+        String multiplicity=null;
+        if(object.isMultivalued()){
+            if(object.getLower()==1){
+                multiplicity="[1..*]";
+            }else{
+                multiplicity="[*]";
+            }
+        }else{
+            if(object.getLower()==1){
+                multiplicity="[1]";
+            }else{
+                multiplicity="[0..1]";
+            }
+        }
+        targetShape.putProperty(key, multiplicity);
     }
 
     @Override
@@ -64,10 +85,12 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
 
     @Override
     public void linkElements(DiagramElement diagramElement, Shape shape) {
-        if(diagramElement instanceof UMLCompartment){
-            //Do it here because we don't have a UML Element to switch
-            shape.putProperty("isexpanded", ((UMLCompartment) diagramElement).isIsExpanded()+"");
-        }
+    }
+
+
+    @Override
+    public String convertToString(LinkedProperty property, Object val) {
+        return null;
     }
 
 

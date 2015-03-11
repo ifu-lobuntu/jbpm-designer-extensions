@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
@@ -113,7 +115,10 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
 
     @Override
     public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
-        super.getOtherProfile("classdiagram").prepareResourceSet(resourceSet);
+        IEmfDiagramProfile ucd = super.getOtherProfile("classdiagram");
+        if(ucd!=null){
+            ucd.prepareResourceSet(resourceSet);
+        }
         resourceSet.getPackageRegistry().put(CMMNPackage.eNS_URI, CMMNPackage.eINSTANCE);
         resourceSet.getPackageRegistry().put(CMMNDIPackage.eNS_URI, CMMNDIPackage.eINSTANCE);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cmmn", new CMMNResourceFactoryImpl());
@@ -145,5 +150,10 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     @Override
     public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         return calledElementHelper.processRequest(req, resp, action, processId, this);
+    }
+
+    @Override
+    public EPackage[] getEPackages() {
+        return new EPackage[]{UMLPackage.eINSTANCE,CMMNPackage.eINSTANCE,CMMNDIPackage.eINSTANCE};
     }
 }

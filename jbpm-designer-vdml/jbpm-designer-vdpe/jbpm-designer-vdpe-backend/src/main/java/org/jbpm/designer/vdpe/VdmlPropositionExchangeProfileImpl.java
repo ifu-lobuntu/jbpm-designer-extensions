@@ -2,6 +2,7 @@ package org.jbpm.designer.vdpe;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -64,6 +65,11 @@ public static void main(String[] args) {
     public EmfToJsonHelper createEmfToJsonHelper(ShapeMap resource) {
         return new VdmlPropositionExchangeEmfToJsonHelper(resource);
     }
+    @Override
+    public EPackage[] getEPackages() {
+        return new EPackage[]{VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE};
+    }
+
 
     @Override
     public JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource) {

@@ -11,6 +11,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
@@ -107,5 +108,11 @@ public class VdmlPropositionExchangeJsonToEmfHelper extends VDMLSwitch<Object> i
     @Override
     public EObject create(EClass eType) {
         return VDMLFactory.eINSTANCE.create(eType);
+    }
+
+    @Override
+    public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

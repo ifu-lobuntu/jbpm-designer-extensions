@@ -2,6 +2,7 @@ package org.jbpm.designer.vdan;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -102,5 +103,10 @@ System.out.println(new VdmlActivityNetworkProfileImpl().getModelStub());
         VDMLDiagram dgm=VDMLDIFactory.eINSTANCE.createVDMLDiagram();
         vdm.getDiagram().add(dgm);
         dgm.setVdmlElement(cm);
+    }
+
+    @Override
+    public EPackage[] getEPackages() {
+        return new EPackage[]{VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE};
     }
 }

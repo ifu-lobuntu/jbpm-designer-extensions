@@ -11,6 +11,7 @@
 ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 /** @lends ORYX.Plugins.CMMN.prototype */  
 {
+	decoratorUpdaters:{},
 	/**
 	 * Creates a new instance of the CMMN plugin and registers it on the
 	 * layout events listed in the CMMN stencil set.
@@ -20,84 +21,69 @@ ORYX.Plugins.ClassDiagram = ORYX.Plugins.AbstractPlugin.extend(
 	 */
 	construct: function(facade) {
 		this.facade = facade;
+		try{
+			this.decoratorUpdaters={};
+			this.decoratorUpdaters["Property"]=this.updatePropertyDecorations.bind(this);
+			this.decoratorUpdaters["ImportedClass"]=this.updateImportDecorations.bind(this);
+			this.decoratorUpdaters["ImportedInterface"]=this.updateImportDecorations.bind(this);
+			this.decoratorUpdaters["ImportedEnumeration"]=this.updateImportDecorations.bind(this);
+
 		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
+		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
+		console.log("success");
+		}catch(e){alert(e);}
 	},
 	handleExpand : function(event, uiObj){
-		if(event.explicitOriginalTarget && event.explicitOriginalTarget.id && event.explicitOriginalTarget.id.indexOf("expand_")>=0){
-			console.log("asdf");
-			if(uiObj.properties["oryx-isexpanded"]=="false"){
-				uiObj.properties["oryx-isexpanded"]="true";
-			}else{
-				uiObj.properties["oryx-isexpanded"]="false";
-			}
-			uiObj._update();
-			uiObj._changed();
-			if(uiObj.parent instanceof ORYX.Core.Shape){
-				uiObj.parent._update();
-				uiObj.parent._changed();
-			}
-			this.facade.getCanvas().update();
-			this.facade.updateSelection();
-		}
 	},
-	handlePropertyChanged : function(event) {
-		if (event["key"] == "oryx-name" || event["key"] == "oryx-type") {
-			this.updateDecorations(event.elements[0]);
-		}
-	},
-	updateDecorations : function(shape) {
+	updatePropertyDecorations : function(shape){
 		var labels=shape.getLabels();
 		for(var i=0 ; i < labels.length; i++){
 		    if(labels[i].id==shape.id+"text_fullname"){
-		    	console.log(ORYX.Plugins.Extensions.extractName);
-				var type= ORYX.Plugins.Extensions.extractName(shape.properties["oryx-propertytype"]);
-				labels[i].text(shape.properties["oryx-name"] + " : " + type);
+				var type= ORYX.Plugins.Extensions.extractName(shape.properties["oryx-type"]);
+				var mult= ORYX.Plugins.Extensions.extractName(shape.properties["oryx-multiplicity"]);
+				labels[i].text(shape.properties["oryx-name"] + " : " + type +" [" + mult + "]");
 				labels[i].update();
 			}
 		}
 	},
-	updateExpanded : function(parentShape) {
-		var currentOffset=25;
-		parentShape.getChildShapes(false).forEach(function(compartment){
-			var paths=compartment.node.getElementsByTagName("path");
-			var verticalPath=null;
-			for(var j=0; j < paths.length; j ++){
-				if(paths[j].id.indexOf("expand_vertical")>0){
-					verticalPath=paths[j];
-				}
+	updateImportDecorations : function(shape){
+		console.log("here");
+		var labels=shape.getLabels();
+		for(var i=0 ; i < labels.length; i++){
+		    if(labels[i].id==shape.id+"text_name"){
+		    	var name="";
+		    	for(var key in shape.properties){
+		    		if(key.indexOf("imported")>=0){
+		    			name=shape.properties[key];
+		    			break;
+		    		}
+		    	}
+		    	name=name.substring(0, name.indexOf("|"));
+				labels[i].text(name);
+				labels[i].update();
 			}
-			var myHeight=0;
-			if(compartment.properties["oryx-isexpanded"] =="true"){
-				myHeight=(this.calcHeight(compartment));
-				compartment.children.each(function(uiObject) {
-					if(uiObject instanceof ORYX.Core.Shape) {
-						uiObject.behindCollapsedParent=false;
-						uiObject.show();
-					}
-				});
-				verticalPath.setAttributeNS(null,"display","none");
-
-			}else{
-				verticalPath.setAttributeNS(null,"display","inherit");
-				myHeight=13;
-				compartment.getChildShapes(true).forEach(function(child){
-					child.hide();
-					child.behindCollapsedParent=true;
-				});
-			};
-			compartment.bounds.set(1,currentOffset,parentShape.bounds.width()-1, currentOffset+myHeight);
-			compartment._changed();
-			currentOffset+=myHeight;
-		}.bind(this));
-		var bounds=parentShape.bounds;
-		if(currentOffset==25){
-			currentOffset=40;
 		}
-		currentOffset+=10;
-		parentShape.bounds.set(bounds.a.x,bounds.a.y,bounds.b.x,bounds.a.y+currentOffset);
-		parentShape._changed();
+	},
+	handlePropertyChanged : function(event) {
+		try{
+		console.log(event.elements[0].getStencil().idWithoutNs());
+		var updater = this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
+		console.log(updater);
+		if(updater){
+			updater(event.elements[0]);
+		}}catch(e){alert(e);}
+	},
+	updateDecorationsOnLoad : function() {
+		this.facade.getCanvas().getChildNodes(true,function(shape){
+			var updater = this.decoratorUpdaters[shape.getStencil().idWithoutNs()];
+			if(updater){
+				updater(shape);
+			}
+		}.bind(this));
+	},
+	updateExpanded : function(parentShape) {
 	},
 	calcHeight : function(compartment){
 		var currentHeight=13;

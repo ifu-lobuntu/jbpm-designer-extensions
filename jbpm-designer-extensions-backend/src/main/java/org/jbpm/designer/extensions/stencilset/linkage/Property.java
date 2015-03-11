@@ -20,7 +20,8 @@ public class Property {
     private String viewBinding;
     private List<String> refToView;
     private List<Item> items;
-
+    private EObjectReference reference;
+    private boolean bindLate;
     public String getId() {
         return id;
     }
@@ -131,6 +132,22 @@ public class Property {
 
     public void setViewBinding(String viewBinding) {
         this.viewBinding = viewBinding;
+    }
+
+    public EObjectReference getReference() {
+        return reference;
+    }
+
+    public void setReference(EObjectReference reference) {
+        this.reference = reference;
+    }
+
+    public boolean isBindLate() {
+        return bindLate;
+    }
+
+    public void setBindLate(boolean bindLate) {
+        this.bindLate = bindLate;
     }
 
 

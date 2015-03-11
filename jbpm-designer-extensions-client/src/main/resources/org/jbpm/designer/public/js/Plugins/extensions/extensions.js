@@ -21,11 +21,10 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 	construct: function(facade) {
 		this.facade = facade;
 		try{
-        ORYX.FieldEditors["classref"] = new ORYX.Plugins.Extensions.ClassRefEditorFactory();
-        ORYX.FieldEditors["propertytype"] = new ORYX.Plugins.Extensions.PropertyTypeEditorFactory();
+        ORYX.FieldEditors["eobjectref"] = new ORYX.Plugins.Extensions.EObjectRefEditorFactory();
 		this.facade.registerOnEvent('layout.collapsible', this.handleLayoutCollapsible.bind(this));
 		this.facade.registerOnEvent('layout.list', this.handleLayoutList.bind(this));
-//		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
+		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 		}catch(e){alert(e);}
@@ -33,25 +32,42 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 	handleExpand : function(event, uiObject){
 		if(event.explicitOriginalTarget && event.explicitOriginalTarget.id && event.explicitOriginalTarget.id.indexOf("expand_")>=0){
 			var newWidth=parseFloat(uiObject.properties["oryx-previouswidth"]);
+			if(isNaN(newWidth)){
+				newWidth=200;
+			}
 			var newHeight=parseFloat(uiObject.properties["oryx-previousheight"]);
+			if(isNaN(newHeight)){
+				newHeight=30;
+			}
 			uiObject.properties["oryx-previouswidth"]=uiObject.bounds.width();
 			uiObject.properties["oryx-previousheight"]=uiObject.bounds.height();
 			var topLeft=uiObject.bounds.a;
-			uiObject.bounds.set(topLeft,{x:topLeft.x+newWidth, y:topLeft.y + newHeight})
-			if(uiObject.properties["oryx-isexpanded"]=="false"){
-				uiObject.properties["oryx-isexpanded"]="true";
+			uiObject.bounds.set(topLeft,{x:topLeft.x+newWidth, y:topLeft.y + newHeight});
+			if(this.isExpanded(uiObject)){
+				uiObject.properties["oryx-isexpanded"]=false;
 			}else{
-				uiObject.properties["oryx-isexpanded"]="false";
+				uiObject.properties["oryx-isexpanded"]=true;
 			}
-			uiObject._update();
-			uiObject._changed();
-			if(uiObject.parent instanceof ORYX.Core.Shape){
-//				uiObject.parent._update();
-//				uiObject.parent._changed();
+			try{
+				uiObject._update();
+				uiObject._changed();
+			if(uiObject.getStencil()._jsonStencil.isCompartment &&  uiObject.parent instanceof ORYX.Core.Shape){
+				uiObject.parent._update();
+				uiObject.parent._changed();
+			}else{
 			}
 			this.facade.getCanvas().update();
 			this.facade.updateSelection();
+			}catch(e){
+				console.log(e);
+			}
 		}
+	},
+	isExpanded : function(shape){
+		return shape.properties["oryx-isexpanded"] == true || shape.properties["oryx-isexpanded"]=="true"; 
+	},
+	isCollapsible : function(shape){
+		return typeof(shape.properties["oryx-isexpanded"]) == "string" || typeof(shape.properties["oryx-isexpanded"])=="boolean"; 
 	},
 	handlePropertyChanged : function(event) {
 		if (event["key"] == "oryx-name" || event["key"] == "oryx-type") {
@@ -78,12 +94,11 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 				break;
 			}
 		}
-		if(collapsibleShape.properties["oryx-isexpanded"] == "true"){
+		if(this.isExpanded(collapsibleShape)){
 			verticalPath.setAttributeNS(null,'display','none');
 			collapsibleShape.children.each(function(uiObject) {
 				if(uiObject instanceof ORYX.Core.Shape){
 					this.showShape(uiObject);
-					console.log(uiObject);
 				}
 			}.bind(this));
 		}else{
@@ -131,9 +146,11 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 
 	},
 	handleLayoutCollapsible : function(event) {
+		console.log("handleLayoutCollapsible");
 		this.updateExpanded(event.shape);
 	},
 	handleLayoutList : function(event) {
+		console.log("handleLayoutList");
 		var shape = event.shape;
 		var currentOffset=15;
 		shape.getChildShapes(false).forEach(function(item){
@@ -144,16 +161,36 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 					currentOffset + 20
 			);
 			currentOffset+=21;
-		});
+		}); 
 	},
 	handleLayoutCompartments : function(event) {
+		console.log("handleLayoutCompartments");
+		var height=30;
+		var bounds = event.shape.bounds;
+		event.shape.getChildShapes(false,function(child){
+			var topLeft={x:1,y:height};
+			height=height + Math.max(child.bounds.height(),20);
+			var bottomRight={x:bounds.width()-1,y:height};
+			child.bounds.set(topLeft,bottomRight);
+			if(this.isCollapsible(child)){
+				this.updateExpanded(child);
+			}
+		}.bind(this));
+		if(height!=0){
+			height+=15;
+			event.shape.bounds.set(bounds.a.x, bounds.a.y, bounds.b.x,bounds.a.y+height);
+		}
+		event.shape._changed();
+		event.shape._update();
+		event.shape.update();
+		event.shape.refresh();
 	},
 });
 ORYX.Plugins.Extensions.extractName = function(reference){
 	return reference.slice(reference.indexOf("::")+2,reference.indexOf("|"));
 }
 
-ORYX.Plugins.Extensions.ClassRefEditorFactory = Clazz.extend({
+ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
     construct: function(){
 
     },
@@ -170,7 +207,7 @@ ORYX.Plugins.Extensions.ClassRefEditorFactory = Clazz.extend({
 
         var factType = pair._jsonProp.lookupType;
 
-        var cf = new ORYX.Plugins.Extensions.ReferencedEmfElementField({
+        var cf = new ORYX.Plugins.Extensions.EObjectRefField({
                 allowBlank: pair.optional(),
                 dataSource: this.dataSource,
                 grid: this.grid,
@@ -178,50 +215,17 @@ ORYX.Plugins.Extensions.ClassRefEditorFactory = Clazz.extend({
                 facade: this.facade,
                 shapes: this.shapeSelection.shapes
         });
+        var jsonProp=pair._jsonProp;
         cf.profile='cmmn1.0';
-        cf.targetProfile="classdiagram";
-        cf.elementTypes="Class|Interface|Enumeration";
-        cf.nameFeature="qualifiedName";
+        cf.targetProfile=jsonProp.reference.targetProfile;
+        cf.elementTypes=jsonProp.reference.allowedElementTypes;
+        cf.nameFeature=jsonProp.reference.nameFeature;
         cf.on('dialogClosed', this.dialogClosed, {scope:this, row:index, col:1,field:cf});
 
         return new Ext.Editor(cf);}catch(e){alert(e);}
     }
 });
-ORYX.Plugins.Extensions.PropertyTypeEditorFactory = Clazz.extend({
-    construct: function(){
-
-    },
-    /**
-     * This function gets executed by propertyWindow in its own context,
-     * so this = propertyWindow
-     */
-    init: function(){
-        //arguments: key, pair, icons, index
-    	try{
-        var key = arguments[0];
-        var pair = arguments[1];
-        var index = arguments[3];
-
-        var factType = pair._jsonProp.lookupType;
-
-        var cf = new ORYX.Plugins.Extensions.ReferencedEmfElementField({
-                allowBlank: pair.optional(),
-                dataSource: this.dataSource,
-                grid: this.grid,
-                row: index,
-                facade: this.facade,
-                shapes: this.shapeSelection.shapes
-        });
-        cf.profile='cmmn1.0';
-        cf.targetProfile="classdiagram";
-        cf.elementTypes="Enumeration|PrimitiveType|DataType";
-        cf.nameFeature="qualifiedName";
-        cf.on('dialogClosed', this.dialogClosed, {scope:this, row:index, col:1,field:cf});
-
-        return new Ext.Editor(cf);}catch(e){alert(e);}
-    }
-});
-ORYX.Plugins.Extensions.ReferencedEmfElementField = Ext.extend(Ext.form.TriggerField,  {
+ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(Ext.form.TriggerField,  {
     editable: true,
     readOnly: false,
 	onTriggerClick : function(){
