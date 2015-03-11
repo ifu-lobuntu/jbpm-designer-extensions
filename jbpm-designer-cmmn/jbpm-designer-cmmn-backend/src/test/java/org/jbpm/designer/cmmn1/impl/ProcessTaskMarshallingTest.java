@@ -1,5 +1,8 @@
 package org.jbpm.designer.cmmn1.impl;
 
+import org.eclipse.bpmn2.Bpmn2Package;
+import org.jbpm.cmmn.jbpmext.JbpmextPackage;
+import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.junit.Test;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.MultiplicityEnum;
@@ -12,6 +15,7 @@ import org.omg.cmmn.TPlanItem;
 import org.omg.cmmn.TProcess;
 import org.omg.cmmn.TProcessParameter;
 import org.omg.cmmn.TProcessTask;
+import org.eclipse.bpmn2.Process;
 
 public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
 
@@ -19,8 +23,10 @@ public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTe
     public void testProcessTask() throws Exception {
         TPlanItem ctpi = addProcessTaskPlanItem(tCase, casePlanModel);
         TProcessTask task = (TProcessTask) ctpi.getDefinitionRef();
-        TProcess calledProcess = CmmnJsonToEmfHelper.syncProcessInDefinitions(task, "scrum.CalledProcess|/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledProcess.bpmn2", super.inputDefinitions);
-        task.setProcessRef(calledProcess);
+        String[] split = "scrum.CalledProcess|/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledProcess.bpmn2".split("\\|");
+        Process p = UriHelper.resolveEObject(resourceSet, split, Bpmn2Package.eINSTANCE.getBaseElement_Id(), Bpmn2Package.eINSTANCE.getProcess());
+        TProcess calledProcess = CmmnJsonToEmfHelper.syncProcessInDefinitions(task, p , super.inputDefinitions);
+        task.getAnyAttribute().set(JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess(), p);
         TCaseFileItemDefinition childDef = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition();
         inputDefinitions.getCaseFileItemDefinition().add(childDef);
         childDef.setName("MyChildCaseFileItemDefinition");

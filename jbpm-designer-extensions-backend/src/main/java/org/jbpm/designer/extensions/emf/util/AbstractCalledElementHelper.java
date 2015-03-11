@@ -38,12 +38,12 @@ public class AbstractCalledElementHelper {
             String[] elementTypes = req.getParameter("elementTypes").split("\\|");
             List<String> allPackageNames = ServletUtil.getPackageNamesFromRepository(profile);
             Map<String, String> classInfo = new HashMap<String, String>();
-            IEmfDiagramProfile targetDiagramProfile = ((IEmfDiagramProfile) profile).getOtherProfile(targetProfile);
+            IEmfProfile targetDiagramProfile = ((IEmfProfile) profile).getOtherProfile(targetProfile);
             ResourceSet rst = new ResourceSetImpl();
             targetDiagramProfile.prepareResourceSet(rst);
             UriHelper.setPlatformUriHandler(rst, targetDiagramProfile.getUriHandler());
             for (String packageName : allPackageNames) {
-                Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName, new FilterByExtension("ucd"));
+                Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName, new FilterByExtension(targetDiagramProfile.getSerializedModelExtension()));
                 for (Asset<?> asset : listAssetsRecursively) {
                     String id = getURI(asset);
                     URI uri = URI.createPlatformResourceURI(id, true);

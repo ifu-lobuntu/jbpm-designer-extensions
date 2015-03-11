@@ -6,6 +6,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,7 +30,7 @@ import org.jbpm.cmmn.jbpmext.JbpmextPackage;
  *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getProcessURI <em>Process URI</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getExternalProcess <em>External Process</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,24 +68,14 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
     protected EMap<String, String> xSISchemaLocation;
 
     /**
-     * The default value of the '{@link #getProcessURI() <em>Process URI</em>}' attribute.
+     * The cached value of the '{@link #getExternalProcess() <em>External Process</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProcessURI()
+     * @see #getExternalProcess()
      * @generated
      * @ordered
      */
-    protected static final String PROCESS_URI_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getProcessURI() <em>Process URI</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProcessURI()
-     * @generated
-     * @ordered
-     */
-    protected String processURI = PROCESS_URI_EDEFAULT;
+    protected EObject externalProcess;
 
     /**
      * <!-- begin-user-doc -->
@@ -146,8 +137,16 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getProcessURI() {
-        return processURI;
+    public EObject getExternalProcess() {
+        if (externalProcess != null && externalProcess.eIsProxy()) {
+            InternalEObject oldExternalProcess = (InternalEObject)externalProcess;
+            externalProcess = eResolveProxy(oldExternalProcess);
+            if (externalProcess != oldExternalProcess) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS, oldExternalProcess, externalProcess));
+            }
+        }
+        return externalProcess;
     }
 
     /**
@@ -155,11 +154,20 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setProcessURI(String newProcessURI) {
-        String oldProcessURI = processURI;
-        processURI = newProcessURI;
+    public EObject basicGetExternalProcess() {
+        return externalProcess;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setExternalProcess(EObject newExternalProcess) {
+        EObject oldExternalProcess = externalProcess;
+        externalProcess = newExternalProcess;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JbpmextPackage.DOCUMENT_ROOT__PROCESS_URI, oldProcessURI, processURI));
+            eNotify(new ENotificationImpl(this, Notification.SET, JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS, oldExternalProcess, externalProcess));
     }
 
     /**
@@ -197,8 +205,9 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
             case JbpmextPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 if (coreType) return getXSISchemaLocation();
                 else return getXSISchemaLocation().map();
-            case JbpmextPackage.DOCUMENT_ROOT__PROCESS_URI:
-                return getProcessURI();
+            case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
+                if (resolve) return getExternalProcess();
+                return basicGetExternalProcess();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -220,8 +229,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
             case JbpmextPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 ((EStructuralFeature.Setting)getXSISchemaLocation()).set(newValue);
                 return;
-            case JbpmextPackage.DOCUMENT_ROOT__PROCESS_URI:
-                setProcessURI((String)newValue);
+            case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
+                setExternalProcess((EObject)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -244,8 +253,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
             case JbpmextPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 getXSISchemaLocation().clear();
                 return;
-            case JbpmextPackage.DOCUMENT_ROOT__PROCESS_URI:
-                setProcessURI(PROCESS_URI_EDEFAULT);
+            case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
+                setExternalProcess((EObject)null);
                 return;
         }
         super.eUnset(featureID);
@@ -265,8 +274,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
                 return xMLNSPrefixMap != null && !xMLNSPrefixMap.isEmpty();
             case JbpmextPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
-            case JbpmextPackage.DOCUMENT_ROOT__PROCESS_URI:
-                return PROCESS_URI_EDEFAULT == null ? processURI != null : !PROCESS_URI_EDEFAULT.equals(processURI);
+            case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
+                return externalProcess != null;
         }
         return super.eIsSet(featureID);
     }
@@ -283,8 +292,6 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (mixed: ");
         result.append(mixed);
-        result.append(", processURI: ");
-        result.append(processURI);
         result.append(')');
         return result.toString();
     }

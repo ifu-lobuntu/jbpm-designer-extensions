@@ -1,15 +1,12 @@
 package org.jbpm.designer.extensions.emf.util;
 
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIHandler;
-import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.jbpm.designer.web.profile.IExtensionDiagramProfile;
 import org.uberfire.workbench.events.NotificationEvent;
 
-public interface IEmfDiagramProfile extends IExtensionDiagramProfile,IDiagramProfile{
+public interface IEmfDiagramProfile extends IExtensionDiagramProfile, IDiagramProfile, IEmfProfile {
 
     LinkedStencilSet getLinkedStencilSet();
 
@@ -17,23 +14,12 @@ public interface IEmfDiagramProfile extends IExtensionDiagramProfile,IDiagramPro
 
     void logInfo(String string);
 
-
-    ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet);
-
     EmfToJsonHelper createEmfToJsonHelper(ShapeMap resource);
 
     JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource);
 
-    void setUriHandler(URIHandler handler);
-
-    URIHandler getUriHandler();
-
     String getDiagramStencilId();
 
-    boolean useIdAttribute();
-
-    IEmfDiagramProfile getOtherProfile(String string);
-    
-    EPackage[] getEPackages();
+    EStructuralFeature demandFeature(String featureName);
 
 }

@@ -4,6 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
@@ -51,26 +52,21 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
 public static void main(String[] args) {
     System.out.println(new VdmlPropositionExchangeProfileImpl().getModelStub());
 }
-    @Override
-    public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put(VDMLPackage.eNS_URI, VDMLPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(VDMLDIPackage.eNS_URI, VDMLDIPackage.eINSTANCE);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), new VDMLResourceFactoryImpl());
-        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
-        return new VDMLResourceFactoryImpl();
-    }
 
     @Override
     public EmfToJsonHelper createEmfToJsonHelper(ShapeMap resource) {
         return new VdmlPropositionExchangeEmfToJsonHelper(resource);
     }
+
     @Override
     public EPackage[] getEPackages() {
-        return new EPackage[]{VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE};
+        return ddPackages(VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE);
     }
 
-
+    @Override
+    public Factory getResourceFactory() {
+        return new VDMLResourceFactoryImpl();
+    }
     @Override
     public JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource) {
         return new VdmlPropositionExchangeJsonToEmfHelper(resource);

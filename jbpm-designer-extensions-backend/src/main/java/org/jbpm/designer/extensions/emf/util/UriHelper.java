@@ -15,10 +15,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 public class UriHelper {
-    public static void setPlatformUriHandler(ResourceSet resourceSet, URIHandler uriHandlerToUse) {
+    public static void setPlatformUriHandler(ResourceSet resourceSet, final URIHandler uriHandlerToUse) {
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
+        replaceUriHandler(uriHandlerToUse, uriHandlers);
+        Resource d = new ResourceImpl() {
+            //Jeez!!!!
+            {
+                replaceUriHandler(uriHandlerToUse, getDefaultURIConverter().getURIHandlers());
+            }
+        };
+
+    }
+
+    private static void replaceUriHandler(URIHandler uriHandlerToUse, EList<URIHandler> uriHandlers) {
         URI testPlatformURI = URI.createPlatformResourceURI("/project1/src/test.xmi", true);
         for (URIHandler uriHandler : new ArrayList<URIHandler>(uriHandlers)) {
             if (uriHandler.canHandle(testPlatformURI)) {

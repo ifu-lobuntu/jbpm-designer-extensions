@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getMixed <em>Mixed</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
- *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getProcessURI <em>Process URI</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getExternalProcess <em>External Process</em>}</li>
  * </ul>
  * </p>
  *
@@ -80,30 +80,29 @@ public interface DocumentRoot extends EObject {
     EMap<String, String> getXSISchemaLocation();
 
     /**
-     * Returns the value of the '<em><b>Process URI</b></em>' attribute.
+     * Returns the value of the '<em><b>External Process</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Process URI</em>' attribute isn't clear,
+     * If the meaning of the '<em>External Process</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Process URI</em>' attribute.
-     * @see #setProcessURI(String)
-     * @see org.jbpm.cmmn.jbpmext.JbpmextPackage#getDocumentRoot_ProcessURI()
-     * @model dataType="org.jbpm.cmmn.jbpmext.ExternalURI"
-     *        extendedMetaData="kind='attribute' name='processURI' namespace='##targetNamespace'"
+     * @return the value of the '<em>External Process</em>' reference.
+     * @see #setExternalProcess(EObject)
+     * @see org.jbpm.cmmn.jbpmext.JbpmextPackage#getDocumentRoot_ExternalProcess()
+     * @model extendedMetaData="kind='attribute' name='externalProcess' namespace='##targetNamespace'"
      * @generated
      */
-    String getProcessURI();
+    EObject getExternalProcess();
 
     /**
-     * Sets the value of the '{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getProcessURI <em>Process URI</em>}' attribute.
+     * Sets the value of the '{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getExternalProcess <em>External Process</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Process URI</em>' attribute.
-     * @see #getProcessURI()
+     * @param value the new value of the '<em>External Process</em>' reference.
+     * @see #getExternalProcess()
      * @generated
      */
-    void setProcessURI(String value);
+    void setExternalProcess(EObject value);
 
 } // DocumentRoot

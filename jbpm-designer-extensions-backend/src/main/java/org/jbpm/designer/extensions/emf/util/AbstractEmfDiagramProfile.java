@@ -11,8 +11,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.enterprise.event.Event;
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +27,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
@@ -38,7 +35,6 @@ import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.jbpm.designer.notification.DesignerNotificationEvent;
-import org.jbpm.designer.repository.Repository;
 import org.jbpm.designer.repository.UriUtils;
 import org.jbpm.designer.util.ConfigurationProvider;
 import org.jbpm.designer.web.plugin.IDiagramPlugin;
@@ -47,14 +43,10 @@ import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.backend.vfs.Path;
-import org.uberfire.backend.vfs.VFSService;
 import org.uberfire.workbench.events.NotificationEvent;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
-/**
- *
- */
-public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, IDiagramProfile {
+public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile implements IEmfDiagramProfile, IDiagramProfile {
 
     static Logger _logger = LoggerFactory.getLogger(AbstractEmfDiagramProfile.class);
 
@@ -67,21 +59,9 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     private String _storeSVGonSaveOption;
 
     @Inject
-    private Repository repository;
-
-    @Inject
-    private VFSService vfsServices;
-
-    @Inject
     Event<DesignerNotificationEvent> notification;
     @Inject
     User user;
-    URIHandler uriHandler;
-
-    @Inject
-    @Any
-    Instance<IEmfDiagramProfile> otherProfiles;
-
     private LinkedStencilSet stencilSetValidator;
 
     private File stencilSetDefinitionfile;
@@ -97,12 +77,6 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     public abstract String getStencilSetPath();
 
     protected abstract ResourceTypeDefinition getResourceTypeDefinition();
-
-
-    @Override
-    public boolean useIdAttribute() {
-        return true;
-    }
 
     @Override
     public String getModelStub() {
@@ -169,8 +143,8 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     }
 
     private void checkFiles() throws FactoryConfigurationError {
-        if (filesLastRead < profileXmlFile.lastModified()) {
-            _plugins=new LinkedHashMap<String, IDiagramPlugin>();
+        if (filesLastRead < stencilSetDefinitionfile.lastModified()) {
+            _plugins = new LinkedHashMap<String, IDiagramPlugin>();
             filesLastRead = System.currentTimeMillis();
             initializeLocalPlugins();
             reloadStencilSetDefinitionFile();
@@ -183,71 +157,73 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
     }
 
     private void initializeLocalPlugins() throws FactoryConfigurationError {
-        FileInputStream fileStream = null;
-        try {
-             fileStream = new FileInputStream(profileXmlFile);
-            XMLInputFactory factory = XMLInputFactory.newInstance();
-            XMLStreamReader reader = factory.createXMLStreamReader(fileStream, "UTF-8");
-            while (reader.hasNext()) {
-                if (reader.next() == XMLStreamReader.START_ELEMENT) {
-                    if ("profile".equals(reader.getLocalName())) {
-                        for (int i = 0; i < reader.getAttributeCount(); i++) {
-                            if ("stencilset".equals(reader.getAttributeLocalName(i))) {
-                                _stencilSet = reader.getAttributeValue(i);
-                            }
-                        }
-                    } else if ("plugin".equals(reader.getLocalName())) {
-                        String name = null;
-                        for (int i = 0; i < reader.getAttributeCount(); i++) {
-                            if ("name".equals(reader.getAttributeLocalName(i))) {
-                                name = reader.getAttributeValue(i);
-                            }
-                        }
-                        _plugins.put(name, registry.get(name));
-                    } else if ("localhistory".equals(reader.getLocalName())) {
-                        for (int i = 0; i < reader.getAttributeCount(); i++) {
-                            if ("enabled".equals(reader.getAttributeLocalName(i))) {
-                                String localhistoryenabled = reader.getAttributeValue(i);
-                                if (!isEmpty(localhistoryenabled)) {
-                                    _localHistoryEnabled = localhistoryenabled;
-                                } else {
-                                    _logger.info("Invalid local history enabled");
+        if (profileXmlFile != null) {
+            FileInputStream fileStream = null;
+            try {
+                fileStream = new FileInputStream(profileXmlFile);
+                XMLInputFactory factory = XMLInputFactory.newInstance();
+                XMLStreamReader reader = factory.createXMLStreamReader(fileStream, "UTF-8");
+                while (reader.hasNext()) {
+                    if (reader.next() == XMLStreamReader.START_ELEMENT) {
+                        if ("profile".equals(reader.getLocalName())) {
+                            for (int i = 0; i < reader.getAttributeCount(); i++) {
+                                if ("stencilset".equals(reader.getAttributeLocalName(i))) {
+                                    _stencilSet = reader.getAttributeValue(i);
                                 }
                             }
-                            if ("timeout".equals(reader.getAttributeLocalName(i))) {
-                                String localhistorytimeout = reader.getAttributeValue(i);
-                                if (!isEmpty(localhistorytimeout)) {
-                                    _localHistoryTimeout = localhistorytimeout;
-                                } else {
-                                    _logger.info("Invalid local history timeout");
+                        } else if ("plugin".equals(reader.getLocalName())) {
+                            String name = null;
+                            for (int i = 0; i < reader.getAttributeCount(); i++) {
+                                if ("name".equals(reader.getAttributeLocalName(i))) {
+                                    name = reader.getAttributeValue(i);
                                 }
                             }
-                        }
-                    } else if ("storesvgonsave".equals(reader.getLocalName())) {
-                        for (int i = 0; i < reader.getAttributeCount(); i++) {
-                            if ("enabled".equals(reader.getAttributeLocalName(i))) {
-                                String storesvgonsaveenabled = reader.getAttributeValue(i);
-                                if (!isEmpty(storesvgonsaveenabled)) {
-                                    _storeSVGonSaveOption = storesvgonsaveenabled;
-                                } else {
-                                    _logger.info("Invalid store svg on save enabled");
+                            _plugins.put(name, registry.get(name));
+                        } else if ("localhistory".equals(reader.getLocalName())) {
+                            for (int i = 0; i < reader.getAttributeCount(); i++) {
+                                if ("enabled".equals(reader.getAttributeLocalName(i))) {
+                                    String localhistoryenabled = reader.getAttributeValue(i);
+                                    if (!isEmpty(localhistoryenabled)) {
+                                        _localHistoryEnabled = localhistoryenabled;
+                                    } else {
+                                        _logger.info("Invalid local history enabled");
+                                    }
+                                }
+                                if ("timeout".equals(reader.getAttributeLocalName(i))) {
+                                    String localhistorytimeout = reader.getAttributeValue(i);
+                                    if (!isEmpty(localhistorytimeout)) {
+                                        _localHistoryTimeout = localhistorytimeout;
+                                    } else {
+                                        _logger.info("Invalid local history timeout");
+                                    }
+                                }
+                            }
+                        } else if ("storesvgonsave".equals(reader.getLocalName())) {
+                            for (int i = 0; i < reader.getAttributeCount(); i++) {
+                                if ("enabled".equals(reader.getAttributeLocalName(i))) {
+                                    String storesvgonsaveenabled = reader.getAttributeValue(i);
+                                    if (!isEmpty(storesvgonsaveenabled)) {
+                                        _storeSVGonSaveOption = storesvgonsaveenabled;
+                                    } else {
+                                        _logger.info("Invalid store svg on save enabled");
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-        } catch (IOException e) {
-            _logger.error(e.getMessage(), e);
-            throw new RuntimeException(e); // stop initialization
-        } catch (XMLStreamException e) {
-            _logger.error(e.getMessage(), e);
-            throw new RuntimeException(e); // stop initialization
-        } finally {
-            if (fileStream != null) {
-                try {
-                    fileStream.close();
-                } catch (IOException e) {
+            } catch (IOException e) {
+                _logger.error(e.getMessage(), e);
+                throw new RuntimeException(e); // stop initialization
+            } catch (XMLStreamException e) {
+                _logger.error(e.getMessage(), e);
+                throw new RuntimeException(e); // stop initialization
+            } finally {
+                if (fileStream != null) {
+                    try {
+                        fileStream.close();
+                    } catch (IOException e) {
+                    }
                 }
             }
         }
@@ -268,18 +244,13 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
         return _storeSVGonSaveOption;
     }
 
-    public Repository getRepository() {
-        return repository;
-    }
-
     @Override
     public void init(ServletContext context) {
         if (!initializeLocalPlugins) {
             this.registry = PluginServiceImpl.getLocalPluginsRegistry(context);
 
-            initializeLocalPlugins(new StringBuilder(context.getRealPath("/")).append("/")
-                    .append(ConfigurationProvider.getInstance().getDesignerContext()).append("profiles").append("/").append(getProfileDefinitionFileName())
-                    .toString());
+            initializeLocalPlugins(new StringBuilder(context.getRealPath("/")).append("/").append(ConfigurationProvider.getInstance().getDesignerContext())
+                    .append("profiles").append("/").append(getProfileDefinitionFileName()).toString());
             String realPath = new StringBuilder(context.getRealPath("/")).append(ConfigurationProvider.getInstance().getDesignerContext())
                     .append(getStencilSetPath()).toString();
             loadLinkedStencilSet(realPath);
@@ -287,9 +258,7 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
         }
     }
 
-    public void setRepository(Repository repository) {
-        this.repository = repository;
-    }
+
 
     public IDiagramMarshaller createMarshaller() {
         return new GenericJsonToEmfDiagramMarshaller(this);
@@ -371,30 +340,11 @@ public abstract class AbstractEmfDiagramProfile implements IEmfDiagramProfile, I
         return stencilSetValidator;
     }
 
-    public URIHandler getUriHandler() {
-        if (uriHandler == null) {
-            uriHandler = new VFSUriHandler(repository);
-        }
-        return uriHandler;
-    }
-
-    public void setUriHandler(URIHandler uriHandler) {
-        this.uriHandler = uriHandler;
-    }
 
     @Override
     public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         return false;
     }
 
-    public IEmfDiagramProfile getOtherProfile(String string) {
-        if (otherProfiles != null) {
-            for (IEmfDiagramProfile e : otherProfiles) {
-                if (e.getName().equals(string)) {
-                    return e;
-                }
-            }
-        }
-        return null;
-    }
+
 }

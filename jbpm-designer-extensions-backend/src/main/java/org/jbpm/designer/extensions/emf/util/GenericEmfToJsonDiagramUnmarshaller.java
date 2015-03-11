@@ -149,7 +149,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
         for (DiagramElement de : parentDiagramElement.getOwnedElement()) {
             EObject me = getModelElement(de);
-            StencilInfo stencil =helper.findStencilByElement(me, de);
+            StencilInfo stencil = helper.findStencilByElement(me, de);
             String resourceId = me == null ? shapeMap.getId(de) : shapeMap.getId(me);
             Shape shape = new Shape(resourceId, new StencilType(stencil.getStencilId()));
             if (de instanceof org.omg.dd.di.Shape) {
@@ -213,14 +213,14 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
     protected Object resolveBinding(EObject mee, Object val, String binding) {
         String[] split = binding.trim().split("\\.");
-        EObject currentTarget = mee;
+        Object currentTarget = mee;
         for (int i = 0; i < split.length; i++) {
             String featureName = split[i];
             if (featureName.endsWith("]")) {
                 featureName = featureName.substring(0, featureName.indexOf("["));
             }
-            EStructuralFeature f = currentTarget.eClass().getEStructuralFeature(featureName);
-              val = currentTarget.eGet(f);
+            EStructuralFeature f = getStructuralFeature(currentTarget, featureName);
+            val = getValue(currentTarget, f);
             if (val == null) {
                 break;
             } else {
@@ -228,14 +228,12 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                     String index = split[i];
                     int idx = Integer.valueOf(index.substring(index.indexOf('[') + 1, index.length() - 1));
                     List<?> listVal = (List<?>) val;
-                    if(listVal.size()<=idx){
+                    if (listVal.size() <= idx) {
                         return null;
                     }
                     val = listVal.get(idx);
                 }
-                if (i < split.length - 1) {
-                    currentTarget = (EObject) val;
-                }
+                currentTarget = val;
             }
         }
         return val;
@@ -250,14 +248,15 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             return "#" + red + green + blue;
         } else if (val instanceof EObject) {
             EObject eObject = (EObject) val;
-            if(property.getReference()!=null){
-                String platformString = eObject.eResource().getURI().toPlatformString(true);
-                if(platformString==null){
-                    platformString=eObject.eResource().getURI().toString();
+            if (property.getReference() != null) {
+                Resource eResource = eObject.eResource();
+                String platformString = eResource.getURI().toPlatformString(true);
+                if (platformString == null) {
+                    platformString = eResource.getURI().toString();
                 }
                 Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
-                return name + "|" +  platformString;
-            }else{
+                return name + "|" + platformString;
+            } else {
                 return shapeMap.getId(eObject);
             }
         } else if (val instanceof Enumerator) {
@@ -273,9 +272,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 sb.append(convertToString(property, object));
             }
             return sb.toString();
-        }else{
-            String s=this.helper.convertToString(property,val);
-            if(s!=null){
+        } else {
+            String s = this.helper.convertToString(property, val);
+            if (s != null) {
                 return s;
             }
         }
@@ -292,38 +291,40 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
     private XMLResource getResource(String xmlModel) throws UnsupportedEncodingException, IOException {
         ResourceSet resourceSet = new ResourceSetImpl();
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
-                .put(Resource.Factory.Registry.DEFAULT_EXTENSION, profile.prepareResourceSet(resourceSet));
-        setUriHandler(resourceSet);
-        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
-        XMLResource resource = (XMLResource) resourceSet.createResource(URI.createURI("inputStream://dummyUriWithValidSuffix.xml"));
+        profile.prepareResourceSet(resourceSet);
+        XMLResource resource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
         resource.setEncoding("UTF-8");
         Map<String, Object> options = buildDefaultResourceOptions();
         InputStream is = new ByteArrayInputStream(xmlModel.getBytes("UTF-8"));
         resource.load(is, options);
-        EcoreUtil.resolveAll(resourceSet);
-        if (!resource.getErrors().isEmpty()) {
-            String errorMessages = "";
-            for (Resource.Diagnostic error : resource.getErrors()) {
-                errorMessages += error.getMessage() + "\n";
+//        EcoreUtil.resolveAll(resource);
+//        EcoreUtil.resolveAll(resourceSet);
+        EList<Resource> resources = resourceSet.getResources();
+        for (Resource resource2 : resources) {
+
+            if (!resource2.getErrors().isEmpty()) {
+                String errorMessages = "";
+                for (Resource.Diagnostic error : resource2.getErrors()) {
+                    ((Throwable) error).printStackTrace();
+                    errorMessages += error.getMessage() + "\n";
+                }
+                profile.fire(errorMessages, NotificationEvent.NotificationType.ERROR);
             }
-            profile.fire(errorMessages, NotificationEvent.NotificationType.ERROR);
-        }
 
-        if (!resource.getWarnings().isEmpty()) {
-            String warningMessages = "";
-            for (Resource.Diagnostic warning : resource.getWarnings()) {
-                warningMessages += warning.getMessage() + "\n";
+            if (!resource2.getWarnings().isEmpty()) {
+                String warningMessages = "";
+                for (Resource.Diagnostic warning : resource2.getWarnings()) {
+                    warningMessages += warning.getMessage() + "\n";
+                }
+                profile.fire(warningMessages, NotificationEvent.NotificationType.WARNING);
             }
-            profile.fire(warningMessages, NotificationEvent.NotificationType.WARNING);
-        }
 
-        EList<Diagnostic> warnings = resource.getWarnings();
+            EList<Diagnostic> warnings = resource2.getWarnings();
 
-        if (warnings != null && !warnings.isEmpty()) {
-            for (Diagnostic diagnostic : warnings) {
-                profile.logInfo("Warning: " + diagnostic.getMessage());
+            if (warnings != null && !warnings.isEmpty()) {
+                for (Diagnostic diagnostic : warnings) {
+                    profile.logInfo("Warning: " + diagnostic.getMessage());
+                }
             }
         }
         return resource;

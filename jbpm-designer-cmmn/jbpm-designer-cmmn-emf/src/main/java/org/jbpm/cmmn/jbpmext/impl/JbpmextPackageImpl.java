@@ -4,7 +4,6 @@ package org.jbpm.cmmn.jbpmext.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -25,13 +24,6 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
      * @generated
      */
     private EClass documentRootEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EDataType externalURIEDataType = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -135,17 +127,8 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDocumentRoot_ProcessURI() {
-        return (EAttribute)documentRootEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EDataType getExternalURI() {
-        return externalURIEDataType;
+    public EReference getDocumentRoot_ExternalProcess() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -180,10 +163,7 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
         createEAttribute(documentRootEClass, DOCUMENT_ROOT__MIXED);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
-        createEAttribute(documentRootEClass, DOCUMENT_ROOT__PROCESS_URI);
-
-        // Create data types
-        externalURIEDataType = createEDataType(EXTERNAL_URI);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__EXTERNAL_PROCESS);
     }
 
     /**
@@ -220,10 +200,7 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
         initEAttribute(getDocumentRoot_Mixed(), ecorePackage.getEFeatureMapEntry(), "mixed", null, 0, -1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentRoot_ProcessURI(), this.getExternalURI(), "processURI", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        // Initialize data types
-        initEDataType(externalURIEDataType, String.class, "ExternalURI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getDocumentRoot_ExternalProcess(), ecorePackage.getEObject(), null, "externalProcess", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -270,19 +247,12 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
              "name", "xsi:schemaLocation"
            });	
         addAnnotation
-          (getDocumentRoot_ProcessURI(), 
+          (getDocumentRoot_ExternalProcess(), 
            source, 
            new String[] {
              "kind", "attribute",
-             "name", "processURI",
+             "name", "externalProcess",
              "namespace", "##targetNamespace"
-           });	
-        addAnnotation
-          (externalURIEDataType, 
-           source, 
-           new String[] {
-             "name", "ExternalURI",
-             "baseType", "http://www.eclipse.org/emf/2003/XMLType#string"
            });
     }
 

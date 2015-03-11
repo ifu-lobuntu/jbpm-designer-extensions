@@ -54,26 +54,30 @@
 ###Collapse/Expand
  - Collapsed Stages 
 
+##Bugs
+ - When we link an exitSentry to and entrySentry, the sourceRef is missing.
+
+##Misc
+ - Remove git repo info from platformURIs
 
 ##1.2. In Progress
 
 ##1.3. Todo:
+ * - Collapsed Planning Tables for Stages and Cases
+ * - Update all property editors to read UML rather than CaseFile
+
 ##Bugs
- * - When we link an exitSentry to and entrySentry, the sourceRef is missing.
  
 ## Misc
- * - Update all property editors to read UML rather than CaseFile, or sync the CaseFile from UML model(s) on load
+ * -  sync the CaseFile from UML model(s) on load (and store)
  * - Use structureRef to determine where the referenced UML class is  
- * - Remove git version from platformURIs
- - See if there is a way to have a consistent unique id for a resource irrespective of location
-
+ 
 ## Modularization
  - inlineditor.jsp
 
 ###Stencils for:
  - Connector from HumanTask to related DiscretionaryItems in its PlanningTable
  - PlanFragment
- * - Imported Root CaseFileItem (From UML)
 
 ###Decorators:
  * - PlanItemTable for Stages
@@ -86,7 +90,6 @@
 
 
 ###Collapse/Expand
- * - Collapsed Planning Tables for Stages and Cases
  - Collapsed Planning Table for Tasks with PlanningTable
 
 #2. Form Modeler:

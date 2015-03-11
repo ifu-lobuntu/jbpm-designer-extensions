@@ -35,7 +35,7 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
             putMultiplicity("end1Multiplicity", object.getMemberEnds().get(0));
             putMultiplicity("end2Multiplicity", object.getMemberEnds().get(1));
         }else{
-            putMultiplicity("endMultiplicity", object.getMemberEnds().get(1));
+            putMultiplicity("multiplicity", object.getMemberEnds().get(1));
         }
         return super.caseAssociation(object);
     }

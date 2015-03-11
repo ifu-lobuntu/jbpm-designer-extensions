@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Package;
@@ -51,22 +52,18 @@ public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
     public String getName() {
         return "classdiagram";
     }
-public static void main(String[] args) {
-    System.out.println(new ClassDiagramProfileImpl().getModelStub());
-}
+
+    public static void main(String[] args) {
+        System.out.println(new ClassDiagramProfileImpl().getModelStub());
+    }
 
     public String getStencilSetNamespaceURL() {
         return "http://b3mn.org/stencilset/classdiagram.0#";
     }
 
-    @Override
-    public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(UMLDIPackage.eNS_URI, UMLDIPackage.eINSTANCE);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), new UMLDIResourceFactoryImpl());
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
-        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
+    public void prepareResourceSet(ResourceSet resourceSet) {
+        super.prepareResourceSet(resourceSet);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", getResourceFactory());
         URL url = UMLDiagram.class.getResource("/libraries/cmmntypes.uml");
         URI uri = URI.createURI(CMMNTYPES_PATHMAP);
         resourceSet.getURIConverter().getURIMap().put(uri, URI.createURI(url.toExternalForm()));
@@ -77,6 +74,10 @@ public static void main(String[] args) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Factory getResourceFactory() {
         return new UMLDIResourceFactoryImpl();
     }
 
@@ -104,6 +105,7 @@ public static void main(String[] args) {
     public String getDiagramStencilId() {
         return "ClassDiagram";
     }
+
     @Override
     public boolean useIdAttribute() {
         return false;
@@ -119,14 +121,14 @@ public static void main(String[] args) {
         Package pkg = UMLFactory.eINSTANCE.createPackage();
         pkg.setName("{processid}");
         rs.getContents().add(pkg);
-        UMLDiagram dgm=UMLDIFactory.eINSTANCE.createUMLDiagram();
+        UMLDiagram dgm = UMLDIFactory.eINSTANCE.createUMLDiagram();
         rs.getContents().add(dgm);
         dgm.setUmlElement(pkg);
     }
 
     @Override
     public EPackage[] getEPackages() {
-        return new EPackage[]{UMLPackage.eINSTANCE,UMLDIPackage.eINSTANCE};
+        return ddPackages(UMLPackage.eINSTANCE, UMLDIPackage.eINSTANCE);
     }
 
 }

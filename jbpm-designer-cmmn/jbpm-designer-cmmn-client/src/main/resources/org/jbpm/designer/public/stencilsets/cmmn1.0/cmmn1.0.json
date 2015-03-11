@@ -621,6 +621,7 @@
 					"id" : "performer",
 					"type" : "caseroleref",
 					"title" : "Performer",
+					"binding" : "definitionRef.performerRef",
 					"value" : "",
 					"bindLate": true,
 					"description" : "Performing Case Role",
@@ -794,14 +795,18 @@
 			"properties" : [
 					{
 						"id" : "calledcase",
-						"type" : "calledcase",
+						"type" : "eobjectref",
 						"title" : "Called Case",
 						"value" : "",
+						"binding" : "definitionRef.caseRef",
 						"description" : "",
 						"readonly" : false,
 						"optional" : false,
-						"fill" : true,
-						"stroke" : false
+						"reference":{
+							"targetProfile":"cmmn",
+							"allowedElementTypes":"TCase",
+							"nameFeature" : "name"
+						}
 					},
 					{
 						"id" : "input",
@@ -838,14 +843,19 @@
 			"properties" : [
 					{
 						"id" : "calledprocess",
-						"type" : "calledprocess",
+						"type" : "eobjectref",
 						"title" : "Called Process",
+						"binding": "definitionRef.anyAttribute.externalProcess",
 						"value" : "",
 						"description" : "",
 						"readonly" : false,
 						"optional" : false,
-						"fill" : true,
-						"stroke" : false
+						"reference":{
+							"targetProfile":"jbpm",
+							"allowedElementTypes":"Process",
+							"nameFeature" : "id"
+						}
+
 					},
 					{
 						"id" : "input",

@@ -65,7 +65,7 @@ public class AbstractVdmlDiagramMarshallingTest {
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
         profile.prepareResourceSet(resourceSet);
-        inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
+        inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy2." + profile.getSerializedModelExtension()));
         valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
         inputResource.getContents().add(valueDeliveryModel);
@@ -85,17 +85,8 @@ public class AbstractVdmlDiagramMarshallingTest {
     protected void assertOutputValid() throws IOException, Exception {
         String xmlString = buildXmlString(inputResource);
         String json = unmarshaller.parseModel(xmlString, profile, "");
-        // System.out.println(xmlString);
-        // System.out.println(json);
         XMLResource outputResource = marshaller.getResource(json, "");
-        // System.out.println(buildXmlString((CMMNResourceImpl)
-        // outputResource));
         new GenericEcoreComparator(inputResource, outputResource).validate();
-        // inputResource=(XMLResource) outputResource;
-        // xmlString = buildXmlString(inputResource);
-        // json = unmarshaller.parseModel(xmlString, profile, "");
-        // outputResource = marshaller.getResource(json, "");
-        // new GenericEcoreComparator(inputResource, outputResource).validate();
     }
 
     protected String buildXmlString(XMLResource resource) throws IOException {

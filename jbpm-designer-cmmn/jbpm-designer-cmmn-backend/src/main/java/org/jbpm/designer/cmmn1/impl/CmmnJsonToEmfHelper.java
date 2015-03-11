@@ -224,16 +224,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTCaseTask(TCaseTask object) {
-        String calledCase = sourceShape.getProperty("calledcase");
-        if (calledCase != null && calledCase.contains("|")) {
-            String[] split = calledCase.split("\\|");
-            String caseId = split[0];
-            URI uri = URI.createPlatformResourceURI(split[1], true);
-            Resource res = object.eResource().getResourceSet().getResource(uri, true);
-            // TODO optimise this
-            EcoreUtil.resolveAll(res);
-            object.setCaseRef((TCase) res.getEObject(caseId));
-        }
         addTaskParameters(object, object.getInputs(), "input", object.getCaseRef() == null ? null : object.getCaseRef().getInput(),
                 object.getParameterMapping());
         addTaskParameters(object, object.getOutputs(), "output", object.getCaseRef() == null ? null : object.getCaseRef().getOutput(),
@@ -243,18 +233,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTHumanTask(THumanTask object) {
-        String performerName = sourceShape.getProperty("performer");
-        if (performerName != null) {
-            TCase theCase = (TCase) getCasePlanModel(object).eContainer();
-            TRole found = null;
-            for (TRole r : theCase.getCaseRoles()) {
-                if (r.getName().equals(performerName)) {
-                    found = r;
-                    break;
-                }
-            }
-            object.setPerformerRef(found);
-        }
         addTaskParameters(object, object.getInputs(), "input", null, null);
         addTaskParameters(object, object.getOutputs(), "output", null, null);
         return super.caseTHumanTask(object);
@@ -344,10 +322,10 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTProcessTask(TProcessTask object) {
-        String calledCase = sourceShape.getProperty("calledprocess");
-        if (calledCase != null && calledCase.contains("|")) {
+        Object externalProcess = object.getAnyAttribute().get(JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess(), true);
+        if (externalProcess instanceof Process) {
             TDefinitions td = (TDefinitions) getCase(object).eContainer();
-            TProcess process = syncProcessInDefinitions(object, calledCase, td);
+            TProcess process = syncProcessInDefinitions(object, (Process) externalProcess, td);
             object.setProcessRef(process);
         }
         addTaskParameters(object, object.getInputs(), "input", object.getProcessRef() == null ? null : object.getProcessRef().getInput(),
@@ -357,27 +335,14 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         return super.caseTProcessTask(object);
     }
 
-    public static TProcess syncProcessInDefinitions(TProcessTask object, String calledProcessString, TDefinitions td) {
-        object.eResource().getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("bpmn2", new Bpmn2ResourceFactoryImpl());
-        String[] split = calledProcessString.split("\\|");
-        String processId = split[0];
-        URI uri = URI.createPlatformResourceURI(split[1], true);
-        Resource res = object.eResource().getResourceSet().getResource(uri, true);
-        // TODO optimise this
-        EcoreUtil.resolveAll(res);
-        Process calledProcess = (Process) res.getEObject(processId);
-        TProcess process = (TProcess) object.eResource().getEObject(processId);
+    public static TProcess syncProcessInDefinitions(TProcessTask object, Process externalProcess, TDefinitions td) {
+        Process calledProcess = (Process) externalProcess;
+        TProcess process = (TProcess) object.eResource().getEObject(calledProcess.getId());
         if (process == null) {
             process = CMMNFactory.eINSTANCE.createTProcess();
-            process.setId(processId);
+            process.setId(calledProcess.getId());
             td.getProcess().add(process);
         }
-        // ExtendedMetaData metadata = ExtendedMetaData.INSTANCE;
-        //
-        // EAttributeImpl processUriAttr = (EAttributeImpl)
-        // metadata.demandFeature(JbpmextPackage.eNS_URI, "processURI", false,
-        // false);
-        process.getAnyAttribute().set(JbpmextPackage.eINSTANCE.getDocumentRoot_ProcessURI(), uri.toString());
         syncParameters(object, calledProcess, process.getInput());
         syncParameters(object, calledProcess, process.getOutput());
         process.setName(isEmpty(process.getName()) ? process.getId() : process.getName());
@@ -586,12 +551,8 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     public void setupDiagramElement(EObject el, DiagramElement de) {
         if (de instanceof CMMNShape) {
             ((CMMNShape) de).setCmmnElement((TCmmnElement) el);
-            // ((CMMNShape) de).setCMMNLabel(label =
-            // CMMNDIFactory.eINSTANCE.createCMMNLabel());
         } else if (de instanceof CMMNEdge) {
             ((CMMNEdge) de).setCmmnElement((TCmmnElement) el);
-            // ((CMMNEdge) de).setCMMNLabel(label =
-            // CMMNDIFactory.eINSTANCE.createCMMNLabel());
         }
     }
 
@@ -603,9 +564,12 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     @Override
     public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
         if(TRole.class.isAssignableFrom(targetType)){
-            TRole role = CMMNFactory.eINSTANCE.createTRole();
-            role.setName(string);
-            role.setId(string);
+            TRole role = (TRole) shapeMap.getResource().getEObject(string);
+            if(role==null){
+                role = CMMNFactory.eINSTANCE.createTRole();
+                role.setName(string);
+                role.setId(string);
+            }
             return role;
         }
         return null;

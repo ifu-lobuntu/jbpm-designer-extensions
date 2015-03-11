@@ -4,7 +4,6 @@ package org.jbpm.cmmn.jbpmext;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -95,13 +94,13 @@ public interface JbpmextPackage extends EPackage {
     int DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = 2;
 
     /**
-     * The feature id for the '<em><b>Process URI</b></em>' attribute.
+     * The feature id for the '<em><b>External Process</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT__PROCESS_URI = 3;
+    int DOCUMENT_ROOT__EXTERNAL_PROCESS = 3;
 
     /**
      * The number of structural features of the '<em>Document Root</em>' class.
@@ -120,17 +119,6 @@ public interface JbpmextPackage extends EPackage {
      * @ordered
      */
     int DOCUMENT_ROOT_OPERATION_COUNT = 0;
-
-    /**
-     * The meta object id for the '<em>External URI</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see java.lang.String
-     * @see org.jbpm.cmmn.jbpmext.impl.JbpmextPackageImpl#getExternalURI()
-     * @generated
-     */
-    int EXTERNAL_URI = 1;
-
 
     /**
      * Returns the meta object for class '{@link org.jbpm.cmmn.jbpmext.DocumentRoot <em>Document Root</em>}'.
@@ -176,27 +164,15 @@ public interface JbpmextPackage extends EPackage {
     EReference getDocumentRoot_XSISchemaLocation();
 
     /**
-     * Returns the meta object for the attribute '{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getProcessURI <em>Process URI</em>}'.
+     * Returns the meta object for the reference '{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getExternalProcess <em>External Process</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Process URI</em>'.
-     * @see org.jbpm.cmmn.jbpmext.DocumentRoot#getProcessURI()
+     * @return the meta object for the reference '<em>External Process</em>'.
+     * @see org.jbpm.cmmn.jbpmext.DocumentRoot#getExternalProcess()
      * @see #getDocumentRoot()
      * @generated
      */
-    EAttribute getDocumentRoot_ProcessURI();
-
-    /**
-     * Returns the meta object for data type '{@link java.lang.String <em>External URI</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>External URI</em>'.
-     * @see java.lang.String
-     * @model instanceClass="java.lang.String"
-     *        extendedMetaData="name='ExternalURI' baseType='http://www.eclipse.org/emf/2003/XMLType#string'"
-     * @generated
-     */
-    EDataType getExternalURI();
+    EReference getDocumentRoot_ExternalProcess();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -256,22 +232,12 @@ public interface JbpmextPackage extends EPackage {
         EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE.getDocumentRoot_XSISchemaLocation();
 
         /**
-         * The meta object literal for the '<em><b>Process URI</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>External Process</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute DOCUMENT_ROOT__PROCESS_URI = eINSTANCE.getDocumentRoot_ProcessURI();
-
-        /**
-         * The meta object literal for the '<em>External URI</em>' data type.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see java.lang.String
-         * @see org.jbpm.cmmn.jbpmext.impl.JbpmextPackageImpl#getExternalURI()
-         * @generated
-         */
-        EDataType EXTERNAL_URI = eINSTANCE.getExternalURI();
+        EReference DOCUMENT_ROOT__EXTERNAL_PROCESS = eINSTANCE.getDocumentRoot_ExternalProcess();
 
     }
 

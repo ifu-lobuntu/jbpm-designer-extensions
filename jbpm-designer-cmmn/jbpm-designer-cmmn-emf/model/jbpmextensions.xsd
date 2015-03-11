@@ -3,12 +3,6 @@
 	xmlns:jbpmext="http://www.jbpm.org/cmmn/jbpmext"
 	targetNamespace="http://www.jbpm.org/cmmn/jbpmext"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
-
-	<simpleType name="ExternalURI">
-		<restriction base="string">
-		</restriction>
-	</simpleType>
-
-	<attribute name="processURI" type="jbpmext:ExternalURI"/>
+	<attribute name="externalProcess" type="QName"/>
 
 </schema>

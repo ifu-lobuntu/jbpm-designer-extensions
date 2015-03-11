@@ -3,6 +3,7 @@ package org.jbpm.designer.vdan;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -26,7 +27,7 @@ import org.omg.vdml.util.VDMLResourceFactoryImpl;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
 /**
- * The implementation of the CMMN profile for Process Designer.
+ * The implementation of the VDML Activity Network profile for Process Designer.
  *
  */
 @ApplicationScoped
@@ -52,15 +53,7 @@ System.out.println(new VdmlActivityNetworkProfileImpl().getModelStub());
         return "http://b3mn.org/stencilset/vdmlactivitynetwork.0#";
     }
 
-    @Override
-    public ResourceFactoryImpl prepareResourceSet(ResourceSet resourceSet) {
-        resourceSet.getPackageRegistry().put(VDMLPackage.eNS_URI, VDMLPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(VDMLDIPackage.eNS_URI, VDMLDIPackage.eINSTANCE);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), new VDMLResourceFactoryImpl());
-        resourceSet.getPackageRegistry().put(DIPackage.eNS_URI, DIPackage.eINSTANCE);
-        resourceSet.getPackageRegistry().put(DCPackage.eNS_URI, DCPackage.eINSTANCE);
-        return new VDMLResourceFactoryImpl();
-    }
+
 
     @Override
     public EmfToJsonHelper createEmfToJsonHelper(ShapeMap resource) {
@@ -97,8 +90,8 @@ System.out.println(new VdmlActivityNetworkProfileImpl().getModelStub());
         ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
         vdm.getCollaboration().add(cm);
-        cm.setId("{processid}");
-        cm.setName("{processid}");
+        cm.setId("${processid}");
+        cm.setName("${processid}");
         rs.getContents().add(vdm);
         VDMLDiagram dgm=VDMLDIFactory.eINSTANCE.createVDMLDiagram();
         vdm.getDiagram().add(dgm);
@@ -107,6 +100,11 @@ System.out.println(new VdmlActivityNetworkProfileImpl().getModelStub());
 
     @Override
     public EPackage[] getEPackages() {
-        return new EPackage[]{VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE};
+        return ddPackages(VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE);
+    }
+
+    @Override
+    public Factory getResourceFactory() {
+        return new VDMLResourceFactoryImpl();
     }
 }

@@ -86,15 +86,6 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
-        if (object.getDefinitionRef().getStructureRef() != null) {
-            String namespaceURI = object.getDefinitionRef().getStructureRef().getNamespaceURI();
-            URI uri = URI.createURI(namespaceURI, true);
-            if (object.eResource().getResourceSet().getURIConverter().exists(uri, null)) {
-                XMLResource resource = (XMLResource) object.eResource().getResourceSet().getResource(uri, true);
-                Classifier classifier = (Classifier) resource.getEObject(object.getDefinitionRef().getStructureRef().getLocalPart());
-                targetShape.putProperty("caseFileItemStructureRef", classifier.getQualifiedName() + "|" + uri.toPlatformString(true));
-            }
-        }
         return super.caseTCaseFileItem(object);
     }
 
@@ -102,9 +93,6 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     public Object caseTCaseTask(TCaseTask object) {
         addTaskParameters(object.getInputs(), "input", object.getParameterMapping());
         addTaskParameters(object.getOutputs(), "output", object.getParameterMapping());
-        if (object.getCaseRef() != null) {
-            targetShape.getProperties().put("calledcase", object.getCaseRef().getId() + "|" + object.getCaseRef().eResource().getURI().toPlatformString(true));
-        }
         return super.caseTCaseTask(object);
     }
 
@@ -181,14 +169,6 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     public Object caseTProcessTask(TProcessTask object) {
         addTaskParameters(object.getInputs(), "input", object.getParameterMapping());
         addTaskParameters(object.getOutputs(), "output", object.getParameterMapping());
-        TProcess process = object.getProcessRef();
-        if (process != null) {
-            String uri = (String) process.getAnyAttribute().get(JbpmextPackage.eINSTANCE.getDocumentRoot_ProcessURI(), true);
-            if (uri != null) {
-                URI platformUri = URI.createURI(uri);
-                targetShape.getProperties().put("calledprocess", process.getId() + "|" + platformUri.toPlatformString(true));
-            }
-        }
         return super.caseTProcessTask(object);
     }
 
