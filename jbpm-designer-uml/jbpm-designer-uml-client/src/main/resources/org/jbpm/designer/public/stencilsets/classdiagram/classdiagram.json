@@ -539,7 +539,7 @@
 	                {
 						"id" : "type",
 						"type" : "eobjectref",
-						"title" : "Type",
+						"title" : "Property Type",
 						"value" : "",
 						"description" : "The Type of the Property.",
 						"readonly" : false,

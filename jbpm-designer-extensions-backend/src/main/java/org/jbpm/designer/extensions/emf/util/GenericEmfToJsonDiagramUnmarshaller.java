@@ -222,6 +222,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 featureName = featureName.substring(0, featureName.indexOf("["));
             }
             EStructuralFeature f = getStructuralFeature(currentTarget, featureName);
+            if(f==null){
+                throw new IllegalStateException("The type " + currentTarget.getClass().getSimpleName() + " does not have feature '" + featureName + "'");
+            }
             val = getValue(currentTarget, f);
             if (val == null) {
                 break;

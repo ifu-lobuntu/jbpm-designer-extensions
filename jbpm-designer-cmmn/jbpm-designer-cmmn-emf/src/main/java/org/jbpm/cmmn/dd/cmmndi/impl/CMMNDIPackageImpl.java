@@ -171,8 +171,8 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCMMNDiagram_IsPlanningTableExpanded() {
-        return (EAttribute)cmmnDiagramEClass.getEStructuralFeatures().get(2);
+    public EReference getCMMNDiagram_CmmnElement() {
+        return (EReference)cmmnDiagramEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -207,6 +207,15 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getCMMNEdge_CmmnElement() {
+        return (EReference)cmmnEdgeEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getCMMNShape() {
         return cmmnShapeEClass;
     }
@@ -234,8 +243,8 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCMMNDiagramElement() {
-        return cmmnDiagramElementEClass;
+    public EReference getCMMNShape_CmmnElement() {
+        return (EReference)cmmnShapeEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -243,8 +252,8 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCMMNDiagramElement_CmmnElement() {
-        return (EReference)cmmnDiagramElementEClass.getEStructuralFeatures().get(0);
+    public EClass getCMMNDiagramElement() {
+        return cmmnDiagramElementEClass;
     }
 
     /**
@@ -287,18 +296,19 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
         cmmnDiagramEClass = createEClass(CMMN_DIAGRAM);
         createEReference(cmmnDiagramEClass, CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT);
         createEReference(cmmnDiagramEClass, CMMN_DIAGRAM__OWNED_CMMN_STYLES);
-        createEAttribute(cmmnDiagramEClass, CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED);
+        createEReference(cmmnDiagramEClass, CMMN_DIAGRAM__CMMN_ELEMENT);
 
         cmmnEdgeEClass = createEClass(CMMN_EDGE);
         createEReference(cmmnEdgeEClass, CMMN_EDGE__SOURCE_SHAPE);
         createEReference(cmmnEdgeEClass, CMMN_EDGE__TARGET_SHAPE);
+        createEReference(cmmnEdgeEClass, CMMN_EDGE__CMMN_ELEMENT);
 
         cmmnShapeEClass = createEClass(CMMN_SHAPE);
         createEReference(cmmnShapeEClass, CMMN_SHAPE__OWNED_SHAPE);
         createEAttribute(cmmnShapeEClass, CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED);
+        createEReference(cmmnShapeEClass, CMMN_SHAPE__CMMN_ELEMENT);
 
         cmmnDiagramElementEClass = createEClass(CMMN_DIAGRAM_ELEMENT);
-        createEReference(cmmnDiagramElementEClass, CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT);
 
         cmmnStyleEClass = createEClass(CMMN_STYLE);
     }
@@ -328,9 +338,9 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
 
         // Obtain other dependent packages
         DIPackage theDIPackage = (DIPackage)EPackage.Registry.INSTANCE.getEPackage(DIPackage.eNS_URI);
-        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
-        JBPMDDPackage theJBPMDDPackage = (JBPMDDPackage)EPackage.Registry.INSTANCE.getEPackage(JBPMDDPackage.eNS_URI);
         CMMNPackage theCMMNPackage = (CMMNPackage)EPackage.Registry.INSTANCE.getEPackage(CMMNPackage.eNS_URI);
+        JBPMDDPackage theJBPMDDPackage = (JBPMDDPackage)EPackage.Registry.INSTANCE.getEPackage(JBPMDDPackage.eNS_URI);
+        XMLTypePackage theXMLTypePackage = (XMLTypePackage)EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
 
         // Create type parameters
 
@@ -351,18 +361,19 @@ public class CMMNDIPackageImpl extends EPackageImpl implements CMMNDIPackage {
         initEClass(cmmnDiagramEClass, CMMNDiagram.class, "CMMNDiagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getCMMNDiagram_OwnedCmmnDiagramElement(), this.getCMMNDiagramElement(), null, "ownedCmmnDiagramElement", null, 0, -1, CMMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getCMMNDiagram_OwnedCmmnStyles(), this.getCMMNStyle(), null, "ownedCmmnStyles", null, 0, -1, CMMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getCMMNDiagram_IsPlanningTableExpanded(), theXMLTypePackage.getBoolean(), "isPlanningTableExpanded", "true", 0, 1, CMMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCMMNDiagram_CmmnElement(), theCMMNPackage.getTDefinitions(), null, "cmmnElement", null, 0, 1, CMMNDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(cmmnEdgeEClass, CMMNEdge.class, "CMMNEdge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getCMMNEdge_SourceShape(), this.getCMMNShape(), null, "sourceShape", null, 0, 1, CMMNEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getCMMNEdge_TargetShape(), this.getCMMNShape(), null, "targetShape", null, 0, 1, CMMNEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCMMNEdge_CmmnElement(), theCMMNPackage.getTCmmnElement(), null, "cmmnElement", null, 0, 1, CMMNEdge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(cmmnShapeEClass, CMMNShape.class, "CMMNShape", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getCMMNShape_OwnedShape(), this.getCMMNShape(), null, "ownedShape", null, 0, -1, CMMNShape.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getCMMNShape_IsPlanningTableExpanded(), theXMLTypePackage.getBoolean(), "isPlanningTableExpanded", "true", 0, 1, CMMNShape.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getCMMNShape_CmmnElement(), theCMMNPackage.getTCmmnElement(), null, "cmmnElement", null, 0, 1, CMMNShape.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(cmmnDiagramElementEClass, CMMNDiagramElement.class, "CMMNDiagramElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCMMNDiagramElement_CmmnElement(), theCMMNPackage.getTCmmnElement(), null, "cmmnElement", null, 0, 1, CMMNDiagramElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(cmmnStyleEClass, CMMNStyle.class, "CMMNStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -225,7 +225,6 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     }
 
     private void linkEdgesRecursively(DiagramElement de, Shape shape) {
-        System.out.println(shape.getStencilId() + " " + shape.getOutgoing().size());
         if (de instanceof Edge) {
             List<ShapeReference> outgoings = shape.getOutgoing();
             Edge edge = (Edge) de;
@@ -314,6 +313,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                 featureName = featureName.substring(0, featureName.indexOf("["));
             }
             EStructuralFeature sf = getStructuralFeature(currentTarget, featureName);
+            if(sf==null){
+                throw new IllegalStateException("Type '" + currentTarget.getClass().getSimpleName() +"' does not define a feature '" + featureName +"'");
+            }
             Object currentValue = getValue(currentTarget, sf);
             if (currentValue == null) {
                 if (sf instanceof EReference) {
@@ -328,7 +330,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                 if (index.endsWith("]")) {
                     int idx = Integer.parseInt(index.substring(index.indexOf("[") + 1, index.length() - 1));
                     List listValue = (List) currentValue;
-                    if (sf instanceof EReference && ((EReference) sf).isContainment()) {
+                    if (sf instanceof EReference) {
                         while (listValue.size() <= idx) {
                             listValue.add(helper.create((EClass) sf.getEType()));
                         }

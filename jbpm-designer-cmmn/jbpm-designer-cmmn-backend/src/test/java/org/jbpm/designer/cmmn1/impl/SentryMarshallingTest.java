@@ -41,6 +41,7 @@ public class SentryMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
         toSentry.getOnPart().add(onPart);
         addEdge(onPart, fromSentry, toSentry);
         assertOutputValid();
+        assertOutputValid();
     }
 
     @Test

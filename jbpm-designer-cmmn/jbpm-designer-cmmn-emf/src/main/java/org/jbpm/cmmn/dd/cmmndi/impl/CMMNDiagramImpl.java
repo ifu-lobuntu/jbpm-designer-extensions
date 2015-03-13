@@ -3,7 +3,6 @@
 package org.jbpm.cmmn.dd.cmmndi.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -18,7 +17,7 @@ import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement;
 import org.jbpm.cmmn.dd.cmmndi.CMMNStyle;
 import org.jbpm.designer.dd.util.Collections;
-import org.omg.cmmn.TCmmnElement;
+import org.omg.cmmn.TDefinitions;
 import org.omg.dd.di.impl.DiagramImpl;
 
 /**
@@ -28,26 +27,15 @@ import org.omg.dd.di.impl.DiagramImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNDiagramImpl#getCmmnElement <em>Cmmn Element</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNDiagramImpl#getOwnedCmmnDiagramElement <em>Owned Cmmn Diagram Element</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNDiagramImpl#getOwnedCmmnStyles <em>Owned Cmmn Styles</em>}</li>
- *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNDiagramImpl#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNDiagramImpl#getCmmnElement <em>Cmmn Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
-    /**
-     * The cached value of the '{@link #getCmmnElement() <em>Cmmn Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCmmnElement()
-     * @generated
-     * @ordered
-     */
-    protected TCmmnElement cmmnElement;
-
     /**
      * The cached value of the '{@link #getOwnedCmmnDiagramElement() <em>Owned Cmmn Diagram Element</em>}' containment reference list.
      * <!-- begin-user-doc -->
@@ -69,33 +57,14 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
     protected EList<CMMNStyle> ownedCmmnStyles;
 
     /**
-     * The default value of the '{@link #isIsPlanningTableExpanded() <em>Is Planning Table Expanded</em>}' attribute.
+     * The cached value of the '{@link #getCmmnElement() <em>Cmmn Element</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIsPlanningTableExpanded()
+     * @see #getCmmnElement()
      * @generated
      * @ordered
      */
-    protected static final boolean IS_PLANNING_TABLE_EXPANDED_EDEFAULT = true;
-
-    /**
-     * The cached value of the '{@link #isIsPlanningTableExpanded() <em>Is Planning Table Expanded</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isIsPlanningTableExpanded()
-     * @generated
-     * @ordered
-     */
-    protected boolean isPlanningTableExpanded = IS_PLANNING_TABLE_EXPANDED_EDEFAULT;
-
-    /**
-     * This is true if the Is Planning Table Expanded attribute has been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected boolean isPlanningTableExpandedESet;
+    protected TDefinitions cmmnElement;
 
     /**
      * <!-- begin-user-doc -->
@@ -121,10 +90,10 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
-    public TCmmnElement getCmmnElement() {
+    public TDefinitions getCmmnElement() {
         if (cmmnElement != null && cmmnElement.eIsProxy()) {
             InternalEObject oldCmmnElement = (InternalEObject)cmmnElement;
-            cmmnElement = (TCmmnElement)eResolveProxy(oldCmmnElement);
+            cmmnElement = (TDefinitions)eResolveProxy(oldCmmnElement);
             if (cmmnElement != oldCmmnElement) {
                 if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT, oldCmmnElement, cmmnElement));
@@ -138,7 +107,7 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
-    public TCmmnElement basicGetCmmnElement() {
+    public TDefinitions basicGetCmmnElement() {
         return cmmnElement;
     }
 
@@ -147,8 +116,8 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setCmmnElement(TCmmnElement newCmmnElement) {
-        TCmmnElement oldCmmnElement = cmmnElement;
+    public void setCmmnElement(TDefinitions newCmmnElement) {
+        TDefinitions oldCmmnElement = cmmnElement;
         cmmnElement = newCmmnElement;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT, oldCmmnElement, cmmnElement));
@@ -183,52 +152,6 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean isIsPlanningTableExpanded() {
-        return isPlanningTableExpanded;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setIsPlanningTableExpanded(boolean newIsPlanningTableExpanded) {
-        boolean oldIsPlanningTableExpanded = isPlanningTableExpanded;
-        isPlanningTableExpanded = newIsPlanningTableExpanded;
-        boolean oldIsPlanningTableExpandedESet = isPlanningTableExpandedESet;
-        isPlanningTableExpandedESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CMMNDIPackage.CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED, oldIsPlanningTableExpanded, isPlanningTableExpanded, !oldIsPlanningTableExpandedESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void unsetIsPlanningTableExpanded() {
-        boolean oldIsPlanningTableExpanded = isPlanningTableExpanded;
-        boolean oldIsPlanningTableExpandedESet = isPlanningTableExpandedESet;
-        isPlanningTableExpanded = IS_PLANNING_TABLE_EXPANDED_EDEFAULT;
-        isPlanningTableExpandedESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, CMMNDIPackage.CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED, oldIsPlanningTableExpanded, IS_PLANNING_TABLE_EXPANDED_EDEFAULT, oldIsPlanningTableExpandedESet));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isSetIsPlanningTableExpanded() {
-        return isPlanningTableExpandedESet;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -248,15 +171,13 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
-                if (resolve) return getCmmnElement();
-                return basicGetCmmnElement();
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT:
                 return getOwnedCmmnDiagramElement();
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_STYLES:
                 return getOwnedCmmnStyles();
-            case CMMNDIPackage.CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED:
-                return isIsPlanningTableExpanded();
+            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
+                if (resolve) return getCmmnElement();
+                return basicGetCmmnElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -270,9 +191,6 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
-                setCmmnElement((TCmmnElement)newValue);
-                return;
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT:
                 getOwnedCmmnDiagramElement().clear();
                 getOwnedCmmnDiagramElement().addAll((Collection<? extends CMMNDiagramElement>)newValue);
@@ -281,8 +199,8 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
                 getOwnedCmmnStyles().clear();
                 getOwnedCmmnStyles().addAll((Collection<? extends CMMNStyle>)newValue);
                 return;
-            case CMMNDIPackage.CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED:
-                setIsPlanningTableExpanded((Boolean)newValue);
+            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
+                setCmmnElement((TDefinitions)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -296,17 +214,14 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
-                setCmmnElement((TCmmnElement)null);
-                return;
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT:
                 getOwnedCmmnDiagramElement().clear();
                 return;
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_STYLES:
                 getOwnedCmmnStyles().clear();
                 return;
-            case CMMNDIPackage.CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED:
-                unsetIsPlanningTableExpanded();
+            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
+                setCmmnElement((TDefinitions)null);
                 return;
         }
         super.eUnset(featureID);
@@ -320,65 +235,16 @@ public class CMMNDiagramImpl extends DiagramImpl implements CMMNDiagram {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
-                return cmmnElement != null;
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT:
                 return ownedCmmnDiagramElement != null && !ownedCmmnDiagramElement.isEmpty();
             case CMMNDIPackage.CMMN_DIAGRAM__OWNED_CMMN_STYLES:
                 return ownedCmmnStyles != null && !ownedCmmnStyles.isEmpty();
-            case CMMNDIPackage.CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED:
-                return isSetIsPlanningTableExpanded();
+            case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT:
+                return cmmnElement != null;
         }
         return super.eIsSet(featureID);
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == CMMNDiagramElement.class) {
-            switch (derivedFeatureID) {
-                case CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT: return CMMNDIPackage.CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == CMMNDiagramElement.class) {
-            switch (baseFeatureID) {
-                case CMMNDIPackage.CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT: return CMMNDIPackage.CMMN_DIAGRAM__CMMN_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (isPlanningTableExpanded: ");
-        if (isPlanningTableExpandedESet) result.append(isPlanningTableExpanded); else result.append("<unset>");
-        result.append(')');
-        return result.toString();
-    }
     @Override
     public EList<EObject> getModelElement() {
         return  Collections.asList(getCmmnElement());

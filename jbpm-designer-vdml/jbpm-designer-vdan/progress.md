@@ -15,14 +15,20 @@ OutputPort
 ##Stencils
 
 ##Property Editors
-
+##Collapse/Expand
+ - Make outputPorts expandable and put valueadds in them
 
 #To do
 ##Stencils
-ValueAdd
-
+ - ValueAdd
+ - ResourceUse
+ - Pool
+ 
+##Toolbar (in CMMN Editor or Form Editor?)
+ - Generate contract form (Use ValueAdds and ResourceUse)
+ 
 ##Property Editors
-VAluePropositionComponent.articulatedValue
-
-
-
+ - *ResourceUse.isExclusive
+ - *ResourceUse.resourceIsConsumed
+ - ResourceUse.duration
+ - Activity.duration

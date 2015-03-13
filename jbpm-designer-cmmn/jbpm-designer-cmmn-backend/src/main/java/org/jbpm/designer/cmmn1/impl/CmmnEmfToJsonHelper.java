@@ -27,6 +27,7 @@ import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.cmmn.DocumentRoot;
+import org.omg.cmmn.PlanItemTransition;
 import org.omg.cmmn.TCase;
 import org.omg.cmmn.TCaseFileItem;
 import org.omg.cmmn.TCaseFileItemDefinition;
@@ -275,12 +276,14 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
             putSentries(modelElement, ((TDiscretionaryItem) modelElement).getEntryCriteriaRefs());
             putSentries(modelElement, ((TDiscretionaryItem) modelElement).getExitCriteriaRefs());
         } else if (modelElement instanceof TPlanItem) {
-            putSentries(modelElement, ((TPlanItem) modelElement).getEntryCriteriaRefs());
-            putSentries(modelElement, ((TPlanItem) modelElement).getExitCriteriaRefs());
+            TPlanItem pi = (TPlanItem) modelElement;
+            putSentries(modelElement, pi.getEntryCriteriaRefs());
+            putSentries(modelElement, pi.getExitCriteriaRefs());
+            if(pi.getDefinitionRef() instanceof TStage){
+                putSentries(pi.getDefinitionRef(), ((TStage) pi.getDefinitionRef()).getExitCriteriaRefs());
+            }
         } else if (modelElement instanceof TCase) {
             putSentries(modelElement, ((TCase) modelElement).getCasePlanModel().getExitCriteriaRefs());
-        } else if (modelElement instanceof TStage) {
-            putSentries(modelElement, ((TStage) modelElement).getExitCriteriaRefs());
         } else if (modelElement instanceof TCaseFileItem) {
             this.caseFileItemMap.put(((TCaseFileItem) modelElement).getDefinitionRef(), (TCaseFileItem) modelElement);
         }
@@ -298,8 +301,16 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
             TCmmnElement container = this.sentryContainers.get(me);
             if (container instanceof TDiscretionaryItem && ((TDiscretionaryItem) container).getEntryCriteriaRefs().contains(me)) {
                 return CmmnStencil.ENTRY_SENTRY;
-            } else if (container instanceof TPlanItem && ((TPlanItem) container).getEntryCriteriaRefs().contains(me)) {
-                return CmmnStencil.ENTRY_SENTRY;
+            } else if (container instanceof TPlanItem){
+                if(((TPlanItem) container).getEntryCriteriaRefs().contains(me)) {
+                    return CmmnStencil.ENTRY_SENTRY;
+                }else{
+                    return CmmnStencil.EXIT_SENTRY;
+                }
+            } else if (container instanceof TCase && ((TCase) container).getCasePlanModel().getExitCriteriaRefs().contains(me)) {
+                return CmmnStencil.CONTAINER_EXIT_SENTRY;
+            } else if (container instanceof TStage && ((TStage) container).getExitCriteriaRefs().contains(me)) {
+                return CmmnStencil.CONTAINER_EXIT_SENTRY;
             } else {
                 return CmmnStencil.EXIT_SENTRY;
             }
@@ -309,7 +320,6 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public String convertToString(LinkedProperty property, Object val) {
-        // TODO Auto-generated method stub
         return null;
     }
 }

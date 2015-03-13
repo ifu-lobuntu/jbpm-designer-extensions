@@ -41,6 +41,7 @@ public class CMMNResourceImpl extends XMLResourceImpl {
         referrables.add(CMMNPackage.eINSTANCE.getTCaseFileItemStartTrigger());
         referrables.add(CMMNPackage.eINSTANCE.getTCaseParameter());
         referrables.add(CMMNPackage.eINSTANCE.getTCaseTask());
+        referrables.add(CMMNPackage.eINSTANCE.getTDefinitions());
         referrables.add(CMMNPackage.eINSTANCE.getTDiscretionaryItem());
         referrables.add(CMMNPackage.eINSTANCE.getTHumanTask());
         referrables.add(CMMNPackage.eINSTANCE.getTPlanFragment());

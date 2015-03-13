@@ -4,6 +4,7 @@ package org.jbpm.cmmn.dd.cmmndi;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.omg.cmmn.TDefinitions;
 import org.omg.dd.di.Diagram;
 
 /**
@@ -16,7 +17,7 @@ import org.omg.dd.di.Diagram;
  * <ul>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#getOwnedCmmnDiagramElement <em>Owned Cmmn Diagram Element</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#getOwnedCmmnStyles <em>Owned Cmmn Styles</em>}</li>
- *   <li>{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#getCmmnElement <em>Cmmn Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,57 +59,29 @@ public interface CMMNDiagram extends Diagram, CMMNDiagramElement {
     EList<CMMNStyle> getOwnedCmmnStyles();
 
     /**
-     * Returns the value of the '<em><b>Is Planning Table Expanded</b></em>' attribute.
-     * The default value is <code>"true"</code>.
+     * Returns the value of the '<em><b>Cmmn Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Is Planning Table Expanded</em>' attribute isn't clear,
+     * If the meaning of the '<em>Cmmn Element</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Is Planning Table Expanded</em>' attribute.
-     * @see #isSetIsPlanningTableExpanded()
-     * @see #unsetIsPlanningTableExpanded()
-     * @see #setIsPlanningTableExpanded(boolean)
-     * @see org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage#getCMMNDiagram_IsPlanningTableExpanded()
-     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @return the value of the '<em>Cmmn Element</em>' reference.
+     * @see #setCmmnElement(TDefinitions)
+     * @see org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage#getCMMNDiagram_CmmnElement()
+     * @model
      * @generated
      */
-    boolean isIsPlanningTableExpanded();
+    TDefinitions getCmmnElement();
 
     /**
-     * Sets the value of the '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}' attribute.
+     * Sets the value of the '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#getCmmnElement <em>Cmmn Element</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Is Planning Table Expanded</em>' attribute.
-     * @see #isSetIsPlanningTableExpanded()
-     * @see #unsetIsPlanningTableExpanded()
-     * @see #isIsPlanningTableExpanded()
+     * @param value the new value of the '<em>Cmmn Element</em>' reference.
+     * @see #getCmmnElement()
      * @generated
      */
-    void setIsPlanningTableExpanded(boolean value);
-
-    /**
-     * Unsets the value of the '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #isSetIsPlanningTableExpanded()
-     * @see #isIsPlanningTableExpanded()
-     * @see #setIsPlanningTableExpanded(boolean)
-     * @generated
-     */
-    void unsetIsPlanningTableExpanded();
-
-    /**
-     * Returns whether the value of the '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}' attribute is set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return whether the value of the '<em>Is Planning Table Expanded</em>' attribute is set.
-     * @see #unsetIsPlanningTableExpanded()
-     * @see #isIsPlanningTableExpanded()
-     * @see #setIsPlanningTableExpanded(boolean)
-     * @generated
-     */
-    boolean isSetIsPlanningTableExpanded();
+    void setCmmnElement(TDefinitions value);
 
 } // CMMNDiagram

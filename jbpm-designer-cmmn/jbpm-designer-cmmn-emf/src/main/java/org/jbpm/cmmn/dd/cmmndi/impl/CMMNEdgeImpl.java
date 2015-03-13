@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
-import org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.designer.dd.util.Collections;
@@ -24,25 +23,15 @@ import org.omg.dd.di.impl.EdgeImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNEdgeImpl#getCmmnElement <em>Cmmn Element</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNEdgeImpl#getSourceShape <em>Source Shape</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNEdgeImpl#getTargetShape <em>Target Shape</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNEdgeImpl#getCmmnElement <em>Cmmn Element</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class CMMNEdgeImpl extends EdgeImpl implements CMMNEdge {
-    /**
-     * The cached value of the '{@link #getCmmnElement() <em>Cmmn Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCmmnElement()
-     * @generated
-     * @ordered
-     */
-    protected TCmmnElement cmmnElement;
-
     /**
      * The cached value of the '{@link #getSourceShape() <em>Source Shape</em>}' reference.
      * <!-- begin-user-doc -->
@@ -62,6 +51,16 @@ public class CMMNEdgeImpl extends EdgeImpl implements CMMNEdge {
      * @ordered
      */
     protected CMMNShape targetShape;
+
+    /**
+     * The cached value of the '{@link #getCmmnElement() <em>Cmmn Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCmmnElement()
+     * @generated
+     * @ordered
+     */
+    protected TCmmnElement cmmnElement;
 
     /**
      * <!-- begin-user-doc -->
@@ -204,15 +203,15 @@ public class CMMNEdgeImpl extends EdgeImpl implements CMMNEdge {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
-                if (resolve) return getCmmnElement();
-                return basicGetCmmnElement();
             case CMMNDIPackage.CMMN_EDGE__SOURCE_SHAPE:
                 if (resolve) return getSourceShape();
                 return basicGetSourceShape();
             case CMMNDIPackage.CMMN_EDGE__TARGET_SHAPE:
                 if (resolve) return getTargetShape();
                 return basicGetTargetShape();
+            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
+                if (resolve) return getCmmnElement();
+                return basicGetCmmnElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -225,14 +224,14 @@ public class CMMNEdgeImpl extends EdgeImpl implements CMMNEdge {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
-                setCmmnElement((TCmmnElement)newValue);
-                return;
             case CMMNDIPackage.CMMN_EDGE__SOURCE_SHAPE:
                 setSourceShape((CMMNShape)newValue);
                 return;
             case CMMNDIPackage.CMMN_EDGE__TARGET_SHAPE:
                 setTargetShape((CMMNShape)newValue);
+                return;
+            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
+                setCmmnElement((TCmmnElement)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -246,14 +245,14 @@ public class CMMNEdgeImpl extends EdgeImpl implements CMMNEdge {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
-                setCmmnElement((TCmmnElement)null);
-                return;
             case CMMNDIPackage.CMMN_EDGE__SOURCE_SHAPE:
                 setSourceShape((CMMNShape)null);
                 return;
             case CMMNDIPackage.CMMN_EDGE__TARGET_SHAPE:
                 setTargetShape((CMMNShape)null);
+                return;
+            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
+                setCmmnElement((TCmmnElement)null);
                 return;
         }
         super.eUnset(featureID);
@@ -267,46 +266,14 @@ public class CMMNEdgeImpl extends EdgeImpl implements CMMNEdge {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
-                return cmmnElement != null;
             case CMMNDIPackage.CMMN_EDGE__SOURCE_SHAPE:
                 return sourceShape != null;
             case CMMNDIPackage.CMMN_EDGE__TARGET_SHAPE:
                 return targetShape != null;
+            case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT:
+                return cmmnElement != null;
         }
         return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == CMMNDiagramElement.class) {
-            switch (derivedFeatureID) {
-                case CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT: return CMMNDIPackage.CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == CMMNDiagramElement.class) {
-            switch (baseFeatureID) {
-                case CMMNDIPackage.CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT: return CMMNDIPackage.CMMN_EDGE__CMMN_ELEMENT;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
     @Override

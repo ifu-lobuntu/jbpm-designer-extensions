@@ -6,13 +6,12 @@
         upperBound="-1" eType="#//CMMNDiagramElement" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedCmmnStyles" upperBound="-1"
         eType="#//CMMNStyle" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPlanningTableExpanded"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
-        defaultValueLiteral="true" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cmmnElement" eType="ecore:EClass CMMN.ecore#//TDefinitions"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CMMNEdge" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Edge #//CMMNDiagramElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceShape" eType="#//CMMNShape"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetShape" eType="#//CMMNShape"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cmmnElement" eType="ecore:EClass CMMN.ecore#//TCmmnElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CMMNShape" eSuperTypes="../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//BoundariedShape #//CMMNDiagramElement ../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//CollapsibleShape">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedShape" upperBound="-1"
@@ -20,9 +19,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPlanningTableExpanded"
         eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"
         defaultValueLiteral="true" unsettable="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CMMNDiagramElement" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//DiagramElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cmmnElement" eType="ecore:EClass CMMN.ecore#//TCmmnElement"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CMMNDiagramElement" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//DiagramElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="CMMNStyle" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Style"/>
 </ecore:EPackage>

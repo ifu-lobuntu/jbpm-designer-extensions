@@ -31,12 +31,12 @@ import org.omg.dd.di.impl.ShapeImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#getBoundaryShapes <em>Boundary Shapes</em>}</li>
- *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#getCmmnElement <em>Cmmn Element</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#isIsExpanded <em>Is Expanded</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#getPreviousWidth <em>Previous Width</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#getPreviousHeight <em>Previous Height</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#getOwnedShape <em>Owned Shape</em>}</li>
  *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl#getCmmnElement <em>Cmmn Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,16 +52,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
      * @ordered
      */
     protected EList<Shape> boundaryShapes;
-
-    /**
-     * The cached value of the '{@link #getCmmnElement() <em>Cmmn Element</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCmmnElement()
-     * @generated
-     * @ordered
-     */
-    protected TCmmnElement cmmnElement;
 
     /**
      * The default value of the '{@link #isIsExpanded() <em>Is Expanded</em>}' attribute.
@@ -161,6 +151,16 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
      * @ordered
      */
     protected boolean isPlanningTableExpandedESet;
+
+    /**
+     * The cached value of the '{@link #getCmmnElement() <em>Cmmn Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCmmnElement()
+     * @generated
+     * @ordered
+     */
+    protected TCmmnElement cmmnElement;
 
     /**
      * <!-- begin-user-doc -->
@@ -376,9 +376,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
         switch (featureID) {
             case CMMNDIPackage.CMMN_SHAPE__BOUNDARY_SHAPES:
                 return getBoundaryShapes();
-            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
-                if (resolve) return getCmmnElement();
-                return basicGetCmmnElement();
             case CMMNDIPackage.CMMN_SHAPE__IS_EXPANDED:
                 return isIsExpanded();
             case CMMNDIPackage.CMMN_SHAPE__PREVIOUS_WIDTH:
@@ -389,6 +386,9 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
                 return getOwnedShape();
             case CMMNDIPackage.CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED:
                 return isIsPlanningTableExpanded();
+            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
+                if (resolve) return getCmmnElement();
+                return basicGetCmmnElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -406,9 +406,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
                 getBoundaryShapes().clear();
                 getBoundaryShapes().addAll((Collection<? extends Shape>)newValue);
                 return;
-            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
-                setCmmnElement((TCmmnElement)newValue);
-                return;
             case CMMNDIPackage.CMMN_SHAPE__IS_EXPANDED:
                 setIsExpanded((Boolean)newValue);
                 return;
@@ -425,6 +422,9 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
             case CMMNDIPackage.CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED:
                 setIsPlanningTableExpanded((Boolean)newValue);
                 return;
+            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
+                setCmmnElement((TCmmnElement)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -439,9 +439,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
         switch (featureID) {
             case CMMNDIPackage.CMMN_SHAPE__BOUNDARY_SHAPES:
                 getBoundaryShapes().clear();
-                return;
-            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
-                setCmmnElement((TCmmnElement)null);
                 return;
             case CMMNDIPackage.CMMN_SHAPE__IS_EXPANDED:
                 setIsExpanded(IS_EXPANDED_EDEFAULT);
@@ -458,6 +455,9 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
             case CMMNDIPackage.CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED:
                 unsetIsPlanningTableExpanded();
                 return;
+            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
+                setCmmnElement((TCmmnElement)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -472,8 +472,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
         switch (featureID) {
             case CMMNDIPackage.CMMN_SHAPE__BOUNDARY_SHAPES:
                 return boundaryShapes != null && !boundaryShapes.isEmpty();
-            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
-                return cmmnElement != null;
             case CMMNDIPackage.CMMN_SHAPE__IS_EXPANDED:
                 return isExpanded != IS_EXPANDED_EDEFAULT;
             case CMMNDIPackage.CMMN_SHAPE__PREVIOUS_WIDTH:
@@ -484,6 +482,8 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
                 return ownedShape != null && !ownedShape.isEmpty();
             case CMMNDIPackage.CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED:
                 return isSetIsPlanningTableExpanded();
+            case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT:
+                return cmmnElement != null;
         }
         return super.eIsSet(featureID);
     }
@@ -497,7 +497,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
         if (baseClass == CMMNDiagramElement.class) {
             switch (derivedFeatureID) {
-                case CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT: return CMMNDIPackage.CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT;
                 default: return -1;
             }
         }
@@ -521,7 +520,6 @@ public class CMMNShapeImpl extends ShapeImpl implements CMMNShape {
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
         if (baseClass == CMMNDiagramElement.class) {
             switch (baseFeatureID) {
-                case CMMNDIPackage.CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT: return CMMNDIPackage.CMMN_SHAPE__CMMN_ELEMENT;
                 default: return -1;
             }
         }

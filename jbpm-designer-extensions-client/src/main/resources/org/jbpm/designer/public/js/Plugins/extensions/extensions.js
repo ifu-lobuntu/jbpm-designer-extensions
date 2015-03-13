@@ -56,8 +56,11 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 				uiObject.parent._changed();
 			}else{
 			}
+//
 			this.facade.getCanvas().update();
+			
 			this.facade.updateSelection();
+			this.facade.raiseEvent({type:ORYX.CONFIG.EVENT_RESIZE_END, shapes:[uiObject]});
 			}catch(e){
 				console.log(e);
 			}
@@ -85,7 +88,6 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		}
 	},
 	updateExpanded : function(collapsibleShape) {
-		var currentOffset=25;
 		var paths=collapsibleShape.node.getElementsByTagName("path");
 		var verticalPath=null;
 		for(var j=0; j < paths.length; j ++){
@@ -98,52 +100,17 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 			verticalPath.setAttributeNS(null,'display','none');
 			collapsibleShape.children.each(function(uiObject) {
 				if(uiObject instanceof ORYX.Core.Shape){
-					this.showShape(uiObject);
+					ORYX.Plugins.Extensions.showShape(uiObject);
 				}
 			}.bind(this));
 		}else{
 			verticalPath.setAttributeNS(null,'display','inherit');
 			collapsibleShape.children.each(function(uiObject){
 				if(uiObject instanceof ORYX.Core.Shape){
-					this.hideShape(uiObject);
+					ORYX.Plugins.Extensions.hideShape(uiObject);
 				}
 			}.bind(this));
 		};
-	},
-	showShape: function(uiObject){
-		uiObject.node.setAttributeNS(null, 'display', 'inherit');
-		uiObject.isVisible = true;
-		uiObject.behindCollapsedParent=false;
-		if(uiObject.incoming && uiObject.outgoing){
-			uiObject.incoming.each(function(edge){
-				if(edge instanceof ORYX.Core.Edge){
-					this.showShape(edge);
-				}
-			}.bind(this));
-			uiObject.outgoing.each(function(edge){
-				if(edge instanceof ORYX.Core.Edge){
-					this.showShape(edge);
-				}
-			}.bind(this));
-		}
-	},
-	hideShape: function(uiObject){
-		uiObject.node.setAttributeNS(null, 'display', 'none');
-		uiObject.isVisible = false;
-		uiObject.behindCollapsedParent=true;
-		if(uiObject.incoming && uiObject.outgoing){
-			uiObject.incoming.each(function(edge){
-				if(edge instanceof ORYX.Core.Edge){
-					this.hideShape(edge);
-				}
-			}.bind(this));
-			uiObject.outgoing.each(function(edge){
-				if(edge instanceof ORYX.Core.Edge){
-					this.hideShape(edge);
-				}
-			}.bind(this));
-		}
-
 	},
 	handleLayoutCollapsible : function(event) {
 		console.log("handleLayoutCollapsible");
@@ -188,7 +155,42 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 });
 ORYX.Plugins.Extensions.extractName = function(reference){
 	return reference.slice(reference.indexOf("::")+2,reference.indexOf("|"));
-}
+};
+ORYX.Plugins.Extensions.showShape =  function(uiObject){
+	uiObject.node.setAttributeNS(null, 'display', 'inherit');
+	uiObject.isVisible = true;
+	uiObject.behindCollapsedParent=false;
+	if(uiObject.incoming && uiObject.outgoing){
+		uiObject.incoming.each(function(edge){
+			if(edge instanceof ORYX.Core.Edge){
+				ORYX.Plugins.Extensions.showShape(edge);
+			}
+		});
+		uiObject.outgoing.each(function(edge){
+			if(edge instanceof ORYX.Core.Edge){
+				ORYX.Plugins.Extensions.showShape(edge);
+			}
+		});
+	}
+};
+ORYX.Plugins.Extensions.hideShape= function(uiObject){
+	uiObject.node.setAttributeNS(null, 'display', 'none');
+	uiObject.isVisible = false;
+	uiObject.behindCollapsedParent=true;
+	if(uiObject.incoming && uiObject.outgoing){
+		uiObject.incoming.each(function(edge){
+			if(edge instanceof ORYX.Core.Edge){
+				this.hideShape(edge);
+			}
+		}.bind(this));
+		uiObject.outgoing.each(function(edge){
+			if(edge instanceof ORYX.Core.Edge){
+				this.hideShape(edge);
+			}
+		}.bind(this));
+	}
+
+};
 
 ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
     construct: function(){

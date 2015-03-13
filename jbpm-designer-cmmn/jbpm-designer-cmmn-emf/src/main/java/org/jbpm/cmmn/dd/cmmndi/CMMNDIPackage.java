@@ -161,22 +161,13 @@ public interface CMMNDIPackage extends EPackage {
     int CMMN_DIAGRAM__RESOLUTION = DIPackage.DIAGRAM__RESOLUTION;
 
     /**
-     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CMMN_DIAGRAM__CMMN_ELEMENT = DIPackage.DIAGRAM_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Owned Cmmn Diagram Element</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT = DIPackage.DIAGRAM_FEATURE_COUNT + 1;
+    int CMMN_DIAGRAM__OWNED_CMMN_DIAGRAM_ELEMENT = DIPackage.DIAGRAM_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Owned Cmmn Styles</b></em>' containment reference list.
@@ -185,16 +176,16 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_DIAGRAM__OWNED_CMMN_STYLES = DIPackage.DIAGRAM_FEATURE_COUNT + 2;
+    int CMMN_DIAGRAM__OWNED_CMMN_STYLES = DIPackage.DIAGRAM_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Is Planning Table Expanded</b></em>' attribute.
+     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED = DIPackage.DIAGRAM_FEATURE_COUNT + 3;
+    int CMMN_DIAGRAM__CMMN_ELEMENT = DIPackage.DIAGRAM_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>CMMN Diagram</em>' class.
@@ -203,7 +194,7 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_DIAGRAM_FEATURE_COUNT = DIPackage.DIAGRAM_FEATURE_COUNT + 4;
+    int CMMN_DIAGRAM_FEATURE_COUNT = DIPackage.DIAGRAM_FEATURE_COUNT + 3;
 
     /**
      * The number of operations of the '<em>CMMN Diagram</em>' class.
@@ -306,22 +297,13 @@ public interface CMMNDIPackage extends EPackage {
     int CMMN_EDGE__WAYPOINT = DIPackage.EDGE__WAYPOINT;
 
     /**
-     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CMMN_EDGE__CMMN_ELEMENT = DIPackage.EDGE_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Source Shape</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CMMN_EDGE__SOURCE_SHAPE = DIPackage.EDGE_FEATURE_COUNT + 1;
+    int CMMN_EDGE__SOURCE_SHAPE = DIPackage.EDGE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Target Shape</b></em>' reference.
@@ -330,7 +312,16 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_EDGE__TARGET_SHAPE = DIPackage.EDGE_FEATURE_COUNT + 2;
+    int CMMN_EDGE__TARGET_SHAPE = DIPackage.EDGE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CMMN_EDGE__CMMN_ELEMENT = DIPackage.EDGE_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>CMMN Edge</em>' class.
@@ -433,22 +424,13 @@ public interface CMMNDIPackage extends EPackage {
     int CMMN_SHAPE__BOUNDARY_SHAPES = JBPMDDPackage.BOUNDARIED_SHAPE__BOUNDARY_SHAPES;
 
     /**
-     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CMMN_SHAPE__CMMN_ELEMENT = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Is Expanded</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CMMN_SHAPE__IS_EXPANDED = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 1;
+    int CMMN_SHAPE__IS_EXPANDED = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Previous Width</b></em>' attribute.
@@ -457,7 +439,7 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_SHAPE__PREVIOUS_WIDTH = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 2;
+    int CMMN_SHAPE__PREVIOUS_WIDTH = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Previous Height</b></em>' attribute.
@@ -466,7 +448,7 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_SHAPE__PREVIOUS_HEIGHT = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 3;
+    int CMMN_SHAPE__PREVIOUS_HEIGHT = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Owned Shape</b></em>' containment reference list.
@@ -475,7 +457,7 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_SHAPE__OWNED_SHAPE = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 4;
+    int CMMN_SHAPE__OWNED_SHAPE = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Is Planning Table Expanded</b></em>' attribute.
@@ -484,7 +466,16 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 5;
+    int CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CMMN_SHAPE__CMMN_ELEMENT = JBPMDDPackage.BOUNDARIED_SHAPE_FEATURE_COUNT + 5;
 
     /**
      * The number of structural features of the '<em>CMMN Shape</em>' class.
@@ -569,22 +560,13 @@ public interface CMMNDIPackage extends EPackage {
     int CMMN_DIAGRAM_ELEMENT__ID = DIPackage.DIAGRAM_ELEMENT__ID;
 
     /**
-     * The feature id for the '<em><b>Cmmn Element</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT = DIPackage.DIAGRAM_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
      * The number of structural features of the '<em>CMMN Diagram Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CMMN_DIAGRAM_ELEMENT_FEATURE_COUNT = DIPackage.DIAGRAM_ELEMENT_FEATURE_COUNT + 1;
+    int CMMN_DIAGRAM_ELEMENT_FEATURE_COUNT = DIPackage.DIAGRAM_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The number of operations of the '<em>CMMN Diagram Element</em>' class.
@@ -828,15 +810,15 @@ public interface CMMNDIPackage extends EPackage {
     EReference getCMMNDiagram_OwnedCmmnStyles();
 
     /**
-     * Returns the meta object for the attribute '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#isIsPlanningTableExpanded <em>Is Planning Table Expanded</em>}'.
+     * Returns the meta object for the reference '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#getCmmnElement <em>Cmmn Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Is Planning Table Expanded</em>'.
-     * @see org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#isIsPlanningTableExpanded()
+     * @return the meta object for the reference '<em>Cmmn Element</em>'.
+     * @see org.jbpm.cmmn.dd.cmmndi.CMMNDiagram#getCmmnElement()
      * @see #getCMMNDiagram()
      * @generated
      */
-    EAttribute getCMMNDiagram_IsPlanningTableExpanded();
+    EReference getCMMNDiagram_CmmnElement();
 
     /**
      * Returns the meta object for class '{@link org.jbpm.cmmn.dd.cmmndi.CMMNEdge <em>CMMN Edge</em>}'.
@@ -871,6 +853,17 @@ public interface CMMNDIPackage extends EPackage {
     EReference getCMMNEdge_TargetShape();
 
     /**
+     * Returns the meta object for the reference '{@link org.jbpm.cmmn.dd.cmmndi.CMMNEdge#getCmmnElement <em>Cmmn Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Cmmn Element</em>'.
+     * @see org.jbpm.cmmn.dd.cmmndi.CMMNEdge#getCmmnElement()
+     * @see #getCMMNEdge()
+     * @generated
+     */
+    EReference getCMMNEdge_CmmnElement();
+
+    /**
      * Returns the meta object for class '{@link org.jbpm.cmmn.dd.cmmndi.CMMNShape <em>CMMN Shape</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -903,6 +896,17 @@ public interface CMMNDIPackage extends EPackage {
     EAttribute getCMMNShape_IsPlanningTableExpanded();
 
     /**
+     * Returns the meta object for the reference '{@link org.jbpm.cmmn.dd.cmmndi.CMMNShape#getCmmnElement <em>Cmmn Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Cmmn Element</em>'.
+     * @see org.jbpm.cmmn.dd.cmmndi.CMMNShape#getCmmnElement()
+     * @see #getCMMNShape()
+     * @generated
+     */
+    EReference getCMMNShape_CmmnElement();
+
+    /**
      * Returns the meta object for class '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement <em>CMMN Diagram Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -911,17 +915,6 @@ public interface CMMNDIPackage extends EPackage {
      * @generated
      */
     EClass getCMMNDiagramElement();
-
-    /**
-     * Returns the meta object for the reference '{@link org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement#getCmmnElement <em>Cmmn Element</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Cmmn Element</em>'.
-     * @see org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement#getCmmnElement()
-     * @see #getCMMNDiagramElement()
-     * @generated
-     */
-    EReference getCMMNDiagramElement_CmmnElement();
 
     /**
      * Returns the meta object for class '{@link org.jbpm.cmmn.dd.cmmndi.CMMNStyle <em>CMMN Style</em>}'.
@@ -983,12 +976,12 @@ public interface CMMNDIPackage extends EPackage {
         EReference CMMN_DIAGRAM__OWNED_CMMN_STYLES = eINSTANCE.getCMMNDiagram_OwnedCmmnStyles();
 
         /**
-         * The meta object literal for the '<em><b>Is Planning Table Expanded</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Cmmn Element</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CMMN_DIAGRAM__IS_PLANNING_TABLE_EXPANDED = eINSTANCE.getCMMNDiagram_IsPlanningTableExpanded();
+        EReference CMMN_DIAGRAM__CMMN_ELEMENT = eINSTANCE.getCMMNDiagram_CmmnElement();
 
         /**
          * The meta object literal for the '{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNEdgeImpl <em>CMMN Edge</em>}' class.
@@ -1017,6 +1010,14 @@ public interface CMMNDIPackage extends EPackage {
         EReference CMMN_EDGE__TARGET_SHAPE = eINSTANCE.getCMMNEdge_TargetShape();
 
         /**
+         * The meta object literal for the '<em><b>Cmmn Element</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CMMN_EDGE__CMMN_ELEMENT = eINSTANCE.getCMMNEdge_CmmnElement();
+
+        /**
          * The meta object literal for the '{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNShapeImpl <em>CMMN Shape</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1043,6 +1044,14 @@ public interface CMMNDIPackage extends EPackage {
         EAttribute CMMN_SHAPE__IS_PLANNING_TABLE_EXPANDED = eINSTANCE.getCMMNShape_IsPlanningTableExpanded();
 
         /**
+         * The meta object literal for the '<em><b>Cmmn Element</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CMMN_SHAPE__CMMN_ELEMENT = eINSTANCE.getCMMNShape_CmmnElement();
+
+        /**
          * The meta object literal for the '{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNDiagramElementImpl <em>CMMN Diagram Element</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1051,14 +1060,6 @@ public interface CMMNDIPackage extends EPackage {
          * @generated
          */
         EClass CMMN_DIAGRAM_ELEMENT = eINSTANCE.getCMMNDiagramElement();
-
-        /**
-         * The meta object literal for the '<em><b>Cmmn Element</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CMMN_DIAGRAM_ELEMENT__CMMN_ELEMENT = eINSTANCE.getCMMNDiagramElement_CmmnElement();
 
         /**
          * The meta object literal for the '{@link org.jbpm.cmmn.dd.cmmndi.impl.CMMNStyleImpl <em>CMMN Style</em>}' class.

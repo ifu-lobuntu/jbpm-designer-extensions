@@ -25,6 +25,9 @@ public class AbstractEmfJsonMarshaller {
     protected Object getValue(Object currentTarget, EStructuralFeature sf) {
         Object currentValue = null;
         if (currentTarget instanceof EObject) {
+            if(sf==null){
+                System.out.println();
+            }
             currentValue = ((EObject) currentTarget).eGet(sf);
         } else if (currentTarget instanceof FeatureMap) {
             currentValue = ((FeatureMap) currentTarget).get(sf,true);

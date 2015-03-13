@@ -23,6 +23,8 @@
  - PlanItemOnPart
  - PlanItemStartTrigger
  - CaseFileItemStartTrigger
+ - Connector from HumanTask to related DiscretionaryItems in its PlanningTable
+ - Container ExitCriteria
 
 ### Decorators:
  - Repetition Rule Decorator present when a repetition rule exists
@@ -30,12 +32,17 @@
  - Required Rule Decorator present when a Required Rule exists
  - AutoComplete decorator - normal refToView
  - Blocking vs non-blocking Human Task
- - Collapse/Expand button for Stages
+ - PlanItemTable for Stages
+ - PlanItemTable for HumanTask
+ 
 
 ### Property editors:
  - PerformerRef in HumanTasks - need to define a new plugin to lookup single roles
  - ProcessRef (Import other process WITH its ProcessParameters - set the Process and ProcessParameters on the calling Case as JSON property)
  - CaseRef (Import other Cases WITH its CaseParameters, set the Case and CaseParameters on the calling Case as JSON property)
+ - ApplicabilityRuleRefs in Discretionary Items - simplify to one and make it appear contained
+ - AuthorizedRoleRefs in Discretionary Items - need to define a new plugin to lookup multiple roles
+ 
 
 ###Parameters, their mappings and CaseFileItem bindings in Tasks.
  - This is a bit ugly in CMMN - lots of indirection, maybe we can hide it away from the user to a large extent.
@@ -53,51 +60,58 @@
 
 ###Collapse/Expand
  - Collapsed Stages 
-
+ - Collapsed Planning Tables for Stages and Cases
+ - Collapsed Planning Tables for HumanTasks
+ 
 ##Bugs
  - When we link an exitSentry to and entrySentry, the sourceRef is missing.
 
 ##Misc
  - Remove git repo info from platformURIs
+ - Use structureRef to determine where the referenced UML class is  
 
 ##1.2. In Progress
 
 ##1.3. Todo:
- * - Collapsed Planning Tables for Stages and Cases
  * - Update all property editors to read UML rather than CaseFile
 
 ##Bugs
+##Toolbar
+ - Generate CaseFileForm
+ - Generate task forms
+ - Generate Start Case form
  
+##Shortcuts from shape
+ - Edit/Generate Form
+ - *PlanItemOnPart
+ - *CaseFileItemOnPart
+ - *EventOnPart
+ - *DiscretionaryLink
+ - PlanItemStartTrigger
+ - CaseFileItemStartTrigger
+ - EventStartTrigger
+  
 ## Misc
- * -  sync the CaseFile from UML model(s) on load (and store)
- * - Use structureRef to determine where the referenced UML class is  
+ - Sync the CaseFile from UML model(s) on load (and store) (?)
+ 
  
 ## Modularization
  - inlineditor.jsp
 
 ###Stencils for:
- - Connector from HumanTask to related DiscretionaryItems in its PlanningTable
  - PlanFragment
 
-###Decorators:
- * - PlanItemTable for Stages
- - PlanItemTable for HumanTask
-
-
 ###Property editors:
- * - ApplicabilityRuleRefs in Discretionary Items - simplify to one and make it appear contained
- * - AuthorizedRoleRefs in Discretionary Items - need to define a new plugin to lookup multiple roles
-
-
-###Collapse/Expand
- - Collapsed Planning Table for Tasks with PlanningTable
+ - AuthorizedRoleRefs - change to checkbox list
+ 
+###Extensions for CMMN
+ - entryScripts
+ - exitScripts
+ - additional property name for caseFileItem events (its useless without them)
 
 #2. Form Modeler:
 #2.1. Done and Tested
 #2.2. Todo
- - Generate task forms
- - Generate CaseFileForm
- - Generate Start Case form
 
  - Name/Value construct to represent data
  - Form for CaseFile

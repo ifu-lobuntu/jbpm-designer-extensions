@@ -52,5 +52,29 @@ public class StageMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
         addEdge(onPart, htpi, sentry);
         assertOutputValid();
     }
+    @Test
+    public void testStageExitCriteria() throws Exception {
+        TPlanItem spi = addStagePlanItem(tCase, casePlanModel);
+        TStage stage = (TStage) spi.getDefinitionRef();
+        TPlanItem htpi = addHumanTaskPlanItem(spi, stage);
+        TSentry sentry = super.addExitSentry("Waiting for Human Task",stage,spi);
+        TPlanItemOnPart onPart = CMMNFactory.eINSTANCE.createTPlanItemOnPart();
+        onPart.setSourceRef(htpi);
+        onPart.setStandardEvent(PlanItemTransition.COMPLETE);
+        sentry.getOnPart().add(onPart);
+        addEdge(onPart, htpi, sentry);
+        assertOutputValid();
+    }
+    @Test
+    public void testCaseExitCriteria() throws Exception {
+        TPlanItem htpi = addHumanTaskPlanItem(tCase, tCase.getCasePlanModel());
+        TSentry sentry = super.addExitSentry("Waiting for Human Task",tCase.getCasePlanModel(),tCase);
+        TPlanItemOnPart onPart = CMMNFactory.eINSTANCE.createTPlanItemOnPart();
+        onPart.setSourceRef(htpi);
+        onPart.setStandardEvent(PlanItemTransition.COMPLETE);
+        sentry.getOnPart().add(onPart);
+        addEdge(onPart, htpi, sentry);
+        assertOutputValid();
+    }
 
 }

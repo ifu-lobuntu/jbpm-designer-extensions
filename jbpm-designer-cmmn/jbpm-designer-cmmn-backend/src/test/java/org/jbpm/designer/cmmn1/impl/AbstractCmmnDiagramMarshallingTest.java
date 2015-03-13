@@ -3,10 +3,13 @@ package org.jbpm.designer.cmmn1.impl;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
@@ -24,6 +27,7 @@ import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.junit.Before;
 import org.junit.Test;
 import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.DocumentRoot;
 import org.omg.cmmn.TCase;
 import org.omg.cmmn.TCaseTask;
@@ -32,6 +36,7 @@ import org.omg.cmmn.TDefinitions;
 import org.omg.cmmn.TDiscretionaryItem;
 import org.omg.cmmn.THumanTask;
 import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TPlanningTable;
 import org.omg.cmmn.TProcessTask;
 import org.omg.cmmn.TRole;
 import org.omg.cmmn.TSentry;
@@ -86,13 +91,13 @@ public class AbstractCmmnDiagramMarshallingTest {
         inputResource.getContents().add(root);
         profile.loadLinkedStencilSet("../jbpm-designer-cmmn-client/src/main/resources/org/jbpm/designer/public/stencilsets/cmmn1.0/cmmn1.0.json");
         this.tCase = createCase();
-        inputDefinitions.getCase().add(tCase);
-        inputDiagram.setCmmnElement(tCase);
-        elementDiagramElementMap.put(tCase, inputDiagram);
+        inputDiagram.setCmmnElement(inputDefinitions);
+        elementDiagramElementMap.put(inputDefinitions, inputDiagram);
         tCase.setCasePlanModel(CMMNFactory.eINSTANCE.createTStage());
         casePlanModel= tCase.getCasePlanModel();
         casePlanModel.setAutoComplete(true);
         tCase.setName("MyCase");
+        addShapeFor(inputDefinitions, tCase);
     }
 
     private TCase createCase() {
@@ -116,7 +121,9 @@ public class AbstractCmmnDiagramMarshallingTest {
         String xmlString = buildXmlString(inputResource);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
-        new GenericEcoreComparator(inputResource, outputResource).validate();
+        Set<EClassifier> ignore =new HashSet<EClassifier>();
+        ignore.add(CMMNPackage.eINSTANCE.getTApplicabilityRule());
+        new GenericEcoreComparator(inputResource, outputResource,ignore).validate();
     }
 
     protected String buildXmlString(CMMNResourceImpl resource) throws IOException {
@@ -206,14 +213,18 @@ public class AbstractCmmnDiagramMarshallingTest {
     }
 
     protected TDiscretionaryItem addHumanTaskDiscretionaryItem(TCmmnElement parent, TStage stage) {
+        TPlanningTable planningTable = stage.getPlanningTable();
+        if (planningTable == null) {
+            stage.setPlanningTable(planningTable =CMMNFactory.eINSTANCE.createTPlanningTable());
+        }
+        return addDiscretionaryHumanTask(parent, planningTable);
+    }
+    protected TDiscretionaryItem addDiscretionaryHumanTask(TCmmnElement parent, TPlanningTable planningTable) {
         THumanTask htpid = CMMNFactory.eINSTANCE.createTHumanTask();
         casePlanModel.getPlanItemDefinition().add(htpid);
         TDiscretionaryItem di = CMMNFactory.eINSTANCE.createTDiscretionaryItem();
         di.setDefinitionRef(htpid);
-        if (stage.getPlanningTable() == null) {
-            stage.setPlanningTable(CMMNFactory.eINSTANCE.createTPlanningTable());
-        }
-        stage.getPlanningTable().getTableItem().add(di);
+        planningTable.getTableItem().add(di);
         htpid.setName("MyHumanTaskDiscretionaryItem");
         addShapeFor(parent, di);
         return di;
@@ -254,6 +265,15 @@ public class AbstractCmmnDiagramMarshallingTest {
     protected TSentry addEntrySentry(String sentryName, TDiscretionaryItem htdi) {
         EList<TSentry> sentries = htdi.getEntryCriteriaRefs();
         return addSentry(sentryName, htdi, sentries);
+    }
+    protected TSentry addExitSentry(String sentryName, TStage stage, TCmmnElement shapeOwner) {
+        TSentry sentry = CMMNFactory.eINSTANCE.createTSentry();
+        sentry.setName(sentryName);
+        stage.getSentry().add(sentry);
+        stage.getExitCriteriaRefs().add(sentry);
+        BoundariedShape stageShape = (BoundariedShape)this.elementDiagramElementMap.get(shapeOwner);
+        stageShape.getBoundaryShapes().add(addShapeFor(((DiagramElement)stageShape.eContainer()).getModelElement().get(0),sentry));
+        return sentry;
     }
     private TSentry addSentry(String sentryName, TCmmnElement htdi, EList<TSentry> sentries) {
         TSentry sentry = CMMNFactory.eINSTANCE.createTSentry();

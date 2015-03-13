@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
+import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.Bpmn2EmfProfile;
@@ -37,6 +38,7 @@ import org.omg.cmmn.TCase;
 import org.omg.cmmn.TDefinitions;
 import org.omg.cmmn.TStage;
 import org.omg.cmmn.util.CMMNResourceFactoryImpl;
+import org.omg.dd.dc.DCFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
@@ -67,12 +69,20 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         inputResource.getContents().add(root);
         TCase tCase = createCase(inputDefinitions);
         inputDefinitions.getCase().add(tCase);
-        inputDiagram.setCmmnElement(tCase);
+        inputDiagram.setCmmnElement(inputDefinitions);
         tCase.setCasePlanModel(CMMNFactory.eINSTANCE.createTStage());
         TStage casePlanModel = tCase.getCasePlanModel();
         casePlanModel.setAutoComplete(true);
         tCase.setName("${processid}");
         tCase.setId("${processid}");
+        CMMNShape caseShape = CMMNDIFactory.eINSTANCE.createCMMNShape();
+        inputDiagram.getOwnedCmmnDiagramElement().add(caseShape);
+        caseShape.setCmmnElement(tCase);
+        caseShape.setBounds(DCFactory.eINSTANCE.createBounds());
+        caseShape.getBounds().setX(10d);
+        caseShape.getBounds().setY(10d);
+        caseShape.getBounds().setWidth(600d);
+        caseShape.getBounds().setHeight(300d);
     }
 
 
@@ -124,7 +134,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
 
     @Override
     public String getDiagramStencilId() {
-        return CmmnStencil.CASE_DIAGRAM.getStencilId();
+        return CmmnStencil.CMMN_DIAGRAM.getStencilId();
     }
 
     @Override

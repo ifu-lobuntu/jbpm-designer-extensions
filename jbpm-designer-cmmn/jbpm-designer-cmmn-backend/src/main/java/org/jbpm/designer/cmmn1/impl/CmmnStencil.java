@@ -26,11 +26,13 @@ import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Edge;
 
 public enum CmmnStencil implements StencilInfo {
-    CASE_DIAGRAM(CMMNPackage.eINSTANCE.getTCase(), CMMNDIPackage.eINSTANCE.getCMMNDiagram(), "CaseDiagram"),
+    CMMN_DIAGRAM(CMMNPackage.eINSTANCE.getTDefinitions(), CMMNDIPackage.eINSTANCE.getCMMNDiagram(), "CMMNDiagram"),
+    CASE(CMMNPackage.eINSTANCE.getTCase(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "Case"),
     HUMAN_TASK(CMMNPackage.eINSTANCE.getTHumanTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "HumanTask1"),
     DISCRETIONARY_HUMAN_TASK(CMMNPackage.eINSTANCE.getTHumanTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryHumanTask1"),
     CASE_TASK(CMMNPackage.eINSTANCE.getTCaseTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "CaseTask1"),
     DISCRETIONARY_CASE_TASK(CMMNPackage.eINSTANCE.getTCaseTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryCaseTask1"),
+    DISCRETIONARY_LINK(CMMNPackage.eINSTANCE.getTPlanningTable_TableItem(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "DiscretionaryLink"),
     PROCESS_TASK(CMMNPackage.eINSTANCE.getTProcessTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "ProcessTask1"),
     DISCRETIONARY_PROCESS_TASK(CMMNPackage.eINSTANCE.getTProcessTask(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "DiscretionaryProcessTask1"),
     STAGE(CMMNPackage.eINSTANCE.getTStage(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "Stage"),
@@ -43,6 +45,7 @@ public enum CmmnStencil implements StencilInfo {
     EVENT_START_TRIGGER(CMMNPackage.eINSTANCE.getTPlanItemStartTrigger(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "EventStartTrigger"),
     ENTRY_SENTRY(CMMNPackage.eINSTANCE.getTSentry(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "EntrySentry"),
     EXIT_SENTRY(CMMNPackage.eINSTANCE.getTSentry(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "ExitSentry"),
+    CONTAINER_EXIT_SENTRY(CMMNPackage.eINSTANCE.getTSentry(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "ContainerExitSentry"),
     CASE_FILE_ITEM(CMMNPackage.eINSTANCE.getTCaseFileItem(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "CaseFileItem"),
     PROPERTY(CMMNPackage.eINSTANCE.getTProperty(), CMMNDIPackage.eINSTANCE.getCMMNShape(), "Property"),
     CASE_FILE_ITEM_ON_PART(CMMNPackage.eINSTANCE.getTCaseFileItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemOnPart"),
@@ -138,7 +141,11 @@ public enum CmmnStencil implements StencilInfo {
                 } else if (source.getTargetRefs().contains(target)) {
                     return CASE_FILE_ITEM_TARGET;
                 }
+            } else if (edge.getSourceShape().getCmmnElement() instanceof TPlanItem && edge.getTargetShape().getCmmnElement() instanceof TDiscretionaryItem) {
+                return DISCRETIONARY_LINK;
+
             }
+
             if (me instanceof TPlanItemOnPart) {
                 TPlanItemDefinition definitionRef = ((TPlanItemOnPart) me).getSourceRef().getDefinitionRef();
                 if (definitionRef instanceof TEvent || definitionRef instanceof TMilestone) {
@@ -147,15 +154,15 @@ public enum CmmnStencil implements StencilInfo {
                     return PLAN_ITEM_ON_PART;
                 }
             } else if (me instanceof TPlanItemStartTrigger) {
-                TPlanItemDefinition definitionRef = ((TPlanItemStartTrigger) me).getSourceRef().getDefinitionRef();
-                if (definitionRef instanceof TEvent || definitionRef instanceof TMilestone) {
-                    return CmmnStencil.EVENT_START_TRIGGER;
-                } else {
-                    return CmmnStencil.PLAN_ITEM_START_TRIGGER;
+                if(((TPlanItemStartTrigger) me).getSourceRef()!=null){
+                    TPlanItemDefinition definitionRef = ((TPlanItemStartTrigger) me).getSourceRef().getDefinitionRef();
+                    if (definitionRef instanceof TEvent || definitionRef instanceof TMilestone) {
+                        return CmmnStencil.EVENT_START_TRIGGER;
+                    }
                 }
-
+                return CmmnStencil.PLAN_ITEM_START_TRIGGER;
             }
-            possibilities = DIRECT_ITEMS;
+            possibilities = DIRECT_ITEMS; 
         } else {
             possibilities = DIRECT_ITEMS;
         }
@@ -172,6 +179,6 @@ public enum CmmnStencil implements StencilInfo {
     public static CmmnStencil[] DISCRETIONARY_ITEMS = new CmmnStencil[] { DISCRETIONARY_CASE_TASK, DISCRETIONARY_HUMAN_TASK, DISCRETIONARY_PROCESS_TASK,
             DISCRETIONARY_STAGE };
     public static CmmnStencil[] PLAN_ITEMS = new CmmnStencil[] { CASE_TASK, HUMAN_TASK, PROCESS_TASK, STAGE, MILESTONE, USER_EVENT, TIMER_EVENT };
-    public static CmmnStencil[] DIRECT_ITEMS = new CmmnStencil[] { CASE_DIAGRAM, CASE_FILE_ITEM_ON_PART, CASE_FILE_ITEM, PROPERTY,
+    public static CmmnStencil[] DIRECT_ITEMS = new CmmnStencil[] { CMMN_DIAGRAM, CASE, CASE_FILE_ITEM_ON_PART, CASE_FILE_ITEM, PROPERTY,
             CASE_FILE_ITEM_START_TRIGGER };
 }

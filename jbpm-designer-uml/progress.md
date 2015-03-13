@@ -19,35 +19,45 @@
  - Property.type
  - Property.upper
  - Property.lower
-
-
-#In Progress
-
-#Todo
  - ImportedClassifier.classref
 
+##Todo
+ 
 ##Stencils:
 Owned Operation
 Operation
 
+##Toolbar
+ - *Generate JPA Code
+ - *Generate jBPM DataModel code 
+ - Generate OCM Code
+ - Update Database
+ 
+##Misc
+ - Update association end names on docking
+ - Create ownedAttribute compartment on creation 
+
+
 ##Property Editors
 
-- End.qualifier
-* - Property.isOrdered
-* - Property.isUnique
+ - *Property.isOrdered
+ - *Property.isUnique
+ - *Operation.arguments
+ - *Operation.returnType
+ - *Operation.body
+ - *Operation.language 
+ - End.qualifier
+ - Property.defaultValue.body
+ - Property.defaultValue.language
+ - redefinedProperties
+ - subsettedProperties
+ - isDerived
+ - isDerivedUnion
+ - Class.isAbstract
+ - EnumerationLiteral.slot
 
-Property.defaultValue
-Operation.bodyCondition
-redefinedProperties
-subsettedProperties
-isDerived
-isDerivedUnion
-
-Class.isAbstract
-EnumerationLiteral.slot
-
-ORM
-Class.tableName
-Property.columnName
-Association.tableName
-Indices??
+##ORM
+ - Class.tableName
+ - Property.columnName
+ - Association.tableName
+ - Indices??
