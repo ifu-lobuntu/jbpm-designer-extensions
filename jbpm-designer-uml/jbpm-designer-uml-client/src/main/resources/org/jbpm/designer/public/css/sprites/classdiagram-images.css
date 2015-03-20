@@ -1,0 +1,58 @@
+/** sprite: classdiagram-images-sprite; sprite-image: url('../../images/sprites/classdiagram-images-sprite.png'); sprite-layout: vertical */
+/* Edges */
+.stencilsets_classdiagram_classdiagram_json_icons_composition,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_composition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/composition.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_directed_association,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_directed_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/directed_association.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_bi_directional_association,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_bi_directional_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/bi_directional_association.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_generalization,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_generalization {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/generalization.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_interface_realization,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_interface_realization{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/interface_realization.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_class,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_class{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/class.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_interface,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_interface{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/interface.png);  /** sprite-ref: classdiagram-images-sprite; */
+}
+.stencilsets_classdiagram_classdiagram_json_icons_enumeration,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_enumeration{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/classdiagram/icons/enumeration.png);  /** sprite-ref: classdiagram-images-sprite; */
+}

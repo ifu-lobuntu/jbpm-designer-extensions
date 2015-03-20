@@ -1,0 +1,65 @@
+/* Edges */
+.stencilsets_classdiagram_classdiagram_json_icons_composition,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_composition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_directed_association,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_directed_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -16px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_bi_directional_association,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_bi_directional_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -32px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_generalization,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_generalization {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -48px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_interface_realization,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_interface_realization{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -64px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_class,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_class{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -80px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_interface,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_interface{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -96px;
+}
+.stencilsets_classdiagram_classdiagram_json_icons_enumeration,
+.x-tree-node-leaf .stencilsets_classdiagram_classdiagram_json_icons_enumeration{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/classdiagram-images-sprite.png');
+  background-position: left -96px;
+}
