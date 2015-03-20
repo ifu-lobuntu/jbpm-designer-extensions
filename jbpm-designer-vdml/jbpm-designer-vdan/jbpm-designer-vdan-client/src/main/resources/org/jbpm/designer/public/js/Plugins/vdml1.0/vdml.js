@@ -36,7 +36,7 @@ ORYX.Plugins.VDML = Clazz.extend(
 		this.facade.getCanvas().getChildNodes(true, function(shape){
 			if(shape.getStencil()){
 				var stencilId=shape.getStencil().id();
-				if(stencilId=="http://b3mn.org/stencilset/vdmlactivitynetwork.0#Role"){
+				if(stencilId=="http://b3mn.org/stencilset/vdmlactivitynetwork#Role"){
 					var ul = shape.bounds.upperLeft();
 					var lr = shape.bounds.lowerRight();
 					var height = shape.bounds.height();

@@ -1,5 +1,7 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import java.io.IOException;
+
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -12,7 +14,7 @@ public interface IEmfProfile {
 
     String getSerializedModelExtension();
 
-    void prepareResourceSet(ResourceSet resourceSet);
+    void prepareResourceSet(ResourceSet resourceSet) ;
 
     boolean useIdAttribute();
 

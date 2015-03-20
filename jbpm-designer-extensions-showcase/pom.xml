@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -52,25 +51,33 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-vdan-client</artifactId>
     </dependency>
-	<dependency>
-		<groupId>org.jbpm</groupId>
-		<artifactId>jbpm-designer-vdpe-api</artifactId>
-	</dependency>
-	<dependency>
-		<groupId>org.jbpm</groupId>
-		<artifactId>jbpm-designer-vdpe-client</artifactId>
-	</dependency>
-	<dependency>
-		<groupId>org.jbpm</groupId>
-		<artifactId>jbpm-designer-vdpe-backend</artifactId>
-	</dependency>
-	<dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdpe-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdpe-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdpe-backend</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-codemodel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-codegen</artifactId>
     </dependency>
     <!-- dependencies added because of new illegal transitive dependency check -->
     <dependency>
@@ -203,11 +210,23 @@
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
+      <artifactId>drools-wb-enum-editor-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-enum-editor-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-wb-enum-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.drools</groupId>
       <artifactId>drools-wb-workitems-editor-api</artifactId>
     </dependency>
     <dependency>
-    	<groupId>org.drools</groupId>
-    	<artifactId>drools-workbench-models-datamodel-api</artifactId>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-datamodel-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
@@ -348,8 +367,8 @@
       <artifactId>jbpm-bpmn2-emfextmodel</artifactId>
     </dependency>
     <dependency>
-       <groupId>org.jdom</groupId>
-       <artifactId>jdom</artifactId>
+      <groupId>org.jdom</groupId>
+      <artifactId>jdom</artifactId>
     </dependency>
 
     <!-- Guvnor -->
@@ -492,9 +511,9 @@
       <artifactId>jbpm-form-modeler-api</artifactId>
     </dependency>
     <dependency>
-   		<groupId>org.uberfire</groupId>
-  		<artifactId>uberfire-widgets-service-api</artifactId>
-      </dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-widgets-service-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-form-modeler-renderer-api</artifactId>
@@ -573,9 +592,8 @@
       <artifactId>org.eclipse.bpmn2</artifactId>
     </dependency>
 
-    <!-- PicketLink has a hard dependency on JBoss Logging.
- Since this app deploys to Jetty, we include this as a runtime-scoped dependency.
- If deploying to JBoss AS or WildFly, you would set this to provided scope. -->
+    <!-- PicketLink has a hard dependency on JBoss Logging. Since this app deploys to Jetty, we include this as a runtime-scoped dependency. If deploying to JBoss AS or WildFly, you 
+      would set this to provided scope. -->
     <dependency>
       <groupId>org.jboss.logging</groupId>
       <artifactId>jboss-logging</artifactId>

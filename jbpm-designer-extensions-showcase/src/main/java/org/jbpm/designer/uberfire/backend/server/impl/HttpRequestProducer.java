@@ -22,6 +22,7 @@ public class HttpRequestProducer implements Filter {
     @Override
     public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2) throws IOException, ServletException {
         try{
+            System.out.println(((javax.servlet.http.HttpServletRequest)arg0).getRequestURL());
             requests.set((HttpServletRequest) arg0);
             arg2.doFilter(arg0, arg1);
         }finally{

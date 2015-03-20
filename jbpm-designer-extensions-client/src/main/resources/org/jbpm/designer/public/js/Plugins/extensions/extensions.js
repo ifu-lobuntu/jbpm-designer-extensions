@@ -461,3 +461,115 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(Ext.form.TriggerField,  {
 	}
 });
 
+ORYX.Plugins.ExtensionsFormEditing = Clazz.extend({
+    construct: function(facade){
+    	//TODO find a better place to do this
+    	ORYX.I18N.forms.editForm="Edit Form";
+    	ORYX.I18N.forms.editFormDesc="Edit Form";
+    	ORYX.I18N.forms.generateFormDesc="Generate Form";
+    	ORYX.I18N.forms.generateForm="Generate Form";
+        this.facade = facade;
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_TASKFORM_EDIT, this.openForm.bind(this));
+        if(ORYX.READONLY != true) {
+            // disable for ruleflow perspective preset
+            if(ORYX.PRESET_PERSPECTIVE != "ruleflow") {
+               this.facade.offer({
+                    'name': ORYX.I18N.forms.editForm,
+                    'functionality': this.openForm.bind(this),
+                    'group': "editprocessforms",
+                    'icon': ORYX.BASE_FILE_PATH + "images/processforms.png",
+                    dropDownGroupIcon : ORYX.BASE_FILE_PATH + "images/processforms.png",
+                    'description': ORYX.I18N.View.editFormDesc,
+                    'index': 1,
+                    'minShape': 1,
+                    'maxShape': 1,
+                    'isEnabled': function(){
+                        return ORYX.READONLY != true && this.facade.getSelection().length > 0 && this.facade.getSelection().first().properties["oryx-hasform"]==true;
+                    }.bind(this)
+                });
+
+                this.facade.offer({
+                    'name': ORYX.I18N.forms.generateForm,
+                    'functionality': this.generateForm.bind(this),
+                    'group': "editprocessforms",
+                    'icon': ORYX.BASE_FILE_PATH + "images/processforms.png",
+                    dropDownGroupIcon : ORYX.BASE_FILE_PATH + "images/processforms.png",
+                    'description': ORYX.I18N.forms.generateFormDesc,
+                    'index': 2,
+                    'minShape': 1,
+                    'maxShape': 1,
+                    'isEnabled': function(){
+                        return ORYX.READONLY != true && this.facade.getSelection().length > 0 && this.facade.getSelection().first().properties["oryx-hasform"]==true;
+                    }.bind(this)
+                });
+
+                this.facade.offer({
+                    'name': ORYX.I18N.forms.generateAllForms,
+                    'functionality': this.generateAllForms.bind(this),
+                    'group': "editprocessforms",
+                    'icon': ORYX.BASE_FILE_PATH + "images/processforms.png",
+                    dropDownGroupIcon : ORYX.BASE_FILE_PATH + "images/processforms.png",
+                    'description': ORYX.I18N.forms.generateAllForms_desc,
+                    'index': 3,
+                    'minShape': 0,
+                    'maxShape': 0,
+                    'isEnabled': function(){
+                        return ORYX.READONLY != true;
+                    }.bind(this)
+                });
+                console.log("FOrms menu offered");
+            }
+        }
+    },
+    processFormAction: function(theAction,theFormType,showFormEditor){
+	    Ext.Ajax.request({
+	        url: ORYX.PATH + 'extensionsforms',
+	        method: 'POST',
+	        success: function(response) {
+	        	if(showFormEditor){
+		            try {
+		                var form = response.responseText.evalJSON();
+		                parent.designeropenintab(form.fileName, form.uri);
+		            } catch(e) {
+		                this.facade.raiseEvent({
+		                    type 		: ORYX.CONFIG.EVENT_NOTIFICATION_SHOW,
+		                    ntype		: 'error',
+		                    msg         : ORYX.I18N.inlineTaskFormEditor.errorInitiatingEditor + ': ' + e,
+		                    title       : ''
+		
+		                });
+		            }
+	        	}
+	        }.bind(this),
+	        failure: function(){
+	            this.facade.raiseEvent({
+	                type 		: ORYX.CONFIG.EVENT_NOTIFICATION_SHOW,
+	                ntype		: 'error',
+	                msg         : ORYX.I18N.inlineTaskFormEditor.errorInitiatingEditor+'.',
+	                title       : ''
+	
+	            });
+	        }.bind(this),
+	        params: {
+	            action: theAction,
+	            formType: theFormType,
+	            elementId: this.facade.getSelection().first() ?this.facade.getSelection().first().resourceId:"",
+	            profile: ORYX.PROFILE,
+	            uuid :  window.btoa(encodeURI(ORYX.UUID)),
+	            json : ORYX.EDITOR.getSerializedJSON()
+	        }
+	    });
+    },
+    openForm: function() {
+    	this.processFormAction("openForm","",true);
+    },
+
+    generateForm: function() {
+    	this.processFormAction("generateForm","",true);
+    },
+
+    generateAllForms : function() {
+    	this.processFormAction("generateAllForms","",false);
+    }
+
+});

@@ -36,6 +36,7 @@ import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.jbpm.designer.notification.DesignerNotificationEvent;
 import org.jbpm.designer.repository.UriUtils;
+import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.util.ConfigurationProvider;
 import org.jbpm.designer.web.plugin.IDiagramPlugin;
 import org.jbpm.designer.web.plugin.impl.PluginServiceImpl;
@@ -143,7 +144,7 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     }
 
     private void checkFiles() throws FactoryConfigurationError {
-        if (filesLastRead < stencilSetDefinitionfile.lastModified()) {
+        if (filesLastRead < stencilSetDefinitionfile.lastModified() || filesLastRead < profileXmlFile.lastModified()) {
             _plugins = new LinkedHashMap<String, IDiagramPlugin>();
             filesLastRead = System.currentTimeMillis();
             initializeLocalPlugins();
@@ -258,8 +259,6 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
         }
     }
 
-
-
     public IDiagramMarshaller createMarshaller() {
         return new GenericJsonToEmfDiagramMarshaller(this);
     }
@@ -340,11 +339,23 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
         return stencilSetValidator;
     }
 
+    @Override
+    public Collection<TaskFormInfo> generateAllForms(Path path, XMLResource resource) {
+        return Collections.emptySet();
+    }
+
+    @Override
+    public TaskFormInfo generateFormFor(Path path, XMLResource resource, String elementId, String formType) {
+        return null;
+    }
 
     @Override
     public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         return false;
     }
 
-
+    @Override
+    public String getFormId(XMLResource resource, String elementId,  String formType) {
+        return elementId;
+    }
 }

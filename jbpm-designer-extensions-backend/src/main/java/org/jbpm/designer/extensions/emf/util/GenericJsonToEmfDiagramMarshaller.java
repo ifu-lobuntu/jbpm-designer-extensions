@@ -78,6 +78,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             profile.logInfo(writer.toString());
             return resource;
         } catch (Exception e) {
+            e.printStackTrace();
             throw e;
         }
 
@@ -93,7 +94,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         profile.logInfo(s);
     }
 
-    private XMLResource convert(Diagram json) {
+    private XMLResource convert(Diagram json) throws IOException {
         ResourceSet resourceSet = new ResourceSetImpl();
         profile.prepareResourceSet(resourceSet);
         XMLResource result = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));

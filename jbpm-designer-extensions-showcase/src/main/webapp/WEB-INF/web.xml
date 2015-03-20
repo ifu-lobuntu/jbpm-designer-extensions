@@ -97,6 +97,11 @@
 
   <!-- Designer -->
   <servlet>
+    <display-name>Extensions Forms</display-name>
+    <servlet-name>ExtensionsFormServlet</servlet-name>
+    <servlet-class>org.jbpm.designer.extensions.web.ExtensionsFormServlet</servlet-class>
+  </servlet>
+  <servlet>
     <display-name>Resource List</display-name>
     <servlet-name>ResourceList</servlet-name>
     <servlet-class>org.jbpm.designer.server.ResourceList</servlet-class>
@@ -111,7 +116,7 @@
     </init-param>
     <init-param>
       <param-name>designer.preprocess</param-name>
-      <param-value>true</param-value>
+      <param-value>false</param-value>
     </init-param>
     <init-param>
       <param-name>designer.skin</param-name>
@@ -250,6 +255,10 @@
   <servlet-mapping>
     <servlet-name>MenuConnectorServlet</servlet-name>
     <url-pattern>/menuconnector/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ExtensionsFormServlet</servlet-name>
+    <url-pattern>/extensionsforms/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>MenuServlet</servlet-name>

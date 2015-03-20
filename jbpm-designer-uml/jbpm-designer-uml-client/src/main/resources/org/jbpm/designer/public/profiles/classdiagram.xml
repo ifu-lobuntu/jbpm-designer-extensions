@@ -28,7 +28,6 @@
 		<plugin name="ORYX.Plugins.ConstraintExpressionEditor" />
 		<plugin name="ORYX.Plugins.Overlay" />
 		<plugin name="ORYX.Plugins.CanvasTitle" />
-		<plugin name="ORYX.Plugins.InlineTaskFormEditor" />
 		<plugin name="ORYX.Plugins.Theme" />
 		<plugin name="ORYX.Plugins.LockNode" />
 		<plugin name="ORYX.Plugins.Paint" />
@@ -38,7 +37,8 @@
 		<plugin name="ORYX.Plugins.LocalHistory" />
 		<plugin name="ORYX.Plugins.NotificationsPlugin" />
 		<plugin name="ORYX.Plugins.ActiveNodesHighlighter" />
-		<plugin name="ORYX.Plugins.ClassDiagram" />
+        <plugin name="ORYX.Plugins.ExtensionsFormEditing"/>
+ 		<plugin name="ORYX.Plugins.ClassDiagram" />
 		<plugin name="ORYX.Plugins.Extensions" />
 		<plugin name="ORYX.Plugins.DefDeleteManager" />
 		<localhistory enabled="false" timeout="60000" />

@@ -47,11 +47,8 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
     }
 
     public String getStencilSetNamespaceURL() {
-        return "http://b3mn.org/stencilset/vdmlpropositionexchange.0#";
+        return "http://b3mn.org/stencilset/vdmlpropositionexchange#";
     }
-public static void main(String[] args) {
-    System.out.println(new VdmlPropositionExchangeProfileImpl().getModelStub());
-}
 
     @Override
     public EmfToJsonHelper createEmfToJsonHelper(ShapeMap resource) {

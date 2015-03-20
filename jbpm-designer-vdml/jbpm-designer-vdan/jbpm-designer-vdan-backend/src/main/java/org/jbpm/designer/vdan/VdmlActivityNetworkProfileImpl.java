@@ -46,11 +46,8 @@ public class VdmlActivityNetworkProfileImpl extends AbstractEmfDiagramProfile {
         return "vdmlactivitynetwork";
     }
 
-    public static void main(String[] args) {
-System.out.println(new VdmlActivityNetworkProfileImpl().getModelStub());
-    }
     public String getStencilSetNamespaceURL() {
-        return "http://b3mn.org/stencilset/vdmlactivitynetwork.0#";
+        return "http://b3mn.org/stencilset/vdmlactivitynetwork#";
     }
 
 

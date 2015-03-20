@@ -1,6 +1,6 @@
 {
 	"title" : "Class Diagram",
-	"namespace" : "http://b3mn.org/stencilset/classdiagram.0#",
+	"namespace" : "http://b3mn.org/stencilset/classdiagram#",
 	"description" : "This is an empty stencil set to start new diagrams with",
 	"edgeTargetBinding" : "targetShape",
 	"modelElementBinding" : "umlElement",
@@ -246,6 +246,7 @@
 						"readonly" : false,
 						"optional" : true,
 						"length" : "",
+						"directlyEditable" : true,
 						"wrapLines" : false,
 						"binding" : "memberEnd[1].name",
 						"refToView" : [
@@ -407,7 +408,29 @@
 						"elementBase","localStyle"
 				],
 				"properties" : [
-				]
+					{
+						"id" : "hasForm",
+						"type" : "Boolean",
+						"value" : true,
+						"readonly" : true,
+						"hidden" : false
+					},
+					{
+						"id" : "tasktype",
+						"type" : "String",
+						"value" : "User",
+						"readonly" : true,
+						"hidden" : true
+					},
+					{
+						"id" : "taskname",
+						"type" : "String",
+						"readonly" : false,
+						"hidden" : false,
+						"title": "Class Form Name",
+						"binding":"name"
+					}
+			   ]
 			},
 			{
 				"type" : "node",
@@ -1113,7 +1136,33 @@
 				}
 
 		],
-		"morphingRules" : [],
-		"layoutRules" : []
+		"morphingRules": [
+			{
+				"role": "class",
+				"baseMorphs": ["class"]
+			},
+			{
+				"role": "enumeration",
+				"baseMorphs": ["enumeration"]
+			},
+			{
+				"role": "interface",
+				"baseMorphs": ["interface"]
+			},
+			{
+				"role": "importedClass",
+				"baseMorphs": ["importedClass"]
+			},
+			{
+				"role": "importedEnumeration",
+				"baseMorphs": ["importedEnumeration"]
+			},
+			{
+				"role": "importedInterface",
+				"baseMorphs": ["importedInterface"]
+			}
+		],
+		"layoutRules" : [
+	   ]
 	}
 }

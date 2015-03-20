@@ -1,5 +1,7 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import java.io.IOException;
+
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;

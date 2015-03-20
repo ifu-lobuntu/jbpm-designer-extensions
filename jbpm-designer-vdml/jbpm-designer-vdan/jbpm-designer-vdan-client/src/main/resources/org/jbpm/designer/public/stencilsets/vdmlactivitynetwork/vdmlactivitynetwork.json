@@ -1,6 +1,6 @@
 {
 	"title" : "VDML Activity Network",
-	"namespace" : "http://b3mn.org/stencilset/vdmlactivitynetwork.0#",
+	"namespace" : "http://b3mn.org/stencilset/vdmlactivitynetwork#",
 	"description" : "This is the VDML Activity Network stencil set specification.",
 	"edgeTargetBinding" : "targetShape",
 	"modelElementBinding" : "vdmlElement",

@@ -1,5 +1,7 @@
 package org.jbpm.designer.ucd;
 
+import static org.jbpm.designer.ucd.ClassDiagramStencil.*;
+
 import java.beans.Introspector;
 
 import org.eclipse.emf.common.util.EList;
@@ -31,8 +33,6 @@ import org.jbpm.uml2.dd.umldi.UMLDiagram;
 import org.jbpm.uml2.dd.umldi.UMLEdge;
 import org.jbpm.uml2.dd.umldi.UMLShape;
 import org.omg.dd.di.DiagramElement;
-
-import static org.jbpm.designer.ucd.ClassDiagramStencil.*;
 
 public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements JsonToEmfHelper {
     protected Shape sourceShape;

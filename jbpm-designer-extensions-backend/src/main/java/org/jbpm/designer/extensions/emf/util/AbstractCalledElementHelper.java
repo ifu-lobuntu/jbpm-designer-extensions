@@ -83,10 +83,10 @@ public class AbstractCalledElementHelper {
         }
         return jsonObject;
     }
-    protected String getURI(Asset<?> processContent) {
+    public static String getURI(Asset<?> asset) {
         String id = null;
-        if (Base64Backport.isBase64(processContent.getUniqueId())) {
-            byte[] decoded = Base64.decodeBase64(processContent.getUniqueId());
+        if (Base64Backport.isBase64(asset.getUniqueId())) {
+            byte[] decoded = Base64.decodeBase64(asset.getUniqueId());
             try {
                 String uri = new String(decoded, "UTF-8");
                 id = UriUtils.encode(uri);
@@ -95,7 +95,7 @@ public class AbstractCalledElementHelper {
             }
         }
         if (id == null) {
-            id = UriUtils.encode(processContent.getUniqueId());
+            id = UriUtils.encode(asset.getUniqueId());
         }
         return id.substring(id.indexOf("/", id.indexOf("@")) + 1);
     }
