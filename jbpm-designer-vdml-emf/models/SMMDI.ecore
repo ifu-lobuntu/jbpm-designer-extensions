@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="smmdi" nsURI="http://www.omg.org/spec/SMM/20150201/DI" nsPrefix="smmdi">
+  <eClassifiers xsi:type="ecore:EClass" name="SMMDiagram" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Diagram #//SMMDiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSmmDiagramElement"
+        upperBound="-1" eType="#//SMMDiagramElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SMMEdge" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Edge #//SMMDiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceShape" eType="#//SMMShape"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetShape" eType="#//SMMShape"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SMMShape" eSuperTypes="../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//BoundariedShape #//SMMDiagramElement ../../jbpm-designer-extensions-emf/models/jBPMDD.ecore#//CollapsibleShape">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedShape" upperBound="-1"
+        eType="#//SMMShape" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SMMDiagramElement" abstract="true" interface="true"
+      eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//DiagramElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="smmElement" eType="ecore:EClass SMM.ecore#//SmmElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SMMStyle" eSuperTypes="../../jbpm-designer-extensions-emf/models/DI.ecore#//Style"/>
+</ecore:EPackage>

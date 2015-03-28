@@ -1,0 +1,58 @@
+/** sprite: ucd-images-sprite; sprite-image: url('../../images/sprites/ucd-images-sprite.png'); sprite-layout: vertical */
+/* Edges */
+.stencilsets_ucd_ucd_json_icons_composition,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_composition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/composition.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_directed_association,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_directed_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/directed_association.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_bi_directional_association,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_bi_directional_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/bi_directional_association.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_generalization,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_generalization {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/generalization.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_interface_realization,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_interface_realization{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/interface_realization.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_class,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_class{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/class.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_interface,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_interface{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/interface.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_enumeration,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_enumeration{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/enumeration.png);  /** sprite-ref: ucd-images-sprite; */
+}

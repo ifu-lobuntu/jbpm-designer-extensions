@@ -43,7 +43,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 			uiObject.properties["oryx-previousheight"]=uiObject.bounds.height();
 			var topLeft=uiObject.bounds.a;
 			uiObject.bounds.set(topLeft,{x:topLeft.x+newWidth, y:topLeft.y + newHeight});
-			if(this.isExpanded(uiObject)){
+			if(ORYX.Plugins.Extensions.isExpanded(uiObject)){
 				uiObject.properties["oryx-isexpanded"]=false;
 			}else{
 				uiObject.properties["oryx-isexpanded"]=true;
@@ -65,12 +65,6 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 				console.log(e);
 			}
 		}
-	},
-	isExpanded : function(shape){
-		return shape.properties["oryx-isexpanded"] == true || shape.properties["oryx-isexpanded"]=="true"; 
-	},
-	isCollapsible : function(shape){
-		return typeof(shape.properties["oryx-isexpanded"]) == "string" || typeof(shape.properties["oryx-isexpanded"])=="boolean"; 
 	},
 	handlePropertyChanged : function(event) {
 		if (event["key"] == "oryx-name" || event["key"] == "oryx-type") {
@@ -96,7 +90,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 				break;
 			}
 		}
-		if(this.isExpanded(collapsibleShape)){
+		if(ORYX.Plugins.Extensions.isExpanded(collapsibleShape)){
 			verticalPath.setAttributeNS(null,'display','none');
 			collapsibleShape.children.each(function(uiObject) {
 				if(uiObject instanceof ORYX.Core.Shape){
@@ -139,7 +133,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 			height=height + Math.max(child.bounds.height(),20);
 			var bottomRight={x:bounds.width()-1,y:height};
 			child.bounds.set(topLeft,bottomRight);
-			if(this.isCollapsible(child)){
+			if(ORYX.Plugins.Extensions.isCollapsible(child)){
 				this.updateExpanded(child);
 			}
 		}.bind(this));
@@ -153,6 +147,12 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		event.shape.refresh();
 	},
 });
+ORYX.Plugins.Extensions.isExpanded = function(shape){
+	return shape.properties["oryx-isexpanded"] == true || shape.properties["oryx-isexpanded"]=="true"; 
+},
+ORYX.Plugins.Extensions.isCollapsible = function(shape){
+	return typeof(shape.properties["oryx-isexpanded"]) == "string" || typeof(shape.properties["oryx-isexpanded"])=="boolean"; 
+},
 ORYX.Plugins.Extensions.extractName = function(reference){
 	return reference.slice(reference.indexOf("::")+2,reference.indexOf("|"));
 };
@@ -218,7 +218,7 @@ ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
                 shapes: this.shapeSelection.shapes
         });
         var jsonProp=pair._jsonProp;
-        cf.profile='cmmn1.0';
+        cf.profile='cmmn';
         cf.targetProfile=jsonProp.reference.targetProfile;
         cf.elementTypes=jsonProp.reference.allowedElementTypes;
         cf.nameFeature=jsonProp.reference.nameFeature;

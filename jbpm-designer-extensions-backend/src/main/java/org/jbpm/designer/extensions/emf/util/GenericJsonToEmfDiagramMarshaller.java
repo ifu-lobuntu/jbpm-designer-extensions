@@ -45,7 +45,7 @@ import org.omg.dd.di.Edge;
 
 public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller implements IDiagramMarshaller {
     private ShapeMap shapeMap;
-    private JsonToEmfHelper helper;
+    JsonToEmfHelper helper;
 
     public GenericJsonToEmfDiagramMarshaller(IEmfDiagramProfile cmmnProfileImpl) {
         super(cmmnProfileImpl);
@@ -82,6 +82,20 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             throw e;
         }
 
+    }
+
+    private int fillList(EStructuralFeature sf, List listValue, String index) {
+        if (index.endsWith("]")) {
+            int idx = Integer.parseInt(index.substring(index.indexOf("[") + 1, index.length() - 1));
+            if (sf instanceof EReference) {
+                while (listValue.size() <= idx) {
+                    listValue.add(helper.create((EClass) sf.getEType()));
+                }
+            }
+            return idx;
+        } else {
+            throw new IllegalStateException("Feature '" + index + "' requires an index");
+        }
     }
 
     private void writeDiagram(Diagram d) throws JsonGenerationException, JsonMappingException, IOException {
@@ -297,9 +311,15 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         String[] split = binding.trim().split("\\.");
         Object currentTarget = createIntermediateObjects(objectToModify, split);
         EStructuralFeature a = getStructuralFeature(currentTarget, split[split.length - 1]);
+        if (a == null) {
+            throw new IllegalStateException("Feature '" + split[split.length - 1] + "' not found on class '" + objectToModify.eClass().getName());
+        }
         if (a.isMany()) {
             Object val = getValue(currentTarget, a);
             EList list = (EList) val;
+            if(value==null){
+                System.out.println();
+            }
             list.add(value);
         } else {
             setValueOn(currentTarget, a, value);
@@ -310,12 +330,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         Object currentTarget = me;
         for (int i = 0; i < split.length - 1; i++) {
             String featureName = split[i];
-            if (featureName.endsWith("]")) {
-                featureName = featureName.substring(0, featureName.indexOf("["));
-            }
             EStructuralFeature sf = getStructuralFeature(currentTarget, featureName);
-            if(sf==null){
-                throw new IllegalStateException("Type '" + currentTarget.getClass().getSimpleName() +"' does not define a feature '" + featureName +"'");
+            if (sf == null) {
+                throw new IllegalStateException("Type '" + currentTarget.getClass().getSimpleName() + "' does not define a feature '" + featureName + "'");
             }
             Object currentValue = getValue(currentTarget, sf);
             if (currentValue == null) {
@@ -327,19 +344,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             if (currentValue instanceof FeatureMap) {
                 currentTarget = (FeatureMap) currentValue;
             } else if (currentValue instanceof List) {
+                List listValue = (List) currentValue;
                 String index = split[i];
-                if (index.endsWith("]")) {
-                    int idx = Integer.parseInt(index.substring(index.indexOf("[") + 1, index.length() - 1));
-                    List listValue = (List) currentValue;
-                    if (sf instanceof EReference) {
-                        while (listValue.size() <= idx) {
-                            listValue.add(helper.create((EClass) sf.getEType()));
-                        }
-                    }
-                    currentTarget = (EObject) listValue.get(idx);
-                } else {
-                    throw new IllegalStateException("Feature '" + featureName + "' requires an index");
-                }
+                currentTarget = listValue.get(fillList(sf, listValue, index));
             } else {
                 currentTarget = (EObject) currentValue;
             }
@@ -347,12 +354,11 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         return currentTarget;
     }
 
-
     private void setValueOn(Object currentTarget, EStructuralFeature sf, Object currentValue) {
         if (currentTarget instanceof EObject) {
             ((EObject) currentTarget).eSet(sf, currentValue);
         } else if (currentTarget instanceof FeatureMap) {
-             ((FeatureMap) currentTarget).set(sf,currentValue);
+            ((FeatureMap) currentTarget).set(sf, currentValue);
         }
     }
 
@@ -402,7 +408,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                 return new QName(ref.eResource().getURI().toString(), ref.eResource().getURIFragment(ref), "");
             }
             return ref;
-        }else if (targetType == String.class) {
+        } else if (targetType == String.class) {
             return string;
         } else if (targetType == Boolean.class || targetType == boolean.class) {
             return string.equalsIgnoreCase("true");

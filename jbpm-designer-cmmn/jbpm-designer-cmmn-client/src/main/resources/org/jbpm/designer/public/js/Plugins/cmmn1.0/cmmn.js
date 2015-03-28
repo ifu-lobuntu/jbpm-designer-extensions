@@ -687,7 +687,7 @@ ORYX.Plugins.CMMN.TaskParameterAndMappingsEditorFactory = Clazz.extend({
             	cf.profile= 'jbpm';
         		cf.processId=this.shapeSelection.shapes.first().properties['oryx-calledprocess'];
         	}else{
-            	cf.profile='cmmn1.0';
+            	cf.profile='cmmn';
         		cf.processId=this.shapeSelection.shapes.first().properties['oryx-calledcase'];
         	}
         	cf.on('dialogClosed', this.dialogClosed, {scope:this, row:index, col:1,field:cf});

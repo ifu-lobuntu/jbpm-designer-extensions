@@ -1,0 +1,585 @@
+{
+	"title" : "SMM Measure Library",
+	"namespace" : "http://b3mn.org/stencilset/meas#",
+	"description" : "This is the SMM Measure Library stencil set specification.",
+	"edgeTargetBinding" : "targetShape",
+	"modelElementBinding" : "smmElement",
+	"edgeSourceBinding" : "sourceShape",
+	"propertyPackages" : [
+	        {
+	        	"name" : "smmElement",
+	        	"properties": [
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "",
+						"description" : "The descriptive name of the SMM element.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : false,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the SMM element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					},
+					{
+						"id" : "diagramElementId",
+						"type" : "String",
+						"title" : "DiagramElementId",
+						"value" : "",
+						"description" : "This is the unique id of the diagram element used to display the SMM Element.",
+						"readonly" : true,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"hidden" : true
+					}
+				]
+			},
+			{
+				"name" : "localStyle",
+				"properties" : [
+						{
+							"id" : "bgcolor",
+							"type" : "Color",
+							"title" : "Background Color",
+							"value" : "#ffffff",
+							"viewBinding":"localStyle.fillColor",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"fill_el"
+							],
+							"fill" : true,
+							"stroke" : false
+						},
+						{
+							"id" : "bordercolor",
+							"type" : "Color",
+							"title" : "Border Color",
+							"value" : "#000000",
+							"viewBinding":"localStyle.strokeColor",
+							"description" : "",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+									"edge", "fill_border", "bg_frame", "frame", "border"
+							],
+							"fill" : false,
+							"stroke" : true
+						}, {
+							"id" : "fontcolor",
+							"type" : "Color",
+							"title" : "Font Color",
+							"value" : "#000000",
+							"viewBinding":"localStyle.fontColor",
+							"description" : "Font color",
+							"description_ja" : "フォントの色",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"fill" : true,
+							"stroke" : false
+						}, 
+						{
+							"id" : "fontsize",
+							"type" : "Choice",
+							"title" : "Font Size",
+							"value" : "",
+							"viewBinding":"localStyle.fontSize",
+							"description" : "The Font Size",
+							"description_ja" : "フォントのサイズ",
+							"readonly" : false,
+							"optional" : false,
+							"refToView" : [
+								"text_name"
+							],
+							"items" : [
+									{
+										"id" : "c1",
+										"title" : "8",
+										"value" : "8"
+									}, {
+										"id" : "c2",
+										"title" : "9",
+										"value" : "9"
+									}, {
+										"id" : "c3",
+										"title" : "10",
+										"value" : "10"
+									}, {
+										"id" : "c4",
+										"title" : "11",
+										"value" : "11"
+									}, {
+										"id" : "c5",
+										"title" : "12",
+										"value" : "12"
+									}, {
+										"id" : "c6",
+										"title" : "14",
+										"value" : "14"
+									}, {
+										"id" : "c7",
+										"title" : "18",
+										"value" : "18"
+									}, {
+										"id" : "c8",
+										"title" : "20",
+										"value" : "20"
+									}, {
+										"id" : "c9",
+										"title" : "24",
+										"value" : "24"
+									}, {
+										"id" : "c10",
+										"title" : "36",
+										"value" : "36"
+									}, {
+										"id" : "c11",
+										"title" : "48",
+										"value" : "48"
+									}, {
+										"id" : "c12",
+										"title" : "72",
+										"value" : "72"
+									}
+							]
+						}
+				]
+			}
+	],
+	"stencils" : [
+			{
+				"type" : "node",
+				"id" : "MeasureLibraryDiagram",
+				"title" : "MeasureLibraryDiagram",
+				"groups" : [
+					"Diagram"
+				],
+				"description" : "A SMM Measure Library  Diagram.",
+				"view" : "diagram.svg",
+				"icon" : "diagram.png",
+				"mayBeRoot" : true,
+				"hide" : true,
+				"propertyPackages" : ["smmElement"
+				],
+				"roles" : [
+					"measureLibrary"
+				],
+				"properties" : [
+				],
+				"layout": [
+				 ]
+
+			},
+			{
+				"type" : "node",
+				"id" : "DirectMeasure",
+				"title" : "Direct Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Basic"
+				],
+				"roles" : [
+					"directMeasure", "measure","dimensionalMeasure"
+				],
+				"description" : "Direct Measure",
+				"view" : "direct_measure.svg",
+				"icon" : "direct_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "UnitOfMeasure",
+				"title" : "Unit of Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Basic"
+				],
+				"roles" : [
+					"unitOfMeasure"
+				],
+				"description" : "Unit Of Measure",
+				"view" : "unit_of_measure.svg",
+				"icon" : "unit_of_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "BinaryMeasure",
+				"title" : "Binary Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Collective"
+				],
+				"roles" : [
+					"binaryMeasure", "measure","dimensionalMeasure"
+				],
+				"description" : "Binary Measure",
+				"view" : "binary_measure.svg",
+				"icon" : "binary_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+	                {
+						"id" : "functor",
+						"type" : "Choice",
+						"title" : "Functor",
+						"value" : "",
+						"binding":"functor",
+						"description" : "The Functor",
+						"readonly" : false,
+						"optional" : false,
+						"items" : [
+							{
+								"id" : "minus",
+								"title" : "Minus",
+								"value" : "minus"
+							}, 
+							{
+								"id" : "plus",
+								"title" : "Plus",
+								"value" : "plus"
+							}, 
+							{
+								"id" : "miltiply",
+								"title" : "Multiply",
+								"value" : "multiply"
+							}, 
+							{
+								"id" : "divide",
+								"title" : "Divide",
+								"value" : "divide"
+							}
+						]
+	                }
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "CollectiveMeasure",
+				"title" : "Collective Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Collective"
+				],
+				"roles" : [
+					"collectiveMeasure", "measure","dimensionalMeasure"
+				],
+				"description" : "Collective Measure",
+				"view" : "collective_measure.svg",
+				"icon" : "collective_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+	                {
+						"id" : "accumulator",
+						"type" : "Choice",
+						"title" : "Accumulator",
+						"value" : "",
+						"binding":"accumulator",
+						"description" : "The Accumulator",
+						"readonly" : false,
+						"optional" : false,
+						"items" : [
+							{
+								"id" : "sum",
+								"title" : "Sum",
+								"value" : "sum"
+							}, 
+							{
+								"id" : "maximum",
+								"title" : "Maximum",
+								"value" : "maximum"
+							}, 
+							{
+								"id" : "minimum",
+								"title" : "Minimum",
+								"value" : "minimum"
+							}, 
+							{
+								"id" : "average",
+								"title" : "Average",
+								"value" : "average"
+							},
+							{
+								"id" : "standardDeviation",
+								"title" : "Standard Deviation",
+								"value" : "standardDeviation"
+							},
+							{
+								"id" : "product",
+								"title" : "Product",
+								"value" : "product"
+							}
+						]
+	                }
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "GradeMeasure",
+				"title" : "Grade Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Grading"
+				],
+				"roles" : [
+					"measure","gradeMeasure"
+				],
+				"description" : "Grade Measure",
+				"view" : "grade_measure.svg",
+				"icon" : "grade_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "GradeInterval",
+				"title" : "Grade Interval",
+				"position" : 3,
+				"childBinding": "interval",
+				"groups" : [
+					"Grading"
+				],
+				"roles" : [
+					"gradeInterval"
+				],
+				"description" : "Grade Interval",
+				"view" : "grade_interval.svg",
+				"icon" : "grade_interval.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "UseUnitOfMeasure",
+				"title" : "Use Unit of Measure",
+				"targetBinding" : "unit",
+				"position" : 7,
+				"groups" : [
+					"Basic"
+				],
+				"roles" : [
+					"useUnitOfMeasure"
+				],
+				"description" : "Base1 Measure Relationship",
+				"view" : "use_unit_of_measure.svg",
+				"icon" : "use_unit_of_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "Base1MeasureRelationship",
+				"title" : "Base1 Measure Relationship",
+				"targetBinding" : "toDimensionalMeasure",
+				"sourceBinding" : "fromBinaryMeasure",
+				"position" : 7,
+				"groups" : [
+					"Collective"
+				],
+				"roles" : [
+					"base1MeasureRelationship"
+				],
+				"description" : "Base1 Measure Relationship",
+				"view" : "base_measure_relationship.svg",
+				"icon" : "base_measure_relationship.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "Base2MeasureRelationship",
+				"title" : "Base2 Measure Relationship",
+				"targetBinding" : "toDimensionalMeasure",
+				"sourceBinding" : "fromBinaryMeasure",
+				"position" : 7,
+				"groups" : [
+					"Collective"
+				],
+				"roles" : [
+					"base2MeasureRelationship"
+				],
+				"description" : "Base2 Measure Relationship",
+				"view" : "base_measure_relationship.svg",
+				"icon" : "base_measure_relationship.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "BaseNMeasureRelationship",
+				"title" : "Base N Measure Relationship",
+				"targetBinding" : "toDimensionalMeasure",
+				"sourceBinding" : "fromCollectiveMeasure",
+				"position" : 7,
+				"groups" : [
+					"Collective"
+				],
+				"roles" : [
+					"baseNMeasureRelationship"
+				],
+				"description" : "Base N Measure Relationship",
+				"view" : "base_measure_relationship.svg",
+				"icon" : "base_measure_relationship.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+				]
+			}
+	],
+
+	"rules" : {
+		"cardinalityRules" : [
+  				{
+					"role" : "dimensionalMeasure",
+					"outgoingEdges" : [
+							{
+								"role" : "useUnitOfMeasure",
+								"maximum" : 1
+							}
+					]
+				} 
+		],
+		"connectionRules" : [
+ 		    {
+				"role" : "base1MeasureRelationship",
+				"connects" : [
+						{
+							"from" : "binaryMeasure",
+							"to" : [
+								"dimensionalMeasure"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "base2MeasureRelationship",
+				"connects" : [
+						{
+							"from" : "binaryMeasure",
+							"to" : [
+								"dimensionalMeasure"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "baseNMeasureRelationship",
+				"connects" : [
+						{
+							"from" : "collectiveMeasure",
+							"to" : [
+								"dimensionalMeasure"
+							]
+						}
+
+				]
+			},
+		    {
+				"role" : "useUnitOfMeasure",
+				"connects" : [
+						{
+							"from" : "dimensionalMeasure",
+							"to" : [
+								"unitOfMeasure"
+							]
+						}
+
+				]
+			}
+		],
+		"containmentRules" : [
+				{
+					"role" : "measureLibrary",
+					"contains" : [
+						"measure","unitOfMeasure"
+					]
+				},
+				{
+					"role" : "gradeMeasure",
+					"contains" : [
+						"gradeInterval"
+					]
+				}
+		],
+		"morphingRules" : [
+       			{
+    				"role": "directMeasure",
+    				"baseMorphs": ["directMeasure"]
+    			}
+       	],
+		"layoutRules" : []
+	}
+}

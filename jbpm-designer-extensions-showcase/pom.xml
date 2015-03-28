@@ -29,15 +29,15 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-api</artifactId>
+      <artifactId>jbpm-designer-ucd-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-backend</artifactId>
+      <artifactId>jbpm-designer-ucd-backend</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-client</artifactId>
+      <artifactId>jbpm-designer-ucd-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
@@ -73,11 +73,23 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-codemodel</artifactId>
+      <artifactId>jbpm-designer-ucd-codemodel</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-codegen</artifactId>
+      <artifactId>jbpm-designer-ucd-codegen</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-meas-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-meas-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-meas-backend</artifactId>
     </dependency>
     <!-- dependencies added because of new illegal transitive dependency check -->
     <dependency>

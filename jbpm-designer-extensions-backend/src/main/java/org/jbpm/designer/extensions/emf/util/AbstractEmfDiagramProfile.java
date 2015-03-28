@@ -70,7 +70,7 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
 
     private File profileXmlFile;
 
-    private Map<String, IDiagramPlugin> registry;
+    private Map<String, IDiagramPlugin> registry = new HashMap<String, IDiagramPlugin>(); 
 
     public AbstractEmfDiagramProfile() {
     }
@@ -145,7 +145,6 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
 
     private void checkFiles() throws FactoryConfigurationError {
         if (filesLastRead < stencilSetDefinitionfile.lastModified() || filesLastRead < profileXmlFile.lastModified()) {
-            _plugins = new LinkedHashMap<String, IDiagramPlugin>();
             filesLastRead = System.currentTimeMillis();
             initializeLocalPlugins();
             reloadStencilSetDefinitionFile();
@@ -159,6 +158,7 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
 
     private void initializeLocalPlugins() throws FactoryConfigurationError {
         if (profileXmlFile != null) {
+            _plugins = new LinkedHashMap<String, IDiagramPlugin>();
             FileInputStream fileStream = null;
             try {
                 fileStream = new FileInputStream(profileXmlFile);

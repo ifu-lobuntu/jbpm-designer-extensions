@@ -4,7 +4,7 @@
  implement servlet for it (use the profile to parameterize <case id for <process id)
  set value to id|url
  in ui, parameterize profile in the Editor and the EditorFactory
- create two EditorFActories, one for "jbpm" on for "cmmn1.0"
+ create two EditorFActories, one for "jbpm" on for "cmmn"
 
 CaseTask parameters
  in ui parameterise the "action" (showcaseinput/showcaseoutput)

@@ -63,13 +63,13 @@ public class GenericEcoreComparator {
     }
 
     public void validate() {
-        assertEquals(inputMap.size(), outputMap.size());
         for (Entry<String, EObject> entry : inputMap.entrySet()) {
             EObject found = outputMap.get(entry.getKey());
             EObject expected = entry.getValue();
             fail("Entry " + describeIdentity(expected) + " not found", found != null);
             validateAllFeatures( expected,found);
         }
+        assertEquals(inputMap.size(), outputMap.size());
     }
 
     private void fail(String string, boolean b) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <profiles>
-    <profile name="cmmn" stencilset="cmmn1.0">
+    <profile name="cmmn" stencilset="cmmn">
         <plugin name="ORYX.Plugins.SelectStencilSetPerspective"/>
         <plugin name="ORYX.Plugins.Toolbar"/>
 <!--         <plugin name="ORYX.Plugins.JPDLMigration"/> -->
