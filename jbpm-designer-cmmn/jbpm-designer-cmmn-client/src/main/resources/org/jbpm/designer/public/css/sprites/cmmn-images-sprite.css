@@ -1,0 +1,153 @@
+/* Edges */
+.stencilsets_cmmn_cmmn_json_icons_case_file_item,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_case_file_item {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_cmmn_cmmn_json_icons_case_file_item_on_part,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_case_file_item_on_part {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_cmmn_cmmn_json_icons_case_task,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_case_task {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -16px;
+}
+.stencilsets_cmmn_cmmn_json_icons_case,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_case {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -32px;
+}
+.stencilsets_cmmn_cmmn_json_icons_discretionary_case_task,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_discretionary_case_task {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -48px;
+}
+.stencilsets_cmmn_cmmn_json_icons_discretionary_human_task,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_discretionary_human_task {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -64px;
+}
+.stencilsets_cmmn_cmmn_json_icons_discretionary_link,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_discretionary_link {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -80px;
+}
+.stencilsets_cmmn_cmmn_json_icons_discretionary_process_task,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_discretionary_process_task {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -96px;
+}
+.stencilsets_cmmn_cmmn_json_icons_discretionary_stage,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_discretionary_stage {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -112px;
+}
+
+.stencilsets_cmmn_cmmn_json_icons_entry_sentry,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_entry_sentry {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -128px;
+}
+
+.stencilsets_cmmn_cmmn_json_icons_exit_sentry,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_exit_sentry {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -144px;
+}
+
+.stencilsets_cmmn_cmmn_json_icons_human_task,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_human_task {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -160px;
+}
+
+.stencilsets_cmmn_cmmn_json_icons_milestone,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_milestone {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -176px;
+}
+.stencilsets_cmmn_cmmn_json_icons_plan_item_on_part,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_plan_item_on_part {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -192px;
+}
+.stencilsets_cmmn_cmmn_json_icons_process_task,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_process_task {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -208px;
+}
+.stencilsets_cmmn_cmmn_json_icons_stage,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_stage {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -224px;
+}
+
+.stencilsets_cmmn_cmmn_json_icons_timer_event,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_timer_event {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -240px;
+}
+
+.stencilsets_cmmn_cmmn_json_icons_user_event,
+.x-tree-node-leaf .stencilsets_cmmn_cmmn_json_icons_user_event {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/cmmn-images-sprite.png');
+  background-position: left -256px;
+}
+
+

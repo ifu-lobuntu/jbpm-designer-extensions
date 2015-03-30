@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,7 @@ import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -38,12 +41,14 @@ import org.jbpm.designer.notification.DesignerNotificationEvent;
 import org.jbpm.designer.repository.UriUtils;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.util.ConfigurationProvider;
+import org.jbpm.designer.util.Utils;
 import org.jbpm.designer.web.plugin.IDiagramPlugin;
 import org.jbpm.designer.web.plugin.impl.PluginServiceImpl;
 import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.backend.vfs.Path;
+import org.uberfire.util.URIUtil;
 import org.uberfire.workbench.events.NotificationEvent;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
@@ -58,9 +63,9 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     private String _localHistoryTimeout;
     private boolean initializeLocalPlugins;
     private String _storeSVGonSaveOption;
-
     @Inject
     Event<DesignerNotificationEvent> notification;
+    
     @Inject
     User user;
     private LinkedStencilSet stencilSetValidator;
@@ -76,7 +81,9 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     }
 
     public abstract String getStencilSetPath();
-
+    public boolean mergeWithExisting(){
+        return false;
+    }
     protected abstract ResourceTypeDefinition getResourceTypeDefinition();
 
     @Override
@@ -357,5 +364,9 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     @Override
     public String getFormId(XMLResource resource, String elementId,  String formType) {
         return elementId;
+    }
+    @Override
+    public String determineURI() {
+        return "file:/dummy." + getSerializedModelExtension();
     }
 }

@@ -1,0 +1,9 @@
+/** sprite: vdrc-images-sprite; sprite-image: url('../../images/sprites/vdrc-images-sprite.png'); sprite-layout: vertical */
+/* Edges */
+.stencilsets_vdrc_vdrc_json_icons_composition,
+.x-tree-node-leaf .stencilsets_vdrc_vdrc_json_icons_composition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdrc/icons/composition.png);  /** sprite-ref: vdrc-images-sprite; */
+}

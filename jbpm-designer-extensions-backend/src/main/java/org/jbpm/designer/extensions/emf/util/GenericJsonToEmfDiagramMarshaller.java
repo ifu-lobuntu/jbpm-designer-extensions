@@ -111,7 +111,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     private XMLResource convert(Diagram json) throws IOException {
         ResourceSet resourceSet = new ResourceSetImpl();
         profile.prepareResourceSet(resourceSet);
-        XMLResource result = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
+        XMLResource result = (XMLResource) resourceSet.createResource(URI.createURI(profile.determineURI()));
         result.setEncoding("UTF-8");
         this.shapeMap = new ShapeMap(result);
         this.helper = profile.createJsonToEmfHelper(shapeMap);

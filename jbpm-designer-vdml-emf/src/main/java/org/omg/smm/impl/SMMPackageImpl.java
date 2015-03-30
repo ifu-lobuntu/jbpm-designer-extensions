@@ -1400,6 +1400,15 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getRescaledMeasure_RescalesFrom() {
+        return (EReference)rescaledMeasureEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDimensionalMeasure() {
         return dimensionalMeasureEClass;
     }
@@ -1663,6 +1672,24 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
      */
     public EClass getRescaledMeasureRelationship() {
         return rescaledMeasureRelationshipEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRescaledMeasureRelationship_FromDimensionalMeasure() {
+        return (EReference)rescaledMeasureRelationshipEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRescaledMeasureRelationship_ToRescaledMeasure() {
+        return (EReference)rescaledMeasureRelationshipEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -2399,6 +2426,7 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         createEAttribute(rescaledMeasureEClass, RESCALED_MEASURE__OFFSET);
         createEAttribute(rescaledMeasureEClass, RESCALED_MEASURE__MULTIPLIER);
         createEReference(rescaledMeasureEClass, RESCALED_MEASURE__RESCALES);
+        createEReference(rescaledMeasureEClass, RESCALED_MEASURE__RESCALES_FROM);
 
         dimensionalMeasureEClass = createEClass(DIMENSIONAL_MEASURE);
         createEReference(dimensionalMeasureEClass, DIMENSIONAL_MEASURE__UNIT);
@@ -2439,6 +2467,8 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         createEAttribute(intervalEClass, INTERVAL__MINIMUM_OPEN);
 
         rescaledMeasureRelationshipEClass = createEClass(RESCALED_MEASURE_RELATIONSHIP);
+        createEReference(rescaledMeasureRelationshipEClass, RESCALED_MEASURE_RELATIONSHIP__FROM_DIMENSIONAL_MEASURE);
+        createEReference(rescaledMeasureRelationshipEClass, RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE);
 
         gradeMeasureRelationshipEClass = createEClass(GRADE_MEASURE_RELATIONSHIP);
 
@@ -2707,7 +2737,7 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         initEClass(refinementMeasureRelationshipEClass, RefinementMeasureRelationship.class, "RefinementMeasureRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(measureRelationshipEClass, MeasureRelationship.class, "MeasureRelationship", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getMeasureRelationship_Influence(), this.getInfluence(), "influence", null, 0, 1, MeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getMeasureRelationship_Influence(), this.getInfluence(), "influence", "positive", 0, 1, MeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getMeasureRelationship_MeasurandQuery(), this.getOperation(), null, "measurandQuery", null, 0, 1, MeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2755,6 +2785,7 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         initEAttribute(getRescaledMeasure_Offset(), thePrimitiveTypesPackage.getReal(), "offset", null, 0, 1, RescaledMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getRescaledMeasure_Multiplier(), thePrimitiveTypesPackage.getReal(), "multiplier", null, 0, 1, RescaledMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getRescaledMeasure_Rescales(), this.getBaseMeasureRelationship(), this.getBaseMeasureRelationship_RescaledMeasure(), "rescales", null, 0, 1, RescaledMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getRescaledMeasure_RescalesFrom(), this.getRescaledMeasureRelationship(), this.getRescaledMeasureRelationship_ToRescaledMeasure(), "rescalesFrom", null, 0, 1, RescaledMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(dimensionalMeasureEClass, DimensionalMeasure.class, "DimensionalMeasure", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getDimensionalMeasure_Unit(), this.getUnitOfMeasure(), null, "unit", null, 1, 1, DimensionalMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2795,6 +2826,8 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         initEAttribute(getInterval_MinimumOpen(), thePrimitiveTypesPackage.getBoolean(), "minimumOpen", "false", 0, 1, Interval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(rescaledMeasureRelationshipEClass, RescaledMeasureRelationship.class, "RescaledMeasureRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getRescaledMeasureRelationship_FromDimensionalMeasure(), this.getDimensionalMeasure(), null, "fromDimensionalMeasure", null, 1, 1, RescaledMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRescaledMeasureRelationship_ToRescaledMeasure(), this.getRescaledMeasure(), this.getRescaledMeasure_RescalesFrom(), "toRescaledMeasure", null, 0, 1, RescaledMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(gradeMeasureRelationshipEClass, GradeMeasureRelationship.class, "GradeMeasureRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

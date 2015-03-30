@@ -163,7 +163,116 @@
 							]
 						}
 				]
-			}
+			},
+	        {
+	        	"name" : "measureRelationship",
+	        	"properties": [
+   	                {
+						"id" : "influence",
+						"type" : "Choice",
+						"title" : "influence",
+						"value" : "positive",
+						"description" : "The Influence",
+						"readonly" : false,
+						"optional" : false,
+						"items" : [
+							{
+								"id" : "positive",
+								"title" : "Positive",
+								"value" : "positive"
+							}, 
+							{
+								"id" : "negative",
+								"title" : "Negative",
+								"value" : "negative"
+							}
+						]
+	                }
+	        	]
+	        },
+	        {
+	        	"name" : "interval",
+	        	"properties": [
+   					{
+						"id" : "maximumOpen",
+						"type" : "Boolean",
+						"title" : "Maximum Open",
+						"value" : "",
+						"description" : "Indicates whether the interval is unlimited in a positive direction.",
+						"readonly" : false,
+						"optional" : true,
+						"wrapLines" : false
+					},
+					{
+						"id" : "minimumOpen",
+						"type" : "Boolean",
+						"title" : "Minimum Open",
+						"value" : "",
+						"description" : "Indicates whether the interval is unlimited in a negative direction.",
+						"readonly" : false,
+						"optional" : true,
+						"wrapLines" : false
+					},
+   					{
+						"id" : "maximumEndpoint",
+						"type" : "Double",
+						"title" : "Maximum",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : true,
+						"wrapLines" : false
+					},
+					{
+						"id" : "minimumEndpoint",
+						"type" : "Double",
+						"title" : "Minimum",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : true,
+						"wrapLines" : false
+					},
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "Interval1",
+						"description" : "The descriptive name of the Intervace.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : false,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the SMM element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					},
+					{
+						"id" : "diagramElementId",
+						"type" : "String",
+						"title" : "DiagramElementId",
+						"value" : "",
+						"description" : "This is the unique id of the diagram element used to display the SMM Element.",
+						"readonly" : true,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"hidden" : true
+					}
+				]
+	        }
 	],
 	"stencils" : [
 			{
@@ -269,22 +378,26 @@
 							{
 								"id" : "minus",
 								"title" : "Minus",
-								"value" : "minus"
+								"value" : "minus",
+								"refToView": "text_minus"
 							}, 
 							{
 								"id" : "plus",
 								"title" : "Plus",
-								"value" : "plus"
+								"value" : "plus",
+								"refToView": "text_plus"
 							}, 
 							{
-								"id" : "miltiply",
+								"id" : "multiply",
 								"title" : "Multiply",
-								"value" : "multiply"
+								"value" : "multiply",
+								"refToView": "text_multiply"
 							}, 
 							{
 								"id" : "divide",
 								"title" : "Divide",
-								"value" : "divide"
+								"value" : "divide",
+								"refToView": "text_divide"
 							}
 						]
 	                }
@@ -324,81 +437,41 @@
 							{
 								"id" : "sum",
 								"title" : "Sum",
-								"value" : "sum"
+								"value" : "sum",
+								"refToView": "text_sum"
 							}, 
 							{
 								"id" : "maximum",
 								"title" : "Maximum",
-								"value" : "maximum"
+								"value" : "maximum",
+								"refToView": "text_maximum"
 							}, 
 							{
 								"id" : "minimum",
 								"title" : "Minimum",
-								"value" : "minimum"
+								"value" : "minimum",
+								"refToView": "text_minimum"
 							}, 
 							{
 								"id" : "average",
 								"title" : "Average",
-								"value" : "average"
+								"value" : "average",
+								"refToView": "text_average"
 							},
 							{
 								"id" : "standardDeviation",
 								"title" : "Standard Deviation",
-								"value" : "standardDeviation"
+								"value" : "standardDeviation",
+								"refToView": "text_standard_deviation"
 							},
 							{
 								"id" : "product",
 								"title" : "Product",
-								"value" : "product"
+								"value" : "product",
+								"refToView": "text_product"
 							}
 						]
 	                }
-				]
-			},
-			{
-				"type" : "node",
-				"id" : "GradeMeasure",
-				"title" : "Grade Measure",
-				"position" : 3,
-				"childBinding": "measureElements",
-				"groups" : [
-					"Grading"
-				],
-				"roles" : [
-					"measure","gradeMeasure"
-				],
-				"description" : "Grade Measure",
-				"view" : "grade_measure.svg",
-				"icon" : "grade_measure.png",
-				"layout" : [
-				],
-			    "propertyPackages" : [
-						"smmElement","localStyle"
-				],
-				"properties" : [
-				]
-			},
-			{
-				"type" : "node",
-				"id" : "GradeInterval",
-				"title" : "Grade Interval",
-				"position" : 3,
-				"childBinding": "interval",
-				"groups" : [
-					"Grading"
-				],
-				"roles" : [
-					"gradeInterval"
-				],
-				"description" : "Grade Interval",
-				"view" : "grade_interval.svg",
-				"icon" : "grade_interval.png",
-				"layout" : [
-				],
-			    "propertyPackages" : [
-						"smmElement","localStyle"
-				],
-				"properties" : [
 				]
 			},
 			{
@@ -443,7 +516,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"smmElement","localStyle"
+						"smmElement","localStyle","measureRelationship"
 				],
 				"properties" : [
 				]
@@ -467,7 +540,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"smmElement","localStyle"
+						"smmElement","localStyle","measureRelationship"
 				],
 				"properties" : [
 				]
@@ -491,11 +564,145 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
+						"smmElement","localStyle","measureRelationship"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "RescaledMeasure",
+				"title" : "Rescaled Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Rescaled"
+				],
+				"roles" : [
+					"rescaledMeasure", "measure","dimensionalMeasure"
+				],
+				"description" : "Rescaled Measure",
+				"view" : "rescaled_measure.svg",
+				"icon" : "rescaled_measure.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle"
+				],
+				"properties" : [
+   					{
+						"id" : "offset",
+						"type" : "Double",
+						"title" : "Offset",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : true,
+						"wrapLines" : false
+					},
+					{
+						"id" : "multiplier",
+						"type" : "Double",
+						"title" : "Multiplier",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : true,
+						"wrapLines" : false
+					}
+				]
+			},
+			{
+				"type" : "edge",
+				"id" : "RescaledMeasureRelationship",
+				"title" : "Rescaled Measure Relationship",
+				"targetBinding" : "toRescaledMeasure",
+				"sourceBinding" : "fromDimensionalMeasure",
+				"position" : 7,
+				"groups" : [
+					"Rescaled"
+				],
+				"roles" : [
+					"rescaledMeasureRelationship"
+				],
+				"description" : "Rescaled Measure Relationship",
+				"view" : "rescaled_measure_relationship.svg",
+				"icon" : "rescaled_measure_relationship.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"smmElement","localStyle","measureRelationship"
+				],
+				"properties" : [
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "GradeMeasure",
+				"title" : "Grade Measure",
+				"position" : 3,
+				"childBinding": "measureElements",
+				"groups" : [
+					"Grading"
+				],
+				"roles" : [
+					"measure","gradeMeasure"
+				],
+				"description" : "Grade Measure",
+				"view" : "grade_measure.svg",
+				"icon" : "grade_measure.png",
+				"layout" : [
+					{
+						"type" : "layout.list",
+						"options" : {
+								"offsetY" :40
+						}
+					//					},
+//					{
+//						"type" : "layout.collapsible"
+					}
+				],
+			    "propertyPackages" : [
 						"smmElement","localStyle"
 				],
 				"properties" : [
 				]
-			}
+			},
+			{
+				"type" : "node",
+				"id" : "GradeInterval",
+				"title" : "Grade Interval",
+				"position" : 3,
+				"childBinding": "interval",
+				"groups" : [
+					"Grading"
+				],
+				"roles" : [
+					"gradeInterval"
+				],
+				"description" : "Grade Interval",
+				"view" : "grade_interval.svg",
+				"icon" : "grade_interval.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"localStyle","interval"
+				],
+				"properties" : [
+						{
+							"id" : "symbol",
+							"type" : "String",
+							"title" : "Symbol",
+							"value" : "",
+							"description" : "This is the Symbol of the interval",
+							"readonly" : false,
+							"optional" : true,
+							"length" : "",
+							"wrapLines" : false,
+							"hidden" : false
+						}
+				]
+			}			
 	],
 
 	"rules" : {
@@ -503,10 +710,23 @@
   				{
 					"role" : "dimensionalMeasure",
 					"outgoingEdges" : [
-							{
-								"role" : "useUnitOfMeasure",
-								"maximum" : 1
-							}
+						{
+							"role" : "useUnitOfMeasure",
+							"maximum" : 1
+						}
+					]
+				},
+  				{
+					"role" : "binaryMeasure",
+					"outgoingEdges" : [
+						{
+							"role" : "base1MeasureRelationship",
+							"maximum" : 1
+						},
+						{
+							"role" : "base2MeasureRelationship",
+							"maximum" : 1
+						}
 					]
 				} 
 		],
@@ -514,37 +734,45 @@
  		    {
 				"role" : "base1MeasureRelationship",
 				"connects" : [
-						{
-							"from" : "binaryMeasure",
-							"to" : [
-								"dimensionalMeasure"
-							]
-						}
-
+					{
+						"from" : "binaryMeasure",
+						"to" : [
+							"dimensionalMeasure"
+						]
+					}
 				]
 			},
 		    {
 				"role" : "base2MeasureRelationship",
 				"connects" : [
-						{
-							"from" : "binaryMeasure",
-							"to" : [
-								"dimensionalMeasure"
-							]
-						}
-
+					{
+						"from" : "binaryMeasure",
+						"to" : [
+							"dimensionalMeasure"
+						]
+					}
 				]
 			},
 		    {
 				"role" : "baseNMeasureRelationship",
 				"connects" : [
-						{
-							"from" : "collectiveMeasure",
-							"to" : [
-								"dimensionalMeasure"
-							]
-						}
-
+					{
+						"from" : "collectiveMeasure",
+						"to" : [
+							"dimensionalMeasure"
+						]
+					}
+				]
+			},
+		    {
+				"role" : "rescaledMeasureRelationship",
+				"connects" : [
+					{
+						"from" : "dimensionalMeasure",
+						"to" : [
+							"rescaledMeasure"
+						]
+					}
 				]
 			},
 		    {
@@ -578,6 +806,14 @@
        			{
     				"role": "directMeasure",
     				"baseMorphs": ["directMeasure"]
+    			},
+       			{
+    				"role": "collectiveMeasure",
+    				"baseMorphs": ["collectiveMeasure"]
+    			},
+       			{
+    				"role": "binaryMeasure",
+    				"baseMorphs": ["binaryMeasure"]
     			}
        	],
 		"layoutRules" : []

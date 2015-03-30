@@ -23,6 +23,7 @@ package org.omg.smm;
 public interface MeasureRelationship extends SmmRelationship {
     /**
      * Returns the value of the '<em><b>Influence</b></em>' attribute.
+     * The default value is <code>"positive"</code>.
      * The literals are from the enumeration {@link org.omg.smm.Influence}.
      * <!-- begin-user-doc -->
      * <p>
@@ -34,7 +35,7 @@ public interface MeasureRelationship extends SmmRelationship {
      * @see org.omg.smm.Influence
      * @see #setInfluence(Influence)
      * @see org.omg.smm.SMMPackage#getMeasureRelationship_Influence()
-     * @model ordered="false"
+     * @model default="positive" ordered="false"
      * @generated
      */
     Influence getInfluence();

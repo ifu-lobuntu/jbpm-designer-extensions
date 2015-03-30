@@ -109,7 +109,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="MeasureRelationship" abstract="true"
       eSuperTypes="#//SmmRelationship">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="influence" ordered="false"
-        eType="#//Influence"/>
+        eType="#//Influence" defaultValueLiteral="positive"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="measurandQuery" ordered="false"
         eType="#//Operation"/>
   </eClassifiers>
@@ -197,6 +197,8 @@
         eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//Real"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rescales" ordered="false"
         eType="#//BaseMeasureRelationship" eOpposite="#//BaseMeasureRelationship/rescaledMeasure"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rescalesFrom" eType="#//RescaledMeasureRelationship"
+        containment="true" eOpposite="#//RescaledMeasureRelationship/toRescaledMeasure"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DimensionalMeasure" abstract="true"
       eSuperTypes="#//Measure">
@@ -264,7 +266,12 @@
         eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//Boolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RescaledMeasureRelationship" eSuperTypes="#//MeasureRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RescaledMeasureRelationship" eSuperTypes="#//MeasureRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromDimensionalMeasure"
+        lowerBound="1" eType="#//DimensionalMeasure"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toRescaledMeasure" eType="#//RescaledMeasure"
+        eOpposite="#//RescaledMeasure/rescalesFrom"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GradeMeasureRelationship" eSuperTypes="#//MeasureRelationship"/>
   <eClassifiers xsi:type="ecore:EClass" name="GradeMeasure" eSuperTypes="#//Measure">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interval" ordered="false"

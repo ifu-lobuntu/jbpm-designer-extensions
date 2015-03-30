@@ -2031,7 +2031,48 @@
 				]
 			}
 		],
-		"morphingRules" : [],
+		"morphingRules" : [
+  			{
+				"role": "caseTask",
+				"baseMorphs": ["caseTask"]
+    		},
+  			{
+				"role": "humanTask",
+				"baseMorphs": ["humanTask"]
+    		},
+  			{
+				"role": "processTask",
+				"baseMorphs": ["processTask"]
+    		},
+  			{
+				"role": "stage",
+				"baseMorphs": ["stage"]
+    		},
+  			{
+				"role": "discretionaryCaseTask",
+				"baseMorphs": ["discretionaryCaseTask"]
+    		},
+  			{
+				"role": "discretionaryHumanTask",
+				"baseMorphs": ["discretionaryHumanTask"]
+    		},
+  			{
+				"role": "discretionaryProcessTask",
+				"baseMorphs": ["discretionaryProcessTask"]
+    		},
+  			{
+				"role": "discretionaryStage",
+				"baseMorphs": ["discretionaryStage"]
+    		},
+    		{
+				"role": "entryCriterion",
+				"baseMorphs": ["entryCriterion"]
+    		},
+   			{
+				"role": "exitCriterion",
+				"baseMorphs": ["exitCriterion"]
+    		}
+    	],
 		"layoutRules" : []
 	}
 }

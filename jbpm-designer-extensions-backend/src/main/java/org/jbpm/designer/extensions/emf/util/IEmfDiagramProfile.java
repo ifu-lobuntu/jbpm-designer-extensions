@@ -21,5 +21,7 @@ public interface IEmfDiagramProfile extends IExtensionDiagramProfile, IDiagramPr
     String getDiagramStencilId();
 
     EStructuralFeature demandFeature(String featureName);
+    
+    String determineURI();
 
 }

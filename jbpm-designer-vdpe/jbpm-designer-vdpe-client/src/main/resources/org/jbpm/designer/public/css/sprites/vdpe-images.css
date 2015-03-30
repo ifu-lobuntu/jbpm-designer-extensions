@@ -1,0 +1,9 @@
+/** sprite: vdpe-images-sprite; sprite-image: url('../../images/sprites/vdpe-images-sprite.png'); sprite-layout: vertical */
+/* Edges */
+.stencilsets_vdpe_vdpe_json_icons_composition,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_composition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdpe/icons/composition.png);  /** sprite-ref: vdpe-images-sprite; */
+}

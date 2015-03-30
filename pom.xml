@@ -125,6 +125,21 @@
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-vdrc-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-vdrc-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-vdrc-backend</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
         <artifactId>jbpm-designer-meas-api</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -179,6 +194,7 @@
     <module>jbpm-designer-vdml-emf</module>
     <module>jbpm-designer-cmmn</module>
     <module>jbpm-designer-ucd</module>
+    <module>jbpm-designer-vdrc</module>
     <module>jbpm-designer-vdan</module>
     <module>jbpm-designer-vdpe</module>
     <module>jbpm-designer-meas</module>

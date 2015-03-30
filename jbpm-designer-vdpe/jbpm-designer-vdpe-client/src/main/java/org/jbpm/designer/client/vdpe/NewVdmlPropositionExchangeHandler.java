@@ -5,24 +5,20 @@ import javax.inject.Inject;
 
 import org.guvnor.common.services.project.model.Package;
 import org.jboss.errai.common.client.api.Caller;
-import org.jboss.errai.common.client.api.RemoteCallback;
-import org.jbpm.designer.service.DesignerAssetService;
-import org.kie.workbench.common.widgets.client.handlers.DefaultNewResourceHandler;
+import org.jbpm.designer.client.vdrc.DefaultNewCollaborationDiagramHandler;
+import org.jbpm.designer.vdrc.CollaborationAssetService;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcePresenter;
-import org.uberfire.backend.vfs.Path;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.ext.widgets.common.client.callbacks.DefaultErrorCallback;
-import org.uberfire.mvp.PlaceRequest;
-import org.uberfire.mvp.impl.PathPlaceRequest;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
 import com.google.gwt.user.client.ui.IsWidget;
 
 @ApplicationScoped
-public class NewVdmlPropositionExchangeHandler extends DefaultNewResourceHandler {
+public class NewVdmlPropositionExchangeHandler extends DefaultNewCollaborationDiagramHandler {
 
     @Inject
-    private Caller<DesignerAssetService> designerAssetService;
+    private Caller<CollaborationAssetService> designerAssetService;
 
     @Inject
     private PlaceManager placeManager;
@@ -50,16 +46,8 @@ public class NewVdmlPropositionExchangeHandler extends DefaultNewResourceHandler
     public void create( final Package pkg,
                         final String baseFileName,
                         final NewResourcePresenter presenter ) {
-        designerAssetService.call( new RemoteCallback<Path>() {
-            @Override
-            public void callback( final Path path ) {
-                presenter.complete();
-                notifySuccess();
-                final PlaceRequest place = new PathPlaceRequest( path );
-                placeManager.goTo( place );
-            }
-        }, new DefaultErrorCallback() ).createProcess( pkg.getPackageMainResourcesPath(), buildFileName( baseFileName,
-                                                                                                         resourceType ) );
+        //TODO warn the user we're ignoring the filename, or find a better approach
+        designerAssetService.call(getSuccessCallback(presenter), new DefaultErrorCallback() ).createCollaborationDiagram(collaborationsListBox.getSelectedCollaboration(),"vdpe" );
     }
 
 }

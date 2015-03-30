@@ -34,7 +34,11 @@
  - ValueAdd.valueMeasurement.measure
  - ValueAdd.aggregatedFrom (think about SMM Measure relationships here, limit to specific ValueAdds that would fall within the SMM Measure Hierarchy)
  - ResourceUse.quantity.measure
- - Port.batchSize.measure ? (we don't really want to have to create a valueAdd just for quantity, but we do need to specify the UOM somewhere) 
+ - Port.batchSize.measure ? (we don't really want to have to create a valueAdd just for quantity, but we do need to specify the UOM somewhere)
+ - DeliverableFlow.deliverable.name (businessItem)
+ - DeliverableFlow.deliverable.isFungible 
+ - DeliverableFlow.deliverable.isShareable 
+ - DeliverableFlow.isTangible 
 
 ##FormModeler
  - InputPortValueHolder - decompose to received ValueAdds and include port.offset, deliverableFlow.isTangible, port.batchSize

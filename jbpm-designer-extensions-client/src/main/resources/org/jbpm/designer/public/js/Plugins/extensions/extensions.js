@@ -107,13 +107,15 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		};
 	},
 	handleLayoutCollapsible : function(event) {
-		console.log("handleLayoutCollapsible");
 		this.updateExpanded(event.shape);
 	},
 	handleLayoutList : function(event) {
-		console.log("handleLayoutList");
+		console.log(event);
 		var shape = event.shape;
 		var currentOffset=15;
+		if(event.options && event.options.offsetY){
+			currentOffset=event.options.offsetY;
+		}
 		shape.getChildShapes(false).forEach(function(item){
 			item.bounds.set(
 					1,
@@ -125,7 +127,6 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		}); 
 	},
 	handleLayoutCompartments : function(event) {
-		console.log("handleLayoutCompartments");
 		var height=30;
 		var bounds = event.shape.bounds;
 		event.shape.getChildShapes(false,function(child){

@@ -22,6 +22,7 @@ public enum MeasureLibraryStencil implements StencilInfo {
     DIRECT_MEASURE(SMMPackage.eINSTANCE.getDirectMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "DirectMeasure"),
     BINARY_MEASURE(SMMPackage.eINSTANCE.getBinaryMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "BinaryMeasure"),
     COLLECTIVE_MEASURE(SMMPackage.eINSTANCE.getCollectiveMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "CollectiveMeasure"),
+    RESCALED_MEASURE(SMMPackage.eINSTANCE.getRescaledMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "RescaledMeasure"),
     GRADE_MEASURE(SMMPackage.eINSTANCE.getGradeMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "GradeMeasure"),
     GRADE_INTERVAL(SMMPackage.eINSTANCE.getGradeInterval(), SMMDIPackage.eINSTANCE.getSMMShape(), "GradeInterval"),
     RANKING_MEASURE(SMMPackage.eINSTANCE.getRankingMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "RankingMeasure"),
@@ -29,6 +30,7 @@ public enum MeasureLibraryStencil implements StencilInfo {
     BASE1_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getBase1MeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "Base1MeasureRelationship"),
     BASE2_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getBase2MeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "Base2MeasureRelationship"),
     BASEN_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getBaseNMeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "BaseNMeasureRelationship"),
+    RESCALED_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getRescaledMeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "RescaledMeasureRelationship"),
     USE_UNIT_OF_MEASURE(SMMPackage.eINSTANCE.getDimensionalMeasure_Unit(), SMMDIPackage.eINSTANCE.getSMMEdge(), "UseUnitOfMeasure"),
     ;
 
@@ -93,7 +95,7 @@ public enum MeasureLibraryStencil implements StencilInfo {
         MeasureLibraryStencil[] possibilities = values();
         if (possibilities != null) {
             for (MeasureLibraryStencil cmmnStencil : possibilities) {
-                if (cmmnStencil.type.isSuperTypeOf(me.eClass())) {
+                if (cmmnStencil.type!=null && cmmnStencil.type.isSuperTypeOf(me.eClass())) {
                     return cmmnStencil;
                 }
             }

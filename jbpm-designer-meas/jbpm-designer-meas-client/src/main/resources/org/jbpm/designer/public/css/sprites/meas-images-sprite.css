@@ -1,0 +1,91 @@
+/* Edges */
+.stencilsets_meas_meas_json_icons_unit_of_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_unit_of_measure{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+
+.stencilsets_meas_meas_json_icons_direct_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_direct_measure {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_binary_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_binary_measure {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_collective_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_collective_measure{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_grade_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_grade_measure{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_grade_interval,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_grade_interval{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_ranking_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_ranking_measure{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_ranking_interval,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_ranking_interval{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_rescaled_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_rescaled_measure{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_meas_meas_json_icons_base_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_base_measure_relationship{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -16px;
+}
+.stencilsets_meas_meas_json_icons_use_unit_of_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_use_unit_of_measure{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/meas-images-sprite.png');
+  background-position: left -16px;
+}
+

@@ -3089,13 +3089,22 @@ public interface SMMPackage extends EPackage {
     int RESCALED_MEASURE__RESCALES = DIMENSIONAL_MEASURE_FEATURE_COUNT + 3;
 
     /**
+     * The feature id for the '<em><b>Rescales From</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESCALED_MEASURE__RESCALES_FROM = DIMENSIONAL_MEASURE_FEATURE_COUNT + 4;
+
+    /**
      * The number of structural features of the '<em>Rescaled Measure</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESCALED_MEASURE_FEATURE_COUNT = DIMENSIONAL_MEASURE_FEATURE_COUNT + 4;
+    int RESCALED_MEASURE_FEATURE_COUNT = DIMENSIONAL_MEASURE_FEATURE_COUNT + 5;
 
     /**
      * The operation id for the '<em>Get All Arguments</em>' operation.
@@ -4700,13 +4709,31 @@ public interface SMMPackage extends EPackage {
     int RESCALED_MEASURE_RELATIONSHIP__MEASURAND_QUERY = MEASURE_RELATIONSHIP__MEASURAND_QUERY;
 
     /**
+     * The feature id for the '<em><b>From Dimensional Measure</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESCALED_MEASURE_RELATIONSHIP__FROM_DIMENSIONAL_MEASURE = MEASURE_RELATIONSHIP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>To Rescaled Measure</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE = MEASURE_RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Rescaled Measure Relationship</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESCALED_MEASURE_RELATIONSHIP_FEATURE_COUNT = MEASURE_RELATIONSHIP_FEATURE_COUNT + 0;
+    int RESCALED_MEASURE_RELATIONSHIP_FEATURE_COUNT = MEASURE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The number of operations of the '<em>Rescaled Measure Relationship</em>' class.
@@ -10292,6 +10319,17 @@ public interface SMMPackage extends EPackage {
     EReference getRescaledMeasure_Rescales();
 
     /**
+     * Returns the meta object for the containment reference '{@link org.omg.smm.RescaledMeasure#getRescalesFrom <em>Rescales From</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Rescales From</em>'.
+     * @see org.omg.smm.RescaledMeasure#getRescalesFrom()
+     * @see #getRescaledMeasure()
+     * @generated
+     */
+    EReference getRescaledMeasure_RescalesFrom();
+
+    /**
      * Returns the meta object for class '{@link org.omg.smm.DimensionalMeasure <em>Dimensional Measure</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10610,6 +10648,28 @@ public interface SMMPackage extends EPackage {
      * @generated
      */
     EClass getRescaledMeasureRelationship();
+
+    /**
+     * Returns the meta object for the reference '{@link org.omg.smm.RescaledMeasureRelationship#getFromDimensionalMeasure <em>From Dimensional Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>From Dimensional Measure</em>'.
+     * @see org.omg.smm.RescaledMeasureRelationship#getFromDimensionalMeasure()
+     * @see #getRescaledMeasureRelationship()
+     * @generated
+     */
+    EReference getRescaledMeasureRelationship_FromDimensionalMeasure();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.omg.smm.RescaledMeasureRelationship#getToRescaledMeasure <em>To Rescaled Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>To Rescaled Measure</em>'.
+     * @see org.omg.smm.RescaledMeasureRelationship#getToRescaledMeasure()
+     * @see #getRescaledMeasureRelationship()
+     * @generated
+     */
+    EReference getRescaledMeasureRelationship_ToRescaledMeasure();
 
     /**
      * Returns the meta object for class '{@link org.omg.smm.GradeMeasureRelationship <em>Grade Measure Relationship</em>}'.
@@ -12036,6 +12096,14 @@ public interface SMMPackage extends EPackage {
         EReference RESCALED_MEASURE__RESCALES = eINSTANCE.getRescaledMeasure_Rescales();
 
         /**
+         * The meta object literal for the '<em><b>Rescales From</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESCALED_MEASURE__RESCALES_FROM = eINSTANCE.getRescaledMeasure_RescalesFrom();
+
+        /**
          * The meta object literal for the '{@link org.omg.smm.impl.DimensionalMeasureImpl <em>Dimensional Measure</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -12294,6 +12362,22 @@ public interface SMMPackage extends EPackage {
          * @generated
          */
         EClass RESCALED_MEASURE_RELATIONSHIP = eINSTANCE.getRescaledMeasureRelationship();
+
+        /**
+         * The meta object literal for the '<em><b>From Dimensional Measure</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESCALED_MEASURE_RELATIONSHIP__FROM_DIMENSIONAL_MEASURE = eINSTANCE.getRescaledMeasureRelationship_FromDimensionalMeasure();
+
+        /**
+         * The meta object literal for the '<em><b>To Rescaled Measure</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE = eINSTANCE.getRescaledMeasureRelationship_ToRescaledMeasure();
 
         /**
          * The meta object literal for the '{@link org.omg.smm.impl.GradeMeasureRelationshipImpl <em>Grade Measure Relationship</em>}' class.

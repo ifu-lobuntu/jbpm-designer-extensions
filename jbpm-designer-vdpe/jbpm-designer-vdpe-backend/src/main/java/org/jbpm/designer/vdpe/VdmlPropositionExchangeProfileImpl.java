@@ -90,7 +90,7 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
     }
 
     @Override
-    protected void populateModelStub(XMLResource rs) {
+    public void populateModelStub(XMLResource rs) {
         ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
         vdm.getCollaboration().add(cm);

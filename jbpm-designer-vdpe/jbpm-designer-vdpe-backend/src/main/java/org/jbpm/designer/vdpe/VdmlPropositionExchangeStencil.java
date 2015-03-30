@@ -21,6 +21,7 @@ public enum VdmlPropositionExchangeStencil implements StencilInfo {
     VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlPropositionExchangeDiagram"),
     ROLE(VDMLPackage.eINSTANCE.getRole(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Role"),
     VALUE_PROPOSITION(VDMLPackage.eINSTANCE.getValueProposition(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ValueProposition"),
+    VALUE_PROPOSITION_COMPONENT(VDMLPackage.eINSTANCE.getValuePropositionComponent(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ValuePropositionComponent"),
     PROVIDED_PROPOSITION(VDMLPackage.eINSTANCE.getRole_ProvidedProposition(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "ProvidedProposition"),
     RECIPIENT(VDMLPackage.eINSTANCE.getValueProposition_Recipient(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "Recipient");
     private EClass type;

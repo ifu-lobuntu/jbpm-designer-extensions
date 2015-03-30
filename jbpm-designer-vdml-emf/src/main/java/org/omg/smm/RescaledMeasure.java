@@ -15,6 +15,7 @@ package org.omg.smm;
  *   <li>{@link org.omg.smm.RescaledMeasure#getOffset <em>Offset</em>}</li>
  *   <li>{@link org.omg.smm.RescaledMeasure#getMultiplier <em>Multiplier</em>}</li>
  *   <li>{@link org.omg.smm.RescaledMeasure#getRescales <em>Rescales</em>}</li>
+ *   <li>{@link org.omg.smm.RescaledMeasure#getRescalesFrom <em>Rescales From</em>}</li>
  * </ul>
  * </p>
  *
@@ -128,5 +129,33 @@ public interface RescaledMeasure extends DimensionalMeasure {
      * @generated
      */
     void setRescales(BaseMeasureRelationship value);
+
+    /**
+     * Returns the value of the '<em><b>Rescales From</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.omg.smm.RescaledMeasureRelationship#getToRescaledMeasure <em>To Rescaled Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Rescales From</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Rescales From</em>' containment reference.
+     * @see #setRescalesFrom(RescaledMeasureRelationship)
+     * @see org.omg.smm.SMMPackage#getRescaledMeasure_RescalesFrom()
+     * @see org.omg.smm.RescaledMeasureRelationship#getToRescaledMeasure
+     * @model opposite="toRescaledMeasure" containment="true"
+     * @generated
+     */
+    RescaledMeasureRelationship getRescalesFrom();
+
+    /**
+     * Sets the value of the '{@link org.omg.smm.RescaledMeasure#getRescalesFrom <em>Rescales From</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Rescales From</em>' containment reference.
+     * @see #getRescalesFrom()
+     * @generated
+     */
+    void setRescalesFrom(RescaledMeasureRelationship value);
 
 } // RescaledMeasure
