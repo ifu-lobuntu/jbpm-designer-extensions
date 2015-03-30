@@ -10,6 +10,11 @@
 
 #To do
 ##Misc
+ - Test merge logic
+ - Test VDPE in conjunction with merge logic
+ - Test multiple resource save from VDPE
+ - Test create resource
+ - Test create VDPE collaboration diagram linked to collaboration	
 
 ##Stencils
  - Tangible DeliverableFlow - hidden from palette
