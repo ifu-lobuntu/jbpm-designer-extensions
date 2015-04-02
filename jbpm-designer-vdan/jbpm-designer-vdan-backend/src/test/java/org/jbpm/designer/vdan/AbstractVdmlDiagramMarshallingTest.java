@@ -59,7 +59,7 @@ public class AbstractVdmlDiagramMarshallingTest {
         profile = createProfile();
         profile.setUriHandler(new TestUriHandler());
         unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
-        marshaller = new GenericJsonToEmfDiagramMarshaller(profile);
+        marshaller = new GenericJsonToEmfDiagramMarshaller(profile ,URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
         resourceSet = new ResourceSetImpl();
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
         uriHandlers.clear();

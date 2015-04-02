@@ -22,7 +22,9 @@ public class Bounds {
         this.lowerRight = lowerRight;
         this.upperLeft = upperLeft;
     }
-
+    public Point getCenter(){
+        return new Point((upperLeft.getX() + lowerRight.getX())/2 ,(upperLeft.getY() + lowerRight.getY())/2 );
+    }
     /**
      * @return the lowerRight of a Bounds
      */

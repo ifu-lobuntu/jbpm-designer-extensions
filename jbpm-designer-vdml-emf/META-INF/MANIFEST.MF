@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1427737111203
+Bnd-LastModified: 1427961223244
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Mon, 30 Mar 2015 19:37:53 +0200
+Build-Timestamp: Thu, 2 Apr 2015 09:53:05 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.pavanecce.vdml.metamodel
 Bundle-SymbolicName: org.pavanecce.vdml.metamodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201503301937
+Bundle-Version: 6.3.0.201504020952
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jbpm-designer-vdml-emf
 Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
@@ -38,7 +38,7 @@ Private-Package: org.jbpm.smm.dd.smmdi,org.omg.smm,org.omg.vdml,org.jbpm
  i.impl,org.omg.smm.util
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-vdml-emf
-Scm-Revision: cd1678c44a247b4bb2c3aacdc6317f376ea4a98e
+Scm-Revision: b9b24e72c5bde2a92f134ecbd6a25d5f776a29d6
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-vdml-emf
 Specification-Title: jbpm-designer-vdml-emf

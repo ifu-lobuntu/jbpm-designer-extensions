@@ -14,6 +14,7 @@ import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jbpm.designer.vdrc.CollaborationAssetService;
 import org.kie.workbench.common.widgets.client.resources.i18n.CommonConstants;
 import org.uberfire.backend.vfs.Path;
+import org.uberfire.backend.vfs.PathFactory;
 
 import com.github.gwtbootstrap.client.ui.ListBox;
 
@@ -35,6 +36,7 @@ public class CollaborationsListBox extends ListBox {
             return;
         }
 
+        Path path = context.getActivePackage().getPackageMainResourcesPath();
         projectService.call(new RemoteCallback<Collection<Path>>() {
             @Override
             public void callback(final Collection<Path> pkgs) {
@@ -75,7 +77,7 @@ public class CollaborationsListBox extends ListBox {
                     setSelectedIndex(0);
                 }
             }
-        }).resolveCollaborations(context.getActivePackage().getProjectRootPath());
+        }).resolveCollaborations(path);
     }
 
     public Path getSelectedCollaboration() {

@@ -59,6 +59,11 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
     public EPackage[] getEPackages() {
         return ddPackages(VDMLPackage.eINSTANCE,VDMLDIPackage.eINSTANCE);
     }
+    @Override
+    public void prepareResourceSet(ResourceSet resourceSet) {
+        super.prepareResourceSet(resourceSet);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdrc", getResourceFactory());
+    }
 
     @Override
     public Factory getResourceFactory() {
@@ -81,7 +86,7 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
 
     @Override
     public String getDiagramStencilId() {
-        return "VdmlPropositionExchangeDiagram";
+        return "PropositionExchangeDiagram";
     }
 
     @Override
@@ -91,15 +96,6 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
 
     @Override
     public void populateModelStub(XMLResource rs) {
-        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
-        vdm.getCollaboration().add(cm);
-        cm.setId("{processid}");
-        cm.setName("{processid}");
-        rs.getContents().add(vdm);
-        VDMLDiagram dgm = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        vdm.getDiagram().add(dgm);
-        dgm.setVdmlElement(cm);
     }
 
 }

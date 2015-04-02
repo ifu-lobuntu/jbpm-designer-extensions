@@ -187,4 +187,8 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     public Object convertFromString(LinkedProperty property, String string, java.lang.Class<?> targetType) {
         return null;
     }
+
+    @Override
+    public void postprocessResource(XMLResource resource) {
+    }
 }

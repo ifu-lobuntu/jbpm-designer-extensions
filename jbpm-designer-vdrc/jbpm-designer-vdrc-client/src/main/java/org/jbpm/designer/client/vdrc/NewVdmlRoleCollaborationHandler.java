@@ -39,7 +39,7 @@ public class NewVdmlRoleCollaborationHandler extends DefaultNewResourceHandler {
     @Override
     public String getDescription() {
         // return DesignerEditorConstants.INSTANCE.businessProcess();
-        return "Value Proposition Exchange";
+        return "Role Collaboration";
     }
     @Override
     public IsWidget getIcon() {

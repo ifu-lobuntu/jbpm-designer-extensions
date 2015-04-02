@@ -1,124 +1,133 @@
 package org.jbpm.designer.vdrc;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
-import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
-import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.dd.di.DiagramElement;
+import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
+import org.omg.vdml.InputPort;
+import org.omg.vdml.OutputPort;
+import org.omg.vdml.Port;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueDeliveryModel;
-import org.omg.vdml.ValueProposition;
 import org.omg.vdml.VdmlElement;
-import org.omg.vdml.util.VDMLSwitch;
 
-public class VdmlRoleCollaborationJsonToEmfHelper extends VDMLSwitch<Object> implements JsonToEmfHelper {
-    private ShapeMap shapeMap;
-    protected Shape sourceShape;
-    private static Map<String, EClass> COLLABORATION_TYPE_MAP = new HashMap<String, EClass>();
-    static {
-        COLLABORATION_TYPE_MAP.put("CapabilityMethod", VDMLPackage.eINSTANCE.getCapabilityMethod());
-    }
-    private LinkedStencil currentStencil;
-
+public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper implements JsonToEmfHelper {
 
     public VdmlRoleCollaborationJsonToEmfHelper(ShapeMap resource) {
-        this.shapeMap = resource;
-    }
-
-    @Override
-    public Object caseCollaboration(Collaboration object) {
-        for (Shape shape : sourceShape.getChildShapes()) {
-            if (shape.getStencilId().equals(VdmlRoleCollaborationStencil.ROLE.getStencilId())) {
-                object.getCollaborationRole().add((Role) shapeMap.getModelElement(shape.getResourceId()));
-            }
-        }
-        return super.caseCollaboration(object);
+        super(resource);
     }
 
     @Override
     public Object caseRole(Role object) {
+        String[] split = sourceShape.getProperty("performedActivities").split(",");
+        Set<String> performedActivities = new HashSet<String>(Arrays.asList(split));
+        for (String string : performedActivities) {
+            Activity a = findOrCreatePerformerWork(object, string);
+        }
         for (ShapeReference sr : sourceShape.getOutgoing()) {
-            VDMLEdge edge = (VDMLEdge) shapeMap.getDiagramElement(sr.getResourceId());
-            if (edge.getTargetShape().getVdmlElement() instanceof ValueProposition) {
-                object.getProvidedProposition().add((ValueProposition) edge.getTargetShape().getVdmlElement());
+            Shape targetShape = shapeMap.get(sr);
+            if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
+                DeliverableFlow flow = (DeliverableFlow) shapeMap.getModelElement(targetShape.getResourceId());
+                Activity a = findOrCreatePerformerWork(object, targetShape.getProperty("providingActivityName"));
+                OutputPort op = VDMLFactory.eINSTANCE.createOutputPort();
+                op.setName("ti" + object.getName());
+                op.setOutput(flow);
+                a.getContainedPort().add(op);
             }
         }
         return super.caseRole(object);
     }
 
-    @Override
-    public Object caseValueProposition(ValueProposition object) {
-        for (ShapeReference sr : sourceShape.getOutgoing()) {
-            VDMLEdge edge = (VDMLEdge) shapeMap.getDiagramElement(sr.getResourceId());
-            if (edge.getTargetShape().getVdmlElement() instanceof Role) {
-                object.setRecipient((Role) edge.getTargetShape().getVdmlElement());
+    private Activity findOrCreatePerformerWork(Role object, String string) {
+        Activity a = null;
+        for (Activity activity : object.getPerformedWork()) {
+            if (activity.getName().equals(string)) {
+                a = activity;
+                break;
             }
         }
-        return super.caseValueProposition(object);
-    }
-
-    @Override
-    public DiagramElement createElements(Shape shape) {
-        DiagramElement de = VdmlRoleCollaborationStencil.createDiagramElement(shape.getStencilId());
-        EObject modelElement = VdmlRoleCollaborationStencil.createElement(shape.getStencilId());
-        if (de instanceof VDMLShape) {
-            ((VDMLShape) de).setVdmlElement((VdmlElement) modelElement);
-        } else if (de instanceof VDMLEdge) {
-            ((VDMLEdge) de).setVdmlElement((VdmlElement) modelElement);
+        if (a == null) {
+            a = VDMLFactory.eINSTANCE.createActivity();
+            a.setName(string);
+            object.getPerformedWork().add(a);
+            ((Collaboration) object.eContainer()).getActivity().add(a);
         }
-        de.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-        return de;
+        return a;
     }
 
     @Override
-    public void doSwitch(LinkedStencil sv, Shape sourceShape) {
-        this.sourceShape = sourceShape;
-        this.currentStencil = sv;
-        super.doSwitch(shapeMap.getModelElement(sourceShape.getResourceId()));
-    }
-
-    public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
-        VDMLDiagram vdmlDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        result.getContents().add(vdm);
-        EClass eClass = COLLABORATION_TYPE_MAP.get(json.getProperty("collaborationtype"));
-        Collaboration collaboration = (Collaboration) VDMLFactory.eINSTANCE.create(eClass);
-        vdm.getCollaboration().add(collaboration);
-        collaboration.setId(json.getResourceId());
-        vdmlDiagram.setVdmlElement(collaboration);
-        vdm.getDiagram().add(vdmlDiagram);
-        return vdmlDiagram;
-    }
-
-    @Override
-    public EObject create(EClass eType) {
-        return VDMLFactory.eINSTANCE.create(eType);
+    public Object caseDeliverableFlow(DeliverableFlow object) {
+        if (sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
+            for (ShapeReference sr : sourceShape.getOutgoing()) {
+                Shape targetShape = shapeMap.get(sr);
+                if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.ROLE.getStencilId())) {
+                    Role role = (Role) shapeMap.getModelElement(targetShape.getResourceId());
+                    Activity a = findOrCreatePerformerWork(role, sourceShape.getProperty("receivingActivityName"));
+                    InputPort ip = VDMLFactory.eINSTANCE.createInputPort();
+                    ip.setName("from" + object.getName());
+                    ip.setInput(object);
+                    a.getContainedPort().add(ip);
+                }
+            }
+        }
+        return super.caseDeliverableFlow(object);
     }
 
     @Override
-    public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
-        // TODO Auto-generated method stub
-        return null;
+    public void postprocessResource(XMLResource resource) {
+        ValueDeliveryModel vdm = (ValueDeliveryModel) resource.getContents().get(0);
+        Map<VdmlElement, VDMLDiagramElement> map = new HashMap<VdmlElement, VDMLDiagramElement>();
+        buildMap(vdm.getDiagram().get(0), map, VDMLPackage.eINSTANCE.getRole(), VDMLPackage.eINSTANCE.getDeliverableFlow());
+        Collaboration coll = vdm.getCollaboration().get(0);
+        removeOrphanedRoles(map, coll);
+        removeOrphanedFlows(map, coll);
+    }
+
+
+    protected void removeOrphanedFlows(Map<VdmlElement, VDMLDiagramElement> map, Collaboration coll) {
+        for (DeliverableFlow flow : new ArrayList<DeliverableFlow>(coll.getFlow())) {
+            if (!map.containsKey(flow)) {
+                if (shouldHaveEdge(flow)) {
+                    coll.getFlow().remove(flow);
+                    removeFromPortContainer(flow.getRecipient(), flow.getProvider());
+                }
+            }
+        }
+    }
+    private boolean shouldHaveEdge(DeliverableFlow flow) {
+        Role receivingRole = RoleCollaborationUtil.getRoleFor(flow.getRecipient());
+        Role providingRole = RoleCollaborationUtil.getRoleFor(flow.getProvider());
+        boolean asdf = receivingRole != null && providingRole != null && receivingRole != providingRole;
+        return asdf;
+    }
+
+    @Override
+    protected VDMLDiagramElement createDiagramElement(String stencilId) {
+        return VdmlRoleCollaborationStencil.createDiagramElement(stencilId);
+    }
+
+    @Override
+    protected VdmlElement createElement(String stencilId) {
+        return VdmlRoleCollaborationStencil.createElement(stencilId);
     }
 }

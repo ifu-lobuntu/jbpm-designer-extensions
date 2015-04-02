@@ -198,8 +198,8 @@
 	"stencils" : [
 			{
 				"type" : "node",
-				"id" : "VdmlPropositionExchangeDiagram",
-				"title" : "VdmlPropositionExchangeDiagram",
+				"id" : "PropositionExchangeDiagram",
+				"title" : "PropositionExchangeDiagram",
 				"groups" : [
 					"Diagram"
 				],
@@ -216,8 +216,23 @@
 					"diagram"
 				],
 				"properties" : [
+	                {
+						"id" : "collaboration",
+						"type" : "eobjectref",
+						"title" : "Collaboration",
+						"value" : "",
+						"viewBinding":"vdmlElement",
+						"description" : "The Collaboration this diagram describes",
+						"readonly" : true,
+						"optional" : true,
+						"reference" : {
+							"targetProfile":"vdrc",
+							"allowedElementTypes":"BusinessNetwork|CapabilityMethod|Community|OrgUnit",
+							"nameFeature" : "name"
+						},
 
-
+						"length" : ""
+	                }
 				],
 				"layout": [
 				 ]
@@ -227,6 +242,7 @@
 				"type" : "node",
 				"id" : "Role",
 				"title" : "Role",
+				"childBinding" : "collaborationRole",
 				"position" : 1,
 				"groups" : [
 					"Elements"
@@ -273,12 +289,13 @@
 				"type" : "node",
 				"id" : "ValuePropositionComponent",
 				"title" : "Value Proposition Component",
+				"childBinding":"component",
 				"position" : 2,
 				"groups" : [
 					"Elements"
 				],
 				"roles" : [
-					"valueProposition"
+					"valuePropositionComponent"
 				],
 				"description" : "A Value Proposition Component",
 				"view" : "value_proposition_component.svg",
@@ -339,6 +356,7 @@
 				"type" : "edge",
 				"id" : "ProvidedProposition",
 				"title" : "ProvidedProposition",
+				"targetBinding":"providedProposition",
 				"position" : 2,
 				"groups" : [
 					"Elements"
@@ -362,6 +380,7 @@
 				"type" : "edge",
 				"id" : "Recipient",
 				"title" : "Recipient",
+				"targetBinding":"provider",
 				"position" : 2,
 				"groups" : [
 					"Elements"
@@ -369,7 +388,7 @@
 				"roles" : [
 					"recipient"
 				],
-				"description" : "A Providing of a Value Proposition",
+				"description" : "A Receiving of a Value Proposition",
 				"view" : "recipient.svg",
 				"icon" : "recipient.png",
 				"layout" : [

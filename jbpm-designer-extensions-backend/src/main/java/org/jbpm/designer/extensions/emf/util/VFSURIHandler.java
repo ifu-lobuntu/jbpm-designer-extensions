@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.NoSuchFileException;
 import java.util.Collections;
 import java.util.Map;
 
@@ -13,11 +12,11 @@ import org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.Repository;
 
-public class VFSUriHandler extends PlatformResourceURIHandlerImpl {
+public class VFSURIHandler extends PlatformResourceURIHandlerImpl {
 
     private Repository repository;
 
-    public VFSUriHandler(Repository repository) {
+    public VFSURIHandler(Repository repository) {
         super();
         this.repository = repository;
     }

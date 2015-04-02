@@ -15,7 +15,7 @@ public class VdmlRoleCollaborationTypeDefinition implements ResourceTypeDefiniti
 
     @Override
     public String getDescription() {
-        return "Vdml Proposition Exchange";
+        return "VDML Role Collaboration";
     }
 
     @Override

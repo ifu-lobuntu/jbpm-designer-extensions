@@ -2,6 +2,7 @@ package org.jbpm.designer.ucd;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -92,6 +93,7 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
     public String convertToString(LinkedProperty property, Object val) {
         return null;
     }
-
-
+    @Override
+    public void preprocessResource(XMLResource resource) {
+    }
 }

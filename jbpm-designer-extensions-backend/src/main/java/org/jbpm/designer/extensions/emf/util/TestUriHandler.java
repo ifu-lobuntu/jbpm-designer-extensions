@@ -2,6 +2,7 @@ package org.jbpm.designer.extensions.emf.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ public class TestUriHandler implements URIHandler {
 
     public static void main(String[] args) throws Exception {
         URI uri = URI.createPlatformResourceURI("/jbpm-designer-backend/src/test/resources/org/jbpm/designer/test/cmmn/test.cmmn", true);
+        System.out.println(uri);
         File file = new TestUriHandler().getFile(uri);
         System.out.println(file);
         System.out.println(file.exists());
@@ -30,8 +32,8 @@ public class TestUriHandler implements URIHandler {
         return new FileInputStream(getFile(uri));
     }
 
-    private File getFile(URI uri) throws IOException {
-            return new File(getFakeWorkspaceRoot(new File(".").getCanonicalFile()), uri.toPlatformString(true));
+    public File getFile(URI uri) throws IOException {
+        return new File(getFakeWorkspaceRoot(new File(".").getCanonicalFile()), uri.toPlatformString(true));
     }
 
     private File getFakeWorkspaceRoot(File currentDir) {
@@ -51,7 +53,7 @@ public class TestUriHandler implements URIHandler {
 
     @Override
     public OutputStream createOutputStream(URI uri, Map<?, ?> options) throws IOException {
-        return null;
+        return new FileOutputStream(getFile(uri));
     }
 
     @Override

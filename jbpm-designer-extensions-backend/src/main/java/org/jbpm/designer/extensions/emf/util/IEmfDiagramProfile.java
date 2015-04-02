@@ -19,9 +19,7 @@ public interface IEmfDiagramProfile extends IExtensionDiagramProfile, IDiagramPr
     JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource);
 
     String getDiagramStencilId();
-
+    boolean mergeOnUpdate();
     EStructuralFeature demandFeature(String featureName);
     
-    String determineURI();
-
 }

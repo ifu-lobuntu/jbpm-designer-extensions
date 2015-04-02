@@ -68,4 +68,9 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         return null;
     }
 
+
+    @Override
+    public void postprocessResource(XMLResource resource) {
+    }
+
 }

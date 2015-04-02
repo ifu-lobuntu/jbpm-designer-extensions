@@ -67,7 +67,7 @@ public abstract class AbstractEmfProfile implements IEmfProfile {
 
     public URIHandler getUriHandler() {
         if (uriHandler == null) {
-            uriHandler = new VFSUriHandler(repository);
+            uriHandler = new VFSURIHandler(repository);
         }
         return uriHandler;
     }

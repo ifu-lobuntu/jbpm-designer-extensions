@@ -16,8 +16,8 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @XmlRootElement
 public class Shape implements Stencil, Bounded {
     private String resourceId;
-    @JsonSerialize(as=HashMap.class)
-//    @JsonDeserialize())
+    @JsonSerialize(as = HashMap.class)
+    // @JsonDeserialize())
     private HashMap<String, String> properties;
     private StencilType stencil;
     private List<Shape> childShapes;
@@ -30,10 +30,12 @@ public class Shape implements Stencil, Bounded {
 
     public Shape() {
     }
+
     @Override
     public String toString() {
-        return stencil==null? "" : stencil.toString();
+        return stencil == null ? "" : stencil.toString();
     }
+
     /**
      * @return the parent
      */
@@ -71,13 +73,46 @@ public class Shape implements Stencil, Bounded {
         this.resourceId = resourceId;
     }
 
+    public void deleteShape(Shape shape) {
+        removeShapeReference(shape);
+        if (this.childShapes != null) {
+            this.childShapes.remove(shape);
+            recursivelyDeleteShape(shape);
+        }
+    }
+
+    private void recursivelyDeleteShape(Shape shape) {
+        for (Shape shape2 : this.childShapes) {
+            shape2.deleteShape(shape);
+        }
+    }
+
+    protected void removeShapeReference(Shape shape) {
+        if (outgoing != null) {
+            for (ShapeReference sr : new ArrayList<ShapeReference>(outgoing)) {
+                if (sr.getResourceId().equals(shape.getResourceId())) {
+                    outgoing.remove(sr);
+                }
+            }
+        }
+    }
+
+    public Shape findChildShapeById(String resourceId) {
+        for (Shape shape : this.childShapes) {
+            if (shape.getResourceId().equals(resourceId)) {
+                return shape;
+            }
+        }
+        return null;
+    }
+
     /*
      * Overwritten hash code method, based on resourceId
-     *
+     * 
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {
-        if(this.resourceId==null){
+        if (this.resourceId == null) {
             System.out.println();
         }
         return resourceId.hashCode();
@@ -85,7 +120,7 @@ public class Shape implements Stencil, Bounded {
 
     /*
      * Overwritten equals method, based on resourceId
-     *
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(Object obj) {
@@ -106,9 +141,9 @@ public class Shape implements Stencil, Bounded {
 
     /*
      * returns the StencilId of a shape
-     *
+     * 
      * @see org.jbpm.designer.server.diagram.Stencil#getStencilId()
-     *
+     * 
      * @return String stencilId or null if stencil undefined
      */
     @JsonIgnore
@@ -156,8 +191,8 @@ public class Shape implements Stencil, Bounded {
      * @return the properties
      */
     public HashMap<String, String> getProperties() {
-        if (this.properties == null){
-            this.properties= new HashMap<String, String>();
+        if (this.properties == null) {
+            this.properties = new HashMap<String, String>();
         }
         return properties;
     }
@@ -303,7 +338,7 @@ public class Shape implements Stencil, Bounded {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.jbpm.designer.server.diagram.Bounded#getUpperLeft()
      */
     @JsonIgnore
@@ -315,7 +350,7 @@ public class Shape implements Stencil, Bounded {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.jbpm.designer.server.diagram.Bounded#getLowerRight()
      */
     @JsonIgnore
@@ -346,10 +381,9 @@ public class Shape implements Stencil, Bounded {
         return this.getGlossaryIds().add(id);
     }
 
-
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.jbpm.designer.server.diagram.Bounded#height()
      */
     @JsonIgnore
@@ -359,7 +393,7 @@ public class Shape implements Stencil, Bounded {
 
     /*
      * (non-Javadoc)
-     *
+     * 
      * @see org.jbpm.designer.server.diagram.Bounded#width()
      */
     @JsonIgnore

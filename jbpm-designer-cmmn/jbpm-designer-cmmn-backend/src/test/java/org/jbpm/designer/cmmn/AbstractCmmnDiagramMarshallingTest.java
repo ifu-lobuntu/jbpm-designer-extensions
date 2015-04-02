@@ -58,7 +58,7 @@ public class AbstractCmmnDiagramMarshallingTest {
         profile.setUriHandler(new TestUriHandler());
     }
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile);
-    protected GenericJsonToEmfDiagramMarshaller marshaller = new GenericJsonToEmfDiagramMarshaller(profile);
+    protected GenericJsonToEmfDiagramMarshaller marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
     protected CMMNResourceImpl inputResource;
     protected ResourceSet resourceSet;
     protected CMMNDiagram inputDiagram;

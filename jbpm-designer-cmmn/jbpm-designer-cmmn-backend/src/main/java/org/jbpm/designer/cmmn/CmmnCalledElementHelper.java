@@ -37,13 +37,14 @@ import org.jboss.drools.impl.DroolsPackageImpl;
 import org.jbpm.designer.bpmn2.resource.JBPMBpmn2ResourceFactoryImpl;
 import org.jbpm.designer.extensions.emf.util.AbstractCalledElementHelper;
 import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
-import org.jbpm.designer.extensions.emf.util.VFSUriHandler;
+import org.jbpm.designer.extensions.emf.util.VFSURIHandler;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.UriUtils;
 import org.jbpm.designer.repository.filters.FilterByExtension;
 import org.jbpm.designer.server.service.PathEvent;
 import org.jbpm.designer.util.Base64Backport;
 import org.jbpm.designer.web.profile.IDiagramProfile;
+import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.jbpm.designer.web.server.ServletUtil;
 import org.json.JSONObject;
 import org.omg.cmmn.TCase;
@@ -114,7 +115,7 @@ public class CmmnCalledElementHelper extends AbstractCalledElementHelper {
                     String pid = idMatcher.group(1);
                     String pidcontent = ServletUtil.getProcessImageContent(processContent.getAssetLocation(), pid, profile);
                     if (pid != null && !pid.equals(processId)) {
-                        String id = getURI(processContent);
+                        String id = EMFVFSURIConverter.toPlatformRelativeString(processContent.getUniqueId());
                         processInfo.put(pid + "|" + id, pidcontent != null ? pidcontent : "");
                     }
                 }
@@ -203,7 +204,7 @@ public class CmmnCalledElementHelper extends AbstractCalledElementHelper {
         ResourceSetImpl rst = new ResourceSetImpl();
         rst.getResourceFactoryRegistry().getExtensionToFactoryMap().put("bpmn2", new JBPMBpmn2ResourceFactoryImpl());
         rst.getURIConverter().getURIHandlers().clear();
-        rst.getURIConverter().getURIHandlers().add(new VFSUriHandler(profile.getRepository()));
+        rst.getURIConverter().getURIHandlers().add(new VFSURIHandler(profile.getRepository()));
         Resource resource = rst.getResource(URI.createPlatformResourceURI(path2, true), true);
         if (resource == null || resource.getContents().size() == 0) {
             // TODO Yeah this won't work as planned. Remember to catch all those

@@ -103,8 +103,8 @@ public class ClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
     }
 
     @Override
-    public IDiagramMarshaller createMarshaller() {
-        return new GenericJsonToEmfDiagramMarshaller(this) {
+    public IDiagramMarshaller createMarshaller(URI uri) {
+        return new GenericJsonToEmfDiagramMarshaller(this,uri) {
             // TODO!!! temp hack to generate classes
             @Override
             public XMLResource getResource(String jsonModel, String preProcessingData) throws Exception {

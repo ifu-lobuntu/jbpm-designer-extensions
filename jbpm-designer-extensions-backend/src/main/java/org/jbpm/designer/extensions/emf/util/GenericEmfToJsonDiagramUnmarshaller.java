@@ -64,17 +64,16 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     public String parseModel(String xmlModel, IDiagramProfile profile, String preProcessingData) throws Exception {
-        super.profile.logInfo("=================XMI IN:");
-        super.profile.logInfo(xmlModel);
         try {
-            Diagram json = convert(getResource(xmlModel));
+            XMLResource resource = getResource(xmlModel);
+            // super.writeResource(resource, "==================XML IN");
+            Diagram json = convert(resource);
+            // super.writeDiagram(json, "==================JSON OUT");
             ObjectMapper om = new ObjectMapper();
             om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-            om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
+            om.configure(SerializationConfig.Feature.INDENT_OUTPUT, false);
             String s = om.writeValueAsString(json);
-            super.profile.logInfo("=================JSON OUT:");
-            super.profile.logInfo(s);
             return s;
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,9 +81,11 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         }
     }
 
-    protected Diagram convert(XMLResource resource) {
+    public Diagram convert(XMLResource resource) {
+
         shapeMap = new ShapeMap(resource);
         helper = profile.createEmfToJsonHelper(shapeMap);
+        helper.preprocessResource(resource);
         org.omg.dd.di.Diagram emfDiagram = helper.getDiagram(0);
         EObject modelElement = getModelElement(emfDiagram);
         Diagram result = new Diagram(shapeMap.getId(modelElement), new StencilType(profile.getDiagramStencilId()), new StencilSet(profile.getStencilSetURL(),
@@ -126,14 +127,10 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                     Edge ce = (Edge) de;
                     if (ce.getSource() != null) {
                         shapeMap.getShape(ce.getSource()).addOutgoing(shape);
-                    } else {
-                        System.out.println();
                     }
                     if (ce.getTarget() != null) {
                         Shape targetShape = shapeMap.getShape(ce.getTarget());
                         shape.addOutgoing(targetShape);
-                    } else {
-                        System.out.println();
                     }
                 } else {
                     addLinkedShapes(de, shape);
@@ -148,40 +145,54 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     private void createShapesRecursively(Shape parentShape, DiagramElement parentDiagramElement) {
-
         for (DiagramElement de : parentDiagramElement.getOwnedElement()) {
             EObject me = getModelElement(de);
-            StencilInfo stencil = helper.findStencilByElement(me, de);
-            String resourceId = me == null ? shapeMap.getId(de) : shapeMap.getId(me);
-            Shape shape = new Shape(resourceId, new StencilType(stencil.getStencilId()));
-            if (de instanceof org.omg.dd.di.Shape) {
-                org.omg.dd.di.Shape cs = (org.omg.dd.di.Shape) de;
-                Point upperLeft = new Point(new Double(cs.getBounds().getX()), new Double(cs.getBounds().getY()));
-                Point lowerRight = new Point(upperLeft.getX() + cs.getBounds().getWidth(), upperLeft.getY() + cs.getBounds().getHeight());
-                shape.setBounds(new Bounds(lowerRight, upperLeft));
-            } else if (de instanceof Edge) {
-                Edge ce = (Edge) de;
-                EList<org.omg.dd.dc.Point> waypoints = ce.getWaypoint();
-                if (ce.getSource() != null) {
-                    org.omg.dd.dc.Bounds sourceBounds = ((org.omg.dd.di.Shape) ce.getSource()).getBounds();
-                    shape.getDockers().add(new Point(sourceBounds.getWidth() / 2d, sourceBounds.getHeight() / 2d));
+            if (shouldGenerateJson(de, me)) {
+                StencilInfo stencil = helper.findStencilByElement(me, de);
+                String resourceId = me == null ? shapeMap.getId(de) : shapeMap.getId(me);
+                Shape shape = new Shape(resourceId, new StencilType(stencil.getStencilId()));
+                if (de instanceof org.omg.dd.di.Shape) {
+                    org.omg.dd.di.Shape cs = (org.omg.dd.di.Shape) de;
+                    Point upperLeft = new Point(new Double(cs.getBounds().getX()), new Double(cs.getBounds().getY()));
+                    Point lowerRight = new Point(upperLeft.getX() + cs.getBounds().getWidth(), upperLeft.getY() + cs.getBounds().getHeight());
+                    shape.setBounds(new Bounds(lowerRight, upperLeft));
+                } else if (de instanceof Edge) {
+                    Edge ce = (Edge) de;
+                    EList<org.omg.dd.dc.Point> waypoints = ce.getWaypoint();
+                    if (ce.getSource() != null) {
+                        org.omg.dd.dc.Bounds sourceBounds = ((org.omg.dd.di.Shape) ce.getSource()).getBounds();
+                        shape.getDockers().add(new Point(sourceBounds.getWidth() / 2d, sourceBounds.getHeight() / 2d));
+                    }
+                    for (int i = 1; i < waypoints.size() - 1; i++) {
+                        org.omg.dd.dc.Point waypoint = waypoints.get(i);
+                        shape.getDockers().add(new Point((double) waypoint.getX(), (double) waypoint.getY()));
+                    }
+                    if (ce.getTarget() != null) {
+                        org.omg.dd.dc.Bounds targetBounds = ((org.omg.dd.di.Shape) ce.getTarget()).getBounds();
+                        shape.getDockers().add(new Point(targetBounds.getWidth() / 2d, targetBounds.getHeight() / 2d));
+                    }
                 }
-                for (int i = 1; i < waypoints.size() - 1; i++) {
-                    org.omg.dd.dc.Point waypoint = waypoints.get(i);
-                    shape.getDockers().add(new Point((double) waypoint.getX(), (double) waypoint.getY()));
-                }
-                if (ce.getTarget() != null) {
-                    org.omg.dd.dc.Bounds targetBounds = ((org.omg.dd.di.Shape) ce.getTarget()).getBounds();
-                    shape.getDockers().add(new Point(targetBounds.getWidth() / 2d, targetBounds.getHeight() / 2d));
-                }
+                setProperties(de, me, shape);
+                shape.getProperties().put("diagramelementid", shapeMap.getId(de));
+                parentShape.getChildShapes().add(shape);
+                shapeMap.linkElements(de, shape);
+                helper.linkElements(de, shape);
+                createShapesRecursively(shape, de);
             }
-            setProperties(de, me, shape);
-            shape.getProperties().put("diagramelementid", shapeMap.getId(de));
-            parentShape.getChildShapes().add(shape);
-            shapeMap.linkElements(de, shape);
-            helper.linkElements(de, shape);
-            createShapesRecursively(shape, de);
         }
+    }
+
+    protected boolean shouldGenerateJson(DiagramElement de, EObject me) {
+        boolean generateJson = true;
+        if (!shouldHaveShape(me)) {
+            generateJson = false;
+        } else if (de instanceof Edge) {
+            Edge edge = (Edge) de;
+            if (!(shouldHaveShape(getModelElement(edge.getSource())) || shouldHaveShape(getModelElement(edge.getTarget())))) {
+                generateJson = false;
+            }
+        }
+        return generateJson;
     }
 
     private void setProperties(DiagramElement diagramElement, EObject mee, Shape shape) {
@@ -219,7 +230,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         for (int i = 0; i < split.length; i++) {
             String featureName = split[i];
             EStructuralFeature f = getStructuralFeature(currentTarget, featureName);
-            if(f==null){
+            if (f == null) {
                 throw new IllegalStateException("The type " + currentTarget.getClass().getSimpleName() + " does not have feature '" + featureName + "'");
             }
             val = getValue(currentTarget, f);
@@ -309,16 +320,18 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     private XMLResource getResource(String xmlModel) throws UnsupportedEncodingException, IOException {
         ResourceSet resourceSet = new ResourceSetImpl();
         profile.prepareResourceSet(resourceSet);
+        resourceSet.getLoadOptions().putAll(buildDefaultResourceOptions());
+
         XMLResource resource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
+        resource.getDefaultSaveOptions().putAll(buildDefaultResourceOptions());
+        resource.getDefaultLoadOptions().putAll(buildDefaultResourceOptions());
         resource.setEncoding("UTF-8");
         Map<String, Object> options = buildDefaultResourceOptions();
         InputStream is = new ByteArrayInputStream(xmlModel.getBytes("UTF-8"));
         resource.load(is, options);
-        // EcoreUtil.resolveAll(resource);
-        // EcoreUtil.resolveAll(resourceSet);
+        EcoreUtil.resolveAll(resourceSet);
         EList<Resource> resources = resourceSet.getResources();
         for (Resource resource2 : resources) {
-
             if (!resource2.getErrors().isEmpty()) {
                 String errorMessages = "";
                 for (Resource.Diagnostic error : resource2.getErrors()) {
@@ -327,7 +340,6 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 }
                 profile.fire(errorMessages, NotificationEvent.NotificationType.ERROR);
             }
-
             if (!resource2.getWarnings().isEmpty()) {
                 String warningMessages = "";
                 for (Resource.Diagnostic warning : resource2.getWarnings()) {
@@ -335,9 +347,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 }
                 profile.fire(warningMessages, NotificationEvent.NotificationType.WARNING);
             }
-
             EList<Diagnostic> warnings = resource2.getWarnings();
-
             if (warnings != null && !warnings.isEmpty()) {
                 for (Diagnostic diagnostic : warnings) {
                     profile.logInfo("Warning: " + diagnostic.getMessage());
@@ -345,16 +355,6 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             }
         }
         return resource;
-    }
-
-    public Map<String, Object> buildDefaultResourceOptions() {
-        Map<String, Object> options = new HashMap<String, Object>();
-        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
-        options.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-        options.put(XMLResource.OPTION_DISABLE_NOTIFY, true);
-        options.put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, true);
-        options.put(XMLResource.OPTION_PROCESS_DANGLING_HREF, XMLResource.OPTION_PROCESS_DANGLING_HREF_RECORD);
-        return options;
     }
 
 }

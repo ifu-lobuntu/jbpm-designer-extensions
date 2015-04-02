@@ -322,4 +322,7 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     public String convertToString(LinkedProperty property, Object val) {
         return null;
     }
+    @Override
+    public void preprocessResource(XMLResource resource) {
+    }
 }

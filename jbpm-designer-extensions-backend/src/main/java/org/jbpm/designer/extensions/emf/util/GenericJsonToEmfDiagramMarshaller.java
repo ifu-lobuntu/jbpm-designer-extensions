@@ -2,18 +2,19 @@ package org.jbpm.designer.extensions.emf.util;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
 //import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
 //import org.jbpm.cmmn.dd.cmmndi.CMMNLabel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.internal.QName;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
@@ -46,9 +46,11 @@ import org.omg.dd.di.Edge;
 public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller implements IDiagramMarshaller {
     private ShapeMap shapeMap;
     JsonToEmfHelper helper;
+    private URI uri;
 
-    public GenericJsonToEmfDiagramMarshaller(IEmfDiagramProfile cmmnProfileImpl) {
-        super(cmmnProfileImpl);
+    public GenericJsonToEmfDiagramMarshaller(IEmfDiagramProfile emfProfile, URI uri) {
+        super(emfProfile);
+        this.uri = uri;
     }
 
     @Override
@@ -70,12 +72,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
             Diagram d = om.readValue(jsonModel, Diagram.class);
-            writeDiagram(d);
+            // writeDiagram(d, "======JSON IN");
             XMLResource resource = convert(d);
-            StringWriter writer = new StringWriter();
-            resource.save(writer, null);
-            profile.logInfo("=================XMI OUT:");
-            profile.logInfo(writer.toString());
+            // writeResource(resource, "======XML OUT");
             return resource;
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,21 +97,10 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         }
     }
 
-    private void writeDiagram(Diagram d) throws JsonGenerationException, JsonMappingException, IOException {
-        profile.logInfo("=================JSON IN:");
-        ObjectMapper om = new ObjectMapper();
-        om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-        om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
-        String s = om.writeValueAsString(d);
-        profile.logInfo(s);
-    }
-
-    private XMLResource convert(Diagram json) throws IOException {
+    public XMLResource convert(Diagram json) throws IOException {
         ResourceSet resourceSet = new ResourceSetImpl();
         profile.prepareResourceSet(resourceSet);
-        XMLResource result = (XMLResource) resourceSet.createResource(URI.createURI(profile.determineURI()));
-        result.setEncoding("UTF-8");
+        XMLResource result = constructResource(resourceSet);
         this.shapeMap = new ShapeMap(result);
         this.helper = profile.createJsonToEmfHelper(shapeMap);
         org.omg.dd.di.Diagram emfDiagram = helper.prepareEmfDiagram(json, result);
@@ -124,7 +112,72 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         linkEdgesRecursively(emfDiagram, json);
         writeModelBindingsRecursively(emfDiagram, json, ls);
         linkAndRefineEmfElementsRecursively(json);
+        removeFromContainer(collectOrphanedEdges(emfDiagram));
+        removeFromContainer(collectOrphanedShapes(emfDiagram));
+        result.setModified(true);
+        this.helper.postprocessResource(result);
+        result.getDefaultLoadOptions().putAll(buildDefaultResourceOptions());
+        result.getDefaultSaveOptions().putAll(buildDefaultResourceOptions());
         return result;
+    }
+
+    protected XMLResource constructResource(ResourceSet resourceSet) {
+        XMLResource result = null;
+        if (profile.mergeOnUpdate()) {
+            result  =(XMLResource) resourceSet.getResource(uri, true);
+        } else {
+            result = (XMLResource) resourceSet.createResource(uri);
+        }
+        result.setEncoding("UTF-8");
+        return result;
+    }
+
+    private Set<DiagramElement> collectOrphanedEdges(org.omg.dd.di.Diagram emfDiagram) {
+        Set<DiagramElement> edgesToRemove = new HashSet<DiagramElement>();
+        TreeIterator<EObject> eAllContents = emfDiagram.eAllContents();
+        while (eAllContents.hasNext()) {
+            EObject next = eAllContents.next();
+            if (next instanceof Edge) {
+                Edge edge = (Edge) next;
+                if (!(shouldHaveShape(getModelElement(edge.getSource())) || shouldHaveShape(getModelElement(edge.getTarget())) || shouldHaveShape(getModelElement(edge)))) {
+                    edgesToRemove.add((Edge) next);
+                }
+            } else if (next instanceof BoundariedShape) {
+                Iterator<org.omg.dd.di.Shape> iterator = ((BoundariedShape) next).getBoundaryShapes().iterator();
+                while (iterator.hasNext()) {
+                    if (!shouldHaveShape(iterator.next())) {
+                        edgesToRemove.add((Edge) next);
+                    }
+                }
+            }
+        }
+        return edgesToRemove;
+    }
+
+    private void removeFromContainer(Set<DiagramElement> des) {
+        for (DiagramElement de : des) {
+            if (de.eContainingFeature().isMany()) {
+                List list = (List) de.eContainer().eGet(de.eContainingFeature());
+                list.remove(de);
+            } else {
+                de.eContainer().eSet(de.eContainingFeature(), null);
+            }
+        }
+    }
+
+    private Set<DiagramElement> collectOrphanedShapes(org.omg.dd.di.Diagram emfDiagram) {
+        Set<DiagramElement> orphans = new HashSet<DiagramElement>();
+        TreeIterator<EObject> eAllContents = emfDiagram.eAllContents();
+        while (eAllContents.hasNext()) {
+            EObject next = eAllContents.next();
+            if (next instanceof org.omg.dd.di.Shape) {
+                org.omg.dd.di.Shape shape = (org.omg.dd.di.Shape) next;
+                if (!shouldHaveShape(getModelElement(shape))) {
+                    orphans.add(shape);
+                }
+            }
+        }
+        return orphans;
     }
 
     private void createEmfElementsFromShapes(DiagramElement parentDiagramElement, Shape parentShape) {
@@ -317,9 +370,6 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         if (a.isMany()) {
             Object val = getValue(currentTarget, a);
             EList list = (EList) val;
-            if(value==null){
-                System.out.println();
-            }
             list.add(value);
         } else {
             setValueOn(currentTarget, a, value);

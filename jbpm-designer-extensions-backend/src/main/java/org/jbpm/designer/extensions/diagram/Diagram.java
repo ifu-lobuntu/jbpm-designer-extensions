@@ -12,8 +12,10 @@ public class Diagram extends Shape {
     StencilSet stencilset;
     ArrayList<String> ssextensions;
     ArrayList<Shape> shapes;
+
     public Diagram() {
     }
+
     /**
      * Normal shape constructor with additional stencilset
      *
@@ -35,7 +37,6 @@ public class Diagram extends Shape {
      */
     public Diagram(String resourceId, StencilType stencil) {
         super(resourceId, stencil);
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -43,7 +44,24 @@ public class Diagram extends Shape {
      */
     public Diagram(String resourceId) {
         super(resourceId);
-        // TODO Auto-generated constructor stub
+    }
+
+    public Shape findShapeById(String resourceId) {
+        if (this.shapes != null) {
+            for (Shape shape : this.shapes) {
+                if (shape.getResourceId().equals(resourceId)) {
+                    return shape;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void deleteShape(Shape shape) {
+        if (this.shapes != null) {
+            this.shapes.remove(shape);
+        }
+        super.deleteShape(shape);
     }
 
     /**

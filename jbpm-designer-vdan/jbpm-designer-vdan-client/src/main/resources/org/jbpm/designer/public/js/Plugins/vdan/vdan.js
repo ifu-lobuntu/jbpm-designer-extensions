@@ -20,24 +20,7 @@ ORYX.Plugins.VDAN = Clazz.extend(
 	 */
 	construct: function(facade) {
 		this.facade = facade;
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_RESIZE_END, this.layoutRoleLanesOnLoad.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DROP_SHAPE, this.layoutRoleLanesOnLoad.bind(this));
 		console.log("Initializing VDAN");
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LAYOUT , this.testEvent.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAG_TRACKER_DRAG, this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAGDOCKER_MOVE_FINISHED , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_CANVAS_RESIZE_SHAPES_MOVED , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAG_TRACKER_RESIZE , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_RESIZE_END , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_RESIZE_END , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_RESIZE_END , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.testEvent.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DOCKERDRAG , this.testEvent.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAG_TRACKER_DRAG , this.testEvent.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DROP_SHAPE , this.testEvent.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_AUTOLAYOUT_LAYOUT , this.testEvent.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAGDROP_END , this.testEvent.bind(this));
-//		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DRAGDROP_START, this.testEvent.bind(this));
 		this.facade.registerOnEvent('layout.vdml.role_lane', this.layoutRoleLanesOnLoad.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.layoutRoleLanesOnLoad.bind(this));
@@ -85,26 +68,6 @@ ORYX.Plugins.VDAN = Clazz.extend(
 			});
 		}
 	},
-	setCurve:function(uiObject){
-		if(uiObject._paths && uiObject.getStencil().idWithoutNs()=="ResourceUse"){
-			console.log(uiObject);
-			uiObject._paths.each(function (path){
-				var from = uiObject.dockers[0].bounds.center();
-				var to = uiObject.dockers[uiObject.dockers.length-1].bounds.center();
-				var start="M " + from.x + " " + from.y; 
-				var end=" " + to.x + " " + to.y; 
-				var curvePoint="";
-				if(uiObject.dockers.length%2==1){
-					var midDocker = uiObject.dockers[(uiObject.dockers.length-1)/2].bounds.center();
-					curvePoint= " Q " +  midDocker.x + " " + midDocker.y;
-				}else{
-					curvePoint = " Q " +  ((from.x + to.x)/2) + " " + (((from.y + to.y)/2) + 30);
-				}
-				console.log(start+ curvePoint + end);
-				path.setAttributeNS(null, "d", start+ curvePoint + end);
-			});
-		}
-	},
 	handleMouseOver : function (event,uiObject){
 		this.handleMouse(uiObject,"inherit");
 	},
@@ -112,13 +75,6 @@ ORYX.Plugins.VDAN = Clazz.extend(
 		this.handleMouse(uiObject,"none");
 	},
 	handleLayout: function (event,uiObject){
-	},
-	testEvent: function (event,uiObject){
-		console.log(event.type);
-		this.facade.getCanvas().getChildEdges(true, function(shape){
-				console.log(shape);
-				this.setCurve(shape);
-		}.bind(this));
 	}
 });
 

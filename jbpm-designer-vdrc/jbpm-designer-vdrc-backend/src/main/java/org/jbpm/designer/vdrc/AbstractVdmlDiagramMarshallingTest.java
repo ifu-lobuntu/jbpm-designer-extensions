@@ -1,77 +1,99 @@
-package org.jbpm.designer.vdpe;
+package org.jbpm.designer.vdrc;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
+import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
-import org.jbpm.designer.vdpe.VdmlPropositionExchangeProfileImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.junit.Before;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.Color;
 import org.omg.dd.dc.DCFactory;
 import org.omg.dd.dc.Point;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Style;
+import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.PortContainer;
+import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
-public class AbstractVdmlDiagramMarshallingTest {
-
-    protected XMLResource inputResource;
+public abstract class AbstractVdmlDiagramMarshallingTest {
+    protected HashMap<Object, Object> emptyOptions = new HashMap<Object, Object>();
+    String roleCollaborationFile;;
+    protected XMLResource collaborationResource;
     protected ResourceSet resourceSet;
     protected VDMLDiagram inputDiagram;
     protected ValueDeliveryModel valueDeliveryModel;
     protected Map<VdmlElement, VDMLDiagramElement> elementDiagramElementMap = new HashMap<VdmlElement, VDMLDiagramElement>();
     public CapabilityMethod capabilityMethod;
-    private AbstractEmfDiagramProfile profile;
-    private GenericEmfToJsonDiagramUnmarshaller unmarshaller;
-    private GenericJsonToEmfDiagramMarshaller marshaller;
+    protected AbstractEmfDiagramProfile profile;
+    protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
+    protected GenericJsonToEmfDiagramMarshaller marshaller;
 
     public AbstractVdmlDiagramMarshallingTest() {
         super();
     }
 
-    @Before
+    protected void saveCollaborationResource() throws IOException {
+        TestUriHandler tuh = new TestUriHandler();
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(roleCollaborationFile, true), emptyOptions);
+        collaborationResource.save(os, emptyOptions);
+    }
+
+    protected abstract String getDiagramFileName();
+
+    protected abstract String getClientProjectName();
+
+    protected abstract AbstractEmfDiagramProfile createProfile();
+
     public void setup() throws Exception {
         profile = createProfile();
+        this.roleCollaborationFile = "/" + getClientProjectName() + "/target/test.vdrc";
         profile.setUriHandler(new TestUriHandler());
         unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
-        marshaller = new GenericJsonToEmfDiagramMarshaller(profile);
+        marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI(getDiagramFileName(), true));
         resourceSet = new ResourceSetImpl();
+        // To make sure it is usable from other profiles
+        new VdmlRoleCollaborationProfileImpl().prepareResourceSet(resourceSet);
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
         profile.prepareResourceSet(resourceSet);
-        inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy2." + profile.getSerializedModelExtension()));
+        collaborationResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(roleCollaborationFile, true));
         valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        inputResource.getContents().add(valueDeliveryModel);
-        valueDeliveryModel.getDiagram().add(inputDiagram);
-        profile.loadLinkedStencilSet("../jbpm-designer-vdpe-client/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
-        profile.initializeLocalPlugins("../jbpm-designer-vdpe-client/src/main/resources/org/jbpm/designer/public/profiles/vdpe.xml");
+        inputDiagram = createDiagram();
+        collaborationResource.getContents().add(valueDeliveryModel);
+        profile.loadLinkedStencilSet("../" + getClientProjectName() + "/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
+        profile.initializeLocalPlugins("../" + getClientProjectName() + "/src/main/resources/org/jbpm/designer/public/profiles/"
+                + profile.getProfileDefinitionFileName());
         this.capabilityMethod = VDMLFactory.eINSTANCE.createCapabilityMethod();
         inputDiagram.setVdmlElement(capabilityMethod);
         capabilityMethod.setName("MyCapability");
@@ -79,21 +101,49 @@ public class AbstractVdmlDiagramMarshallingTest {
         elementDiagramElementMap.put(capabilityMethod, inputDiagram);
     }
 
-    protected AbstractEmfDiagramProfile createProfile() {
-        return new VdmlPropositionExchangeProfileImpl();
+    protected void assertDiagramElementPresent(VdmlElement ve, XMLResource r) {
+        TreeIterator<EObject> allContents = r.getAllContents();
+        while (allContents.hasNext()) {
+            EObject eObject = allContents.next();
+            if (eObject instanceof VDMLDiagramElement && ((VDMLDiagramElement) eObject).getVdmlElement().getId().equals(ve.getId())) {
+                return;
+            }
+        }
+        throw new AssertionError("Could not find diagramElement for " + ve.getName());
     }
 
-    protected void assertOutputValid() throws IOException, Exception {
-        String xmlString = buildXmlString(inputResource);
-        String json = unmarshaller.parseModel(xmlString, profile, "");
-        XMLResource outputResource = marshaller.getResource(json, "");
-        new GenericEcoreComparator(inputResource, outputResource).validate();
+    protected Activity addActivity(Role role1, boolean addShape) {
+        Activity act = VDMLFactory.eINSTANCE.createActivity();
+        act.setName(role1.getName() + "Activity");
+        act.setPerformingRole(role1);
+        capabilityMethod.getActivity().add(act);
+        if (addShape) {
+            addShapeFor(role1, role1);
+        }
+        return act;
+    }
+
+    protected Role addRole(String value, boolean addShape) {
+        Role role1 = VDMLFactory.eINSTANCE.createRole();
+        role1.setName(value);
+        role1.setDescription("My Role's Description");
+        capabilityMethod.getCollaborationRole().add(role1);
+        if (addShape) {
+            addShapeFor(capabilityMethod, role1);
+        }
+        return role1;
+    }
+
+    protected VDMLDiagram createDiagram() {
+        inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
+        valueDeliveryModel.getDiagram().add(inputDiagram);
+        return inputDiagram;
     }
 
     protected String buildXmlString(XMLResource resource) throws IOException {
         StringWriter writer = new StringWriter();
         HashMap<String, Object> options = new HashMap<String, Object>();
-        resource.save(writer, options);
+        resource.save(writer, GenericJsonToEmfDiagramMarshaller.buildDefaultResourceOptions());
         String string = writer.toString();
         return string;
     }
@@ -171,4 +221,16 @@ public class AbstractVdmlDiagramMarshallingTest {
         }
     }
 
+    protected void print(Diagram json) throws Exception {
+        ObjectMapper om = new ObjectMapper();
+        om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+        om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
+        String s = om.writeValueAsString(json);
+        System.out.println(s);
+    }
+
+    protected void print(XMLResource resource) throws Exception {
+        resource.save(System.out, GenericJsonToEmfDiagramMarshaller.buildDefaultResourceOptions());
+    }
 }

@@ -174,4 +174,8 @@ public class VdmlActivityNetworkJsonToEmfHelper extends VDMLSwitch<Object> imple
         return null;
     }
 
+    @Override
+    public void postprocessResource(XMLResource resource) {
+    }
+
 }

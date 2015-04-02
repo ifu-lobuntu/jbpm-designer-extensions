@@ -10,6 +10,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
@@ -132,5 +133,18 @@ public class ShapeMap {
             }
         }
         return result;
+    }
+
+    public <T extends EObject> T findEObjectById(String resourceId) {
+        EObject r = this.resource.getEObject(resourceId);
+        if(r==null){
+            for (Resource resource : this.resource.getResourceSet().getResources()) {
+                r=resource.getEObject(resourceId);
+                if(r!=null){
+                    break;
+                }
+            }
+        }
+        return (T) r;
     }
 }

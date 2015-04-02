@@ -61,7 +61,7 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
 
     @PostConstruct
     private void setupExtensions() {
-        this.extensions.add(Pair.newPair(CommonConstants.INSTANCE.ItemPathSubheading(), collaborationsListBox));
+        this.extensions.add(Pair.newPair("Collaborations", collaborationsListBox));
     }
 
     @Override

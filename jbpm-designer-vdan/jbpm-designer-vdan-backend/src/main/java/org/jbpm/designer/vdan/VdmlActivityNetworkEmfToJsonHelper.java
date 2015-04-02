@@ -1,6 +1,7 @@
 package org.jbpm.designer.vdan;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Point;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
@@ -112,5 +113,10 @@ public class VdmlActivityNetworkEmfToJsonHelper extends VDMLSwitch<Object> imple
     @Override
     public String convertToString(LinkedProperty property, Object val) {
         return null;
+    }
+
+    @Override
+    public void preprocessResource(XMLResource resource) {
+        //TODO add lanes for Roles not yet in Diagram, and Activity shapes for their performedActivity 
     }
 }

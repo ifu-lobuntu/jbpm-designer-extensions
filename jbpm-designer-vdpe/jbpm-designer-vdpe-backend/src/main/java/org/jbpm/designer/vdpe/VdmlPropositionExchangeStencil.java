@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Role;
@@ -18,7 +19,7 @@ import org.omg.vdml.ValueProposition;
 import org.omg.vdml.VdmlElement;
 
 public enum VdmlPropositionExchangeStencil implements StencilInfo {
-    VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlPropositionExchangeDiagram"),
+    VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "PropositionExchangeDiagram"),
     ROLE(VDMLPackage.eINSTANCE.getRole(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Role"),
     VALUE_PROPOSITION(VDMLPackage.eINSTANCE.getValueProposition(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ValueProposition"),
     VALUE_PROPOSITION_COMPONENT(VDMLPackage.eINSTANCE.getValuePropositionComponent(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "ValuePropositionComponent"),
@@ -54,12 +55,12 @@ public enum VdmlPropositionExchangeStencil implements StencilInfo {
         }
     }
 
-    public static DiagramElement createDiagramElement(String stencilId) {
+    public static VDMLDiagramElement createDiagramElement(String stencilId) {
         VdmlPropositionExchangeStencil stencil = findStencilById(stencilId);
         if (stencil.shapeType == null) {
             return null;
         }
-        return (DiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
+        return (VDMLDiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
     public static VdmlElement createElement(String stencilId) {

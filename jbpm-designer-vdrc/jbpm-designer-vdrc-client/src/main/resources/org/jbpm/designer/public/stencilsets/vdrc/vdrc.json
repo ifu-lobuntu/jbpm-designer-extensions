@@ -1,7 +1,7 @@
 {
-	"title" : "VDML Proposition Exchange",
-	"namespace" : "http://b3mn.org/stencilset/emptyset.0#",
-	"description" : "This is an empty stencil set to start new diagrams with",
+	"title" : "VDML Role Collaboration",
+	"namespace" : "http://b3mn.org/stencilset/vdrc#",
+	"description" : "This the stencilset specification for Role Collaboration Diagrams in VDML",
 	"edgeTargetBinding" : "targetShape",
 	"modelElementBinding" : "vdmlElement",
 	"edgeSourceBinding" : "sourceShape",
@@ -107,11 +107,12 @@
 							"readonly" : false,
 							"optional" : false,
 							"refToView" : [
-									"edge", "fill_border", "bg_frame", "frame", "border"
+									"edge", "fill_border", "bg_frame", "frame", "border","path_intangible", "path_tangible"
 							],
 							"fill" : false,
 							"stroke" : true
-						}, {
+						}, 
+						{
 							"id" : "fontcolor",
 							"type" : "Color",
 							"title" : "Font Color",
@@ -145,47 +146,58 @@
 										"id" : "c1",
 										"title" : "8",
 										"value" : "8"
-									}, {
+									}, 
+									{
 										"id" : "c2",
 										"title" : "9",
 										"value" : "9"
-									}, {
+									}, 
+									{
 										"id" : "c3",
 										"title" : "10",
 										"value" : "10"
-									}, {
+									}, 
+									{
 										"id" : "c4",
 										"title" : "11",
 										"value" : "11"
-									}, {
+									}, 
+									{
 										"id" : "c5",
 										"title" : "12",
 										"value" : "12"
-									}, {
+									}, 
+									{
 										"id" : "c6",
 										"title" : "14",
 										"value" : "14"
-									}, {
+									}, 
+									{
 										"id" : "c7",
 										"title" : "18",
 										"value" : "18"
-									}, {
+									}, 
+									{
 										"id" : "c8",
 										"title" : "20",
 										"value" : "20"
-									}, {
+									}, 
+									{
 										"id" : "c9",
 										"title" : "24",
 										"value" : "24"
-									}, {
+									}, 
+									{
 										"id" : "c10",
 										"title" : "36",
 										"value" : "36"
-									}, {
+									}, 
+									{
 										"id" : "c11",
 										"title" : "48",
 										"value" : "48"
-									}, {
+									}, 
+									{
 										"id" : "c12",
 										"title" : "72",
 										"value" : "72"
@@ -193,17 +205,41 @@
 							]
 						}
 				]
-			}
+			},
+	        {
+	        	"name" : "deliverableFlow",
+	        	"properties": [
+					{
+						"id" : "isTangible",
+						"type" : "Boolean",
+						"title" : "Is Tangible",
+						"value" : "true",
+						"description" : "Tangible DeliverableFlows represent contractually binding flows",
+						"readonly" : false,
+						"optional" : false		
+					},
+					{
+						"id" : "businessItem",
+						"type" : "String",
+						"title" : "Business Item",
+						"value" : "",
+						"description" : "The name of the Business Item conveyed by this flow",
+						"readonly" : false,
+						"optional" : false
+					}
+				]
+	        }
+					
 	],
 	"stencils" : [
 			{
 				"type" : "node",
-				"id" : "VdmlPropositionExchangeDiagram",
-				"title" : "VdmlPropositionExchangeDiagram",
+				"id" : "RoleCollaborationDiagram",
+				"title" : "RoleCollaborationDiagram",
 				"groups" : [
 					"Diagram"
 				],
-				"description" : "A Value Proposition Exchange  Diagram.",
+				"description" : "A Role Collaboration Diagram.",
 				"view" : "diagram.svg",
 				"icon" : "diagram.png",
 				"mayBeRoot" : true,
@@ -227,12 +263,13 @@
 				"type" : "node",
 				"id" : "Role",
 				"title" : "Role",
+				"childBinding":"collaborationRole",
 				"position" : 1,
 				"groups" : [
 					"Elements"
 				],
 				"roles" : [
-					"role"
+					"role","existingRole"
 				],
 				"description" : "A Role",
 				"view" : "role.svg",
@@ -244,207 +281,135 @@
 						"localStyle"
 				],
 				"properties" : [
-				]
-			},
-			{
-				"type" : "node",
-				"id" : "ValueProposition",
-				"title" : "Value Proposition",
-				"position" : 2,
-				"groups" : [
-					"Elements"
-				],
-				"roles" : [
-					"valueProposition"
-				],
-				"description" : "A Value Proposition",
-				"view" : "value_proposition.svg",
-				"icon" : "value_proposition.png",
-				"layout" : [
-				],
-			    "propertyPackages" : [
-						"elementBase","localStyle","expandable"
-				],
-				"properties" : [
-				                
-				]
-			},
-			{
-				"type" : "node",
-				"id" : "ValuePropositionComponent",
-				"title" : "Value Proposition Component",
-				"position" : 2,
-				"groups" : [
-					"Elements"
-				],
-				"roles" : [
-					"valueProposition"
-				],
-				"description" : "A Value Proposition Component",
-				"view" : "value_proposition_component.svg",
-				"icon" : "value_proposition_component.png",
-				"layout" : [
-			        {
-			        	"type" : "layout.collapsible"
-			        },    
 					{
-						"type" : "layout.list"
-					}
-				],
-			    "propertyPackages" : [
-						"localStyle"
-				],
-				"properties" : [
-					{
-						"id" : "name",
-						"type" : "String",
-						"title" : "Name",
-						"value" : "PropositionComponent1",
-						"description" : "The descriptive name of the Value Proposition.",
-						"readonly" : false,
-						"optional" : true,
-						"length" : "",
-						"wrapLines" : false,
-						"refToView" : [
-							"text_name"
-						]
-					},
-					{
-						"id" : "description",
+						"id" : "performedActivities",
 						"type" : "Text",
-						"title" : "Description",
+						"title" : "Activities",
 						"value" : "",
-						"description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
-						"readonly" : false,
-						"optional" : true,
-						"length" : "",
-						"wrapLines" : true,
-						"popular" : true
-					},
-					{
-						"id" : "diagramElementId",
-						"type" : "String",
-						"title" : "DiagramElementId",
-						"value" : "",
-						"description" : "This is the unique id of the diagram element used to display the CMMN Element.",
-						"readonly" : true,
-						"optional" : true,
-						"length" : "",
-						"wrapLines" : true,
-						"hidden" : true
+						"description" : "A comma separated list of Activities performed by this Role",
+						"readonly" : true
 					}
 				]
 			},
 			{
 				"type" : "edge",
-				"id" : "ProvidedProposition",
-				"title" : "ProvidedProposition",
+				"id" : "NewDeliverableFlow",
+				"title" : "NewDeliverableFlow",
+				"childBinding" : "flow",
 				"position" : 2,
+				"curved": true,
 				"groups" : [
 					"Elements"
 				],
 				"roles" : [
-					"providedProposition"
+					"newDeliverableFlow"
 				],
-				"description" : "A Providing of a Value Proposition",
-				"view" : "provided_proposition.svg",
-				"icon" : "provided_proposition.png",
+				"description" : "A New DeliverableFlow",
+				"view" : "deliverable_flow.svg",
+				"icon" : "deliverable_flow.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase",
-						"localStyle"
+						"elementBase","localStyle","deliverableFlow"
 				],
 				"properties" : [
+						{
+							"id" : "providingActivityName",
+							"type" : "activity",
+							"title" : "From Activity",
+							"value" : "",
+							"description" : "The Activity in the Collaboration that provides this deliverable",
+							"readonly" : false
+						},
+						{
+							"id" : "receivingActivityName",
+							"type" : "activity",
+							"title" : "To Activity",
+							"value" : "",
+							"description" : "The Activity in the Collaboration that receives this deliverable",
+							"readonly" : false
+						}
 				]
 			},
 			{
 				"type" : "edge",
-				"id" : "Recipient",
-				"title" : "Recipient",
+				"id" : "ExistingDeliverableFlow",
+				"title" : "ExistingDeliverableFlow",
+				"hide" : true,
+				"curved": true,
+				"childBinding" : "flow",
 				"position" : 2,
 				"groups" : [
 					"Elements"
 				],
 				"roles" : [
-					"recipient"
+					"existingDeliverableFlow"
 				],
-				"description" : "A Providing of a Value Proposition",
-				"view" : "recipient.svg",
-				"icon" : "recipient.png",
+				"description" : "An Existing DeliverableFlow",
+				"view" : "deliverable_flow.svg",
+				"icon" : "deliverable_flow.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase",
-						"localStyle"
+						"elementBase","localStyle","deliverableFlow"
 				],
 				"properties" : [
+					{
+						"id" : "providingActivityName",
+						"type" : "String",
+						"title" : "From Activity",
+						"value" : "",
+						"description" : "The Activity in the Collaboration that provides this deliverable",
+						"readonly" : true
+					},
+					{
+						"id" : "receivingActivityName",
+						"type" : "String",
+						"title" : "To Activity",
+						"value" : "",
+						"description" : "The Activity in the Collaboration that receives this deliverable",
+						"readonly" : true
+					}
 				]
 			}
 	],
 
 	"rules" : {
 		"cardinalityRules" : [
-		      				{
-		    					"role" : "valueProposition",
-		    					"incomingEdges" : [
-		    							{
-		    								"role" : "providedProposition",
-		    								"maximum" : 1
-		    							}
-		    					],
-		    					"outgoingEdges" : [
-		    							{
-		    								"role" : "recipient",
-		    								"maximum" : 1
-		    							}
-		    					]
-		    				}
 		],
 		"connectionRules" : [
 		     				{
-		     					"role" : "providedProposition",
+		     					"role" : "newDeliverableFlow",
 		     					"connects" : [
 		     							{
 		     								"from" : "role",
-		     								"to" : [
-		     									"valueProposition"
-		     								]
-		     							}
-		     					]
-		     				},
-		     				{
-		     					"role" : "recipient",
-		     					"connects" : [
-		     							{
-		     								"from" : "valueProposition",
 		     								"to" : [
 		     									"role"
 		     								]
 		     							}
 		     					]
-		     				}
-
+		     				},
+		     				{
+		     					"role" : "existingDeliverableFlow",
+		     					"connects" : [
+		     							{
+		     								"from" : "existingRole",
+		     								"to" : [
+		     									"existingRole"
+		     								]
+		     							}
+		     					]
+		     				}		
 		],
 		"containmentRules" : [
 				{
 					"role" : "diagram",
 					"contains" : [
-						"role","valueProposition"
-					]
-				},
-				{
-					"role" : "valueProposition",
-					"contains" : [
-						"valuePropositionComponent"
+						"role"
 					]
 				}
 		],
 		"morphingRules" : [
-  			{
-				"role": "valueProposition",
-				"baseMorphs": ["valueProposition"]
-    		},
   			{
 				"role": "role",
 				"baseMorphs": ["role"]

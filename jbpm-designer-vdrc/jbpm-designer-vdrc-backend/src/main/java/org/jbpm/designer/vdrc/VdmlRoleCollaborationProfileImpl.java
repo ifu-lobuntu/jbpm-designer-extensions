@@ -6,21 +6,19 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.emf.util.VFSURIHandler;
 import org.jbpm.designer.util.Utils;
-import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
-import org.omg.vdml.CapabilityMethod;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.util.VDMLResourceFactoryImpl;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
@@ -32,9 +30,6 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
 public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdrc/vdrc.json";
-    @Inject
-    @RequestScoped
-    Instance<HttpServletRequest> request;
 
     public VdmlRoleCollaborationProfileImpl() {
     }
@@ -65,6 +60,10 @@ public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile 
     public Factory getResourceFactory() {
         return new VDMLResourceFactoryImpl();
     }
+    @Override
+    public boolean mergeOnUpdate() {
+        return true;
+    }
 
     @Override
     public JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource) {
@@ -83,7 +82,7 @@ public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile 
 
     @Override
     public String getDiagramStencilId() {
-        return "VdmlPropositionExchangeDiagram";
+        return "RoleCollaborationDiagram";
     }
 
     @Override
@@ -93,19 +92,6 @@ public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile 
 
     @Override
     protected void populateModelStub(XMLResource rs) {
-        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
-        vdm.getCollaboration().add(cm);
-        cm.setId("${processid}");
-        cm.setName("${processid}");
-        rs.getContents().add(vdm);
-        VDMLDiagram dgm = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        vdm.getDiagram().add(dgm);
-        dgm.setVdmlElement(cm);
-    }
-
-    @Override
-    public String determineURI() {
-        return Utils.getEncodedParam(request.get(), "assetid");
+        //Done elsewhere
     }
 }

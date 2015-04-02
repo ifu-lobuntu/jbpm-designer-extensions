@@ -1,16 +1,17 @@
-/** sprite: vdrc-images-sprite; sprite-image: url('../../images/sprites/vdrc-images-sprite.png'); sprite-layout: vertical */
 /* Edges */
 .stencilsets_vdrc_vdrc_json_icons_deliverable_flow,
 .x-tree-node-leaf .stencilsets_vdrc_vdrc_json_icons_deliverable_flow {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/vdrc/icons/deliverable_flow.png);  /** sprite-ref: vdrc-images-sprite; */
+  background-image: url('../../images/sprites/vdrc-images-sprite.png');
+  background-position: left -0px;
 }
 .stencilsets_vdrc_vdrc_json_icons_role,
 .x-tree-node-leaf .stencilsets_vdrc_vdrc_json_icons_role {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/vdrc/icons/role.png);  /** sprite-ref: vdrc-images-sprite; */
+  background-image: url('../../images/sprites/vdrc-images-sprite.png');
+  background-position: left -16px;
 }

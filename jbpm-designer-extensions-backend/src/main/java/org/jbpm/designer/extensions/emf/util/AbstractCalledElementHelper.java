@@ -1,6 +1,5 @@
 package org.jbpm.designer.extensions.emf.util;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.codec.binary.Base64;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -17,10 +15,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.jbpm.designer.repository.Asset;
-import org.jbpm.designer.repository.UriUtils;
 import org.jbpm.designer.repository.filters.FilterByExtension;
-import org.jbpm.designer.util.Base64Backport;
 import org.jbpm.designer.web.profile.IDiagramProfile;
+import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.jbpm.designer.web.server.ServletUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +42,7 @@ public class AbstractCalledElementHelper {
             for (String packageName : allPackageNames) {
                 Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName, new FilterByExtension(targetDiagramProfile.getSerializedModelExtension()));
                 for (Asset<?> asset : listAssetsRecursively) {
-                    String id = getURI(asset);
+                    String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
                     URI uri = URI.createPlatformResourceURI(id, true);
                     rst.getResource(uri, true);
                 }
@@ -82,22 +79,6 @@ public class AbstractCalledElementHelper {
             }
         }
         return jsonObject;
-    }
-    public static String getURI(Asset<?> asset) {
-        String id = null;
-        if (Base64Backport.isBase64(asset.getUniqueId())) {
-            byte[] decoded = Base64.decodeBase64(asset.getUniqueId());
-            try {
-                String uri = new String(decoded, "UTF-8");
-                id = UriUtils.encode(uri);
-            } catch (UnsupportedEncodingException e) {
-
-            }
-        }
-        if (id == null) {
-            id = UriUtils.encode(asset.getUniqueId());
-        }
-        return id.substring(id.indexOf("/", id.indexOf("@")) + 1);
     }
 
 }

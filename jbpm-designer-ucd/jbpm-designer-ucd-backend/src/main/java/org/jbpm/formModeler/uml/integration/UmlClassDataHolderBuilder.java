@@ -34,13 +34,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Class;
-import org.jbpm.designer.extensions.emf.util.AbstractCalledElementHelper;
 import org.jbpm.designer.extensions.emf.util.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.filters.FilterByExtension;
 import org.jbpm.designer.server.service.PathEvent;
 import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
+import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.jbpm.formModeler.api.model.DataHolder;
 import org.jbpm.formModeler.core.config.builders.dataHolder.DataHolderBuildConfig;
 import org.jbpm.formModeler.core.config.builders.dataHolder.PojoDataHolderBuilder;
@@ -96,7 +96,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
         Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName,
                 new FilterByExtension(targetDiagramProfile.getSerializedModelExtension()));
         for (Asset<?> asset : listAssetsRecursively) {
-            String id = AbstractCalledElementHelper.getURI(asset);
+            String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
             org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createPlatformResourceURI(id, true);
             rst.getResource(uri, true);
         }

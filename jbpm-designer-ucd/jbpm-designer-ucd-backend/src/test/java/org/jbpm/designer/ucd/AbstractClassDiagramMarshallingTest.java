@@ -44,7 +44,7 @@ public class AbstractClassDiagramMarshallingTest {
         profile.setUriHandler(new TestUriHandler());
     }
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile,true);
-    protected GenericJsonToEmfDiagramMarshaller marshaller = new GenericJsonToEmfDiagramMarshaller(profile);
+    protected GenericJsonToEmfDiagramMarshaller marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy.ucd"));
     protected XMLResource inputResource;
     protected ResourceSet resourceSet;
     protected UMLDiagram inputDiagram;
