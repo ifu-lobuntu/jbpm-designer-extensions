@@ -1,5 +1,8 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import java.util.Collections;
+import java.util.Map;
+
 import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.bpmn2.Bpmn2Package;
@@ -33,6 +36,11 @@ public class Bpmn2EmfProfile extends AbstractEmfProfile {
     @Override
     public String getName() {
         return "jbpm";
+    }
+
+    @Override
+    public Map<String, Object> buildDefaultResourceOptions() {
+        return Collections.emptyMap();
     }
 
 }

@@ -121,13 +121,22 @@ public interface VDMLPackage extends EPackage {
     int VDML_ELEMENT__ID = 5;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VDML_ELEMENT__QUALIFIED_NAME = 6;
+
+    /**
      * The number of structural features of the '<em>Vdml Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int VDML_ELEMENT_FEATURE_COUNT = 6;
+    int VDML_ELEMENT_FEATURE_COUNT = 7;
 
     /**
      * The number of operations of the '<em>Vdml Element</em>' class.
@@ -201,6 +210,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int VALUE_DELIVERY_MODEL__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_DELIVERY_MODEL__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Metrics Model</b></em>' containment reference list.
@@ -375,6 +393,15 @@ public interface VDMLPackage extends EPackage {
     int ATTRIBUTE__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATTRIBUTE__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Tag</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -475,6 +502,15 @@ public interface VDMLPackage extends EPackage {
     int ANNOTATION__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANNOTATION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Text</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -564,6 +600,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int VALUE_LIBRARY__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Value Definition</b></em>' containment reference list.
@@ -666,6 +711,15 @@ public interface VDMLPackage extends EPackage {
     int VALUE_DEFINITION__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_DEFINITION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Category</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -764,6 +818,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int VALUE_CATEGORY__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_CATEGORY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Parent Category</b></em>' reference list.
@@ -875,6 +938,15 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_LIBRARY__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Capability</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -973,6 +1045,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int CAPABILITY__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Parent Cabability</b></em>' reference list.
@@ -1082,6 +1163,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int CAPABILITY_DEPENDENCY__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY_DEPENDENCY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Is Tangible</b></em>' attribute.
@@ -1220,6 +1310,15 @@ public interface VDMLPackage extends EPackage {
     int BUSINESS_ITEM_LIBRARY_ELEMENT__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_ITEM_LIBRARY_ELEMENT__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1309,6 +1408,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int BUSINESS_ITEM_DEFINITION__ID = BUSINESS_ITEM_LIBRARY_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_ITEM_DEFINITION__QUALIFIED_NAME = BUSINESS_ITEM_LIBRARY_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
@@ -1456,6 +1564,15 @@ public interface VDMLPackage extends EPackage {
     int PRACTICE_DEFINITION__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PRACTICE_DEFINITION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Category</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1565,6 +1682,15 @@ public interface VDMLPackage extends EPackage {
     int PRACTICE_CATEGORY__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PRACTICE_CATEGORY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Parent Category</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1672,6 +1798,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int CAPABILITY_DEFINITION__ID = CAPABILITY__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY_DEFINITION__QUALIFIED_NAME = CAPABILITY__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Parent Cabability</b></em>' reference list.
@@ -1819,6 +1954,15 @@ public interface VDMLPackage extends EPackage {
     int BUSINESS_ITEM_CATEGORY__ID = BUSINESS_ITEM_LIBRARY_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_ITEM_CATEGORY__QUALIFIED_NAME = BUSINESS_ITEM_LIBRARY_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1937,6 +2081,15 @@ public interface VDMLPackage extends EPackage {
     int BUSINESS_ITEM_LIBRARY__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_ITEM_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Business Item Library Element</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2028,6 +2181,15 @@ public interface VDMLPackage extends EPackage {
     int MEASURABLE_ELEMENT__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEASURABLE_ELEMENT__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2117,6 +2279,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int PARTICIPANT__ID = MEASURABLE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARTICIPANT__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -2226,6 +2397,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int ACTOR__ID = PARTICIPANT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTOR__QUALIFIED_NAME = PARTICIPANT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -2346,6 +2526,15 @@ public interface VDMLPackage extends EPackage {
     int MEASURED_CHARACTERISTIC__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEASURED_CHARACTERISTIC__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measurement</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2444,6 +2633,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int ASSIGNMENT__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSIGNMENT__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Assigned Role</b></em>' reference.
@@ -2553,6 +2751,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int ROLE__ID = PARTICIPANT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROLE__QUALIFIED_NAME = PARTICIPANT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -2727,6 +2934,15 @@ public interface VDMLPackage extends EPackage {
     int PORT_CONTAINER__ID = MEASURABLE_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT_CONTAINER__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2825,6 +3041,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int ACTIVITY__ID = PORT_CONTAINER__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ACTIVITY__QUALIFIED_NAME = PORT_CONTAINER__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -2999,6 +3224,15 @@ public interface VDMLPackage extends EPackage {
     int PORT__ID = MEASURABLE_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3144,6 +3378,15 @@ public interface VDMLPackage extends EPackage {
     int EXPRESSION__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPRESSION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Body</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3244,6 +3487,15 @@ public interface VDMLPackage extends EPackage {
     int OPERAND__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OPERAND__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Alias</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3342,6 +3594,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int RESOURCE_USE__ID = MEASURABLE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_USE__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -3514,6 +3775,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int OUTPUT_PORT__ID = PORT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OUTPUT_PORT__QUALIFIED_NAME = PORT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -3715,6 +3985,15 @@ public interface VDMLPackage extends EPackage {
     int DELIVERABLE_FLOW__ID = MEASURABLE_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DELIVERABLE_FLOW__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3858,6 +4137,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int INPUT_PORT__ID = PORT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_PORT__QUALIFIED_NAME = PORT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -4068,6 +4356,15 @@ public interface VDMLPackage extends EPackage {
     int PORT_DELEGATION__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PORT_DELEGATION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The number of structural features of the '<em>Port Delegation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4148,6 +4445,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int INPUT_DELEGATION__ID = PORT_DELEGATION__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_DELEGATION__QUALIFIED_NAME = PORT_DELEGATION__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Source</b></em>' reference.
@@ -4248,6 +4554,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int BUSINESS_ITEM__ID = MEASURABLE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_ITEM__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -4393,6 +4708,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int STORE__ID = PORT_CONTAINER__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STORE__QUALIFIED_NAME = PORT_CONTAINER__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -4547,6 +4871,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int COLLABORATION__ID = PARTICIPANT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COLLABORATION__QUALIFIED_NAME = PARTICIPANT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -4737,6 +5070,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int ORG_UNIT__ID = COLLABORATION__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ORG_UNIT__QUALIFIED_NAME = COLLABORATION__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -4974,6 +5316,15 @@ public interface VDMLPackage extends EPackage {
     int ANALYSIS_CONTEXT__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANALYSIS_CONTEXT__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Delegationt Context</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5090,6 +5441,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int DELEGATION_CONTEXT__ID = ANALYSIS_CONTEXT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DELEGATION_CONTEXT__QUALIFIED_NAME = ANALYSIS_CONTEXT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Delegationt Context</b></em>' containment reference list.
@@ -5244,6 +5604,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int SCENARIO__ID = ANALYSIS_CONTEXT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SCENARIO__QUALIFIED_NAME = ANALYSIS_CONTEXT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Delegationt Context</b></em>' containment reference list.
@@ -5427,6 +5796,15 @@ public interface VDMLPackage extends EPackage {
     int RELEASE_CONTROL__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RELEASE_CONTROL__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Strategy</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5525,6 +5903,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int CAPABILITY_OFFER__ID = MEASURABLE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY_OFFER__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -5688,6 +6075,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int CAPABILITY_METHOD__ID = COLLABORATION__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY_METHOD__QUALIFIED_NAME = COLLABORATION__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -5934,6 +6330,15 @@ public interface VDMLPackage extends EPackage {
     int PERFORMER__ID = ROLE__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PERFORMER__QUALIFIED_NAME = ROLE__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6104,6 +6509,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int POSITION__ID = ROLE__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POSITION__QUALIFIED_NAME = ROLE__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -6287,6 +6701,15 @@ public interface VDMLPackage extends EPackage {
     int POOL__ID = STORE__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int POOL__QUALIFIED_NAME = STORE__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6468,6 +6891,15 @@ public interface VDMLPackage extends EPackage {
     int CALENDAR_SERVICE__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CALENDAR_SERVICE__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The number of structural features of the '<em>Calendar Service</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6548,6 +6980,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int VALUE_ELEMENT__ID = MEASURABLE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_ELEMENT__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -6695,6 +7136,15 @@ public interface VDMLPackage extends EPackage {
     int VALUE_ADD__ID = VALUE_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_ADD__QUALIFIED_NAME = VALUE_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6840,6 +7290,15 @@ public interface VDMLPackage extends EPackage {
     int OUTPUT_DELEGATION__ID = PORT_DELEGATION__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OUTPUT_DELEGATION__QUALIFIED_NAME = PORT_DELEGATION__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Source</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6938,6 +7397,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int VALUE_PROPOSITION__ID = MEASURABLE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_PROPOSITION__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -7065,6 +7533,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int VALUE_PROPOSITION_COMPONENT__ID = VALUE_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_PROPOSITION_COMPONENT__QUALIFIED_NAME = VALUE_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -7230,6 +7707,15 @@ public interface VDMLPackage extends EPackage {
     int ROLE_DEFINITION__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROLE_DEFINITION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Category</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7330,6 +7816,15 @@ public interface VDMLPackage extends EPackage {
     int ROLE_CATEGORY__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROLE_CATEGORY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Category Role</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7419,6 +7914,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int PRACTICE_LIBRARY__ID = VDML_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PRACTICE_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Practice Definition</b></em>' containment reference list.
@@ -7521,6 +8025,15 @@ public interface VDMLPackage extends EPackage {
     int ROLE_LIBRARY__ID = VDML_ELEMENT__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ROLE_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Role Definition</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7619,6 +8132,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int BUSINESS_NETWORK__ID = COLLABORATION__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUSINESS_NETWORK__QUALIFIED_NAME = COLLABORATION__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -7820,6 +8342,15 @@ public interface VDMLPackage extends EPackage {
     int PARTY__ID = ROLE__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARTY__QUALIFIED_NAME = ROLE__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7990,6 +8521,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int COMMUNITY__ID = COLLABORATION__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMMUNITY__QUALIFIED_NAME = COLLABORATION__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -8191,6 +8731,15 @@ public interface VDMLPackage extends EPackage {
     int MEMBER__ID = ROLE__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEMBER__QUALIFIED_NAME = ROLE__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8363,6 +8912,15 @@ public interface VDMLPackage extends EPackage {
     int PERSON__ID = ACTOR__ID;
 
     /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PERSON__QUALIFIED_NAME = ACTOR__QUALIFIED_NAME;
+
+    /**
      * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8479,6 +9037,15 @@ public interface VDMLPackage extends EPackage {
      * @ordered
      */
     int CAPABILITY_CATEGORY__ID = CAPABILITY__ID;
+
+    /**
+     * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CAPABILITY_CATEGORY__QUALIFIED_NAME = CAPABILITY__QUALIFIED_NAME;
 
     /**
      * The feature id for the '<em><b>Parent Cabability</b></em>' reference list.
@@ -8721,6 +9288,17 @@ public interface VDMLPackage extends EPackage {
      * @generated
      */
     EAttribute getVdmlElement_Id();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.omg.vdml.VdmlElement#getQualifiedName <em>Qualified Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Qualified Name</em>'.
+     * @see org.omg.vdml.VdmlElement#getQualifiedName()
+     * @see #getVdmlElement()
+     * @generated
+     */
+    EAttribute getVdmlElement_QualifiedName();
 
     /**
      * Returns the meta object for class '{@link org.omg.vdml.Attribute <em>Attribute</em>}'.
@@ -11592,6 +12170,14 @@ public interface VDMLPackage extends EPackage {
          * @generated
          */
         EAttribute VDML_ELEMENT__ID = eINSTANCE.getVdmlElement_Id();
+
+        /**
+         * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VDML_ELEMENT__QUALIFIED_NAME = eINSTANCE.getVdmlElement_QualifiedName();
 
         /**
          * The meta object literal for the '{@link org.omg.vdml.impl.AttributeImpl <em>Attribute</em>}' class.

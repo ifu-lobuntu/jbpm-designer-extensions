@@ -25,6 +25,7 @@ import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.Bpmn2EmfProfile;
+import org.jbpm.designer.extensions.emf.util.DefaultPotentialReferenceHelper;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
@@ -38,6 +39,8 @@ import org.omg.cmmn.TCase;
 import org.omg.cmmn.TDefinitions;
 import org.omg.cmmn.TStage;
 import org.omg.cmmn.util.CMMNResourceFactoryImpl;
+import org.omg.cmmn.util.CmmnXmlHelper;
+import org.omg.cmmn.util.QNameURIHandler;
 import org.omg.dd.dc.DCFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,8 +52,6 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  */
 @ApplicationScoped
 public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
-    @Inject
-    CmmnCalledElementHelper calledElementHelper;
     private static final String STENCILSET_PATH = "stencilsets/cmmn/cmmn.json";
     Map<String,EStructuralFeature> customFeatures=new HashMap<String, EStructuralFeature>();{
         customFeatures.put("externalProcess", JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess());
@@ -149,10 +150,9 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         UriHelper.setPlatformUriHandler(resourceSet, getUriHandler());
     }
     @Override
-    public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
-        return calledElementHelper.processRequest(req, resp, action, processId, this);
+    protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
+        return new CmmnCalledElementHelper(this);
     }
-
     @Override
     public EPackage[] getEPackages() {
         return ddPackages(Bpmn2Package.eINSTANCE, UMLPackage.eINSTANCE,CMMNPackage.eINSTANCE,CMMNDIPackage.eINSTANCE,JbpmextPackage.eINSTANCE);
@@ -165,5 +165,11 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     @Override
     public EStructuralFeature demandFeature(String name) {
         return customFeatures.get(name);
+    }
+    @Override
+    public Map<String, Object> buildDefaultResourceOptions() {
+        Map<String, Object> options = super.buildDefaultResourceOptions();
+        options.remove(XMLResource.OPTION_URI_HANDLER);//Let the resource override it 
+        return options;
     }
 }

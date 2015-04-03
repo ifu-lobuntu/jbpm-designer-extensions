@@ -490,7 +490,7 @@
 					]
 				},
 				{
-					"id" : "applicabilitydRuleBody",
+					"id" : "applicabilityRuleBody",
 					"type" : "Expression",
 					"title" : "Applicability Rule Body",
 					"value" : "",

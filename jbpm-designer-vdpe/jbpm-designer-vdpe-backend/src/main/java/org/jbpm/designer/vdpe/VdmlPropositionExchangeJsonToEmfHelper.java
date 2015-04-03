@@ -4,16 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdrc.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
+import org.omg.smm.Measure;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.Role;
+import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.ValueProposition;
+import org.omg.vdml.ValuePropositionComponent;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlPropositionExchangeJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
@@ -47,6 +50,16 @@ public class VdmlPropositionExchangeJsonToEmfHelper extends AbstractVdmlJsonToEm
         removeOrphanedRoles(map, coll);
 
     }
+    @Override
+    public Object caseValuePropositionComponent(ValuePropositionComponent object) {
+        Measure valueMeasure = (Measure)sourceShape.getUnboundProperty("valueMeasure");
+        if(valueMeasure!=null){
+            object.setValueMeasurement(ensureMeasuredCharacteristicDefinition(valueMeasure, object.getValueMeasurement()));
+
+        }
+        return super.caseValuePropositionComponent(object);
+    }
+
 
     @Override
     protected VDMLDiagramElement createDiagramElement(String stencilId) {

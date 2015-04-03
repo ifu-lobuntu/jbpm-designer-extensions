@@ -22,33 +22,7 @@ import org.omg.dd.di.DiagramElement;
 
 public class AbstractEmfJsonMarshaller {
     protected IEmfDiagramProfile profile;
-    static public XMLResource.URIHandler SIMPLE_URI_HANDLER = new XMLResource.URIHandler() {
-        
-        private String[] baseUri;
 
-        @Override
-        public void setBaseURI(URI uri) {
-            this.baseUri=uri.trimFragment().segments();
-        }
-        
-        @Override
-        public URI resolve(URI uri) {
-            return uri;
-        }
-        
-        @Override
-        public URI deresolve(URI uri) {
-            //Only deresolve uris hierarchically nested so that we can move trees
-//            String[] segments = uri.segments();
-//            for (int i = 0; i < baseUri.length; i++) {
-//                if(segments.length<=i ||  !baseUri[i].equals(segments[i])){
-//                    return uri;
-//                }
-//                
-//            }
-            return uri;
-        }
-    };
     protected void writeDiagram(Diagram d, String message) throws JsonGenerationException, JsonMappingException, IOException {
         profile.logInfo(message);
         ObjectMapper om = new ObjectMapper();
@@ -61,21 +35,11 @@ public class AbstractEmfJsonMarshaller {
     protected void writeResource(XMLResource r, String message) throws JsonGenerationException, JsonMappingException, IOException {
         profile.logInfo(message);
         StringWriter s = new StringWriter();
-        r.save(s, buildDefaultResourceOptions());
+        r.save(s, profile.buildDefaultResourceOptions());
         profile.logInfo(s.toString());
     }
 
 
-    public static Map<String, Object> buildDefaultResourceOptions() {
-        Map<String, Object> options = new HashMap<String, Object>();
-        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
-        options.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-        options.put(XMLResource.OPTION_DISABLE_NOTIFY, true);
-        options.put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, true);
-        options.put(XMLResource.OPTION_URI_HANDLER, SIMPLE_URI_HANDLER);
-        options.put(XMLResource.OPTION_PROCESS_DANGLING_HREF, XMLResource.OPTION_PROCESS_DANGLING_HREF_RECORD);
-        return options;
-    }
 
 
     protected AbstractEmfJsonMarshaller(IEmfDiagramProfile profile) {

@@ -9,13 +9,11 @@
 
 	  	</marker>
 	  	<marker id="end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
-	  		<path id="frame2" d="M0,1 L 15,6 L 0,11" fill="none" stroke="black" stroke-width="2" />
+	  		<polygon id="arrow" points="0,1 15,6 0,11" fill="black" stroke="black" stroke-width="2" />
 	  	</marker>
 	</defs>
 	<g id="edge">
-		<path id="fill_border" d="M10 50 L210 50" stroke-dasharray="3, 4" stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#start)" marker-end="url(#end)" />
-<!-- 		<text id="text_name" font-size="12" x="0" y="0"  oryx:edgePosition="startTop"/> -->
-		<text id="text_event" font-size="12" x="0" y="0"  oryx:edgePosition="startTop"/>
+		<path id="the_edge" d="M10 50 L210 50" stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#start)" marker-end="url(#end)" />
 	</g>
 </svg>
 

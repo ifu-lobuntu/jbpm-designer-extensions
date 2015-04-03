@@ -82,7 +82,6 @@ public class CMMNResourceImpl extends XMLResourceImpl {
     protected XMLHelper createXMLHelper() {
         return this.xmlHelper;
     }
-
     @Override
     protected XMLLoad createXMLLoad() {
         return new XMLLoadImpl(createXMLHelper()) {

@@ -26,17 +26,19 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VdmlElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        lowerBound="1" eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
         upperBound="-1" eType="#//Attribute" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="represents" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotation" ordered="false"
         upperBound="-1" eType="#//Annotation" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//String"
         iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//String"
+        derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//VdmlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" ordered="false" lowerBound="1"

@@ -48,7 +48,11 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
             Shape targetShape = shapeMap.get(sr);
             if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
                 DeliverableFlow flow = (DeliverableFlow) shapeMap.getModelElement(targetShape.getResourceId());
-                Activity a = findOrCreatePerformerWork(object, targetShape.getProperty("providingActivityName"));
+                String providingActivityName = targetShape.getProperty("providingActivityName");
+                if(providingActivityName==null || providingActivityName.trim().isEmpty()){
+                    providingActivityName=object.getName()+"DefaultActivity";
+                }
+                Activity a = findOrCreatePerformerWork(object, providingActivityName);
                 OutputPort op = VDMLFactory.eINSTANCE.createOutputPort();
                 op.setName("ti" + object.getName());
                 op.setOutput(flow);
@@ -82,7 +86,11 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
                 Shape targetShape = shapeMap.get(sr);
                 if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.ROLE.getStencilId())) {
                     Role role = (Role) shapeMap.getModelElement(targetShape.getResourceId());
-                    Activity a = findOrCreatePerformerWork(role, sourceShape.getProperty("receivingActivityName"));
+                    String receivingActivityName = sourceShape.getProperty("receivingActivityName");
+                    if(receivingActivityName==null || receivingActivityName.trim().isEmpty()){
+                        receivingActivityName=role.getName()+"DefaultActivity";
+                    }
+                    Activity a = findOrCreatePerformerWork(role, receivingActivityName);
                     InputPort ip = VDMLFactory.eINSTANCE.createInputPort();
                     ip.setName("from" + object.getName());
                     ip.setInput(object);
@@ -108,8 +116,10 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
         for (DeliverableFlow flow : new ArrayList<DeliverableFlow>(coll.getFlow())) {
             if (!map.containsKey(flow)) {
                 if (shouldHaveEdge(flow)) {
-                    coll.getFlow().remove(flow);
-                    removeFromPortContainer(flow.getRecipient(), flow.getProvider());
+                    InputPort recipient = flow.getRecipient();
+                    OutputPort provider = flow.getProvider();
+                    removePortAndDependencies(coll, provider);
+                    removePortAndDependencies(coll, recipient);
                 }
             }
         }

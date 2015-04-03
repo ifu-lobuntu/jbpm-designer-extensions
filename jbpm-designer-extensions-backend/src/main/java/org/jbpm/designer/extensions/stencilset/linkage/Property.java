@@ -22,6 +22,7 @@ public class Property {
     private List<Item> items;
     private EObjectReference reference;
     private boolean bindLate;
+    private String expectedType;
     public String getId() {
         return id;
     }
@@ -148,6 +149,13 @@ public class Property {
 
     public void setBindLate(boolean bindLate) {
         this.bindLate = bindLate;
+    }
+
+    public String getExpectedType() {
+        return this.expectedType;
+    }
+    public void setExpectedType(String expectedType) {
+        this.expectedType = expectedType;
     }
 
 

@@ -7,6 +7,7 @@ public class EObjectReference {
     private String targetProfile;
     private String nameFeature;
     private String allowedElementTypes;
+    private boolean multiSelect=false;
     public String getTargetProfile() {
         return targetProfile;
     }
@@ -24,6 +25,12 @@ public class EObjectReference {
     }
     public void setAllowedElementTypes(String allowedElementTypes) {
         this.allowedElementTypes = allowedElementTypes;
+    }
+    public boolean isMultiSelect() {
+        return multiSelect;
+    }
+    public void setMultiSelect(boolean multiSelect) {
+        this.multiSelect = multiSelect;
     }
     
 }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.vdml.VdmlElement#getRepresents <em>Represents</em>}</li>
  *   <li>{@link org.omg.vdml.VdmlElement#getAnnotation <em>Annotation</em>}</li>
  *   <li>{@link org.omg.vdml.VdmlElement#getId <em>Id</em>}</li>
+ *   <li>{@link org.omg.vdml.VdmlElement#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,7 +39,7 @@ public interface VdmlElement extends EObject {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.omg.vdml.VDMLPackage#getVdmlElement_Name()
-     * @model required="true" ordered="false"
+     * @model dataType="org.omg.dd.primitivetypes.String" required="true" ordered="false"
      * @generated
      */
     String getName();
@@ -64,7 +65,7 @@ public interface VdmlElement extends EObject {
      * @return the value of the '<em>Description</em>' attribute.
      * @see #setDescription(String)
      * @see org.omg.vdml.VDMLPackage#getVdmlElement_Description()
-     * @model required="true" ordered="false"
+     * @model dataType="org.omg.dd.primitivetypes.String" required="true" ordered="false"
      * @generated
      */
     String getDescription();
@@ -106,7 +107,7 @@ public interface VdmlElement extends EObject {
      * @return the value of the '<em>Represents</em>' attribute.
      * @see #setRepresents(String)
      * @see org.omg.vdml.VDMLPackage#getVdmlElement_Represents()
-     * @model ordered="false"
+     * @model dataType="org.omg.dd.primitivetypes.String" ordered="false"
      * @generated
      */
     String getRepresents();
@@ -148,7 +149,7 @@ public interface VdmlElement extends EObject {
      * @return the value of the '<em>Id</em>' attribute.
      * @see #setId(String)
      * @see org.omg.vdml.VDMLPackage#getVdmlElement_Id()
-     * @model id="true"
+     * @model id="true" dataType="org.omg.dd.primitivetypes.String"
      * @generated
      */
     String getId();
@@ -162,5 +163,31 @@ public interface VdmlElement extends EObject {
      * @generated
      */
     void setId(String value);
+
+    /**
+     * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Qualified Name</em>' attribute.
+     * @see #setQualifiedName(String)
+     * @see org.omg.vdml.VDMLPackage#getVdmlElement_QualifiedName()
+     * @model dataType="org.omg.dd.primitivetypes.String" derived="true"
+     * @generated
+     */
+    String getQualifiedName();
+
+    /**
+     * Sets the value of the '{@link org.omg.vdml.VdmlElement#getQualifiedName <em>Qualified Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Qualified Name</em>' attribute.
+     * @see #getQualifiedName()
+     * @generated
+     */
+    void setQualifiedName(String value);
 
 } // VdmlElement

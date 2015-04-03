@@ -3,6 +3,7 @@
 package org.omg.smm.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.jbpm.designer.dd.util.Collections;
 import org.omg.smm.Annotation;
 import org.omg.smm.Attribute;
 import org.omg.smm.SMMPackage;
@@ -203,27 +205,27 @@ public abstract class SmmElementImpl extends MinimalEObjectImpl.Container implem
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     public EList<SmmRelationship> getInRelationships() {
         // TODO: implement this method to return the 'In Relationships' reference list
         // Ensure that you remove @generated or mark it @generated NOT
         // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
         // so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
-        throw new UnsupportedOperationException();
+        return Collections.asList();
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     public EList<SmmRelationship> getOutRelationships() {
         // TODO: implement this method to return the 'Out Relationships' reference list
         // Ensure that you remove @generated or mark it @generated NOT
         // The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
         // so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
-        throw new UnsupportedOperationException();
+        return Collections.asList();
     }
 
     /**

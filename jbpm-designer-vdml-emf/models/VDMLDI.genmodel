@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/jbpm-designer-vdml-emf/src/main/java" modelPluginID="jbpm-designer-vdml-emf"
     modelName="VDMLDI" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="SMMDI.genmodel#//smmdi ../../jbpm-designer-extensions-emf/models/DG.genmodel#//dg ../../jbpm-designer-extensions-emf/models/DG.genmodel#//di ../../jbpm-designer-extensions-emf/models/DG.genmodel#//dc ../../jbpm-designer-extensions-emf/models/DG.genmodel#//primitivetypes ../../jbpm-designer-extensions-emf/models/jBPMDD.genmodel#//jbpmdd"
+    usedGenPackages="../../jbpm-designer-extensions-emf/models/DG.genmodel#//dg ../../jbpm-designer-extensions-emf/models/DG.genmodel#//di ../../jbpm-designer-extensions-emf/models/DG.genmodel#//dc ../../jbpm-designer-extensions-emf/models/DG.genmodel#//primitivetypes ../../jbpm-designer-extensions-emf/models/jBPMDD.genmodel#//jbpmdd SMMDI.genmodel#//smmdi SMMDI.genmodel#//smm"
     operationReflection="true" importOrganizing="true">
   <foreignModel>VDMLDI.ecore</foreignModel>
   <genPackages prefix="VDMLDI" basePackage="org.jbpm.vdml.dd" resource="XMI" disposableProviderFactory="true"
@@ -44,6 +44,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VDML.ecore#//VdmlElement/represents"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VDML.ecore#//VdmlElement/annotation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VDML.ecore#//VdmlElement/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VDML.ecore#//VdmlElement/qualifiedName"/>
     </genClasses>
     <genClasses ecoreClass="VDML.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute VDML.ecore#//Attribute/tag"/>

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.vdml.Annotation;
 import org.omg.vdml.Attribute;
 import org.omg.vdml.VDMLPackage;
+import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 /**
@@ -31,6 +33,7 @@ import org.omg.vdml.VdmlElement;
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getRepresents <em>Represents</em>}</li>
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getAnnotation <em>Annotation</em>}</li>
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,6 +139,26 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
      * @ordered
      */
     protected String id = ID_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getQualifiedName()
+     * @generated
+     * @ordered
+     */
+    protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getQualifiedName()
+     * @generated
+     * @ordered
+     */
+    protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -267,6 +290,40 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public String getQualifiedName() {
+        StringBuilder sb = new StringBuilder();
+        appendQualifiedName(sb,getQualifiedNameDepth());
+        return sb.toString();
+    }
+    protected int getQualifiedNameDepth(){
+        return 2;
+    }
+
+    private void appendQualifiedName(StringBuilder sb, int level) {
+        if(level>0 && eContainer() instanceof VdmlElementImpl && !(eContainer() instanceof ValueDeliveryModel)){
+            ((VdmlElementImpl) eContainer()).appendQualifiedName(sb, level-1);
+            sb.append("::");
+        }
+        sb.append(getName());
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setQualifiedName(String newQualifiedName) {
+        String oldQualifiedName = qualifiedName;
+        qualifiedName = newQualifiedName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     @Override
@@ -300,6 +357,8 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
                 return getAnnotation();
             case VDMLPackage.VDML_ELEMENT__ID:
                 return getId();
+            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+                return getQualifiedName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -333,6 +392,9 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
             case VDMLPackage.VDML_ELEMENT__ID:
                 setId((String)newValue);
                 return;
+            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+                setQualifiedName((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -363,6 +425,9 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
             case VDMLPackage.VDML_ELEMENT__ID:
                 setId(ID_EDEFAULT);
                 return;
+            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+                setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -387,6 +452,8 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
                 return annotation != null && !annotation.isEmpty();
             case VDMLPackage.VDML_ELEMENT__ID:
                 return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+                return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
         }
         return super.eIsSet(featureID);
     }
@@ -409,6 +476,8 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
         result.append(represents);
         result.append(", id: ");
         result.append(id);
+        result.append(", qualifiedName: ");
+        result.append(qualifiedName);
         result.append(')');
         return result.toString();
     }

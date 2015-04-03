@@ -7,12 +7,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
+import org.jbpm.smm.dd.smmdi.SMMDIPackage;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.jbpm.vdml.dd.vdmldi.impl.VDMLDIPackageImpl;
 import org.omg.dd.primitivetypes.PrimitiveTypesPackage;
 import org.omg.smm.SMMPackage;
-import org.omg.smm.impl.SMMPackageImpl;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Actor;
 import org.omg.vdml.AnalysisContext;
@@ -574,21 +573,19 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
         isInited = true;
 
         // Initialize simple dependencies
-        JBPMDDPackage.eINSTANCE.eClass();
+        SMMDIPackage.eINSTANCE.eClass();
+        SMMPackage.eINSTANCE.eClass();
 
         // Obtain or create and register interdependencies
         VDMLDIPackageImpl theVDMLDIPackage = (VDMLDIPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(VDMLDIPackage.eNS_URI) instanceof VDMLDIPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(VDMLDIPackage.eNS_URI) : VDMLDIPackage.eINSTANCE);
-        SMMPackageImpl theSMMPackage = (SMMPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(SMMPackage.eNS_URI) instanceof SMMPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(SMMPackage.eNS_URI) : SMMPackage.eINSTANCE);
 
         // Create package meta-data objects
         theVDMLPackage.createPackageContents();
         theVDMLDIPackage.createPackageContents();
-        theSMMPackage.createPackageContents();
 
         // Initialize created meta-data
         theVDMLPackage.initializePackageContents();
         theVDMLDIPackage.initializePackageContents();
-        theSMMPackage.initializePackageContents();
 
         // Mark meta-data to indicate it can't be changed
         theVDMLPackage.freeze();
@@ -759,6 +756,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
      */
     public EAttribute getVdmlElement_Id() {
         return (EAttribute)vdmlElementEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getVdmlElement_QualifiedName() {
+        return (EAttribute)vdmlElementEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -3067,6 +3073,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
         createEAttribute(vdmlElementEClass, VDML_ELEMENT__REPRESENTS);
         createEReference(vdmlElementEClass, VDML_ELEMENT__ANNOTATION);
         createEAttribute(vdmlElementEClass, VDML_ELEMENT__ID);
+        createEAttribute(vdmlElementEClass, VDML_ELEMENT__QUALIFIED_NAME);
 
         attributeEClass = createEClass(ATTRIBUTE);
         createEAttribute(attributeEClass, ATTRIBUTE__TAG);
@@ -3492,12 +3499,13 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
         initEReference(getValueDeliveryModel_Diagram(), theVDMLDIPackage.getVDMLDiagram(), null, "diagram", null, 0, -1, ValueDeliveryModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(vdmlElementEClass, VdmlElement.class, "VdmlElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getVdmlElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getVdmlElement_Description(), ecorePackage.getEString(), "description", null, 1, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getVdmlElement_Name(), thePrimitiveTypesPackage.getString(), "name", null, 1, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getVdmlElement_Description(), thePrimitiveTypesPackage.getString(), "description", null, 1, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getVdmlElement_Attribute(), this.getAttribute(), null, "attribute", null, 0, -1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getVdmlElement_Represents(), ecorePackage.getEString(), "represents", null, 0, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getVdmlElement_Represents(), thePrimitiveTypesPackage.getString(), "represents", null, 0, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getVdmlElement_Annotation(), this.getAnnotation(), null, "annotation", null, 0, -1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getVdmlElement_Id(), ecorePackage.getEString(), "id", null, 0, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getVdmlElement_Id(), thePrimitiveTypesPackage.getString(), "id", null, 0, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getVdmlElement_QualifiedName(), thePrimitiveTypesPackage.getString(), "qualifiedName", null, 0, 1, VdmlElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAttribute_Tag(), thePrimitiveTypesPackage.getString(), "tag", null, 1, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

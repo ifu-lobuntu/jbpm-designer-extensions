@@ -12,6 +12,7 @@ import org.omg.smm.BaseNMeasureRelationship;
 import org.omg.smm.CollectiveMeasure;
 import org.omg.smm.DimensionalMeasure;
 import org.omg.smm.SMMPackage;
+import org.omg.smm.SmmElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -248,5 +249,12 @@ public class BaseNMeasureRelationshipImpl extends BaseMeasureRelationshipImpl im
         }
         return super.eIsSet(featureID);
     }
-
+    @Override
+    public SmmElement basicGetFrom() {
+        return getFromCollectiveMeasure();
+    }
+    @Override
+    public SmmElement basicGetTo() {
+        return getToDimensionalMeasure();
+    }
 } //BaseNMeasureRelationshipImpl

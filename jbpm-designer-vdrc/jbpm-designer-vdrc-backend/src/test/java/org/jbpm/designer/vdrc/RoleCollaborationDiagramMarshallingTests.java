@@ -87,7 +87,6 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         role3Shape.putProperty("diagramElementId", role3Shape.getResourceId() + "de");
         Shape deliverableFlowShape = new Shape("deliverableflow", new StencilType(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId()));
         deliverableFlowShape.putProperty("name", "ANewDeliverableFlow");
-        deliverableFlowShape.putProperty("performedActivities", "Activity1,Activity2");
         deliverableFlowShape.putProperty("diagramElementId", deliverableFlowShape.getResourceId() + "de");
         role3Shape.addOutgoing(deliverableFlowShape);
         deliverableFlowShape.addOutgoing(role1Shape);

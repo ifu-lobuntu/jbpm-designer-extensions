@@ -24,6 +24,7 @@ import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
+import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
@@ -35,6 +36,8 @@ import org.omg.dd.dc.DCFactory;
 import org.omg.dd.dc.Point;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Style;
+import org.omg.smm.MeasureLibrary;
+import org.omg.smm.SMMFactory;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.InputPort;
@@ -46,9 +49,11 @@ import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public abstract class AbstractVdmlDiagramMarshallingTest {
-    protected HashMap<Object, Object> emptyOptions = new HashMap<Object, Object>();
+    protected Map<String, Object> emptyOptions ;
     String roleCollaborationFile;;
     protected XMLResource collaborationResource;
+    protected XMLResource measureResource;
+    protected MeasureLibrary measureLibrary;
     protected ResourceSet resourceSet;
     protected VDMLDiagram inputDiagram;
     protected ValueDeliveryModel valueDeliveryModel;
@@ -57,6 +62,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected AbstractEmfDiagramProfile profile;
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     protected GenericJsonToEmfDiagramMarshaller marshaller;
+    private String measureLibraryFileName;
 
     public AbstractVdmlDiagramMarshallingTest() {
         super();
@@ -67,22 +73,32 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(roleCollaborationFile, true), emptyOptions);
         collaborationResource.save(os, emptyOptions);
     }
+    protected void saveMeasureLibraryResource() throws IOException {
+        TestUriHandler tuh = new TestUriHandler();
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(measureLibraryFileName, true), emptyOptions);
+        measureResource.save(os, emptyOptions);
+    }
+
 
     protected abstract String getDiagramFileName();
 
     protected abstract String getClientProjectName();
 
     protected abstract AbstractEmfDiagramProfile createProfile();
-
+    
     public void setup() throws Exception {
         profile = createProfile();
+        emptyOptions=profile.buildDefaultResourceOptions();
         this.roleCollaborationFile = "/" + getClientProjectName() + "/target/test.vdrc";
+        this.measureLibraryFileName= "/" + getClientProjectName() + "/target/test.meas";
         profile.setUriHandler(new TestUriHandler());
         unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
         marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI(getDiagramFileName(), true));
         resourceSet = new ResourceSetImpl();
+        
         // To make sure it is usable from other profiles
         new VdmlRoleCollaborationProfileImpl().prepareResourceSet(resourceSet);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
@@ -99,6 +115,10 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         capabilityMethod.setName("MyCapability");
         valueDeliveryModel.getCollaboration().add(capabilityMethod);
         elementDiagramElementMap.put(capabilityMethod, inputDiagram);
+        measureLibrary=SMMFactory.eINSTANCE.createMeasureLibrary();
+        measureLibrary.setName("DinkyDonky");
+        measureResource=(XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(measureLibraryFileName,true));
+        measureResource.getContents().add(measureLibrary);
     }
 
     protected void assertDiagramElementPresent(VdmlElement ve, XMLResource r) {
@@ -143,7 +163,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected String buildXmlString(XMLResource resource) throws IOException {
         StringWriter writer = new StringWriter();
         HashMap<String, Object> options = new HashMap<String, Object>();
-        resource.save(writer, GenericJsonToEmfDiagramMarshaller.buildDefaultResourceOptions());
+        resource.save(writer, profile.buildDefaultResourceOptions());
         String string = writer.toString();
         return string;
     }
@@ -162,15 +182,18 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         GenericJsonToEmfDiagramMarshaller.addWaypointToCenterOf(edge, toShape);
         inputDiagram.getOwnedVdmlDiagramElement().add(edge);
         edge.setVdmlElement(modelElement);
-        edge.setLocalStyle(buildTestStyle());
+        edge.setLocalStyle(buildTestStyle(modelElement == null));
     }
 
-    private Style buildTestStyle() {
+    private Style buildTestStyle(boolean isSimple) {
         Style style = VDMLDIFactory.eINSTANCE.createVDMLStyle();
-        style.setFillColor(buildTestColor());
+        if (!isSimple) {
+            style.setFillColor(buildTestColor());
+            style.setFontColor(buildTestColor());
+            style.setFontSize(23d);
+        }
         style.setStrokeColor(buildTestColor());
-        style.setFontColor(buildTestColor());
-        style.setFontSize(23d);
+
         return style;
     }
 
@@ -194,20 +217,25 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         bounds.setY(boundsInfo.length > 1 ? boundsInfo[1] : 10d);
         bounds.setWidth(boundsInfo.length > 2 ? boundsInfo[2] : 300d);
         bounds.setHeight(boundsInfo.length > 3 ? boundsInfo[3] : 300d);
-        shape.setLocalStyle(buildTestStyle());
+        shape.setLocalStyle(buildTestStyle(false));
         this.elementDiagramElementMap.put(element, shape);
         return shape;
     }
 
     protected void addOutputPort(VdmlElement parent, PortContainer pc, String outputPortName) {
-        OutputPort activityOutputPort = VDMLFactory.eINSTANCE.createOutputPort();
-        activityOutputPort.setName(outputPortName);
-        pc.getContainedPort().add(activityOutputPort);
+        OutputPort activityOutputPort = addOutputPort(pc, outputPortName);
         DiagramElement boundariedShape = this.elementDiagramElementMap.get(pc);
         VDMLShape portShape = addShapeFor(parent, activityOutputPort);
         if (boundariedShape instanceof BoundariedShape) {
             ((BoundariedShape) boundariedShape).getBoundaryShapes().add(portShape);
         }
+    }
+
+    protected OutputPort addOutputPort(PortContainer pc, String outputPortName) {
+        OutputPort activityOutputPort = VDMLFactory.eINSTANCE.createOutputPort();
+        activityOutputPort.setName(outputPortName);
+        pc.getContainedPort().add(activityOutputPort);
+        return activityOutputPort;
     }
 
     protected void addInputPort(VdmlElement parent, PortContainer pc, String inputPortName) {
@@ -231,6 +259,6 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected void print(XMLResource resource) throws Exception {
-        resource.save(System.out, GenericJsonToEmfDiagramMarshaller.buildDefaultResourceOptions());
+        resource.save(System.out, profile.buildDefaultResourceOptions());
     }
 }

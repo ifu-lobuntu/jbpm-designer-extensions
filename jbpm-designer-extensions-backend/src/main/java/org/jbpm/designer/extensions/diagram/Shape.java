@@ -3,6 +3,7 @@ package org.jbpm.designer.extensions.diagram;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,8 +28,25 @@ public class Shape implements Stencil, Bounded {
     private Bounds bounds;
     @JsonIgnore
     private Shape parent;
+    @JsonIgnore
+    private Map<String, Object> unboundProperties;
 
     public Shape() {
+    }
+
+    public Object getUnboundProperty(String name) {
+        if(unboundProperties==null){
+            return null;
+        }
+        return unboundProperties.get(name.toLowerCase());
+    }
+    public void putUnboundProperty(String name, Object value) {
+        if (value != null) {
+            if (unboundProperties == null) {
+                unboundProperties = new HashMap<String, Object>();
+            }
+            unboundProperties.put(name.toLowerCase(), value);
+        }
     }
 
     @Override
@@ -101,6 +119,12 @@ public class Shape implements Stencil, Bounded {
         for (Shape shape : this.childShapes) {
             if (shape.getResourceId().equals(resourceId)) {
                 return shape;
+            }
+        }
+        for (Shape shape : this.childShapes) {
+            Shape found = shape.findChildShapeById(resourceId);
+            if (found != null) {
+                return found;
             }
         }
         return null;

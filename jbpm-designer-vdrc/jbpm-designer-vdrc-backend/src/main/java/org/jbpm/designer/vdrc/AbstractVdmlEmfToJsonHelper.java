@@ -21,6 +21,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.DCFactory;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
+import org.omg.smm.SmmElement;
 import org.omg.vdml.Role;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
@@ -40,6 +41,12 @@ public abstract class AbstractVdmlEmfToJsonHelper extends VDMLSwitch<Object> imp
     public void doSwitch(LinkedStencil validator, Shape targetShape, EObject me) {
         this.targetShape = targetShape;
         doSwitch(me);
+    }
+    protected String toString(SmmElement s){
+        return s.getName() + "|" + s.eResource().getURI().toPlatformString(true);
+    }
+    protected String toString(VdmlElement s){
+        return s.getQualifiedName() + "|" + s.eResource().getURI().toPlatformString(true);
     }
 
     protected void buildRoleShapes(XMLResource resource, Map<VdmlElement, VDMLDiagramElement> map, VDMLDiagram vd, double roleHeight) {

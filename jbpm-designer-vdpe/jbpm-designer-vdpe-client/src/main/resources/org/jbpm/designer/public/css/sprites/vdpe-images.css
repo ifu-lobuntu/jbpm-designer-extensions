@@ -1,9 +1,37 @@
 /** sprite: vdpe-images-sprite; sprite-image: url('../../images/sprites/vdpe-images-sprite.png'); sprite-layout: vertical */
 /* Edges */
-.stencilsets_vdpe_vdpe_json_icons_composition,
-.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_composition {
+.stencilsets_vdpe_vdpe_json_icons_role,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_role {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/vdpe/icons/composition.png);  /** sprite-ref: vdpe-images-sprite; */
+    background-image: url(../../stencilsets/vdpe/icons/role.png);  /** sprite-ref: vdpe-images-sprite; */
+}
+.stencilsets_vdpe_vdpe_json_icons_value_proposition,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_value_proposition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdpe/icons/value_proposition.png);  /** sprite-ref: vdpe-images-sprite; */
+}
+.stencilsets_vdpe_vdpe_json_icons_value_proposition_component,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_value_proposition_component {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdpe/icons/value_proposition_component.png);  /** sprite-ref: vdpe-images-sprite; */
+}
+.stencilsets_vdpe_vdpe_json_icons_recipient,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_recipient {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdpe/icons/recipient.png);  /** sprite-ref: vdpe-images-sprite; */
+}
+.stencilsets_vdpe_vdpe_json_icons_provided_proposition,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_provided_proposition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdpe/icons/provided_proposition.png);  /** sprite-ref: vdpe-images-sprite; */
 }

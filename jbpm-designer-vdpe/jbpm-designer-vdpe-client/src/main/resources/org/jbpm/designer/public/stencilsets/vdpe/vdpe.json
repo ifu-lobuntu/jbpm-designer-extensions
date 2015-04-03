@@ -55,7 +55,7 @@
 						"id" : "isExpanded",
 						"type" : "Boolean",
 						"title" : "Is Expanded",
-						"value" : true,
+						"value" : false,
 						"viewBinding": "isExpanded",
 						"hidden" : true
 					},
@@ -64,7 +64,7 @@
 						"type" : "Integer",
 						"title" : "Previous Width",
 						"viewBinding" : "previousWidth",
-						"value" : 200,
+						"value" : 250,
 						"readonly" : false,
 						"hidden" : true
 					},
@@ -73,7 +73,7 @@
 						"type" : "Integer",
 						"title" : "Previous Height",
 						"viewBinding" : "previousHeight",
-						"value" : 40,
+						"value" : 200,
 						"readonly" : false,
 						"hidden" : true
 					}
@@ -193,6 +193,35 @@
 							]
 						}
 				]
+			},
+			{
+				"name" : "simpleEdge",
+				"properties" : [
+					{
+						"id" : "bordercolor",
+						"type" : "Color",
+						"title" : "BorderColor",
+						"value" : "#000000",
+						"viewBinding":"localStyle.strokeColor",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"refToView": ["_1", "_2", "_3", "_4", "_5", "_6", "_7", "_8", "_9", "_10", "start", "end", "the_edge","arrow"],
+						"fill" : false,
+						"stroke" : true
+					},
+					{
+						"id" : "diagramElementId",
+						"type" : "String",
+						"title" : "DiagramElementId",
+						"value" : "",
+						"description" : "This is the unique id of the diagram element used to display the CMMN Element.",
+						"readonly" : true,
+						"optional" : true,
+						"length" : "",
+						"hidden" : true
+					}
+				]
 			}
 	],
 	"stencils" : [
@@ -277,6 +306,15 @@
 				"view" : "value_proposition.svg",
 				"icon" : "value_proposition.png",
 				"layout" : [
+			        {
+			        	"type" : "layout.collapsible"
+			        },    
+					{
+						"type" : "layout.list",
+						"options" : {
+							"offsetY" :40
+						}
+					}
 				],
 			    "propertyPackages" : [
 						"elementBase","localStyle","expandable"
@@ -301,12 +339,6 @@
 				"view" : "value_proposition_component.svg",
 				"icon" : "value_proposition_component.png",
 				"layout" : [
-			        {
-			        	"type" : "layout.collapsible"
-			        },    
-					{
-						"type" : "layout.list"
-					}
 				],
 			    "propertyPackages" : [
 						"localStyle"
@@ -349,6 +381,37 @@
 						"length" : "",
 						"wrapLines" : true,
 						"hidden" : true
+					},
+					{
+						"id" : "valueMeasure",
+						"type" : "eobjectref",
+						"title" : "Value Measure",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"meas",
+							"allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure",
+							"nameFeature" : "name",
+							"multiSelect" : false
+						}
+					},
+					{
+						"id" : "aggregatedFrom",
+						"type" : "eobjectref",
+						"title" : "Aggregated From",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"vdan",
+							"allowedElementTypes":"ValueAdd",
+							"nameFeature" : "name",
+							"multiSelect" : true,
+							"filter" : "valueElementAggregatedFrom"
+						}
 					}
 				]
 			},
@@ -365,13 +428,12 @@
 					"providedProposition"
 				],
 				"description" : "A Providing of a Value Proposition",
-				"view" : "provided_proposition.svg",
+				"view" : "proposition_edge.svg",
 				"icon" : "provided_proposition.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase",
-						"localStyle"
+						"simpleEdge"
 				],
 				"properties" : [
 				]
@@ -389,13 +451,12 @@
 					"recipient"
 				],
 				"description" : "A Receiving of a Value Proposition",
-				"view" : "recipient.svg",
+				"view" : "proposition_edge.svg",
 				"icon" : "recipient.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"elementBase",
-						"localStyle"
+						"simpleEdge"
 				],
 				"properties" : [
 				]

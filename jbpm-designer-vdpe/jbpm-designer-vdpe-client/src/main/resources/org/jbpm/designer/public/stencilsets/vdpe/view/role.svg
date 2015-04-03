@@ -36,12 +36,5 @@
   		<ellipse id="bg_frame" cx="51" cy="41" rx="100" ry="50" oryx:resize="vertical horizontal" x="0" y="0" stroke="black" stroke-width="1" fill="url(#background) #ffffcc"/>
 		<text font-size="12" id="text_name" x="50" y="40" oryx:align="middle center" oryx:fittoelem="text_frame" stroke="black">
 		</text>
-		<text oryx:anchors="bottom" font-size="12" id="requiredText" x="42" y="90" stroke="black" display="none">!
-		</text>
-		<text oryx:anchors="bottom" font-size="12" id="repetitionText" x="47" y="90" stroke="black" display="none">#
-		</text>
-		<g id="manualActivation">
-			<path id="manualActivationPath" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 52,68 L 60,73 L 52,78 z" display="none" />
-		</g>
 	</g>
 </svg>

@@ -184,5 +184,4 @@ public abstract class BaseMeasureRelationshipImpl extends MeasureRelationshipImp
         }
         return super.eIsSet(featureID);
     }
-
 } //BaseMeasureRelationshipImpl

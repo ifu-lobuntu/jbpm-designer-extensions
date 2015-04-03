@@ -12,6 +12,7 @@ import org.omg.smm.Base1MeasureRelationship;
 import org.omg.smm.BinaryMeasure;
 import org.omg.smm.DimensionalMeasure;
 import org.omg.smm.SMMPackage;
+import org.omg.smm.SmmElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -248,5 +249,12 @@ public class Base1MeasureRelationshipImpl extends BaseMeasureRelationshipImpl im
         }
         return super.eIsSet(featureID);
     }
-
+    @Override
+    public SmmElement basicGetFrom() {
+        return getFromBinaryMeasure();
+    }
+    @Override
+    public SmmElement basicGetTo() {
+        return getToDimensionalMeasure();
+    }
 } //Base1MeasureRelationshipImpl

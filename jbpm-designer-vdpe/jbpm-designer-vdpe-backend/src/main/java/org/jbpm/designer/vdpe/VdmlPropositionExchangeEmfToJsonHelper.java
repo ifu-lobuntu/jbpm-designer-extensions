@@ -12,7 +12,9 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.ValuePropositionComponent;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlPropositionExchangeEmfToJsonHelper extends AbstractVdmlEmfToJsonHelper {
@@ -25,6 +27,15 @@ public class VdmlPropositionExchangeEmfToJsonHelper extends AbstractVdmlEmfToJso
     public Object caseCollaboration(Collaboration object) {
         targetShape.getProperties().put("collaborationtype", object.eClass().getName());
         return super.caseCollaboration(object);
+    }
+
+    @Override
+    public Object caseValuePropositionComponent(ValuePropositionComponent object) {
+        MeasuredCharacteristic vm = object.getValueMeasurement();
+        if (vm != null && vm.getCharacteristicDefinition() != null && vm.getCharacteristicDefinition().getMeasure().size() > 0) {
+            targetShape.putProperty("valueMeasure", toString(vm.getCharacteristicDefinition().getMeasure().get(0)));
+        }
+        return super.caseValuePropositionComponent(object);
     }
 
     @Override

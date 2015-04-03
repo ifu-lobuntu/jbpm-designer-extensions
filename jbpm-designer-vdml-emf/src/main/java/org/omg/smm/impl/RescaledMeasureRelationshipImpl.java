@@ -12,6 +12,7 @@ import org.omg.smm.DimensionalMeasure;
 import org.omg.smm.RescaledMeasure;
 import org.omg.smm.RescaledMeasureRelationship;
 import org.omg.smm.SMMPackage;
+import org.omg.smm.SmmElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -247,6 +248,14 @@ public class RescaledMeasureRelationshipImpl extends MeasureRelationshipImpl imp
                 return getToRescaledMeasure() != null;
         }
         return super.eIsSet(featureID);
+    }
+    @Override
+    public SmmElement basicGetFrom() {
+        return getFromDimensionalMeasure();
+    }
+    @Override
+    public SmmElement basicGetTo() {
+        return getToRescaledMeasure();
     }
 
 } //RescaledMeasureRelationshipImpl

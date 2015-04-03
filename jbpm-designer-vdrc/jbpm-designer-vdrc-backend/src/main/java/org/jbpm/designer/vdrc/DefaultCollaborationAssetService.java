@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.jboss.errai.bus.server.annotations.Service;
-import org.jbpm.designer.extensions.emf.util.AbstractEmfJsonMarshaller;
 import org.jbpm.designer.extensions.emf.util.IEmfProfile;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.AssetBuilderFactory;
@@ -80,16 +79,17 @@ public class DefaultCollaborationAssetService implements CollaborationAssetServi
         Collaboration coll = vdm.getCollaboration().get(0);
         otherDiagram.setVdmlElement(coll);
         AssetBuilder builder = AssetBuilderFactory.getAssetBuilder(fileName);
-        builder.location(directory.toURI()).content(toString(otherDiagram)).uniqueId(diagramUuid);
+        builder.location(directory.toURI()).content(toString(otherDiagram,otherProfile)).uniqueId(diagramUuid);
+        @SuppressWarnings("unchecked")
         Asset<String> processAsset = builder.getAsset();
         repository.createAsset(processAsset);
         return PathFactory.newPath(fileName, diagramUuid);
     }
 
-    private String toString(VDMLDiagram otherDiagram) {
+    private String toString(VDMLDiagram otherDiagram, IEmfProfile profile) {
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            otherDiagram.eResource().save(baos, AbstractEmfJsonMarshaller.buildDefaultResourceOptions());
+            otherDiagram.eResource().save(baos, profile.buildDefaultResourceOptions());
             String string = baos.toString("UTF-8");
             return string;
         } catch (java.io.IOException e) {
@@ -125,7 +125,8 @@ public class DefaultCollaborationAssetService implements CollaborationAssetServi
         vdm.getCollaboration().add(coll);
         diagram.setVdmlElement(coll);
         AssetBuilder builder = AssetBuilderFactory.getAssetBuilder(fileName);
-        builder.location(directory.toURI()).content(toString(diagram)).uniqueId(uuid);
+        builder.location(directory.toURI()).content(toString(diagram,profile)).uniqueId(uuid);
+        @SuppressWarnings("unchecked")
         Asset<String> processAsset = builder.getAsset();
         repository.createAsset(processAsset);
         return path;

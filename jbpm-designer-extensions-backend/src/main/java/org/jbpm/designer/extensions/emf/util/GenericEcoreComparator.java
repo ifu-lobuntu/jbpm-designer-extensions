@@ -85,7 +85,7 @@ public class GenericEcoreComparator {
 
     }
 
-    private void validateAllFeatures(EObject found, EObject expected) {
+    private void validateAllFeatures(EObject expected,EObject found) {
         for (EStructuralFeature f : expected.eClass().getEAllStructuralFeatures()) {
             if (!(f.isDerived() || f instanceof EAttribute && ((EAttribute) f).isID())) {
                 assertEquals("Element not of the same type!", expected.eClass(), found.eClass());
@@ -104,39 +104,39 @@ public class GenericEcoreComparator {
         }
     }
 
-    private void validate(EObject value, EStructuralFeature f, Object expected, Object found) {
+    private void validate(EObject value, EStructuralFeature f, Object expectedObject, Object foundObject) {
         String evaluating = "Feature " + f.getName() + " of " + describeIdentity(value);
-        if (expected == null) {
-            fail(evaluating + "Both values should be null:", found == null);
+        if (expectedObject == null) {
+            fail(evaluating + "Both values should be null:", foundObject == null);
         } else {
-            fail(evaluating + "Both values should be not-null:", found != null);
-            assertEquals(evaluating + "Value not of the same type!", expected.getClass(), found.getClass());
-            if (expected instanceof Number || expected instanceof String || expected instanceof Boolean || expected instanceof Enumerator) {
-                assertEquals(evaluating + "Values not the same.", expected, found);
-            } else if (expected instanceof EObject) {
-                EObject eObject = (EObject) expected;
-                EObject eObject2 = (EObject) found;
-                assertEquals(evaluating + "Element not of the same type!", eObject.eClass(), eObject2.eClass());
-                EStructuralFeature id = eObject.eClass().getEIDAttribute();
-                if (id instanceof EAttribute && !(this.ignoreIdsFrom.contains(eObject.eClass()))) {
-                    Object id1 = eObject.eGet(id);
-                    Object id2 = eObject2.eGet(id);
+            fail(evaluating + "Both values should be not-null:", foundObject != null);
+            assertEquals(evaluating + "Value not of the same type!", expectedObject.getClass(), foundObject.getClass());
+            if (expectedObject instanceof Number || expectedObject instanceof String || expectedObject instanceof Boolean || expectedObject instanceof Enumerator) {
+                assertEquals(evaluating + "Values not the same.", expectedObject, foundObject);
+            } else if (expectedObject instanceof EObject) {
+                EObject expected = (EObject) expectedObject;
+                EObject found = (EObject) foundObject;
+                assertEquals(evaluating + "Element not of the same type!", expected.eClass(), found.eClass());
+                EStructuralFeature id = expected.eClass().getEIDAttribute();
+                if (id instanceof EAttribute && !(this.ignoreIdsFrom.contains(expected.eClass()))) {
+                    Object id1 = expected.eGet(id);
+                    Object id2 = found.eGet(id);
                     if (id1 != null && id2 != null) {
                         assertEquals("", id1, id2);
                     } else if (id1 == null && id2 == null) {
-                        assertEObjectDirectStateEquals(eObject, eObject2);
+                        assertEObjectDirectStateEquals(expected, found);
                     } else {
                         fail("Both IDs must either be null or not-null", false);
                     }
                 } else {
-                    assertEObjectDirectStateEquals(eObject, eObject2);
+                    assertEObjectDirectStateEquals(expected, found);
                 }
                 if (f instanceof EReference && ((EReference) f).isContainment()) {
-                    validateAllFeatures(eObject, eObject2);
+                    validateAllFeatures(expected, found);
                 }
-            } else if (expected instanceof EList) {
-                List<Object> eList = new ArrayList<Object>((EList<?>) expected);
-                List<Object> eList2 = new ArrayList<Object>((EList<?>) found);
+            } else if (expectedObject instanceof EList) {
+                List<Object> eList = new ArrayList<Object>((EList<?>) expectedObject);
+                List<Object> eList2 = new ArrayList<Object>((EList<?>) foundObject);
                 if (f.getEType() instanceof EClass) {
                     EClass ec = (EClass) f.getEType();
                     EAttribute comparableFeature = ec.getEIDAttribute();
@@ -196,20 +196,20 @@ public class GenericEcoreComparator {
         return value.eClass().getName() + "[" + identifyingString + "]";
     }
 
-    private void assertEObjectDirectStateEquals(EObject eObject, EObject eObject2) {
-        EList<EAttribute> eAllAttributes = eObject.eClass().getEAllAttributes();
+    private void assertEObjectDirectStateEquals(EObject expected, EObject found) {
+        EList<EAttribute> eAllAttributes = expected.eClass().getEAllAttributes();
         for (EAttribute eAttribute : eAllAttributes) {
             if (!eAttribute.isID()) {
-                Object attr2 = eObject2.eGet(eAttribute);
-                Object attr1 = eObject.eGet(eAttribute);
-                if (attr1 != null && attr2 != null) {
-                    if (attr1 instanceof EList) {
+                Object expectedAttributeValue = expected.eGet(eAttribute);
+                Object foundAttributeValue = found.eGet(eAttribute);
+                if (expectedAttributeValue != null && foundAttributeValue != null) {
+                    if (expectedAttributeValue instanceof EList) {
                         // todo
                     } else {
-                        assertEquals("", attr1, attr2);
+                        assertEquals("", expectedAttributeValue, foundAttributeValue);
                     }
                 } else {
-                    assertEquals("Attribute " + eAttribute.getName() + " not equal", attr1, attr2);
+                    assertEquals("Attribute " + eAttribute.getName() + " not equal", expectedAttributeValue, foundAttributeValue);
                 }
             }
         }

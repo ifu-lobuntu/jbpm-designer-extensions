@@ -1,5 +1,7 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.web.profile.IDiagramProfile;
@@ -21,5 +23,6 @@ public interface IEmfDiagramProfile extends IExtensionDiagramProfile, IDiagramPr
     String getDiagramStencilId();
     boolean mergeOnUpdate();
     EStructuralFeature demandFeature(String featureName);
+
     
 }

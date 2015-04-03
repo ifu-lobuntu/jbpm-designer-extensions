@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.event.Event;
@@ -27,6 +28,7 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -263,11 +265,12 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
             initializeLocalPlugins = true;
         }
     }
-    
+
     @Override
     public IDiagramMarshaller createMarshaller(URI uri) {
-        return new GenericJsonToEmfDiagramMarshaller(this,uri);
+        return new GenericJsonToEmfDiagramMarshaller(this, uri);
     }
+
     public IDiagramMarshaller createMarshaller() {
         throw new UnsupportedOperationException("EMF Diagram Marshallars have to be created with a URI to allow for the correct resolution of external files");
     }
@@ -358,17 +361,68 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     }
 
     @Override
-    public boolean processRequest(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
-        return false;
+    public boolean processRequestForPotentialReferences(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
+        try {
+            String output = createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
+            if (output == null) {
+                return false;
+            } else {
+                resp.getWriter().write(output);
+                return true;
+            }
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
+        return new DefaultPotentialReferenceHelper(this);
     }
 
     @Override
     public String getFormId(XMLResource resource, String elementId, String formType) {
         return elementId;
     }
+
     @Override
     public boolean mergeOnUpdate() {
         return false;
     }
 
+    public Map<String, Object> buildDefaultResourceOptions() {
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put(XMLResource.OPTION_ENCODING, "UTF-8");
+        options.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+        options.put(XMLResource.OPTION_DISABLE_NOTIFY, true);
+        options.put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, true);
+        options.put(XMLResource.OPTION_URI_HANDLER, SIMPLE_URI_HANDLER);
+        options.put(XMLResource.OPTION_PROCESS_DANGLING_HREF, XMLResource.OPTION_PROCESS_DANGLING_HREF_RECORD);
+        return options;
+    }
+
+    /**
+     * Temp fix to disable URI resolution. TODO give this some thought and think
+     * of the best approach, may even resource ids?
+     * */
+    static public XMLResource.URIHandler SIMPLE_URI_HANDLER = new XMLResource.URIHandler() {
+
+        private String[] baseUri;
+
+        @Override
+        public void setBaseURI(URI uri) {
+            this.baseUri = uri.trimFragment().segments();
+        }
+
+        @Override
+        public URI resolve(URI uri) {
+            return uri;
+        }
+
+        @Override
+        public URI deresolve(URI uri) {
+            return uri;
+        }
+    };
 }

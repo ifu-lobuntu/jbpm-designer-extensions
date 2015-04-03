@@ -262,13 +262,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         } else if (val instanceof EObject) {
             EObject eObject = (EObject) val;
             if (property.getReference() != null) {
-                Resource eResource = eObject.eResource();
-                String platformString = eResource.getURI().toPlatformString(true);
-                if (platformString == null) {
-                    platformString = eResource.getURI().toString();
-                }
-                Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
-                return name + "|" + platformString;
+                return convertToEObjectReference(property, eObject);
             } else {
                 return shapeMap.getId(eObject);
             }
@@ -309,6 +303,16 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         return val.toString();
     }
 
+    private String convertToEObjectReference(LinkedProperty property, EObject eObject) {
+        Resource eResource = eObject.eResource();
+        String platformString = eResource.getURI().toPlatformString(true);
+        if (platformString == null) {
+            platformString = eResource.getURI().toString();
+        }
+        Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
+        return name + "|" + platformString;
+    }
+
     private String formatColorQuantity(Integer blue2) {
         String blue = Integer.toHexString(blue2).toUpperCase();
         if (blue.length() == 1) {
@@ -320,13 +324,13 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     private XMLResource getResource(String xmlModel) throws UnsupportedEncodingException, IOException {
         ResourceSet resourceSet = new ResourceSetImpl();
         profile.prepareResourceSet(resourceSet);
-        resourceSet.getLoadOptions().putAll(buildDefaultResourceOptions());
+        resourceSet.getLoadOptions().putAll(profile.buildDefaultResourceOptions());
 
         XMLResource resource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
-        resource.getDefaultSaveOptions().putAll(buildDefaultResourceOptions());
-        resource.getDefaultLoadOptions().putAll(buildDefaultResourceOptions());
+        resource.getDefaultSaveOptions().putAll(profile.buildDefaultResourceOptions());
+        resource.getDefaultLoadOptions().putAll(profile.buildDefaultResourceOptions());
         resource.setEncoding("UTF-8");
-        Map<String, Object> options = buildDefaultResourceOptions();
+        Map<String, Object> options = profile.buildDefaultResourceOptions();
         InputStream is = new ByteArrayInputStream(xmlModel.getBytes("UTF-8"));
         resource.load(is, options);
         EcoreUtil.resolveAll(resourceSet);

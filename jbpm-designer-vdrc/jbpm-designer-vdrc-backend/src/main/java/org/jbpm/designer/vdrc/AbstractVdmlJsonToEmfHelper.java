@@ -26,9 +26,11 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
+import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.InputPort;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Port;
 import org.omg.vdml.PortContainer;
@@ -83,15 +85,16 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
 
     protected abstract VdmlElement createElement(String stencilId);
 
-    protected void removeFromPortContainer(Port... ports) {
-        for (Port port : ports) {
-            ((PortContainer) port.eContainer()).getContainedPort().remove(port);
-        }
-    }
-
     @Override
     public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
         return null;
+    }
+    protected MeasuredCharacteristic ensureMeasuredCharacteristicDefinition(Measure valueMeasure, MeasuredCharacteristic mc) {
+        if(mc==null){
+            mc = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+        }
+        mc.setCharacteristicDefinition(valueMeasure.getTrait());
+        return mc;
     }
 
     @Override
@@ -124,24 +127,28 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
                 for (Activity activity : performedWork) {
                     EList<Port> containedPort = activity.getContainedPort();
                     for (Port port : containedPort) {
-                        if (port instanceof InputPort) {
-                            InputPort ip = (InputPort) port;
-                            coll.getFlow().remove(ip.getInput());
-                            OutputPort provider = ip.getInput().getProvider();
-                            ((PortContainer)provider.eContainer()).getContainedPort().remove(provider);
-                            coll.getInternalPortDelegation().removeAll(((InputPort) port).getDelegatedInput());
-                        } else {
-                            OutputPort op = (OutputPort) port;
-                            coll.getFlow().remove(op.getOutput());
-                            InputPort recipient = op.getOutput().getRecipient();
-                            ((PortContainer)recipient.eContainer()).getContainedPort().remove(recipient);
-                            coll.getInternalPortDelegation().removeAll(((OutputPort) port).getDelegatedOutput());
-                        }
+                        removePortAndDependencies(coll, port);
                     }
                 }
                 coll.getActivity().removeAll(performedWork);
                 coll.getCollaborationRole().remove(role);
             }
+        }
+    }
+
+    protected void removePortAndDependencies(Collaboration coll, Port port) {
+        if (port instanceof InputPort) {
+            InputPort ip = (InputPort) port;
+            coll.getFlow().remove(ip.getInput());
+            OutputPort provider = ip.getInput().getProvider();
+            ((PortContainer)provider.eContainer()).getContainedPort().remove(provider);
+            coll.getInternalPortDelegation().removeAll(((InputPort) port).getDelegatedInput());
+        } else {
+            OutputPort op = (OutputPort) port;
+            coll.getFlow().remove(op.getOutput());
+            InputPort recipient = op.getOutput().getRecipient();
+            ((PortContainer)recipient.eContainer()).getContainedPort().remove(recipient);
+            coll.getInternalPortDelegation().removeAll(((OutputPort) port).getDelegatedOutput());
         }
     }
 

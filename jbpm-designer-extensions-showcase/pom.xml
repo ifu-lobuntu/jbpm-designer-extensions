@@ -63,18 +63,18 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-vdpe-backend</artifactId>
     </dependency>
-     <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdrc-api</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdrc-client</artifactId>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdrc-backend</artifactId>
-      </dependency>    
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdrc-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdrc-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdrc-backend</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
@@ -175,6 +175,10 @@
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-backend-server</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-widgets-commons</artifactId>
     </dependency>
     <dependency>
       <groupId>org.uberfire</groupId>
@@ -562,7 +566,6 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-form-modeler-editor-client</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-form-modeler-editor-backend</artifactId>
@@ -640,7 +643,15 @@
     </resources>
 
     <plugins>
-
+      <plugin>
+        <groupId>org.mortbay.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>
+          8.1.10.v20130312
+        </version>
+        <configuration>
+                <war>${project.basedir}/target/${project.artifactId}.war</war></configuration>
+      </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
