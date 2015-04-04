@@ -259,7 +259,6 @@
 							"allowedElementTypes":"BusinessNetwork|CapabilityMethod|Community|OrgUnit",
 							"nameFeature" : "name"
 						},
-
 						"length" : ""
 	                }
 				],

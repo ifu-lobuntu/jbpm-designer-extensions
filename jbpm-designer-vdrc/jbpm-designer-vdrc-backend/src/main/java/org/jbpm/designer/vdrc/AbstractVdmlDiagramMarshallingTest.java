@@ -221,7 +221,6 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         this.elementDiagramElementMap.put(element, shape);
         return shape;
     }
-
     protected void addOutputPort(VdmlElement parent, PortContainer pc, String outputPortName) {
         OutputPort activityOutputPort = addOutputPort(pc, outputPortName);
         DiagramElement boundariedShape = this.elementDiagramElementMap.get(pc);

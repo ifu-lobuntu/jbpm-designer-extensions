@@ -47,8 +47,8 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
             EObject eObject = allContents.next();
             if (eObject instanceof DeliverableFlow && !map.containsKey(eObject)) {
                 DeliverableFlow d = (DeliverableFlow) eObject;
-                Role receivingRole = RoleCollaborationUtil.getRoleFor(d.getRecipient());
-                Role providingRole = RoleCollaborationUtil.getRoleFor(d.getProvider());
+                Role receivingRole = VdmlHelper.getRoleResponsibleFor(d.getRecipient());
+                Role providingRole = VdmlHelper.getRoleResponsibleFor(d.getProvider());
                 if (receivingRole != null && providingRole != null && receivingRole != providingRole) {
                     // Create flow
                     VDMLEdge edge = VDMLDIFactory.eINSTANCE.createVDMLEdge();

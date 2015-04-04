@@ -2,6 +2,7 @@ package org.jbpm.designer.vdrc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
@@ -54,8 +56,12 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
     protected Shape sourceShape;
     protected static Map<String, EClass> COLLABORATION_TYPE_MAP = new HashMap<String, EClass>();
     private LinkedStencil currentStencil;
+    protected Collaboration owningCollaboration;
     static {
         COLLABORATION_TYPE_MAP.put("CapabilityMethod", VDMLPackage.eINSTANCE.getCapabilityMethod());
+        COLLABORATION_TYPE_MAP.put("OrgUnit", VDMLPackage.eINSTANCE.getOrgUnit());
+        COLLABORATION_TYPE_MAP.put("BusinessNetwork", VDMLPackage.eINSTANCE.getBusinessNetwork());
+        COLLABORATION_TYPE_MAP.put("Community", VDMLPackage.eINSTANCE.getCommunity());
     }
 
     public AbstractVdmlJsonToEmfHelper(ShapeMap shapeMap) {
@@ -84,6 +90,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
     protected abstract VDMLDiagramElement createDiagramElement(String stencilId);
 
     protected abstract VdmlElement createElement(String stencilId);
+    protected abstract EClass[] getManagedClasses();
 
     @Override
     public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
@@ -103,10 +110,38 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
         this.currentStencil = sv;
         super.doSwitch(shapeMap.getModelElement(sourceShape.getResourceId()));
     }
+    private Collection<VdmlElement> collectOrphans(VDMLDiagram diagram, Map<VdmlElement, VDMLDiagramElement> map, Set<EClass> classes) {
+        Collection<VdmlElement> orphans=new HashSet<VdmlElement>();
+        OrphanFilter orphanFilter = getOrphanFilter();
+        TreeIterator<EObject> eAllContents = diagram.getVdmlElement().eAllContents();
+        while (eAllContents.hasNext()) {
+            EObject eObject = (EObject) eAllContents.next();
+            if(eObject instanceof VdmlElement && classes.contains(eObject.eClass())){
+                VdmlElement ve = (VdmlElement) eObject;
+                if(!map.containsKey(eObject) && orphanFilter.shouldHaveDiagramElement(ve)){
+                    orphans.add(ve);
+                }
+            }
+        }
+        Set<VdmlElement> duplicates = new HashSet<VdmlElement>();
+        for (VdmlElement potentialParent : orphans) {
+            for (VdmlElement potentialChild : orphans) {
+                if(potentialChild!=potentialParent &&  EcoreUtil.isAncestor(potentialParent, potentialChild)){
+                    duplicates.add(potentialChild);
+                }
+            }
+        }
+        orphans.removeAll(duplicates);
+        return orphans;
+    }
 
     protected void buildMap(VDMLDiagram diagram, Map<VdmlElement, VDMLDiagramElement> map, EClass... cls) {
-        TreeIterator<EObject> allContents = diagram.eAllContents();
         Set<EClass> classes = new HashSet<EClass>(Arrays.asList(cls));
+        populateDiagramElementMap(diagram, map, classes);
+    }
+
+    protected void populateDiagramElementMap(VDMLDiagram diagram, Map<VdmlElement, VDMLDiagramElement> map, Set<EClass> classes) {
+        TreeIterator<EObject> allContents = diagram.eAllContents();
         while (allContents.hasNext()) {
             EObject eObject = allContents.next();
             if (eObject instanceof VDMLDiagramElement) {
@@ -120,38 +155,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
         }
     }
 
-    protected void removeOrphanedRoles(Map<VdmlElement, VDMLDiagramElement> map, Collaboration coll) {
-        for (Role role : new ArrayList<Role>(coll.getCollaborationRole())) {
-            if (!map.containsKey(role)) {
-                EList<Activity> performedWork = role.getPerformedWork();
-                for (Activity activity : performedWork) {
-                    EList<Port> containedPort = activity.getContainedPort();
-                    for (Port port : containedPort) {
-                        removePortAndDependencies(coll, port);
-                    }
-                }
-                coll.getActivity().removeAll(performedWork);
-                coll.getCollaborationRole().remove(role);
-            }
-        }
-    }
-
-    protected void removePortAndDependencies(Collaboration coll, Port port) {
-        if (port instanceof InputPort) {
-            InputPort ip = (InputPort) port;
-            coll.getFlow().remove(ip.getInput());
-            OutputPort provider = ip.getInput().getProvider();
-            ((PortContainer)provider.eContainer()).getContainedPort().remove(provider);
-            coll.getInternalPortDelegation().removeAll(((InputPort) port).getDelegatedInput());
-        } else {
-            OutputPort op = (OutputPort) port;
-            coll.getFlow().remove(op.getOutput());
-            InputPort recipient = op.getOutput().getRecipient();
-            ((PortContainer)recipient.eContainer()).getContainedPort().remove(recipient);
-            coll.getInternalPortDelegation().removeAll(((OutputPort) port).getDelegatedOutput());
-        }
-    }
-
+  
     public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
         ValueDeliveryModel vdm = null;
         if (result.getContents().isEmpty()) {
@@ -168,29 +172,53 @@ public abstract class AbstractVdmlJsonToEmfHelper extends VDMLSwitch<Object> imp
             vdmlDiagram = vdm.getDiagram().get(0);
         }
         vdmlDiagram.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-        Collaboration collaboration;
         if (vdm.getCollaboration().isEmpty()) {
             String ref = json.getProperty("collaboration");
             if (ref != null && ref.contains("|")) {
-                collaboration = UriHelper.resolveEObject(shapeMap.getResource().getResourceSet(), ref.split("\\|"), COLLABORATION_FEATURE_MAP);
+                this.owningCollaboration = UriHelper.resolveEObject(shapeMap.getResource().getResourceSet(), ref.split("\\|"), COLLABORATION_FEATURE_MAP);
             } else {
                 EClass eClass = COLLABORATION_TYPE_MAP.get(json.getProperty("collaborationtype"));
-                collaboration = (Collaboration) VDMLFactory.eINSTANCE.create(eClass);
-                vdm.getCollaboration().add(collaboration);
+                this.owningCollaboration = (Collaboration) VDMLFactory.eINSTANCE.create(eClass);
+                vdm.getCollaboration().add(owningCollaboration);
             }
         } else {
-            collaboration = vdm.getCollaboration().get(0);
+            this.owningCollaboration = vdm.getCollaboration().get(0);
         }
-        collaboration.setId(json.getResourceId());
-        vdmlDiagram.setVdmlElement(collaboration);
+        this.owningCollaboration.setId(json.getResourceId());
+        vdmlDiagram.setVdmlElement(this.owningCollaboration);
         // We assume that Oryx always owns the diagram
         vdmlDiagram.getOwnedVdmlDiagramElement().clear();
         return vdmlDiagram;
     }
-
+    @Override
+    public void postprocessResource(XMLResource resource) {
+        VDMLDiagram vdmlDiagram = VdmlHelper.getDiagram(resource);
+        Set<EClass> classes = new HashSet<EClass>(Arrays.asList(getManagedClasses()));
+        Map<VdmlElement, VDMLDiagramElement> map=new HashMap<VdmlElement, VDMLDiagramElement>();
+        populateDiagramElementMap(vdmlDiagram, map, classes);
+        Collection<VdmlElement> orphans = collectOrphans(vdmlDiagram,map,classes);
+        Collaboration coll = (Collaboration) vdmlDiagram.getVdmlElement();
+        ((XMLResource) coll.eResource()).setModified(true);
+        VdmlElementDeleter ved=new VdmlElementDeleter(coll,classes);
+        for (VdmlElement orphan : orphans) {
+            ved.doSwitch(orphan);
+        }
+        ved.deleteOrphanedEdges();
+    }
     @Override
     public EObject create(EClass eType) {
         return VDMLFactory.eINSTANCE.create(eType);
     }
-
+    protected OrphanFilter getOrphanFilter(){
+        return new OrphanFilter() {
+            
+            @Override
+            public boolean shouldHaveDiagramElement(VdmlElement e) {
+                return true;
+            }
+        };
+    }
+    protected interface OrphanFilter{
+        boolean shouldHaveDiagramElement(VdmlElement e);
+    }
 }

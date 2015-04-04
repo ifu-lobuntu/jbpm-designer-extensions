@@ -11,6 +11,7 @@ import org.guvnor.common.services.project.context.ProjectContext;
 import org.guvnor.common.services.project.model.Package;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
+import org.jbpm.designer.vdrc.CollaborationAssetService;
 import org.kie.workbench.common.services.shared.project.KieProjectService;
 import org.kie.workbench.common.services.shared.validation.ValidationService;
 import org.kie.workbench.common.widgets.client.handlers.NewResourceHandler;
@@ -21,6 +22,7 @@ import org.uberfire.backend.vfs.Path;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.commons.data.Pair;
 import org.uberfire.ext.editor.commons.client.validation.ValidatorWithReasonCallback;
+import org.uberfire.ext.widgets.common.client.callbacks.DefaultErrorCallback;
 import org.uberfire.ext.widgets.common.client.common.BusyIndicatorView;
 import org.uberfire.ext.widgets.common.client.common.popups.errors.ErrorPopup;
 import org.uberfire.mvp.PlaceRequest;
@@ -37,7 +39,9 @@ import com.google.gwt.user.client.ui.IsWidget;
 public abstract class DefaultNewCollaborationDiagramHandler implements NewResourceHandler, PackageContextProvider {
 
     protected final List<Pair<String, ? extends IsWidget>> extensions = new LinkedList<Pair<String, ? extends IsWidget>>();
-
+    @Inject
+    private Caller<CollaborationAssetService> designerAssetService;
+    
     @Inject
     protected CollaborationsListBox collaborationsListBox;
 
@@ -68,6 +72,16 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
     public List<Pair<String, ? extends IsWidget>> getExtensions() {
         this.collaborationsListBox.setContext(context, true);
         return this.extensions;
+    }
+
+    public abstract String getProfileName();
+
+    @Override
+    public void create(final Package pkg, final String baseFileName, final NewResourcePresenter presenter) {
+        // TODO warn the user we're ignoring the filename, or find a better
+        // approach
+        designerAssetService.call(getSuccessCallback(presenter), new DefaultErrorCallback()).createCollaborationDiagram(
+                collaborationsListBox.getSelectedCollaboration(), getProfileName());
     }
 
     @Override

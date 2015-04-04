@@ -38,6 +38,14 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-client</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdrc-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdrc-api</artifactId>
+    </dependency>
     <!-- Transitive dependencies -->
     <!-- jBPM Designer -->
     <dependency>

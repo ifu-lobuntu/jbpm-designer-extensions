@@ -97,6 +97,9 @@ public class Shape implements Stencil, Bounded {
             this.childShapes.remove(shape);
             recursivelyDeleteShape(shape);
         }
+        for (Shape shape2 : shape.getChildShapes()) {
+            deleteShape(shape2);
+        }
     }
 
     private void recursivelyDeleteShape(Shape shape) {

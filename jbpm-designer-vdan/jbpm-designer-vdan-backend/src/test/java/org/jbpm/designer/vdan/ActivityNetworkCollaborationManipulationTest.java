@@ -1,14 +1,20 @@
 package org.jbpm.designer.vdan;
 
+import static org.junit.Assert.*;
+
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.vdrc.VdmlHelper;
 import org.junit.Test;
 import org.omg.vdml.Activity;
+import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
-import org.omg.vdml.Pool;
 import org.omg.vdml.PortContainer;
 import org.omg.vdml.ResourceUse;
 import org.omg.vdml.Role;
@@ -17,7 +23,7 @@ import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueAdd;
 import org.omg.vdml.VdmlElement;
 
-public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMarshallingTest {
+public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDiagramMarshallingTest {
     @Test
     public void testValueAdd() throws Exception{
         Role role = VDMLFactory.eINSTANCE.createRole();
@@ -38,7 +44,12 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         op.getValueAdd().add(valueAdd);
         addShapeFor(op, valueAdd);
         saveCollaborationResource();
-        super.assertOutputValid();
+        Diagram json = unmarshaller.convert(diagramResource);
+        Shape outputPortShape = json.findChildShapeById(op.getId());
+        outputPortShape.deleteShape(outputPortShape.findChildShapeById(valueAdd.getId()));
+        XMLResource xml = marshaller.convert(json);
+        Collaboration c = VdmlHelper.getCollaboration(xml);
+        assertNull(c.eResource().getEObject(valueAdd.getId()));
     }
     @Test
     public void testResourceUse() throws Exception{
@@ -62,10 +73,77 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         activity1.getResourceUse().add(resourceUse);
         addEdge(resourceUse,ip,op);
         saveCollaborationResource();
-        super.assertOutputValid();
+        Diagram json = unmarshaller.convert(diagramResource);
+        json.deleteShape(json.findChildShapeById(resourceUse.getId()));
+        XMLResource xml = marshaller.convert(json);
+        Collaboration c = VdmlHelper.getCollaboration(xml);
+        assertNull(c.eResource().getEObject(resourceUse.getId()));
+        assertNotNull(c.eResource().getEObject(op.getId()));
+        assertNotNull(c.eResource().getEObject(ip.getId()));
     }
     @Test
-    public void testPortContainersAndDeliverableFlows() throws Exception{
+    public void testRole() throws Exception{
+        Role role1 = VDMLFactory.eINSTANCE.createRole();
+        role1.setName("myRole");
+        role1.setDescription("My Role's Description");
+        capabilityMethod.getCollaborationRole().add(role1);
+        addShapeFor(capabilityMethod, role1);
+        
+        Activity activity1 = VDMLFactory.eINSTANCE.createActivity();
+        activity1.setName("MyActivity1");
+        activity1.setDescription("My Activity's description");
+        capabilityMethod.getActivity().add(activity1);
+        addShapeFor(role1, activity1);
+        addPorts("MyActivity1", role1, activity1);
+        role1.getPerformedWork().add(activity1);
+        addPorts("MyCollaboration",role1,  capabilityMethod);
+
+        Role role2 = VDMLFactory.eINSTANCE.createRole();
+        role2.setName("YourRole");
+        role2.setDescription("YourRole's Description");
+        capabilityMethod.getCollaborationRole().add(role2);
+        addShapeFor(capabilityMethod, role2);
+        
+        Activity activity2 = VDMLFactory.eINSTANCE.createActivity();
+        activity2.setName("YourActivity2");
+        activity2.setDescription("asdfasdf");
+        capabilityMethod.getActivity().add(activity2);
+        addShapeFor(role2, activity2);
+        role2.getPerformedWork().add(activity2);
+        addPorts("YourActivity2", role2, activity2);
+
+        DeliverableFlow deliverableFlow1 = VDMLFactory.eINSTANCE.createDeliverableFlow();
+        deliverableFlow1.setName("deliverableFlow1");
+        deliverableFlow1.setProvider((OutputPort) activity2.getContainedPort().get(1));
+        deliverableFlow1.setRecipient((InputPort) activity1.getContainedPort().get(0));
+        capabilityMethod.getFlow().add(deliverableFlow1);
+        addEdge(deliverableFlow1, activity2.getContainedPort().get(1), activity1.getContainedPort().get(0));
+
+        DeliverableFlow deliverableFlow2 = VDMLFactory.eINSTANCE.createDeliverableFlow();
+        deliverableFlow2.setName("deliverableFlow2");
+        deliverableFlow2.setProvider((OutputPort) activity1.getContainedPort().get(1));
+        deliverableFlow2.setRecipient((InputPort) activity2.getContainedPort().get(0));
+        capabilityMethod.getFlow().add(deliverableFlow2);
+        addEdge(deliverableFlow2, activity1.getContainedPort().get(1), activity2.getContainedPort().get(0));
+        
+        saveCollaborationResource();
+        Diagram json = unmarshaller.convert(diagramResource);
+        json.deleteShape(json.findChildShapeById(role1.getId()));
+        XMLResource xml = marshaller.convert(json);
+        Collaboration c = VdmlHelper.getCollaboration(xml);
+        assertNull(c.eResource().getEObject(role1.getId()));
+        assertNull(c.eResource().getEObject(activity1.getId()));
+        assertNull(c.eResource().getEObject(deliverableFlow2.getId()));
+        assertNull(c.eResource().getEObject(deliverableFlow1.getId()));
+        assertNotNull(c.eResource().getEObject(((InputPort) activity2.getContainedPort().get(0)).getId()));
+        assertNotNull(c.eResource().getEObject(((OutputPort) activity2.getContainedPort().get(1)).getId()));
+        assertDiagramElementPresent(role2,diagramResource);
+        assertDiagramElementPresent(activity2,diagramResource);
+        assertDiagramElementPresent(activity2.getContainedPort().get(0),diagramResource);
+        assertDiagramElementPresent(activity2.getContainedPort().get(1),diagramResource);
+    }
+    @Test
+    public void testDeliverableFlow() throws Exception{
         Role role = VDMLFactory.eINSTANCE.createRole();
         role.setName("myRole");
         role.setDescription("My Role's Description");
@@ -101,46 +179,14 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         capabilityMethod.getFlow().add(deliverableFlow2);
         addEdge(deliverableFlow2, activity1.getContainedPort().get(1), store.getContainedPort().get(0));
         saveCollaborationResource();
-        super.assertOutputValid();
-    }
-    @Test
-    public void testPool() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
-        role.setName("myRole");
-        role.setDescription("My Role's Description");
-        capabilityMethod.getCollaborationRole().add(role);
-        addShapeFor(capabilityMethod, role);
-        Pool store = VDMLFactory.eINSTANCE.createPool();
-        store.setName("MyPool");
-        store.setDescription("My store description");
-        OrgUnit orgUnit=VDMLFactory.eINSTANCE.createOrgUnit();
-        valueDeliveryModel.getCollaboration().add(orgUnit);
-        orgUnit.setName(capabilityMethod.getName()+"OrgUnit");
-        orgUnit.getOwnedStore().add(store);
-        addShapeFor(role, store);
-        addPorts("MyStore", role, store);
-        Activity activity1 = VDMLFactory.eINSTANCE.createActivity();
-        activity1.setName("MyActivity1");
-        activity1.setDescription("My Activity's description");
-        capabilityMethod.getActivity().add(activity1);
-        addShapeFor(role, activity1);
-        addPorts("MyActivity1", role, activity1);
-        role.getPerformedWork().add(activity1);
-        addPorts("MyCollaboration",role,  capabilityMethod);
-        DeliverableFlow deliverableFlow1 = VDMLFactory.eINSTANCE.createDeliverableFlow();
-        deliverableFlow1.setName("Safd");
-        deliverableFlow1.setProvider((OutputPort) store.getContainedPort().get(1));
-        deliverableFlow1.setRecipient((InputPort) activity1.getContainedPort().get(0));
-        capabilityMethod.getFlow().add(deliverableFlow1);
-        addEdge(deliverableFlow1, store.getContainedPort().get(1), activity1.getContainedPort().get(0));
-        DeliverableFlow deliverableFlow2 = VDMLFactory.eINSTANCE.createDeliverableFlow();
-        deliverableFlow2.setName("Safd");
-        deliverableFlow2.setProvider((OutputPort) activity1.getContainedPort().get(1));
-        deliverableFlow2.setRecipient((InputPort) store.getContainedPort().get(0));
-        capabilityMethod.getFlow().add(deliverableFlow2);
-        addEdge(deliverableFlow2, activity1.getContainedPort().get(1), store.getContainedPort().get(0));
-        saveCollaborationResource();
-        super.assertOutputValid();
+        Diagram json = unmarshaller.convert(diagramResource);
+        json.deleteShape(json.findChildShapeById(deliverableFlow1.getId()));
+        XMLResource xml = marshaller.convert(json);
+        Collaboration c = VdmlHelper.getCollaboration(xml);
+        assertNull(c.eResource().getEObject(deliverableFlow1.getId()));
+        assertNotNull(c.eResource().getEObject(deliverableFlow2.getId()));
+        assertNotNull(c.eResource().getEObject(((OutputPort) store.getContainedPort().get(1)).getId()));
+        assertNotNull(c.eResource().getEObject(((InputPort) activity1.getContainedPort().get(0)).getId()));
     }
     @Test
     public void testDelegations() throws Exception{
@@ -169,7 +215,14 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         capabilityMethod.getInternalPortDelegation().add(outputDelegation);
         addEdge(outputDelegation, activity2.getContainedPort().get(1), capabilityMethod.getContainedPort().get(1));
         saveCollaborationResource();
-        super.assertOutputValid();
+        Diagram json = unmarshaller.convert(diagramResource);
+        json.deleteShape(json.findChildShapeById(inputDelegation.getId()));
+        XMLResource xml = marshaller.convert(json);
+        Collaboration c = VdmlHelper.getCollaboration(xml);
+        assertNull(c.eResource().getEObject(inputDelegation.getId()));
+        assertNotNull(c.eResource().getEObject(outputDelegation.getId()));
+        assertNotNull(c.eResource().getEObject(((OutputPort) activity2.getContainedPort().get(1)).getId()));
+        assertNotNull(c.eResource().getEObject(((OutputPort) capabilityMethod.getContainedPort().get(1)).getId()));
     }
 
     private void addPorts(String prefix,VdmlElement parent, PortContainer pc) {

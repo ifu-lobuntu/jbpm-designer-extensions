@@ -1,22 +1,9 @@
 package org.jbpm.designer.vdan;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.extensions.diagram.Diagram;
-import org.jbpm.designer.extensions.diagram.Shape;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
-import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
-import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
-import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
-import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.dd.di.DiagramElement;
+import org.jbpm.designer.vdrc.AbstractVdmlJsonToEmfHelper;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
@@ -26,7 +13,6 @@ import org.omg.vdml.OrgUnit;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Pool;
-import org.omg.vdml.PortContainer;
 import org.omg.vdml.ResourceUse;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
@@ -34,21 +20,10 @@ import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
-import org.omg.vdml.util.VDMLSwitch;
 
-public class VdmlActivityNetworkJsonToEmfHelper extends VDMLSwitch<Object> implements JsonToEmfHelper {
-    private ShapeMap shapeMap;
-    protected Shape sourceShape;
-    private Collaboration owningCollaboration;
-    private static Map<String, EClass> COLLABORATION_TYPE_MAP = new HashMap<String, EClass>();
-
-    static {
-        COLLABORATION_TYPE_MAP.put("CapabilityMethod", VDMLPackage.eINSTANCE.getCapabilityMethod());
-    }
-    private LinkedStencil currentStencil;
-
+public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
     public VdmlActivityNetworkJsonToEmfHelper(ShapeMap resource) {
-        this.shapeMap = resource;
+        super(resource);
     }
 
     @Override
@@ -119,63 +94,29 @@ public class VdmlActivityNetworkJsonToEmfHelper extends VDMLSwitch<Object> imple
 
     @Override
     public Object caseInputPort(InputPort object) {
-        if (object.eContainer() == null && sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_INPUT_PORT.getStencilId())) {
-            owningCollaboration.getContainedPort().add(object);
-        }
         return super.caseInputPort(object);
     }
 
     @Override
     public Object caseOutputPort(OutputPort object) {
-        if (object.eContainer() == null && sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_OUTPUT_PORT.getStencilId())) {
-            owningCollaboration.getContainedPort().add(object);
-        }
         return super.caseOutputPort(object);
     }
 
-    public void doSwitch(LinkedStencil sv, Shape sourceShape) {
-        this.sourceShape = sourceShape;
-        this.currentStencil = sv;
-        super.doSwitch(shapeMap.getModelElement(sourceShape.getResourceId()));
+    protected EClass[] getManagedClasses() {
+        VDMLPackage vp = VDMLPackage.eINSTANCE;
+        return new EClass[] { vp.getRole(), vp.getActivity(), vp.getOutputPort(), vp.getInputPort(), vp.getDeliverableFlow(), vp.getResourceUse(),
+                vp.getInputDelegation(), vp.getOutputDelegation(), vp.getValueAdd() };
     }
 
-    public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
-        VDMLDiagram vdmlDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        result.getContents().add(vdm);
-        EClass eClass = COLLABORATION_TYPE_MAP.get(json.getProperty("collaborationtype"));
-        owningCollaboration = (Collaboration) VDMLFactory.eINSTANCE.create(eClass);
-        vdm.getCollaboration().add(owningCollaboration);
-        owningCollaboration.setId(json.getResourceId());
-        vdmlDiagram.setVdmlElement(owningCollaboration);
-        vdm.getDiagram().add(vdmlDiagram);
-        return vdmlDiagram;
-    }
 
-    public DiagramElement createElements(Shape shape) {
-        DiagramElement de = VdmlActivityNetworkStencil.createDiagramElement(shape.getStencilId());
-        VdmlElement el = VdmlActivityNetworkStencil.createElement(shape.getStencilId());
-        if (de instanceof VDMLShape) {
-            ((VDMLShape) de).setVdmlElement((VdmlElement) el);
-        } else if (de instanceof VDMLEdge) {
-            ((VDMLEdge) de).setVdmlElement((VdmlElement) el);
-        }
-        de.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-        return de;
+    @Override
+    protected VDMLDiagramElement createDiagramElement(String stencilId) {
+        return VdmlActivityNetworkStencil.createDiagramElement(stencilId);
     }
 
     @Override
-    public EObject create(EClass eType) {
-        return VDMLFactory.eINSTANCE.create(eType);
-    }
-
-    @Override
-    public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
-        return null;
-    }
-
-    @Override
-    public void postprocessResource(XMLResource resource) {
+    protected VdmlElement createElement(String stencilId) {
+        return VdmlActivityNetworkStencil.createElement(stencilId);
     }
 
 }

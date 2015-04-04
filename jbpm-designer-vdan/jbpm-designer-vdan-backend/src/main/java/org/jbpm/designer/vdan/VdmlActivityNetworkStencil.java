@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.Pool;
@@ -67,12 +68,12 @@ public enum VdmlActivityNetworkStencil implements StencilInfo {
         }
     }
 
-    public static DiagramElement createDiagramElement(String stencilId) {
+    public static VDMLDiagramElement createDiagramElement(String stencilId) {
         VdmlActivityNetworkStencil stencil = findStencilById(stencilId);
         if (stencil.shapeType == null) {
             return null;
         }
-        return (DiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
+        return (VDMLDiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
     public static VdmlElement createElement(String stencilId) {

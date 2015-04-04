@@ -1,0 +1,41 @@
+/* Edges */
+.stencilsets_vdpe_vdpe_json_icons_role,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_role {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdpe-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_vdpe_vdpe_json_icons_value_proposition,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_value_proposition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdpe-images-sprite.png');
+  background-position: left -16px;
+}
+.stencilsets_vdpe_vdpe_json_icons_value_proposition_component,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_value_proposition_component {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdpe-images-sprite.png');
+  background-position: left -32px;
+}
+.stencilsets_vdpe_vdpe_json_icons_recipient,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_recipient {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdpe-images-sprite.png');
+  background-position: left -48px;
+}
+.stencilsets_vdpe_vdpe_json_icons_provided_proposition,
+.x-tree-node-leaf .stencilsets_vdpe_vdpe_json_icons_provided_proposition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdpe-images-sprite.png');
+  background-position: left -64px;
+}

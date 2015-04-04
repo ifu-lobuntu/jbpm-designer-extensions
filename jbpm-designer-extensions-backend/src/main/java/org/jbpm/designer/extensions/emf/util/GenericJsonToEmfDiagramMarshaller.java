@@ -118,6 +118,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         removeFromContainer(collectOrphanedShapes(emfDiagram));
         result.setModified(true);
         this.helper.postprocessResource(result);
+        //TODO maybe clean up the orphanedEdges again?
         result.getDefaultLoadOptions().putAll(profile.buildDefaultResourceOptions());
         result.getDefaultSaveOptions().putAll(profile.buildDefaultResourceOptions());
         return result;

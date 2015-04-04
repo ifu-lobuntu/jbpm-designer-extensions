@@ -183,22 +183,22 @@
 					"collaboration"
 				],
 				"properties" : [
-					{
-						"id" : "collaborationType",
-						"type" : "String",
-						"title" : "CollaborationType",
+	                {
+						"id" : "collaboration",
+						"type" : "eobjectref",
+						"title" : "Collaboration",
 						"value" : "",
-						"description" : "",
+						"viewBinding":"vdmlElement",
+						"description" : "The Collaboration this diagram describes",
 						"readonly" : true,
-						"optional" : false,
-						"hidden" : true,
-						"length" : "",
-						"wrapLines" : true,
-						"refToView" : [
-							"text_name"
-						]
-					}
-
+						"optional" : true,
+						"reference" : {
+							"targetProfile":"vdrc",
+							"allowedElementTypes":"BusinessNetwork|CapabilityMethod|Community|OrgUnit",
+							"nameFeature" : "name"
+						},
+						"length" : ""
+	                }
 				],
 				"layout": [
 				 ]

@@ -1,37 +1,25 @@
 package org.jbpm.designer.vdrc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
-import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
-import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputPort;
-import org.omg.vdml.Port;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
-public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper implements JsonToEmfHelper {
+public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
 
     public VdmlRoleCollaborationJsonToEmfHelper(ShapeMap resource) {
         super(resource);
@@ -49,8 +37,8 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
             if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
                 DeliverableFlow flow = (DeliverableFlow) shapeMap.getModelElement(targetShape.getResourceId());
                 String providingActivityName = targetShape.getProperty("providingActivityName");
-                if(providingActivityName==null || providingActivityName.trim().isEmpty()){
-                    providingActivityName=object.getName()+"DefaultActivity";
+                if (providingActivityName == null || providingActivityName.trim().isEmpty()) {
+                    providingActivityName = object.getName() + "DefaultActivity";
                 }
                 Activity a = findOrCreatePerformerWork(object, providingActivityName);
                 OutputPort op = VDMLFactory.eINSTANCE.createOutputPort();
@@ -80,6 +68,24 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
     }
 
     @Override
+    protected OrphanFilter getOrphanFilter() {
+        return new OrphanFilter() {
+
+            @Override
+            public boolean shouldHaveDiagramElement(VdmlElement e) {
+                if (e instanceof DeliverableFlow) {
+                    DeliverableFlow flow=(DeliverableFlow) e;
+                    Role receivingRole = VdmlHelper.getRoleResponsibleFor(flow.getRecipient());
+                    Role providingRole = VdmlHelper.getRoleResponsibleFor(flow.getProvider());
+                    return receivingRole != null && providingRole != null && receivingRole != providingRole;
+                } else {
+                    return true;
+                }
+            }
+        };
+    }
+
+    @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
         if (sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
             for (ShapeReference sr : sourceShape.getOutgoing()) {
@@ -87,8 +93,8 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
                 if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.ROLE.getStencilId())) {
                     Role role = (Role) shapeMap.getModelElement(targetShape.getResourceId());
                     String receivingActivityName = sourceShape.getProperty("receivingActivityName");
-                    if(receivingActivityName==null || receivingActivityName.trim().isEmpty()){
-                        receivingActivityName=role.getName()+"DefaultActivity";
+                    if (receivingActivityName == null || receivingActivityName.trim().isEmpty()) {
+                        receivingActivityName = role.getName() + "DefaultActivity";
                     }
                     Activity a = findOrCreatePerformerWork(role, receivingActivityName);
                     InputPort ip = VDMLFactory.eINSTANCE.createInputPort();
@@ -102,33 +108,8 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
     }
 
     @Override
-    public void postprocessResource(XMLResource resource) {
-        ValueDeliveryModel vdm = (ValueDeliveryModel) resource.getContents().get(0);
-        Map<VdmlElement, VDMLDiagramElement> map = new HashMap<VdmlElement, VDMLDiagramElement>();
-        buildMap(vdm.getDiagram().get(0), map, VDMLPackage.eINSTANCE.getRole(), VDMLPackage.eINSTANCE.getDeliverableFlow());
-        Collaboration coll = vdm.getCollaboration().get(0);
-        removeOrphanedRoles(map, coll);
-        removeOrphanedFlows(map, coll);
-    }
-
-
-    protected void removeOrphanedFlows(Map<VdmlElement, VDMLDiagramElement> map, Collaboration coll) {
-        for (DeliverableFlow flow : new ArrayList<DeliverableFlow>(coll.getFlow())) {
-            if (!map.containsKey(flow)) {
-                if (shouldHaveEdge(flow)) {
-                    InputPort recipient = flow.getRecipient();
-                    OutputPort provider = flow.getProvider();
-                    removePortAndDependencies(coll, provider);
-                    removePortAndDependencies(coll, recipient);
-                }
-            }
-        }
-    }
-    private boolean shouldHaveEdge(DeliverableFlow flow) {
-        Role receivingRole = RoleCollaborationUtil.getRoleFor(flow.getRecipient());
-        Role providingRole = RoleCollaborationUtil.getRoleFor(flow.getProvider());
-        boolean asdf = receivingRole != null && providingRole != null && receivingRole != providingRole;
-        return asdf;
+    protected EClass[] getManagedClasses() {
+        return new EClass[] { VDMLPackage.eINSTANCE.getRole(), VDMLPackage.eINSTANCE.getDeliverableFlow() };
     }
 
     @Override
