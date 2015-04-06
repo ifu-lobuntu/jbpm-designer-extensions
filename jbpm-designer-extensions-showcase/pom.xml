@@ -41,6 +41,18 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdcm-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdcm-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdcm-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-vdan-api</artifactId>
     </dependency>
     <dependency>
@@ -650,7 +662,8 @@
           8.1.10.v20130312
         </version>
         <configuration>
-                <war>${project.basedir}/target/${project.artifactId}.war</war></configuration>
+          <war>${project.basedir}/target/${project.artifactId}.war</war>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.codehaus.mojo</groupId>

@@ -1,0 +1,86 @@
+/** sprite: vdcm-images-sprite; sprite-image: url('../../images/sprites/vdcm-images-sprite.png'); sprite-layout: vertical */
+/* Edges */
+.stencilsets_vdcm_vdcm_json_icons_activity,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_activity {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/activity.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_collaboration_input_port,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_collaboration_input_port {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/collaboration_input_port.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_collaboration_output_port,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_collaboration_output_port {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/collaboration_output_port.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_input_port,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_input_port {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/input_port.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_output_port,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_output_port {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/output_port.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_pool,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_pool {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/pool.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_port_delegation,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_port_delegation {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/port_delegation.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_deliverable_flow,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_deliverable_flow {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/deliverable_flow.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_resource_use,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_resource_use {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/resource_use.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_role,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_role {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/role.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_store,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_store {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/store.png);  /** sprite-ref: vdcm-images-sprite; */
+}
+.stencilsets_vdcm_vdcm_json_icons_value_add,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_value_add {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdcm/icons/value_add.png);  /** sprite-ref: vdcm-images-sprite; */
+}

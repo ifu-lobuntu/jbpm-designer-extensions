@@ -252,8 +252,22 @@
 					"diagram"
 				],
 				"properties" : [
-
-
+	                {
+						"id" : "collaboration",
+						"type" : "eobjectref",
+						"title" : "Collaboration",
+						"value" : "",
+						"viewBinding":"vdmlElement",
+						"description" : "The Collaboration this diagram describes",
+						"readonly" : true,
+						"optional" : true,
+						"reference" : {
+							"targetProfile":"vdrc",
+							"allowedElementTypes":"BusinessNetwork|CapabilityMethod|Community|OrgUnit",
+							"nameFeature" : "name"
+						},
+						"length" : ""
+	                }
 				],
 				"layout": [
 				 ]

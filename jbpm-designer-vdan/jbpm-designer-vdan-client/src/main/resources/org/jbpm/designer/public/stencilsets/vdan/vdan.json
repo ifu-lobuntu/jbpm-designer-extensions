@@ -550,12 +550,22 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+					{
+						"id" : "isTangible",
+						"type" : "Boolean",
+						"title" : "Is Tangible",
+						"value" : "true",
+						"description" : "Tangible DeliverableFlows represent contractually binding flows",
+						"readonly" : false,
+						"optional" : false		
+					}
 				]
 			},
 			{
 				"type" : "edge",
 				"id" : "ResourceUse",
 				"title" : "ResourceUse",
+				"curved":true,
 				"targetBinding" : "deliverable",
 				"sourceBinding" : "resource[0]",
 				"position" : 7,

@@ -11,7 +11,7 @@ import org.guvnor.common.services.project.context.ProjectContext;
 import org.guvnor.common.services.project.model.Package;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
-import org.jbpm.designer.vdrc.CollaborationAssetService;
+import org.jbpm.designer.vdrc.VdmlCollaborationAssetService;
 import org.kie.workbench.common.services.shared.project.KieProjectService;
 import org.kie.workbench.common.services.shared.validation.ValidationService;
 import org.kie.workbench.common.widgets.client.handlers.NewResourceHandler;
@@ -40,7 +40,7 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
 
     protected final List<Pair<String, ? extends IsWidget>> extensions = new LinkedList<Pair<String, ? extends IsWidget>>();
     @Inject
-    private Caller<CollaborationAssetService> designerAssetService;
+    private Caller<VdmlCollaborationAssetService> designerAssetService;
     
     @Inject
     protected CollaborationsListBox collaborationsListBox;

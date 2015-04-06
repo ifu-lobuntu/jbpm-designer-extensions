@@ -70,7 +70,7 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
 
 
     @Override
-    public void postprocessResource(XMLResource resource) {
+    public void postprocessResource() {
     }
 
 }

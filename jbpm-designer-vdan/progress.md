@@ -15,7 +15,11 @@
 ##Collapse/Expand
  - Make outputPorts expandable and put valueadds in them
 
+##Decorators
+ - Tangible/Intangible
+ 
 ##Property Editors
+ - DeliverableFlow.isTangible 
 
 #In Progress
 ##Stencils
@@ -24,9 +28,16 @@
 
 #To do
 ##Stencils
+
+##Misc
+ - Don't delete a Store's ports that are not displayed. May need to store hidden portIDs in a property on Store 
  
-##Toolbar (in CMMN Editor or Form Editor?)
- - Generate contract form (Use produced/received ValueAdds and ResourceUse)
+##Decorators
+ - Has ValueAdds
+ 
+
+##Collapse/Expand
+ - Make outputPorts expandable and put valueadds in them
  
 ##Property Editors
  - ResourceUse.isExclusive
@@ -38,7 +49,6 @@
  - DeliverableFlow.deliverable.name (businessItem)
  - DeliverableFlow.deliverable.isFungible 
  - DeliverableFlow.deliverable.isShareable 
- - DeliverableFlow.isTangible 
 
 ##FormModeler
  - InputPortValueHolder - decompose to received ValueAdds and include port.offset, deliverableFlow.isTangible, port.batchSize

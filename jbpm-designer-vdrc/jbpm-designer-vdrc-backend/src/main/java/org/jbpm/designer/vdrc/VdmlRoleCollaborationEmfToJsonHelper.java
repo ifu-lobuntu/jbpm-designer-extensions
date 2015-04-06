@@ -6,62 +6,27 @@ import java.util.Map;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.dd.dc.Bounds;
-import org.omg.dd.dc.DCFactory;
-import org.omg.dd.dc.Point;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Role;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonHelper implements EmfToJsonHelper {
-    public VdmlRoleCollaborationEmfToJsonHelper(ShapeMap resource) {
-        super(resource);
+    public VdmlRoleCollaborationEmfToJsonHelper(ShapeMap shapeMap) {
+        super(shapeMap, VdmlRoleCollaborationStencil.class);
+
     }
 
-    public void preprocessResource(XMLResource resource) {
-        Map<VdmlElement, VDMLDiagramElement> map = buildMap(resource);
-        ValueDeliveryModel vdm = (ValueDeliveryModel) resource.getContents().get(0);
-        VDMLDiagram vd = vdm.getDiagram().get(0);
-        buildRoleShapes(resource, map, vd, 70d);
-        buildDeliverableFlowEdges(resource, map, vd);
-    }
-
-    private void buildDeliverableFlowEdges(XMLResource resource, Map<VdmlElement, VDMLDiagramElement> map, VDMLDiagram vd) {
-        TreeIterator<EObject> allContents = resource.getAllContents();
-        while (allContents.hasNext()) {
-            EObject eObject = allContents.next();
-            if (eObject instanceof DeliverableFlow && !map.containsKey(eObject)) {
-                DeliverableFlow d = (DeliverableFlow) eObject;
-                Role receivingRole = VdmlHelper.getRoleResponsibleFor(d.getRecipient());
-                Role providingRole = VdmlHelper.getRoleResponsibleFor(d.getProvider());
-                if (receivingRole != null && providingRole != null && receivingRole != providingRole) {
-                    // Create flow
-                    VDMLEdge edge = VDMLDIFactory.eINSTANCE.createVDMLEdge();
-                    vd.getOwnedVdmlDiagramElement().add(edge);
-                    edge.setId(EcoreUtil.generateUUID());
-                    edge.setVdmlElement(d);
-                    edge.setSourceShape((VDMLShape) map.get(providingRole));
-                    edge.setTargetShape((VDMLShape) map.get(receivingRole));
-                    map.put(d, edge);
-                }
-            }
-        }
-    }
 
     @Override
     public Object caseCollaboration(Collaboration object) {
@@ -103,4 +68,28 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
     public StencilInfo findStencilByElement(EObject me, DiagramElement de) {
         return VdmlRoleCollaborationStencil.findStencilByElement(me, de);
     }
+    public void preprocessResource() {
+        Map<VdmlElement, VDMLDiagramElement> map = buildVdmlElementToDiagramElementMap();
+        buildRoleShapes(map, 200d, 70d);
+        buildDeliverableFlowEdges(map);
+    }
+    private void buildDeliverableFlowEdges(Map<VdmlElement, VDMLDiagramElement> map) {
+        OrphanFilter of = getOrphanFilter();
+        TreeIterator<EObject> allContents = owningCollaboration.eAllContents();
+        while (allContents.hasNext()) {
+            EObject eObject = allContents.next();
+            if (eObject instanceof DeliverableFlow && of.shouldHaveDiagramElement((VdmlElement) eObject) && !map.containsKey(eObject)) {
+                DeliverableFlow d = (DeliverableFlow) eObject;
+                // Create flow
+                VDMLEdge edge = VDMLDIFactory.eINSTANCE.createVDMLEdge();
+                getDiagram().getOwnedVdmlDiagramElement().add(edge);
+                edge.setId(EcoreUtil.generateUUID());
+                edge.setVdmlElement(d);
+                edge.setSourceShape((VDMLShape) map.get(VdmlHelper.getRoleResponsibleFor(d.getProvider())));
+                edge.setTargetShape((VDMLShape) map.get(VdmlHelper.getRoleResponsibleFor(d.getRecipient())));
+                map.put(d, edge);
+            }
+        }
+    }
+
 }

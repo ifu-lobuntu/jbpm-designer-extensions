@@ -45,7 +45,7 @@ public class AbstractVdanDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         valueProposition.setName("Safd");
         role1.getProvidedProposition().add(valueProposition);
         valueProposition.setRecipient(role2);
-        addShapeFor(capabilityMethod, valueProposition);
+        addShapeFor(collaboration, valueProposition);
         return valueProposition;
     }
 

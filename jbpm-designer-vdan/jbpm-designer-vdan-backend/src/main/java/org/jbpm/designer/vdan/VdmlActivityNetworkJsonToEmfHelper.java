@@ -23,7 +23,7 @@ import org.omg.vdml.VdmlElement;
 
 public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
     public VdmlActivityNetworkJsonToEmfHelper(ShapeMap resource) {
-        super(resource);
+        super(resource,VdmlActivityNetworkStencil.class);
     }
 
     @Override

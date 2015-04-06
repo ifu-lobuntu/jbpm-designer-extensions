@@ -56,6 +56,13 @@
     background-repeat: no-repeat;
     background-image: url(../../stencilsets/vdan/icons/deliverable_flow.png);  /** sprite-ref: vdan-images-sprite; */
 }
+.stencilsets_vdan_vdan_json_icons_resource_use,
+.x-tree-node-leaf .stencilsets_vdan_vdan_json_icons_resource_use {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdan/icons/resource_use.png);  /** sprite-ref: vdan-images-sprite; */
+}
 .stencilsets_vdan_vdan_json_icons_role,
 .x-tree-node-leaf .stencilsets_vdan_vdan_json_icons_role {
     width: 16px;

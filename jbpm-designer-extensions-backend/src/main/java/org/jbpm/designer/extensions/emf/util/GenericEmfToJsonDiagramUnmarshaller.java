@@ -85,7 +85,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
         shapeMap = new ShapeMap(resource);
         helper = profile.createEmfToJsonHelper(shapeMap);
-        helper.preprocessResource(resource);
+        helper.preprocessResource();
         org.omg.dd.di.Diagram emfDiagram = helper.getDiagram(0);
         EObject modelElement = getModelElement(emfDiagram);
         Diagram result = new Diagram(shapeMap.getId(modelElement), new StencilType(profile.getDiagramStencilId()), new StencilSet(profile.getStencilSetURL(),

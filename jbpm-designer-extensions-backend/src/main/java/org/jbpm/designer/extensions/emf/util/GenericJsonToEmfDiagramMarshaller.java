@@ -117,7 +117,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         removeFromContainer(collectOrphanedEdges(emfDiagram));
         removeFromContainer(collectOrphanedShapes(emfDiagram));
         result.setModified(true);
-        this.helper.postprocessResource(result);
+        this.helper.postprocessResource();
         //TODO maybe clean up the orphanedEdges again?
         result.getDefaultLoadOptions().putAll(profile.buildDefaultResourceOptions());
         result.getDefaultSaveOptions().putAll(profile.buildDefaultResourceOptions());
@@ -419,6 +419,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     }
 
     private void setValueOn(Object currentTarget, EStructuralFeature sf, Object currentValue) {
+        if(sf.getEType().getInstanceClass().isPrimitive() && currentValue==null){
+            return;
+        }
         if (currentTarget instanceof EObject) {
             ((EObject) currentTarget).eSet(sf, currentValue);
         } else if (currentTarget instanceof FeatureMap) {

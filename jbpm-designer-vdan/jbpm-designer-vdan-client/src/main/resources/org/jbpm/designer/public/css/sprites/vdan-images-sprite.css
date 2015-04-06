@@ -63,13 +63,21 @@
   background-image: url('../../images/sprites/vdan-images-sprite.png');
   background-position: left -112px;
 }
+.stencilsets_vdan_vdan_json_icons_resource_use,
+.x-tree-node-leaf .stencilsets_vdan_vdan_json_icons_resource_use {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdan-images-sprite.png');
+  background-position: left -128px;
+}
 .stencilsets_vdan_vdan_json_icons_role,
 .x-tree-node-leaf .stencilsets_vdan_vdan_json_icons_role {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
   background-image: url('../../images/sprites/vdan-images-sprite.png');
-  background-position: left -128px;
+  background-position: left -144px;
 }
 .stencilsets_vdan_vdan_json_icons_store,
 .x-tree-node-leaf .stencilsets_vdan_vdan_json_icons_store {
@@ -77,7 +85,7 @@
     height: 16px;
     background-repeat: no-repeat;
   background-image: url('../../images/sprites/vdan-images-sprite.png');
-  background-position: left -144px;
+  background-position: left -160px;
 }
 .stencilsets_vdan_vdan_json_icons_value_add,
 .x-tree-node-leaf .stencilsets_vdan_vdan_json_icons_value_add {
@@ -85,5 +93,5 @@
     height: 16px;
     background-repeat: no-repeat;
   background-image: url('../../images/sprites/vdan-images-sprite.png');
-  background-position: left -160px;
+  background-position: left -176px;
 }

@@ -40,6 +40,8 @@ import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.PortContainer;
@@ -49,8 +51,8 @@ import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public abstract class AbstractVdmlDiagramMarshallingTest {
-    protected Map<String, Object> emptyOptions ;
-    String roleCollaborationFile;;
+    protected Map<String, Object> emptyOptions;
+    String collaborationFile;
     protected XMLResource collaborationResource;
     protected XMLResource measureResource;
     protected MeasureLibrary measureLibrary;
@@ -58,7 +60,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected VDMLDiagram inputDiagram;
     protected ValueDeliveryModel valueDeliveryModel;
     protected Map<VdmlElement, VDMLDiagramElement> elementDiagramElementMap = new HashMap<VdmlElement, VDMLDiagramElement>();
-    public CapabilityMethod capabilityMethod;
+    public Collaboration collaboration;
     protected AbstractEmfDiagramProfile profile;
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     protected GenericJsonToEmfDiagramMarshaller marshaller;
@@ -70,32 +72,32 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
 
     protected void saveCollaborationResource() throws IOException {
         TestUriHandler tuh = new TestUriHandler();
-        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(roleCollaborationFile, true), emptyOptions);
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(collaborationFile, true), emptyOptions);
         collaborationResource.save(os, emptyOptions);
     }
+
     protected void saveMeasureLibraryResource() throws IOException {
         TestUriHandler tuh = new TestUriHandler();
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(measureLibraryFileName, true), emptyOptions);
         measureResource.save(os, emptyOptions);
     }
 
-
     protected abstract String getDiagramFileName();
 
     protected abstract String getClientProjectName();
 
     protected abstract AbstractEmfDiagramProfile createProfile();
-    
+
     public void setup() throws Exception {
         profile = createProfile();
-        emptyOptions=profile.buildDefaultResourceOptions();
-        this.roleCollaborationFile = "/" + getClientProjectName() + "/target/test.vdrc";
-        this.measureLibraryFileName= "/" + getClientProjectName() + "/target/test.meas";
+        emptyOptions = profile.buildDefaultResourceOptions();
+        this.collaborationFile = "/" + getClientProjectName() + "/target/test.vdcol";
+        this.measureLibraryFileName = "/" + getClientProjectName() + "/target/test.meas";
         profile.setUriHandler(new TestUriHandler());
         unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
         marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI(getDiagramFileName(), true));
         resourceSet = new ResourceSetImpl();
-        
+
         // To make sure it is usable from other profiles
         new VdmlRoleCollaborationProfileImpl().prepareResourceSet(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
@@ -103,30 +105,37 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
         profile.prepareResourceSet(resourceSet);
-        collaborationResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(roleCollaborationFile, true));
+        collaborationResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(collaborationFile, true));
         valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         inputDiagram = createDiagram();
         collaborationResource.getContents().add(valueDeliveryModel);
         profile.loadLinkedStencilSet("../" + getClientProjectName() + "/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
         profile.initializeLocalPlugins("../" + getClientProjectName() + "/src/main/resources/org/jbpm/designer/public/profiles/"
                 + profile.getProfileDefinitionFileName());
-        this.capabilityMethod = VDMLFactory.eINSTANCE.createCapabilityMethod();
-        inputDiagram.setVdmlElement(capabilityMethod);
-        capabilityMethod.setName("MyCapability");
-        valueDeliveryModel.getCollaboration().add(capabilityMethod);
-        elementDiagramElementMap.put(capabilityMethod, inputDiagram);
-        measureLibrary=SMMFactory.eINSTANCE.createMeasureLibrary();
+        this.collaboration = createCollaboration();
+        inputDiagram.setVdmlElement(collaboration);
+        collaboration.setName("MyCapability");
+        valueDeliveryModel.getCollaboration().add(collaboration);
+        elementDiagramElementMap.put(collaboration, inputDiagram);
+        measureLibrary = SMMFactory.eINSTANCE.createMeasureLibrary();
         measureLibrary.setName("DinkyDonky");
-        measureResource=(XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(measureLibraryFileName,true));
+        measureResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(measureLibraryFileName, true));
         measureResource.getContents().add(measureLibrary);
+    }
+
+    protected Collaboration createCollaboration() {
+        return VDMLFactory.eINSTANCE.createCapabilityMethod();
     }
 
     protected void assertDiagramElementPresent(VdmlElement ve, XMLResource r) {
         TreeIterator<EObject> allContents = r.getAllContents();
         while (allContents.hasNext()) {
             EObject eObject = allContents.next();
-            if (eObject instanceof VDMLDiagramElement && ((VDMLDiagramElement) eObject).getVdmlElement().getId().equals(ve.getId())) {
-                return;
+            if (eObject instanceof VDMLDiagramElement){
+                VDMLDiagramElement de = (VDMLDiagramElement) eObject;
+                if(de.getVdmlElement().getId().equals(ve.getId())) {
+                    return;
+                }
             }
         }
         throw new AssertionError("Could not find diagramElement for " + ve.getName());
@@ -136,7 +145,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         Activity act = VDMLFactory.eINSTANCE.createActivity();
         act.setName(role1.getName() + "Activity");
         act.setPerformingRole(role1);
-        capabilityMethod.getActivity().add(act);
+        collaboration.getActivity().add(act);
         if (addShape) {
             addShapeFor(role1, role1);
         }
@@ -144,21 +153,17 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected Role addRole(String value, boolean addShape) {
-        Role role1 = VDMLFactory.eINSTANCE.createRole();
+        Role role1 = VdmlHelper.createRole(collaboration);
         role1.setName(value);
         role1.setDescription("My Role's Description");
-        capabilityMethod.getCollaborationRole().add(role1);
+        collaboration.getCollaborationRole().add(role1);
         if (addShape) {
-            addShapeFor(capabilityMethod, role1);
+            addShapeFor(collaboration, role1);
         }
         return role1;
     }
 
-    protected VDMLDiagram createDiagram() {
-        inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        valueDeliveryModel.getDiagram().add(inputDiagram);
-        return inputDiagram;
-    }
+    protected abstract VDMLDiagram createDiagram();
 
     protected String buildXmlString(XMLResource resource) throws IOException {
         StringWriter writer = new StringWriter();
@@ -166,6 +171,19 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         resource.save(writer, profile.buildDefaultResourceOptions());
         String string = writer.toString();
         return string;
+    }
+
+    protected DeliverableFlow addDeliverableFlow(Activity act1, Activity act2, String name) {
+        DeliverableFlow df = VDMLFactory.eINSTANCE.createDeliverableFlow();
+        OutputPort op = VDMLFactory.eINSTANCE.createOutputPort();
+        df.setProvider(op);
+        act1.getContainedPort().add(op);
+        InputPort ip = VDMLFactory.eINSTANCE.createInputPort();
+        df.setRecipient(ip);
+        act2.getContainedPort().add(ip);
+        collaboration.getFlow().add(df);
+        df.setName(name);
+        return df;
     }
 
     protected void addEdge(VdmlElement modelElement, VdmlElement from, VdmlElement to) {
@@ -221,6 +239,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         this.elementDiagramElementMap.put(element, shape);
         return shape;
     }
+
     protected void addOutputPort(VdmlElement parent, PortContainer pc, String outputPortName) {
         OutputPort activityOutputPort = addOutputPort(pc, outputPortName);
         DiagramElement boundariedShape = this.elementDiagramElementMap.get(pc);

@@ -15,7 +15,7 @@ import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.VdmlElement;
 
-public enum VdmlRoleCollaborationStencil implements StencilInfo {
+public enum VdmlRoleCollaborationStencil implements VdmlStencilInfo {
     VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "RoleCollaborationDiagram"),
     ROLE(VDMLPackage.eINSTANCE.getRole(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Role"),
     EXISITING_DELIVERABLE_FLOW(VDMLPackage.eINSTANCE.getDeliverableFlow(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "ExistingDeliverableFlow"),
@@ -84,6 +84,11 @@ public enum VdmlRoleCollaborationStencil implements StencilInfo {
             }
         }
         return null;
+    }
+
+    @Override
+    public EClass getElementType() {
+        return this.type;
     }
 
 }

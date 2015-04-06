@@ -12,6 +12,8 @@ import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlPropositionExchangeTypeDefinition;
+import org.jbpm.designer.vdrc.CollaborationType;
+import org.jbpm.designer.vdrc.IVdmlCollaborationDiagramProfile;
 import org.jbpm.designer.vdrc.VdmlPotentialReferenceHelper;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
@@ -25,7 +27,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfile {
+public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfile implements IVdmlCollaborationDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdpe/vdpe.json";
 
@@ -57,7 +59,7 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
     @Override
     public void prepareResourceSet(ResourceSet resourceSet) {
         super.prepareResourceSet(resourceSet);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdrc", getResourceFactory());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdcol", getResourceFactory());
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
     }
 
@@ -98,6 +100,10 @@ public class VdmlPropositionExchangeProfileImpl extends AbstractEmfDiagramProfil
     @Override
     protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
         return new VdmlPotentialReferenceHelper(this);
+    }
+    @Override
+    public CollaborationType getDefaultForCollaborationType() {
+        return null;
     }
 
 }

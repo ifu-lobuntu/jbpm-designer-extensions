@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import org.guvnor.common.services.project.context.ProjectContext;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
-import org.jbpm.designer.vdrc.CollaborationAssetService;
+import org.jbpm.designer.vdrc.VdmlCollaborationAssetService;
 import org.kie.workbench.common.widgets.client.resources.i18n.CommonConstants;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.PathFactory;
@@ -20,7 +20,7 @@ import com.github.gwtbootstrap.client.ui.ListBox;
 
 public class CollaborationsListBox extends ListBox {
     @Inject
-    protected Caller<CollaborationAssetService> projectService;
+    protected Caller<VdmlCollaborationAssetService> projectService;
 
     private final List<Path> collaborationFiles = new ArrayList<Path>();
 

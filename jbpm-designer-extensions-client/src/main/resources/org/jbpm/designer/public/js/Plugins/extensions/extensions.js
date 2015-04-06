@@ -42,17 +42,39 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 	},
 	handleExpand : function(event, uiObject) {
 		if (event.explicitOriginalTarget && event.explicitOriginalTarget.id && event.explicitOriginalTarget.id.indexOf("expand_") >= 0) {
+			
 			var newWidth = parseFloat(uiObject.properties["oryx-previouswidth"]);
-			if (isNaN(newWidth)) {
+			if (isNaN(newWidth) || newWidth==0) {
 				newWidth = 200;
 			}
 			var newHeight = parseFloat(uiObject.properties["oryx-previousheight"]);
-			if (isNaN(newHeight)) {
+			if (isNaN(newHeight)|| newHeight==0) {
 				newHeight = 30;
 			}
 			uiObject.properties["oryx-previouswidth"] = uiObject.bounds.width();
 			uiObject.properties["oryx-previousheight"] = uiObject.bounds.height();
-			var topLeft = uiObject.bounds.a;
+			var topLeft = {
+					x:uiObject.bounds.a.x,
+					y:uiObject.bounds.a.y,
+			}
+			var bottomRight = uiObject.bounds.b;
+			if(uiObject.incoming){
+				for(var i=0; i < uiObject.incoming.length; i++){
+					var boundariedShape=uiObject.incoming[i];
+					if( boundariedShape instanceof ORYX.Core.Shape){
+						//I'm a boundary shape
+						if(uiObject.bounds.a.x<boundariedShape.bounds.a.x){
+							topLeft.x=bottomRight.x-newWidth;
+							//Expand to the left
+						}
+						if(uiObject.bounds.a.y<boundariedShape.bounds.a.y){
+							topLeft.y=bottomRight.y-newHeight;
+							//Expand to the top
+						}
+						break;
+					}
+				}
+			}
 			uiObject.bounds.set(topLeft, {
 				x : topLeft.x + newWidth,
 				y : topLeft.y + newHeight
@@ -95,15 +117,12 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		}
 	},
 	updateExpanded : function(collapsibleShape) {
-		console.log(collapsibleShape.getStencil().id());
 		// var
 		// verticalPath=collapsibleShape.node.ownerDocument.getElementById(collapsibleShape.id+"expand_vertical");
 
 		var paths = collapsibleShape.node.ownerDocument.getElementsByTagName("path");
 		var verticalPath = null;
 		for (var j = 0; j < paths.length; j++) {
-			console.log(paths[j].id);
-			console.log(collapsibleShape.id + "expand_vertical");
 			if (paths[j].id == collapsibleShape.id + "expand_vertical") {
 				verticalPath = paths[j];
 				break;
@@ -130,7 +149,6 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		this.updateExpanded(event.shape);
 	},
 	handleLayoutList : function(event) {
-		console.log(event);
 		var shape = event.shape;
 		var currentOffset = 15;
 		if (event.options && event.options.offsetY) {
@@ -332,7 +350,6 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 													}));
 												}
 												calldefs.commitChanges();
-												console.log(this.multiSelect);
 												var gridId = Ext.id();
 												var grid = new Ext.grid.EditorGridPanel(
 														{
@@ -593,7 +610,7 @@ ORYX.Plugins.ExtensionsFormEditing = Clazz.extend({
 						return ORYX.READONLY != true;
 					}.bind(this)
 				});
-				console.log("FOrms menu offered");
+				console.log("Forms menu offered");
 			}
 		}
 	},
@@ -666,7 +683,6 @@ ORYX.Plugins.Extensions.CurvedEdge = ORYX.Core.Edge.extend({
 			this._paths.each(function(path) {
 				if (this.dockers.length > 2) {
 					var d = this.updateSplines(this.dockers);
-					console.log(d);
 					path.setAttributeNS(null, "d", d);
 				}
 			}.bind(this));

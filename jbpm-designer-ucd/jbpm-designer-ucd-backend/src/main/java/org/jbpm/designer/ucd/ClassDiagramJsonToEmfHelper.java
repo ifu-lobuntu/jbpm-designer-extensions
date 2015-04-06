@@ -189,6 +189,6 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     }
 
     @Override
-    public void postprocessResource(XMLResource resource) {
+    public void postprocessResource() {
     }
 }

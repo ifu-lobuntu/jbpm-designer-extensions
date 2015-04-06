@@ -576,6 +576,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
 
     @Override
-    public void postprocessResource(XMLResource resource) {
+    public void postprocessResource() {
     }
 }

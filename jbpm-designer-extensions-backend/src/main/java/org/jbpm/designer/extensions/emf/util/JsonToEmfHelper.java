@@ -21,6 +21,6 @@ public interface JsonToEmfHelper {
 
     Object convertFromString(LinkedProperty property, String string, Class<?> targetType);
 
-    void postprocessResource(XMLResource resource);
+    void postprocessResource();
 
 }

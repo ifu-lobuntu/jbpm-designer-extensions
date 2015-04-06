@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Package;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
@@ -323,6 +322,6 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
         return null;
     }
     @Override
-    public void preprocessResource(XMLResource resource) {
+    public void preprocessResource() {
     }
 }

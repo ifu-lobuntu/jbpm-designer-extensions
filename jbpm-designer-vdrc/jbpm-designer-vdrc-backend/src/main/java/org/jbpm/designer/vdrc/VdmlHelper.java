@@ -5,10 +5,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.omg.vdml.Activity;
+import org.omg.vdml.BusinessNetwork;
+import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.Community;
+import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Port;
+import org.omg.vdml.PortContainer;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
+import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
 
 public class VdmlHelper {
@@ -48,5 +54,18 @@ public class VdmlHelper {
             }
         }
         return receivingRole;
+    }
+    public static Role createRole(Collaboration owningCollaboration2) {
+        if (owningCollaboration2 instanceof OrgUnit) {
+            return VDMLFactory.eINSTANCE.createPosition();
+        } else if (owningCollaboration2 instanceof BusinessNetwork) {
+            return VDMLFactory.eINSTANCE.createParty();
+        } else if (owningCollaboration2 instanceof Community) {
+            return VDMLFactory.eINSTANCE.createMember();
+        } else if (owningCollaboration2 instanceof CapabilityMethod) {
+            return VDMLFactory.eINSTANCE.createPerformer();
+        }else{
+            return VDMLFactory.eINSTANCE.createRole();
+        }
     }
 }

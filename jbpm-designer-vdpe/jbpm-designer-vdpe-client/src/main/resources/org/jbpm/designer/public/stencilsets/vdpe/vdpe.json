@@ -40,7 +40,7 @@
 						"type" : "String",
 						"title" : "DiagramElementId",
 						"value" : "",
-						"description" : "This is the unique id of the diagram element used to display the CMMN Element.",
+						"description" : "This is the unique id of the diagram element used to display the VDML Element.",
 						"readonly" : true,
 						"optional" : true,
 						"length" : "",

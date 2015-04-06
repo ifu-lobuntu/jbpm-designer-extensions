@@ -1,22 +1,16 @@
 package org.jbpm.designer.vdrc;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.VFSURIHandler;
-import org.jbpm.designer.util.Utils;
+import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.util.VDMLResourceFactoryImpl;
@@ -27,7 +21,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile {
+public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile implements IVdmlCollaborationDiagramProfile{
 
     private static final String STENCILSET_PATH = "stencilsets/vdrc/vdrc.json";
 
@@ -60,10 +54,6 @@ public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile 
     public Factory getResourceFactory() {
         return new VDMLResourceFactoryImpl();
     }
-    @Override
-    public boolean mergeOnUpdate() {
-        return true;
-    }
 
     @Override
     public JsonToEmfHelper createJsonToEmfHelper(ShapeMap resource) {
@@ -93,5 +83,15 @@ public class VdmlRoleCollaborationProfileImpl extends AbstractEmfDiagramProfile 
     @Override
     protected void populateModelStub(XMLResource rs) {
         //Done elsewhere
+    }
+    @Override
+    public CollaborationType getDefaultForCollaborationType() {
+        return CollaborationType.BUSINESS_NETWORK;
+    }
+    @Override
+    public void prepareResourceSet(ResourceSet resourceSet) {
+        super.prepareResourceSet(resourceSet);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdcol", getResourceFactory());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
     }
 }

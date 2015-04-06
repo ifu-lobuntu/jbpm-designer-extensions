@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
@@ -16,21 +15,23 @@ import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
 
     public VdmlRoleCollaborationJsonToEmfHelper(ShapeMap resource) {
-        super(resource);
+        super(resource, VdmlRoleCollaborationStencil.class);
     }
 
     @Override
     public Object caseRole(Role object) {
-        String[] split = sourceShape.getProperty("performedActivities").split(",");
-        Set<String> performedActivities = new HashSet<String>(Arrays.asList(split));
-        for (String string : performedActivities) {
-            Activity a = findOrCreatePerformerWork(object, string);
+        String pcs = sourceShape.getProperty("performedActivities");
+        if (pcs != null && pcs.trim().length() > 0) {
+            String[] split = pcs.split(",");
+            Set<String> performedActivities = new HashSet<String>(Arrays.asList(split));
+            for (String string : performedActivities) {
+                Activity a = findOrCreatePerformerWork(object, string);
+            }
         }
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape targetShape = shapeMap.get(sr);
@@ -74,7 +75,7 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
             @Override
             public boolean shouldHaveDiagramElement(VdmlElement e) {
                 if (e instanceof DeliverableFlow) {
-                    DeliverableFlow flow=(DeliverableFlow) e;
+                    DeliverableFlow flow = (DeliverableFlow) e;
                     Role receivingRole = VdmlHelper.getRoleResponsibleFor(flow.getRecipient());
                     Role providingRole = VdmlHelper.getRoleResponsibleFor(flow.getProvider());
                     return receivingRole != null && providingRole != null && receivingRole != providingRole;
@@ -105,11 +106,6 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
             }
         }
         return super.caseDeliverableFlow(object);
-    }
-
-    @Override
-    protected EClass[] getManagedClasses() {
-        return new EClass[] { VDMLPackage.eINSTANCE.getRole(), VDMLPackage.eINSTANCE.getDeliverableFlow() };
     }
 
     @Override

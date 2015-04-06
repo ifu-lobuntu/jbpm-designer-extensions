@@ -1,4 +1,4 @@
 jbpm-designer-uml
 ====================
 
-UML extensions to the jBPM Designer
+VDML Activity Network extensions to the jBPM Designer

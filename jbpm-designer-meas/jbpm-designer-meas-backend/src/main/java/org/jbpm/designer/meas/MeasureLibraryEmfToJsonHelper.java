@@ -1,7 +1,6 @@
 package org.jbpm.designer.meas;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
@@ -48,6 +47,6 @@ public class MeasureLibraryEmfToJsonHelper extends SMMSwitch<Object> implements 
     }
 
     @Override
-    public void preprocessResource(XMLResource resource) {
+    public void preprocessResource() {
     }
 }

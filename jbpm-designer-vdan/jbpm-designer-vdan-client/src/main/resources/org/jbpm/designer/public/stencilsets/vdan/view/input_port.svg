@@ -2,8 +2,8 @@
 <svg
    xmlns="http://www.w3.org/2000/svg"
    xmlns:oryx="http://www.b3mn.org/oryx"
-   width="15"
-   height="15"
+   width="14"
+   height="14"
    version="1.0">
   <defs></defs>
   <oryx:magnets>
@@ -19,7 +19,7 @@
 		</radialGradient>
 	</defs>
 
-	<rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="15" height="15" rx="0" ry="0" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" />
+	<rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" />
 	<text font-size="11"
 		id="text_name"
 		x="16" y="20"

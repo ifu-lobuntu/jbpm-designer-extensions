@@ -2,6 +2,8 @@ package org.jbpm.designer.vdrc;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
@@ -12,21 +14,28 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.StencilType;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.junit.Before;
 import org.junit.Test;
 import org.omg.vdml.Activity;
+import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.ValueDeliveryModel;
 
 public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagramMarshallingTest {
+    protected XMLResource diagramResource;
+    protected String diagramFile = "/jbpm-designer-vdrc-backend/target/test.vdrc";
+
     @Before
     public void deleteModel() throws Exception {
         super.setup();
         TestUriHandler tuh = new TestUriHandler();
-        tuh.getFile(URI.createPlatformResourceURI(roleCollaborationFile, true)).delete();
+        tuh.getFile(URI.createPlatformResourceURI(collaborationFile, true)).delete();
     }
 
     @Override
@@ -44,19 +53,21 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         Activity act2 = addActivity(role2, false);
         DeliverableFlow df = addDeliverableFlow(act1, act2, "FromMeToYou");
         saveCollaborationResource();
-        Diagram json = unmarshaller.convert(collaborationResource);
+        Diagram json = unmarshaller.convert(diagramResource);
         assertEquals("MyRoleActivity", json.findChildShapeById(df.getId()).getProperty("providingActivityName"));
         assertEquals("YourRoleActivity", json.findChildShapeById(df.getId()).getProperty("receivingActivityName"));
         assertEquals("MyRoleActivity", json.findChildShapeById(role1.getId()).getProperty("performedActivities"));
         assertEquals("YourRoleActivity", json.findChildShapeById(role2.getId()).getProperty("performedActivities"));
         XMLResource outputResource = marshaller.convert(json);
-        assertEquals("MyRole", ((Role) outputResource.getEObject(role1.getId())).getName());
+        Collaboration coll = VdmlHelper.getCollaboration(outputResource);
+
+        assertEquals("MyRole", ((Role) coll.eResource().getEObject(role1.getId())).getName());
         assertDiagramElementPresent(role1, outputResource);
-        assertEquals("YourRole", ((Role) outputResource.getEObject(role2.getId())).getName());
+        assertEquals("YourRole", ((Role) coll.eResource().getEObject(role2.getId())).getName());
         assertDiagramElementPresent(role2, outputResource);
-        assertEquals("MyRoleActivity", ((Activity) outputResource.getEObject(act1.getId())).getName());
-        assertEquals("YourRoleActivity", ((Activity) outputResource.getEObject(act2.getId())).getName());
-        assertEquals("FromMeToYou", ((DeliverableFlow) outputResource.getEObject(df.getId())).getName());
+        assertEquals("MyRoleActivity", ((Activity) coll.eResource().getEObject(act1.getId())).getName());
+        assertEquals("YourRoleActivity", ((Activity) coll.eResource().getEObject(act2.getId())).getName());
+        assertEquals("FromMeToYou", ((DeliverableFlow) coll.eResource().getEObject(df.getId())).getName());
         assertDiagramElementPresent(df, outputResource);
     }
 
@@ -77,7 +88,7 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         Activity act2 = addActivity(role2, false);
         DeliverableFlow df = addDeliverableFlow(act1, act2, "FromMeToYou");
         saveCollaborationResource();
-        Diagram json = unmarshaller.convert(collaborationResource);
+        Diagram json = unmarshaller.convert(diagramResource);
         Shape role1Shape = json.findChildShapeById(role1.getId());
         Shape role3Shape = new Shape("role3id", new StencilType(VdmlRoleCollaborationStencil.ROLE.getStencilId()));
         role3Shape.setBounds(new org.jbpm.designer.extensions.diagram.Bounds(new Point(1d, 2d), new Point(1d, 2d)));
@@ -94,18 +105,19 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         deliverableFlowShape.putProperty("receivingActivityName", "MyRoleActivity");
         json.getChildShapes().add(deliverableFlowShape);
         XMLResource outputResource = marshaller.convert(json);
-        outputResource.save(System.out, new HashMap<Object, Object>());
-        assertEquals("MyRole", ((Role) outputResource.getEObject(role1.getId())).getName());
+        Collaboration coll = VdmlHelper.getCollaboration(outputResource);
+
+        assertEquals("MyRole", ((Role) coll.eResource().getEObject(role1.getId())).getName());
         assertDiagramElementPresent(role1, outputResource);
-        assertEquals("YourRole", ((Role) outputResource.getEObject(role2.getId())).getName());
+        assertEquals("YourRole", ((Role) coll.eResource().getEObject(role2.getId())).getName());
         assertDiagramElementPresent(role2, outputResource);
-        assertEquals("MyRoleActivity", ((Activity) outputResource.getEObject(act1.getId())).getName());
-        assertEquals("YourRoleActivity", ((Activity) outputResource.getEObject(act2.getId())).getName());
-        assertEquals("FromMeToYou", ((DeliverableFlow) outputResource.getEObject(df.getId())).getName());
-        Role anotherRole = (Role) outputResource.getEObject(role3Shape.getResourceId());
+        assertEquals("MyRoleActivity", ((Activity) coll.eResource().getEObject(act1.getId())).getName());
+        assertEquals("YourRoleActivity", ((Activity) coll.eResource().getEObject(act2.getId())).getName());
+        assertEquals("FromMeToYou", ((DeliverableFlow) coll.eResource().getEObject(df.getId())).getName());
+        Role anotherRole = (Role) coll.eResource().getEObject(role3Shape.getResourceId());
         assertEquals("AnotherRole", anotherRole.getName());
         assertEquals(2, anotherRole.getPerformedWork().size());
-        DeliverableFlow deliverableFlow = (DeliverableFlow) outputResource.getEObject(deliverableFlowShape.getResourceId());
+        DeliverableFlow deliverableFlow = (DeliverableFlow) coll.eResource().getEObject(deliverableFlowShape.getResourceId());
         Activity fromActivity = (Activity) deliverableFlow.getProvider().eContainer();
         assertEquals("Activity1", fromActivity.getName());
         Activity toActivity = (Activity) deliverableFlow.getRecipient().eContainer();
@@ -123,12 +135,13 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         Activity act2 = addActivity(role2, false);
         DeliverableFlow df = addDeliverableFlow(act1, act2, "FromMeToYou");
         saveCollaborationResource();
-        Diagram json = unmarshaller.convert(collaborationResource);
+        Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(df.getId()));
         XMLResource outputResource = marshaller.convert(json);
-        assertNotNull(outputResource.getEObject(role2.getId()));
-        assertNotNull(outputResource.getEObject(act2.getId()));
-        assertNull(outputResource.getEObject(df.getId()));
+        Collaboration coll = VdmlHelper.getCollaboration(outputResource);
+        assertNotNull(coll.eResource().getEObject(role2.getId()));
+        assertNotNull(coll.eResource().getEObject(act2.getId()));
+        assertNull(coll.eResource().getEObject(df.getId()));
     }
 
     @Test
@@ -141,7 +154,7 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         Activity act2 = addActivity(role2, false);
         DeliverableFlow df = addDeliverableFlow(act1, act2, "FromMeToYou");
         saveCollaborationResource();
-        Diagram json = unmarshaller.convert(collaborationResource);
+        Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(role2.getId()));
         json.deleteShape(json.findChildShapeById(df.getId()));
         XMLResource outputResource = marshaller.convert(json);
@@ -150,26 +163,27 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         assertNull(outputResource.getEObject(df.getId()));
     }
 
-    private DeliverableFlow addDeliverableFlow(Activity act1, Activity act2, String name) {
-        DeliverableFlow df = VDMLFactory.eINSTANCE.createDeliverableFlow();
-        OutputPort op = VDMLFactory.eINSTANCE.createOutputPort();
-        df.setProvider(op);
-        act1.getContainedPort().add(op);
-        InputPort ip = VDMLFactory.eINSTANCE.createInputPort();
-        df.setRecipient(ip);
-        act2.getContainedPort().add(ip);
-        capabilityMethod.getFlow().add(df);
-        df.setName(name);
-        return df;
+    protected void saveDiagramResource() throws IOException {
+        TestUriHandler tuh = new TestUriHandler();
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(diagramFile, true), emptyOptions);
+        diagramResource.save(os, emptyOptions);
     }
-
     protected AbstractEmfDiagramProfile createProfile() {
         return new VdmlRoleCollaborationProfileImpl();
     }
 
     @Override
     protected String getDiagramFileName() {
-        return super.roleCollaborationFile;
+        return this.diagramFile;
+    }
+    protected VDMLDiagram createDiagram() {
+        diagramResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(diagramFile, true));
+        VDMLDiagram inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
+        ValueDeliveryModel valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        diagramResource.getContents().add(valueDeliveryModel);
+        valueDeliveryModel.getDiagram().add(inputDiagram);
+        inputDiagram.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
+        return inputDiagram;
     }
 
 }

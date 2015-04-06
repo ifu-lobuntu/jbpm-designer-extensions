@@ -27,6 +27,10 @@ public class VDMLResourceImpl extends XMIResourceImpl {
     static {
         referrables.add(VDMLPackage.eINSTANCE.getCapabilityMethod());
         referrables.add(VDMLPackage.eINSTANCE.getRole());
+        referrables.add(VDMLPackage.eINSTANCE.getParty());
+        referrables.add(VDMLPackage.eINSTANCE.getPerformer());
+        referrables.add(VDMLPackage.eINSTANCE.getPosition());
+        referrables.add(VDMLPackage.eINSTANCE.getMember());
         referrables.add(VDMLPackage.eINSTANCE.getActivity());
         referrables.add(VDMLPackage.eINSTANCE.getInputPort());
         referrables.add(VDMLPackage.eINSTANCE.getOutputPort());

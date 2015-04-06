@@ -51,6 +51,7 @@
   <inherits name="org.jbpm.designer.jBPMDesignerVDPEClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerMeasureClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerVDRCClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDCMClient"/>
   <!-- Form-Modeler -->
   <inherits name="org.jbpm.formModeler.editor.FormModelerEditorClient"/>
   <inherits name="org.jbpm.formModeler.renderer.FormRendererClient"/>

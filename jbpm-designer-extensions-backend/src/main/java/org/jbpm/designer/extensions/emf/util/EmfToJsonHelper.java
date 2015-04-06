@@ -1,7 +1,6 @@
 package org.jbpm.designer.extensions.emf.util;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
@@ -20,6 +19,6 @@ public interface EmfToJsonHelper {
 
     String convertToString(LinkedProperty property, Object val);
     
-    void preprocessResource(XMLResource resource);
+    void preprocessResource();
 
 }
