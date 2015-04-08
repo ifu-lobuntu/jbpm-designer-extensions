@@ -52,8 +52,8 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
         buildRoleShapes(map, roleWidth, roleHeight, getDiagram());
     }
 
-    protected void buildRoleShapes(Map<VdmlElement, VDMLDiagramElement> map, double roleWidth, double roleHeight, VDMLDiagramElement owningElement) {
-        TreeIterator<EObject> allContents = owningElement.getVdmlElement().eAllContents();
+    protected void buildRoleShapes(Map<VdmlElement, VDMLDiagramElement> map, double roleWidth, double roleHeight, VDMLDiagramElement owningShape) {
+        TreeIterator<EObject> allContents = owningCollaboration.eAllContents();
         double lowestRoleBoundary = 0;
         while (allContents.hasNext()) {
             EObject eObject = (EObject) allContents.next();
@@ -83,10 +83,10 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
                     bounds.setHeight(roleHeight);
                     shape.setBounds(bounds);
                     shape.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-                    if (owningElement instanceof VDMLDiagram) {
-                        ((VDMLDiagram) owningElement).getOwnedVdmlDiagramElement().add(shape);
+                    if (owningShape instanceof VDMLDiagram) {
+                        ((VDMLDiagram) owningShape).getOwnedVdmlDiagramElement().add(shape);
                     } else {
-                        ((VDMLShape) owningElement).getOwnedShape().add(shape);
+                        ((VDMLShape) owningShape).getOwnedShape().add(shape);
                     }
 
                     map.put(role, shape);

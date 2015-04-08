@@ -3,6 +3,7 @@
 package org.jbpm.vdml.dd.vdmldi.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -21,6 +22,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.Shape;
 import org.omg.dd.di.impl.ShapeImpl;
+import org.omg.vdml.OrgUnit;
 import org.omg.vdml.VdmlElement;
 
 /**
@@ -195,6 +197,9 @@ public class VDMLShapeImpl extends ShapeImpl implements VDMLShape {
      * @generated
      */
     public void setVdmlElement(VdmlElement newVdmlElement) {
+        if(newVdmlElement instanceof OrgUnit){
+            System.out.println();
+        }
         VdmlElement oldVdmlElement = vdmlElement;
         vdmlElement = newVdmlElement;
         if (eNotificationRequired())

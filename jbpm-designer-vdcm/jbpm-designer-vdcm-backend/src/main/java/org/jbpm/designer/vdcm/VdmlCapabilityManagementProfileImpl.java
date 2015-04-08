@@ -12,6 +12,8 @@ import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlCapabilityManagementDiagramTypeDefinition;
+import org.jbpm.designer.vdrc.CollaborationType;
+import org.jbpm.designer.vdrc.IVdmlCollaborationDiagramProfile;
 import org.jbpm.designer.vdrc.VdmlPotentialReferenceHelper;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
@@ -25,7 +27,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlCapabilityManagementProfileImpl extends AbstractEmfDiagramProfile {
+public class VdmlCapabilityManagementProfileImpl extends AbstractEmfDiagramProfile implements IVdmlCollaborationDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdcm/vdcm.json";
 
@@ -98,6 +100,11 @@ public class VdmlCapabilityManagementProfileImpl extends AbstractEmfDiagramProfi
     @Override
     protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
         return new VdmlPotentialReferenceHelper(this);
+    }
+
+    @Override
+    public CollaborationType getDefaultForCollaborationType() {
+        return CollaborationType.ORG_UNIT;
     }
 
 }

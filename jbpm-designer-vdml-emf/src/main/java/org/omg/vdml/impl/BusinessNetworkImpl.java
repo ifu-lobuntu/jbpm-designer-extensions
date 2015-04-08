@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.vdml.BusinessNetwork;
 import org.omg.vdml.Party;
+import org.omg.vdml.Role;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -141,6 +142,10 @@ public class BusinessNetworkImpl extends CollaborationImpl implements BusinessNe
                 return party != null && !party.isEmpty();
         }
         return super.eIsSet(featureID);
+    }
+    @Override
+    public EList<Role> getCollaborationRole() {
+        return (EList)getParty();
     }
 
 } //BusinessNetworkImpl

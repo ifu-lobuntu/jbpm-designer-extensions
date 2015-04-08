@@ -35,11 +35,12 @@ public class Shape implements Stencil, Bounded {
     }
 
     public Object getUnboundProperty(String name) {
-        if(unboundProperties==null){
+        if (unboundProperties == null) {
             return null;
         }
         return unboundProperties.get(name.toLowerCase());
     }
+
     public void putUnboundProperty(String name, Object value) {
         if (value != null) {
             if (unboundProperties == null) {
@@ -119,15 +120,17 @@ public class Shape implements Stencil, Bounded {
     }
 
     public Shape findChildShapeById(String resourceId) {
-        for (Shape shape : this.childShapes) {
-            if (shape.getResourceId().equals(resourceId)) {
-                return shape;
+        if (this.childShapes != null) {
+            for (Shape shape : this.childShapes) {
+                if (shape.getResourceId().equals(resourceId)) {
+                    return shape;
+                }
             }
-        }
-        for (Shape shape : this.childShapes) {
-            Shape found = shape.findChildShapeById(resourceId);
-            if (found != null) {
-                return found;
+            for (Shape shape : this.childShapes) {
+                Shape found = shape.findChildShapeById(resourceId);
+                if (found != null) {
+                    return found;
+                }
             }
         }
         return null;

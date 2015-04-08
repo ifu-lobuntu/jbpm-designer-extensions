@@ -49,7 +49,11 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
 
     @Override
     public DiagramElement createElements(Shape shape) {
-        VDMLDiagramElement de = (VDMLDiagramElement) shapeMap.getResource().getEObject(shape.getProperty("diagramElementId"));
+        String diagramElementId = shape.getProperty("diagramElementId");
+        VDMLDiagramElement de = null;
+        if (!(diagramElementId == null || diagramElementId.trim().isEmpty())) {
+            de = (VDMLDiagramElement) shapeMap.getResource().getEObject(diagramElementId);
+        }
         if (de == null) {
             de = createDiagramElement(shape.getStencilId());
         }
@@ -127,8 +131,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     @Override
     public EObject create(EClass eType) {
         if (eType == PACKAGE.getRole()) {
-            Collaboration owningCollaboration2 = owningCollaboration;
-            return VdmlHelper.createRole(owningCollaboration2);
+            return VdmlHelper.createRole(owningCollaboration);
         }
         return VDMLFactory.eINSTANCE.create(eType);
     }

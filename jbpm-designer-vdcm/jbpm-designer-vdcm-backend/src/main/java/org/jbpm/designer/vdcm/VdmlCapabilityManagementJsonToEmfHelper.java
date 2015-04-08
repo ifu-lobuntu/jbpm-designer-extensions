@@ -1,10 +1,14 @@
 package org.jbpm.designer.vdcm;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdrc.AbstractVdmlJsonToEmfHelper;
+import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.vdml.Activity;
+import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
@@ -13,17 +17,18 @@ import org.omg.vdml.OrgUnit;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Pool;
+import org.omg.vdml.Position;
 import org.omg.vdml.ResourceUse;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
+    private OrgUnit owningOrgUnit;
+
     public VdmlCapabilityManagementJsonToEmfHelper(ShapeMap resource) {
-        super(resource,VdmlCapabilityManagementStencil.class);
+        super(resource, VdmlCapabilityManagementStencil.class);
     }
 
     @Override
@@ -33,8 +38,12 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
 
     @Override
     public Object caseRole(Role object) {
-        owningCollaboration.getActivity().addAll(object.getPerformedWork());
         return super.caseRole(object);
+    }
+    @Override
+    public Object casePosition(Position object) {
+        owningOrgUnit.getPosition().add(object);
+        return super.casePosition(object);
     }
 
     @Override
@@ -48,32 +57,35 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
     }
 
     @Override
+    public Object caseOrgUnit(OrgUnit object) {
+        return super.caseOrgUnit(object);
+    }
+
+    @Override
     public Object caseStore(Store object) {
-        findBackingOrgUnit().getOwnedStore().add(object);
+        owningOrgUnit.getOwnedStore().add(object);
         return super.caseStore(object);
     }
 
-    private OrgUnit findBackingOrgUnit() {
-        if (owningCollaboration instanceof OrgUnit) {
-            return (OrgUnit) owningCollaboration;
-        } else {
-            ValueDeliveryModel model = (ValueDeliveryModel) owningCollaboration.eContainer();
-            for (Collaboration c : model.getCollaboration()) {
-                if (c instanceof OrgUnit && c.getName().equals(owningCollaboration.getName() + "OrgUnit")) {
-                    return (OrgUnit) c;
-                }
+    @Override
+    public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
+        VDMLDiagram diagram = super.prepareEmfDiagram(json, result);
+        if (super.owningCollaboration != null) {
+            this.owningOrgUnit = (OrgUnit) super.owningCollaboration;
+            for (CapabilityOffer co : this.owningOrgUnit.getCapabilityOffer()) {
+                co.getMethod().clear();
+                co.getCapabilityResource().clear();
             }
-            OrgUnit orgUnit = VDMLFactory.eINSTANCE.createOrgUnit();
-            orgUnit.setName(owningCollaboration.getName() + "OrgUnit");
-            model.getCollaboration().add(orgUnit);
-            return orgUnit;
+            for (Position p : this.owningOrgUnit.getPosition()) {
+                // TODO this is a problem for externally referenced pools
+                p.getActorPool().clear();
+            }
         }
+        return diagram;
     }
 
     @Override
     public Object caseResourceUse(ResourceUse object) {
-        Activity a = (Activity) object.getDeliverable().eContainer();
-        a.getResourceUse().add(object);
         return super.caseResourceUse(object);
     }
 
@@ -104,10 +116,8 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
 
     protected EClass[] getManagedClasses() {
         VDMLPackage vp = VDMLPackage.eINSTANCE;
-        return new EClass[] { vp.getRole(), vp.getActivity(), vp.getOutputPort(), vp.getInputPort(), vp.getDeliverableFlow(), vp.getResourceUse(),
-                vp.getInputDelegation(), vp.getOutputDelegation(), vp.getValueAdd() };
+        return new EClass[] { vp.getPosition(), vp.getStore(), vp.getPool(), vp.getCapabilityOffer() };
     }
-
 
     @Override
     protected VDMLDiagramElement createDiagramElement(String stencilId) {
@@ -116,7 +126,11 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
 
     @Override
     protected VdmlElement createElement(String stencilId) {
-        return VdmlCapabilityManagementStencil.createElement(stencilId);
+        EClass elementType = VdmlCapabilityManagementStencil.findStencilById(stencilId).getElementType();
+        if(elementType==null){
+            return null;
+        }
+        return (VdmlElement) super.create(elementType);
     }
 
 }

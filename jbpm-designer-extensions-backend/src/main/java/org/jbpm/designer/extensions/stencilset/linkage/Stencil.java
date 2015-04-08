@@ -151,5 +151,8 @@ public class Stencil {
     public void setChildBinding(String childBinding) {
         this.childBinding = childBinding;
     }
-
+    @Override
+    public String toString() {
+        return "Stencil[" + getId() + "]";
+    }
 }

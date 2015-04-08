@@ -43,4 +43,9 @@ public class LinkedStencil {
     public Set<ContainmentRule> getContainmentRules() {
         return containmentRules;
     }
+
+    @Override
+    public String toString() {
+        return "LinkedStencil[" + stencil.getId() + "]";
+    }
 }

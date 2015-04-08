@@ -17,6 +17,7 @@ import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Position;
+import org.omg.vdml.Role;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLPackage;
 
@@ -342,6 +343,10 @@ public class OrgUnitImpl extends CollaborationImpl implements OrgUnit {
         result.append(location);
         result.append(')');
         return result.toString();
+    }
+    @Override
+    public EList<Role> getCollaborationRole() {
+        return (EList)getPosition();
     }
 
 } //OrgUnitImpl

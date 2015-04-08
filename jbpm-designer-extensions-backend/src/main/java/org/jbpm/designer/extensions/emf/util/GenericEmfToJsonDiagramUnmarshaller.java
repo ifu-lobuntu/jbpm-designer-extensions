@@ -72,8 +72,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             ObjectMapper om = new ObjectMapper();
             om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-            om.configure(SerializationConfig.Feature.INDENT_OUTPUT, false);
+            om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
             String s = om.writeValueAsString(json);
+            System.out.println(s);
             return s;
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,6 +150,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             EObject me = getModelElement(de);
             if (shouldGenerateJson(de, me)) {
                 StencilInfo stencil = helper.findStencilByElement(me, de);
+                if(stencil==null){
+                    System.out.println();
+                }
                 String resourceId = me == null ? shapeMap.getId(de) : shapeMap.getId(me);
                 Shape shape = new Shape(resourceId, new StencilType(stencil.getStencilId()));
                 if (de instanceof org.omg.dd.di.Shape) {
@@ -197,6 +201,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
     private void setProperties(DiagramElement diagramElement, EObject mee, Shape shape) {
         StencilInfo stencil = helper.findStencilByElement(mee, diagramElement);
+        if(stencil==null){
+            System.out.println();
+        }
         LinkedStencil sv = profile.getLinkedStencilSet().getLinkedStencil(stencil.getStencilId());
         if (sv == null) {
             throw new IllegalArgumentException("No stencil found in the stencilSet definition for '" + stencil.getStencilId() + "'");

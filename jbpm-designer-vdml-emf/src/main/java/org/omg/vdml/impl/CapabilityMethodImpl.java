@@ -22,6 +22,7 @@ import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Performer;
 import org.omg.vdml.PracticeDefinition;
+import org.omg.vdml.Role;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -406,6 +407,10 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
                 return supportedCapability != null && !supportedCapability.isEmpty();
         }
         return super.eIsSet(featureID);
+    }
+    @Override
+    public EList<Role> getCollaborationRole() {
+        return (EList)getPerformer();
     }
 
 } //CapabilityMethodImpl

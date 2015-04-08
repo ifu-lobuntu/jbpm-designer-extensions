@@ -3,6 +3,7 @@ package org.jbpm.designer.vdan;
 import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdrc.AbstractVdmlJsonToEmfHelper;
+import org.jbpm.designer.vdrc.VdmlRoleCollaborationStencil;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
@@ -23,7 +24,7 @@ import org.omg.vdml.VdmlElement;
 
 public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
     public VdmlActivityNetworkJsonToEmfHelper(ShapeMap resource) {
-        super(resource,VdmlActivityNetworkStencil.class);
+        super(resource, VdmlActivityNetworkStencil.class);
     }
 
     @Override
@@ -108,7 +109,6 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
                 vp.getInputDelegation(), vp.getOutputDelegation(), vp.getValueAdd() };
     }
 
-
     @Override
     protected VDMLDiagramElement createDiagramElement(String stencilId) {
         return VdmlActivityNetworkStencil.createDiagramElement(stencilId);
@@ -116,7 +116,12 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
 
     @Override
     protected VdmlElement createElement(String stencilId) {
-        return VdmlActivityNetworkStencil.createElement(stencilId);
+        VdmlRoleCollaborationStencil stencil = VdmlRoleCollaborationStencil.findStencilById(stencilId);
+        if (stencil != null && stencil.getElementType() != null) {
+            return (VdmlElement) super.create(stencil.getElementType());
+        } else {
+            return null;
+        }
     }
 
 }

@@ -47,12 +47,12 @@ public class LinkedStencilSet {
                 }
             }
             for (ContainmentRule containmentRule : this.stencilSet.getRules().getContainmentRules()) {
-                if(stencil.getRoles().contains(containmentRule.getRole())){
+                if (stencil.getRoles().contains(containmentRule.getRole())) {
                     sv.getContainmentRules().add(containmentRule);
                 }
             }
             for (ConnectionRule connectionRule : this.stencilSet.getRules().getConnectionRules()) {
-                if(stencil.getRoles().contains(connectionRule.getRole())){
+                if (stencil.getRoles().contains(connectionRule.getRole())) {
                     sv.getConnectionRules().add(connectionRule);
                 }
             }
@@ -67,14 +67,15 @@ public class LinkedStencilSet {
         applyConnectionRules(diagramStateHolder);
         applyCardinality(diagramStateHolder);
     }
-    public void validateSupportingFiles(File dir){
+
+    public void validateSupportingFiles(File dir) {
         for (LinkedStencil stencil : stencils.values()) {
-            File iconFile = new File(dir,"icons/" + stencil.getStencil().getIcon());
-            if(!iconFile.exists()){
+            File iconFile = new File(dir, "icons/" + stencil.getStencil().getIcon());
+            if (!iconFile.exists()) {
                 System.out.println(iconFile.getAbsolutePath());
             }
-            File viewFile = new File(dir,"view/" + stencil.getStencil().getView());
-            if(!viewFile.exists()){
+            File viewFile = new File(dir, "view/" + stencil.getStencil().getView());
+            if (!viewFile.exists()) {
                 System.out.println(viewFile.getAbsolutePath());
             }
         }
@@ -168,6 +169,10 @@ public class LinkedStencilSet {
                     }
                 }
             }
+        }
+        for (ConnectionRule connectionRule : this.stencilSet.getRules().getConnectionRules()) {
+                List<Connects> connects = connectionRule.getConnects();
+                System.out.println();
         }
         return false;
     }

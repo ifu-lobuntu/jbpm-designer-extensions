@@ -12,6 +12,7 @@ import org.jbpm.designer.vdrc.AbstractVdmlDiagramMarshallingTest;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.junit.Before;
+import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Pool;
@@ -22,7 +23,10 @@ import org.omg.vdml.ValueDeliveryModel;
 public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarshallingTest {
 
     protected XMLResource diagramResource;
+    protected XMLResource capabilityMethodResource;
+    protected CapabilityMethod capabilityMethod;
     protected String diagramFile = "/jbpm-designer-vdcm-backend/target/test.vdcm";
+    protected String capbilityMethodFile = "/jbpm-designer-vdcm-backend/target/cpm.vdcol";
 
     public AbstractVdcmDiagramMarshallingTest() {
         super();
@@ -35,7 +39,16 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
 
     @Before
     public void setup() throws Exception {
+        tuh.getFile(URI.createPlatformResourceURI(capbilityMethodFile, true)).delete();
+        tuh.getFile(URI.createPlatformResourceURI(getDiagramFileName(), true)).delete();
         super.setup();
+        capabilityMethodResource=(XMLResource) super.resourceSet.createResource(URI.createPlatformResourceURI(capbilityMethodFile, true));
+        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        vdm.getCollaboration().add(capabilityMethod=VDMLFactory.eINSTANCE.createCapabilityMethod());
+        capabilityMethod.setName("TheExternalCapabilityMethod");
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(capbilityMethodFile, true), emptyOptions);
+        capabilityMethodResource.getContents().add(vdm);
+        capabilityMethodResource.save(os, emptyOptions);
     }
     protected Collaboration createCollaboration() {
         return VDMLFactory.eINSTANCE.createOrgUnit();
@@ -64,8 +77,11 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
     protected AbstractEmfDiagramProfile createProfile() {
         return new VdmlCapabilityManagementProfileImpl();
     }
+    protected void saveCapabilityMethodResource() throws IOException {
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(capbilityMethodFile, true), emptyOptions);
+        capabilityMethodResource.save(os, emptyOptions);
+    }
     protected void saveDiagramResource() throws IOException {
-        TestUriHandler tuh = new TestUriHandler();
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(getDiagramFileName(), true), emptyOptions);
         diagramResource.save(os, emptyOptions);
     }
@@ -97,5 +113,4 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         XMLResource outputResource = marshaller.getResource(json, "");
         print(outputResource);
         new GenericEcoreComparator(drscasdf, outputResource).validate();
-    }
-}
+    }}

@@ -115,6 +115,6 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
 
     @Override
     protected VdmlElement createElement(String stencilId) {
-        return VdmlRoleCollaborationStencil.createElement(stencilId);
+        return (VdmlElement) super.create(VdmlRoleCollaborationStencil.findStencilById(stencilId).getElementType());
     }
 }

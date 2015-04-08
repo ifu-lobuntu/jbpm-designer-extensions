@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.vdml.Community;
 import org.omg.vdml.Member;
+import org.omg.vdml.Role;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -141,6 +142,10 @@ public class CommunityImpl extends CollaborationImpl implements Community {
                 return member != null && !member.isEmpty();
         }
         return super.eIsSet(featureID);
+    }
+    @Override
+    public EList<Role> getCollaborationRole() {
+        return (EList)getMember();
     }
 
 } //CommunityImpl

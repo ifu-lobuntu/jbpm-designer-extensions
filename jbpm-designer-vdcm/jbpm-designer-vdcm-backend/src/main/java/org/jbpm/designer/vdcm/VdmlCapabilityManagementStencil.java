@@ -25,7 +25,7 @@ import org.omg.vdml.VdmlElement;
 
 public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
     VDML_CAPABILITY_MANAGEMENT_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlCapabilityManagementDiagram"),
-    ORG_UNIT(VDMLPackage.eINSTANCE.getOrgUnit(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "OrgUnit"),
+    ORG_UNIT((EClass) null, VDMLDIPackage.eINSTANCE.getVDMLShape(), "OrgUnit"),
     POSITION(VDMLPackage.eINSTANCE.getPosition(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Position"),
     STORE(VDMLPackage.eINSTANCE.getStore(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Store"),
     POOL(VDMLPackage.eINSTANCE.getPool(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Pool"),
@@ -74,14 +74,6 @@ public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
         return (VDMLDiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
-    public static VdmlElement createElement(String stencilId) {
-        VdmlCapabilityManagementStencil stencil = findStencilById(stencilId);
-        if (stencil.type == null) {
-            return null;
-        }
-        return (VdmlElement) VDMLFactory.eINSTANCE.create(stencil.type);
-    }
-
     public static VdmlCapabilityManagementStencil findStencilById(String stencilId) {
         VdmlCapabilityManagementStencil stencil = nameMap.get(stencilId);
         if (stencil == null) {
@@ -91,10 +83,9 @@ public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
     }
 
     public static VdmlCapabilityManagementStencil findStencilByElement(EObject me, DiagramElement de) {
-        VdmlCapabilityManagementStencil[] possibilities = {CAPABILITY_OFFER,POSITION,STORE,POOL,ORG_UNIT,CAPABILITY_METHOD};
-        if(de instanceof VDMLDiagram){
-            return VDML_CAPABILITY_MANAGEMENT_DIAGRAM;
-        }else if (de instanceof VDMLEdge) {
+        VdmlCapabilityManagementStencil[] possibilities = { CAPABILITY_OFFER, POSITION, STORE, POOL, ORG_UNIT, CAPABILITY_METHOD,
+                VDML_CAPABILITY_MANAGEMENT_DIAGRAM };
+        if (de instanceof VDMLEdge) {
             VDMLEdge edge = (VDMLEdge) de;
             VDMLShape s = edge.getSourceShape();
             VDMLShape t = edge.getTargetShape();
@@ -105,15 +96,19 @@ public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
                     return APPLIED_CAPABILITY_OFFER;
                 } else if (s.getVdmlElement() instanceof CapabilityOffer && t.getVdmlElement() instanceof CapabilityMethod) {
                     return METHOD;
-                } else if (s.getVdmlElement() instanceof Position && t.getVdmlElement() instanceof Pool) {
+                } else if (s.getVdmlElement() instanceof Pool && t.getVdmlElement() instanceof Position) {
                     return POOL_POSITION;
                 }
-
             }
+        } else if (me == null && de.eContainer() instanceof VDMLDiagram) {
+            return ORG_UNIT;
+        }
+        if (me instanceof Pool) {
+            return POOL;
         }
         if (possibilities != null) {
             for (VdmlCapabilityManagementStencil cmmnStencil : possibilities) {
-                if (cmmnStencil.type !=null && cmmnStencil.type.isSuperTypeOf(me.eClass())) {
+                if (cmmnStencil.type != null && cmmnStencil.type.isSuperTypeOf(me.eClass())) {
                     return cmmnStencil;
                 }
             }

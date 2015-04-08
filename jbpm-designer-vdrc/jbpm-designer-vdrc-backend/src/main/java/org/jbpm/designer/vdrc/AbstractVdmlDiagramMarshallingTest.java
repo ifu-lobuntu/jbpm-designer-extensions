@@ -65,19 +65,18 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     protected GenericJsonToEmfDiagramMarshaller marshaller;
     private String measureLibraryFileName;
+    protected TestUriHandler tuh=new TestUriHandler();
 
     public AbstractVdmlDiagramMarshallingTest() {
         super();
     }
 
     protected void saveCollaborationResource() throws IOException {
-        TestUriHandler tuh = new TestUriHandler();
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(collaborationFile, true), emptyOptions);
         collaborationResource.save(os, emptyOptions);
     }
 
     protected void saveMeasureLibraryResource() throws IOException {
-        TestUriHandler tuh = new TestUriHandler();
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(measureLibraryFileName, true), emptyOptions);
         measureResource.save(os, emptyOptions);
     }
@@ -89,11 +88,14 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected abstract AbstractEmfDiagramProfile createProfile();
 
     public void setup() throws Exception {
+        this.tuh = new TestUriHandler();
         profile = createProfile();
         emptyOptions = profile.buildDefaultResourceOptions();
         this.collaborationFile = "/" + getClientProjectName() + "/target/test.vdcol";
         this.measureLibraryFileName = "/" + getClientProjectName() + "/target/test.meas";
-        profile.setUriHandler(new TestUriHandler());
+        tuh.getFile(URI.createPlatformResourceURI(getDiagramFileName(), true)).delete();
+        tuh.getFile(URI.createPlatformResourceURI(collaborationFile, true)).delete();
+        profile.setUriHandler(tuh);
         unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
         marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI(getDiagramFileName(), true));
         resourceSet = new ResourceSetImpl();
@@ -114,7 +116,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
                 + profile.getProfileDefinitionFileName());
         this.collaboration = createCollaboration();
         inputDiagram.setVdmlElement(collaboration);
-        collaboration.setName("MyCapability");
+        collaboration.setName("MyCollaboration");
         valueDeliveryModel.getCollaboration().add(collaboration);
         elementDiagramElementMap.put(collaboration, inputDiagram);
         measureLibrary = SMMFactory.eINSTANCE.createMeasureLibrary();
@@ -133,7 +135,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
             EObject eObject = allContents.next();
             if (eObject instanceof VDMLDiagramElement){
                 VDMLDiagramElement de = (VDMLDiagramElement) eObject;
-                if(de.getVdmlElement().getId().equals(ve.getId())) {
+                if(de.getVdmlElement() !=null && de.getVdmlElement().getId().equals(ve.getId())) {
                     return;
                 }
             }
@@ -186,7 +188,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         return df;
     }
 
-    protected void addEdge(VdmlElement modelElement, VdmlElement from, VdmlElement to) {
+    protected VDMLEdge addEdge(VdmlElement modelElement, VdmlElement from, VdmlElement to) {
         VDMLEdge edge = VDMLDIFactory.eINSTANCE.createVDMLEdge();
         VDMLShape fromShape = (VDMLShape) elementDiagramElementMap.get(from);
         edge.setSourceShape(fromShape);
@@ -201,6 +203,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         inputDiagram.getOwnedVdmlDiagramElement().add(edge);
         edge.setVdmlElement(modelElement);
         edge.setLocalStyle(buildTestStyle(modelElement == null));
+        return edge;
     }
 
     private Style buildTestStyle(boolean isSimple) {
@@ -224,10 +227,15 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected VDMLShape addShapeFor(VdmlElement parentElement, VdmlElement element, int... boundsInfo) {
+        VDMLShape shape = createShape(element, boundsInfo);
         VDMLDiagramElement parentDiagramElement = elementDiagramElementMap.get(parentElement);
+        parentDiagramElement.getOwnedElement().add(shape);
+        return shape;
+    }
+
+    protected VDMLShape createShape(VdmlElement element, int... boundsInfo) {
         VDMLShape shape = VDMLDIFactory.eINSTANCE.createVDMLShape();
         String nsURI = shape.eClass().getESuperTypes().get(0).getEPackage().getNsURI();
-        parentDiagramElement.getOwnedElement().add(shape);
         shape.setVdmlElement(element);
         shape.setBounds(DCFactory.eINSTANCE.createBounds());
         Bounds bounds = shape.getBounds();
@@ -236,7 +244,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         bounds.setWidth(boundsInfo.length > 2 ? boundsInfo[2] : 300d);
         bounds.setHeight(boundsInfo.length > 3 ? boundsInfo[3] : 300d);
         shape.setLocalStyle(buildTestStyle(false));
-        this.elementDiagramElementMap.put(element, shape);
+        if(element!=null){
+            this.elementDiagramElementMap.put(element, shape);
+        }
         return shape;
     }
 

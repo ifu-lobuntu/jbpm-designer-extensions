@@ -26,7 +26,7 @@ import org.omg.vdml.VdmlElement;
 public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDiagramMarshallingTest {
     @Test
     public void testValueAdd() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -53,7 +53,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
     }
     @Test
     public void testResourceUse() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -83,7 +83,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
     }
     @Test
     public void testRole() throws Exception{
-        Role role1 = VDMLFactory.eINSTANCE.createRole();
+        Role role1 = VDMLFactory.eINSTANCE.createPerformer();
         role1.setName("myRole");
         role1.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role1);
@@ -98,7 +98,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         role1.getPerformedWork().add(activity1);
         addPorts("MyCollaboration",role1,  collaboration);
 
-        Role role2 = VDMLFactory.eINSTANCE.createRole();
+        Role role2 = VDMLFactory.eINSTANCE.createPerformer();
         role2.setName("YourRole");
         role2.setDescription("YourRole's Description");
         collaboration.getCollaborationRole().add(role2);
@@ -144,7 +144,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
     }
     @Test
     public void testDeliverableFlow() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -190,7 +190,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
     }
     @Test
     public void testDelegations() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);

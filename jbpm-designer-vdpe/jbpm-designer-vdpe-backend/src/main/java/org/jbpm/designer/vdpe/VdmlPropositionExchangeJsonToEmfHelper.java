@@ -46,6 +46,10 @@ public class VdmlPropositionExchangeJsonToEmfHelper extends AbstractVdmlJsonToEm
 
     @Override
     protected VdmlElement createElement(String stencilId) {
-        return VdmlPropositionExchangeStencil.createElement(stencilId);
+        VdmlPropositionExchangeStencil st = VdmlPropositionExchangeStencil.findStencilById(stencilId);
+        if (st != null && st.getElementType() != null) {
+            return (VdmlElement) super.create(st.getElementType());
+        }
+        return null;
     }
 }

@@ -63,13 +63,6 @@ public enum VdmlPropositionExchangeStencil implements VdmlStencilInfo {
         return (VDMLDiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
-    public static VdmlElement createElement(String stencilId) {
-        VdmlPropositionExchangeStencil stencil = findStencilById(stencilId);
-        if (stencil.type == null) {
-            return null;
-        }
-        return (VdmlElement) VDMLFactory.eINSTANCE.create(stencil.type);
-    }
 
     public static VdmlPropositionExchangeStencil findStencilById(String stencilId) {
         VdmlPropositionExchangeStencil stencil = nameMap.get(stencilId);

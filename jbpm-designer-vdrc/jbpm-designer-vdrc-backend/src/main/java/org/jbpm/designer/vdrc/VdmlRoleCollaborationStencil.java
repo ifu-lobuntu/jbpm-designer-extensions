@@ -58,13 +58,6 @@ public enum VdmlRoleCollaborationStencil implements VdmlStencilInfo {
         return (VDMLDiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
-    public static VdmlElement createElement(String stencilId) {
-        VdmlRoleCollaborationStencil stencil = findStencilById(stencilId);
-        if (stencil.type == null) {
-            return null;
-        }
-        return (VdmlElement) VDMLFactory.eINSTANCE.create(stencil.type);
-    }
 
     public static VdmlRoleCollaborationStencil findStencilById(String stencilId) {
         VdmlRoleCollaborationStencil stencil = nameMap.get(stencilId);

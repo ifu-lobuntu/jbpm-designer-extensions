@@ -1,42 +1,89 @@
 package org.jbpm.designer.vdcm;
 
+import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.junit.Test;
-import org.omg.vdml.Activity;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputDelegation;
-import org.omg.vdml.InputPort;
+import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.OrgUnit;
-import org.omg.vdml.OutputDelegation;
-import org.omg.vdml.OutputPort;
 import org.omg.vdml.Pool;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.ResourceUse;
-import org.omg.vdml.Role;
+import org.omg.vdml.Position;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.VdmlElement;
 
 public class CapabilityManagementDiagramMarshallingTest extends AbstractVdcmDiagramMarshallingTest {
     @Test
-    public void testValueAdd() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
-        role.setName("myRole");
-        role.setDescription("My Role's Description");
-        collaboration.getCollaborationRole().add(role);
-        addShapeFor(collaboration, role);
-        Activity activity1 = VDMLFactory.eINSTANCE.createActivity();
-        activity1.setName("MyActivity1");
-        activity1.setDescription("My Activity's description");
-        role.getPerformedWork().add(activity1);
-        collaboration.getActivity().add(activity1);
-        addShapeFor(role, activity1);
-        ValueAdd valueAdd = VDMLFactory.eINSTANCE.createValueAdd();
-        valueAdd.setName("myValueAdd");
-        OutputPort op= (OutputPort) activity1.getContainedPort().get(1);
-        op.getValueAdd().add(valueAdd);
-        addShapeFor(op, valueAdd);
+    public void testCapabilityOfferAndMethod() throws Exception {
+        OrgUnit orgUnit = (OrgUnit) super.collaboration;
+        VDMLShape orgUnitShape = createShape(null);
+        inputDiagram.getOwnedVdmlDiagramElement().add(orgUnitShape);
+        CapabilityOffer offer = VDMLFactory.eINSTANCE.createCapabilityOffer();
+        offer.setName("MyOffer");
+        offer.getMethod().add(super.capabilityMethod);
+        orgUnit.getCapabilityOffer().add(offer);
+        VDMLShape methodShape = createShape(capabilityMethod);
+        orgUnitShape.getOwnedShape().add(methodShape);
+        VDMLShape offerShape = createShape(offer);
+        inputDiagram.getOwnedVdmlDiagramElement().add(offerShape);
+        orgUnitShape.getBoundaryShapes().add(offerShape);
+        addEdge(null, offer, capabilityMethod);
+        print(diagramResource);
         saveCollaborationResource();
-        super.assertOutputValid();
+        saveCapabilityMethodResource();
+        assertOutputValid();
+        print(diagramResource);
+    }
+
+    @Test
+    public void testPoolPosition() throws Exception {
+        OrgUnit orgUnit = (OrgUnit) super.collaboration;
+        VDMLShape orgUnitShape = createShape(null);
+        inputDiagram.getOwnedVdmlDiagramElement().add(orgUnitShape);
+        Position position = VDMLFactory.eINSTANCE.createPosition();
+        position.setName("myPosition");
+        orgUnit.getPosition().add(position);
+        VDMLShape positionShape = createShape(position);
+        orgUnitShape.getOwnedShape().add(positionShape);
+        Pool pool = VDMLFactory.eINSTANCE.createPool();
+        pool.setName("MyPool");
+        orgUnit.getOwnedStore().add(pool);
+        pool.getPosition().add(position);
+        VDMLShape poolShape = createShape(pool);
+        orgUnitShape.getOwnedShape().add(poolShape);
+        addEdge(null, pool, position);
+        saveCollaborationResource();
+        print(diagramResource);
+        assertOutputValid();
+        print(diagramResource);
+    }
+
+    @Test
+    public void testCapabilityOfferAndResource() throws Exception {
+        OrgUnit orgUnit = (OrgUnit) super.collaboration;
+        VDMLShape orgUnitShape = createShape(null);
+        inputDiagram.getOwnedVdmlDiagramElement().add(orgUnitShape);
+        CapabilityOffer offer = VDMLFactory.eINSTANCE.createCapabilityOffer();
+        offer.setName("MyOffer");
+        orgUnit.getCapabilityOffer().add(offer);
+        VDMLShape offerShape = createShape(offer);
+        inputDiagram.getOwnedVdmlDiagramElement().add(offerShape);
+        orgUnitShape.getBoundaryShapes().add(offerShape);
+
+        Store store = VDMLFactory.eINSTANCE.createStore();
+        store.setName("MyStore");
+        orgUnit.getOwnedStore().add(store);
+        VDMLShape storeShape = createShape(store);
+        orgUnitShape.getOwnedShape().add(storeShape);
+        offer.getCapabilityResource().add(store);
+        addEdge(null, offer, store);
+        Pool pool = VDMLFactory.eINSTANCE.createPool();
+        pool.setName("MyPool");
+        orgUnit.getOwnedStore().add(pool);
+        VDMLShape poolShape = createShape(pool);
+        orgUnitShape.getOwnedShape().add(poolShape);
+        offer.getCapabilityResource().add(pool);
+        addEdge(null, offer, pool);
+        saveCollaborationResource();
+        print(diagramResource);
+        assertOutputValid();
+        print(diagramResource);
     }
 }

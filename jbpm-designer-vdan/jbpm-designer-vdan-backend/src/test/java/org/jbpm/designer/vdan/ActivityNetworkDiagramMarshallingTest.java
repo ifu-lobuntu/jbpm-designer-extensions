@@ -20,7 +20,7 @@ import org.omg.vdml.VdmlElement;
 public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMarshallingTest {
     @Test
     public void testValueAdd() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -42,7 +42,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
     }
     @Test
     public void testResourceUse() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -66,7 +66,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
     }
     @Test
     public void testPortContainersAndDeliverableFlows() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -105,7 +105,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
     }
     @Test
     public void testPool() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);
@@ -144,7 +144,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
     }
     @Test
     public void testDelegations() throws Exception{
-        Role role = VDMLFactory.eINSTANCE.createRole();
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
         role.setName("myRole");
         role.setDescription("My Role's Description");
         collaboration.getCollaborationRole().add(role);

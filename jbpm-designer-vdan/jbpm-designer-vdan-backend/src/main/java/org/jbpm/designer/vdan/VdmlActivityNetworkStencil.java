@@ -76,14 +76,6 @@ public enum VdmlActivityNetworkStencil implements VdmlStencilInfo {
         return (VDMLDiagramElement) VDMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
-    public static VdmlElement createElement(String stencilId) {
-        VdmlActivityNetworkStencil stencil = findStencilById(stencilId);
-        if (stencil.type == null) {
-            return null;
-        }
-        return (VdmlElement) VDMLFactory.eINSTANCE.create(stencil.type);
-    }
-
     public static VdmlActivityNetworkStencil findStencilById(String stencilId) {
         VdmlActivityNetworkStencil stencil = nameMap.get(stencilId);
         if (stencil == null) {

@@ -22,7 +22,7 @@ public class UriHelper {
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
         replaceUriHandler(uriHandlerToUse, uriHandlers);
         Resource d = new ResourceImpl() {
-            //Jeez!!!!
+            // Jeez!!!!
             {
                 replaceUriHandler(uriHandlerToUse, getDefaultURIConverter().getURIHandlers());
             }
@@ -65,16 +65,28 @@ public class UriHelper {
             uri = URI.createPlatformResourceURI(split[1], true);
         }
         Resource resource = rst.getResource(uri, true);
+        // Only look at the primary object or its contents
         EObject pkg = resource.getContents().get(0);
+        if (isMatch(entrySet, identifier, pkg)) {
+            return (T) pkg;
+        }
         TreeIterator<EObject> ti = pkg.eAllContents();
         while (ti.hasNext()) {
             EObject eObject = (EObject) ti.next();
-            for (Entry<EClass, EAttribute> entry : entrySet) {
-                if (entry.getKey().isInstance(eObject) && eObject.eGet(entry.getValue()).equals(identifier)) {
-                    return (T) eObject;
-                }
+            if (isMatch(entrySet, identifier, eObject)) {
+                return (T) eObject;
             }
         }
         return null;
+    }
+
+    protected static boolean isMatch(Set<Entry<EClass, EAttribute>> entrySet, String identifier, EObject eObject) {
+        boolean isMatch = false;
+        for (Entry<EClass, EAttribute> entry : entrySet) {
+            if (entry.getKey().isInstance(eObject) && eObject.eGet(entry.getValue()).equals(identifier)) {
+                isMatch = true;
+            }
+        }
+        return isMatch;
     }
 }
