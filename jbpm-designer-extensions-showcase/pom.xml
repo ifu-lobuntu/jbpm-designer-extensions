@@ -29,63 +29,35 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-ucd-api</artifactId>
+      <artifactId>jbpm-designer-uml-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-ucd-backend</artifactId>
+      <artifactId>jbpm-designer-uml-backend</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-ucd-client</artifactId>
+      <artifactId>jbpm-designer-uml-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdcm-api</artifactId>
+      <artifactId>jbpm-designer-uml-codemodel</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdcm-client</artifactId>
+      <artifactId>jbpm-designer-uml-codegen</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdcm-backend</artifactId>
+      <artifactId>jbpm-designer-vdml-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdan-api</artifactId>
+      <artifactId>jbpm-designer-vdml-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdan-backend</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdan-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdpe-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdpe-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdpe-backend</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdrc-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdrc-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-vdrc-backend</artifactId>
+      <artifactId>jbpm-designer-vdml-backend</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
@@ -97,23 +69,23 @@
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-ucd-codemodel</artifactId>
+      <artifactId>jbpm-designer-uml-codemodel</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-ucd-codegen</artifactId>
+      <artifactId>jbpm-designer-uml-codegen</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-meas-api</artifactId>
+      <artifactId>jbpm-designer-smm-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-meas-client</artifactId>
+      <artifactId>jbpm-designer-smm-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-meas-backend</artifactId>
+      <artifactId>jbpm-designer-smm-backend</artifactId>
     </dependency>
     <!-- dependencies added because of new illegal transitive dependency check -->
     <dependency>
@@ -721,10 +693,10 @@
             <compileSourcesArtifact>org.jbpm:jbpm-designer-cmmn-client</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-client</compileSourcesArtifact>
-            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdan-api</compileSourcesArtifact>
-            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdan-client</compileSourcesArtifact>
-            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdpe-api</compileSourcesArtifact>
-            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdpe-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-smm-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-smm-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdml-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdml-client</compileSourcesArtifact>
 
             <compileSourcesArtifact>org.jbpm:jbpm-form-modeler-editor-api</compileSourcesArtifact>
             <compileSourcesArtifact>org.jbpm:jbpm-form-modeler-editor-client</compileSourcesArtifact>

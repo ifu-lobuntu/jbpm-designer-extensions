@@ -47,11 +47,10 @@
   <!-- Designer extensions -->
   <inherits name="org.jbpm.designer.jBPMDesignerExtensionsClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerVDANClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerVDPEClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerMeasureClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerVDRCClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerVDCMClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDMLClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDMLAPI"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerSMMClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerCMMNClient"/>
   <!-- Form-Modeler -->
   <inherits name="org.jbpm.formModeler.editor.FormModelerEditorClient"/>
   <inherits name="org.jbpm.formModeler.renderer.FormRendererClient"/>

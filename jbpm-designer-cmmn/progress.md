@@ -76,6 +76,7 @@
  * - Update all property editors to read UML rather than CaseFile
 
 ##Bugs
+
 ##Toolbar
  - Generate CaseFileForm
  - Generate task forms
@@ -109,10 +110,10 @@
  - exitScripts
  - additional property name for caseFileItem events (its useless without them)
 
+
 #2. Form Modeler:
 #2.1. Done and Tested
 #2.2. Todo
-
  - Name/Value construct to represent data
  - Form for CaseFile
  - Lookup of entities in dropdowns
@@ -125,10 +126,3 @@
  - Forms that give access to open ended state
  - Creation of Sentries between any two arbitrary task instances
  - Creation of Sentries between any arbitrary caseFileItem instance and task
-
-
-
-
-
-
-

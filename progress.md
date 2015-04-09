@@ -6,10 +6,13 @@
  - childBindings
  - viewBindings
  - Laying out decorations sequentially, spaced evenly, but only the visible ones 
+
+##Misc
+ - Getting icons to work in the palette
+ - Support for curved edges.
  
 #TODO
  - Disabling rotation of labels on edges
- - Getting icons to work in the palette
  - Automatically creating child shapes e.g. compartments
  - Clipping items inside parent
  - Find a way to have a consistent unique id for a resource irrespective of its location in the repository to allow for improved refactoring

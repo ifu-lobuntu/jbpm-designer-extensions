@@ -26,6 +26,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<modules>
+		<module>jbpm-designer-cmmn-emf</module>
 		<module>jbpm-designer-cmmn-api</module>
 		<module>jbpm-designer-cmmn-client</module>
 		<module>jbpm-designer-cmmn-backend</module>

@@ -1,0 +1,57 @@
+/* Edges */
+.stencilsets_vdcm_vdcm_json_icons_capability_method,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_capability_method {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_vdcm_vdcm_json_icons_capability_offer,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_capability_offer {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -16px;
+}
+.stencilsets_vdcm_vdcm_json_icons_link,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_link {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -32px;
+}
+.stencilsets_vdcm_vdcm_json_icons_org_unit,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_org_unit {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -48px;
+}
+.stencilsets_vdcm_vdcm_json_icons_pool,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_pool {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -64px;
+}
+.stencilsets_vdcm_vdcm_json_icons_position,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_position {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -80px;
+}
+.stencilsets_vdcm_vdcm_json_icons_store,
+.x-tree-node-leaf .stencilsets_vdcm_vdcm_json_icons_store {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdcm-images-sprite.png');
+  background-position: left -96px;
+}

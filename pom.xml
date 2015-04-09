@@ -55,21 +55,6 @@
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-ucd-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-ucd-codemodel</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-ucd-codegen</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
         <artifactId>jbpm-cmmn-casefile-jpa</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -80,12 +65,27 @@
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-ucd-client</artifactId>
+        <artifactId>jbpm-designer-uml-api</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-ucd-backend</artifactId>
+        <artifactId>jbpm-designer-uml-codemodel</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-uml-codegen</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-uml-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-uml-backend</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -110,82 +110,37 @@
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdan-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdan-client</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdan-backend</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdcm-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdcm-client</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdcm-backend</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdrc-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdrc-client</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdrc-backend</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-meas-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-meas-client</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-meas-backend</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdpe-api</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdpe-client</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
-        <artifactId>jbpm-designer-vdpe-backend</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jbpm</groupId>
         <artifactId>jbpm-designer-vdml-emf</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-vdml-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-vdml-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-vdml-backend</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-smm-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-smm-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-smm-backend</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
@@ -204,16 +159,10 @@
     <module>jbpm-designer-extensions-client</module>
     <module>jbpm-designer-extensions-emf</module>
     <module>jbpm-designer-extensions-backend</module>
-    <module>jbpm-designer-cmmn-emf</module>
-    <module>jbpm-designer-uml-emf</module>
-    <module>jbpm-designer-vdml-emf</module>
     <module>jbpm-designer-cmmn</module>
-    <module>jbpm-designer-ucd</module>
-    <module>jbpm-designer-vdrc</module>
-    <module>jbpm-designer-vdan</module>
-    <module>jbpm-designer-vdpe</module>
-    <module>jbpm-designer-vdcm</module>
-    <module>jbpm-designer-meas</module>
+    <module>jbpm-designer-uml</module>
+    <module>jbpm-designer-vdml</module>
+    <module>jbpm-designer-smm</module>
     <module>jbpm-designer-extensions-showcase</module>
   </modules>
   <dependencies>
