@@ -339,7 +339,7 @@
 							"value" : "",
 							"viewBinding":"vdmlElement",
 							"description" : "The CapabilityMethod that supports the CapabilityOffer",
-							"readonly" : true,
+							"readonly" : false,
 							"optional" : true,
 							"reference" : {
 								"targetProfile":"vdrc",
@@ -445,12 +445,13 @@
 						"value" : "",
 						"viewBinding":"vdmlElement",
 						"description" : "The External Store",
-						"readonly" : true,
+						"readonly" : false,
 						"optional" : true,
 						"reference" : {
-							"targetProfile":"vdrc",
+							"targetProfile":"vdcm",
 							"allowedElementTypes":"Store",
-							"nameFeature" : "name"
+							"nameFeature" : "name",
+							"multiSelect" : false
 						},
 						"length" : ""
 	                }
@@ -505,10 +506,10 @@
 						"value" : "",
 						"viewBinding":"vdmlElement",
 						"description" : "The External Pool",
-						"readonly" : true,
+						"readonly" : false,
 						"optional" : true,
 						"reference" : {
-							"targetProfile":"vdrc",
+							"targetProfile":"vdcm",
 							"allowedElementTypes":"Pool",
 							"nameFeature" : "name"
 						},

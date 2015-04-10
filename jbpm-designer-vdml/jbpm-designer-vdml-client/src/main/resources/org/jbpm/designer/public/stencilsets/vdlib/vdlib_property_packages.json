@@ -1,0 +1,31 @@
+	        {
+	        	"name" : "vdmlElementBase",
+	        	"properties": [
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "",
+						"description" : "The descriptive name of the VDML element.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : false,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					}
+				]
+			},

@@ -2,6 +2,7 @@ package org.jbpm.designer.meas;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
@@ -14,6 +15,8 @@ import org.jbpm.smm.dd.smmdi.SMMDiagram;
 import org.jbpm.smm.dd.smmdi.SMMEdge;
 import org.jbpm.smm.dd.smmdi.SMMShape;
 import org.omg.dd.di.DiagramElement;
+import org.omg.smm.Characteristic;
+import org.omg.smm.Measure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
 import org.omg.smm.SmmElement;
@@ -51,6 +54,14 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         SmmElement el = MeasureLibraryStencil.createElement(shape.getStencilId());
         if (de instanceof SMMShape) {
             ((SMMShape) de).setSmmElement((SmmElement) el);
+            if(el instanceof Measure){
+                //TODO move this elsewhere - will break tests
+                Characteristic ch = SMMFactory.eINSTANCE.createCharacteristic();
+                ch.setName(shape.getProperty("name"));
+                owningLibrary.getMeasureElements().add(ch);
+                shapeMap.getResource().setID(ch,EcoreUtil.generateUUID());
+                ((Measure) el).setTrait(ch);
+            }
         } else if (de instanceof SMMEdge) {
             ((SMMEdge) de).setSmmElement((SmmElement) el);
         }

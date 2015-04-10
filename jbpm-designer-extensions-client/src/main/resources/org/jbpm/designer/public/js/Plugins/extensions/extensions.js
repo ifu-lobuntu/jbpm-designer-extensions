@@ -1,5 +1,26 @@
 if (!ORYX.Plugins)
 	ORYX.Plugins = new Object();
+if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
+	ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/bpmn2.0#"]={
+                                        "Tasks": 1,
+                                        "Start Events": 3,
+                                        "Catching Intermediate Events": 5,
+                                        "Throwing Intermediate Events": 6,
+                                        "End Events": 4,
+                                        "Gateways": 7,
+                                        "Subprocesses": 2,
+                                        "Service Tasks": 8,
+                                        "Connecting Objects": 9,
+                                        "Data Objects": 10,
+                                        "Swimlanes": 11,
+                                        "Artifacts": 12,
+                                        "Workflow Patterns": 13
+};
+ORYX.CONFIG.STENCIL_GROUP_ORDER=function(){
+	console.log(ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ);
+	return ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ;
+};
 
 /**
  * The Collapsible plugin provides layout methods referring to the Collapsible
@@ -260,7 +281,6 @@ ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
 				shapes : this.shapeSelection.shapes
 			});
 			var jsonProp = pair._jsonProp;
-			cf.profile = 'cmmn';
 			cf.targetProfile = jsonProp.reference.targetProfile;
 			cf.filter = jsonProp.reference.filter;
 			cf.elementTypes = jsonProp.reference.allowedElementTypes;
@@ -405,12 +425,15 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 												grid.on('afterrender', function(e) {
 													if (this.value.length > 0) {
 														var index = 0;
-														var val = this.value;
+														var val = this.value.split(",");
 														var mygrid = grid;
 														calldefs.data.each(function() {
-															if (this.data['name'] == val) {
-																mygrid.getSelectionModel().select(index, 1);
-															}
+															var refName=this.data['name'];
+															val.each(function(valRow){
+																if (valRow.indexOf(refName)>=0) {
+																	mygrid.getSelectionModel().selectRow(index, true);
+																}
+															});
 															index++;
 														});
 													}
@@ -467,31 +490,21 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 																text : ORYX.I18N.Save.save,
 																handler : function() {
 																	var selections=grid.getSelectionModel().getSelections();
-																	if (selections.length > 0) {
-																		var outValue ="";
-																		for(var k=0;k<selections.length;k++){
-																			var row = selections[k];
-																			outValue += row.data['name'] + '|'
-																					+ row.data['pkgname'];
-																			if(k<selections.length-1){
-																				outValue+=",";
-																			}
+																	var outValue ="";
+																	for(var k=0;k<selections.length;k++){
+																		var row = selections[k];
+																		outValue += row.data['name'] + '|'
+																				+ row.data['pkgname'];
+																		if(k<selections.length-1){
+																			outValue+=",";
 																		}
-																		grid.stopEditing();
-																		grid.getView().refresh();
-																		this.setValue(outValue);
-																		this.dataSource.getAt(this.row).set('value', outValue)
-																		this.dataSource.commitChanges()
-																		dialog.hide()
-																	} else {
-																		this.facade.raiseEvent({
-																			type : ORYX.CONFIG.EVENT_NOTIFICATION_SHOW,
-																			ntype : 'error',
-																			msg : ORYX.I18N.LocalHistory.LocalHistoryView.msg,
-																			title : ''
-
-																		});
 																	}
+																	grid.stopEditing();
+																	grid.getView().refresh();
+																	this.setValue(outValue);
+																	this.dataSource.getAt(this.row).set('value', outValue);
+																	this.dataSource.commitChanges();
+																	dialog.hide();
 																}.bind(this)
 															}, {
 																text : ORYX.I18N.PropertyWindow.cancel,
@@ -540,7 +553,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 										});
 									},
 									params : {
-										profile : this.profile,
+										profile : ORYX.PROFILE,
 										targetProfile : this.targetProfile,
 										elementTypes : this.elementTypes,
 										nameFeature : this.nameFeature,
@@ -550,6 +563,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 										json : ORYX.EDITOR.getSerializedJSON(),
 										ppackage : processPackage,
 										pid : processId,
+										filter : this.filter,
 										action : "getEmfElements"
 									}
 								});

@@ -17,7 +17,7 @@ import org.omg.dd.di.DiagramElement;
 
 public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements EmfToJsonHelper {
     private ShapeMap shapeMap;
-    private Shape targetShape;
+    protected Shape targetShape;
     public ClassDiagramEmfToJsonHelper(ShapeMap diagramStateHolder) {
         super();
         this.shapeMap = diagramStateHolder;

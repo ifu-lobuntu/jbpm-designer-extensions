@@ -1,0 +1,182 @@
+			{
+				"type" : "node",
+				"id" : "BusinessItemDefinition",
+				"title" : "BusinessItemDefinition",
+				"childBinding" : "ownedType",
+				"position" : 1,
+				"groups" : [
+					"BusinessItemDefinition"
+				],
+				"roles" : [
+					"businessItemDefinition"
+				],
+				"description" : "A BusinessItemDefinition",
+				"view" : "business_item_definition.svg",
+				"icon" : "business_item_definition.png",
+				"layout" : [
+							{
+								"type" : "layout.compartments"
+							}
+				],
+			    "propertyPackages" : [
+						"elementBase","localStyle"
+				],
+				"properties" : [
+					{
+						"id" : "hasForm",
+						"type" : "Boolean",
+						"value" : true,
+						"readonly" : true,
+						"hidden" : true
+					},
+					{
+						"id" : "isFungible",
+						"type" : "Boolean",
+						"title": "Is Fungible",
+						"value" : true,
+						"readonly" : false,
+						"hidden" : false
+					},
+					{
+						"id" : "isShareable",
+						"type" : "Boolean",
+						"title": "Is Shareable",
+						"value" : false,
+						"readonly" : false,
+						"hidden" : false
+					},
+					{
+						"id" : "tasktype",
+						"type" : "String",
+						"value" : "User",
+						"readonly" : true,
+						"hidden" : true
+					},
+					{
+						"id" : "taskname",
+						"type" : "String",
+						"readonly" : false,
+						"hidden" : false,
+						"title": "BusinessItemDefinition Form Name",
+						"binding":"name"
+					}
+			   ]
+			},
+			{
+				"type" : "node",
+				"id" : "CharacteristicDefinitionCompartment",
+				"title" : "CharacteristicDefinitionCompartment",
+				"position" : 2,
+				"groups" : [
+					"BusinessItemDefinition"
+				],
+				"roles" : [
+					"characteristicDefinitionCompartment"
+				],
+				"description" : "The Characteristic Compartment",
+				"isCompartment":true,
+				"view" : "characteristic_definition_compartment.svg",
+				"icon" : "characteristic_definition_compartment.png",
+				"layout" : [
+					{
+						"type" : "layout.list"
+					},
+					{
+						"type" : "layout.collapsible"
+					}
+				],
+			    "propertyPackages" : [
+			          "compartment","localStyle"
+				],
+				"properties" : [
+					{
+						"id" : "name",
+						"type" : "String",
+						"value" : "Characteristics",
+						"readonly" : true,
+						"hidden" : true,
+						"refToView" : [
+							"text_name"
+						]
+					}
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "CharacteristicDefinition",
+				"title" : "Characteristic Definition",
+				"childBinding" : "ownedAttribute",
+				"position" : 2,
+				"groups" : [
+					"BusinessItemDefinition"
+				],
+				"roles" : [
+					"characteristicDefinition"
+				],
+				"description" : "A Characteristic Definition",
+				"view" : "characteristic_definition.svg",
+				"icon" : "characteristic_definition.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"localStyle",
+						"multiplicity"
+				],
+				"properties" : [
+	                {
+						"id" : "measure",
+						"type" : "eobjectref",
+						"title" : "Measure",
+						"value" : "",
+						"description" : "The Measure.",
+						"readonly" : false,
+						"optional" : true,
+						"reference" : {
+							"targetProfile":"meas",
+							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure",
+							"nameFeature" : "name"
+						},
+
+						"length" : ""
+	                },
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "CharacteristicDefinition1",
+                        "description" : "The descriptive name of the Characteristic Definition.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "binding": "ownedComment[0].body",
+                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "hidden" : true
+                    }
+				]
+			},

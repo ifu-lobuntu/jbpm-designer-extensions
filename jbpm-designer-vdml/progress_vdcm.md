@@ -41,7 +41,11 @@
  - OrgUnit.referencedOrgUnit
  - ExternalStore.storeRef
  - ExternalPool.poolRef
- 
+
+##Update reference display labels
+ - ExternalStore
+ - ExternalPool
+ - ExternalCapabilityMethod 
  
 ##Misc
  - Dynamically generate Store,Pool and CapabilityOffer shapes, along with their edges. Also Roles

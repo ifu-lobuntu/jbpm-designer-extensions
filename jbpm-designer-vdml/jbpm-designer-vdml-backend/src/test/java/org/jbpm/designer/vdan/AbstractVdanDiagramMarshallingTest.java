@@ -34,18 +34,21 @@ public class AbstractVdanDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
     @Before
     public void setup() throws Exception {
         super.setup();
+        
     }
 
     protected AbstractEmfDiagramProfile createProfile() {
         return new VdmlActivityNetworkProfileImpl();
     }
     
-    protected ValueProposition addValueProposition(Role role1, Role role2) {
+    protected ValueProposition addValueProposition(Role role1, Role role2, boolean addShape) {
         ValueProposition valueProposition = VDMLFactory.eINSTANCE.createValueProposition();
         valueProposition.setName("Safd");
         role1.getProvidedProposition().add(valueProposition);
         valueProposition.setRecipient(role2);
-        addShapeFor(collaboration, valueProposition);
+        if(addShape){
+            addShapeFor(collaboration, valueProposition);
+        }
         return valueProposition;
     }
 
@@ -71,11 +74,11 @@ public class AbstractVdanDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
 
     protected void assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
         String xmlString = buildXmlString(drscasdf);
-        System.out.println(xmlString);
+//        System.out.println(xmlString);
         String json = unmarshaller.parseModel(xmlString, profile, "");
-        System.out.println(json);
+//        System.out.println(json);
         XMLResource outputResource = marshaller.getResource(json, "");
-        print(outputResource);
+//        print(outputResource);
         new GenericEcoreComparator(drscasdf, outputResource).validate();
     }
 }

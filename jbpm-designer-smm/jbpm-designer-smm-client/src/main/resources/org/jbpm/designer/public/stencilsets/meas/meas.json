@@ -803,9 +803,13 @@
 				}
 		],
 		"morphingRules" : [
-       			{
+      			{
     				"role": "directMeasure",
     				"baseMorphs": ["directMeasure"]
+    			},
+       			{
+    				"role": "unitOfMeasure",
+    				"baseMorphs": ["unitOfMeasure"]
     			},
        			{
     				"role": "collectiveMeasure",

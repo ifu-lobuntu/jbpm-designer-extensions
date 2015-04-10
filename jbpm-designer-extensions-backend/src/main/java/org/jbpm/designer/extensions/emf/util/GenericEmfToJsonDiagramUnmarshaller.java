@@ -201,9 +201,6 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
     private void setProperties(DiagramElement diagramElement, EObject mee, Shape shape) {
         StencilInfo stencil = helper.findStencilByElement(mee, diagramElement);
-        if(stencil==null){
-            System.out.println();
-        }
         LinkedStencil sv = profile.getLinkedStencilSet().getLinkedStencil(stencil.getStencilId());
         if (sv == null) {
             throw new IllegalArgumentException("No stencil found in the stencilSet definition for '" + stencil.getStencilId() + "'");

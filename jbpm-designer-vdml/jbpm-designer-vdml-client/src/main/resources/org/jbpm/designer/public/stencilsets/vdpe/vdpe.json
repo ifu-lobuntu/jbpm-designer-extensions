@@ -441,7 +441,7 @@
 				"type" : "edge",
 				"id" : "Recipient",
 				"title" : "Recipient",
-				"targetBinding":"provider",
+				"targetBinding":"recipient",
 				"position" : 2,
 				"groups" : [
 					"Elements"

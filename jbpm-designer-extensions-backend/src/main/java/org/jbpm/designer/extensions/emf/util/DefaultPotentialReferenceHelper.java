@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -20,6 +21,7 @@ import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.jbpm.designer.web.server.ServletUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.omg.dd.di.DiagramElement;
 
 public class DefaultPotentialReferenceHelper {
 
@@ -51,10 +53,16 @@ public class DefaultPotentialReferenceHelper {
                 }
             }
             Collection<EObject> results = new ArrayList<EObject>();
-            for (Resource resource : rst.getResources()) {
+            for (Resource resource : new ArrayList<Resource>( rst.getResources())) {
                 TreeIterator<EObject> ti = resource.getContents().get(0).eAllContents();
                 while (ti.hasNext()) {
                     EObject eObject = (EObject) ti.next();
+                    if(eObject instanceof DiagramElement){
+                        EList<EObject> mes = ((DiagramElement) eObject).getModelElement();
+                        if(mes.size()>0){
+                            eObject=mes.get(0);
+                        }
+                    }
                     for (String string : elementTypes) {
                         String className = eObject.eClass().getName();
                         if (className.equals(string)) {

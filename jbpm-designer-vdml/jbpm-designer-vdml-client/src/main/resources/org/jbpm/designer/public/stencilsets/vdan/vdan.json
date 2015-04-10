@@ -424,6 +424,37 @@
 						]
 					},
 					{
+						"id" : "valueMeasure",
+						"type" : "eobjectref",
+						"title" : "Value Measure",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"meas",
+							"allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+							"nameFeature" : "name",
+							"multiSelect" : false
+						}
+					},
+					{
+						"id" : "aggregatedTo",
+						"type" : "eobjectref",
+						"title" : "Aggregated To",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"vdan",
+							"allowedElementTypes":"ValueAdd|ValuePropositionComponent",
+							"nameFeature" : "name",
+							"multiSelect" : true,
+							"filter" : "valueElementAggregatedTo"
+						}
+					},
+					{
 						"id" : "diagramElementId",
 						"type" : "String",
 						"title" : "DiagramElementId",
@@ -590,7 +621,22 @@
 						"description" : "Tangible DeliverableFlows represent contractually binding flows",
 						"readonly" : false,
 						"optional" : false		
-					}
+					},
+	                {
+						"id" : "deliverableDefinition",
+						"type" : "eobjectref",
+						"title" : "Deliverable",
+						"value" : "",
+						"description" : "The BusinessItem that is being delivered",
+						"readonly" : false,
+						"optional" : true,
+						"reference" : {
+							"targetProfile":"vdlib",
+							"allowedElementTypes":"BusinessItemDefinition",
+							"nameFeature" : "qualifiedName"
+						},
+						"length" : ""
+	                }
 				]
 			},
 			{
@@ -616,6 +662,30 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+						{
+							"id" : "resourceIsConsumed",
+							"type" : "Boolean",
+							"title" : "Is Consumed",
+							"value" : "true",
+							"description" : "True if this resource is consumed during the activity",
+							"readonly" : false,
+							"optional" : false		
+						},
+		                {
+							"id" : "quantityMeasure",
+							"type" : "eobjectref",
+							"title" : "Quantity Measure",
+							"value" : "",
+							"description" : "The Measure used to measure the quantity of the resource used",
+							"readonly" : false,
+							"optional" : true,
+							"reference" : {
+								"targetProfile":"meas",
+								"allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure",
+								"nameFeature" : "name"
+							},
+							"length" : ""
+		                }
 				]
 			},
 			{

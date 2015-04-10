@@ -155,7 +155,12 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     }
     @Override
     public EPackage[] getEPackages() {
+        try{
         return ddPackages(Bpmn2Package.eINSTANCE, UMLPackage.eINSTANCE,CMMNPackage.eINSTANCE,CMMNDIPackage.eINSTANCE,JbpmextPackage.eINSTANCE);
+        }catch(Throwable t){
+            t.printStackTrace();
+            return new EPackage[0]; 
+        }
     }
 
     @Override

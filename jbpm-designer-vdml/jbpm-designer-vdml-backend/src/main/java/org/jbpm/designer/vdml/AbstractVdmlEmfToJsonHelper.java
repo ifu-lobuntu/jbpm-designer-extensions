@@ -1,9 +1,11 @@
 package org.jbpm.designer.vdml;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -124,6 +126,20 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
     public String convertToString(LinkedProperty property, Object val) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    protected String toString(EList<? extends VdmlElement> asdf) {
+        StringBuilder sb = new StringBuilder();
+        Iterator<? extends VdmlElement> iterator = asdf.iterator();
+        while (iterator.hasNext()) {
+            VdmlElement valueElement = iterator.next();
+            sb.append(toString(valueElement));
+            if(iterator.hasNext()){
+                sb.append(",");
+            }
+        }
+        String string = sb.toString();
+        return string;
     }
 
 }

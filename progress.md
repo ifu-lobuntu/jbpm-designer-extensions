@@ -7,11 +7,17 @@
  - viewBindings
  - Laying out decorations sequentially, spaced evenly, but only the visible ones 
 
+## Modularization
+ - StencilServiceServlet
+ - Config.js
+
+
 ##Misc
  - Getting icons to work in the palette
  - Support for curved edges.
  
 #TODO
+##Misc
  - Disabling rotation of labels on edges
  - Automatically creating child shapes e.g. compartments
  - Clipping items inside parent
@@ -19,3 +25,9 @@
  - How to put custom shapes on the diagram
  - How to get the name editing text to show in the right place
  - How to get the boundaryShape area to be a triangle
+ 
+## Modularization
+ - inlineditor.jsp
+ - Preprocessing
+
+ 

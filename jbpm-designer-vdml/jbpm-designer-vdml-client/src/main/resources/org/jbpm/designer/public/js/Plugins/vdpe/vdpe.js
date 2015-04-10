@@ -1,6 +1,11 @@
  if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
-
+ if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
+		ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/vdpe#" ]= {
+        "Nodes": 1, 
+        "Edges": 2
+};
 /**
  * The VDPE plugin provides layout methods referring to the VDPE stencilsets.
  *

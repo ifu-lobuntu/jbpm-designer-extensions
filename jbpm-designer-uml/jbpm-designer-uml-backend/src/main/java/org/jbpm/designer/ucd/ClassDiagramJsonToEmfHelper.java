@@ -30,14 +30,15 @@ import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.jbpm.uml2.dd.umldi.UMLDiagramElement;
 import org.jbpm.uml2.dd.umldi.UMLEdge;
 import org.jbpm.uml2.dd.umldi.UMLShape;
 import org.omg.dd.di.DiagramElement;
 
 public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements JsonToEmfHelper {
     protected Shape sourceShape;
-    private LinkedStencil currentStencil;
-    private ShapeMap shapeMap;
+    protected LinkedStencil currentStencil;
+    protected ShapeMap shapeMap;
     private Package thisPackage;
 
     public ClassDiagramJsonToEmfHelper(ShapeMap shapeMap) {
@@ -148,14 +149,18 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
 
     @Override
     public DiagramElement createElements(Shape shape) {
-        DiagramElement de = ClassDiagramStencil.createDiagramElement(shape.getStencilId());
-        Element modelElement = ClassDiagramStencil.createElement(shape.getStencilId());
+        return createElements(shape.getStencilId());
+    }
+
+    protected UMLDiagramElement createElements(String stencilId) {
+        UMLDiagramElement de = ClassDiagramStencil.createDiagramElement(stencilId);
+        Element modelElement = ClassDiagramStencil.createElement(stencilId);
         if (de instanceof UMLShape) {
             ((UMLShape) de).setUmlElement((Element) modelElement);
         } else if (de instanceof UMLEdge) {
             ((UMLEdge) de).setUmlElement((Element) modelElement);
         } else if (de instanceof UMLCompartment) {
-            ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(shape.getStencilId()));
+            ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(stencilId));
         }
         de.setLocalStyle(UMLDIFactory.eINSTANCE.createUMLStyle());
         return de;

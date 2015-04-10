@@ -202,14 +202,15 @@ public class GenericEcoreComparator {
             if (!eAttribute.isID()) {
                 Object expectedAttributeValue = expected.eGet(eAttribute);
                 Object foundAttributeValue = found.eGet(eAttribute);
+                String msg = "Attribute " + expected.eClass().getName() + ":" + eAttribute.getName() + " not equal";
                 if (expectedAttributeValue != null && foundAttributeValue != null) {
                     if (expectedAttributeValue instanceof EList) {
                         // todo
                     } else {
-                        assertEquals("", expectedAttributeValue, foundAttributeValue);
+                        assertEquals(msg, expectedAttributeValue, foundAttributeValue);
                     }
                 } else {
-                    assertEquals("Attribute " + eAttribute.getName() + " not equal", expectedAttributeValue, foundAttributeValue);
+                    assertEquals(msg, expectedAttributeValue, foundAttributeValue);
                 }
             }
         }

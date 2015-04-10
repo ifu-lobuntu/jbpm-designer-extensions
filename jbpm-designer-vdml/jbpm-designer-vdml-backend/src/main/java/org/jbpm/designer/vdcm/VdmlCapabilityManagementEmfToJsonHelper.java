@@ -89,7 +89,7 @@ public class VdmlCapabilityManagementEmfToJsonHelper extends AbstractVdmlEmfToJs
 
     @Override
     public StencilInfo findStencilByElement(EObject me, org.omg.dd.di.DiagramElement de) {
-        return VdmlCapabilityManagementStencil.findStencilByElement(me, de);
+        return VdmlCapabilityManagementStencil.findStencilByElement(me, (VDMLDiagramElement) de);
     }
 
     public void preprocessResource() {

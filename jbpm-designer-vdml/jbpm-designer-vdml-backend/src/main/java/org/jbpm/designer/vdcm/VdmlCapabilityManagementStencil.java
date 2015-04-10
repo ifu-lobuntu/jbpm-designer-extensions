@@ -6,6 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jbpm.designer.vdrc.VdmlStencilInfo;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
@@ -13,13 +14,14 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
+import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.CapabilityOffer;
+import org.omg.vdml.Collaboration;
 import org.omg.vdml.Pool;
 import org.omg.vdml.Position;
 import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.VdmlElement;
 
@@ -85,9 +87,33 @@ public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
         return stencil;
     }
 
-    public static VdmlCapabilityManagementStencil findStencilByElement(EObject me, DiagramElement de) {
-        VdmlCapabilityManagementStencil[] possibilities = { CAPABILITY_OFFER, POSITION, STORE, POOL, ORG_UNIT, EXTERNAL_CAPABILITY_METHOD,
-                VDML_CAPABILITY_MANAGEMENT_DIAGRAM };
+    public static VdmlCapabilityManagementStencil findStencilByElement(EObject me, VDMLDiagramElement de) {
+        if (me != null) {
+            VDMLDiagramElement pde = de;
+            while (!(pde instanceof VDMLDiagram)) {
+                pde = (VDMLDiagramElement) pde.eContainer();
+            }
+            Collaboration diagramCollaboration = (Collaboration) pde.getVdmlElement();
+            if(EcoreUtil.isAncestor(diagramCollaboration, me)){
+                if (me instanceof CapabilityMethod) {
+                    return CAPABILITY_METHOD;
+                }else if(me instanceof Pool){
+                    return POOL;
+                }else if(me instanceof Store){
+                    return STORE;
+                }
+            }else{
+                if (me instanceof CapabilityMethod) {
+                    return EXTERNAL_CAPABILITY_METHOD;
+                }else if(me instanceof Pool){
+                    return EXTERNAL_POOL;
+                }else if(me instanceof Store){
+                    return EXTERNAL_STORE;
+                }
+            }
+                
+        }
+        VdmlCapabilityManagementStencil[] possibilities = { CAPABILITY_OFFER, POSITION, ORG_UNIT, VDML_CAPABILITY_MANAGEMENT_DIAGRAM };
         if (de instanceof VDMLEdge) {
             VDMLEdge edge = (VDMLEdge) de;
             VDMLShape s = edge.getSourceShape();
@@ -105,9 +131,6 @@ public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
             }
         } else if (me == null && de.eContainer() instanceof VDMLDiagram) {
             return ORG_UNIT;
-        }
-        if (me instanceof Pool) {
-            return POOL;
         }
         if (possibilities != null) {
             for (VdmlCapabilityManagementStencil cmmnStencil : possibilities) {

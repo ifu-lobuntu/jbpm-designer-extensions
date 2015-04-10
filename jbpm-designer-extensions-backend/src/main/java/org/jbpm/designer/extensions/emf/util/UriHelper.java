@@ -66,11 +66,7 @@ public class UriHelper {
         }
         Resource resource = rst.getResource(uri, true);
         // Only look at the primary object or its contents
-        EObject pkg = resource.getContents().get(0);
-        if (isMatch(entrySet, identifier, pkg)) {
-            return (T) pkg;
-        }
-        TreeIterator<EObject> ti = pkg.eAllContents();
+        TreeIterator<EObject> ti = resource.getAllContents();
         while (ti.hasNext()) {
             EObject eObject = (EObject) ti.next();
             if (isMatch(entrySet, identifier, eObject)) {

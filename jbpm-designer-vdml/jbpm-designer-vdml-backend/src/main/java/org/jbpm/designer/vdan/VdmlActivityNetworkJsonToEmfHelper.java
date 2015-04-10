@@ -1,15 +1,20 @@
 package org.jbpm.designer.vdan;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.designer.vdrc.VdmlRoleCollaborationStencil;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
+import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
+import org.omg.vdml.BusinessItem;
+import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
@@ -19,6 +24,7 @@ import org.omg.vdml.Role;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
+import org.omg.vdml.ValueAdd;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
@@ -49,37 +55,48 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     }
 
     @Override
-    public Object caseStore(Store object) {
-        findBackingOrgUnit().getOwnedStore().add(object);
-        return super.caseStore(object);
+    public Object caseValueAdd(ValueAdd object) {
+        Measure valueMeasure = (Measure) sourceShape.getUnboundProperty("valueMeasure");
+        if (valueMeasure != null && valueMeasure.getTrait() != null) {
+            MeasuredCharacteristic vm = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+            object.setValueMeasurement(vm);
+            vm.setCharacteristicDefinition(valueMeasure.getTrait());
+        }
+        return super.caseValueAdd(object);
     }
 
-    private OrgUnit findBackingOrgUnit() {
-        if (owningCollaboration instanceof OrgUnit) {
-            return (OrgUnit) owningCollaboration;
-        } else {
-            ValueDeliveryModel model = (ValueDeliveryModel) owningCollaboration.eContainer();
-            for (Collaboration c : model.getCollaboration()) {
-                if (c instanceof OrgUnit && c.getName().equals(owningCollaboration.getName() + "OrgUnit")) {
-                    return (OrgUnit) c;
-                }
-            }
-            OrgUnit orgUnit = VDMLFactory.eINSTANCE.createOrgUnit();
-            orgUnit.setName(owningCollaboration.getName() + "OrgUnit");
-            model.getCollaboration().add(orgUnit);
-            return orgUnit;
-        }
+    @Override
+    public Object caseStore(Store object) {
+        return super.caseStore(object);
     }
 
     @Override
     public Object caseResourceUse(ResourceUse object) {
         Activity a = (Activity) object.getDeliverable().eContainer();
         a.getResourceUse().add(object);
+        Measure quantityMeasure = (Measure) sourceShape.getUnboundProperty("quantityMeasure");
+        if (quantityMeasure != null && quantityMeasure.getTrait() != null) {
+            object.setQuantity(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
+            object.getQuantity().setCharacteristicDefinition(quantityMeasure.getTrait());
+        }
         return super.caseResourceUse(object);
     }
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
+        BusinessItemDefinition deliverableDefinition = (BusinessItemDefinition) sourceShape.getUnboundProperty("deliverableDefinition");
+        if(deliverableDefinition!=null){
+            for (BusinessItem bi : owningCollaboration.getBusinessItem()) {
+                if(bi.getDefinition()!=null && bi.getDefinition()==deliverableDefinition){
+                    object.setDeliverable(bi);
+                }
+            }
+            if(object.getDeliverable()==null){
+                BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();
+                bi.setDefinition(deliverableDefinition);
+                object.setDeliverable(bi);
+            }
+        }
         return super.caseDeliverableFlow(object);
     }
 

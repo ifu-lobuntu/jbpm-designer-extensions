@@ -15,6 +15,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.impl.EdgeImpl;
+import org.omg.vdml.ResourceUse;
 import org.omg.vdml.VdmlElement;
 
 /**
@@ -105,6 +106,9 @@ public class VDMLEdgeImpl extends EdgeImpl implements VDMLEdge {
      * @generated
      */
     public void setVdmlElement(VdmlElement newVdmlElement) {
+        if(this.vdmlElement instanceof ResourceUse){
+            System.out.println();
+        }
         VdmlElement oldVdmlElement = vdmlElement;
         vdmlElement = newVdmlElement;
         if (eNotificationRequired())

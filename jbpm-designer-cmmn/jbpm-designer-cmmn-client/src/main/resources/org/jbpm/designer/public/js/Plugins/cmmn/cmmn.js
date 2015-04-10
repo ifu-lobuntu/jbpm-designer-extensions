@@ -1,5 +1,15 @@
  if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
+ if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
+		ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/cmmn#"]= {
+            "Containers": 1,
+            "Plan Items": 2,
+            "Discretionary Items": 3,
+            "Case File Items": 4,
+            "Events": 5,
+            "Sentries": 6
+};
 
 /**
  * The CMMN plugin provides layout and decoration methods referring to the CMMN stencilset.

@@ -1,0 +1,16 @@
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	xmlns:oryx="http://www.b3mn.org/oryx"
+	version="1.0">
+	<defs>
+		<marker id="start" refX="1" refY="6" markerUnits="userSpaceOnUse" markerWidth="22" markerHeight="12" orient="auto">
+		  <path d="M 1 6 L 11 11 L 21 6 L 11 1 L 1 6" fill="black" stroke="black" stroke-width="1"/>
+	  </marker>
+	</defs>
+	<g id="edge">
+		<path d="M0 0 H100 0" stroke="black" fill="none" stroke-width="2" marker-start="url(#start)" />
+		<text id="text_name" x="50" y="50" />
+		<text id="multiplicity" x="100" y="55" oryx:edgePosition="endBottom" />
+		<text id="end2_name" x="80" y="55" oryx:edgePosition="endTop"/>
+  </g>
+</svg>

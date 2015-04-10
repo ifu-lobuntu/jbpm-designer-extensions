@@ -1,0 +1,18 @@
+				{
+					"role" : "diagram",
+					"contains" : [
+						"businessItemDefinition"
+					]
+				},
+				{
+					"role" : "businessItemDefinition",
+					"contains" : [
+						"characteristicDefinitionCompartment","ownedAttribute"
+					]
+				},
+				{
+					"role" : "characteristicDefinitionCompartment",
+					"contains" : [
+						"characteristicDefinition"
+					]
+				},

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
@@ -26,6 +27,8 @@ import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.vdrc.VdmlRoleCollaborationProfileImpl;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
+import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
@@ -37,9 +40,13 @@ import org.omg.dd.dc.DCFactory;
 import org.omg.dd.dc.Point;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Style;
+import org.omg.smm.Characteristic;
+import org.omg.smm.DirectMeasure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
 import org.omg.vdml.Activity;
+import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.BusinessItemLibrary;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputPort;
@@ -54,8 +61,20 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected Map<String, Object> emptyOptions;
     protected String collaborationFile;
     protected XMLResource collaborationResource;
+    
+    private String measureLibraryFileName;
     protected XMLResource measureResource;
     protected MeasureLibrary measureLibrary;
+    protected Characteristic characteristic1;
+    protected DirectMeasure measure1;
+    protected Characteristic characteristic2;
+    protected DirectMeasure measure2;
+
+    private String businessItemLibraryFileName;
+    protected XMLResource businessItemLibraryResource;
+    protected BusinessItemDefinition businessItemDefinition1;
+    protected BusinessItemDefinition businessItemDefinition2;
+    
     protected ResourceSet resourceSet;
     protected VDMLDiagram inputDiagram;
     protected ValueDeliveryModel valueDeliveryModel;
@@ -64,7 +83,6 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected AbstractEmfDiagramProfile profile;
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     protected GenericJsonToEmfDiagramMarshaller marshaller;
-    private String measureLibraryFileName;
     protected TestUriHandler tuh=new TestUriHandler();
 
     public AbstractVdmlDiagramMarshallingTest() {
@@ -90,11 +108,11 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected abstract AbstractEmfDiagramProfile createProfile();
 
     public void setup() throws Exception {
+        UMLDIPackage.eINSTANCE.getNsURI();//init UML
         this.tuh = new TestUriHandler();
         profile = createProfile();
         emptyOptions = profile.buildDefaultResourceOptions();
         this.collaborationFile = "/" + getClientProjectName() + "/target/test.vdcol";
-        this.measureLibraryFileName = "/" + getClientProjectName() + "/target/test.meas";
         tuh.getFile(URI.createPlatformResourceURI(getDiagramFileName(), true)).delete();
         tuh.getFile(URI.createPlatformResourceURI(collaborationFile, true)).delete();
         profile.setUriHandler(tuh);
@@ -105,6 +123,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         // To make sure it is usable from other profiles
         new VdmlRoleCollaborationProfileImpl().prepareResourceSet(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdlib", new UMLDIResourceFactoryImpl());
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
@@ -121,10 +140,50 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         collaboration.setName("MyCollaboration");
         valueDeliveryModel.getCollaboration().add(collaboration);
         elementDiagramElementMap.put(collaboration, inputDiagram);
+        buildTestMeasureLibrary();
+        buildTestBusinessItemLibrary();
+
+    }
+
+    protected void buildTestMeasureLibrary() throws IOException {
+        this.measureLibraryFileName = "/" + getClientProjectName() + "/target/test.meas";
+        tuh.getFile(URI.createPlatformResourceURI(measureLibraryFileName, true)).delete();
         measureLibrary = SMMFactory.eINSTANCE.createMeasureLibrary();
         measureLibrary.setName("DinkyDonky");
         measureResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(measureLibraryFileName, true));
         measureResource.getContents().add(measureLibrary);
+        this.characteristic1 = SMMFactory.eINSTANCE.createCharacteristic();
+        this.characteristic1.setName("Age");
+        measureLibrary.getMeasureElements().add(this.characteristic1);
+        this.characteristic2 = SMMFactory.eINSTANCE.createCharacteristic();
+        this.characteristic2.setName("Gender");
+        measureLibrary.getMeasureElements().add(this.characteristic2);
+        this.measure1 = SMMFactory.eINSTANCE.createDirectMeasure();
+        this.measure1.setName("Age");
+        measureLibrary.getMeasureElements().add(measure1);
+        measure1.setTrait(characteristic1);
+        this.measure2 = SMMFactory.eINSTANCE.createDirectMeasure();
+        this.measure2.setName("Gender");
+        measureLibrary.getMeasureElements().add(measure2);
+        measure2.setTrait(characteristic2);
+        measureResource.save(tuh.createOutputStream(measureResource.getURI(), profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
+    }
+    protected void buildTestBusinessItemLibrary() throws IOException {
+        this.businessItemLibraryFileName = "/" + getClientProjectName() + "/target/test.vdlib";
+        tuh.getFile(URI.createPlatformResourceURI(businessItemLibraryFileName, true)).delete();
+        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        BusinessItemLibrary bil = VDMLFactory.eINSTANCE.createBusinessItemLibrary();
+        bil.setName("lib");
+        vdm.getBusinessItemLibrary().add(bil);
+        businessItemLibraryResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(businessItemLibraryFileName, true));
+        businessItemLibraryResource.getContents().add(vdm);
+        this.businessItemDefinition1 = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
+        this.businessItemDefinition1.setName("Invoice");
+        vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(this.businessItemDefinition1);
+        this.businessItemDefinition2 = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
+        this.businessItemDefinition2.setName("Payment");
+        vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(this.businessItemDefinition2);
+        businessItemLibraryResource.save(tuh.createOutputStream(businessItemLibraryResource.getURI(), profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
     }
 
     protected Collaboration createCollaboration() {

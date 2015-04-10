@@ -15,9 +15,7 @@ import org.omg.vdml.Collaboration;
 import org.omg.vdml.Pool;
 import org.omg.vdml.Port;
 import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.VdmlElement;
 
 public enum VdmlActivityNetworkStencil implements VdmlStencilInfo {
     VDML_ACTIVITY_NETWORK_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlActivityNetworkDiagram"),

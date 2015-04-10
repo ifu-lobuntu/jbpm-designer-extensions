@@ -5,7 +5,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
@@ -22,12 +21,15 @@ import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Port;
 import org.omg.vdml.PortContainer;
+import org.omg.vdml.ResourceUse;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
+import org.omg.vdml.ValueAdd;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHelper {
@@ -56,7 +58,23 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     public Object caseActivity(Activity object) {
         return super.caseActivity(object);
     }
-
+    
+    @Override
+    public Object caseValueAdd(ValueAdd object) {
+        MeasuredCharacteristic vm = object.getValueMeasurement();
+        if(vm!=null && vm.getCharacteristicDefinition()!=null && vm.getCharacteristicDefinition().getMeasure().size()>0){
+            targetShape.putProperty("valueMeasure", super.toString(vm.getCharacteristicDefinition().getMeasure().get(0)));
+        }
+        return super.caseValueAdd(object);
+    }
+    @Override
+    public Object caseResourceUse(ResourceUse object) {
+        MeasuredCharacteristic q = object.getQuantity();
+        if(q!=null && q.getCharacteristicDefinition()!=null && q.getCharacteristicDefinition().getMeasure().size()>0){
+            targetShape.putProperty("quantityMeasure", toString(q.getCharacteristicDefinition().getMeasure().get(0)));
+        }
+        return super.caseResourceUse(object);
+    }
     @Override
     public Object caseInputPort(InputPort object) {
         return super.caseInputPort(object);
@@ -69,6 +87,9 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
+        if(object.getDeliverable()!=null && object.getDeliverable().getDefinition()!=null){
+            targetShape.putProperty("deliverableDefinition", toString(object.getDeliverable().getDefinition()));
+        }
         return super.caseDeliverableFlow(object);
     }
 

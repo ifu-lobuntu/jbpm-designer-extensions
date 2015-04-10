@@ -1,5 +1,13 @@
  if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
+ if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
+		ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/vdan#" ]= {
+    "General": 1,
+    "Activity": 2,
+    "Store" : 3,
+    "Flows" : 4
+}
 
 /**
  * The VDAN plugin provides layout methods referring to the VDAN stencilsets.

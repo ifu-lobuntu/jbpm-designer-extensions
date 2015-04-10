@@ -22,9 +22,9 @@
 ##Property Editors
  - *ValuePropositionComponent.aggregatedFrom (filtered, multiselect, eobjectref)
  - *ValueElement.valueMeasurement (filtered, singleselect, eobjectref)
- - Role.assignedOrgUnit
+ - *Role.assignedOrgUnit
  - ValueElement.valueDefinition - start thinking about repo of ValueDefinitions (UML Profile?)
- - ValuePropositionComponent.satisfactionLevel.measure (filtered, singleselect, eobjectref)
+ - *ValuePropositionComponent.satisfactionLevel.measure (filtered, singleselect, eobjectref)
  - ValueProposition.overallSatisfaction.measure (filtered, singleselect, eobjectref)
  - ValueElement.benchmark.measure (filtered, singleselect, eobjectref)
  

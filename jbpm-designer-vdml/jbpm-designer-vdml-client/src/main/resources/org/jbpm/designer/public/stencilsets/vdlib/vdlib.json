@@ -1,0 +1,1427 @@
+{
+    "title" : "Class Diagram",
+    "namespace" : "http://b3mn.org/stencilset/vdlib#",
+    "description" : "This is an empty stencil set to start new diagrams with",
+    "edgeTargetBinding" : "targetShape",
+    "modelElementBinding" : "umlElement",
+    "edgeSourceBinding" : "sourceShape",
+    "propertyPackages" : [
+	        {
+	        	"name" : "vdmlElementBase",
+	        	"properties": [
+					{
+						"id" : "name",
+						"type" : "String",
+						"title" : "Name",
+						"value" : "",
+						"description" : "The descriptive name of the VDML element.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : false,
+						"refToView" : [
+							"text_name"
+						]
+					},
+					{
+						"id" : "description",
+						"type" : "Text",
+						"title" : "Description",
+						"value" : "",
+						"description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
+						"readonly" : false,
+						"optional" : true,
+						"length" : "",
+						"wrapLines" : true,
+						"popular" : true
+					}
+				]
+			},
+            {
+                "name" : "elementBase",
+                "properties": [
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "",
+                        "description" : "The descriptive name of the UML element.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "binding": "ownedComment[0].body",
+                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "hidden" : true
+                    }
+                ]
+            },
+            {
+                "name" : "compartment",
+                "properties": [
+                    {
+                        "id" : "isExpanded",
+                        "type" : "Boolean",
+                        "title" : "Is Expanded",
+                        "value" : true,
+                        "viewBinding": "isExpanded",
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "previousWidth",
+                        "type" : "Integer",
+                        "title" : "Previous Width",
+                        "viewBinding" : "previousWidth",
+                        "value" : 200,
+                        "readonly" : false,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "previousHeight",
+                        "type" : "Integer",
+                        "title" : "Previous Height",
+                        "viewBinding" : "previousHeight",
+                        "value" : 40,
+                        "readonly" : false,
+                        "hidden" : true
+                    }
+                ]
+            },
+            {
+                "name" : "localStyle",
+                "properties" : [
+                        {
+                            "id" : "bgcolor",
+                            "type" : "Color",
+                            "title" : "Background Color",
+                            "value" : "#ffffff",
+                            "viewBinding":"localStyle.fillColor",
+                            "description" : "",
+                            "readonly" : false,
+                            "optional" : false,
+                            "refToView" : [
+                                "fill_el"
+                            ],
+                            "fill" : true,
+                            "stroke" : false
+                        },
+                        {
+                            "id" : "bordercolor",
+                            "type" : "Color",
+                            "title" : "Border Color",
+                            "value" : "#000000",
+                            "viewBinding":"localStyle.strokeColor",
+                            "description" : "",
+                            "readonly" : false,
+                            "optional" : false,
+                            "refToView" : [
+                                    "edge", "fill_border", "bg_frame", "frame", "border"
+                            ],
+                            "fill" : false,
+                            "stroke" : true
+                        }, {
+                            "id" : "fontcolor",
+                            "type" : "Color",
+                            "title" : "Font Color",
+                            "value" : "#000000",
+                            "viewBinding":"localStyle.fontColor",
+                            "description" : "Font color",
+                            "description_ja" : "フォントの色",
+                            "readonly" : false,
+                            "optional" : false,
+                            "refToView" : [
+                                "text_name"
+                            ],
+                            "fill" : true,
+                            "stroke" : false
+                        }, {
+                            "id" : "fontsize",
+                            "type" : "Choice",
+                            "title" : "Font Size",
+                            "value" : "",
+                            "viewBinding":"localStyle.fontSize",
+                            "description" : "The Font Size",
+                            "description_ja" : "フォントのサイズ",
+                            "readonly" : false,
+                            "optional" : false,
+                            "refToView" : [
+                                "text_name"
+                            ],
+                            "items" : [
+                                    {
+                                        "id" : "c1",
+                                        "title" : "8",
+                                        "value" : "8"
+                                    }, {
+                                        "id" : "c2",
+                                        "title" : "9",
+                                        "value" : "9"
+                                    }, {
+                                        "id" : "c3",
+                                        "title" : "10",
+                                        "value" : "10"
+                                    }, {
+                                        "id" : "c4",
+                                        "title" : "11",
+                                        "value" : "11"
+                                    }, {
+                                        "id" : "c5",
+                                        "title" : "12",
+                                        "value" : "12"
+                                    }, {
+                                        "id" : "c6",
+                                        "title" : "14",
+                                        "value" : "14"
+                                    }, {
+                                        "id" : "c7",
+                                        "title" : "18",
+                                        "value" : "18"
+                                    }, {
+                                        "id" : "c8",
+                                        "title" : "20",
+                                        "value" : "20"
+                                    }, {
+                                        "id" : "c9",
+                                        "title" : "24",
+                                        "value" : "24"
+                                    }, {
+                                        "id" : "c10",
+                                        "title" : "36",
+                                        "value" : "36"
+                                    }, {
+                                        "id" : "c11",
+                                        "title" : "48",
+                                        "value" : "48"
+                                    }, {
+                                        "id" : "c12",
+                                        "title" : "72",
+                                        "value" : "72"
+                                    }
+                            ]
+                        }
+                ]
+            },
+            {
+                "name": "multiplicity",
+                "properties" : [
+                    {
+                        "id" : "multiplicity",
+                        "type" : "Choice",
+                        "title" : "Multiplicity",
+                        "value" : "[0..1]",
+                        "description" : "The Multiplicity of this Property",
+                        "readonly" : false,
+                        "optional" : true,
+                        "refToView" : ["multiplicity"],
+                        "length" : "",
+                        "items" : [
+                                {
+                                    "id" : "[0..1]",
+                                    "title" : "[0..1]",
+                                    "value" : "[0..1]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[*]",
+                                    "title" : "[*]",
+                                    "value" : "[*]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[1]",
+                                    "title" : "[1]",
+                                    "value" : "[1]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[1..*]",
+                                    "title" : "[1..*]",
+                                    "value" : "[1..*]",
+                                    "refToView" : ""
+                                }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name" : "directedAssociation",
+                "properties": [
+                    {
+                        "id" : "endName",
+                        "type" : "String",
+                        "title" : "End Name",
+                        "value" : "end2Name",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "directlyEditable" : true,
+                        "wrapLines" : false,
+                        "binding" : "memberEnd[1].name",
+                        "refToView" : [
+                            "end2_name"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name" : "biDirectionalAssociation",
+                "properties": [
+                    {
+                        "id" : "end1Name",
+                        "type" : "String",
+                        "title" : "End1 Name",
+                        "value" : "end1Name",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "binding" : "memberEnd[0].name",
+                        "refToView" : [
+                            "end1_name"
+                        ]
+                    },
+                    {
+                        "id" : "end2Name",
+                        "type" : "String",
+                        "title" : "End2 Name",
+                        "value" : "end2Name",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "binding" : "memberEnd[1].name",
+                        "refToView" : [
+                            "end2_name"
+                        ]
+                    },
+                    {
+                        "id" : "end1Multiplicity",
+                        "type" : "Choice",
+                        "title" : "End1 Multiplicity",
+                        "value" : "[0..1]",
+                        "description" : "The Multiplicity of this Property",
+                        "readonly" : false,
+                        "optional" : true,
+                        "refToView" : ["end1_multiplicity"],
+                        "length" : "",
+                        "items" : [
+                                {
+                                    "id" : "[0..1]",
+                                    "title" : "[0..1]",
+                                    "value" : "[0..1]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[*]",
+                                    "title" : "[*]",
+                                    "value" : "[*]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[1]",
+                                    "title" : "[1]",
+                                    "value" : "[1]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[1..*]",
+                                    "title" : "[1..*]",
+                                    "value" : "[1..*]",
+                                    "refToView" : ""
+                                }
+                        ]
+                    },
+                    {
+                        "id" : "end2Multiplicity",
+                        "type" : "Choice",
+                        "title" : "End2 Multiplicity",
+                        "value" : "[0..*]",
+                        "description" : "The Multiplicity of this Property",
+                        "readonly" : false,
+                        "optional" : true,
+                        "refToView" : ["end2_multiplicity"],
+                        "length" : "",
+                        "items" : [
+                                {
+                                    "id" : "[0..1]",
+                                    "title" : "[0..1]",
+                                    "value" : "[0..1]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[*]",
+                                    "title" : "[*]",
+                                    "value" : "[*]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[1]",
+                                    "title" : "[1]",
+                                    "value" : "[1]",
+                                    "refToView" : ""
+                                }, {
+                                    "id" : "[1..*]",
+                                    "title" : "[1..*]",
+                                    "value" : "[1..*]",
+                                    "refToView" : ""
+                                }
+                        ]
+                    }
+                ]
+            }
+    ],
+    "stencils" : [
+			{
+				"type" : "node",
+				"id" : "BusinessItemDefinition",
+				"title" : "BusinessItemDefinition",
+				"childBinding" : "ownedType",
+				"position" : 1,
+				"groups" : [
+					"BusinessItemDefinition"
+				],
+				"roles" : [
+					"businessItemDefinition"
+				],
+				"description" : "A BusinessItemDefinition",
+				"view" : "business_item_definition.svg",
+				"icon" : "business_item_definition.png",
+				"layout" : [
+							{
+								"type" : "layout.compartments"
+							}
+				],
+			    "propertyPackages" : [
+						"elementBase","localStyle"
+				],
+				"properties" : [
+					{
+						"id" : "hasForm",
+						"type" : "Boolean",
+						"value" : true,
+						"readonly" : true,
+						"hidden" : true
+					},
+					{
+						"id" : "isFungible",
+						"type" : "Boolean",
+						"title": "Is Fungible",
+						"value" : true,
+						"readonly" : false,
+						"hidden" : false
+					},
+					{
+						"id" : "isShareable",
+						"type" : "Boolean",
+						"title": "Is Shareable",
+						"value" : false,
+						"readonly" : false,
+						"hidden" : false
+					},
+					{
+						"id" : "tasktype",
+						"type" : "String",
+						"value" : "User",
+						"readonly" : true,
+						"hidden" : true
+					},
+					{
+						"id" : "taskname",
+						"type" : "String",
+						"readonly" : false,
+						"hidden" : false,
+						"title": "BusinessItemDefinition Form Name",
+						"binding":"name"
+					}
+			   ]
+			},
+			{
+				"type" : "node",
+				"id" : "CharacteristicDefinitionCompartment",
+				"title" : "CharacteristicDefinitionCompartment",
+				"position" : 2,
+				"groups" : [
+					"BusinessItemDefinition"
+				],
+				"roles" : [
+					"characteristicDefinitionCompartment"
+				],
+				"description" : "The Characteristic Compartment",
+				"isCompartment":true,
+				"view" : "characteristic_definition_compartment.svg",
+				"icon" : "characteristic_definition_compartment.png",
+				"layout" : [
+					{
+						"type" : "layout.list"
+					},
+					{
+						"type" : "layout.collapsible"
+					}
+				],
+			    "propertyPackages" : [
+			          "compartment","localStyle"
+				],
+				"properties" : [
+					{
+						"id" : "name",
+						"type" : "String",
+						"value" : "Characteristics",
+						"readonly" : true,
+						"hidden" : true,
+						"refToView" : [
+							"text_name"
+						]
+					}
+				]
+			},
+			{
+				"type" : "node",
+				"id" : "CharacteristicDefinition",
+				"title" : "Characteristic Definition",
+				"childBinding" : "ownedAttribute",
+				"position" : 2,
+				"groups" : [
+					"BusinessItemDefinition"
+				],
+				"roles" : [
+					"characteristicDefinition"
+				],
+				"description" : "A Characteristic Definition",
+				"view" : "characteristic_definition.svg",
+				"icon" : "characteristic_definition.png",
+				"layout" : [
+				],
+			    "propertyPackages" : [
+						"localStyle",
+						"multiplicity"
+				],
+				"properties" : [
+	                {
+						"id" : "measure",
+						"type" : "eobjectref",
+						"title" : "Measure",
+						"value" : "",
+						"description" : "The Measure.",
+						"readonly" : false,
+						"optional" : true,
+						"reference" : {
+							"targetProfile":"meas",
+							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure",
+							"nameFeature" : "name"
+						},
+
+						"length" : ""
+	                },
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "CharacteristicDefinition1",
+                        "description" : "The descriptive name of the Characteristic Definition.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "binding": "ownedComment[0].body",
+                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "hidden" : true
+                    }
+				]
+			},
+            {
+                "type" : "node",
+                "id" : "ClassDiagram",
+                "title" : "ClassDiagram",
+                "groups" : [
+                    "Diagram"
+                ],
+                "description" : "A Class  Diagram.",
+                "view" : "diagram.svg",
+                "icon" : "diagram.png",
+                "mayBeRoot" : true,
+                "hide" : true,
+                "propertyPackages" : ["elementBase"
+                ],
+                "roles" : [
+                    "diagram"
+                ],
+                "properties" : [
+                ],
+                "layout": [
+
+                 ]
+
+            },
+            {
+                "type" : "node",
+                "id" : "Class",
+                "title" : "Class",
+                "childBinding" : "ownedType", 
+                "position" : 1,
+                "groups" : [
+                    "Types"
+                ],
+                "roles" : [
+                    "class"
+                ],
+                "description" : "A Class",
+                "view" : "class.svg",
+                "icon" : "class.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : false
+                    },
+                    {
+                        "id" : "tasktype",
+                        "type" : "String",
+                        "value" : "User",
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "taskname",
+                        "type" : "String",
+                        "readonly" : false,
+                        "hidden" : false,
+                        "title": "Class Form Name",
+                        "binding":"name"
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "Interface",
+                "title" : "Interface",
+                "childBinding" : "ownedType", 
+                "position" : 1,
+                "groups" : [
+                    "Types"
+                ],
+                "roles" : [
+                    "interface"
+                ],
+                "description" : "A Class",
+                "view" : "interface.svg",
+                "icon" : "interface.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "Enumeration",
+                "title" : "Enumeration",
+                "childBinding" : "ownedType", 
+                "position" : 1,
+                "groups" : [
+                    "Types"
+                ],
+                "roles" : [
+                    "enumeration"
+                ],
+                "description" : "A Class",
+                "view" : "enumeration.svg",
+                "icon" : "enumeration.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "Interface",
+                "title" : "Interface",
+                "childBinding" : "ownedType", 
+                "position" : 1,
+                "groups" : [
+                    "Types"
+                ],
+                "roles" : [
+                    "interface"
+                ],
+                "description" : "A Class",
+                "view" : "interface.svg",
+                "icon" : "interface.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "Enumeration",
+                "title" : "Enumeration",
+                "childBinding" : "ownedType", 
+                "position" : 1,
+                "groups" : [
+                    "Types"
+                ],
+                "roles" : [
+                    "enumeration"
+                ],
+                "description" : "A Class",
+                "view" : "enumeration.svg",
+                "icon" : "enumeration.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "Property",
+                "title" : "Property",
+                "childBinding" : "ownedAttribute", 
+                "position" : 2,
+                "groups" : [
+                    "Features"
+                ],
+                "roles" : [
+                    "property"
+                ],
+                "description" : "A Property",
+                "view" : "property.svg",
+                "icon" : "property.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase",
+                        "localStyle",
+                        "multiplicity"
+                ],
+                "properties" : [
+                    {
+                        "id" : "type",
+                        "type" : "eobjectref",
+                        "title" : "Property Type",
+                        "value" : "",
+                        "description" : "The Type of the Property.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "reference" : {
+                            "targetProfile":"vdlib",
+                            "allowedElementTypes":"Enumeration|PrimitiveType",
+                            "nameFeature" : "qualifiedName"
+                        },
+
+                        "length" : ""
+                    }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "EnumerationLiteral",
+                "title" : "EnumerationLiteral",
+                "childBinding" : "ownedLiteral",
+                "position" : 2,
+                "groups" : [
+                    "Features"
+                ],
+                "roles" : [
+                    "enumerationLiteral"
+                ],
+                "description" : "An Enumeration Literal",
+                "view" : "enumeration_literal.svg",
+                "icon" : "enumeration_literal.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "Operation",
+                "title" : "Operation",
+                "childBinding":"ownedOperation",
+                "position" : 2,
+                "groups" : [
+                    "Features"
+                ],
+                "roles" : [
+                    "operation"
+                ],
+                "description" : "An Operation",
+                "view" : "operation.svg",
+                "icon" : "operation.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "OwnedAttribute",
+                "title" : "OwnedAttribute",
+                "position" : 2,
+                "groups" : [
+                    "Compartments"
+                ],
+                "roles" : [
+                    "ownedAttribute"
+                ],
+                "description" : "A Property Compartment",
+                "isCompartment":true,
+                "view" : "owned_attribute.svg",
+                "icon" : "owned_attribute.png",
+                "layout" : [
+                    {
+                        "type" : "layout.list"
+                    },
+                    {
+                        "type" : "layout.collapsible"
+                    }
+                ],
+                "propertyPackages" : [
+                      "compartment","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "value" : "Owned Attributes",
+                        "readonly" : true,
+                        "hidden" : true,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "OwnedLiteral",
+                "title" : "OwnedLiteral",
+                "position" : 2,
+                "isCompartment":true,
+                "groups" : [
+                    "Compartments"
+                ],
+                "roles" : [
+                    "ownedLiteral"
+                ],
+                "description" : "The Owned Enumeration Literal Compartment",
+                "view" : "owned_attribute.svg",
+                "icon" : "owned_literal.png",
+                "layout" : [
+                    {
+                        "type" : "layout.list"
+                    },
+                    {
+                        "type" : "layout.collapsible"
+                    }
+                ],
+                "propertyPackages" : [
+                      "compartment","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "value" : "Owned Literal",
+                        "readonly" : true,
+                        "hidden" : true,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "OwnedOperation",
+                "title" : "OwnedOperation",
+                "position" : 2,
+                "isCompartment":true,
+                "groups" : [
+                    "Compartments"
+                ],
+                "roles" : [
+                    "ownedOperation"
+                ],
+                "description" : "An Operation Compartment",
+                "view" : "owned_attribute.svg",
+                "icon" : "owned_operation.png",
+                "layout" : [
+                    {
+                        "type" : "layout.list"
+                    },
+                    {
+                        "type" : "layout.collapsible"
+                    }
+                ],
+                "propertyPackages" : [
+                       "compartment","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "value" : "Owned Operations",
+                        "readonly" : true,
+                        "hidden" : true,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    }
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "Composition",
+                "title" : "Composition",
+                "childBinding": "ownedType",
+                "position" : 2,
+                "groups" : [
+                    "Associations"
+                ],
+                "roles" : [
+                    "composition"
+                ],
+                "description" : "A Compositional Association",
+                "view" : "composition.svg",
+                "icon" : "composition.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase",
+                        "directedAssociation",
+                        "localStyle",
+                        "multiplicity"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "DirectedAssociation",
+                "title" : "DirectedAssociation",
+                "childBinding": "ownedType",
+                "position" : 2,
+                "groups" : [
+                    "Associations"
+                ],
+                "roles" : [
+                    "directedAssociation"
+                ],
+                "description" : "An Association",
+                "view" : "directed_association.svg",
+                "icon" : "directed_association.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase",
+                        "directedAssociation",
+                        "localStyle",
+                        "multiplicity"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "BiDirectionalAssociation",
+                "title" : "BiDirectionalAssociation",
+                "childBinding": "ownedType",
+                "position" : 2,
+                "groups" : [
+                    "Associations"
+                ],
+                "roles" : [
+                    "biDirectionalAssociation"
+                ],
+                "description" : "An Association",
+                "view" : "bi_directional_association.svg",
+                "icon" : "bi_directional_association.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase",
+                        "biDirectionalAssociation",
+                        "localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "Generalization",
+                "title" : "Generalization",
+                "sourceBinding":"specific",
+                "targetBinding":"general",
+                "position" : 2,
+                "groups" : [
+                    "Inheritance"
+                ],
+                "roles" : [
+                    "generalization"
+                ],
+                "description" : "A Generalization",
+                "view" : "generalization.svg",
+                "icon" : "generalization.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "InterfaceRealization",
+                "title" : "InterfaceRealization",
+                "sourceBinding" : "implementingClassifier",
+                "targetBinding" : "contract",
+                "position" : 2,
+                "groups" : [
+                    "Inheritance"
+                ],
+                "roles" : [
+                    "interfaceRealization"
+                ],
+                "description" : "An InterfaceRealization",
+                "view" : "interface_realization.svg",
+                "icon" : "interface_realization.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedClass",
+                "title" : "Imported Class",
+                "position" : 1,
+                "groups" : [
+                    "Imports"
+                ],
+                "roles" : [
+                    "importedClass"
+                ],
+                "description" : "A Class",
+                "view" : "class.svg",
+                "icon" : "class.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                        {
+                            "id" : "importedClassRef",
+                            "type" : "eobjectref",
+                            "title" : "Imported Class",
+                            "value" : "",
+                            "viewBinding" : "umlElement",
+                            "description" : "",
+                            "readonly" : false,
+                            "optional" : true,
+                            "refToView" : [],
+                            "reference" : {
+                                "targetProfile":"vdlib",
+                                "allowedElementTypes":"Class",
+                                "nameFeature" : "qualifiedName"
+                            },
+                            "length" : ""
+                        }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedEnumeration",
+                "title" : "Imported Enumeration",
+                "position" : 1,
+                "groups" : [
+                    "Imports"
+                ],
+                "roles" : [
+                    "importedEnumeration"
+                ],
+                "description" : "An Enumeration",
+                "view" : "class.svg",
+                "icon" : "class.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                        {
+                            "id" : "importedEnumerationRef",
+                            "type" : "eobjectref",
+                            "title" : "Imported Enumeration",
+                            "value" : "",
+                            "viewBinding" : "umlElement",
+                            "description" : "",
+                            "readonly" : false,
+                            "optional" : true,
+                            "refToView" : [],
+                            "reference" : {
+                                "targetProfile":"vdlib",
+                                "allowedElementTypes":"Enumeration",
+                                "nameFeature" : "qualifiedName"
+                            },
+                            "length" : ""
+                        }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedInterface",
+                "title" : "Imported Interface",
+                "position" : 1,
+                "groups" : [
+                    "Imports"
+                ],
+                "roles" : [
+                    "importedInterface"
+                ],
+                "description" : "An Interface",
+                "view" : "class.svg",
+                "icon" : "class.png",
+                "layout" : [
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                        {
+                            "id" : "importedInterfaceRef",
+                            "type" : "eobjectref",
+                            "title" : "Imported Interface",
+                            "value" : "",
+                            "viewBinding" : "umlElement",
+                            "description" : "",
+                            "readonly" : false,
+                            "optional" : true,
+                            "refToView" : [],
+                            "reference" :{
+                                "targetProfile":"vdlib",
+                                "allowedElementTypes":"Interface",
+                                "nameFeature" : "qualifiedName"
+                            },
+                            "length" : ""
+                        }
+                ]
+            }
+        ],
+
+    "rules" : {
+        "cardinalityRules" : [
+            {
+                "role":"class",
+                "incomingEdges": [
+                    {
+                        "role":"composition",
+                        "maximum":1
+
+                    }
+                ]
+            },
+            {
+                "role":"class",
+                "outgoingEdges": [
+                    {
+                        "role":"generalization",
+                        "maximum":1
+
+                    }
+                ]
+            }
+        ],
+        "connectionRules" : [
+			{
+				"role" : "interfaceRealization",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface","importedInterface"
+						]
+					}
+				]
+			},
+			{
+				"role" : "generalization",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class","importedClass"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"businessItemDefinition"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface","importedInterface"
+						]
+					}
+				]
+			},
+			{
+				"role" : "composition",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"businessItemDefinition"
+						]
+					}
+				]
+			},
+			{
+				"role" : "directedAssociation",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					}
+				]
+			},
+			{
+				"role" : "biDirectionalAssociation",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface","class","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"interface","class","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					}
+				]
+			}
+		],
+        "containmentRules" : [
+				{
+					"role" : "diagram",
+					"contains" : [
+						"businessItemDefinition"
+					]
+				},
+				{
+					"role" : "businessItemDefinition",
+					"contains" : [
+						"characteristicDefinitionCompartment","ownedAttribute"
+					]
+				},
+				{
+					"role" : "characteristicDefinitionCompartment",
+					"contains" : [
+						"characteristicDefinition"
+					]
+				},
+                {
+                    "role" : "diagram",
+                    "contains" : [
+                        "class","interface","enumeration","importedClass","importedInterface","importedEnumeration"
+                    ]
+                },
+                {
+                    "role" : "class",
+                    "contains" : [
+                        "ownedAttribute", "ownedOperation"
+                    ]
+                },
+                {
+                    "role" : "interface",
+                    "contains" : [
+                        "ownedAttribute", "ownedOperation"
+                    ]
+                },
+                {
+                    "role" : "enumeration",
+                    "contains" : [
+                        "ownedAttribute", "ownedOperation", "ownedLiteral"
+                    ]
+                },
+                {
+                    "role" : "ownedAttribute",
+                    "contains" : [
+                        "property"
+                    ]
+                },
+                {
+                    "role" : "ownedOperation",
+                    "contains" : [
+                        "operation"
+                    ]
+                },
+                {
+                    "role" : "ownedLiteral",
+                    "contains" : [
+                        "enumerationLiteral"
+                    ]
+                }
+
+        ],
+        "morphingRules": [
+			{
+				"role": "businessItemDefinition",
+				"baseMorphs": ["businessItemDefinition"]
+			},
+            {
+                "role": "class",
+                "baseMorphs": ["class"]
+            },
+            {
+                "role": "enumeration",
+                "baseMorphs": ["enumeration"]
+            },
+            {
+                "role": "interface",
+                "baseMorphs": ["interface"]
+            },
+            {
+                "role": "importedClass",
+                "baseMorphs": ["importedClass"]
+            },
+            {
+                "role": "importedEnumeration",
+                "baseMorphs": ["importedEnumeration"]
+            },
+            {
+                "role": "importedInterface",
+                "baseMorphs": ["importedInterface"]
+            }
+        ],
+        "layoutRules" : [
+       ]
+    }
+}

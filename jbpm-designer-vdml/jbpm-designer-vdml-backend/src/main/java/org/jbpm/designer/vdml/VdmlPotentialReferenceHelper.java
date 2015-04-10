@@ -38,21 +38,27 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
 
     @Override
     public String findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
-        String result = super.findPotentialReferences(req, action, processId);
-        if (result == null) {
-            String filter = req.getParameter("filter");
+        String filter = req.getParameter("filter");
+        if (filter == null || filter.trim().isEmpty()) {
+            try {
+                return super.findPotentialReferences(req, action, processId);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
             if ("valueElementAggregatedFrom".equals(filter)) {
                 List<? extends EObject> results = findPotentialAggregatedFrom(req);
-                result = toEobjectReferenceJson(results, "name").toString();
+                return toEobjectReferenceJson(results, "name").toString();
             } else if ("valueElementAggregatedTo".equals(filter)) {
                 List<? extends EObject> results = findPotentialAggregatedTo(req);
-                result = toEobjectReferenceJson(results, "name").toString();
+                return toEobjectReferenceJson(results, "name").toString();
             } else if ("valueElementMeasure".equals(filter)) {
                 List<? extends EObject> results = findPotentialMeasure(req);
-                result = toEobjectReferenceJson(results, "name").toString();
+                return toEobjectReferenceJson(results, "name").toString();
             }
         }
-        return result;
+        return null;
     }
 
     private List<? extends EObject> findPotentialMeasure(HttpServletRequest req) throws Exception {
@@ -85,11 +91,11 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
             }
         } else if (measure instanceof RescaledMeasure) {
             RescaledMeasure rm = (RescaledMeasure) measure;
-            if(rm.getRescalesFrom()!=null){
+            if (rm.getRescalesFrom() != null) {
                 results.add(rm.getRescalesFrom().getFromDimensionalMeasure());
             }
-        }else{
-            //TODO Ranking measure, 
+        } else {
+            // TODO Ranking measure,
         }
     }
 

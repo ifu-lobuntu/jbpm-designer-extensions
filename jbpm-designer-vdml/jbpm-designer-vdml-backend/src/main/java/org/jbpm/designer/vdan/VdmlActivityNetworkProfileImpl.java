@@ -16,6 +16,7 @@ import org.jbpm.designer.vdml.CollaborationType;
 import org.jbpm.designer.vdml.IVdmlCollaborationDiagramProfile;
 import org.jbpm.designer.vdml.VdmlPotentialReferenceHelper;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
+import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.omg.smm.SMMPackage;
 import org.omg.vdml.VDMLPackage;
@@ -65,7 +66,6 @@ public class VdmlActivityNetworkProfileImpl extends AbstractEmfDiagramProfile im
     protected ResourceTypeDefinition getResourceTypeDefinition() {
         return new VdmlActivityNetworkTypeDefinition();
     }
-
     @Override
     public String getDiagramStencilId() {
         return "VdmlActivityNetworkDiagram";
@@ -79,6 +79,7 @@ public class VdmlActivityNetworkProfileImpl extends AbstractEmfDiagramProfile im
     public void prepareResourceSet(ResourceSet resourceSet) {
         super.prepareResourceSet(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdcol", getResourceFactory());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdlib", new UMLDIResourceFactoryImpl());
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
     }
     @Override

@@ -96,9 +96,6 @@
  - Sync the CaseFile from UML model(s) on load (and store) (?)
  
  
-## Modularization
- - inlineditor.jsp
-
 ###Stencils for:
  - PlanFragment
 
@@ -110,7 +107,10 @@
  - exitScripts
  - additional property name for caseFileItem events (its useless without them)
 
-
+###VDML Integration
+ - *Support OrgStructure,BusinessNetworks, Communities, Store in CaseFile
+ - *Annotated Tasks from Activities 
+ 
 #2. Form Modeler:
 #2.1. Done and Tested
 #2.2. Todo

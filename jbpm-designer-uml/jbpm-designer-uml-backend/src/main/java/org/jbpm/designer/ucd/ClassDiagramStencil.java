@@ -17,6 +17,7 @@ import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.jbpm.uml2.dd.umldi.UMLDiagramElement;
 import org.omg.dd.di.DiagramElement;
 
 public enum ClassDiagramStencil implements StencilInfo {
@@ -68,12 +69,12 @@ public enum ClassDiagramStencil implements StencilInfo {
         }
     }
 
-    public static DiagramElement createDiagramElement(String stencilId) {
+    public static UMLDiagramElement createDiagramElement(String stencilId) {
         ClassDiagramStencil stencil = findStencilById(stencilId);
         if (stencil.shapeType == null) {
             return null;
         }
-        return (DiagramElement) UMLDIFactory.eINSTANCE.create(stencil.shapeType);
+        return (UMLDiagramElement) UMLDIFactory.eINSTANCE.create(stencil.shapeType);
     }
 
     public static Element createElement(String stencilId) {

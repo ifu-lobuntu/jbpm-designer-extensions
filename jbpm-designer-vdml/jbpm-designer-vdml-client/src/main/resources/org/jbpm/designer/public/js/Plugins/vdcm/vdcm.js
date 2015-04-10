@@ -1,5 +1,14 @@
  if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
+ if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
+		ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/vdcm#" ]= {
+        "OrgUnit": 1, 
+        "Capability": 2,
+        "Position": 3,
+        "Resource": 4,
+        "Imports": 5
+}
 
 /**
  * The VDCM plugin provides layout methods referring to the VDCM stencilsets.

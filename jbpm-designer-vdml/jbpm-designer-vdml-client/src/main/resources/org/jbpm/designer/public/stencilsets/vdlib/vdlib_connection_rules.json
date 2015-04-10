@@ -1,0 +1,99 @@
+        "connectionRules" : [
+			{
+				"role" : "interfaceRealization",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface","importedInterface"
+						]
+					}
+				]
+			},
+			{
+				"role" : "generalization",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class","importedClass"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"businessItemDefinition"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface","importedInterface"
+						]
+					}
+				]
+			},
+			{
+				"role" : "composition",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"class"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"businessItemDefinition"
+						]
+					}
+				]
+			},
+			{
+				"role" : "directedAssociation",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					}
+				]
+			},
+			{
+				"role" : "biDirectionalAssociation",
+				"connects" : [
+					{
+						"from" : "class",
+						"to" : [
+							"interface","class","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "businessItemDefinition",
+						"to" : [
+							"interface","class","businessItemDefinition"
+						]
+					},
+					{
+						"from" : "interface",
+						"to" : [
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+						]
+					}
+				]
+			}
+		],
