@@ -8,7 +8,6 @@ import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Role;
-import org.omg.vdml.VDMLFactory;
 
 public class ActivityNetworkDynamicShapeGenerationTest extends AbstractVdanDiagramMarshallingTest {
 

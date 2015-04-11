@@ -1,12 +1,9 @@
 package org.jbpm.designer.extensions.emf.util;
 
-import java.io.IOException;
-
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -29,6 +26,7 @@ public abstract class AbstractEmfProfile implements IEmfProfile {
     @Inject
     @Any
     Instance<IEmfProfile> otherProfiles;
+    
     public EStructuralFeature demandFeature(String name){
         return null;
     }
@@ -51,6 +49,10 @@ public abstract class AbstractEmfProfile implements IEmfProfile {
         }
         return result;
     }
+    public DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
+        return new DefaultPotentialReferenceHelper(this);
+    }
+
 
     @Override
     public boolean useIdAttribute() {

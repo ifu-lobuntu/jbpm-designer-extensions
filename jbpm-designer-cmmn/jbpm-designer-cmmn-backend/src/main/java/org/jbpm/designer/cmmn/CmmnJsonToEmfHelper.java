@@ -2,25 +2,15 @@ package org.jbpm.designer.cmmn;
 
 import java.util.ArrayList;
 
-import javax.xml.namespace.QName;
-
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.Property;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Package;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
@@ -36,7 +26,6 @@ import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.DocumentRoot;
-import org.omg.cmmn.TApplicabilityRule;
 import org.omg.cmmn.TCase;
 import org.omg.cmmn.TCaseFileItem;
 import org.omg.cmmn.TCaseFileItemOnPart;
@@ -70,7 +59,6 @@ import org.omg.cmmn.TTimerEvent;
 import org.omg.cmmn.TUserEvent;
 import org.omg.cmmn.util.CMMNSwitch;
 import org.omg.cmmn.util.ImportHelper;
-import org.omg.dd.dc.DCFactory;
 import org.omg.dd.di.DiagramElement;
 
 public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmfHelper {
@@ -235,12 +223,13 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     private void addTaskParameters(TCmmnElement object, EList<TCaseParameter> list, String paramListName, EList<? extends TParameter> mappedParameterList,
             EList<TParameterMapping> parameterMappings) {
-        if (sourceShape.getProperty(paramListName) != null) {
+        String parmListJson = sourceShape.getProperty(paramListName);
+        if (parmListJson != null && parmListJson.trim().length()>0 && !"[]".equals(parmListJson)) {
             try {
                 ObjectMapper om = new ObjectMapper();
                 om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                 om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
-                CaseParametersJson params = om.readValue(sourceShape.getProperty(paramListName), CaseParametersJson.class);
+                CaseParametersJson params = om.readValue(parmListJson, CaseParametersJson.class);
                 for (CaseParameterJson cp : params.getParameters()) {
                     TCaseParameter p = CMMNFactory.eINSTANCE.createTCaseParameter();
                     p.setName(cp.getName());

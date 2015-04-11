@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -18,6 +17,7 @@ public class ClassDiagramStencilsetImporter {
         File vdmlPublicDir = new File(path("./src/main/resources/org/jbpm/designer/public"));
         File umlStencilDir = new File(umlPublicDir, path("stencilsets/ucd"));
         FileUtils.copyDirectory(new File(umlStencilDir, "view"), new File(vdmlPublicDir, path("stencilsets/vdlib/view")));
+        FileUtils.copyDirectory(new File(umlStencilDir, "icons"), new File(vdmlPublicDir, path("stencilsets/vdlib/icons")));
         BufferedReader br = new BufferedReader(new FileReader(new File(umlStencilDir, "ucd.json")));
         FileWriter fw = new FileWriter(new File(vdmlPublicDir, path("stencilsets/vdlib/vdlib.json")), false);
         String line = null;

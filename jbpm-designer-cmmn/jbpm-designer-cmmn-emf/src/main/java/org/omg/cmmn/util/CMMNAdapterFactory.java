@@ -4,12 +4,55 @@ package org.omg.cmmn.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.omg.cmmn.*;
+import org.omg.cmmn.CMMNPackage;
+import org.omg.cmmn.DocumentRoot;
+import org.omg.cmmn.TApplicabilityRule;
+import org.omg.cmmn.TCase;
+import org.omg.cmmn.TCaseFile;
+import org.omg.cmmn.TCaseFileItem;
+import org.omg.cmmn.TCaseFileItemDefinition;
+import org.omg.cmmn.TCaseFileItemOnPart;
+import org.omg.cmmn.TCaseFileItemStartTrigger;
+import org.omg.cmmn.TCaseParameter;
+import org.omg.cmmn.TCaseTask;
+import org.omg.cmmn.TChildren;
+import org.omg.cmmn.TCmmnElement;
+import org.omg.cmmn.TCmmnElementWithMixedContent;
+import org.omg.cmmn.TDefinitions;
+import org.omg.cmmn.TDiscretionaryItem;
+import org.omg.cmmn.TEvent;
+import org.omg.cmmn.TExpression;
+import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TIfPart;
+import org.omg.cmmn.TImport;
+import org.omg.cmmn.TManualActivationRule;
+import org.omg.cmmn.TMilestone;
+import org.omg.cmmn.TOnPart;
+import org.omg.cmmn.TParameter;
+import org.omg.cmmn.TParameterMapping;
+import org.omg.cmmn.TPlanFragment;
+import org.omg.cmmn.TPlanItem;
+import org.omg.cmmn.TPlanItemControl;
+import org.omg.cmmn.TPlanItemDefinition;
+import org.omg.cmmn.TPlanItemOnPart;
+import org.omg.cmmn.TPlanItemStartTrigger;
+import org.omg.cmmn.TPlanningTable;
+import org.omg.cmmn.TProcess;
+import org.omg.cmmn.TProcessParameter;
+import org.omg.cmmn.TProcessTask;
+import org.omg.cmmn.TProperty;
+import org.omg.cmmn.TRepetitionRule;
+import org.omg.cmmn.TRequiredRule;
+import org.omg.cmmn.TRole;
+import org.omg.cmmn.TSentry;
+import org.omg.cmmn.TStage;
+import org.omg.cmmn.TStartTrigger;
+import org.omg.cmmn.TTableItem;
+import org.omg.cmmn.TTask;
+import org.omg.cmmn.TTimerEvent;
+import org.omg.cmmn.TUserEvent;
 
 /**
  * <!-- begin-user-doc -->

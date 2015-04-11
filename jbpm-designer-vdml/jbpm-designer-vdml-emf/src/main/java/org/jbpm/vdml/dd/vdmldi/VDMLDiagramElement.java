@@ -3,7 +3,6 @@
 package org.jbpm.vdml.dd.vdmldi;
 
 import org.omg.dd.di.DiagramElement;
-
 import org.omg.vdml.VdmlElement;
 
 /**

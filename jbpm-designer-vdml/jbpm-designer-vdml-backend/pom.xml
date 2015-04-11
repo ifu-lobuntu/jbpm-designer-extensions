@@ -33,6 +33,23 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-uml-backend</artifactId>
     </dependency>
+    <!-- Form Modeler -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-service-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-lookup</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-common</artifactId>
+    </dependency>
     <!-- Transitive dependency -->
     <dependency>
       <groupId>org.jbpm</groupId>
@@ -66,6 +83,11 @@
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-nio2-model</artifactId>
@@ -102,6 +124,11 @@
       <groupId>org.eclipse.emf</groupId>
       <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.kie</groupId>
+      <artifactId>kie-internal</artifactId>
+    </dependency>
+
   </dependencies>
 
 </project>

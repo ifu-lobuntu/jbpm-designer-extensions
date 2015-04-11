@@ -39,7 +39,7 @@ public class VdmlLibraryDiagramMarshallingTests extends AbstractUmlDiagramTest {
     @Before
     public void setup() throws Exception {
         super.profile = new VdmlLibraryProfileImpl();
-        super.unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
+        super.unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, URI.createPlatformResourceURI("jbpm-designer-vdml-client/target/test.vdlib", true), true);
         super.marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI("jbpm-designer-vdml-client/target/test.vdlib", true));
 
         resourceSet = new ResourceSetImpl();

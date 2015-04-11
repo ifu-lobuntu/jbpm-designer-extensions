@@ -3,7 +3,6 @@
 package org.jbpm.smm.dd.smmdi;
 
 import org.omg.dd.di.DiagramElement;
-
 import org.omg.smm.SmmElement;
 
 /**

@@ -14,7 +14,6 @@ import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jbpm.designer.vdml.VdmlCollaborationAssetService;
 import org.kie.workbench.common.widgets.client.resources.i18n.CommonConstants;
 import org.uberfire.backend.vfs.Path;
-import org.uberfire.backend.vfs.PathFactory;
 
 import com.github.gwtbootstrap.client.ui.ListBox;
 

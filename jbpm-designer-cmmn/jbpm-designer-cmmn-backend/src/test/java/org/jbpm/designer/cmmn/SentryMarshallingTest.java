@@ -1,6 +1,5 @@
 package org.jbpm.designer.cmmn;
 
-import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.junit.Test;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CaseFileItemTransition;

@@ -14,8 +14,6 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.dd.di.Diagram;
-import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;
@@ -23,7 +21,6 @@ import org.omg.vdml.Pool;
 import org.omg.vdml.Position;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.VdmlElement;
 
 public enum VdmlCapabilityManagementStencil implements VdmlStencilInfo {
     VDML_CAPABILITY_MANAGEMENT_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "VdmlCapabilityManagementDiagram"),

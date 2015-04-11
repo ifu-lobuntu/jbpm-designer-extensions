@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
@@ -116,7 +115,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         tuh.getFile(URI.createPlatformResourceURI(getDiagramFileName(), true)).delete();
         tuh.getFile(URI.createPlatformResourceURI(collaborationFile, true)).delete();
         profile.setUriHandler(tuh);
-        unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
+        unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, URI.createPlatformResourceURI(getDiagramFileName(), true), true);
         marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI(getDiagramFileName(), true));
         resourceSet = new ResourceSetImpl();
 

@@ -7,17 +7,83 @@
   background-image: url('../../images/sprites/vdlib-images-sprite.png');
   background-position: left -0px;
 }
-.stencilsets_vdlib_vdlib_json_icons_deliverable_measured_characteristic,
-.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_measured_characteristic {
+.stencilsets_vdlib_vdlib_json_icons_deliverable_characteristic_definition,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_characteristic_definition {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/vdlib/icons/measured_characteristic.png);  /** sprite-ref: vdlib-images-sprite; */
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -16px;
 }
-.stencilsets_vdlib_vdlib_json_icons_measured_characteristic_compartment,
-.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_measured_characteristic_compartment {
+.stencilsets_vdlib_vdlib_json_icons_characteristic_definition_compartment,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_characteristic_definition_compartment {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/vdlib/icons/measured_characteristic_compartment.png);  /** sprite-ref: vdlib-images-sprite; */
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -16px;
+}
+.stencilsets_vdlib_vdlib_json_icons_composition,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_composition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -32px;
+}
+.stencilsets_vdlib_vdlib_json_icons_directed_association,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_directed_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -48px;
+}
+.stencilsets_vdlib_vdlib_json_icons_bi_directional_association,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_bi_directional_association {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -64px;
+}
+.stencilsets_vdlib_vdlib_json_icons_generalization,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_generalization {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -80px;
+}
+.stencilsets_vdlib_vdlib_json_icons_interface_realization,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_interface_realization{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -96px;
+}
+.stencilsets_vdlib_vdlib_json_icons_class,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_class{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -0px;
+}
+.stencilsets_vdlib_vdlib_json_icons_interface,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_interface{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -112px;
+}
+.stencilsets_vdlib_vdlib_json_icons_enumeration,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_enumeration{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/vdlib-images-sprite.png');
+  background-position: left -112px;
 }

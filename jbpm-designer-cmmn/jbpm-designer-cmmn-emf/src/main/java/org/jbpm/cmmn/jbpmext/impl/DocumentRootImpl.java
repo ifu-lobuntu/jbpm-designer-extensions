@@ -31,6 +31,7 @@ import org.jbpm.cmmn.jbpmext.JbpmextPackage;
  *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getExternalProcess <em>External Process</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.jbpmext.impl.DocumentRootImpl#getVdmlElement <em>Vdml Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -76,6 +77,16 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
      * @ordered
      */
     protected EObject externalProcess;
+
+    /**
+     * The cached value of the '{@link #getVdmlElement() <em>Vdml Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getVdmlElement()
+     * @generated
+     * @ordered
+     */
+    protected EObject vdmlElement;
 
     /**
      * <!-- begin-user-doc -->
@@ -175,6 +186,44 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
      * <!-- end-user-doc -->
      * @generated
      */
+    public EObject getVdmlElement() {
+        if (vdmlElement != null && vdmlElement.eIsProxy()) {
+            InternalEObject oldVdmlElement = (InternalEObject)vdmlElement;
+            vdmlElement = eResolveProxy(oldVdmlElement);
+            if (vdmlElement != oldVdmlElement) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, JbpmextPackage.DOCUMENT_ROOT__VDML_ELEMENT, oldVdmlElement, vdmlElement));
+            }
+        }
+        return vdmlElement;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EObject basicGetVdmlElement() {
+        return vdmlElement;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setVdmlElement(EObject newVdmlElement) {
+        EObject oldVdmlElement = vdmlElement;
+        vdmlElement = newVdmlElement;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, JbpmextPackage.DOCUMENT_ROOT__VDML_ELEMENT, oldVdmlElement, vdmlElement));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -208,6 +257,9 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
             case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
                 if (resolve) return getExternalProcess();
                 return basicGetExternalProcess();
+            case JbpmextPackage.DOCUMENT_ROOT__VDML_ELEMENT:
+                if (resolve) return getVdmlElement();
+                return basicGetVdmlElement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -231,6 +283,9 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
                 return;
             case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
                 setExternalProcess((EObject)newValue);
+                return;
+            case JbpmextPackage.DOCUMENT_ROOT__VDML_ELEMENT:
+                setVdmlElement((EObject)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -256,6 +311,9 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
             case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
                 setExternalProcess((EObject)null);
                 return;
+            case JbpmextPackage.DOCUMENT_ROOT__VDML_ELEMENT:
+                setVdmlElement((EObject)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -276,6 +334,8 @@ public class DocumentRootImpl extends MinimalEObjectImpl.Container implements Do
                 return xSISchemaLocation != null && !xSISchemaLocation.isEmpty();
             case JbpmextPackage.DOCUMENT_ROOT__EXTERNAL_PROCESS:
                 return externalProcess != null;
+            case JbpmextPackage.DOCUMENT_ROOT__VDML_ELEMENT:
+                return vdmlElement != null;
         }
         return super.eIsSet(featureID);
     }

@@ -5,11 +5,8 @@ package org.jbpm.smm.dd.smmdi.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
-
 import org.jbpm.smm.dd.smmdi.SMMDIFactory;
 import org.jbpm.smm.dd.smmdi.SMMDIPackage;
 import org.jbpm.smm.dd.smmdi.SMMDiagram;
@@ -17,9 +14,7 @@ import org.jbpm.smm.dd.smmdi.SMMDiagramElement;
 import org.jbpm.smm.dd.smmdi.SMMEdge;
 import org.jbpm.smm.dd.smmdi.SMMShape;
 import org.jbpm.smm.dd.smmdi.SMMStyle;
-
 import org.omg.dd.di.DIPackage;
-
 import org.omg.smm.SMMPackage;
 import org.omg.smm.impl.SMMPackageImpl;
 

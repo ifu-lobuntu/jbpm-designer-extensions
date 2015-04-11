@@ -1,6 +1,16 @@
- if(!ORYX.Plugins)
+if(!ORYX.Plugins)
 	ORYX.Plugins = new Object();
 
+if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
+	ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/ucd#" = {
+            "Types": 1,
+            "Compartments": 2,
+            "Features": 3,
+            "Inheritance" :4,
+            "Associations" :5,
+            "Imports" :6
+}
 /**
  * The CMMN plugin provides layout methods referring to the CMMN stencilset.
  *
@@ -20,20 +30,18 @@ ORYX.Plugins.UCD = ORYX.Plugins.AbstractPlugin.extend(
 	 * @param {Object} facade The facade of the editor
 	 */
 	construct: function(facade) {
+		console.log("Initialising UCD");
 		this.facade = facade;
-		try{
-			this.decoratorUpdaters={};
-			this.decoratorUpdaters["Property"]=this.updatePropertyDecorations.bind(this);
-			this.decoratorUpdaters["ImportedClass"]=this.updateImportDecorations.bind(this);
-			this.decoratorUpdaters["ImportedInterface"]=this.updateImportDecorations.bind(this);
-			this.decoratorUpdaters["ImportedEnumeration"]=this.updateImportDecorations.bind(this);
-
+		this.decoratorUpdaters={};
+		this.decoratorUpdaters["Property"]=this.updatePropertyDecorations.bind(this);
+		this.decoratorUpdaters["ImportedClass"]=this.updateImportDecorations.bind(this);
+		this.decoratorUpdaters["ImportedInterface"]=this.updateImportDecorations.bind(this);
+		this.decoratorUpdaters["ImportedEnumeration"]=this.updateImportDecorations.bind(this);
 		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
-		console.log("success");
-		}catch(e){alert(e);}
+		console.log("UCD Initialised");
 	},
 	handleExpand : function(event, uiObj){
 	},

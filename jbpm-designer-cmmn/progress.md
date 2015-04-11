@@ -53,11 +53,6 @@
  - Select Language in fourth column
  - Type expression (CaseParamater.bindingRefinement) in 5 th column
 
-## Modularization
- - Implement different projects for CMMN and UML - Client/API/Backend
- - Implement processRequest method on profile to delegate to the appropriate action handler
- - Implement redirection logic in StencilSetServiceServlet
-
 ###Collapse/Expand
  - Collapsed Stages 
  - Collapsed Planning Tables for Stages and Cases
@@ -109,7 +104,9 @@
 
 ###VDML Integration
  - *Support OrgStructure,BusinessNetworks, Communities, Store in CaseFile
- - *Annotated Tasks from Activities 
+ - *Link Case to Collaboration 
+ - *Link Role to Role 
+ - *Link Tasks to Activities 
  
 #2. Form Modeler:
 #2.1. Done and Tested

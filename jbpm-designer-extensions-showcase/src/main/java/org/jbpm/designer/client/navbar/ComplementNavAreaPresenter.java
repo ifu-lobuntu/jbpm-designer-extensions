@@ -3,11 +3,10 @@ package org.jbpm.designer.client.navbar;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import com.google.gwt.user.client.ui.IsWidget;
-import com.google.gwt.user.client.ui.Widget;
 import org.uberfire.client.workbench.Header;
 
-import static java.lang.Integer.*;
+import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.Widget;
 
 @ApplicationScoped
 public class ComplementNavAreaPresenter implements Header {

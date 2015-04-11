@@ -3,7 +3,6 @@
 package org.jbpm.cmmn.dd.cmmndi;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.omg.cmmn.TDefinitions;
 import org.omg.dd.di.Diagram;
 

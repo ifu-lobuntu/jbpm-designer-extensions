@@ -4,17 +4,19 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
+import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
 import org.omg.vdml.BusinessNetwork;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.Community;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Port;
-import org.omg.vdml.PortContainer;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.ValueAdd;
 import org.omg.vdml.ValueDeliveryModel;
 
 public class VdmlHelper {
@@ -67,5 +69,12 @@ public class VdmlHelper {
         }else{
             return VDMLFactory.eINSTANCE.createRole();
         }
+    }
+    public static Measure getValueMeasure(ValueAdd field) {
+        return field.getValueMeasurement().getCharacteristicDefinition().getMeasure().get(0);
+    }
+    public static boolean hasValueMeasure(ValueAdd field) {
+        MeasuredCharacteristic vm = field.getValueMeasurement();
+        return vm!=null && vm.getCharacteristicDefinition()!=null && vm.getCharacteristicDefinition().getMeasure().size()>0;
     }
 }

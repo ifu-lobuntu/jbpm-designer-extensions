@@ -9,7 +9,6 @@ import org.omg.cmmn.TExpression;
 import org.omg.cmmn.THumanTask;
 import org.omg.cmmn.TPlanItem;
 import org.omg.cmmn.TPlanningTable;
-import org.omg.cmmn.TRole;
 
 public class DiscretionaryItemMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
     @Test

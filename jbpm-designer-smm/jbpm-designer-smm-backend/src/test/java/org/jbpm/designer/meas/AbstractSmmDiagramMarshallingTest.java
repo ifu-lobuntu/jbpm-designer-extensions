@@ -33,8 +33,10 @@ import org.omg.dd.dc.DCPackage;
 import org.omg.dd.dc.Point;
 import org.omg.dd.di.DIPackage;
 import org.omg.dd.di.Style;
+import org.omg.smm.Measure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
+import org.omg.smm.SMMPackage;
 import org.omg.smm.SmmElement;
 
 public class AbstractSmmDiagramMarshallingTest {
@@ -51,12 +53,19 @@ public class AbstractSmmDiagramMarshallingTest {
     public AbstractSmmDiagramMarshallingTest() {
         super();
     }
-
+    private void addTrait(Measure m){
+        m.setTrait(SMMFactory.eINSTANCE.createCharacteristic());
+        if(m.getName()==null){
+            throw new IllegalStateException();
+        }
+        m.getTrait().setName(m.getName());
+        measureLibrary.getMeasureElements().add(m.getTrait());
+    }
     @Before
     public void setup() throws Exception {
         profile = createProfile();
         profile.setUriHandler(new TestUriHandler());
-        unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, true);
+        unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile, URI.createURI("file:/dummy." + profile.getSerializedModelExtension()), true);
         marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
         resourceSet = new ResourceSetImpl();
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
@@ -69,8 +78,8 @@ public class AbstractSmmDiagramMarshallingTest {
         inputDiagram = SMMDIFactory.eINSTANCE.createSMMDiagram();
         inputDiagram.setSmmElement(measureLibrary);
         measureLibrary.getOwnedDiagram().add(inputDiagram);
-        profile.loadLinkedStencilSet("../jbpm-designer-meas-client/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
-        profile.initializeLocalPlugins("../jbpm-designer-meas-client/src/main/resources/org/jbpm/designer/public/profiles/meas.xml");
+        profile.loadLinkedStencilSet("../jbpm-designer-smm-client/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
+        profile.initializeLocalPlugins("../jbpm-designer-smm-client/src/main/resources/org/jbpm/designer/public/profiles/meas.xml");
         elementDiagramElementMap.put(measureLibrary, inputDiagram);
     }
 
@@ -87,6 +96,7 @@ public class AbstractSmmDiagramMarshallingTest {
         ignoreIdsOf.add(DIPackage.eINSTANCE.getStyle());
         ignoreIdsOf.add(DCPackage.eINSTANCE.getColor());
         ignoreIdsOf.add(DCPackage.eINSTANCE.getBounds());
+        ignoreIdsOf.add(SMMPackage.eINSTANCE.getCharacteristic());
         new GenericEcoreComparator(inputResource, outputResource, ignoreIdsOf).validate();
     }
 
@@ -133,6 +143,9 @@ public class AbstractSmmDiagramMarshallingTest {
     }
 
     protected SMMShape addShapeFor(SmmElement parentElement, SmmElement element, int... boundsInfo) {
+        if(element instanceof Measure){
+            addTrait((Measure) element);
+        }
         SMMDiagramElement parentDiagramElement = elementDiagramElementMap.get(parentElement);
         SMMShape shape = SMMDIFactory.eINSTANCE.createSMMShape();
         String nsURI = shape.eClass().getESuperTypes().get(0).getEPackage().getNsURI();

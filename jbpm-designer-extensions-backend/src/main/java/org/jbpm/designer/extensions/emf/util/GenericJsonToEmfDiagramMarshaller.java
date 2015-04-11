@@ -81,6 +81,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
 
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private Object fillList(EStructuralFeature sf, List listValue, String index, boolean hasValue) {
         if (index.endsWith("]")) {
             int idx = Integer.parseInt(index.substring(index.indexOf("[") + 1, index.length() - 1));
@@ -157,6 +158,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         return edgesToRemove;
     }
 
+    @SuppressWarnings("rawtypes")
     private void removeFromContainer(Set<DiagramElement> des) {
         for (DiagramElement de : des) {
             if (de.eContainingFeature().isMany()) {

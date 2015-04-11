@@ -4,8 +4,8 @@ package org.jbpm.designer.dd.jbpmdd.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.jbpm.designer.dd.jbpmdd.*;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
+import org.jbpm.designer.dd.jbpmdd.CollapsibleShape;
 import org.jbpm.designer.dd.jbpmdd.Compartment;
 import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
 import org.jbpm.designer.dd.util.Switch;

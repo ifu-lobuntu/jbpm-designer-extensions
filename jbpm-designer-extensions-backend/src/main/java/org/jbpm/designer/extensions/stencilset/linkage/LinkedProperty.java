@@ -1,6 +1,5 @@
 package org.jbpm.designer.extensions.stencilset.linkage;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,8 +32,11 @@ public class LinkedProperty {
                     }
                 }
             }
+            if(elementNameFeatureMap.isEmpty()){
+                System.out.println();
+            }
         }
-        if (property.getExpectedType() != null) {
+        if (property.getExpectedType() != null && expectedType==null) {
             for (EPackage ePackage : packages) {
                 EClass eClassifier = (EClass) ePackage.getEClassifier(property.getExpectedType());
                 if (eClassifier != null) {

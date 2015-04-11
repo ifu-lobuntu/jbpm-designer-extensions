@@ -3,10 +3,8 @@
 package org.jbpm.uml2.dd.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
 import org.jbpm.uml2.dd.umldi.UMLStyle;
-
 import org.omg.dd.di.impl.StyleImpl;
 
 /**

@@ -3,6 +3,7 @@
 package org.omg.smm;
 
 import java.util.Date;
+
 import org.eclipse.emf.common.util.EList;
 
 /**

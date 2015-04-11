@@ -3,10 +3,8 @@
 package org.jbpm.smm.dd.smmdi.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.jbpm.smm.dd.smmdi.SMMDIPackage;
 import org.jbpm.smm.dd.smmdi.SMMStyle;
-
 import org.omg.dd.di.impl.StyleImpl;
 
 /**

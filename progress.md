@@ -8,7 +8,9 @@
  - Laying out decorations sequentially, spaced evenly, but only the visible ones 
 
 ## Modularization
- - StencilServiceServlet
+ - Implement different projects for different modeling languages - Client/API/Backend
+ - Implement processRequest method on profile to delegate to the appropriate action handler
+ - Implement redirection logic in StencilSetServiceServlet
  - Config.js
 
 

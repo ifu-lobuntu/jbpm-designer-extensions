@@ -3,10 +3,8 @@
 package org.jbpm.cmmn.dd.cmmndi.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNStyle;
-
 import org.omg.dd.di.impl.StyleImpl;
 
 /**

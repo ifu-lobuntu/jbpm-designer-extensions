@@ -3,7 +3,6 @@
 package org.jbpm.uml2.dd.umldi;
 
 import org.eclipse.uml2.uml.Element;
-
 import org.omg.dd.di.DiagramElement;
 
 /**

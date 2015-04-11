@@ -1,7 +1,6 @@
 package org.jbpm.designer.vdlib;
 
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;

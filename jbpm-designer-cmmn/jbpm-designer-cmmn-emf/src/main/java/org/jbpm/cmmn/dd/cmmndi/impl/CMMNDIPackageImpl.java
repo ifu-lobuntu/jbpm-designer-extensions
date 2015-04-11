@@ -6,11 +6,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
@@ -18,13 +15,9 @@ import org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.cmmn.dd.cmmndi.CMMNStyle;
-
 import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
-
 import org.omg.cmmn.CMMNPackage;
-
 import org.omg.cmmn.impl.CMMNPackageImpl;
-
 import org.omg.dd.di.DIPackage;
 
 /**

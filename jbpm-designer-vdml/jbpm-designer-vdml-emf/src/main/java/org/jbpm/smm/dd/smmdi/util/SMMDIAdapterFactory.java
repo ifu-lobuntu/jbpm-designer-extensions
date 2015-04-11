@@ -4,16 +4,16 @@ package org.jbpm.smm.dd.smmdi.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.dd.jbpmdd.CollapsibleShape;
-
-import org.jbpm.smm.dd.smmdi.*;
-
+import org.jbpm.smm.dd.smmdi.SMMDIPackage;
+import org.jbpm.smm.dd.smmdi.SMMDiagram;
+import org.jbpm.smm.dd.smmdi.SMMDiagramElement;
+import org.jbpm.smm.dd.smmdi.SMMEdge;
+import org.jbpm.smm.dd.smmdi.SMMShape;
+import org.jbpm.smm.dd.smmdi.SMMStyle;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Edge;

@@ -694,10 +694,10 @@ ORYX.Plugins.CMMN.TaskParameterAndMappingsEditorFactory = Clazz.extend({
 
             cf.servletAction=pair.type().endsWith('taskinparameterandmappings') ? 'showprocessinput' : 'showprocessoutput';
             if(this.shapeSelection.shapes.first().getStencil().id().contains('ProcessTask')){
-            	cf.profile= 'jbpm';
+            	cf.targetProfile= 'jbpm';
         		cf.processId=this.shapeSelection.shapes.first().properties['oryx-calledprocess'];
         	}else{
-            	cf.profile='cmmn';
+            	cf.targetProfile='cmmn';
         		cf.processId=this.shapeSelection.shapes.first().properties['oryx-calledcase'];
         	}
         	cf.on('dialogClosed', this.dialogClosed, {scope:this, row:index, col:1,field:cf});
@@ -1018,7 +1018,8 @@ ORYX.Plugins.CMMN.TaskParameterAndMappingsEditor = Ext.extend(Ext.form.TriggerFi
 	             });
 	         },
 	         params: {
-	             profile: this.profile,
+	             targetProfile: this.targetProfile,
+	             profile: "cmmn",
 	             uuid : ORYX.UUID,
 	             pid: this.processId,
 	             action: this.servletAction

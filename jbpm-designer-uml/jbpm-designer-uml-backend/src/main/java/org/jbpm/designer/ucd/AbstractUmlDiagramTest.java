@@ -24,7 +24,6 @@ import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
-import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
@@ -43,8 +42,8 @@ public class AbstractUmlDiagramTest {
     protected AbstractClassDiagramProfileImpl profile = new ClassDiagramProfileImpl();{
         profile.setUriHandler(new TestUriHandler());
     }
-    protected GenericEmfToJsonDiagramUnmarshaller unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile,true);
-    protected GenericJsonToEmfDiagramMarshaller marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy.ucd"));
+    protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
+    protected GenericJsonToEmfDiagramMarshaller marshaller; 
     protected XMLResource inputResource;
     protected ResourceSet resourceSet;
     protected UMLDiagram inputDiagram;
@@ -84,6 +83,8 @@ public class AbstractUmlDiagramTest {
         uriHandlers.add(new TestUriHandler());
         profile.prepareResourceSet(resourceSet);
         this.cmmnTypes=(Package)resourceSet.getResource(URI.createURI(ClassDiagramProfileImpl.CMMNTYPES_PATHMAP), false).getContents().get(0);
+        unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile,URI.createURI("file:/dummy.ucd"),true);
+        marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy.ucd"));
         inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy.ucd"));
         inputDiagram = UMLDIFactory.eINSTANCE.createUMLDiagram();
         jbpmPackage=UMLFactory.eINSTANCE.createPackage();

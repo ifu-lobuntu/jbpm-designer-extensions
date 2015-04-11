@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getXMLNSPrefixMap <em>XMLNS Prefix Map</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getXSISchemaLocation <em>XSI Schema Location</em>}</li>
  *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getExternalProcess <em>External Process</em>}</li>
+ *   <li>{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getVdmlElement <em>Vdml Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -104,5 +105,31 @@ public interface DocumentRoot extends EObject {
      * @generated
      */
     void setExternalProcess(EObject value);
+
+    /**
+     * Returns the value of the '<em><b>Vdml Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Vdml Element</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Vdml Element</em>' reference.
+     * @see #setVdmlElement(EObject)
+     * @see org.jbpm.cmmn.jbpmext.JbpmextPackage#getDocumentRoot_VdmlElement()
+     * @model extendedMetaData="kind='attribute' name='vdmlElement' namespace='##targetNamespace'"
+     * @generated
+     */
+    EObject getVdmlElement();
+
+    /**
+     * Sets the value of the '{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getVdmlElement <em>Vdml Element</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Vdml Element</em>' reference.
+     * @see #getVdmlElement()
+     * @generated
+     */
+    void setVdmlElement(EObject value);
 
 } // DocumentRoot

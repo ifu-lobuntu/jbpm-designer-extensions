@@ -7,12 +7,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.jbpm.vdml.dd.vdmldi.*;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
+import org.jbpm.vdml.dd.vdmldi.VDMLStyle;
 
 /**
  * <!-- begin-user-doc -->

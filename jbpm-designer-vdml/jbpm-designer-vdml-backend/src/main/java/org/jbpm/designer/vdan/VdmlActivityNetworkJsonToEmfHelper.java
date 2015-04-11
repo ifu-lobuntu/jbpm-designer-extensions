@@ -1,10 +1,8 @@
 package org.jbpm.designer.vdan;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
-import org.jbpm.designer.vdrc.VdmlRoleCollaborationStencil;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
@@ -15,7 +13,6 @@ import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.MeasuredCharacteristic;
-import org.omg.vdml.OrgUnit;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Pool;
@@ -25,7 +22,6 @@ import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueAdd;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {

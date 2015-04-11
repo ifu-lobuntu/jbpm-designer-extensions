@@ -60,7 +60,8 @@ public class CmmnXmlHelper extends XMLHelperImpl {
         }
 
         // result with strict evaluation: return prefixNs.equals(getDefinitions().getTargetNamespace())
-        if (prefixNs.equals(getDefinitions().getTargetNamespace()))
+        String targetNamespace = getDefinitions().getTargetNamespace();
+        if (prefixNs.equals(targetNamespace))
             return true;
         else if (XMLConstants.DEFAULT_NS_PREFIX.equals(prefix)
                 && ImportHelper.findImportForNamespace(getDefinitions(), prefixNs) == null) {

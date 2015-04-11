@@ -32,7 +32,6 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         this.shapeMap = resource;
     }
 
-
     public void doSwitch(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
         this.currentStencil = sv;
@@ -49,19 +48,22 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         return smmDiagram;
     }
 
+    public Object caseMeasure(Measure m) {
+        if (m.getTrait() == null) {
+            Characteristic ch = SMMFactory.eINSTANCE.createCharacteristic();
+            ch.setName(m.getName());
+            owningLibrary.getMeasureElements().add(ch);
+            shapeMap.getResource().setID(ch, EcoreUtil.generateUUID());
+            m.setTrait(ch);
+        }
+        return super.caseMeasure(m);
+    }
+
     public DiagramElement createElements(Shape shape) {
         DiagramElement de = MeasureLibraryStencil.createDiagramElement(shape.getStencilId());
         SmmElement el = MeasureLibraryStencil.createElement(shape.getStencilId());
         if (de instanceof SMMShape) {
             ((SMMShape) de).setSmmElement((SmmElement) el);
-            if(el instanceof Measure){
-                //TODO move this elsewhere - will break tests
-                Characteristic ch = SMMFactory.eINSTANCE.createCharacteristic();
-                ch.setName(shape.getProperty("name"));
-                owningLibrary.getMeasureElements().add(ch);
-                shapeMap.getResource().setID(ch,EcoreUtil.generateUUID());
-                ((Measure) el).setTrait(ch);
-            }
         } else if (de instanceof SMMEdge) {
             ((SMMEdge) de).setSmmElement((SmmElement) el);
         }
@@ -78,7 +80,6 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
     public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
         return null;
     }
-
 
     @Override
     public void postprocessResource() {

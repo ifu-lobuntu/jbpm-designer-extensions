@@ -136,6 +136,15 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDocumentRoot_VdmlElement() {
+        return (EReference)documentRootEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public JbpmextFactory getJbpmextFactory() {
         return (JbpmextFactory)getEFactoryInstance();
     }
@@ -164,6 +173,7 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
         createEReference(documentRootEClass, DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
         createEReference(documentRootEClass, DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
         createEReference(documentRootEClass, DOCUMENT_ROOT__EXTERNAL_PROCESS);
+        createEReference(documentRootEClass, DOCUMENT_ROOT__VDML_ELEMENT);
     }
 
     /**
@@ -201,6 +211,7 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
         initEReference(getDocumentRoot_XMLNSPrefixMap(), ecorePackage.getEStringToStringMapEntry(), null, "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_XSISchemaLocation(), ecorePackage.getEStringToStringMapEntry(), null, "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentRoot_ExternalProcess(), ecorePackage.getEObject(), null, "externalProcess", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDocumentRoot_VdmlElement(), ecorePackage.getEObject(), null, "vdmlElement", null, 0, 1, null, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
@@ -252,6 +263,14 @@ public class JbpmextPackageImpl extends EPackageImpl implements JbpmextPackage {
            new String[] {
              "kind", "attribute",
              "name", "externalProcess",
+             "namespace", "##targetNamespace"
+           });	
+        addAnnotation
+          (getDocumentRoot_VdmlElement(), 
+           source, 
+           new String[] {
+             "kind", "attribute",
+             "name", "vdmlElement",
              "namespace", "##targetNamespace"
            });
     }

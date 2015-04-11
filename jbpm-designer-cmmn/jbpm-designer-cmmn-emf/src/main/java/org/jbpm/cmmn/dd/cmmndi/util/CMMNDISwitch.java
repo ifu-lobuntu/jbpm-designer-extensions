@@ -4,12 +4,14 @@ package org.jbpm.cmmn.dd.cmmndi.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.jbpm.cmmn.dd.cmmndi.*;
-import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
-import org.jbpm.designer.dd.jbpmdd.CollapsibleShape;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
+import org.jbpm.cmmn.dd.cmmndi.CMMNStyle;
+import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
+import org.jbpm.designer.dd.jbpmdd.CollapsibleShape;
 import org.jbpm.designer.dd.util.Switch;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;

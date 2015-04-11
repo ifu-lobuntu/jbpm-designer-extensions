@@ -283,6 +283,7 @@ ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
 			var jsonProp = pair._jsonProp;
 			cf.targetProfile = jsonProp.reference.targetProfile;
 			cf.filter = jsonProp.reference.filter;
+			cf.filterParamaters= jsonProp.reference.filterParamaters;
 			cf.elementTypes = jsonProp.reference.allowedElementTypes;
 			cf.nameFeature = jsonProp.reference.nameFeature;
 			if(this.facade.getSelection().first()){
@@ -353,8 +354,23 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 							title : ''
 
 						});
-						Ext.Ajax
-								.request({
+						var theParams={ profile : ORYX.PROFILE,
+										targetProfile : this.targetProfile,
+										elementTypes : this.elementTypes,
+										nameFeature : this.nameFeature,
+										sourceElementId:this.sourceElementId,
+										uuid : ORYX.UUID,
+										assetid : ORYX.UUID,
+										json : ORYX.EDITOR.getSerializedJSON(),
+										ppackage : processPackage,
+										pid : processId,
+										filter : this.filter,
+										action : "getEmfElements"
+						}
+						for(key in this.filterParamaters){
+							theParams[key]=this.filterParamaters[key];
+						}
+						Ext.Ajax.request({
 									url : ORYX.PATH + 'calledelement',
 									method : 'POST',
 									success : function(response) {
@@ -552,20 +568,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 
 										});
 									},
-									params : {
-										profile : ORYX.PROFILE,
-										targetProfile : this.targetProfile,
-										elementTypes : this.elementTypes,
-										nameFeature : this.nameFeature,
-										sourceElementId:this.sourceElementId,
-										uuid : ORYX.UUID,
-										assetid : ORYX.UUID,
-										json : ORYX.EDITOR.getSerializedJSON(),
-										ppackage : processPackage,
-										pid : processId,
-										filter : this.filter,
-										action : "getEmfElements"
-									}
+									params : theParams
 								});
 					}
 				});

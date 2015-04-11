@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -23,8 +22,6 @@ import org.junit.Test;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OutputPort;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;

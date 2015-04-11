@@ -6,14 +6,11 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.dd.di.DiagramElement;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.VdmlElement;
 
 public enum VdmlRoleCollaborationStencil implements VdmlStencilInfo {
     VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "RoleCollaborationDiagram"),

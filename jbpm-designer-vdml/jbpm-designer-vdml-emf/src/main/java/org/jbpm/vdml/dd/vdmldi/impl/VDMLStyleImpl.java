@@ -3,10 +3,8 @@
 package org.jbpm.vdml.dd.vdmldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.jbpm.vdml.dd.vdmldi.VDMLStyle;
-
 import org.omg.dd.di.impl.StyleImpl;
 
 /**

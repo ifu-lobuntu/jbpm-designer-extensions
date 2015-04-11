@@ -753,6 +753,25 @@
 					"description" : "",
 					"readonly" : false,
 					"optional" : false
+				},
+				{
+					"id" : "activity",
+					"type" : "eobjectref",
+					"title" : "VDML Activity",
+					"value" : "",
+					"binding" : "anyAttribute.vdmlElement",
+					"description" : "",
+					"readonly" : false,
+					"optional" : false,
+					"reference":{
+						"targetProfile":"vdcol",
+						"allowedElementTypes":"Activity",
+						"nameFeature" : "name",
+						"filter" : "activitiesInCollaboration", 
+						"filterParamaters" : {
+							"vdmlElementBinding":"anyAttribute.vdmlElement"
+						}
+					}
 				}
 		    ]
 		},
@@ -1020,10 +1039,26 @@
 					"wrapLines" : true,
 					"binding" : "casePlanModel.id",
 					"hidden" : true
+				},
+				{
+					"id" : "capabilityMethod",
+					"type" : "eobjectref",
+					"title" : "VDML CapabilityMethod",
+					"value" : "",
+					"binding" : "anyAttribute.vdmlElement",
+					"description" : "",
+					"readonly" : false,
+					"optional" : false,
+					"reference":{
+						"targetProfile":"vdcol",
+						"allowedElementTypes":"CapabilityMethod",
+						"nameFeature" : "name"
+					}
 				}
 			]
 		},
 		{
+			
 				"type" : "node",
 				"id" : "Stage",
 				"title" : "Stage",
@@ -1850,7 +1885,8 @@
 								"from" : "planItem",
 								"to" : [
 									"entryCriterion",
-									"exitCriterion"
+									"exitCriterion",
+									"containerExitCriterion"
 								]
 							},
 							{
@@ -1941,6 +1977,12 @@
 					"role" : "entryCriterion",
 					"connects" : [
 							{
+								"from" : "discretionaryItem",
+								"to" : [
+									"entryCriterion"
+								]
+							},
+							{
 								"from" : "planItem",
 								"to" : [
 									"entryCriterion"
@@ -2009,19 +2051,19 @@
   			{
 				"role" : "diagram",
 				"contains" : [
-						"case"
+						"case","containerExitCriterion"
 				]
 			},
 			{
 				"role" : "case",
 				"contains" : [
-						"planItem", "caseFileItem","entryCriterion","exitCriterion","event", "milestone","discretionaryItem"
+						"planItem", "caseFileItem","entryCriterion","exitCriterion","event", "milestone","discretionaryItem","containerExitCriterion"
 				]
 			},
 			{
 				"role" : "stage",
 				"contains" : [
-					"planItem","entryCriterion","exitCriterion","event", "milestone","discretionaryItem"
+					"planItem","entryCriterion","exitCriterion","event", "milestone","discretionaryItem","containerExitCriterion"
 				]
 			},
 			{

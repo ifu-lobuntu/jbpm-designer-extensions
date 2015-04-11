@@ -1,20 +1,15 @@
 package org.jbpm.designer.cmmn;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.bpmn2.Bpmn2Package;
-import org.eclipse.bpmn2.util.Bpmn2ResourceFactoryImpl;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
@@ -39,8 +34,6 @@ import org.omg.cmmn.TCase;
 import org.omg.cmmn.TDefinitions;
 import org.omg.cmmn.TStage;
 import org.omg.cmmn.util.CMMNResourceFactoryImpl;
-import org.omg.cmmn.util.CmmnXmlHelper;
-import org.omg.cmmn.util.QNameURIHandler;
 import org.omg.dd.dc.DCFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,6 +48,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     private static final String STENCILSET_PATH = "stencilsets/cmmn/cmmn.json";
     Map<String,EStructuralFeature> customFeatures=new HashMap<String, EStructuralFeature>();{
         customFeatures.put("externalProcess", JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess());
+        customFeatures.put("vdmlElement", JbpmextPackage.eINSTANCE.getDocumentRoot_VdmlElement());
     }
     static Logger _logger = LoggerFactory.getLogger(CmmnProfileImpl.class);
 
@@ -143,14 +137,18 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         super.prepareResourceSet(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
         new Bpmn2EmfProfile().prepareResourceSet(resourceSet);
-        IEmfProfile cd = getOtherProfile("classdiagram");
+        IEmfProfile cd = getOtherProfile("ucd");
+        if(cd!=null){
+            cd.prepareResourceSet(resourceSet);
+        }
+        cd = getOtherProfile("vdcol");
         if(cd!=null){
             cd.prepareResourceSet(resourceSet);
         }
         UriHelper.setPlatformUriHandler(resourceSet, getUriHandler());
     }
     @Override
-    protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
+    public DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
         return new CmmnCalledElementHelper(this);
     }
     @Override

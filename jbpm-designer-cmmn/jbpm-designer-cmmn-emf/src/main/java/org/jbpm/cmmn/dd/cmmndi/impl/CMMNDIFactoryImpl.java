@@ -5,12 +5,15 @@ package org.jbpm.cmmn.dd.cmmndi.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.jbpm.cmmn.dd.cmmndi.*;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
+import org.jbpm.cmmn.dd.cmmndi.CMMNDiagramElement;
+import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
+import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
+import org.jbpm.cmmn.dd.cmmndi.CMMNStyle;
 
 /**
  * <!-- begin-user-doc -->

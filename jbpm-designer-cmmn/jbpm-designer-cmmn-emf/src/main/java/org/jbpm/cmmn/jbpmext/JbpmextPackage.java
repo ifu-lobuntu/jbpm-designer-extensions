@@ -103,13 +103,22 @@ public interface JbpmextPackage extends EPackage {
     int DOCUMENT_ROOT__EXTERNAL_PROCESS = 3;
 
     /**
+     * The feature id for the '<em><b>Vdml Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENT_ROOT__VDML_ELEMENT = 4;
+
+    /**
      * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENT_ROOT_FEATURE_COUNT = 4;
+    int DOCUMENT_ROOT_FEATURE_COUNT = 5;
 
     /**
      * The number of operations of the '<em>Document Root</em>' class.
@@ -175,6 +184,17 @@ public interface JbpmextPackage extends EPackage {
     EReference getDocumentRoot_ExternalProcess();
 
     /**
+     * Returns the meta object for the reference '{@link org.jbpm.cmmn.jbpmext.DocumentRoot#getVdmlElement <em>Vdml Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Vdml Element</em>'.
+     * @see org.jbpm.cmmn.jbpmext.DocumentRoot#getVdmlElement()
+     * @see #getDocumentRoot()
+     * @generated
+     */
+    EReference getDocumentRoot_VdmlElement();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -238,6 +258,14 @@ public interface JbpmextPackage extends EPackage {
          * @generated
          */
         EReference DOCUMENT_ROOT__EXTERNAL_PROCESS = eINSTANCE.getDocumentRoot_ExternalProcess();
+
+        /**
+         * The meta object literal for the '<em><b>Vdml Element</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__VDML_ELEMENT = eINSTANCE.getDocumentRoot_VdmlElement();
 
     }
 

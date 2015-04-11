@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
+import org.jbpm.designer.repository.Repository;
 
 public interface IEmfProfile {
     Resource.Factory getResourceFactory();
@@ -27,5 +28,9 @@ public interface IEmfProfile {
     String getName();
 
     Map<String, Object> buildDefaultResourceOptions();
+
+    Repository getRepository();
+
+    DefaultPotentialReferenceHelper createPotentialReferenceHelper();
 
 }

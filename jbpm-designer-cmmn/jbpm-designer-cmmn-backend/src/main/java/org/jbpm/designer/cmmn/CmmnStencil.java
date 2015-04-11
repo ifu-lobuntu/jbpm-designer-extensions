@@ -23,7 +23,6 @@ import org.omg.cmmn.TPlanItemOnPart;
 import org.omg.cmmn.TPlanItemStartTrigger;
 import org.omg.cmmn.TSentry;
 import org.omg.dd.di.DiagramElement;
-import org.omg.dd.di.Edge;
 
 public enum CmmnStencil implements StencilInfo {
     CMMN_DIAGRAM(CMMNPackage.eINSTANCE.getTDefinitions(), CMMNDIPackage.eINSTANCE.getCMMNDiagram(), "CMMNDiagram"),

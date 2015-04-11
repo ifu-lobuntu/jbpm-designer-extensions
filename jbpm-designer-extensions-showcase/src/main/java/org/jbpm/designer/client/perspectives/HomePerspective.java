@@ -4,9 +4,9 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import org.guvnor.common.services.shared.security.KieWorkbenchACL;
 import org.jboss.errai.ioc.client.container.SyncBeanManager;
 import org.kie.workbench.common.screens.projecteditor.client.menu.ProjectMenu;
-import org.guvnor.common.services.shared.security.KieWorkbenchACL;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcePresenter;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcesMenu;
 import org.uberfire.client.annotations.Perspective;

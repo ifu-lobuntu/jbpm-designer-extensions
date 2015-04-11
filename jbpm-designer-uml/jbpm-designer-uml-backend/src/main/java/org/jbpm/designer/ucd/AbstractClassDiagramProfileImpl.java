@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;

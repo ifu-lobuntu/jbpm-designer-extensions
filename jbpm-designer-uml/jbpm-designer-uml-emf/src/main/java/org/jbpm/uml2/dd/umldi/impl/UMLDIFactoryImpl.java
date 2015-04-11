@@ -7,7 +7,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.jbpm.uml2.dd.umldi.*;
+import org.jbpm.uml2.dd.umldi.UMLCompartment;
+import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.jbpm.uml2.dd.umldi.UMLEdge;
+import org.jbpm.uml2.dd.umldi.UMLShape;
+import org.jbpm.uml2.dd.umldi.UMLStyle;
 
 /**
  * <!-- begin-user-doc -->

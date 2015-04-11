@@ -7,12 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.DefaultPotentialReferenceHelper;
 import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
-import org.jbpm.designer.repository.UriUtils;
-import org.jbpm.designer.util.Utils;
-import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
+import org.jbpm.designer.extensions.emf.util.IEmfProfile;
 import org.omg.smm.BaseNMeasureRelationship;
 import org.omg.smm.BinaryMeasure;
 import org.omg.smm.CollectiveMeasure;
@@ -32,14 +29,15 @@ import org.omg.vdml.ValuePropositionComponent;
 
 public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelper {
 
-    public VdmlPotentialReferenceHelper(IEmfDiagramProfile profile) {
+
+    public VdmlPotentialReferenceHelper(IEmfProfile profile) {
         super(profile);
     }
 
     @Override
     public String findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
         String filter = req.getParameter("filter");
-        if (filter == null || filter.trim().isEmpty()) {
+        if (isEmpty(filter)) {
             try {
                 return super.findPotentialReferences(req, action, processId);
             } catch (Exception e) {
@@ -48,23 +46,46 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
             }
         } else {
             if ("valueElementAggregatedFrom".equals(filter)) {
-                List<? extends EObject> results = findPotentialAggregatedFrom(req);
-                return toEobjectReferenceJson(results, "name").toString();
+                return toEobjectReferenceJson(findPotentialAggregatedFrom(req));
             } else if ("valueElementAggregatedTo".equals(filter)) {
-                List<? extends EObject> results = findPotentialAggregatedTo(req);
-                return toEobjectReferenceJson(results, "name").toString();
+                return toEobjectReferenceJson(findPotentialAggregatedTo(req));
             } else if ("valueElementMeasure".equals(filter)) {
-                List<? extends EObject> results = findPotentialMeasure(req);
-                return toEobjectReferenceJson(results, "name").toString();
+                return toEobjectReferenceJson(findPotentialMeasure(req));
+            } else if ("activitiesInCollaboration".equals(filter)) {
+                return toEobjectReferenceJson(findActivitiesInCollaboration(req));
             }
         }
         return null;
     }
 
+    protected String toEobjectReferenceJson(List<? extends EObject> results) {
+        return toEobjectReferenceJson(results, "name").toString();
+    }
+    /**
+     * NB!! Expects calling EObjects to have a "vdmlElement" feature 
+     * @param req
+     * @return
+     * @throws Exception
+     */
+    private List<? extends EObject> findActivitiesInCollaboration(HttpServletRequest req) throws Exception {
+        EObject ve = getSourceElement(req);
+        IEmfDiagramProfile sourceProfile = getSourceProfile(req);
+        String vdmlElementBinding=req.getParameter("vdmlElementBinding");
+        Object vdmlElement=null;
+        EObject parent=ve;
+        while(!(vdmlElement instanceof Collaboration || parent==null)){
+            vdmlElement=getValue(sourceProfile, parent, vdmlElementBinding);
+            parent=parent.eContainer();
+        }
+        if(vdmlElement instanceof Collaboration){
+            return ((Collaboration) vdmlElement).getActivity();
+        }else{
+            return Collections.emptyList();
+        }
+    }
+
     private List<? extends EObject> findPotentialMeasure(HttpServletRequest req) throws Exception {
-        String sourceElementId = req.getParameter("sourceElementId");
-        Collaboration collaboration = getCollaborationInScope(req);
-        ValueElement ve = (ValueElement) collaboration.eResource().getEObject(sourceElementId);
+        ValueElement ve = (ValueElement) getSourceElement(req);
         List<Measure> results = new ArrayList<Measure>();
         for (ValueElement valueElement : ve.getAggregatedTo()) {
             if (valueElement.getValueMeasurement() != null && valueElement.getValueMeasurement().getCharacteristicDefinition() != null) {
@@ -99,17 +120,8 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
         }
     }
 
-    private Collaboration getCollaborationInScope(HttpServletRequest req) throws Exception {
-        String assetContent = UriUtils.decode(Utils.getEncodedParam(req, "json"));
-        String assetId = Utils.getEncodedParam(req, "assetid");
-        XMLResource res = (XMLResource) profile.createMarshaller(EMFVFSURIConverter.toPlatformResourceURI(assetId)).getResource(assetContent, "");
-        return VdmlHelper.getCollaboration(res);
-    }
-
     private List<ValueElement> findPotentialAggregatedFrom(HttpServletRequest req) throws Exception {
-        String sourceElementId = req.getParameter("sourceElementId");
-        Collaboration collaboration = getCollaborationInScope(req);
-        ValueElement ve = (ValueElement) collaboration.eResource().getEObject(sourceElementId);
+        ValueElement ve = (ValueElement) getSourceElement(req);
         if (ve instanceof ValueAdd) {
             if (ve.eContainer().eContainer() instanceof Collaboration) {
                 List<ValueElement> results = new ArrayList<ValueElement>();
@@ -161,9 +173,7 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
     }
 
     private List<ValueElement> findPotentialAggregatedTo(HttpServletRequest req) throws Exception {
-        String sourceElementId = req.getParameter("sourceElementId");
-        Collaboration collaboration = getCollaborationInScope(req);
-        ValueElement ve = (ValueElement) collaboration.eResource().getEObject(sourceElementId);
+        ValueElement ve = (ValueElement) getSourceElement(req);
         if (ve instanceof ValueAdd) {
             if (ve.eContainer().eContainer() instanceof Collaboration) {
                 List<ValueElement> results = new ArrayList<ValueElement>();

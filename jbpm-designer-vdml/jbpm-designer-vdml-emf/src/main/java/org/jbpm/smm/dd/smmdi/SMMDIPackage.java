@@ -5,9 +5,7 @@ package org.jbpm.smm.dd.smmdi;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
-
 import org.omg.dd.di.DIPackage;
 
 /**

@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,8 +38,6 @@ import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.jbpm.designer.web.profile.IDiagramProfile.IDiagramUnmarshaller;
 import org.omg.dd.dc.Color;
-import org.omg.dd.dc.DCPackage;
-import org.omg.dd.di.DIPackage;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Edge;
 import org.uberfire.workbench.events.NotificationEvent;
@@ -50,16 +47,18 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     private boolean validate;
     private ShapeMap shapeMap;
     private EmfToJsonHelper helper;
+    private URI uri;
 
-    public GenericEmfToJsonDiagramUnmarshaller(IEmfDiagramProfile profile) {
+    public GenericEmfToJsonDiagramUnmarshaller(IEmfDiagramProfile profile, URI uri) {
         super(profile);
+        this.uri=uri;
     }
 
     /**
      * For tests only
      */
-    public GenericEmfToJsonDiagramUnmarshaller(IEmfDiagramProfile profile, boolean validate) {
-        super(profile);
+    public GenericEmfToJsonDiagramUnmarshaller(IEmfDiagramProfile profile, URI uri, boolean validate) {
+        this(profile,uri);
         this.validate = validate;
     }
 
@@ -330,7 +329,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         profile.prepareResourceSet(resourceSet);
         resourceSet.getLoadOptions().putAll(profile.buildDefaultResourceOptions());
 
-        XMLResource resource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
+        XMLResource resource = (XMLResource) resourceSet.createResource(uri);
         resource.getDefaultSaveOptions().putAll(profile.buildDefaultResourceOptions());
         resource.getDefaultLoadOptions().putAll(profile.buildDefaultResourceOptions());
         resource.setEncoding("UTF-8");

@@ -1,9 +1,6 @@
 package org.jbpm.designer.uml.codegen.codemodel;
 
-import static org.jbpm.designer.uml.codegen.util.NameConverter.capitalize;
-import static org.jbpm.designer.uml.codegen.util.NameConverter.decapitalize;
-import static org.jbpm.designer.uml.codegen.util.NameConverter.toUnderscoreStyle;
-import static org.jbpm.designer.uml.codegen.util.NameConverter.toValidVariableName;
+import static org.jbpm.designer.uml.codegen.util.NameConverter.*;
 
 import java.util.HashMap;
 import java.util.Map;

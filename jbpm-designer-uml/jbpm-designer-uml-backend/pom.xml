@@ -29,6 +29,8 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
     </dependency>
+    
+    <!-- Form Modeler -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-form-modeler-service-core</artifactId>
@@ -36,6 +38,14 @@
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-form-modeler-lookup</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-common</artifactId>
     </dependency>
     <!-- Transitive dependency -->
     <dependency>
@@ -45,10 +55,6 @@
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-internal</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-form-modeler-common</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
@@ -85,10 +91,6 @@
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-backend</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-form-modeler-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.eclipse.uml2</groupId>

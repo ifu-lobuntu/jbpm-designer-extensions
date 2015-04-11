@@ -19,7 +19,6 @@ import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
-import org.jbpm.designer.cmmn.CmmnProfileImpl;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.GenericEmfToJsonDiagramUnmarshaller;
@@ -42,13 +41,11 @@ import org.omg.cmmn.TProcessTask;
 import org.omg.cmmn.TRole;
 import org.omg.cmmn.TSentry;
 import org.omg.cmmn.TStage;
-import org.omg.cmmn.util.CMMNResourceFactoryImpl;
 import org.omg.cmmn.util.CMMNResourceImpl;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.Color;
 import org.omg.dd.dc.DCFactory;
 import org.omg.dd.dc.Point;
-import org.omg.dd.di.DIFactory;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Style;
 
@@ -57,7 +54,7 @@ public class AbstractCmmnDiagramMarshallingTest {
     protected CmmnProfileImpl profile = new CmmnProfileImpl();{
         profile.setUriHandler(new TestUriHandler());
     }
-    protected GenericEmfToJsonDiagramUnmarshaller unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile);
+    protected GenericEmfToJsonDiagramUnmarshaller unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile,URI.createURI("file:/dummy." + profile.getSerializedModelExtension()),true);
     protected GenericJsonToEmfDiagramMarshaller marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
     protected CMMNResourceImpl inputResource;
     protected ResourceSet resourceSet;

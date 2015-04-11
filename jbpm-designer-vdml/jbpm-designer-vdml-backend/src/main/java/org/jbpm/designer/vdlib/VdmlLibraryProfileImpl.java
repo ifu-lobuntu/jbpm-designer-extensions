@@ -85,7 +85,7 @@ public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl{
     }
 
     @Override
-    protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
+    public DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
         return new VdmlPotentialReferenceHelper(this);
     }
 

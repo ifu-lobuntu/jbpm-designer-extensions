@@ -8,10 +8,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +28,6 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
@@ -41,9 +39,11 @@ import org.jbpm.designer.notification.DesignerNotificationEvent;
 import org.jbpm.designer.repository.UriUtils;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.util.ConfigurationProvider;
+import org.jbpm.designer.util.Utils;
 import org.jbpm.designer.web.plugin.IDiagramPlugin;
 import org.jbpm.designer.web.plugin.impl.PluginServiceImpl;
 import org.jbpm.designer.web.profile.IDiagramProfile;
+import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.backend.vfs.Path;
@@ -63,7 +63,8 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     private String _storeSVGonSaveOption;
     @Inject
     Event<DesignerNotificationEvent> notification;
-
+    @Inject
+    Instance<HttpServletRequest> request;
     @Inject
     User user;
     private LinkedStencilSet stencilSetValidator;
@@ -124,7 +125,9 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
             for (LinkedStencil ls : this.stencilSetValidator.getLinkedStencils()) {
                 for (LinkedProperty lp : ls.getProperties().values()) {
                     if (lp.getProperty().getReference() != null) {
-                        lp.init(getEPackages());
+                        for (IEmfProfile iEmfProfile : this.otherProfiles) {
+                            lp.init(iEmfProfile.getEPackages());//Because we don't know which packages could be loaded
+                        }
                     }
                 }
             }
@@ -272,11 +275,17 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     }
 
     public IDiagramMarshaller createMarshaller() {
-        throw new UnsupportedOperationException("EMF Diagram Marshallars have to be created with a URI to allow for the correct resolution of external files");
+        String uuid = Utils.getUUID(request.get());
+        return new GenericJsonToEmfDiagramMarshaller(this, EMFVFSURIConverter.toPlatformResourceURI(uuid));
+    }
+
+    public IDiagramUnmarshaller createUnmarshaller(URI uri) {
+        return new GenericEmfToJsonDiagramUnmarshaller(this, uri);
     }
 
     public IDiagramUnmarshaller createUnmarshaller() {
-        return new GenericEmfToJsonDiagramUnmarshaller(this);
+        String uuid = Utils.getUUID(request.get());
+        return new GenericEmfToJsonDiagramUnmarshaller(this, EMFVFSURIConverter.toPlatformResourceURI(uuid));
     }
 
     @Override
@@ -320,18 +329,6 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
         return "http://oryx-editor.org/stencilsets/extensions/bpmncosts-2.0#";
     }
 
-    private boolean isEmpty(final CharSequence str) {
-        if (str == null || str.length() == 0) {
-            return true;
-        }
-        for (int i = 0, length = str.length(); i < length; i++) {
-            if (str.charAt(i) != ' ') {
-                return false;
-            }
-        }
-        return true;
-    }
-
     @Override
     public void logInfo(String string) {
         System.out.println(string);
@@ -363,7 +360,26 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     @Override
     public boolean processRequestForPotentialReferences(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         try {
-            String output = createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
+            String targetProfileName = req.getParameter("targetProfile");
+            IEmfProfile targetProfile;
+            if (isEmpty(targetProfileName)) {
+                targetProfile = this;
+            } else {
+                targetProfile = getOtherProfile(targetProfileName);
+            }
+            String assetContent = UriUtils.decode(Utils.getEncodedParam(req, "json"));
+            String assetId = Utils.getEncodedParam(req, "assetid");
+            if (!(isEmpty(assetId) || isEmpty(assetContent))) {
+                XMLResource res = (XMLResource) createMarshaller(EMFVFSURIConverter.toPlatformResourceURI(assetId)).getResource(assetContent, "");
+                String sourceElementId = req.getParameter("sourceElementId");
+                req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_RESOURCE, res);
+                if (!isEmpty(sourceElementId)) {
+                    req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, res.getEObject(sourceElementId));
+                }
+            }
+
+            req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_PROFILE, this);
+            String output = targetProfile.createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
             if (output == null) {
                 return false;
             } else {
@@ -377,8 +393,8 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
         }
     }
 
-    protected DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
-        return new DefaultPotentialReferenceHelper(this);
+    protected boolean isEmpty(String targetProfileName) {
+        return targetProfileName == null || targetProfileName.trim().isEmpty();
     }
 
     @Override

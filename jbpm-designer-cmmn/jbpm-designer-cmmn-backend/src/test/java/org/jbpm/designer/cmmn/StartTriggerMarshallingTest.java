@@ -1,8 +1,8 @@
 package org.jbpm.designer.cmmn;
 
 import org.junit.Test;
-import org.omg.cmmn.CaseFileItemTransition;
 import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.CaseFileItemTransition;
 import org.omg.cmmn.MultiplicityEnum;
 import org.omg.cmmn.PlanItemTransition;
 import org.omg.cmmn.TCaseFileItem;

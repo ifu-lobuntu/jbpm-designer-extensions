@@ -1,8 +1,8 @@
 package org.jbpm.designer.cmmn;
 
 import org.eclipse.bpmn2.Bpmn2Package;
+import org.eclipse.bpmn2.Process;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
-import org.jbpm.designer.cmmn.CmmnJsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.junit.Test;
 import org.omg.cmmn.CMMNFactory;
@@ -16,7 +16,6 @@ import org.omg.cmmn.TPlanItem;
 import org.omg.cmmn.TProcess;
 import org.omg.cmmn.TProcessParameter;
 import org.omg.cmmn.TProcessTask;
-import org.eclipse.bpmn2.Process;
 
 public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
 

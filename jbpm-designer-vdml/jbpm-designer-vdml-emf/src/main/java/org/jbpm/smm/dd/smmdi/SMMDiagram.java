@@ -3,7 +3,6 @@
 package org.jbpm.smm.dd.smmdi;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.omg.dd.di.Diagram;
 
 /**

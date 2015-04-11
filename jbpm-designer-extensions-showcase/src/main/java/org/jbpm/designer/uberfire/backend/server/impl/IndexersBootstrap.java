@@ -18,16 +18,17 @@ package org.jbpm.designer.uberfire.backend.server.impl;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
-import org.uberfire.ext.metadata.engine.Indexer;
-import org.uberfire.ext.metadata.io.IndexersFactory;
 import org.uberfire.commons.services.cdi.Startup;
 import org.uberfire.commons.services.cdi.StartupType;
+import org.uberfire.ext.metadata.engine.Indexer;
+import org.uberfire.ext.metadata.io.IndexersFactory;
 
 @Startup(StartupType.EAGER)
 @ApplicationScoped

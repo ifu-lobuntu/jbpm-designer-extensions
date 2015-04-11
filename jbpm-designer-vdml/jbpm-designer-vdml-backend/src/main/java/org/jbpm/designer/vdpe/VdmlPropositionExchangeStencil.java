@@ -13,10 +13,8 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Role;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueProposition;
-import org.omg.vdml.VdmlElement;
 
 public enum VdmlPropositionExchangeStencil implements VdmlStencilInfo {
     VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "PropositionExchangeDiagram"),

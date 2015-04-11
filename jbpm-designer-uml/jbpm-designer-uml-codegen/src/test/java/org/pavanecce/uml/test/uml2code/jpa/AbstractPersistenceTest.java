@@ -7,7 +7,6 @@ import javax.script.ScriptContext;
 import javax.script.ScriptException;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 import org.pavanecce.common.test.util.ConstructionCaseExample;

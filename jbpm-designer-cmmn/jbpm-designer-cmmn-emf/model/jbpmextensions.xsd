@@ -4,5 +4,6 @@
 	targetNamespace="http://www.jbpm.org/cmmn/jbpmext"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<attribute name="externalProcess" type="QName"/>
+    <attribute name="vdmlElement" type="QName"/>
 
 </schema>

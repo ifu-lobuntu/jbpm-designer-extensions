@@ -3,7 +3,6 @@
 package org.jbpm.smm.dd.smmdi;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.dd.jbpmdd.CollapsibleShape;
 

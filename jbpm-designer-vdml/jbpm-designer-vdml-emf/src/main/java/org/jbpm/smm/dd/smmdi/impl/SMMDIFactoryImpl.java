@@ -5,12 +5,14 @@ package org.jbpm.smm.dd.smmdi.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.jbpm.smm.dd.smmdi.*;
+import org.jbpm.smm.dd.smmdi.SMMDIFactory;
+import org.jbpm.smm.dd.smmdi.SMMDIPackage;
+import org.jbpm.smm.dd.smmdi.SMMDiagram;
+import org.jbpm.smm.dd.smmdi.SMMEdge;
+import org.jbpm.smm.dd.smmdi.SMMShape;
+import org.jbpm.smm.dd.smmdi.SMMStyle;
 
 /**
  * <!-- begin-user-doc -->

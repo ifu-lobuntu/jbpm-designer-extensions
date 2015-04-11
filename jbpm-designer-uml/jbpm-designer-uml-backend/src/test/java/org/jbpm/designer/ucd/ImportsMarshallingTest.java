@@ -14,7 +14,7 @@ import org.junit.Test;
 public class ImportsMarshallingTest extends AbstractClassDiagramMarshallingTest {
     @Test
     public void testClassImport() throws Exception {
-        Package pkg = (Package) resourceSet.getResource(URI.createPlatformResourceURI("/jbpm-designer-ucd-backend/src/test/resources/imports.uml", true), true)
+        Package pkg = (Package) resourceSet.getResource(URI.createPlatformResourceURI("/jbpm-designer-uml-backend/src/test/resources/imports.uml", true), true)
                 .getContents().get(0);
         Class myClass = (Class) jbpmPackage.getOwnedType("MyClass", false, UMLPackage.eINSTANCE.getClass_(), true);
         addShapeFor(myClass);
@@ -25,7 +25,7 @@ public class ImportsMarshallingTest extends AbstractClassDiagramMarshallingTest 
     }
     @Test
     public void testInterfaceImport() throws Exception {
-        Package pkg = (Package) resourceSet.getResource(URI.createPlatformResourceURI("/jbpm-designer-ucd-backend/src/test/resources/imports.uml", true), true)
+        Package pkg = (Package) resourceSet.getResource(URI.createPlatformResourceURI("/jbpm-designer-uml-backend/src/test/resources/imports.uml", true), true)
                 .getContents().get(0);
         Class myClass = (Class) jbpmPackage.getOwnedType("MyClass", false, UMLPackage.eINSTANCE.getClass_(), true);
         addShapeFor(myClass);
@@ -39,7 +39,7 @@ public class ImportsMarshallingTest extends AbstractClassDiagramMarshallingTest 
     }
     @Test
     public void testAssociationToEnumeration() throws Exception{
-        Package pkg = (Package) resourceSet.getResource(URI.createPlatformResourceURI("/jbpm-designer-ucd-backend/src/test/resources/imports.uml", true), true)
+        Package pkg = (Package) resourceSet.getResource(URI.createPlatformResourceURI("/jbpm-designer-uml-backend/src/test/resources/imports.uml", true), true)
                 .getContents().get(0);
         Class class1=UMLFactory.eINSTANCE.createClass();
         class1.setName("MyClass");
