@@ -6,7 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.smm.dd.smmdi.SMMDIFactory;
 import org.jbpm.smm.dd.smmdi.SMMDIPackage;
 import org.jbpm.smm.dd.smmdi.SMMEdge;

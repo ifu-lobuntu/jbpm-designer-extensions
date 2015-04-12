@@ -5,9 +5,9 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
@@ -20,6 +20,8 @@ import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Measure;
+import org.omg.vdml.BusinessItem;
+import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.VDMLFactory;
@@ -46,6 +48,34 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
 
     public AbstractVdmlJsonToEmfHelper(ShapeMap shapeMap, Class<? extends VdmlStencilInfo> stencil) {
         super(shapeMap, stencil);
+    }
+
+    protected MeasuredCharacteristic buildMeasuredCharacteristic(String name) {
+        Measure valueMeasure = (Measure) sourceShape.getUnboundProperty(name);
+        MeasuredCharacteristic vm = null;
+        if (valueMeasure != null && valueMeasure.getTrait() != null) {
+            vm = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+            vm.setCharacteristicDefinition(valueMeasure.getTrait());
+        }
+        return vm;
+    }
+
+    protected BusinessItem buildBusinessItem(String name) {
+        BusinessItem result = null;
+        BusinessItemDefinition deliverableDefinition = (BusinessItemDefinition) sourceShape.getUnboundProperty(name);
+        if (deliverableDefinition != null) {
+            for (BusinessItem bi : owningCollaboration.getBusinessItem()) {
+                if (bi.getDefinition() != null && bi.getDefinition() == deliverableDefinition) {
+                    result = bi;
+                }
+            }
+            if (result == null) {
+                result = VDMLFactory.eINSTANCE.createBusinessItem();
+                owningCollaboration.getBusinessItem().add(result);
+                result.setDefinition(deliverableDefinition);
+            }
+        }
+        return result;
     }
 
     @Override
@@ -78,14 +108,6 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     @Override
     public Object convertFromString(LinkedProperty property, String string, Class<?> targetType) {
         return null;
-    }
-
-    protected MeasuredCharacteristic ensureMeasuredCharacteristicDefinition(Measure valueMeasure, MeasuredCharacteristic mc) {
-        if (mc == null) {
-            mc = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
-        }
-        mc.setCharacteristicDefinition(valueMeasure.getTrait());
-        return mc;
     }
 
     @Override

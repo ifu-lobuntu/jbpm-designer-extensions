@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.Class;
-import org.jbpm.designer.extensions.emf.util.IEmfProfile;
+import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.filters.FilterByExtension;

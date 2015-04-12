@@ -59,6 +59,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
         Package pkg = (Package) d.getUmlElement();
         ValueDeliveryModel vdm = createValueDeliveryModel(result, pkg);
         BusinessItemLibrary bil = createBusinessItemLibrary(result, pkg, vdm);
+        bil.setName(json.getProperty("name"));
         owningBusinessItemLibrary = bil;
         return d;
     }

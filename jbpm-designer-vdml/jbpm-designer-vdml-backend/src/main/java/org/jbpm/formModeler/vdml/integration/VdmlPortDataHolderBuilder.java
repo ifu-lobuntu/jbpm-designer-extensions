@@ -18,7 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.jbpm.designer.extensions.emf.util.IEmfProfile;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.filters.FilterByExtension;
@@ -67,7 +68,7 @@ public class VdmlPortDataHolderBuilder implements RangedDataHolderBuilder {
     }
 
     private Map<String, String> getThem(String path) {
-        String[] elementTypes = { "Port" };
+        String[] elementTypes = { "InputPort","OutputPort" };
         IEmfProfile targetDiagramProfile = profile;
         ResourceSet rst = new ResourceSetImpl();
         targetDiagramProfile.prepareResourceSet(rst);
@@ -82,7 +83,7 @@ public class VdmlPortDataHolderBuilder implements RangedDataHolderBuilder {
         for (Asset<?> asset : listAssetsRecursively) {
             String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
             org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createPlatformResourceURI(id, true);
-            rst.getResource(uri, true);
+            EcoreUtil.resolveAll(rst.getResource(uri, true));
         }
         Map<String, String> portInfo = new HashMap<String, String>();
         for (Resource resource : new ArrayList<Resource>(rst.getResources())) {

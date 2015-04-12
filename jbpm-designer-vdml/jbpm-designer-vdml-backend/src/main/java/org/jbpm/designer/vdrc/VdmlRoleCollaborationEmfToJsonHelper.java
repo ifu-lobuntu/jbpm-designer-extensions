@@ -6,9 +6,9 @@ import java.util.Map;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
@@ -17,7 +17,6 @@ import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Activity;
-import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Role;
@@ -28,7 +27,6 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
         super(shapeMap, VdmlRoleCollaborationStencil.class);
 
     }
-
 
     @Override
     public Object caseCollaboration(Collaboration object) {
@@ -58,23 +56,22 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
         if (object.getRecipient() != null) {
             targetShape.putProperty("receivingActivityName", ((VdmlElement) object.getRecipient().eContainer()).getName());
         }
+        putBusinessItem(object.getDeliverable(), "deliverableDefinition");
+        putMeasuredCharacteristic("durationMeasure", object.getDuration());
         return super.caseDeliverableFlow(object);
-    }
-
-    @Override
-    public Object caseCapabilityMethod(CapabilityMethod object) {
-        return super.caseCapabilityMethod(object);
     }
 
     @Override
     public StencilInfo findStencilByElement(EObject me, DiagramElement de) {
         return VdmlRoleCollaborationStencil.findStencilByElement(me, de);
     }
+
     public void preprocessResource() {
         Map<VdmlElement, VDMLDiagramElement> map = buildVdmlElementToDiagramElementMap();
         buildRoleShapes(map, 200d, 70d);
         buildDeliverableFlowEdges(map);
     }
+
     private void buildDeliverableFlowEdges(Map<VdmlElement, VDMLDiagramElement> map) {
         OrphanFilter of = getOrphanFilter();
         TreeIterator<EObject> allContents = owningCollaboration.eAllContents();

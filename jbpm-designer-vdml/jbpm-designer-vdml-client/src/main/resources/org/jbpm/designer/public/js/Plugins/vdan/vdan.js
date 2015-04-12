@@ -16,7 +16,7 @@ ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/vdan#" ]= {
  * @extends Clazz
  * @param {Object} facade The facade of the editor
  */
-ORYX.Plugins.VDAN = Clazz.extend(
+ORYX.Plugins.VDAN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 /** @lends ORYX.Plugins.VDAN.prototype */
 {
 	/**
@@ -27,18 +27,29 @@ ORYX.Plugins.VDAN = Clazz.extend(
 	 * @param {Object} facade The facade of the editor
 	 */
 	construct: function(facade) {
+        arguments.callee.$.construct.apply(this, arguments);
 		this.facade = facade;
 		console.log("Initializing VDAN");
 		this.facade.registerOnEvent('layout.vdml.role_lane', this.layoutRoleLanesOnLoad.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.layoutRoleLanesOnLoad.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOUT, this.handleMouseOut.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOVER, this.handleMouseOver.bind(this));
+        this.decoratorUpdaters["DeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
 		ORYX.CONFIG.BORDER_OFFSET=30;
 		console.log("VDAN Initialized");
 	},
-	handlePropertyChanged : function(event) {
-	},
+    updateDeliverableFlowDecorations:function (shape){
+        var dashArray=shape.properties["oryx-istangible"]==true || shape.properties["oryx-istangible"]=="true"?"none":"5,5";
+        shape._paths[0].setAttributeNS(null,"stroke-dasharray",dashArray);
+        if(shape.properties["oryx-deliverabledefinition"]){
+            var name=shape.properties["oryx-deliverabledefinition"].split("|")[0];
+            name=name.substring(name.indexOf("::")+2);
+            shape.properties["oryx-name"]=name;
+            console.log(shape.getLabels());
+            shape.getLabels()[0].text(name);
+            shape.getLabels()[0].update();
+        }
+    },
 	layoutRoleLanesOnLoad : function(event) {
 		try{
 		var previousLowerRight={x:600,y:0};

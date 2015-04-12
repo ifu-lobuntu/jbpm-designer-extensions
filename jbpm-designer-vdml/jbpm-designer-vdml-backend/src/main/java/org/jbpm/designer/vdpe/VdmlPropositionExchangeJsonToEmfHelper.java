@@ -3,7 +3,6 @@ package org.jbpm.designer.vdpe;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
-import org.omg.smm.Measure;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.Role;
 import org.omg.vdml.ValueProposition;
@@ -32,10 +31,9 @@ public class VdmlPropositionExchangeJsonToEmfHelper extends AbstractVdmlJsonToEm
 
     @Override
     public Object caseValuePropositionComponent(ValuePropositionComponent object) {
-        Measure valueMeasure = (Measure) sourceShape.getUnboundProperty("valueMeasure");
-        if (valueMeasure != null) {
-            object.setValueMeasurement(ensureMeasuredCharacteristicDefinition(valueMeasure, object.getValueMeasurement()));
-        }
+        object.setValueMeasurement(buildMeasuredCharacteristic("valueMeasure"));
+        object.setSatisfactionLevel(buildMeasuredCharacteristic("satisfactionLevelMeasure"));
+        object.setPercentageWeight(buildMeasuredCharacteristic("percentageWeightMeasure"));
         return super.caseValuePropositionComponent(object);
     }
 

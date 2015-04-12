@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,6 +17,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.FeatureMap;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.api.IEmfProfile;
+import org.jbpm.designer.extensions.api.IPotentialReferenceHelper;
+import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.Directory;
 import org.jbpm.designer.repository.Repository;
@@ -26,7 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.omg.dd.di.DiagramElement;
 
-public class DefaultPotentialReferenceHelper {
+public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelper {
     public static final String SOURCE_ELEMENT = "sourceElement";
     public static final String SOURCE_RESOURCE = "sourceResource";
     public static final String SOURCE_PROFILE = "sourceProfile";
@@ -70,7 +74,7 @@ public class DefaultPotentialReferenceHelper {
             }
             Collection<EObject> results = new ArrayList<EObject>();
             for (Resource resource : new ArrayList<Resource>(rst.getResources())) {
-                TreeIterator<EObject> ti = resource.getContents().get(0).eAllContents();
+                TreeIterator<EObject> ti = resource.getAllContents();
                 while (ti.hasNext()) {
                     EObject eObject = (EObject) ti.next();
                     if (eObject instanceof DiagramElement) {

@@ -162,6 +162,33 @@
 							]
 						}
 				]
+			},
+			{
+			    "name":"port",
+			    "properties":[
+                    {
+                        "id" : "quantityMeasure",
+                        "type" : "eobjectref",
+                        "title" : "Quantity Measure",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"meas",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+                            "nameFeature" : "name",
+                            "multiSelect" : false
+                        }
+                    },
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    }
+			    ]
 			}
 	],
 	"stencils" : [
@@ -253,7 +280,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","port"
 				],
 				"properties" : [
 				]
@@ -267,7 +294,7 @@
 					"General"
 				],
 				"roles" : [
-					"collaborationOutputPort"
+					"collaborationOutputPort","port"
 				],
 				"description" : "Collaboration Output Port",
 				"view" : "collaboration_output_port.svg",
@@ -278,6 +305,7 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+				                
 				]
 			},
 			{
@@ -301,6 +329,21 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+                    {
+                        "id" : "durationMeasure",
+                        "type" : "eobjectref",
+                        "title" : "Duration Measure",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"meas",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+                            "nameFeature" : "name",
+                            "multiSelect" : false
+                        }
+                    }
 				]
 			},
 			{
@@ -321,7 +364,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","port"
 				],
 				"properties" : [
 				]
@@ -350,7 +393,7 @@
 					}
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","port"
 				],
 				"properties" : [
 						{
@@ -562,7 +605,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","port"
 				],
 				"properties" : [
 				]
@@ -585,7 +628,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","port"
 				],
 				"properties" : [
 				]
@@ -622,6 +665,21 @@
 						"readonly" : false,
 						"optional" : false		
 					},
+                    {
+                        "id" : "durationMeasure",
+                        "type" : "eobjectref",
+                        "title" : "Duration Measure",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"meas",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+                            "nameFeature" : "name",
+                            "multiSelect" : false
+                        }
+                    },
 	                {
 						"id" : "deliverableDefinition",
 						"type" : "eobjectref",
@@ -685,7 +743,36 @@
 								"nameFeature" : "name"
 							},
 							"length" : ""
-		                }
+		                },
+                        {
+                            "id" : "durationMeasure",
+                            "type" : "eobjectref",
+                            "title" : "Duration Measure",
+                            "value" : "",
+                            "description" : "The Measure used to measure the duration",
+                            "readonly" : false,
+                            "optional" : true,
+                            "reference" : {
+                                "targetProfile":"meas",
+                                "allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure",
+                                "nameFeature" : "name"
+                            },
+                            "length" : ""
+                        },	                    {
+	                        "id" : "planningPercentageMeasure",
+	                        "type" : "eobjectref",
+	                        "title" : "Planning Percentage Measure",
+	                        "value" : "",
+	                        "description" : "",
+	                        "readonly" : false,
+	                        "optional" : false,
+	                        "reference":{
+	                            "targetProfile":"meas",
+	                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+	                            "nameFeature" : "name",
+	                            "multiSelect" : false
+	                        }
+	                    }
 				]
 			},
 			{

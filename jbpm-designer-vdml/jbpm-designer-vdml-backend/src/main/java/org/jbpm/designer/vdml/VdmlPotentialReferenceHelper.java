@@ -7,9 +7,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.emf.ecore.EObject;
-import org.jbpm.designer.extensions.emf.util.DefaultPotentialReferenceHelper;
-import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
-import org.jbpm.designer.extensions.emf.util.IEmfProfile;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.api.IEmfProfile;
+import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
 import org.omg.smm.BaseNMeasureRelationship;
 import org.omg.smm.BinaryMeasure;
 import org.omg.smm.CollectiveMeasure;

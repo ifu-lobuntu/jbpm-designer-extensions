@@ -30,19 +30,43 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-cmmn-emf</artifactId>
     </dependency>
+    <!-- Form Modeler -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-service-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-lookup</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-common</artifactId>
+    </dependency>
+    <!-- Designer Extensions -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-extensions-backend</artifactId>
     </dependency>
-    <!-- Transitive dependency -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-emf</artifactId>
+    </dependency>
+    <!-- Designer Extensions -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-extensions-emf</artifactId>
+      <artifactId>jbpm-designer-backend</artifactId>
     </dependency>
+
+    <!-- Uberfire -->
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-api</artifactId>
@@ -59,10 +83,7 @@
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-backend-api</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-backend</artifactId>
-    </dependency>
+  <!-- Eclipse -->
 	<dependency>
 		<groupId>org.eclipse.uml2</groupId>
 		<artifactId>org.eclipse.uml2.uml</artifactId>
@@ -83,6 +104,11 @@
       <groupId>org.eclipse</groupId>
       <artifactId>org.eclipse.bpmn2</artifactId>
     </dependency>
+    <!-- JSON/Jackson -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-core-asl</artifactId>
@@ -102,10 +128,6 @@
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-bpmn2-emfextmodel</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
     </dependency>
   </dependencies>
 

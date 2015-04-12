@@ -13,7 +13,7 @@
  - Pool
 
 ##Collapse/Expand
- - Make outputPorts expandable and put valueadds in them
+ - Make activity outputPorts expandable and put valueadds in them
 
 ##Decorators
  - Tangible/Intangible
@@ -41,7 +41,6 @@
  
 ##Decorators
  - Has ValueAdds
-
  
 ##Property Editors
  - ResourceUse.isExclusive
@@ -51,4 +50,8 @@
  - * InputPortValueHolder - decompose to received ValueAdds and include port.offset, deliverableFlow.isTangible, port.batchSize
  - OutputPortValueHolder - decompose to provided ValueAdds and include deliverableFlow.duration, port.batchSize
  - Activity - one per activity, decompose to ResourceUses, duration, MeasuredCharacteristics of Activity.capability
+ 
+##Collapse/Expand
+ - Make collaboration outputPorts expandable and put valueadds in them, change to rectangle
+ - Make store outputPorts expandable and put valueadds in them
  

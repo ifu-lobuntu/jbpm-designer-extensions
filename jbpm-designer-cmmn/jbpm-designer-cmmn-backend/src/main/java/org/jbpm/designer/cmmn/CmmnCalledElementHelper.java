@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.jbpm.designer.extensions.emf.util.DefaultPotentialReferenceHelper;
-import org.jbpm.designer.extensions.emf.util.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
 import org.omg.cmmn.TCase;
 
 public class CmmnCalledElementHelper extends DefaultPotentialReferenceHelper {

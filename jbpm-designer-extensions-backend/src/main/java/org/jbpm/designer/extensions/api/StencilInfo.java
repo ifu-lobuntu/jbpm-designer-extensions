@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.api;
 
 public interface StencilInfo {
     String getStencilId();

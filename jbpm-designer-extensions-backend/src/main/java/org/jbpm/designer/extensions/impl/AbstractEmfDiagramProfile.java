@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,13 +31,15 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
+import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.jbpm.designer.notification.DesignerNotificationEvent;
 import org.jbpm.designer.repository.UriUtils;
-import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.util.ConfigurationProvider;
 import org.jbpm.designer.util.Utils;
 import org.jbpm.designer.web.plugin.IDiagramPlugin;
@@ -85,6 +87,11 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
         return false;
     }
 
+    @Override
+    public IEmfBasedFormBuilder getFormBuilder() {
+        return null;
+    }
+
     protected abstract ResourceTypeDefinition getResourceTypeDefinition();
 
     @Override
@@ -125,8 +132,14 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
             for (LinkedStencil ls : this.stencilSetValidator.getLinkedStencils()) {
                 for (LinkedProperty lp : ls.getProperties().values()) {
                     if (lp.getProperty().getReference() != null) {
-                        for (IEmfProfile iEmfProfile : this.otherProfiles) {
-                            lp.init(iEmfProfile.getEPackages());//Because we don't know which packages could be loaded
+                        if (this.otherProfiles == null) {
+                            lp.init(this.getEPackages());
+                        } else {
+                            for (IEmfProfile iEmfProfile : this.otherProfiles) {
+                                // Because we don't know which packages could be
+                                // loaded
+                                lp.init(iEmfProfile.getEPackages());
+                            }
                         }
                     }
                 }
@@ -345,16 +358,6 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     public LinkedStencilSet getLinkedStencilSet() {
         checkFiles();
         return stencilSetValidator;
-    }
-
-    @Override
-    public Collection<TaskFormInfo> generateAllForms(Path path, XMLResource resource) {
-        return Collections.emptySet();
-    }
-
-    @Override
-    public TaskFormInfo generateFormFor(Path path, XMLResource resource, String elementId, String formType) {
-        return null;
     }
 
     @Override

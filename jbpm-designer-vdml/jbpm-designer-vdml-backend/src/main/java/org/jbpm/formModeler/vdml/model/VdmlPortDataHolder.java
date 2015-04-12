@@ -15,10 +15,12 @@ import org.jbpm.formModeler.vdml.integration.VdmlPortDataHolderBuilder;
 import org.kie.internal.task.api.ContentMarshallerContext;
 import org.omg.smm.GradeMeasure;
 import org.omg.smm.Measure;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OutputPort;
+import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Port;
 import org.omg.vdml.ValueAdd;
+import org.omg.vdml.ValueElement;
+import org.omg.vdml.ValueProposition;
+import org.omg.vdml.ValuePropositionComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -78,19 +80,13 @@ public class VdmlPortDataHolder extends PojoDataHolder {
         }
 
         Set<DataFieldHolder> dataFieldHolders = new TreeSet<DataFieldHolder>();
-        EList<ValueAdd> valueAdds = null;
-        if (holderPort instanceof InputPort) {
-            valueAdds = ((InputPort) holderPort).getInput().getProvider().getValueAdd();
-        } else {
-            valueAdds = ((OutputPort) holderPort).getValueAdd();
-        }
-        for (ValueAdd field : valueAdds) {
+        for (ValueAdd field : VdmlHelper.getValueAdds(holderPort)) {
             if (VdmlHelper.hasValueMeasure(field)) {
                 Measure m = VdmlHelper.getValueMeasure(field);
-                String type="java.lang.Double";
-                if(m instanceof GradeMeasure){
-                    //TODO represent as enum
-                    type=m.getName();
+                String type = "java.lang.Double";
+                if (m instanceof GradeMeasure) {
+                    // TODO represent as enum
+                    type = m.getName();
                 }
                 DataFieldHolder fieldHolder = new DataFieldHolder(this, field.getName(), type);
                 dataFieldHolders.add(fieldHolder);
@@ -98,6 +94,21 @@ public class VdmlPortDataHolder extends PojoDataHolder {
         }
 
         return dataFieldHolders;
+    }
+
+    //TODO bla bla. That valueAdd should already be in the right context
+    boolean isValueAddInPropositionContext(DeliverableFlow flow, ValueAdd va) {
+        EList<ValueElement> aggregatedTo = va.getAggregatedTo();
+        for (ValueElement valueElement : aggregatedTo) {
+            if (valueElement instanceof ValuePropositionComponent) {
+                ValueProposition vp = (ValueProposition) valueElement.eContainer();
+                if (VdmlHelper.getRoleResponsibleFor(flow.getProvider()).getId().equals(vp.getProvider().getId())
+                        && VdmlHelper.getRoleResponsibleFor(flow.getRecipient()).getId().equals(vp.getRecipient().getId())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

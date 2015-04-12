@@ -4,22 +4,18 @@ import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
-import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
-import org.omg.vdml.BusinessItem;
-import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
-import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Pool;
+import org.omg.vdml.Port;
 import org.omg.vdml.ResourceUse;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueAdd;
 import org.omg.vdml.VdmlElement;
@@ -39,25 +35,23 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
         owningCollaboration.getActivity().addAll(object.getPerformedWork());
         return super.caseRole(object);
     }
-
+    
     @Override
     public Object caseActivity(Activity object) {
+        object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
+        object.setRecurrenceInterval(buildMeasuredCharacteristic("recurrenceIntervalMeasure"));
         return super.caseActivity(object);
     }
 
     @Override
     public Object casePool(Pool object) {
+        
         return super.casePool(object);
     }
 
     @Override
     public Object caseValueAdd(ValueAdd object) {
-        Measure valueMeasure = (Measure) sourceShape.getUnboundProperty("valueMeasure");
-        if (valueMeasure != null && valueMeasure.getTrait() != null) {
-            MeasuredCharacteristic vm = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
-            object.setValueMeasurement(vm);
-            vm.setCharacteristicDefinition(valueMeasure.getTrait());
-        }
+        object.setValueMeasurement(buildMeasuredCharacteristic("valueMeasure"));
         return super.caseValueAdd(object);
     }
 
@@ -70,29 +64,15 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     public Object caseResourceUse(ResourceUse object) {
         Activity a = (Activity) object.getDeliverable().eContainer();
         a.getResourceUse().add(object);
-        Measure quantityMeasure = (Measure) sourceShape.getUnboundProperty("quantityMeasure");
-        if (quantityMeasure != null && quantityMeasure.getTrait() != null) {
-            object.setQuantity(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-            object.getQuantity().setCharacteristicDefinition(quantityMeasure.getTrait());
-        }
+        object.setQuantity(buildMeasuredCharacteristic("quantityMeasure"));
+        object.setPlanningPercentage(buildMeasuredCharacteristic("planningPercentageMeasure"));
         return super.caseResourceUse(object);
     }
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
-        BusinessItemDefinition deliverableDefinition = (BusinessItemDefinition) sourceShape.getUnboundProperty("deliverableDefinition");
-        if(deliverableDefinition!=null){
-            for (BusinessItem bi : owningCollaboration.getBusinessItem()) {
-                if(bi.getDefinition()!=null && bi.getDefinition()==deliverableDefinition){
-                    object.setDeliverable(bi);
-                }
-            }
-            if(object.getDeliverable()==null){
-                BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();
-                bi.setDefinition(deliverableDefinition);
-                object.setDeliverable(bi);
-            }
-        }
+        object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
+        object.setDeliverable(buildBusinessItem("deliverableDefinition"));
         return super.caseDeliverableFlow(object);
     }
 
@@ -105,7 +85,13 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     public Object caseOutputDelegation(OutputDelegation object) {
         return super.caseOutputDelegation(object);
     }
-
+    @Override
+    public Object casePort(Port object) {
+        object.setBatchSize(buildMeasuredCharacteristic("batchSizeMeasure"));
+        object.setPlanningPercentage(buildMeasuredCharacteristic("planningPercentageMeasure"));
+        object.setOffset(buildMeasuredCharacteristic("offsetMeasure"));
+        return super.casePort(object);
+    }
     @Override
     public Object caseInputPort(InputPort object) {
         return super.caseInputPort(object);

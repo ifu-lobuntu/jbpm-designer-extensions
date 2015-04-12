@@ -7,6 +7,7 @@
 ##Property Editors
  - DeliverableFlow.fromActivity
  - DeliverableFlow.toActivity
+ - DeliverableFlow.businessItem (select businessItemDefinition from BusinessItemLibrary)
  
 ##Misc
  - Ensure that VDRC Diagrams only add and delete deliverable flows and roles, nothing else
@@ -26,5 +27,4 @@
 #To do
 
 ##Property Editors
- - DeliverableFlow.businessItem (select businessItemDefinition from BusinessItemLibrary)
 

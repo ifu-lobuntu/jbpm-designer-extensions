@@ -677,6 +677,20 @@
 					"readonly" : false,
 					"optional" : true
 				},
+                {
+                    "id" : "hasForm",
+                    "type" : "Boolean",
+                    "value" : true,
+                    "readonly" : true,
+                    "hidden" : true
+                },
+                {
+                    "id" : "taskname",
+                    "type" : "String",
+                    "readonly" : false,
+                    "hidden" : false,
+                    "title": "Task Form Name"
+                },
 				{
 					"id" : "tasktype",
 					"type" : "Choice",
@@ -1375,7 +1389,7 @@
 							"popular" : true,
 							"binding":"definitionRef.structureRef",
 							"reference":{
-								"targetProfile":"classdiagram",
+								"targetProfile":"ucd",
 								"allowedElementTypes":"Class|Interface",
 								"nameFeature" : "qualifiedName"
 							},
@@ -1385,7 +1399,7 @@
 							"id" : "isRootItem",
 							"type" : "Boolean",
 							"title" : "Is Root Item",
-							"value" : "",
+							"value" : "true",
 							"description" : "Indicates that this Case File Item is stored at the root of the Case File",
 							"readonly" : false,
 							"optional" : true,

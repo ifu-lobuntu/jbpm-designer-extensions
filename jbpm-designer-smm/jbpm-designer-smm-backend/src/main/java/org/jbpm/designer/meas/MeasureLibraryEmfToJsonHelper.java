@@ -1,10 +1,10 @@
 package org.jbpm.designer.meas;
 
 import org.eclipse.emf.ecore.EObject;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Shape;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.omg.smm.MeasureLibrary;

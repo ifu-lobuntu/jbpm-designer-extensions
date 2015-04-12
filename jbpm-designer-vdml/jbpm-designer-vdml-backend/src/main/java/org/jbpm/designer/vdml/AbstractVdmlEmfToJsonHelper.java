@@ -8,8 +8,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.diagram.Shape;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
@@ -22,7 +22,10 @@ import org.omg.dd.dc.DCFactory;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.SmmElement;
+import org.omg.smm.util.SmmHelper;
+import org.omg.vdml.BusinessItem;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.Role;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
@@ -42,12 +45,23 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
         doSwitch(me);
     }
 
-    protected String toString(SmmElement s) {
+    private String toString(SmmElement s) {
         return s.getName() + "|" + s.eResource().getURI().toPlatformString(true);
     }
+    protected void putMeasuredCharacteristic(String key, MeasuredCharacteristic vm) {
+        if (SmmHelper.hasMeasure(vm )) {
+            targetShape.putProperty(key, toString(vm.getCharacteristicDefinition().getMeasure().get(0)));
+        }
+    }
 
-    protected String toString(VdmlElement s) {
+    private String toString(VdmlElement s) {
         return s.getQualifiedName() + "|" + s.eResource().getURI().toPlatformString(true);
+    }
+
+    protected void putBusinessItem(BusinessItem bi, String key) {
+        if (bi != null && bi.getDefinition() != null) {
+            targetShape.putProperty(key, toString(bi.getDefinition()));
+        }
     }
 
     protected void buildRoleShapes(Map<VdmlElement, VDMLDiagramElement> map, double roleWidth, double roleHeight) {
@@ -133,7 +147,7 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
         while (iterator.hasNext()) {
             VdmlElement valueElement = iterator.next();
             sb.append(toString(valueElement));
-            if(iterator.hasNext()){
+            if (iterator.hasNext()) {
                 sb.append(",");
             }
         }

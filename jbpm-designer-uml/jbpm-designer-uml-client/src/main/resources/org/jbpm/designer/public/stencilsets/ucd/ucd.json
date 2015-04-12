@@ -427,8 +427,7 @@
                         "type" : "String",
                         "readonly" : false,
                         "hidden" : false,
-                        "title": "Class Form Name",
-                        "binding":"name"
+                        "title": "Class Form Name"
                     }
                ]
             },
@@ -595,9 +594,48 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "localStyle"
                 ],
                 "properties" : [
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "EnumerationLiteral1",
+                        "description" : "The descriptive name of the Enumeration Literal.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "binding": "ownedComment[0].body",
+                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "hidden" : true
+                    }
                 ]
             },
             {

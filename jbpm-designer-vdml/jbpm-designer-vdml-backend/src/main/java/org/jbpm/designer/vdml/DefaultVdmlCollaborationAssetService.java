@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.jboss.errai.bus.server.annotations.Service;
-import org.jbpm.designer.extensions.emf.util.IEmfProfile;
+import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.AssetBuilderFactory;
 import org.jbpm.designer.repository.Repository;

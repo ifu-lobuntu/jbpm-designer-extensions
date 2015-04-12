@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.emf.ecore.EPackage;
@@ -18,14 +19,16 @@ import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
-import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.extensions.emf.util.Bpmn2EmfProfile;
-import org.jbpm.designer.extensions.emf.util.DefaultPotentialReferenceHelper;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.extensions.emf.util.IEmfProfile;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
+import org.jbpm.designer.extensions.api.IEmfProfile;
+import org.jbpm.designer.extensions.api.JsonToEmfHelper;
+import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
+import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.impl.Bpmn2EmfProfile;
+import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
 import org.jbpm.designer.type.Cmmn1TypeDefinition;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
@@ -46,12 +49,16 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
 @ApplicationScoped
 public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     private static final String STENCILSET_PATH = "stencilsets/cmmn/cmmn.json";
-    Map<String,EStructuralFeature> customFeatures=new HashMap<String, EStructuralFeature>();{
+    static Map<String,EStructuralFeature> customFeatures=new HashMap<String, EStructuralFeature>();
+    static {
         customFeatures.put("externalProcess", JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess());
         customFeatures.put("vdmlElement", JbpmextPackage.eINSTANCE.getDocumentRoot_VdmlElement());
     }
     static Logger _logger = LoggerFactory.getLogger(CmmnProfileImpl.class);
-
+    @Inject
+    @ProfileName("cmmn")
+    private CmmnFormBuilder formBuilder;
+    
     public CmmnProfileImpl() {
     }
 
@@ -160,7 +167,10 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
             return new EPackage[0]; 
         }
     }
-
+    @Override
+    public IEmfBasedFormBuilder getFormBuilder() {
+        return this.formBuilder;
+    }
     @Override
     public Factory getResourceFactory() {
         return new CMMNResourceFactoryImpl();

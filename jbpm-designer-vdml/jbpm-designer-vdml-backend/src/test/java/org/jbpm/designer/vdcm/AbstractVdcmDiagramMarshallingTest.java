@@ -5,8 +5,8 @@ import java.io.OutputStream;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
+import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramMarshallingTest;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;

@@ -7,6 +7,8 @@
  - ValuePropositionComponent
 
 ##Property Editors
+ - ValuePropositionComponent.aggregatedFrom (filtered, multiselect, eobjectref)
+ - ValueElement.valueMeasurement (filtered, singleselect, eobjectref)
 
 ##Misc
  - Make ValueProposition expandable 
@@ -20,8 +22,6 @@
 #To do
 
 ##Property Editors
- - *ValuePropositionComponent.aggregatedFrom (filtered, multiselect, eobjectref)
- - *ValueElement.valueMeasurement (filtered, singleselect, eobjectref)
  - *Role.assignedOrgUnit
  - ValueElement.valueDefinition - start thinking about repo of ValueDefinitions (UML Profile?)
  - *ValuePropositionComponent.satisfactionLevel.measure (filtered, singleselect, eobjectref)

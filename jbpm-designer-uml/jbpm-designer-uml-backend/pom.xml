@@ -14,7 +14,7 @@
 
   <artifactId>jbpm-designer-uml-backend</artifactId>
 
-  <name>jBPM Designer UML Class Diagram Backend</name>
+  <name>jBPM Designer UML Backend</name>
 
   <dependencies>
     <dependency>

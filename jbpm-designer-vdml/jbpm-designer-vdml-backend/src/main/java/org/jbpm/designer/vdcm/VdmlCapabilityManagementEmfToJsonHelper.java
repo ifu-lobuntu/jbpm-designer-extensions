@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
@@ -15,12 +15,14 @@ import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.DCFactory;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
+import org.omg.vdml.Pool;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
 import org.omg.vdml.VdmlElement;
@@ -41,7 +43,11 @@ public class VdmlCapabilityManagementEmfToJsonHelper extends AbstractVdmlEmfToJs
         }
         return super.caseCollaboration(object);
     }
-
+    @Override
+    public Object caseCapabilityOffer(CapabilityOffer object) {
+        putMeasuredCharacteristic("heatIndexMeasure", object.getHeatIndex());
+        return super.caseCapabilityOffer(object);
+    }
     @Override
     public Object caseCapabilityMethod(CapabilityMethod object) {
         return super.caseCapabilityMethod(object);
@@ -52,39 +58,18 @@ public class VdmlCapabilityManagementEmfToJsonHelper extends AbstractVdmlEmfToJs
         return super.caseRole(object);
     }
 
-    @Override
-    public Object caseActivity(Activity object) {
-        return super.caseActivity(object);
-    }
-
-    @Override
-    public Object caseInputPort(InputPort object) {
-        return super.caseInputPort(object);
-    }
-
-    @Override
-    public Object caseOutputPort(OutputPort object) {
-        return super.caseOutputPort(object);
-    }
-
-    @Override
-    public Object caseDeliverableFlow(DeliverableFlow object) {
-        return super.caseDeliverableFlow(object);
-    }
-
-    @Override
-    public Object caseInputDelegation(InputDelegation object) {
-        return super.caseInputDelegation(object);
-    }
-
-    @Override
-    public Object caseOutputDelegation(OutputDelegation object) {
-        return super.caseOutputDelegation(object);
-    }
 
     @Override
     public Object caseStore(Store object) {
+        putMeasuredCharacteristic("durationMeasure", object.getDuration());
+        putMeasuredCharacteristic("inventoryLevelMeasure", object.getInventoryLevel());
+        putBusinessItem(object.getResource(),"resourceDefinition");
         return super.caseStore(object);
+    }
+    @Override
+    public Object casePool(Pool object) {
+        putMeasuredCharacteristic("poolSizeMeasure", object.getPoolSize());
+        return super.casePool(object);
     }
 
     @Override

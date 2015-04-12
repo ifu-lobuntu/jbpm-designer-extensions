@@ -10,8 +10,10 @@ import org.omg.vdml.BusinessNetwork;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.Community;
+import org.omg.vdml.InputPort;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OrgUnit;
+import org.omg.vdml.OutputPort;
 import org.omg.vdml.Port;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
@@ -52,6 +54,7 @@ public class VdmlHelper {
             if (r.eContainer() instanceof Activity) {
                 receivingRole = ((Activity) r.eContainer()).getPerformingRole();
             } else if (r.eContainer() instanceof Store) {
+                //TODO this won't work - different collaborations. Look at assignments instead
                 return r.getHandler();
             }
         }
@@ -76,5 +79,14 @@ public class VdmlHelper {
     public static boolean hasValueMeasure(ValueAdd field) {
         MeasuredCharacteristic vm = field.getValueMeasurement();
         return vm!=null && vm.getCharacteristicDefinition()!=null && vm.getCharacteristicDefinition().getMeasure().size()>0;
+    }
+    public static EList<ValueAdd> getValueAdds(Port p) {
+        EList<ValueAdd> valueAdds = null;
+        if (p instanceof InputPort) {
+            valueAdds = ((InputPort) p).getInput().getProvider().getValueAdd();
+        } else {
+            valueAdds = ((OutputPort) p).getValueAdd();
+        }
+        return valueAdds;
     }
 }

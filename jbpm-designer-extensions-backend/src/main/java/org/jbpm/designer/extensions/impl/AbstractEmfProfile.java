@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.impl;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
@@ -9,6 +9,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
+import org.jbpm.designer.extensions.api.IEmfProfile;
+import org.jbpm.designer.extensions.emf.util.UriHelper;
+import org.jbpm.designer.extensions.emf.util.VFSURIHandler;
 import org.jbpm.designer.repository.Repository;
 import org.omg.dd.dc.DCPackage;
 import org.omg.dd.di.DIPackage;

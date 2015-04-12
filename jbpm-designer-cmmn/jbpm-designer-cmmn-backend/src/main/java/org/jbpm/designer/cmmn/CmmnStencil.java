@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNEdge;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.TCaseFileItem;
@@ -50,7 +50,9 @@ public enum CmmnStencil implements StencilInfo {
     CASE_FILE_ITEM_ON_PART(CMMNPackage.eINSTANCE.getTCaseFileItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemOnPart"),
     PLAN_ITEM_ON_PART(CMMNPackage.eINSTANCE.getTPlanItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "PlanItemOnPart"),
     EVENT_ON_PART(CMMNPackage.eINSTANCE.getTPlanItemOnPart(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "EventOnPart"),
+    @Deprecated
     CASE_FILE_ITEM_CHILD(CMMNPackage.eINSTANCE.getTCaseFileItem_Children(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemChild"),
+    @Deprecated
     CASE_FILE_ITEM_TARGET(CMMNPackage.eINSTANCE.getTCaseFileItem_TargetRefs(), CMMNDIPackage.eINSTANCE.getCMMNEdge(), "CaseFileItemTarget"), ;
     private EClass type;
     private EClass shapeType;

@@ -3,7 +3,9 @@ package org.jbpm.designer.extensions.web;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
+import java.util.Map;
 
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -13,17 +15,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.binary.Base64;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.AssetBuilderFactory;
 import org.jbpm.designer.repository.Repository;
 import org.jbpm.designer.repository.impl.AssetBuilder;
+import org.jbpm.designer.server.service.PathEvent;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.util.Base64Backport;
 import org.jbpm.designer.util.ConfigurationProvider;
 import org.jbpm.designer.util.Utils;
 import org.jbpm.designer.web.profile.IDiagramProfileService;
-import org.jbpm.designer.web.profile.IExtensionDiagramProfile;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -46,6 +51,8 @@ public class ExtensionsFormServlet extends HttpServlet {
     private IDiagramProfileService profileService;
     @Inject
     private VFSService vfsServices;
+    @Inject
+    private Event<PathEvent> pathEvent;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -58,44 +65,58 @@ public class ExtensionsFormServlet extends HttpServlet {
         String uuid = Utils.getUUID(req);
         String elementId = req.getParameter("elementId");
         String formType = req.getParameter("formType");
-        IExtensionDiagramProfile profile = (IExtensionDiagramProfile) profileService.findProfile(req, req.getParameter("profile"));
+        IEmfDiagramProfile profile = (IEmfDiagramProfile) profileService.findProfile(req, req.getParameter("profile"));
         Repository repository = profile.getRepository();
         String action = req.getParameter("action");
         try {
             resp.setContentType("application/json");
-            String folderUri = vfsServices.get(uuid).toURI();
-            Asset<String> processAsset = repository.loadAsset(uuid);
-            // folderUri = folderUri.substring(0, folderUri.lastIndexOf("/"));
-            folderUri = processAsset.getAssetLocation();
-            XMLResource resource = (XMLResource) profile.createMarshaller().getResource(json, "");
-            URI uri = URI.createPlatformResourceURI(folderUri + "/" + processAsset.getFullName(), true);
-            resource.setURI(uri);
-            if (action.equals("generateAllForms")) {
-                Collection<TaskFormInfo> forms = profile.generateAllForms(vfsServices.get(uuid), resource);
-                resp.getWriter().write(storeInRepository(forms, folderUri, repository).toString());
-            } else if (action.equalsIgnoreCase("generateForm")) {
-                TaskFormInfo form = profile.generateFormFor(vfsServices.get(uuid), resource, elementId, formType);
-                resp.getWriter().write(storeTaskForm(form, folderUri, repository).toString());
-            } else if (action.equalsIgnoreCase("openForm")) {
-                try {
-                    String formName = profile.getFormId(resource, elementId, formType) + "." + FORMMODELER_FILE_EXTENSION;
-                    Asset newModelerFormAsset = repository.loadAssetFromPath(folderUri + "/" + formName);
-                    JSONObject retObj = new JSONObject();
-                    String modelerUniqueId = newModelerFormAsset.getUniqueId();
-                    if (Base64Backport.isBase64(modelerUniqueId)) {
-                        byte[] decoded = Base64.decodeBase64(modelerUniqueId);
+            IEmfBasedFormBuilder formBuilder = profile.getFormBuilder();
+            if (formBuilder != null) {
+                String folderUri = vfsServices.get(uuid).toURI();
+                Asset<String> processAsset = repository.loadAsset(uuid);
+                // folderUri = folderUri.substring(0,
+                // folderUri.lastIndexOf("/"));
+                folderUri = processAsset.getAssetLocation();
+                XMLResource resource = (XMLResource) profile.createMarshaller().getResource(json, "");
+                URI uri = URI.createPlatformResourceURI(folderUri + "/" + processAsset.getFullName(), true);
+                resource.setURI(uri);
+                pathEvent.fire(new PathEvent(uuid));
+                // TODO clean this up
+                if (action.equals("generateAllForms")) {
+                    Collection<TaskFormInfo> forms = formBuilder.generateAllForms(vfsServices.get(uuid), resource);
+                    resp.getWriter().write(storeInRepository(forms, folderUri, repository).toString());
+                } else {
+                    if (action.equalsIgnoreCase("generateForm")) {
+                        Map<String, TaskFormInfo> forms = formBuilder.generateFormFor(vfsServices.get(uuid), resource, elementId, formType);
+                        TaskFormInfo form = forms.remove(elementId);
+                        storeInRepository(forms.values(), folderUri, repository);
+                        resp.getWriter().write(storeSingleForm(form, folderUri, repository).toString());
+                    } else if (action.equalsIgnoreCase("openForm")) {
+                        // TODO Think about this - do we want to generate all
+                        // required forms too?
                         try {
-                            modelerUniqueId = new String(decoded, "UTF-8");
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
+                            String formName = profile.getFormId(resource, elementId, formType) + "." + FORMMODELER_FILE_EXTENSION;
+                            Asset newModelerFormAsset = repository.loadAssetFromPath(folderUri + "/" + formName);
+                            JSONObject retObj = new JSONObject();
+                            String modelerUniqueId = newModelerFormAsset.getUniqueId();
+                            if (Base64Backport.isBase64(modelerUniqueId)) {
+                                byte[] decoded = Base64.decodeBase64(modelerUniqueId);
+                                try {
+                                    modelerUniqueId = new String(decoded, "UTF-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            retObj.put("uri", modelerUniqueId);
+                            retObj.put("fileName", formName);
+                            resp.getWriter().write(retObj.toString());
+                        } catch (NoSuchFileException e) {
+                            Map<String, TaskFormInfo> forms = formBuilder.generateFormFor(vfsServices.get(uuid), resource, elementId, formType);
+                            TaskFormInfo form = forms.remove(elementId);
+                            storeInRepository(forms.values(), folderUri, repository);
+                            resp.getWriter().write(storeSingleForm(form, folderUri, repository).toString());
                         }
                     }
-                    retObj.put("uri", modelerUniqueId);
-                    retObj.put("fileName", formName);
-                    resp.getWriter().write(retObj.toString());
-                } catch (NoSuchFileException e) {
-                    TaskFormInfo form = profile.generateFormFor(vfsServices.get(uuid), resource, elementId, formType);
-                    resp.getWriter().write(storeTaskForm(form, folderUri, repository).toString());
                 }
             }
             resp.setContentType("application/json");
@@ -108,7 +129,7 @@ public class ExtensionsFormServlet extends HttpServlet {
         }
     }
 
-    public JSONObject storeTaskForm(TaskFormInfo taskForm, String location, Repository repository) throws Exception {
+    public JSONObject storeSingleForm(TaskFormInfo taskForm, String location, Repository repository) throws Exception {
         try {
             JSONObject retObj = new JSONObject();
 
@@ -147,7 +168,7 @@ public class ExtensionsFormServlet extends HttpServlet {
     private JSONArray storeInRepository(Collection<TaskFormInfo> forms, String location, Repository repository) throws Exception {
         JSONArray retArray = new JSONArray();
         for (TaskFormInfo taskForm : forms) {
-            retArray.put(storeTaskForm(taskForm, location, repository));
+            retArray.put(storeSingleForm(taskForm, location, repository));
         }
 
         return retArray;

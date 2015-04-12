@@ -32,4 +32,8 @@
  - inlineditor.jsp
  - Preprocessing
 
+##FormModeler
+ - Introduce FormBuildingContext
+ - Get rid of TaskFormInfo
+ - Figure out how to test it
  

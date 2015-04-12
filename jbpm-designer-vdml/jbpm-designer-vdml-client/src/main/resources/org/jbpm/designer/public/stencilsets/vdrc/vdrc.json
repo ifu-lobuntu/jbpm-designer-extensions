@@ -218,15 +218,21 @@
 						"readonly" : false,
 						"optional" : false		
 					},
-					{
-						"id" : "businessItem",
-						"type" : "String",
-						"title" : "Business Item",
-						"value" : "",
-						"description" : "The name of the Business Item conveyed by this flow",
-						"readonly" : false,
-						"optional" : false
-					}
+                    {
+                        "id" : "deliverableDefinition",
+                        "type" : "eobjectref",
+                        "title" : "Deliverable",
+                        "value" : "",
+                        "description" : "The BusinessItem that is being delivered",
+                        "readonly" : false,
+                        "optional" : true,
+                        "reference" : {
+                            "targetProfile":"vdlib",
+                            "allowedElementTypes":"BusinessItemDefinition",
+                            "nameFeature" : "qualifiedName"
+                        },
+                        "length" : ""
+                    }
 				]
 	        }
 					

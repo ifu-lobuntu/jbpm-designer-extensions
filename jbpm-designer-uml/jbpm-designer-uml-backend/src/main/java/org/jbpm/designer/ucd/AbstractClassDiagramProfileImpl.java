@@ -2,7 +2,6 @@ package org.jbpm.designer.ucd;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.Collections;
 
 import javax.enterprise.inject.Instance;
@@ -20,13 +19,13 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.jboss.errai.bus.server.api.RpcContext;
-import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.extensions.emf.util.GenericJsonToEmfDiagramMarshaller;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.JsonToEmfHelper;
+import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.repository.vfs.RepositoryDescriptor;
-import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.type.ClassDiagramTypeDefinition;
 import org.jbpm.designer.ucd.errai.FakeMessage;
 import org.jbpm.designer.util.Utils;
@@ -59,7 +58,8 @@ public class AbstractClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
     @Inject
     Instance<HttpServletRequest> request;
     @Inject
-    ClassDiagramFormBuilderServiceImpl classDiagramFormBuilderService;
+    @ProfileName("ucd")
+    ClassDiagramFormBuilder classDiagramFormBuilderService;
 
     public AbstractClassDiagramProfileImpl() {
     }
@@ -173,16 +173,6 @@ public class AbstractClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
     @Override
     public EPackage[] getEPackages() {
         return ddPackages(UMLPackage.eINSTANCE, UMLDIPackage.eINSTANCE);
-    }
-
-    @Override
-    public Collection<TaskFormInfo> generateAllForms(Path path, XMLResource resource) {
-        return classDiagramFormBuilderService.generateAllForms(path, resource);
-    }
-
-    @Override
-    public TaskFormInfo generateFormFor(Path path, XMLResource resource, String elementId, String formType) {
-        return classDiagramFormBuilderService.generateFormFor(path, resource, elementId);
     }
 
     @Override

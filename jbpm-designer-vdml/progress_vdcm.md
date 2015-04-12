@@ -25,6 +25,7 @@
  
 ##Collapse/Expand
  - OrgUnits
+ - Make stores expandable and put measuredCharacteristics in them, change to rectangle
  
 ##Stencils
  - Owned CapabilityMethod (need to solve containment issue)
@@ -38,6 +39,7 @@
  - *Store.resource
  - *Pool.poolSize
  - *Pool.position
+ - CapabilityOffer.capability
  - OrgUnit.referencedOrgUnit
  - ExternalStore.storeRef
  - ExternalPool.poolRef

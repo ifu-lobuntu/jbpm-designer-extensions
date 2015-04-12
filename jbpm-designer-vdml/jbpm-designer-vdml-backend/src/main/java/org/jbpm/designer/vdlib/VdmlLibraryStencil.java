@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.ucd.ClassDiagramStencil;
 import org.omg.smm.SMMPackage;
 import org.omg.vdml.VDMLPackage;

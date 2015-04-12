@@ -5,8 +5,8 @@ import java.util.Map;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
 import org.jbpm.designer.vdml.BoundaryShapePosition;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
@@ -21,7 +21,6 @@ import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
-import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OutputDelegation;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Port;
@@ -56,24 +55,30 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
 
     @Override
     public Object caseActivity(Activity object) {
+        putMeasuredCharacteristic("durationMeasure", object.getDuration());
+        putMeasuredCharacteristic("recurrenceIntervalMeasure", object.getRecurrenceInterval());
         return super.caseActivity(object);
     }
-    
+
     @Override
     public Object caseValueAdd(ValueAdd object) {
-        MeasuredCharacteristic vm = object.getValueMeasurement();
-        if(vm!=null && vm.getCharacteristicDefinition()!=null && vm.getCharacteristicDefinition().getMeasure().size()>0){
-            targetShape.putProperty("valueMeasure", super.toString(vm.getCharacteristicDefinition().getMeasure().get(0)));
-        }
+        putMeasuredCharacteristic("valueMeasure", object.getValueMeasurement());
         return super.caseValueAdd(object);
     }
+
+
     @Override
     public Object caseResourceUse(ResourceUse object) {
-        MeasuredCharacteristic q = object.getQuantity();
-        if(q!=null && q.getCharacteristicDefinition()!=null && q.getCharacteristicDefinition().getMeasure().size()>0){
-            targetShape.putProperty("quantityMeasure", toString(q.getCharacteristicDefinition().getMeasure().get(0)));
-        }
+        putMeasuredCharacteristic("quantityMeasure", object.getQuantity());
+        putMeasuredCharacteristic("planningPercentageMeasure", object.getPlanningPercentage());
         return super.caseResourceUse(object);
+    }
+    @Override
+    public Object casePort(Port object) {
+        putMeasuredCharacteristic("batchSizeMeasure", object.getBatchSize());
+        putMeasuredCharacteristic("planningPercentageMeasure", object.getPlanningPercentage());
+        putMeasuredCharacteristic("offsetMeasure", object.getOffset());
+        return super.casePort(object);
     }
     @Override
     public Object caseInputPort(InputPort object) {
@@ -87,11 +92,11 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
-        if(object.getDeliverable()!=null && object.getDeliverable().getDefinition()!=null){
-            targetShape.putProperty("deliverableDefinition", toString(object.getDeliverable().getDefinition()));
-        }
+        putMeasuredCharacteristic("duration", object.getDuration());
+        putBusinessItem(object.getDeliverable(), "deliverableDefinition");
         return super.caseDeliverableFlow(object);
     }
+
 
     @Override
     public Object caseInputDelegation(InputDelegation object) {

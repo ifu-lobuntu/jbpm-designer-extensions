@@ -1,10 +1,13 @@
 package org.jbpm.designer.vdan;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
+import org.jbpm.designer.extensions.api.JsonToEmfHelper;
+import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlActivityNetworkTypeDefinition;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramProfile;
@@ -20,7 +23,9 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
 public class VdmlActivityNetworkProfileImpl extends AbstractVdmlDiagramProfile implements IVdmlCollaborationDiagramProfile{
 
     private static final String STENCILSET_PATH = "stencilsets/vdan/vdan.json";
-
+    @Inject
+    @ProfileName("vdan")
+    VdmlActivityNetworkFormBuilder formBuilder;
     public VdmlActivityNetworkProfileImpl() {
     }
 
@@ -31,7 +36,10 @@ public class VdmlActivityNetworkProfileImpl extends AbstractVdmlDiagramProfile i
     public String getName() {
         return "vdan";
     }
-
+    @Override
+    public IEmfBasedFormBuilder getFormBuilder() {
+        return formBuilder;
+    }
     public String getStencilSetNamespaceURL() {
         return "http://b3mn.org/stencilset/vdan#";
     }

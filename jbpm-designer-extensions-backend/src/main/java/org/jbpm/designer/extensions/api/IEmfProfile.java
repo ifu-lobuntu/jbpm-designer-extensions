@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.api;
 
 import java.util.Map;
 
@@ -31,6 +31,6 @@ public interface IEmfProfile {
 
     Repository getRepository();
 
-    DefaultPotentialReferenceHelper createPotentialReferenceHelper();
+    IPotentialReferenceHelper createPotentialReferenceHelper();
 
 }

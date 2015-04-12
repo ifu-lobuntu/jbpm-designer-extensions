@@ -63,7 +63,12 @@
 
 ##Misc
  - Remove git repo info from platformURIs
- - Use structureRef to determine where the referenced UML class is  
+ - Use structureRef to determine where the referenced UML class is
+ 
+###VDML Integration
+ - *Link Case to Collaboration 
+ - *Link Tasks to Activities 
+   
 
 ##1.2. In Progress
 
@@ -104,10 +109,8 @@
 
 ###VDML Integration
  - *Support OrgStructure,BusinessNetworks, Communities, Store in CaseFile
- - *Link Case to Collaboration 
  - *Link Role to Role 
- - *Link Tasks to Activities 
- 
+
 #2. Form Modeler:
 #2.1. Done and Tested
 #2.2. Todo

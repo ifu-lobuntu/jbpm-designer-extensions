@@ -3,28 +3,29 @@ if(!ORYX.Plugins)
 
 if(!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
 	ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ={};
-ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/ucd#" = {
+
+ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/ucd#"] = {
             "Types": 1,
             "Compartments": 2,
             "Features": 3,
             "Inheritance" :4,
             "Associations" :5,
             "Imports" :6
-}
+};
 /**
- * The CMMN plugin provides layout methods referring to the CMMN stencilset.
+ * The UML plugin provides layout methods referring to the UML stencilset.
  *
- * @class ORYX.Plugins.CMMN
+ * @class ORYX.Plugins.UML
  * @extends Clazz
  * @param {Object} facade The facade of the editor
  */
 ORYX.Plugins.UCD = ORYX.Plugins.AbstractPlugin.extend(
-/** @lends ORYX.Plugins.CMMN.prototype */  
+/** @lends ORYX.Plugins.UML.prototype */  
 {
 	decoratorUpdaters:{},
 	/**
-	 * Creates a new instance of the CMMN plugin and registers it on the
-	 * layout events listed in the CMMN stencil set.
+	 * Creates a new instance of the UML plugin and registers it on the
+	 * layout events listed in the UML stencil set.
 	 *
 	 * @constructor
 	 * @param {Object} facade The facade of the editor

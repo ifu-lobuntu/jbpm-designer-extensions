@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.impl;
 
 import java.util.Collections;
 import java.util.List;
@@ -7,10 +7,6 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import javax.servlet.http.HttpServletRequest;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.Property;
@@ -25,6 +21,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.jboss.drools.DroolsPackage;
 import org.jboss.drools.impl.DroolsPackageImpl;
 import org.jbpm.designer.bpmn2.resource.JBPMBpmn2ResourceFactoryImpl;
+import org.jbpm.designer.extensions.emf.util.VFSURIHandler;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.spec.bpmn.non.normative.color.ColorPackage;

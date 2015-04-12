@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.omg.dd.di.DiagramElement;

@@ -13,7 +13,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;

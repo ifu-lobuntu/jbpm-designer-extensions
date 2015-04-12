@@ -5,11 +5,15 @@
  - Measure
 
 ##Property Editors
+ - Characteristic.measure
+ - BusinessItemDefinition.isFungible
+ - BusinessItemDefinition.isShareable
  
 ##Misc
  - Store both VDModel and UMLPackage in same file
  - Don't use profile, just use EAnnotation.reference
  - Implement merge functionaliy that takes UML stencilset and injects Measure elements into it
+ - Show images in Palette
 
 ##Decorations
 
@@ -17,20 +21,19 @@
  
 #In Progress
 
-##Property Editors
- - BusinessItemDefinition.isFungible
- - BusinessItemDefinition.isShareable
-
 #To do
 
 ##Misc
- - *Show images in Palette
  - Generate Code for all the VDML Elements, including OrgStructure Elements
  
  
 ##Stencils
- - Capability
-
+ - *CapabilityDefition
+ - *CapabilityCategory
+ - CapabilityDependency
+ - Actor
+ - RoleDefinition
+ - ValueDefinition
 
 ##Property Editors
  

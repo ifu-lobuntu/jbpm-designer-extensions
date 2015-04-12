@@ -3,14 +3,13 @@ package org.jbpm.designer.vdpe;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.StencilInfo;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
-import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.ValuePropositionComponent;
 import org.omg.vdml.VdmlElement;
 
@@ -28,12 +27,12 @@ public class VdmlPropositionExchangeEmfToJsonHelper extends AbstractVdmlEmfToJso
 
     @Override
     public Object caseValuePropositionComponent(ValuePropositionComponent object) {
-        MeasuredCharacteristic vm = object.getValueMeasurement();
-        if (vm != null && vm.getCharacteristicDefinition() != null && vm.getCharacteristicDefinition().getMeasure().size() > 0) {
-            targetShape.putProperty("valueMeasure", toString(vm.getCharacteristicDefinition().getMeasure().get(0)));
-        }
+        putMeasuredCharacteristic("valueMeasure", object.getValueMeasurement());
+        putMeasuredCharacteristic("satisfactionLevelMeausure", object.getSatisfactionLevel());
+        putMeasuredCharacteristic("percentageWeightMeasure", object.getPercentageWeight());
         return super.caseValuePropositionComponent(object);
     }
+
 
     @Override
     public Object caseCapabilityMethod(CapabilityMethod object) {

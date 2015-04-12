@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.api;
 
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.diagram.Shape;

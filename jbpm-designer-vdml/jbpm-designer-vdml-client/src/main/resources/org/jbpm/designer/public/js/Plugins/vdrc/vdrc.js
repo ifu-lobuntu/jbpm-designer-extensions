@@ -14,7 +14,7 @@ ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/vdrc#" ]= {
  * @extends Clazz
  * @param {Object} facade The facade of the editor
  */
-ORYX.Plugins.VDRC = Clazz.extend(
+ORYX.Plugins.VDRC = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 /** @lends ORYX.Plugins.VDRC.prototype */
 {
 	/**
@@ -24,29 +24,24 @@ ORYX.Plugins.VDRC = Clazz.extend(
 	 * @param {Object} facade The facade of the editor
 	 */
 	construct: function(facade) {
-		try{
+        arguments.callee.$.construct.apply(this, arguments);
 		this.facade = facade;
 		console.log("Initializing VDRC");
 	    ORYX.FieldEditors["activity"] = new ORYX.Plugins.VDRC.ActivityEditorFactory();
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorations.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
+        this.decoratorUpdaters["ExistingDeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
+        this.decoratorUpdaters["NewDeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
 		console.log("VDRC Initialized");
-		}catch(e){alert(e.toString());}
 	},
-	updateDecorations: function (event){
-		this.facade.getCanvas().getChildEdges(true, function(shape){
-			if(shape.getStencil().id().indexOf("DeliverableFlow")>=0){
-				this.setDashArray(shape);
-			}
-		}.bind(this));
-	},
-	setDashArray:function (shape){
+	updateDeliverableFlowDecorations:function (shape){
 		var dashArray=shape.properties["oryx-istangible"]==true || shape.properties["oryx-istangible"]=="true"?"none":"5,5";
 		shape._paths[0].setAttributeNS(null,"stroke-dasharray",dashArray);
-	},
-	handlePropertyChanged: function (event){
-		if(event.key=="oryx-istangible"){
-			this.setDashArray(event.elements[0]);
+		if(shape.properties["oryx-deliverabledefinition"]){
+		    var name=shape.properties["oryx-deliverabledefinition"].split("|")[0];
+		    name=name.substring(name.indexOf("::")+2);
+            shape.properties["oryx-name"]=name;
+            console.log(shape.getLabels());
+		    shape.getLabels()[0].text(name);
+		    shape.getLabels()[0].update();
 		}
 	}
 });

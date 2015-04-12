@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.impl;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.omg.dd.di.DiagramElement;
 

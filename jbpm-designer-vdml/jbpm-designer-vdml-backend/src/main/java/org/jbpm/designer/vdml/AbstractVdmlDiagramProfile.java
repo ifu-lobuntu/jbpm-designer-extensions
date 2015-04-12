@@ -3,7 +3,7 @@ package org.jbpm.designer.vdml;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.jbpm.designer.extensions.emf.util.AbstractEmfDiagramProfile;
+import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;

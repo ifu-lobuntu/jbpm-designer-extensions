@@ -42,6 +42,7 @@
         <plugin name="ORYX.Plugins.NotificationsPlugin"/>
         <plugin name="ORYX.Plugins.ActiveNodesHighlighter"/>
         <plugin name="ORYX.Plugins.Extensions"/>
+        <plugin name="ORYX.Plugins.ExtensionsFormEditing"/>
         <plugin name="ORYX.Plugins.VDRC"/>
         <plugin name="ORYX.Plugins.VDAN"/>
         <plugin name="ORYX.Plugins.DefDeleteManager"/>

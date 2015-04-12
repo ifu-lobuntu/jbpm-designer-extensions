@@ -450,8 +450,7 @@
 						"type" : "String",
 						"readonly" : false,
 						"hidden" : false,
-						"title": "BusinessItemDefinition Form Name",
-						"binding":"name"
+						"title": "BusinessItemDefinition Form Name"
 					}
 			   ]
 			},

@@ -18,10 +18,43 @@ ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/bpmn2.0#"]={
                                         "Workflow Patterns": 13
 };
 ORYX.CONFIG.STENCIL_GROUP_ORDER=function(){
-	console.log(ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ);
 	return ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ;
 };
+ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
+/** @lends ORYX.Plugins.Extensions.prototype */
+{
+    decoratorUpdaters:{},
 
+    /**
+     * Creates a new instance of the Collapsible plugin and registers it on the
+     * layout events listed in the Collapsible stencil set.
+     * 
+     * @constructor
+     * @param {Object}
+     *            facade The facade of the editor
+     */
+    construct : function(facade) {
+        this.facade = facade;
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
+    },
+    handlePropertyChanged: function (event){
+        console.log(this.decoratorUpdaters);
+        var d=this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
+        if(d){
+            d(event.elements[0]);
+        }
+    },
+    updateDecorationsOnLoad: function (event){
+        this.facade.getCanvas().getChildEdges(true, function(shape){
+            var d=this.decoratorUpdaters[shape.getStencil().idWithoutNs()];
+            if(d){
+                d(shape);
+            }
+        }.bind(this));
+    }
+});
+        
 /**
  * The Collapsible plugin provides layout methods referring to the Collapsible
  * stencilset.

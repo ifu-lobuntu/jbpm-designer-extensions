@@ -1,4 +1,4 @@
-package org.jbpm.designer.extensions.emf.util;
+package org.jbpm.designer.extensions.impl;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -26,6 +26,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Bounds;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Point;
@@ -33,6 +36,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.diagram.StencilSet;
 import org.jbpm.designer.extensions.diagram.StencilType;
+import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.web.profile.IDiagramProfile;

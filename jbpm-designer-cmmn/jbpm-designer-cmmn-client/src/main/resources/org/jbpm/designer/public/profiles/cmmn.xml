@@ -43,7 +43,7 @@
         <plugin name="ORYX.Plugins.LocalHistory"/>
         <plugin name="ORYX.Plugins.NotificationsPlugin"/>
         <plugin name="ORYX.Plugins.ActiveNodesHighlighter"/>
-        <plugin name="ORYX.Plugins.FormEditing"/>
+        <plugin name="ORYX.Plugins.ExtensionsFormEditing"/>
         <plugin name="ORYX.Plugins.CMMN"/>
 		<plugin name="ORYX.Plugins.Extensions" />
         <plugin name="ORYX.Plugins.DefDeleteManager"/>

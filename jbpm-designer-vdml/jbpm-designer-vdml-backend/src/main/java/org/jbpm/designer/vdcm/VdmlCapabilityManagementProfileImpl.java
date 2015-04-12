@@ -3,8 +3,8 @@ package org.jbpm.designer.vdcm;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.jbpm.designer.extensions.emf.util.EmfToJsonHelper;
-import org.jbpm.designer.extensions.emf.util.JsonToEmfHelper;
+import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlCapabilityManagementDiagramTypeDefinition;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramProfile;
