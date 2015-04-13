@@ -40,8 +40,13 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
     }
 
     @Override
+    public String getProfileName() {
+        return "ucd";
+    }
+
+    @Override
     public Map<String, TaskFormInfo> addFields(String repositoryInfo, Form form, EObject eobject, String formType) throws Exception {
-        Map<String, TaskFormInfo> results= new HashMap<String, TaskFormInfo>();
+        Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
         Classifier cls = (Classifier) eobject;
         String name = Character.toLowerCase(cls.getName().charAt(0)) + cls.getName().substring(1);
         form.setDataHolder(new UmlClassDataHolder(name, name + "In", name + "Out", (Class) cls, "#0099FF"));
@@ -57,12 +62,12 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
             set.setValue(Locale.getDefault().getLanguage(), property.getName());
             field.setLabel(set);
             field.setFieldRequired(property.getLower() == 1);
-            maybePrepareSubform(repositoryInfo, field, property,results);
+            maybePrepareSubform(repositoryInfo, field, property, results);
         }
         return results;
     }
 
-    protected void maybePrepareSubform(String repositoryInfo, Field field, Property property,Map<String, TaskFormInfo> forms) {
+    protected void maybePrepareSubform(String repositoryInfo, Field field, Property property, Map<String, TaskFormInfo> forms) {
         if (property.isComposite() && property.getType() != null) {
             forms.putAll(prepareSubform(repositoryInfo, field, property.getType()));
         }
@@ -85,8 +90,11 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
                     return CaseFileItemLookupFieldType.CODE;
                 }
             }
+        } else if (property.getType() != null) {
+            return cmmnTypeMap.get(property.getType().getName());
+        } else {
+            return cmmnTypeMap.get("String");
         }
-        return cmmnTypeMap.get(property.getType().getName());
     }
 
     @Override

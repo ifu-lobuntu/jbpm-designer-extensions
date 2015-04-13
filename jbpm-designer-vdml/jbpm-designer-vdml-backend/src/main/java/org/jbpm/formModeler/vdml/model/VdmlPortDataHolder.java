@@ -38,7 +38,6 @@ public class VdmlPortDataHolder extends PojoDataHolder {
         this.holderPort = holderPort;
         Resource resource = holderPort.eResource();
         String platformString = resource.getURI().toString();
-
         super.setClassName(platformString + "#" + resource.getURIFragment(holderPort));
 
     }
@@ -65,7 +64,7 @@ public class VdmlPortDataHolder extends PojoDataHolder {
     @Override
     public Set<DataFieldHolder> getFieldHolders() {
         try {
-            if (dataFieldHolders == null || dataFieldHolders.size() == 0)
+            if (dataFieldHolders == null || dataFieldHolders.size() == 0 || true)
                 dataFieldHolders = calculatePropertyNames();
             return dataFieldHolders;
         } catch (Exception e) {
@@ -92,7 +91,17 @@ public class VdmlPortDataHolder extends PojoDataHolder {
                 dataFieldHolders.add(fieldHolder);
             }
         }
+        if(VdmlHelper.hasMeasure(holderPort.getBatchSize())){
+            String type = "java.lang.Double";
+            Measure m=VdmlHelper.getMeasure(holderPort.getBatchSize());
+            if (m instanceof GradeMeasure) {
+                // TODO represent as enum
+                type = m.getName();
+            }
 
+            dataFieldHolders.add(new DataFieldHolder(this, "quantity", type));
+            
+        }
         return dataFieldHolders;
     }
 

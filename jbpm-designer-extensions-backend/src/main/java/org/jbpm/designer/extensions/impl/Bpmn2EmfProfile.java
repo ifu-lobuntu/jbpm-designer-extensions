@@ -56,8 +56,8 @@ public class Bpmn2EmfProfile extends AbstractEmfProfile {
     public DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
         return new DefaultPotentialReferenceHelper(this) {
             @Override
-            public String findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
-                String retVal = null;
+            public JSONObject findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
+                JSONObject retVal = null;
                 if (action != null) {
                     if (action.equals("showprocessinput")) {
                         retVal = getProcessParametersJson(processId);
@@ -71,10 +71,10 @@ public class Bpmn2EmfProfile extends AbstractEmfProfile {
                 return retVal;
             }
 
-            public String getProcessParametersJson(String casePath) {
+            public JSONObject getProcessParametersJson(String casePath) {
                 Process theProcess = getTheProcess(casePath);
                 if (theProcess == null) {
-                    return "";
+                    return null;
                 }
                 return parametersToJson(theProcess.getProperties());
             }
@@ -98,7 +98,7 @@ public class Bpmn2EmfProfile extends AbstractEmfProfile {
                 return (Process) resource.getEObject(caseId);
             }
 
-            private String parametersToJson(List<Property> parameterlist) {
+            private JSONObject parametersToJson(List<Property> parameterlist) {
                 String s = "";
                 try {
                     JSONObject params = new JSONObject();
@@ -113,12 +113,12 @@ public class Bpmn2EmfProfile extends AbstractEmfProfile {
                         }
                         paramsArray.put(p);
                     }
-                    return params.toString();
+                    return params;
                 } catch (Exception e) {
                     // TODO handle properly
                     e.printStackTrace();
                 }
-                return s;
+                return null;
             }
 
 

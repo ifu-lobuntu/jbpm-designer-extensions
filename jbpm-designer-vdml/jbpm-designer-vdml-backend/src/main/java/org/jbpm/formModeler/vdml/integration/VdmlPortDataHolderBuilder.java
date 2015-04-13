@@ -31,6 +31,8 @@ import org.jbpm.formModeler.core.config.builders.dataHolder.DataHolderBuildConfi
 import org.jbpm.formModeler.core.config.builders.dataHolder.PojoDataHolderBuilder;
 import org.jbpm.formModeler.core.config.builders.dataHolder.RangedDataHolderBuilder;
 import org.jbpm.formModeler.vdml.model.VdmlPortDataHolder;
+import org.omg.vdml.InputPort;
+import org.omg.vdml.OutputPort;
 import org.omg.vdml.Port;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -114,7 +116,7 @@ public class VdmlPortDataHolderBuilder implements RangedDataHolderBuilder {
             dataHolder = new VdmlPortDataHolder(config.getHolderId(), config.getInputId(), config.getOutputId(), config.getValue(), config.getRenderColor());
             isExternal = Boolean.TRUE.equals(config.getAttribute("supportedType"));
         } else {
-            Port holderPort = getUmlPort(config);
+            Port holderPort = getVdmlPort(config);
             dataHolder = new VdmlPortDataHolder(config.getHolderId(), config.getInputId(), config.getOutputId(), holderPort, config.getRenderColor());
         }
 
@@ -124,15 +126,25 @@ public class VdmlPortDataHolderBuilder implements RangedDataHolderBuilder {
         return dataHolder;
     }
 
-    private Port getUmlPort(DataHolderBuildConfig config) {
+    private Port getVdmlPort(DataHolderBuildConfig config) {
         event.fire(new PathEvent(config.getAttribute("path")));
-        return getUmlPort(config.getValue());
+        return getVdmlPort(config.getValue());
     }
 
-    private Port getUmlPort(String value) {
+    private Port getVdmlPort(String value) {
         ResourceSet rst = new ResourceSetImpl();
         profile.prepareResourceSet(rst);
         Port holderPort = (Port) rst.getEObject(org.eclipse.emf.common.util.URI.createURI(value, true), true);
+        EcoreUtil.resolveAll(holderPort);
+        if(holderPort instanceof InputPort){
+            InputPort ip = (InputPort) holderPort;
+            EcoreUtil.resolveAll(ip.getInput().getProvider());
+            EcoreUtil.resolveAll(ip.getInput());
+        }else{
+            OutputPort ip = (OutputPort) holderPort;
+            EcoreUtil.resolveAll(ip.getOutput().getRecipient());
+            EcoreUtil.resolveAll(ip.getOutput());
+        }
         if (holderPort == null) {
             return null;
         }
@@ -155,12 +167,12 @@ public class VdmlPortDataHolderBuilder implements RangedDataHolderBuilder {
 
     @Override
     public boolean supportsPropertyType(String className, String path) {
-        return getUmlPort(className) != null;
+        return getVdmlPort(className) != null;
     }
 
     @Override
     public int getPriority() {
-        return 123;
+        return 1234;
     }
 
     @Override

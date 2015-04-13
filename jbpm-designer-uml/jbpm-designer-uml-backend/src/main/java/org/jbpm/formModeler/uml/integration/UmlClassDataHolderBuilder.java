@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Class;
 import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
@@ -91,7 +92,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
         int indexOfProjectRoot = path.indexOf("/", indexOfRepoRoot + 1);
         String packageName = path.substring(indexOfRepoRoot, indexOfProjectRoot);
         this.event.fire(new PathEvent(path));
-        System.out.println();
+        @SuppressWarnings("rawtypes")
         Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName,
                 new FilterByExtension(targetDiagramProfile.getSerializedModelExtension()));
         for (Asset<?> asset : listAssetsRecursively) {
@@ -147,6 +148,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
         ResourceSet rst = new ResourceSetImpl();
         profile.prepareResourceSet(rst);
         Class holderClass = (Class) rst.getEObject(org.eclipse.emf.common.util.URI.createURI(value, true), true);
+        EcoreUtil.resolveAll(holderClass);
         if (holderClass == null) {
             return null;
         }
@@ -174,7 +176,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
 
     @Override
     public int getPriority() {
-        return 123;
+        return 123123321;
     }
 
     @Override

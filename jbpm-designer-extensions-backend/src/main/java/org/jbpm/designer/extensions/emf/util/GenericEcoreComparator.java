@@ -36,6 +36,11 @@ public class GenericEcoreComparator {
         populateMap(outputResource, this.outputMap);
     }
 
+    public GenericEcoreComparator(EObject input, EObject output) {
+        populateMap((XMLResource)input.eResource(),  input.eAllContents(),this.inputMap);
+        populateMap((XMLResource)input.eResource(),output.eAllContents(),this.outputMap);
+    }
+
     public GenericEcoreComparator(XMLResource inputResource, XMLResource outputResource, Set<EClassifier> moreIdsToIgnore) {
         ignoreIdsFrom.addAll(moreIdsToIgnore);
         populateMap(inputResource, this.inputMap);
@@ -44,6 +49,10 @@ public class GenericEcoreComparator {
 
     private void populateMap(XMLResource sourceResource, Map<String, EObject> targetMap) {
         TreeIterator<EObject> allContents = sourceResource.getAllContents();
+        populateMap(sourceResource, allContents, targetMap);
+    }
+
+    private void populateMap(XMLResource sourceResource, TreeIterator<EObject> allContents, Map<String, EObject> targetMap) {
         while (allContents.hasNext()) {
             EObject eObject = (EObject) allContents.next();
             if (!ignoreIdsFrom.contains(eObject.eClass())) {

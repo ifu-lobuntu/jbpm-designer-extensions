@@ -74,10 +74,17 @@ public class VdmlHelper {
         }
     }
     public static Measure getValueMeasure(ValueAdd field) {
-        return field.getValueMeasurement().getCharacteristicDefinition().getMeasure().get(0);
+        MeasuredCharacteristic valueMeasurement = field.getValueMeasurement();
+        return getMeasure(valueMeasurement);
+    }
+    public static Measure getMeasure(MeasuredCharacteristic valueMeasurement) {
+        return valueMeasurement.getCharacteristicDefinition().getMeasure().get(0);
     }
     public static boolean hasValueMeasure(ValueAdd field) {
         MeasuredCharacteristic vm = field.getValueMeasurement();
+        return hasMeasure(vm);
+    }
+    public static boolean hasMeasure(MeasuredCharacteristic vm) {
         return vm!=null && vm.getCharacteristicDefinition()!=null && vm.getCharacteristicDefinition().getMeasure().size()>0;
     }
     public static EList<ValueAdd> getValueAdds(Port p) {

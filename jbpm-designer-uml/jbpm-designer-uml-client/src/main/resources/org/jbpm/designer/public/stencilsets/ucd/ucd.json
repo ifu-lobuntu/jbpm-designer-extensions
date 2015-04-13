@@ -413,7 +413,7 @@
                         "type" : "Boolean",
                         "value" : true,
                         "readonly" : true,
-                        "hidden" : false
+                        "hidden" : true
                     },
                     {
                         "id" : "tasktype",
@@ -559,19 +559,20 @@
                 ],
                 "properties" : [
                     {
-                        "id" : "type",
+                        "id" : "propertyType",
                         "type" : "eobjectref",
-                        "title" : "Property Type",
+                        "binding" : "type",
+                        "title" : "Type",
                         "value" : "",
                         "description" : "The Type of the Property.",
                         "readonly" : false,
-                        "optional" : true,
+                        "optional" : false,
+                        "bindLate" : true,
                         "reference" : {
                             "targetProfile":"ucd",
                             "allowedElementTypes":"Enumeration|PrimitiveType",
                             "nameFeature" : "qualifiedName"
                         },
-
                         "length" : ""
                     }
                 ]

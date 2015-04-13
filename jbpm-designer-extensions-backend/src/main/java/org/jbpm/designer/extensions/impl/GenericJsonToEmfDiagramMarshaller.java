@@ -344,9 +344,6 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                 if (hasValue(property.getBinding())) {
                     writeBinding(me, property, property.getBinding(), stringValue);
                 } else if (hasValue(property.getViewBinding())) {
-                    if(property.getId().equals("capabilityMethod")){
-                        System.out.println();
-                    }
                     writeBinding(de, property, property.getViewBinding(), stringValue);
                 } else if (me != null) {
                     EStructuralFeature eStructuralFeature = me.eClass().getEStructuralFeature(property.getId());

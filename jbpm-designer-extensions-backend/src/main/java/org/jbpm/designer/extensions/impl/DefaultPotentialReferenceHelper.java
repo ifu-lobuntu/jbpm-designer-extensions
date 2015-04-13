@@ -54,7 +54,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         return targetProfileName == null || targetProfileName.trim().isEmpty();
     }
 
-    public String findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
+    public JSONObject findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
         if (action.equals("getEmfElements")) {
             String nameFeature = req.getParameter("nameFeature");
             String[] elementTypes = req.getParameter("elementTypes").split("\\|");
@@ -96,7 +96,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
                 }
 
             }
-            return toEobjectReferenceJson(results, nameFeature).toString();
+            return toEobjectReferenceJson(results, nameFeature);
         }
         return null;
     }

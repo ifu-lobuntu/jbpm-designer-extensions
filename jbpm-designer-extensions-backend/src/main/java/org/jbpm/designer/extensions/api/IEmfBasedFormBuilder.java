@@ -11,6 +11,7 @@ import org.jbpm.formModeler.api.model.Form;
 import org.uberfire.backend.vfs.Path;
 
 public interface IEmfBasedFormBuilder {
+    String getProfileName();
     Collection<TaskFormInfo> generateAllForms(Path modelPath, XMLResource resource);
 
     Map<String, TaskFormInfo> generateFormFor(Path modelPath, XMLResource resource, String elementId, String formType);

@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.omg.cmmn.TCase;
 
 public class CmmnCalledElementHelper extends DefaultPotentialReferenceHelper {
@@ -15,10 +17,10 @@ public class CmmnCalledElementHelper extends DefaultPotentialReferenceHelper {
         super(profile);
     }
 
-    public String findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
+    public JSONObject findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
         if (action != null) {
             try {
-                String retValue = null;
+                JSONObject retValue = null;
                 if (action.equals("showprocessinput")) {
                         retValue = getCaseInputParametersJson(processId);
                 } else if (action.equals("showprocessoutput")) {
@@ -36,20 +38,22 @@ public class CmmnCalledElementHelper extends DefaultPotentialReferenceHelper {
     }
 
 
-    public String getCaseInputParametersJson(String casePath) {
+    public JSONObject getCaseInputParametersJson(String casePath) throws JSONException {
         TCase theCase = getTheCase(casePath);
         if (theCase == null) {
-            return "";
+            return null;
         }
-        return CmmnEmfToJsonHelper.parametersToJson(theCase.getInput(), null);
+        //TODO optimize - unnecessary parsing
+        return new JSONObject(CmmnEmfToJsonHelper.parametersToJson(theCase.getInput(), null));
     }
 
-    public String getCaseOutputParametersJson(String casePath) {
+    public JSONObject getCaseOutputParametersJson(String casePath) throws JSONException {
         TCase theCase = getTheCase(casePath);
         if (theCase == null) {
-            return "";
+            return null;
         }
-        return CmmnEmfToJsonHelper.parametersToJson(theCase.getOutput(), null);
+        //TODO optimize - unnecessary parsing
+        return new JSONObject(CmmnEmfToJsonHelper.parametersToJson(theCase.getOutput(), null));
     }
 
     private TCase getTheCase(String casePath) {

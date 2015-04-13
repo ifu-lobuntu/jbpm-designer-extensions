@@ -11,6 +11,20 @@
   <packaging>war</packaging>
 
   <dependencies>
+    <!-- jBPM Designer Extensions -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-emf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-client</artifactId>
+    </dependency>
+    <!-- jBPM Designer CMMN -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-cmmn-api</artifactId>
@@ -26,6 +40,11 @@
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-cmmn-emf</artifactId>
+    </dependency>
+    <!-- jBPM Designer UML -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-emf</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
@@ -47,6 +66,11 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-uml-codegen</artifactId>
     </dependency>
+    <!-- jBPM Designer VDML -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdml-emf</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-vdml-api</artifactId>
@@ -59,22 +83,7 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-vdml-backend</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-extensions-backend</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-extensions-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-codemodel</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-uml-codegen</artifactId>
-    </dependency>
+    <!-- jBPM Designer SMM -->
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-smm-api</artifactId>
@@ -87,15 +96,22 @@
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-designer-smm-backend</artifactId>
     </dependency>
-    <!-- dependencies added because of new illegal transitive dependency check -->
+
+    <!-- jBPM Designer -->
     <dependency>
-      <groupId>org.apache.lucene</groupId>
-      <artifactId>lucene-core</artifactId>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.guvnor</groupId>
-      <artifactId>guvnor-services-backend</artifactId>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-client</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-backend</artifactId>
+    </dependency>
+
+    <!-- Errai -->
     <dependency>
       <groupId>org.jboss.errai</groupId>
       <artifactId>errai-bus</artifactId>
@@ -117,6 +133,28 @@
       <artifactId>errai-security-server</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-security-picketlink</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-jboss-as-support</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-weld-integration</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-ui</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-data-binding</artifactId>
+    </dependency>
+
+    <!-- Uberfire -->
+    <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-widgets-service-api</artifactId>
     </dependency>
@@ -131,30 +169,6 @@
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-commons-editor-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.uberfire</groupId>
-      <artifactId>kie-uberfire-social-activities-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.workbench.screens</groupId>
-      <artifactId>kie-wb-common-default-editor-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.workbench.screens</groupId>
-      <artifactId>kie-wb-common-project-editor-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.workbench.services</groupId>
-      <artifactId>kie-wb-common-refactoring-backend</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.picketlink</groupId>
-      <artifactId>picketlink-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.picketlink</groupId>
-      <artifactId>picketlink-idm-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.uberfire</groupId>
@@ -192,6 +206,43 @@
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-security-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-metadata-commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-metadata-backend-lucene</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-all</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-workbench-processors</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- KIE -->
+    <dependency>
+      <groupId>org.kie.uberfire</groupId>
+      <artifactId>kie-uberfire-social-activities-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.screens</groupId>
+      <artifactId>kie-wb-common-default-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.screens</groupId>
+      <artifactId>kie-wb-common-project-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-refactoring-backend</artifactId>
+    </dependency>
+
+
 
     <!-- Hack: ANT bundled with kie-ci needs to be excluded when running on Jetty -->
     <!-- It is added back for other Application Servers in their respective assemblies -->
@@ -204,20 +255,6 @@
           <artifactId>ant</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-
-    <!-- jBPM Designer -->
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-designer-backend</artifactId>
     </dependency>
 
     <dependency>
@@ -257,54 +294,6 @@
       <artifactId>kie-wb-common-default-editor-backend</artifactId>
     </dependency>
 
-    <!-- UberFire Extension -->
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-metadata-commons-io</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-metadata-backend-lucene</artifactId>
-    </dependency>
-
-    <!-- UberFire -->
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-all</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-workbench-processors</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-security-picketlink</artifactId>
-    </dependency>
-
-    <!-- Errai AS -->
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-jboss-as-support</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-weld-integration</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-ui</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-data-binding</artifactId>
-    </dependency>
 
     <!-- CDI Development Utils -->
     <dependency>
@@ -372,22 +361,11 @@
       <artifactId>jboss-transaction-api_1.1_spec</artifactId>
     </dependency>
 
-    <!--Miscellaneous -->
-    <dependency>
-      <groupId>org.quartz-scheduler</groupId>
-      <artifactId>quartz</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jbpm</groupId>
-      <artifactId>jbpm-bpmn2-emfextmodel</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jdom</groupId>
-      <artifactId>jdom</artifactId>
-    </dependency>
-
     <!-- Guvnor -->
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-services-backend</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.guvnor</groupId>
       <artifactId>guvnor-structure-api</artifactId>
@@ -590,6 +568,17 @@
       <artifactId>kie-wb-common-data-modeller-client</artifactId>
     </dependency>
 
+    <!-- Eclipse -->
+    <dependency>
+      <groupId>org.eclipse.uml2</groupId>
+      <artifactId>org.eclipse.uml2.uml</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse</groupId>
+      <artifactId>org.eclipse.bpmn2</artifactId>
+    </dependency>
+
+
     <!-- Logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -601,11 +590,6 @@
       <scope>runtime</scope>
     </dependency>
 
-    <dependency>
-      <groupId>org.eclipse</groupId>
-      <artifactId>org.eclipse.bpmn2</artifactId>
-    </dependency>
-
     <!-- PicketLink has a hard dependency on JBoss Logging. Since this app deploys to Jetty, we include this as a runtime-scoped dependency. If deploying to JBoss AS or WildFly, you 
       would set this to provided scope. -->
     <dependency>
@@ -613,6 +597,34 @@
       <artifactId>jboss-logging</artifactId>
       <scope>runtime</scope>
     </dependency>
+
+    <!--Miscellaneous -->
+    <dependency>
+      <groupId>org.apache.lucene</groupId>
+      <artifactId>lucene-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.picketlink</groupId>
+      <artifactId>picketlink-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.picketlink</groupId>
+      <artifactId>picketlink-idm-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-bpmn2-emfextmodel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jdom</groupId>
+      <artifactId>jdom</artifactId>
+    </dependency>
+
 
   </dependencies>
 

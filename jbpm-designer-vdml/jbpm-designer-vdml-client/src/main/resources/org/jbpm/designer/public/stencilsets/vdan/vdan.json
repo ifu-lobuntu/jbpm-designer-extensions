@@ -167,7 +167,7 @@
 			    "name":"port",
 			    "properties":[
                     {
-                        "id" : "quantityMeasure",
+                        "id" : "batchSizeMeasure",
                         "type" : "eobjectref",
                         "title" : "Quantity Measure",
                         "value" : "",

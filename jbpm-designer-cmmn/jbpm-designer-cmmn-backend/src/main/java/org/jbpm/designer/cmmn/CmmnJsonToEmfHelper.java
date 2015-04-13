@@ -397,7 +397,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         doSwitch(object.getDefinitionRef());
         TStage stage = getNearestStage(object);
         addSentries(stage, object.getEntryCriteriaRefs(), object.getExitCriteriaRefs());
-        object.getDefinitionRef().setName(object.getName());
+        object.setName(object.getDefinitionRef().getName());
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(sr.getResourceId());
             if (shape.getStencilId().equals(CmmnStencil.EXIT_SENTRY.getStencilId())) {

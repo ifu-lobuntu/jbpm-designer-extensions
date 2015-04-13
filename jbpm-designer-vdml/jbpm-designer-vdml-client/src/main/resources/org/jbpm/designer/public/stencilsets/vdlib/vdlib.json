@@ -1111,7 +1111,7 @@
                             "optional" : true,
                             "refToView" : [],
                             "reference" : {
-                                "targetProfile":"vdlib",
+                                "targetProfile":"vdlib|vdan|ucd",
                                 "allowedElementTypes":"Class",
                                 "nameFeature" : "qualifiedName"
                             },

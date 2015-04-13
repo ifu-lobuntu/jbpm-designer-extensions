@@ -52,6 +52,12 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
                 d(shape);
             }
         }.bind(this));
+        this.facade.getCanvas().getChildNodes(true, function(shape){
+            var d=this.decoratorUpdaters[shape.getStencil().idWithoutNs()];
+            if(d){
+                d(shape);
+            }
+        }.bind(this));
     }
 });
         
@@ -77,13 +83,13 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 	 */
 	construct : function(facade) {
 		this.facade = facade;
+        arguments.callee.$.construct.apply(this, arguments);
 		ORYX.Core.Edge = ORYX.Plugins.Extensions.CurvedEdge;
 		ORYX.FieldEditors["eobjectref"] = new ORYX.Plugins.Extensions.EObjectRefEditorFactory();
 		this.facade.registerOnEvent('layout.collapsible', this.handleLayoutCollapsible.bind(this));
 		this.facade.registerOnEvent('layout.list', this.handleLayoutList.bind(this));
 		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 		console.log("Extensions initialized");
 		ORYX.I18N.forms.editForm = "Edit Form";
 		ORYX.I18N.forms.editFormDesc = "Edit Form";
@@ -153,21 +159,6 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 					uiObject
 				]
 			});
-		}
-	},
-	handlePropertyChanged : function(event) {
-		if (event["key"] == "oryx-name" || event["key"] == "oryx-type") {
-			this.updateDecorations(event.elements[0]);
-		}
-	},
-	updateDecorations : function(shape) {
-		var labels = shape.getLabels();
-		for (var i = 0; i < labels.length; i++) {
-			if (labels[i].id == shape.id + "text_type") {
-				var type = shape.properties["oryx-propertytype"];
-				labels[i].text(shape.properties["oryx-name"] + " : " + type);
-				labels[i].update();
-			}
 		}
 	},
 	updateExpanded : function(collapsibleShape) {
@@ -247,10 +238,16 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 });
 ORYX.Plugins.Extensions.isExpanded = function(shape) {
 	return shape.properties["oryx-isexpanded"] == true || shape.properties["oryx-isexpanded"] == "true";
-}, ORYX.Plugins.Extensions.isCollapsible = function(shape) {
+}; 
+ORYX.Plugins.Extensions.isCollapsible = function(shape) {
 	return typeof (shape.properties["oryx-isexpanded"]) == "string" || typeof (shape.properties["oryx-isexpanded"]) == "boolean";
-}, ORYX.Plugins.Extensions.extractName = function(reference) {
-	return reference.slice(reference.indexOf("::") + 2, reference.indexOf("|"));
+}; 
+ORYX.Plugins.Extensions.extractName = function(reference) {
+    if(reference){
+        return reference.slice(reference.indexOf("::") + 2, reference.indexOf("|"));
+    }else{
+        return "";
+    }
 };
 ORYX.Plugins.Extensions.showShape = function(uiObject) {
 	uiObject.node.setAttributeNS(null, 'display', 'inherit');
@@ -625,8 +622,8 @@ ORYX.Plugins.ExtensionsFormEditing = Clazz.extend({
 					'minShape' : 1,
 					'maxShape' : 1,
 					'isEnabled' : function() {
-						return ORYX.READONLY != true && this.facade.getSelection().length > 0
-								&& this.facade.getSelection().first().properties["oryx-hasform"] == true;
+                        return ORYX.READONLY != true && this.facade.getSelection().length > 0
+                        && this.facade.getSelection().first().properties["oryx-hasform"] == true;
 					}.bind(this)
 				});
 

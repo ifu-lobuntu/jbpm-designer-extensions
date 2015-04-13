@@ -10,6 +10,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.eclipse.bpmn2.impl.Bpmn2PackageImpl;
+import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
 import org.guvnor.structure.organizationalunit.OrganizationalUnitService;
 import org.guvnor.structure.repositories.Repository;
@@ -18,6 +20,17 @@ import org.guvnor.structure.server.config.ConfigGroup;
 import org.guvnor.structure.server.config.ConfigType;
 import org.guvnor.structure.server.config.ConfigurationFactory;
 import org.guvnor.structure.server.config.ConfigurationService;
+import org.jbpm.cmmn.dd.cmmndi.impl.CMMNDIPackageImpl;
+import org.jbpm.cmmn.jbpmext.impl.JbpmextPackageImpl;
+import org.jbpm.designer.dd.jbpmdd.impl.JBPMDDPackageImpl;
+import org.jbpm.smm.dd.smmdi.impl.SMMDIPackageImpl;
+import org.jbpm.vdml.dd.vdmldi.impl.VDMLDIPackageImpl;
+import org.omg.cmmn.impl.CMMNPackageImpl;
+import org.omg.dd.dc.impl.DCPackageImpl;
+import org.omg.dd.di.DIPackage;
+import org.omg.dd.di.impl.DIPackageImpl;
+import org.omg.smm.impl.SMMPackageImpl;
+import org.omg.vdml.impl.VDMLPackageImpl;
 import org.uberfire.commons.services.cdi.Startup;
 import org.uberfire.commons.services.cdi.StartupType;
 import org.uberfire.io.IOService;
@@ -25,7 +38,27 @@ import org.uberfire.io.IOService;
 @ApplicationScoped
 @Startup(StartupType.BOOTSTRAP)
 public class AppSetup {
-
+    static {
+        try {
+            // HACK
+            // Sometimes the initialization fails for unpredictable reasons
+            // TODO investigate if it has anything to do with the VFSURIHandler.
+            Bpmn2PackageImpl.init();
+            UMLPackageImpl.init();
+            DIPackageImpl.init();
+            DCPackageImpl.init();
+            JBPMDDPackageImpl.init();
+            SMMPackageImpl.init();
+            SMMDIPackageImpl.init();
+            VDMLPackageImpl.init();
+            VDMLDIPackageImpl.init();
+            CMMNPackageImpl.init();
+            CMMNDIPackageImpl.init();
+            JbpmextPackageImpl.init();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
     private static final String JBPM_REPO_PLAYGROUND = "examples";
     private static final String JBPM_URL = "https://github.com/ifu-lobuntu/examples.git";
 
@@ -53,78 +86,68 @@ public class AppSetup {
     @PostConstruct
     public void onStartup() {
         try {
-            Repository jbpmRepo = repositoryService.getRepository( JBPM_REPO_PLAYGROUND );
-            if ( jbpmRepo == null ) {
-                jbpmRepo = repositoryService.createRepository( "git",
-                                                               JBPM_REPO_PLAYGROUND,
-                                                               new HashMap<String, Object>() {{
-                                                                   put( "origin", JBPM_URL );
-                                                                   put( "username", userName );
-                                                                   put( "crypt:password", password );
-                                                               }} );
+            Repository jbpmRepo = repositoryService.getRepository(JBPM_REPO_PLAYGROUND);
+            if (jbpmRepo == null) {
+                jbpmRepo = repositoryService.createRepository("git", JBPM_REPO_PLAYGROUND, new HashMap<String, Object>() {
+                    {
+                        put("origin", JBPM_URL);
+                        put("username", userName);
+                        put("crypt:password", password);
+                    }
+                });
             }
 
-            // TODO in case repo is not defined in system repository so we add default
-//            Repository guvnorRepo = repositoryService.getRepository( GUVNOR_REPO_PLAYGROUND );
-//            if ( guvnorRepo == null ) {
-//                guvnorRepo = repositoryService.createRepository( "git",
-//                                                                 GUVNOR_REPO_PLAYGROUND,
-//                                                                 new HashMap<String, Object>() {{
-//                                                                     put( "origin", GUVNOR_URL );
-//                                                                     put( "username", userName );
-//                                                                     put( "crypt:password", password );
-//                                                                 }} );
-//            }
+            // TODO in case repo is not defined in system repository so we add
+            // default
+            // Repository guvnorRepo = repositoryService.getRepository(
+            // GUVNOR_REPO_PLAYGROUND );
+            // if ( guvnorRepo == null ) {
+            // guvnorRepo = repositoryService.createRepository( "git",
+            // GUVNOR_REPO_PLAYGROUND,
+            // new HashMap<String, Object>() {{
+            // put( "origin", GUVNOR_URL );
+            // put( "username", userName );
+            // put( "crypt:password", password );
+            // }} );
+            // }
 
             // TODO in case groups are not defined
             Collection<OrganizationalUnit> groups = organizationalUnitService.getOrganizationalUnits();
-            if ( groups == null || groups.isEmpty() ) {
+            if (groups == null || groups.isEmpty()) {
                 final List<Repository> repositories = new ArrayList<Repository>();
-                repositories.add( jbpmRepo );
-//                repositories.add( guvnorRepo );
+                repositories.add(jbpmRepo);
+                // repositories.add( guvnorRepo );
 
-                organizationalUnitService.createOrganizationalUnit( "demo",
-                                                                    "demo@jbpm.org",
-                                                                    null,
-                                                                    repositories );
+                organizationalUnitService.createOrganizationalUnit("demo", "demo@jbpm.org", null, repositories);
             }
 
-            //Define mandatory properties
-            List<ConfigGroup> globalConfigGroups = configurationService.getConfiguration( ConfigType.GLOBAL );
+            // Define mandatory properties
+            List<ConfigGroup> globalConfigGroups = configurationService.getConfiguration(ConfigType.GLOBAL);
             boolean globalSettingsDefined = false;
-            for ( ConfigGroup globalConfigGroup : globalConfigGroups ) {
-                if ( GLOBAL_SETTINGS.equals( globalConfigGroup.getName() ) ) {
+            for (ConfigGroup globalConfigGroup : globalConfigGroups) {
+                if (GLOBAL_SETTINGS.equals(globalConfigGroup.getName())) {
                     globalSettingsDefined = true;
                     break;
                 }
             }
-            if ( !globalSettingsDefined ) {
-                configurationService.addConfiguration( getGlobalConfiguration() );
+            if (!globalSettingsDefined) {
+                configurationService.addConfiguration(getGlobalConfiguration());
             }
 
-        } catch ( Exception e ) {
-            throw new RuntimeException( "Error when starting designer " + e.getMessage(), e );
+        } catch (Exception e) {
+            throw new RuntimeException("Error when starting designer " + e.getMessage(), e);
         }
     }
 
     private ConfigGroup getGlobalConfiguration() {
-        //Global Configurations used by many of Drools Workbench editors
-        final ConfigGroup group = configurationFactory.newConfigGroup( ConfigType.GLOBAL,
-                                                                       GLOBAL_SETTINGS,
-                                                                       "" );
-        group.addConfigItem( configurationFactory.newConfigItem( "drools.dateformat",
-                                                                 "dd-MMM-yyyy" ) );
-        group.addConfigItem( configurationFactory.newConfigItem( "drools.datetimeformat",
-                                                                 "dd-MMM-yyyy hh:mm:ss" ) );
-        group.addConfigItem( configurationFactory.newConfigItem( "drools.defaultlanguage",
-                                                                 "en" ) );
-        group.addConfigItem( configurationFactory.newConfigItem( "drools.defaultcountry",
-                                                                 "US" ) );
-        group.addConfigItem( configurationFactory.newConfigItem( "build.enable-incremental",
-                                                                 "true" ) );
-        group.addConfigItem( configurationFactory.newConfigItem( "rule-modeller-onlyShowDSLStatements",
-                                                                 "false" ) );
+        // Global Configurations used by many of Drools Workbench editors
+        final ConfigGroup group = configurationFactory.newConfigGroup(ConfigType.GLOBAL, GLOBAL_SETTINGS, "");
+        group.addConfigItem(configurationFactory.newConfigItem("drools.dateformat", "dd-MMM-yyyy"));
+        group.addConfigItem(configurationFactory.newConfigItem("drools.datetimeformat", "dd-MMM-yyyy hh:mm:ss"));
+        group.addConfigItem(configurationFactory.newConfigItem("drools.defaultlanguage", "en"));
+        group.addConfigItem(configurationFactory.newConfigItem("drools.defaultcountry", "US"));
+        group.addConfigItem(configurationFactory.newConfigItem("build.enable-incremental", "true"));
+        group.addConfigItem(configurationFactory.newConfigItem("rule-modeller-onlyShowDSLStatements", "false"));
         return group;
     }
 }
-

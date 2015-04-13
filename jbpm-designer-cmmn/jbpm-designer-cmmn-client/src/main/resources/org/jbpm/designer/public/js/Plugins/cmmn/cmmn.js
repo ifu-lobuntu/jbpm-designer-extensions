@@ -47,7 +47,8 @@ ORYX.Plugins.CMMN = Clazz.extend(
 			this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
 			this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handlePlanningTableExpand.bind(this));
 		}catch(e){
-			console.log(e);
+            console.log(e);
+		    alert(e.toString());
 		}
 	},
 	onAdd : function(event){

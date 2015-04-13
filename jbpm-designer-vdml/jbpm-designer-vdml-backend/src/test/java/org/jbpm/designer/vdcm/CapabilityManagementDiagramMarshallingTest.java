@@ -1,4 +1,5 @@
 package org.jbpm.designer.vdcm;
+import static org.junit.Assert.assertNotNull;
 
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.junit.Test;
@@ -8,7 +9,7 @@ import org.omg.vdml.Pool;
 import org.omg.vdml.Position;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
-
+import org.eclipse.uml2.uml.Package;
 public class CapabilityManagementDiagramMarshallingTest extends AbstractVdcmDiagramMarshallingTest {
     @Test
     public void testCapabilityOfferAndMethod() throws Exception {
@@ -25,11 +26,10 @@ public class CapabilityManagementDiagramMarshallingTest extends AbstractVdcmDiag
         inputDiagram.getOwnedVdmlDiagramElement().add(offerShape);
         orgUnitShape.getBoundaryShapes().add(offerShape);
         addEdge(null, offer, capabilityMethod);
-        print(diagramResource);
         saveCollaborationResource();
         saveCapabilityMethodResource();
         assertOutputValid();
-        print(diagramResource);
+        
     }
 
     @Test
@@ -51,7 +51,9 @@ public class CapabilityManagementDiagramMarshallingTest extends AbstractVdcmDiag
         addEdge(null, pool, position);
         saveCollaborationResource();
         print(diagramResource);
-        assertOutputValid();
+        Package pkg = (Package)assertOutputValid().getContents().get(1);
+        assertNotNull(pkg.getOwnedType(orgUnit.getName()));
+        assertNotNull(pkg.getOwnedType(pool.getName()));
         print(diagramResource);
     }
 

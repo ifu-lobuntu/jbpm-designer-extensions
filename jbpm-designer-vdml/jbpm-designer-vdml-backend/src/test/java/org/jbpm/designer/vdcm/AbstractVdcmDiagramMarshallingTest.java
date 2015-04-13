@@ -96,16 +96,17 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
     }
 
 
-    protected void assertOutputValid() throws IOException, Exception {
-        assertConversionValid(diagramResource);
+    protected XMLResource assertOutputValid() throws IOException, Exception {
+        return assertConversionValid(diagramResource);
     }
 
-    protected void assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
+    protected XMLResource assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
         String xmlString = buildXmlString(drscasdf);
         System.out.println(xmlString);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         System.out.println(json);
         XMLResource outputResource = marshaller.getResource(json, "");
         print(outputResource);
-        new GenericEcoreComparator(drscasdf, outputResource).validate();
+        new GenericEcoreComparator(drscasdf.getContents().get(0), outputResource.getContents().get(0)).validate();
+        return outputResource;
     }}

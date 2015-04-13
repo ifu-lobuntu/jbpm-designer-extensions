@@ -38,6 +38,10 @@ public class CmmnFormBuilder extends AbstractFormBuilderImpl {
         cmmnTypeMap.put("Double", "InputTextDouble");
     }
     @Override
+    public String getProfileName() {
+        return "cmmn";
+    }
+    @Override
     protected boolean hasForm(EObject eObject) {
         return eObject instanceof TPlanItem && ((TPlanItem) eObject).getDefinitionRef() instanceof THumanTask;
     }

@@ -46,6 +46,7 @@ import org.jbpm.designer.web.plugin.IDiagramPlugin;
 import org.jbpm.designer.web.plugin.impl.PluginServiceImpl;
 import org.jbpm.designer.web.profile.IDiagramProfile;
 import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.backend.vfs.Path;
@@ -363,30 +364,39 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     @Override
     public boolean processRequestForPotentialReferences(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         try {
+            JSONObject json=new JSONObject();
             String targetProfileName = req.getParameter("targetProfile");
-            IEmfProfile targetProfile;
             if (isEmpty(targetProfileName)) {
-                targetProfile = this;
-            } else {
-                targetProfile = getOtherProfile(targetProfileName);
+                targetProfileName = this.getName();
             }
-            String assetContent = UriUtils.decode(Utils.getEncodedParam(req, "json"));
-            String assetId = Utils.getEncodedParam(req, "assetid");
-            if (!(isEmpty(assetId) || isEmpty(assetContent))) {
-                XMLResource res = (XMLResource) createMarshaller(EMFVFSURIConverter.toPlatformResourceURI(assetId)).getResource(assetContent, "");
-                String sourceElementId = req.getParameter("sourceElementId");
-                req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_RESOURCE, res);
-                if (!isEmpty(sourceElementId)) {
-                    req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, res.getEObject(sourceElementId));
+            String[] split = targetProfileName.split("\\|");
+            for (String otherProfileName : split) {
+                IEmfProfile targetProfile = getOtherProfile(otherProfileName);
+                String assetContent = UriUtils.decode(Utils.getEncodedParam(req, "json"));
+                String assetId = Utils.getEncodedParam(req, "assetid");
+                if (!(isEmpty(assetId) || isEmpty(assetContent))) {
+                    XMLResource res = (XMLResource) createMarshaller(EMFVFSURIConverter.toPlatformResourceURI(assetId)).getResource(assetContent, "");
+                    String sourceElementId = req.getParameter("sourceElementId");
+                    req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_RESOURCE, res);
+                    if (!isEmpty(sourceElementId)) {
+                        req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, res.getEObject(sourceElementId));
+                    }
+                }
+
+                req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_PROFILE, this);
+                JSONObject output = targetProfile.createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
+                if (output == null) {
+                    for (String name : JSONObject.getNames(output)) {
+                        json.put(name, output.get(name));
+                    }
                 }
             }
-
-            req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_PROFILE, this);
-            String output = targetProfile.createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
-            if (output == null) {
+            if(JSONObject.getNames(json).length==0){
                 return false;
-            } else {
-                resp.getWriter().write(output);
+            }else{
+                resp.setCharacterEncoding("UTF-8");
+                resp.setContentType("application/json");
+                resp.getWriter().print(json.toString());
                 return true;
             }
         } catch (RuntimeException e) {

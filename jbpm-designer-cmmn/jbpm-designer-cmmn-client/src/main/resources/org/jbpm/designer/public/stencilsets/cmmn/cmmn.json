@@ -25,7 +25,28 @@
 				}
         	]
         },
-		{
+        {
+            "name" : "definitionName",
+            "properties": [
+                {
+                "id" : "name",
+                    "type" : "String",
+                    "title" : "Name",
+                    "value" : "",
+                    "binding":"definitionRef.name",
+                    "description" : "The descriptive name of the CMMN element.",
+                    "readonly" : false,
+                    "optional" : true,
+                    "length" : "",
+                    "wrapLines" : false,
+                    "refToView" : [
+                        "text_name"
+                    ]
+                }
+            ]
+        },
+
+        {
 			"name" : "baseAttributes",
 			"properties" : [
 				{
@@ -437,21 +458,6 @@
 					"hidden" : true
 				},
 				{
-					"id" : "definitionRefName",
-					"type" : "String",
-					"title" : "Name",
-					"binding" : "definitionRef.name",
-					"value" : "",
-					"description" : "The descriptive name of the CMMN element.",
-					"readonly" : false,
-					"optional" : true,
-					"length" : "",
-					"wrapLines" : false,
-					"refToView" : [
-						"text_name"
-					]
-				},
-				{
 					"id" : "authorizedRoles",
 					"type" : "String",
 					"title" : "Authorized Roles",
@@ -683,13 +689,6 @@
                     "value" : true,
                     "readonly" : true,
                     "hidden" : true
-                },
-                {
-                    "id" : "taskname",
-                    "type" : "String",
-                    "readonly" : false,
-                    "hidden" : false,
-                    "title": "Task Form Name"
                 },
 				{
 					"id" : "tasktype",
@@ -1100,7 +1099,7 @@
 						}
 				],
 				"propertyPackages" : [
-						"baseAttributes", "localStyle", "stage", "manualActivationRule","repetitionRule", "requiredRule", "name", "planItem"
+						"baseAttributes", "localStyle", "stage", "manualActivationRule","repetitionRule", "requiredRule", "definitionName", "planItem"
 				],
 				"properties" : [
 					{
@@ -1155,7 +1154,7 @@
 							"id" : "taskname",
 							"type" : "String",
 							"title" : "Task Name",
-							"binding" : "name",
+							"binding" : "definitionRef.name",
 							"value" : "",
 							"description" : "Task Name",
 							"readonly" : false,
@@ -1182,7 +1181,7 @@
 				"icon" : "case_task.png",
 				"propertyPackages" : [
 						"baseAttributes", "manualActivationRule", "repetitionRule" , "requiredRule", "planItem",
-						"caseTask", "name","localStyle"
+						"caseTask", "definitionName","localStyle"
 				],
 				"properties" : []
 			},
@@ -1201,7 +1200,7 @@
 				"icon" : "process_task.png",
 				"propertyPackages" : [
 										"baseAttributes", "manualActivationRule", "repetitionRule" , "requiredRule", "planItem",
-										"processTask", "name","localStyle"
+										"processTask", "definitionName","localStyle"
 
 				],
 				"properties" : []
@@ -1263,7 +1262,7 @@
 				"icon" : "discretionary_case_task.png",
 				"propertyPackages" : [
 						"baseAttributes", "discretionaryItem",
-						"caseTask","manualActivationRule", "requiredRule","repetitionRule","localStyle"
+						"caseTask","manualActivationRule", "requiredRule","repetitionRule","localStyle","definitionName"
 				],
 				"roles" : [
 					"discretionaryItem"
@@ -1282,7 +1281,7 @@
 				"icon" : "discretionary_process_task.png",
 				"propertyPackages" : [
 						"baseAttributes", "manualActivationRule", "discretionaryItem",
-						"requiredRule","repetitionRule","processTask","localStyle"
+						"requiredRule","repetitionRule","processTask","localStyle","definitionName"
 				],
 				"roles" : [
 					"discretionaryItem"
@@ -1316,7 +1315,7 @@
 							}
 				],
 				"propertyPackages" : [
-								"baseAttributes", "localStyle", "stage", "manualActivationRule","repetitionRule", "requiredRule","discretionaryItem"
+								"baseAttributes", "localStyle", "stage", "manualActivationRule","repetitionRule", "requiredRule","discretionaryItem","definitionName"
 				],
 				"properties" : []
 			},
@@ -1628,7 +1627,7 @@
 				"view" : "timer_event.svg",
 				"icon" : "timer_event.png",
 				"propertyPackages" : [
-						"baseAttributes", "localStyle", "planItem", "name"
+						"baseAttributes", "localStyle", "planItem", "definitionName"
 				],
 				"roles" : [
 					"event","timerEvent"
@@ -1685,7 +1684,7 @@
 				"view" : "user_event.svg",
 				"icon" : "user_event.png",
 				"propertyPackages" : [
-						"baseAttributes", "localStyle", "planItem", "name"
+						"baseAttributes", "localStyle", "planItem", "definitionName"
 				],
 				"roles" : [
 					"event"
@@ -1703,7 +1702,7 @@
 				"view" : "milestone.svg",
 				"icon" : "milestone.png",
 				"propertyPackages" : [
-						"baseAttributes", "localStyle", "planItem", "name", "requiredRule", "repetitionRule"
+						"baseAttributes", "localStyle", "planItem", "definitionName", "requiredRule", "repetitionRule"
 				],
 				"roles" : [
 					"milestone"

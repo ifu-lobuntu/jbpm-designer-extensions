@@ -8,6 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.impl.AbstractFormBuilderImpl;
 import org.jbpm.designer.taskforms.TaskFormInfo;
@@ -50,6 +51,11 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
     }
 
     @Override
+    public String getProfileName() {
+        return "vdan";
+    }
+
+    @Override
     public Map<String, TaskFormInfo> addFields(String repositoryInfo, Form form, EObject eobject, String formType) throws Exception {
         Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
         if (eobject instanceof Port) {
@@ -64,20 +70,21 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
                     addField(form, portName, measure, fieldName);
                 }
             }
-            if(SmmHelper.hasMeasure(port.getBatchSize())){
-                addField(form,portName,SmmHelper.getMeasure(port.getBatchSize()), "Quantity");
+            if (SmmHelper.hasMeasure(port.getBatchSize())) {
+                addField(form, portName, SmmHelper.getMeasure(port.getBatchSize()), "Quantity");
             }
-            //TODO resourceUse
-            //TODO field.setParam1(whoGetsToUpdate- receiver or provider or both), or maybe use formType
-        }else if(eobject instanceof Activity){
-            Activity a=(Activity) eobject;
+            // TODO resourceUse
+            // TODO field.setParam1(whoGetsToUpdate- receiver or provider or
+            // both), or maybe use formType
+        } else if (eobject instanceof Activity) {
+            Activity a = (Activity) eobject;
             for (Port port : a.getContainedPort()) {
                 Field field = form.getField(port.getName());
                 if (field == null) {
                     field = formManager.addFieldToForm(form, port.getName(), fieldTypeManager.getTypeByCode("Subform"), null);
                 }
-                field.setInputBinding(port.getName()+"In");
-                field.setOutputBinding(port.getName()+"Out");
+                field.setInputBinding(port.getName() + "In");
+                field.setOutputBinding(port.getName() + "Out");
                 results.putAll(prepareSubform(repositoryInfo, field, port));
                 I18nSet set = new I18nSet();
                 set.setValue(Locale.getDefault().getLanguage(), port.getName());
@@ -126,6 +133,8 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
     @Override
     public DataHolder buildDataHolderFor(String name, EObject eobject) {
         if (eobject instanceof Port) {
+            //Because we are detached from the origin request from here on
+            EcoreUtil.resolveAll(eobject);
             return new VdmlPortDataHolder(name, name + "In", name + "Out", (Port) eobject, "#6699FF");
         } else {
             return null;

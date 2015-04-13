@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
+import org.json.JSONObject;
 import org.omg.smm.BaseNMeasureRelationship;
 import org.omg.smm.BinaryMeasure;
 import org.omg.smm.CollectiveMeasure;
@@ -35,7 +36,7 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
     }
 
     @Override
-    public String findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
+    public JSONObject findPotentialReferences(HttpServletRequest req, String action, String processId) throws Exception {
         String filter = req.getParameter("filter");
         if (isEmpty(filter)) {
             try {
@@ -58,8 +59,8 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
         return null;
     }
 
-    protected String toEobjectReferenceJson(List<? extends EObject> results) {
-        return toEobjectReferenceJson(results, "name").toString();
+    protected JSONObject toEobjectReferenceJson(List<? extends EObject> results) {
+        return toEobjectReferenceJson(results, "name");
     }
     /**
      * NB!! Expects calling EObjects to have a "vdmlElement" feature 

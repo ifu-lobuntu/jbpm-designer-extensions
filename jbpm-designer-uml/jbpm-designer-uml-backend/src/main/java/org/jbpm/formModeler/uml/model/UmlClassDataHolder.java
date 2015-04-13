@@ -32,7 +32,6 @@ public class UmlClassDataHolder extends PojoDataHolder {
         this.holderClass = holderClass;
         Resource resource = holderClass.eResource();
         String platformString = resource.getURI().toString();
-        
         super.setClassName(platformString + "#" + resource.getURIFragment(holderClass));
         
     }
