@@ -57,7 +57,7 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     }
 
     @Override
-    public void doSwitch(LinkedStencil validator, Shape targetShape, EObject me) {
+    public void refineJsonShape(LinkedStencil validator, Shape targetShape, EObject me) {
         this.targetShape = targetShape;
         doSwitch(me);
     }

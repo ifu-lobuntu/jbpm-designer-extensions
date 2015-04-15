@@ -1,6 +1,5 @@
-#1. Designer
-##1.1. Done and Tested:
-###Stencils for:
+#1.Done and Tested:
+##Stencils for:
  - CaseFileItem
  - CaseFileItem.children
  - CaseFileITem.targetRefs
@@ -26,7 +25,7 @@
  - Connector from HumanTask to related DiscretionaryItems in its PlanningTable
  - Container ExitCriteria
 
-### Decorators:
+## Decorators:
  - Repetition Rule Decorator present when a repetition rule exists
  - Manual Activation Rule Decorator present when a Manual Activation exists
  - Required Rule Decorator present when a Required Rule exists
@@ -36,7 +35,7 @@
  - PlanItemTable for HumanTask
  
 
-### Property editors:
+## Property editors:
  - PerformerRef in HumanTasks - need to define a new plugin to lookup single roles
  - ProcessRef (Import other process WITH its ProcessParameters - set the Process and ProcessParameters on the calling Case as JSON property)
  - CaseRef (Import other Cases WITH its CaseParameters, set the Case and CaseParameters on the calling Case as JSON property)
@@ -44,7 +43,7 @@
  - AuthorizedRoleRefs in Discretionary Items - need to define a new plugin to lookup multiple roles
  
 
-###Parameters, their mappings and CaseFileItem bindings in Tasks.
+##Parameters, their mappings and CaseFileItem bindings in Tasks.
  - This is a bit ugly in CMMN - lots of indirection, maybe we can hide it away from the user to a large extent.
  - For CaseTasks and ProcessTasks, let the list of input/output be fixed -no add/remove
  - Display the Case/Process parm name and type in the first two columns
@@ -53,7 +52,7 @@
  - Select Language in fourth column
  - Type expression (CaseParamater.bindingRefinement) in 5 th column
 
-###Collapse/Expand
+##Collapse/Expand
  - Collapsed Stages 
  - Collapsed Planning Tables for Stages and Cases
  - Collapsed Planning Tables for HumanTasks
@@ -65,14 +64,17 @@
  - Remove git repo info from platformURIs
  - Use structureRef to determine where the referenced UML class is
  
-###VDML Integration
+##VDML Integration
+ - *Support OrgStructure, CapabilityOffers, Store in CaseFile
  - *Link Case to Collaboration 
  - *Link Tasks to Activities 
    
+##Form Modeler
+ - Generate HumanTask forms
+ 
+#2. In Progress
 
-##1.2. In Progress
-
-##1.3. Todo:
+#3. Todo:
  * - Update all property editors to read UML rather than CaseFile
 
 ##Bugs
@@ -108,9 +110,11 @@
  - additional property name for caseFileItem events (its useless without them)
 
 ###VDML Integration
- - *Support OrgStructure,BusinessNetworks, Communities, Store in CaseFile
- - *Link Role to Role 
-
+ - Generate Case from Activity Network
+ - On open, regenerate Activities and their shapes from Activity Network
+ - On open, regenerate CaseFileItems for non-fungible BusinessItems
+ - Link CMMN Roles to VDMLRoles
+  
 #2. Form Modeler:
 #2.1. Done and Tested
 #2.2. Todo
@@ -119,8 +123,7 @@
  - Lookup of entities in dropdowns
  - Keep entitymanager/JCR session open during the form-request
 
-#3 Overall
-##How to get runtime to be ACM
+#3 How to get runtime to be ACM
  - Open ended document types with free floating property definitions like ontology
  - Open ended tasks with open ended document types
  - Forms that give access to open ended state

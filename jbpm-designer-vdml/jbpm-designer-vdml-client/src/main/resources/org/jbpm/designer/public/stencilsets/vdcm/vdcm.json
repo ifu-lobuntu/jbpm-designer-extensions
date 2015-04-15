@@ -198,7 +198,17 @@
 							"nameFeature" : "name"
 						},
 						"length" : ""
-	                }
+	                },
+                    {
+                        "id" : "isTemplate",
+                        "type" : "Boolean",
+                        "title" : "IsTemplate",
+                        "value" : "",
+                        "description" : "True if this OrgUnit should be interpreted as a template for potentially many different OrgUnits",
+                        "readonly" : false,
+                        "optional" : true,
+                        "popular" : true
+                    }
 				],
 				"layout": [
 				 ]
@@ -240,18 +250,18 @@
 								"text_name"
 							]
 						},
-						{
-							"id" : "description",
-							"type" : "Text",
-							"title" : "Description",
-							"value" : "",
-							"description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
-							"readonly" : true,
-							"optional" : true,
-							"length" : "",
-							"wrapLines" : true,
-							"popular" : true
-						},
+                        {
+                            "id" : "description",
+                            "type" : "Text",
+                            "title" : "Description",
+                            "value" : "",
+                            "description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
+                            "readonly" : true,
+                            "optional" : true,
+                            "length" : "",
+                            "wrapLines" : true,
+                            "popular" : true
+                        },
 						{
 							"id" : "diagramElementId",
 							"type" : "String",
@@ -370,7 +380,21 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
-				                
+                    {
+                        "id" : "assignedParticipants",
+                        "type" : "eobjectref",
+                        "title" : "Assigned Participants",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile" : "vdcol",
+                            "allowedElementTypes":"OrgUnit|Performer|Position|Party|Role|Actor",
+                            "nameFeature" : "qualifiedName",
+                            "multiSelect" : true
+                        }
+                    }
 				]
 			},
 			{
@@ -416,6 +440,22 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+	                    {
+	                        "id" : "resourceDefinition",
+	                        "type" : "eobjectref",
+	                        "title" : "Resource Definition",
+	                        "value" : "",
+	                        "description" : "The Business Item Definition that describes the resource in this store",
+	                        "readonly" : false,
+	                        "optional" : true,
+	                        "reference" : {
+	                            "targetProfile":"vdlib",
+	                            "allowedElementTypes":"BusinessItemDefinition",
+	                            "nameFeature" : "name",
+	                            "multiSelect" : false
+	                        },
+	                        "length" : ""
+	                    }
 				]
 			},
 			{
@@ -477,6 +517,22 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+                        {
+                            "id" : "resourceDefinition",
+                            "type" : "eobjectref",
+                            "title" : "Resource Definition",
+                            "value" : "",
+                            "description" : "The Business Item Definition that describes the resource in this pool",
+                            "readonly" : false,
+                            "optional" : true,
+                            "reference" : {
+                                "targetProfile":"vdlib",
+                                "allowedElementTypes":"BusinessItemDefinition",
+                                "nameFeature" : "name",
+                                "multiSelect" : false
+                            },
+                            "length" : ""
+                        }
 				]
 			},
 			{

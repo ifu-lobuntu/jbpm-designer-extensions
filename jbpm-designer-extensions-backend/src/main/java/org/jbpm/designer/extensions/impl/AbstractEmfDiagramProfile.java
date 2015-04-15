@@ -7,6 +7,7 @@ import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -27,7 +28,10 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Definitions;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
@@ -364,7 +368,8 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     @Override
     public boolean processRequestForPotentialReferences(HttpServletRequest req, HttpServletResponse resp, String action, String processId) throws IOException {
         try {
-            JSONObject json=new JSONObject();
+            JSONObject json = new JSONObject();
+            boolean processed=false;
             String targetProfileName = req.getParameter("targetProfile");
             if (isEmpty(targetProfileName)) {
                 targetProfileName = this.getName();
@@ -379,27 +384,35 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
                     String sourceElementId = req.getParameter("sourceElementId");
                     req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_RESOURCE, res);
                     if (!isEmpty(sourceElementId)) {
-                        req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, res.getEObject(sourceElementId));
+                        for (Resource resource : res.getResourceSet().getResources()) {
+                            EObject sourceElement = resource.getEObject(sourceElementId);
+                            if (sourceElement != null) {
+                                req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, sourceElement);
+                                break;
+                            }
+                        }
                     }
                 }
 
                 req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_PROFILE, this);
                 JSONObject output = targetProfile.createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
-                if (output == null) {
-                    for (String name : JSONObject.getNames(output)) {
+                if (output != null) {
+                    processed=true;
+                    Iterator sortedKeys = output.sortedKeys();
+                    while (sortedKeys.hasNext()) {
+                        String name = (String) sortedKeys.next();
                         json.put(name, output.get(name));
                     }
                 }
             }
-            if(JSONObject.getNames(json).length==0){
-                return false;
-            }else{
+            if (processed) {
                 resp.setCharacterEncoding("UTF-8");
                 resp.setContentType("application/json");
                 resp.getWriter().print(json.toString());
-                return true;
             }
+            return processed;
         } catch (RuntimeException e) {
+            e.printStackTrace();
             throw e;
         } catch (Exception e) {
             throw new RuntimeException(e);

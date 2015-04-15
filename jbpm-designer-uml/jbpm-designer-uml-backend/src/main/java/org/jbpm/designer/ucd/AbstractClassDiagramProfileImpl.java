@@ -8,6 +8,8 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -45,7 +47,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  * The implementation of the CMMN profile for Process Designer.
  *
  */
-public class AbstractClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
+public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
 
     public static final String CMMNTYPES_PATHMAP = "pathmap://jbpm-cmmn/libraries/cmmntypes.uml";
     private static final String STENCILSET_PATH = "stencilsets/ucd/ucd.json";
@@ -85,6 +87,8 @@ public class AbstractClassDiagramProfileImpl extends AbstractEmfDiagramProfile {
         Resource cmmnTypes = resourceSet.createResource(uri);
         try {
             cmmnTypes.load(url.openStream(), Collections.emptyMap());
+            EList<Adapter> eAdapters = resourceSet.eAdapters();
+            System.out.println();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

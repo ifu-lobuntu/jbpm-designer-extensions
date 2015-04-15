@@ -24,7 +24,7 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
     }
 
     @Override
-    public void doSwitch(LinkedStencil validator, Shape targetShape, EObject me) {
+    public void refineJsonShape(LinkedStencil validator, Shape targetShape, EObject me) {
         this.targetShape = targetShape;
         doSwitch(me);
     }

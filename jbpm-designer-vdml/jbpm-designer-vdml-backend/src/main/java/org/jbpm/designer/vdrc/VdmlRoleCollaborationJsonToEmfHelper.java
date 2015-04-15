@@ -90,7 +90,6 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
-        object.setDeliverable(buildBusinessItem("deliverableDefinition"));
         object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
         if (sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
             for (ShapeReference sr : sourceShape.getOutgoing()) {

@@ -4,6 +4,8 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -35,6 +37,8 @@ public abstract class AbstractEmfProfile implements IEmfProfile {
     }
     @Override
     public void prepareResourceSet(ResourceSet resourceSet) {
+        System.out.println();
+        EList<Adapter> eAdapters = resourceSet.eAdapters();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), getResourceFactory());
         for (EPackage ePackage : getEPackages()) {
             resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);

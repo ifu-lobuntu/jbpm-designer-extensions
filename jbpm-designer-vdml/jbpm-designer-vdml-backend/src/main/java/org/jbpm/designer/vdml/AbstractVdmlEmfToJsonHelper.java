@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
@@ -23,9 +24,13 @@ import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.SmmElement;
 import org.omg.smm.util.SmmHelper;
+import org.omg.vdml.Assignment;
+import org.omg.vdml.Attribute;
 import org.omg.vdml.BusinessItem;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.MeasuredCharacteristic;
+import org.omg.vdml.Participant;
 import org.omg.vdml.Role;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
@@ -40,7 +45,7 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
     }
 
     @Override
-    public void doSwitch(LinkedStencil validator, Shape targetShape, EObject me) {
+    public void refineJsonShape(LinkedStencil validator, Shape targetShape, EObject me) {
         this.targetShape = targetShape;
         doSwitch(me);
     }
@@ -57,10 +62,51 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
     private String toString(VdmlElement s) {
         return s.getQualifiedName() + "|" + s.eResource().getURI().toPlatformString(true);
     }
+    @Override
+    public Object caseVdmlElement(VdmlElement object) {
+        for (Attribute a : object.getAttribute()) {
+           targetShape.putProperty("isTemplate", a.getValue());
+        }
+        return super.caseVdmlElement(object);
+    }
+    @Override
+    public Object caseDeliverableFlow(DeliverableFlow object) {
+        if(object.getDeliverable()!=null){
+            if(object.getDeliverable().getDefinition()!=null){
+                targetShape.putProperty("name", object.getDeliverable().getDefinition().getName());
+            }else{
+                targetShape.putProperty("name", object.getDeliverable().getName());
+            }
+        }else{
+            targetShape.putProperty("name", object.getName());
+        }
+        putBusinessItem(object.getDeliverable(), "deliverableDefinition");
+        putMeasuredCharacteristic("durationMeasure", object.getDuration());
+        return super.caseDeliverableFlow(object);
+    }
+
+    @Override
+    public Object caseRole(Role object) {
+        putAssignedParticipants(object);
+        return super.caseRole(object);
+    }
+    private void putAssignedParticipants(Role object) {
+        EList<Participant> assignedParticipants = new BasicEList<Participant>();
+        for (Assignment assignment : object.getRoleAssignment()) {
+            if(assignment.getParticipant().eResource()!=null){
+                assignedParticipants.add(assignment.getParticipant());
+            }
+        }
+        targetShape.putProperty("assignedParticipants",toString(assignedParticipants));
+    }
 
     protected void putBusinessItem(BusinessItem bi, String key) {
         if (bi != null && bi.getDefinition() != null) {
-            targetShape.putProperty(key, toString(bi.getDefinition()));
+            if(bi.getDefinition().eResource()==null){
+                System.out.println(bi.getDefinition());
+            }else{
+                targetShape.putProperty(key, toString(bi.getDefinition()));
+            }
         }
     }
 

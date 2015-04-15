@@ -33,7 +33,7 @@ public class NewVdmlLibraryHandler extends DefaultNewResourceHandler {
     @Override
     public String getDescription() {
         // return DesignerEditorConstants.INSTANCE.businessProcess();
-        return "Value Library";
+        return "VDML Library";
     }
 
     @Override

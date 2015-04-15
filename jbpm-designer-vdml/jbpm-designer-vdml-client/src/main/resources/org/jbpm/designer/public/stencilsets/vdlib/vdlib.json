@@ -391,69 +391,137 @@
             }
     ],
     "stencils" : [
-			{
-				"type" : "node",
-				"id" : "BusinessItemDefinition",
-				"title" : "BusinessItemDefinition",
-				"childBinding" : "ownedType",
-				"position" : 1,
-				"groups" : [
-					"BusinessItemDefinition"
-				],
-				"roles" : [
-					"businessItemDefinition"
-				],
-				"description" : "A BusinessItemDefinition",
-				"view" : "business_item_definition.svg",
-				"icon" : "business_item_definition.png",
-				"layout" : [
-							{
-								"type" : "layout.compartments"
-							}
-				],
-			    "propertyPackages" : [
-						"elementBase","localStyle"
-				],
-				"properties" : [
-					{
-						"id" : "hasForm",
-						"type" : "Boolean",
-						"value" : true,
-						"readonly" : true,
-						"hidden" : true
-					},
-					{
-						"id" : "isFungible",
-						"type" : "Boolean",
-						"title": "Is Fungible",
-						"value" : true,
-						"readonly" : false,
-						"hidden" : false
-					},
-					{
-						"id" : "isShareable",
-						"type" : "Boolean",
-						"title": "Is Shareable",
-						"value" : false,
-						"readonly" : false,
-						"hidden" : false
-					},
-					{
-						"id" : "tasktype",
-						"type" : "String",
-						"value" : "User",
-						"readonly" : true,
-						"hidden" : true
-					},
-					{
-						"id" : "taskname",
-						"type" : "String",
-						"readonly" : false,
-						"hidden" : false,
-						"title": "BusinessItemDefinition Form Name"
-					}
-			   ]
-			},
+            {
+                "type" : "node",
+                "id" : "BusinessItemDefinition",
+                "title" : "BusinessItemDefinition",
+                "childBinding" : "ownedType",
+                "position" : 1,
+                "groups" : [
+                    "BusinessItemDefinition"
+                ],
+                "roles" : [
+                    "businessItemDefinition"
+                ],
+                "description" : "A BusinessItemDefinition",
+                "view" : "business_item_definition.svg",
+                "icon" : "business_item_definition.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "isFungible",
+                        "type" : "Boolean",
+                        "title": "Is Fungible",
+                        "value" : true,
+                        "readonly" : false,
+                        "hidden" : false
+                    },
+                    {
+                        "id" : "isShareable",
+                        "type" : "Boolean",
+                        "title": "Is Shareable",
+                        "value" : false,
+                        "readonly" : false,
+                        "hidden" : false
+                    },
+                    {
+                        "id" : "tasktype",
+                        "type" : "String",
+                        "value" : "User",
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "taskname",
+                        "type" : "String",
+                        "readonly" : false,
+                        "hidden" : false,
+                        "title": "BusinessItemDefinition Form Name"
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedOrgElement",
+                "title" : "ImportedOrgElement",
+                
+                "position" : 1,
+                "groups" : [
+                    "OrgStructures"
+                ],
+                "roles" : [
+                    "importedOrgElement"
+                ],
+                "description" : "An imported org structure element",
+                "view" : "business_item_definition.svg",
+                "icon" : "business_item_definition.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "tasktype",
+                        "type" : "String",
+                        "value" : "User",
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "taskname",
+                        "type" : "String",
+                        "readonly" : false,
+                        "hidden" : false,
+                        "title": "Form Name",
+                        "binding":"name"
+                    },
+                    {
+                        "id" : "importedelementRef",
+                        "type" : "eobjectref",
+                        "title" : "Imported Element",
+                        "value" : "",
+                        "viewBinding" : "umlElement",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : true,
+                        "refToView" : [],
+                        "reference" : {
+                            "targetProfile":"vdcm",
+                            "allowedElementTypes":"Class",
+                            "nameFeature" : "qualifiedName"
+                        },
+                        "length" : ""
+                    }
+
+               ]
+            },
 			{
 				"type" : "node",
 				"id" : "CharacteristicDefinitionCompartment",
@@ -625,7 +693,7 @@
                         "type" : "Boolean",
                         "value" : true,
                         "readonly" : true,
-                        "hidden" : false
+                        "hidden" : true
                     },
                     {
                         "id" : "tasktype",
@@ -639,8 +707,7 @@
                         "type" : "String",
                         "readonly" : false,
                         "hidden" : false,
-                        "title": "Class Form Name",
-                        "binding":"name"
+                        "title": "Class Form Name"
                     }
                ]
             },
@@ -772,19 +839,20 @@
                 ],
                 "properties" : [
                     {
-                        "id" : "type",
+                        "id" : "propertyType",
                         "type" : "eobjectref",
-                        "title" : "Property Type",
+                        "binding" : "type",
+                        "title" : "Type",
                         "value" : "",
                         "description" : "The Type of the Property.",
                         "readonly" : false,
-                        "optional" : true,
+                        "optional" : false,
+                        "bindLate" : true,
                         "reference" : {
                             "targetProfile":"vdlib",
                             "allowedElementTypes":"Enumeration|PrimitiveType",
                             "nameFeature" : "qualifiedName"
                         },
-
                         "length" : ""
                     }
                 ]
@@ -807,9 +875,48 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "localStyle"
                 ],
                 "properties" : [
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "EnumerationLiteral1",
+                        "description" : "The descriptive name of the Enumeration Literal.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "binding": "ownedComment[0].body",
+                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "hidden" : true
+                    }
                 ]
             },
             {
@@ -1111,7 +1218,7 @@
                             "optional" : true,
                             "refToView" : [],
                             "reference" : {
-                                "targetProfile":"vdlib|vdan|ucd",
+                                "targetProfile":"vdlib",
                                 "allowedElementTypes":"Class",
                                 "nameFeature" : "qualifiedName"
                             },
@@ -1286,19 +1393,19 @@
 					{
 						"from" : "class",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
 						]
 					},
 					{
 						"from" : "businessItemDefinition",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
 						]
 					},
 					{
 						"from" : "interface",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
 						]
 					}
 				]
@@ -1331,15 +1438,21 @@
 				{
 					"role" : "diagram",
 					"contains" : [
-						"businessItemDefinition"
+						"businessItemDefinition","importedOrgElement"
 					]
 				},
-				{
-					"role" : "businessItemDefinition",
-					"contains" : [
-						"characteristicDefinitionCompartment","ownedAttribute"
-					]
-				},
+                {
+                    "role" : "businessItemDefinition",
+                    "contains" : [
+                        "characteristicDefinitionCompartment","ownedAttribute"
+                    ]
+                },
+                {
+                    "role" : "importedOrgElement",
+                    "contains" : [
+                        "characteristicDefinitionCompartment","ownedAttribute"
+                    ]
+                },
 				{
 					"role" : "characteristicDefinitionCompartment",
 					"contains" : [

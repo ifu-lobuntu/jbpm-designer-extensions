@@ -39,7 +39,6 @@ ORYX.Plugins.VDRC = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		    var name=shape.properties["oryx-deliverabledefinition"].split("|")[0];
 		    name=name.substring(name.indexOf("::")+2);
             shape.properties["oryx-name"]=name;
-            console.log(shape.getLabels());
 		    shape.getLabels()[0].text(name);
 		    shape.getLabels()[0].update();
 		}

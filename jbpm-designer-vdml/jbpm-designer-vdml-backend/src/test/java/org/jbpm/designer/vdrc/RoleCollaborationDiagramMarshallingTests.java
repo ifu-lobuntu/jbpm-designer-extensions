@@ -11,6 +11,7 @@ import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Point;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.StencilType;
+import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramMarshallingTest;
@@ -20,6 +21,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.junit.Before;
 import org.junit.Test;
 import org.omg.vdml.Activity;
+import org.omg.vdml.Assignment;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Role;
@@ -118,6 +120,21 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         assertEquals("MyRoleActivity", toActivity.getName());
         assertDiagramElementPresent(df, outputResource);
     }
+    @Test
+    public void testAssignment() throws Exception {
+        Role role1 = addRole("MyRole", true);
+        //HACK should be created in other collaboration
+        Role role2 = addRole("AssignedRole", true);
+        Assignment a = VDMLFactory.eINSTANCE.createAssignment();
+        role1.getRoleAssignment().add(a);
+        a.setParticipant(role2);
+        saveCollaborationResource();
+        saveDiagramResource();
+        assertTrue(unmarshaller.convert(diagramResource).findChildShapeById(role1.getId()).getProperty("assignedParticipants").contains(role2.getName()));
+        XMLResource outputDiagram = assertConversionValid(diagramResource);
+        new GenericEcoreComparator(VdmlHelper.getCollaboration(diagramResource), VdmlHelper.getCollaboration(outputDiagram));
+    }
+    
 
     @Test
     public void testFlowDeletion() throws Exception {

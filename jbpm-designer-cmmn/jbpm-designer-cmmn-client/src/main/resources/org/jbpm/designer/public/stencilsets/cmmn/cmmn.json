@@ -1388,7 +1388,7 @@
 							"popular" : true,
 							"binding":"definitionRef.structureRef",
 							"reference":{
-								"targetProfile":"ucd",
+								"targetProfile":"ucd|vdcm|vdlib",
 								"allowedElementTypes":"Class|Interface",
 								"nameFeature" : "qualifiedName"
 							},

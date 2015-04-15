@@ -72,13 +72,4 @@ public class AbstractVdanDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         assertConversionValid(diagramResource);
     }
 
-    protected void assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
-        String xmlString = buildXmlString(drscasdf);
-//        System.out.println(xmlString);
-        String json = unmarshaller.parseModel(xmlString, profile, "");
-//        System.out.println(json);
-        XMLResource outputResource = marshaller.getResource(json, "");
-//        print(outputResource);
-        new GenericEcoreComparator(drscasdf, outputResource).validate();
-    }
 }

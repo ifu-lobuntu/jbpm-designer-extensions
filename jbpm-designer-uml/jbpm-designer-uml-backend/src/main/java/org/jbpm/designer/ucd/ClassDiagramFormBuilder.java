@@ -1,5 +1,6 @@
 package org.jbpm.designer.ucd;
 
+import java.beans.Introspector;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TypedElement;
 import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.impl.AbstractFormBuilderImpl;
+import org.jbpm.designer.extensions.util.NameConverter;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.formModeler.api.model.DataHolder;
 import org.jbpm.formModeler.api.model.Field;
@@ -59,7 +61,7 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
             field.setInputBinding(name + "In/" + property.getName());
             field.setOutputBinding(name + "Out/" + property.getName());
             I18nSet set = new I18nSet();
-            set.setValue(Locale.getDefault().getLanguage(), property.getName());
+            set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(property.getName()));
             field.setLabel(set);
             field.setFieldRequired(property.getLower() == 1);
             maybePrepareSubform(repositoryInfo, field, property, results);

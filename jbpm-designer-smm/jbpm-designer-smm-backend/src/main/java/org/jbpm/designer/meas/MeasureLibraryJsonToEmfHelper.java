@@ -32,7 +32,7 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         this.shapeMap = resource;
     }
 
-    public void doSwitch(LinkedStencil sv, Shape sourceShape) {
+    public void refineEmfElements(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
         this.currentStencil = sv;
         super.doSwitch(shapeMap.getModelElement(sourceShape.getResourceId()));
@@ -50,10 +50,12 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
 
     public Object caseMeasure(Measure m) {
         if (m.getTrait() == null) {
+            //Probably always null
             Characteristic ch = SMMFactory.eINSTANCE.createCharacteristic();
             ch.setName(m.getName());
             owningLibrary.getMeasureElements().add(ch);
-            shapeMap.getResource().setID(ch, EcoreUtil.generateUUID());
+            //NB!!! need to keep it static
+            shapeMap.getResource().setID(ch, shapeMap.getId(m)+"trait");
             m.setTrait(ch);
         }
         return super.caseMeasure(m);

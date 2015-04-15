@@ -9,10 +9,14 @@ import org.jbpm.designer.dd.jbpmdd.Compartment;
 import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.ucd.ClassDiagramEmfToJsonHelper;
+import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Characteristic;
 import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.CapabilityOffer;
+import org.omg.vdml.OrgUnit;
+import org.omg.vdml.Store;
 
 public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
 
@@ -32,7 +36,9 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
     public Object caseProperty(Property object) {
         if(targetShape.getStencilId().equals(VdmlLibraryStencil.CHARACTERISTIC_DEFINITION.getStencilId())){
             Characteristic ch=(Characteristic) object.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
-            targetShape.putProperty("measure", ch.getMeasure().get(0).getName() + "|" + ch.eResource().getURI().toPlatformString(true));
+            if(ch.eResource()!=null && ch.getMeasure().size()>0){
+                targetShape.putProperty("measure", ch.getMeasure().get(0).getName() + "|" + ch.eResource().getURI().toPlatformString(true));
+            }
         }
         return super.caseProperty(object);
     }
@@ -41,17 +47,21 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
         if(me instanceof EModelElement){
             EAnnotation ann = ((EModelElement) me).getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
             if(ann!=null){
-                if(ann.getReferences().get(0) instanceof BusinessItemDefinition){
+                EObject ref = ann.getReferences().get(0);
+                if(ref instanceof BusinessItemDefinition){
                     return VdmlLibraryStencil.BUSINESS_ITEM_DEFINITION;
                 }
-                if(ann.getReferences().get(0) instanceof Characteristic){
+                if(ref instanceof Characteristic){
                     return VdmlLibraryStencil.CHARACTERISTIC_DEFINITION;
+                }
+                if(ref instanceof OrgUnit || ref instanceof Store || ref instanceof CapabilityOffer){
+                    return VdmlLibraryStencil.IMPORTED_ORG_ELEMENT;
                 }
             }
         }else if(de instanceof Compartment && ((UMLShape)de.eContainer()).getUmlElement() !=null ){
             EAnnotation ann = ((UMLShape)de.eContainer()).getUmlElement().getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
             if(ann!=null){
-                if(ann.getReferences().get(0) instanceof BusinessItemDefinition){
+                if(VdmlLibraryStencil.CHARACTERISTIC_DEFINITION_COMPARTMENT.getStencilId().equalsIgnoreCase(((UMLCompartment) de).getFeatureName())){
                     return VdmlLibraryStencil.CHARACTERISTIC_DEFINITION_COMPARTMENT;
                 }
             }

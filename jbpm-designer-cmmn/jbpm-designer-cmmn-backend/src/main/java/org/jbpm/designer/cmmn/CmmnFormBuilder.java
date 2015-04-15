@@ -13,6 +13,7 @@ import org.jbpm.cmmn.jbpmext.JbpmextPackage;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
 import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.impl.AbstractFormBuilderImpl;
+import org.jbpm.designer.extensions.util.NameConverter;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.formModeler.api.model.DataHolder;
 import org.jbpm.formModeler.api.model.Field;
@@ -61,7 +62,7 @@ public class CmmnFormBuilder extends AbstractFormBuilderImpl {
                 field.setOutputBinding(parameter.getName()+"Out");
                 maybePrepareSubform(repositoryInfo, field, parameter,results);
                 I18nSet set = new I18nSet();
-                set.setValue(Locale.getDefault().getLanguage(), parameter.getName());
+                set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(parameter.getName()));
                 field.setLabel(set);
                 // field.setFieldRequired(?);
             }
@@ -89,7 +90,7 @@ public class CmmnFormBuilder extends AbstractFormBuilderImpl {
     private String getTypeCode(TCaseParameter parameter) {
         TCaseFileItem br = parameter.getBindingRef();
         if (br == null || br.getMultiplicity() == MultiplicityEnum.EXACTLY_ONE || br.getMultiplicity() == MultiplicityEnum.ZERO_OR_ONE
-                || parameter.getBindingRefinement() == null) {
+                || parameter.getBindingRefinement() != null) {
             return "Subform";
         } else {
             return "MultipleSubform";

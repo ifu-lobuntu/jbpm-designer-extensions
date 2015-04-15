@@ -90,6 +90,7 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
         object.setBatchSize(buildMeasuredCharacteristic("batchSizeMeasure"));
         object.setPlanningPercentage(buildMeasuredCharacteristic("planningPercentageMeasure"));
         object.setOffset(buildMeasuredCharacteristic("offsetMeasure"));
+        object.eResource().setModified(true);//for stores
         return super.casePort(object);
     }
     @Override

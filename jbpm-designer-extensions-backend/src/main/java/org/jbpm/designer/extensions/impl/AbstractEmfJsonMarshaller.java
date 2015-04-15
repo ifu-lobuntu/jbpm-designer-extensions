@@ -12,6 +12,7 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
@@ -81,6 +82,9 @@ public class AbstractEmfJsonMarshaller {
             return true;
         } else {
             boolean isDeleted = me.eResource() == null;
+            if(me.eIsProxy()){
+                EcoreUtil.resolveAll(me);
+            }
             boolean isBrokenReference = me.eIsProxy();
             return !(isDeleted || isBrokenReference);
         }

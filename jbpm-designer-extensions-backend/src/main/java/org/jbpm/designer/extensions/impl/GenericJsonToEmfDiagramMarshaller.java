@@ -2,6 +2,7 @@ package org.jbpm.designer.extensions.impl;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Set;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -216,7 +218,12 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         if (!de.getModelElement().isEmpty()) {
             setId(shape, getModelElement(de));
         }
-        parentDiagramElement.getOwnedElement().add(de);
+        try {
+            parentDiagramElement.getOwnedElement().add(de);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         shapeMap.linkElements(de, shape);
         if (de instanceof org.omg.dd.di.Shape) {
             Bounds bounds = DCFactory.eINSTANCE.createBounds();
@@ -445,9 +452,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             if (hasValue(stringValue)) {
                 String[] split = stringValue.split("\\,");
                 for (String string : split) {
-                    Object convert = convert(property, string, type);
+                    Collection convert = (Collection) convert(property, string, type);
                     try {
-                        list.add(convert);
+                        list.addAll(convert);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -464,7 +471,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         LinkedStencil sv = getStencil(sourceShape);
         setAttributes(sourceShape, diagramElement, sv, true);
         if (me != null) {
-            helper.doSwitch(sv, sourceShape);
+            helper.refineEmfElements(sv, sourceShape);
         }
         for (Shape shape : sourceShape.getChildShapes()) {
             linkAndRefineEmfElementsRecursively(shape);
@@ -479,7 +486,18 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             return null;
         }
         if (property.getReference() != null && string.indexOf("|") > 0) {
-            return resolveEObject(property, string, targetType);
+            if(property.getReference().isMultiSelect()){
+                EList list = new BasicEList();
+                for (String ref : string.split("\\,")) {
+                    EObject resolved = (EObject) resolveEObject(property, ref, targetType);
+                    if(!(resolved.eIsProxy() || resolved.eResource()==null)){
+                        list.add(resolved);
+                    }
+                }
+                return list;
+            }else{
+                return resolveEObject(property, string, targetType);
+            }
         } else if (targetType == String.class) {
             return string;
         } else if (targetType == Boolean.class || targetType == boolean.class) {

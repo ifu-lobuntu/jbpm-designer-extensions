@@ -144,13 +144,12 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         super.prepareResourceSet(resourceSet);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
         new Bpmn2EmfProfile().prepareResourceSet(resourceSet);
-        IEmfProfile cd = getOtherProfile("ucd");
-        if(cd!=null){
-            cd.prepareResourceSet(resourceSet);
-        }
-        cd = getOtherProfile("vdcol");
-        if(cd!=null){
-            cd.prepareResourceSet(resourceSet);
+        String[] otherProfiles={"ucd","vdlib","vdcm"};
+        for (String otherProfileName : otherProfiles) {
+            IEmfProfile otherProfile = getOtherProfile(otherProfileName);
+            if(otherProfile!=null){
+                otherProfile.prepareResourceSet(resourceSet);
+            }
         }
         UriHelper.setPlatformUriHandler(resourceSet, getUriHandler());
     }

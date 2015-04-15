@@ -167,7 +167,7 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     }
 
     @Override
-    public void doSwitch(LinkedStencil sv, Shape sourceShape) {
+    public void refineEmfElements(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
         this.currentStencil = sv;
         super.doSwitch(getModelElement(sourceShape.getResourceId()));

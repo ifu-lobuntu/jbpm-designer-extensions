@@ -20,7 +20,7 @@ public class MeasureLibraryEmfToJsonHelper extends SMMSwitch<Object> implements 
     }
 
     @Override
-    public void doSwitch(LinkedStencil validator, Shape targetShape, EObject me) {
+    public void refineJsonShape(LinkedStencil validator, Shape targetShape, EObject me) {
         this.targetShape = targetShape;
         doSwitch(me);
     }

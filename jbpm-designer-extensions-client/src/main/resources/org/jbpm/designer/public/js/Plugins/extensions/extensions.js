@@ -39,17 +39,24 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
     },
     handlePropertyChanged: function (event){
-        console.log(this.decoratorUpdaters);
-        var d=this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
-        if(d){
-            d(event.elements[0]);
+        try{
+            var d=this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
+            if(d){
+                d(event.elements[0]);
+            }
+        }catch(e){
+            alert(e.toString());
         }
     },
     updateDecorationsOnLoad: function (event){
         this.facade.getCanvas().getChildEdges(true, function(shape){
-            var d=this.decoratorUpdaters[shape.getStencil().idWithoutNs()];
-            if(d){
-                d(shape);
+            try{
+                var d=this.decoratorUpdaters[shape.getStencil().idWithoutNs()];
+                if(d){
+                    d(shape);
+                }
+            }catch(e){
+                alert(e.toString());
             }
         }.bind(this));
         this.facade.getCanvas().getChildNodes(true, function(shape){
@@ -347,9 +354,14 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 						var CallElementDef = Ext.data.Record.create([
 								{
 									name : 'name'
-								}, {
-									name : 'pkgname'
-								}, {
+								}, 
+                                {
+                                    name : 'type'
+                                }, 
+                                {
+                                    name : 'pkgname'
+                                }, 
+								{
 									name : 'imgsrc'
 								}
 						]);
@@ -409,9 +421,11 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 												var responseJson = Ext.decode(response.responseText);
 												for ( var key in responseJson) {
 													var keyParts = key.split("|");
+													
 													calldefs.add(new CallElementDef({
 														name : keyParts[0],
 														pkgname : keyParts[1],
+														type : keyParts[2],
 														imgsrc : responseJson[key]
 													}));
 												}
@@ -431,22 +445,35 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 																			{
 																				id : 'pid',
 																				header : ORYX.I18N.extensions.eobjectName,
-																				width : 200,
+																				width : 300,
 																				dataIndex : 'name',
+																				sortable : true,
 																				editor : new Ext.form.TextField({
 																					allowBlank : true,
 																					disabled : true
 																				})
-																			},
-																			{
-																				id : 'pkgn',
-																				header : ORYX.I18N.extensions.eobjectAsset,
-																				width : 200,
-																				dataIndex : 'pkgname',
-																				editor : new Ext.form.TextField({
-																					allowBlank : true,
-																					disabled : true
-																				})
+                                                                            },
+                                                                            {
+                                                                                id : 'pkgn',
+                                                                                header : ORYX.I18N.extensions.eobjectAsset,
+                                                                                width : 300,
+                                                                                sortable : true,
+                                                                                dataIndex : 'pkgname',
+                                                                                editor : new Ext.form.TextField({
+                                                                                    allowBlank : true,
+                                                                                    disabled : true
+                                                                                })
+                                                                            },
+                                                                            {
+                                                                                id : 'type',
+                                                                                header : "Type",
+                                                                                width : 200,
+                                                                                sortable : true,
+                                                                                dataIndex : 'type',
+                                                                                editor : new Ext.form.TextField({
+                                                                                    allowBlank : true,
+                                                                                    disabled : true
+                                                                                })
 																			},
 																			{
 																				id : 'pim',
@@ -535,22 +562,28 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 															{
 																text : ORYX.I18N.Save.save,
 																handler : function() {
-																	var selections=grid.getSelectionModel().getSelections();
-																	var outValue ="";
-																	for(var k=0;k<selections.length;k++){
-																		var row = selections[k];
-																		outValue += row.data['name'] + '|'
-																				+ row.data['pkgname'];
-																		if(k<selections.length-1){
-																			outValue+=",";
-																		}
-																	}
-																	grid.stopEditing();
-																	grid.getView().refresh();
-																	this.setValue(outValue);
-																	this.dataSource.getAt(this.row).set('value', outValue);
-																	this.dataSource.commitChanges();
-																	dialog.hide();
+																    try{
+    																	var selections=grid.getSelectionModel().getSelections();
+    																	var outValue ="";
+    																	for(var k=0;k<selections.length;k++){
+    																		var row = selections[k];
+    																		outValue += row.data['name'] + '|'
+    																				+ row.data['pkgname'];
+    																		if(k<selections.length-1){
+    																			outValue+=",";
+    																		}
+    																	}
+    																	grid.stopEditing();
+    																	grid.getView().refresh();
+    																	console.log(outValue);
+    																	this.setValue(outValue);
+    																	this.dataSource.getAt(this.row).set('value', outValue);
+    																	this.dataSource.commitChanges();
+                                                                        console.log(this.dataSource.getAt(this.row).get('value'));
+    																	dialog.hide();
+																    }catch(e){
+																        alert(e.toString());
+																    }
 																}.bind(this)
 															}, {
 																text : ORYX.I18N.PropertyWindow.cancel,
@@ -576,6 +609,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 												});
 											}
 										} catch (e) {
+										    alert(e.toString());
 											this.facade.raiseEvent({
 												type : ORYX.CONFIG.EVENT_NOTIFICATION_SHOW,
 												ntype : 'error',
@@ -586,9 +620,10 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 										}
 									}.bind(this),
 									failure : function(e) {
+									    
 										alert('Error');
 										for ( var key in e) {
-											// alert(key + "=" + e[key]);
+											alert(key + "=" + e[key]);
 										}
 										this.facade.raiseEvent({
 											type : ORYX.CONFIG.EVENT_NOTIFICATION_SHOW,
@@ -597,7 +632,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 											title : ''
 
 										});
-									},
+									}.bind(this),
 									params : theParams
 								});
 					}

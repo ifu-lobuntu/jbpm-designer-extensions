@@ -308,7 +308,22 @@
 						"value" : "",
 						"description" : "A comma separated list of Activities performed by this Role",
 						"readonly" : true
-					}
+					},
+                    {
+                        "id" : "assignedParticipants",
+                        "type" : "eobjectref",
+                        "title" : "Assigned Participants",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"vdcol",
+                            "allowedElementTypes":"OrgUnit|Performer|Position|Party|Role|Actor",
+                            "nameFeature" : "qualifiedName",
+                            "multiSelect" : true
+                        }
+                    }
 				]
 			},
 			{

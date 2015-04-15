@@ -288,6 +288,21 @@
 						"localStyle"
 				],
 				"properties" : [
+                    {
+                        "id" : "assignedParticipants",
+                        "type" : "eobjectref",
+                        "title" : "Assigned Participants",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"vdcol",
+                            "allowedElementTypes":"OrgUnit|Performer|Position|Party|Role|Actor",
+                            "nameFeature" : "qualifiedName",
+                            "multiSelect" : true
+                        }
+                    }
 				]
 			},
 			{

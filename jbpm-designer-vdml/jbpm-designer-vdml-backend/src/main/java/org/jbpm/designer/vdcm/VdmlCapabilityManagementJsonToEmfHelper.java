@@ -19,6 +19,7 @@ import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
+import org.omg.vdml.Attribute;
 import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.OrgUnit;
@@ -26,6 +27,7 @@ import org.omg.vdml.Pool;
 import org.omg.vdml.Position;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
+import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
@@ -42,6 +44,11 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
         return super.caseCollaboration(object);
     }
 
+    @Override
+    public Object caseCapabilityOffer(CapabilityOffer object) {
+        syncUmlClass(object);
+        return super.caseCapabilityOffer(object);
+    }
     @Override
     public Object caseRole(Role object) {
         return super.caseRole(object);
@@ -62,8 +69,11 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
     @Override
     public Object caseOrgUnit(OrgUnit object) {
         syncUmlClass(object);
+        String name = "isTemplate";
+        putAttribute(object, name);
         return super.caseOrgUnit(object);
     }
+
 
     @Override
     public Object caseStore(Store object) {
@@ -81,6 +91,7 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
             cls = UMLFactory.eINSTANCE.createClass();
             cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(object);
             umlPackage.getOwnedTypes().add(cls);
+            ((XMLResource) umlPackage.eResource()).setID(cls,object.getId() + "Class");
         }
         cls.setName(object.getName());
     }
@@ -143,12 +154,14 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
     public void postprocessResource() {
         super.postprocessResource();
         for (Map.Entry<VdmlElement, Element> entry : this.vdmlUmlElementMap.entrySet()) {
-            if (entry.getKey().eResource() == null) {
-                EReference cf = entry.getValue().eContainmentFeature();
-                EObject container = entry.getValue().eContainer();
+            VdmlElement key = entry.getKey();
+            if (key.eResource() == null) {
+                Element value = entry.getValue();
+                EReference cf = value.eContainmentFeature();
+                EObject container = value.eContainer();
                 if (cf.isMany()) {
                     Object c = container.eGet(cf);
-                    ((EList) c).remove(entry.getValue());
+                    ((EList) c).remove(value);
                 } else {
                     container.eSet(cf, null);
                 }

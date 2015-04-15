@@ -56,19 +56,19 @@
 					{
 						"from" : "class",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
 						]
 					},
 					{
 						"from" : "businessItemDefinition",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
 						]
 					},
 					{
 						"from" : "interface",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
+							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
 						]
 					}
 				]

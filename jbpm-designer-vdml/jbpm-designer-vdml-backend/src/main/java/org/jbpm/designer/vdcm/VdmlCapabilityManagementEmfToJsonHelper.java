@@ -2,6 +2,7 @@ package org.jbpm.designer.vdcm;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jbpm.designer.extensions.api.StencilInfo;
@@ -14,6 +15,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.DCFactory;
 import org.omg.vdml.Activity;
+import org.omg.vdml.Attribute;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;

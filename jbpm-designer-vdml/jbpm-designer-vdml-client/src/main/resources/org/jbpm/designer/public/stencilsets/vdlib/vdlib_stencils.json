@@ -1,67 +1,135 @@
-			{
-				"type" : "node",
-				"id" : "BusinessItemDefinition",
-				"title" : "BusinessItemDefinition",
-				"childBinding" : "ownedType",
-				"position" : 1,
-				"groups" : [
-					"BusinessItemDefinition"
-				],
-				"roles" : [
-					"businessItemDefinition"
-				],
-				"description" : "A BusinessItemDefinition",
-				"view" : "business_item_definition.svg",
-				"icon" : "business_item_definition.png",
-				"layout" : [
-							{
-								"type" : "layout.compartments"
-							}
-				],
-			    "propertyPackages" : [
-						"elementBase","localStyle"
-				],
-				"properties" : [
-					{
-						"id" : "hasForm",
-						"type" : "Boolean",
-						"value" : true,
-						"readonly" : true,
-						"hidden" : true
-					},
-					{
-						"id" : "isFungible",
-						"type" : "Boolean",
-						"title": "Is Fungible",
-						"value" : true,
-						"readonly" : false,
-						"hidden" : false
-					},
-					{
-						"id" : "isShareable",
-						"type" : "Boolean",
-						"title": "Is Shareable",
-						"value" : false,
-						"readonly" : false,
-						"hidden" : false
-					},
-					{
-						"id" : "tasktype",
-						"type" : "String",
-						"value" : "User",
-						"readonly" : true,
-						"hidden" : true
-					},
-					{
-						"id" : "taskname",
-						"type" : "String",
-						"readonly" : false,
-						"hidden" : false,
-						"title": "BusinessItemDefinition Form Name",
-						"binding":"name"
-					}
-			   ]
-			},
+            {
+                "type" : "node",
+                "id" : "BusinessItemDefinition",
+                "title" : "BusinessItemDefinition",
+                "childBinding" : "ownedType",
+                "position" : 1,
+                "groups" : [
+                    "BusinessItemDefinition"
+                ],
+                "roles" : [
+                    "businessItemDefinition"
+                ],
+                "description" : "A BusinessItemDefinition",
+                "view" : "business_item_definition.svg",
+                "icon" : "business_item_definition.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "isFungible",
+                        "type" : "Boolean",
+                        "title": "Is Fungible",
+                        "value" : true,
+                        "readonly" : false,
+                        "hidden" : false
+                    },
+                    {
+                        "id" : "isShareable",
+                        "type" : "Boolean",
+                        "title": "Is Shareable",
+                        "value" : false,
+                        "readonly" : false,
+                        "hidden" : false
+                    },
+                    {
+                        "id" : "tasktype",
+                        "type" : "String",
+                        "value" : "User",
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "taskname",
+                        "type" : "String",
+                        "readonly" : false,
+                        "hidden" : false,
+                        "title": "BusinessItemDefinition Form Name",
+                        "binding":"name"
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedOrgElement",
+                "title" : "ImportedOrgElement",
+                
+                "position" : 1,
+                "groups" : [
+                    "OrgStructures"
+                ],
+                "roles" : [
+                    "importedOrgElement"
+                ],
+                "description" : "An imported org structure element",
+                "view" : "business_item_definition.svg",
+                "icon" : "business_item_definition.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "tasktype",
+                        "type" : "String",
+                        "value" : "User",
+                        "readonly" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "taskname",
+                        "type" : "String",
+                        "readonly" : false,
+                        "hidden" : false,
+                        "title": "Form Name",
+                        "binding":"name"
+                    },
+                    {
+                        "id" : "importedelementRef",
+                        "type" : "eobjectref",
+                        "title" : "Imported Element",
+                        "value" : "",
+                        "viewBinding" : "umlElement",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : true,
+                        "refToView" : [],
+                        "reference" : {
+                            "targetProfile":"vdcm",
+                            "allowedElementTypes":"Class",
+                            "nameFeature" : "qualifiedName"
+                        },
+                        "length" : ""
+                    }
+
+               ]
+            },
 			{
 				"type" : "node",
 				"id" : "CharacteristicDefinitionCompartment",

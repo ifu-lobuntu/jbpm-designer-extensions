@@ -13,7 +13,7 @@ public interface JsonToEmfHelper {
 
     DiagramElement createElements(Shape shape);
 
-    void doSwitch(LinkedStencil sv, Shape sourceShape);
+    void refineEmfElements(LinkedStencil sv, Shape sourceShape);
 
     org.omg.dd.di.Diagram prepareEmfDiagram(Diagram json, XMLResource result);
 

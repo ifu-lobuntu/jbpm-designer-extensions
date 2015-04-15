@@ -52,15 +52,18 @@
  - ResourceUse.quantity.measure
  - Store.storeRef
  - DeliverableFlow.deliverable (BusinessItemDefinition)
+ - Role.assignedParticipants
 
 ###Role Collaboration
  - DeliverableFlow.fromActivity
  - DeliverableFlow.toActivity
  - DeliverableFlow.businessItem (select businessItemDefinition from BusinessItemLibrary)
+ - Role.assignedParticipants
  
 ###Value Proposition Exchange
  - ValuePropositionComponent.aggregatedFrom (filtered, multiselect, eobjectref)
  - ValueElement.valueMeasurement (filtered, singleselect, eobjectref)
+ - Role.assignedParticipants
 
 ###Library Modeling
  - Characteristic.measure
@@ -69,6 +72,8 @@
 
 ###Capability Management
  - ExternalCapabilityMethod.referencedCapabilityMethod
+ - Role.assignedParticipants
+ - Store/Pool.resourceDefinition
 
 ##1.3. Decorators
 ###ActivityNetworks
@@ -177,7 +182,6 @@
 ###Role Collaboration
 
 ###Value Proposition Exchange
- - *Role.assignedOrgUnit
  - ValueElement.valueDefinition - start thinking about repo of ValueDefinitions (UML Profile?)
  - *ValuePropositionComponent.satisfactionLevel.measure (filtered, singleselect, eobjectref)
  - ValueProposition.overallSatisfaction.measure (filtered, singleselect, eobjectref)

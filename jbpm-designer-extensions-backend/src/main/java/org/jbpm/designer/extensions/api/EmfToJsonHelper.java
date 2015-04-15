@@ -11,7 +11,7 @@ public interface EmfToJsonHelper {
 
     void linkElements(DiagramElement diagramElement, Shape shape);
 
-    void doSwitch(LinkedStencil validator, Shape targetShape, EObject me);
+    void refineJsonShape(LinkedStencil validator, Shape targetShape, EObject me);
 
     Diagram getDiagram(int i);
 

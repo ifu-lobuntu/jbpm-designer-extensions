@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
@@ -349,4 +350,13 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected void print(XMLResource resource) throws Exception {
         resource.save(System.out, profile.buildDefaultResourceOptions());
     }
+    protected XMLResource assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
+        String xmlString = buildXmlString(drscasdf);
+        String json = unmarshaller.parseModel(xmlString, profile, "");
+        XMLResource outputResource = marshaller.getResource(json, "");
+//        print(outputResource);
+        new GenericEcoreComparator(drscasdf, outputResource).validate();
+        return outputResource;
+    }
+
 }

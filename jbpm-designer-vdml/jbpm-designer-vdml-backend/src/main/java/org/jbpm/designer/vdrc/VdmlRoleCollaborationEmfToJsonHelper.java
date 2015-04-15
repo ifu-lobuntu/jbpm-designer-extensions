@@ -3,6 +3,8 @@ package org.jbpm.designer.vdrc;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -17,8 +19,10 @@ import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Activity;
+import org.omg.vdml.Assignment;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
+import org.omg.vdml.Participant;
 import org.omg.vdml.Role;
 import org.omg.vdml.VdmlElement;
 
@@ -48,6 +52,7 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
         return super.caseRole(object);
     }
 
+
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
         if (object.getProvider() != null) {
@@ -56,8 +61,6 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
         if (object.getRecipient() != null) {
             targetShape.putProperty("receivingActivityName", ((VdmlElement) object.getRecipient().eContainer()).getName());
         }
-        putBusinessItem(object.getDeliverable(), "deliverableDefinition");
-        putMeasuredCharacteristic("durationMeasure", object.getDuration());
         return super.caseDeliverableFlow(object);
     }
 

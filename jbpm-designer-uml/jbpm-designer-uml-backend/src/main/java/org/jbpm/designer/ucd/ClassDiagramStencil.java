@@ -117,6 +117,8 @@ public enum ClassDiagramStencil implements StencilInfo {
             char[] charArray = ((UMLCompartment) de).getFeatureName().toCharArray();
             charArray[0] = Character.toUpperCase(charArray[0]);
             return findStencilById(new String(charArray));
+        } else if (me == null) {
+            return IMPORTED_CLASS;
         } else if (de.eResource() != me.eResource()) {
             possibilities = new ClassDiagramStencil[] { IMPORTED_CLASS, IMPORTED_ENUMERATION, IMPORTED_INTERFACE };
         }

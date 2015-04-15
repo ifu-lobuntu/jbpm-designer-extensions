@@ -261,6 +261,21 @@
 						"vdmlElement","localStyle"
 				],
 				"properties" : [
+                    {
+                        "id" : "assignedParticipants",
+                        "type" : "eobjectref",
+                        "title" : "Assigned Participants",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"vdcol",
+                            "allowedElementTypes":"OrgUnit|Performer|Position|Party|Role|Actor",
+                            "nameFeature" : "qualifiedName",
+                            "multiSelect" : true
+                        }
+                    }
 				]
 			},
 			{
@@ -490,7 +505,7 @@
 						"readonly" : false,
 						"optional" : false,
 						"reference":{
-							"targetProfile":"vdan",
+							"targetProfile":"vdcol",
 							"allowedElementTypes":"ValueAdd|ValuePropositionComponent",
 							"nameFeature" : "name",
 							"multiSelect" : true,
@@ -538,10 +553,10 @@
 							"value" : "",
 							"viewBinding":"vdmlElement",
 							"description" : "The Store",
-							"readonly" : true,
+							"readonly" : false,
 							"optional" : true,
 							"reference" : {
-								"targetProfile":"vdrc",
+								"targetProfile":"vdcol",
 								"allowedElementTypes":"Store",
 								"nameFeature" : "name"
 							},
@@ -572,15 +587,15 @@
 	                {
 						"id" : "storeRef",
 						"type" : "eobjectref",
-						"title" : "Store",
+						"title" : "Pool",
 						"value" : "",
 						"viewBinding":"vdmlElement",
-						"description" : "The Store",
-						"readonly" : true,
+						"description" : "The Pool",
+						"readonly" : false,
 						"optional" : true,
 						"reference" : {
-							"targetProfile":"vdrc",
-							"allowedElementTypes":"Store",
+							"targetProfile":"vdcol",
+							"allowedElementTypes":"Pool",
 							"nameFeature" : "name"
 						},
 						"length" : ""

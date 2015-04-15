@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.ucd.ClassDiagramStencil;
+import org.jbpm.designer.vdrc.VdmlStencilInfo;
 import org.omg.smm.SMMPackage;
 import org.omg.vdml.VDMLPackage;
 
-public enum VdmlLibraryStencil implements StencilInfo {
+public enum VdmlLibraryStencil implements VdmlStencilInfo {
     BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "BusinessItemDefinition"),
+    IMPORTED_ORG_ELEMENT(VDMLPackage.eINSTANCE.getMeasurableElement(), ClassDiagramStencil.CLASS, "ImportedOrgElement"),
     CHARACTERISTIC_DEFINITION_COMPARTMENT(null, ClassDiagramStencil.OWNED_ATTRIBUTE,
             "CharacteristicDefinitionCompartment"),
     CHARACTERISTIC_DEFINITION(SMMPackage.eINSTANCE.getCharacteristic(), ClassDiagramStencil.PROPERTY, "CharacteristicDefinition");
@@ -45,6 +46,10 @@ public enum VdmlLibraryStencil implements StencilInfo {
         return baseStencil;
     }
     public EClass getVdmlClass() {
+        return vdmlClass;
+    }
+    @Override
+    public EClass getElementType() {
         return vdmlClass;
     }
 }

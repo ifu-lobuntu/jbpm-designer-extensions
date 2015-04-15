@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
+import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.jbpm.formModeler.api.model.Field;
@@ -66,11 +67,10 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
 
     protected abstract boolean hasForm(EObject eObject);
 
-    
-    protected Map<String,TaskFormInfo> generateForm(Path modelPath, EObject source, String formType, boolean modify) {
+    protected Map<String, TaskFormInfo> generateForm(Path modelPath, EObject source, String formType, boolean modify) {
         try {
-            Map<String,TaskFormInfo>  results=new HashMap<String, TaskFormInfo>();
-                    
+            Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
+
             String modelUri = modelPath.toURI();
             String repositoryInfo = EMFVFSURIConverter.getRepositoryInfo(modelPath.toURI());
             String folder = modelUri.substring(0, modelUri.length() - modelPath.getFileName().length());
@@ -78,8 +78,8 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
             char[] formName = getFormName(source).toCharArray();
             for (int i = 0; i < formName.length; i++) {
                 char c = formName[i];
-                if(!Character.isJavaIdentifierPart(c)){
-                    formName[i]='_';
+                if (!Character.isJavaIdentifierPart(c)) {
+                    formName[i] = '_';
                 }
             }
             result.setId(new String(formName));
@@ -101,8 +101,8 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
             result.setModelerOutput(formSerializationManager.generateFormXML(form));
             XMLResource xmlResource = (XMLResource) source.eResource();
             String id = xmlResource.getID(source);
-            if(id==null && source.eClass().getEIDAttribute()!=null){
-                id=(String) source.eGet(source.eClass().getEIDAttribute());
+            if (id == null && source.eClass().getEIDAttribute() != null) {
+                id = (String) source.eGet(source.eClass().getEIDAttribute());
             }
             results.put(id, result);
             return results;
@@ -134,44 +134,38 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
         return result;
     }
 
-
-
     @Override
-    public Map<String,TaskFormInfo> generateFormFor(Path modelPath, XMLResource resource, String elementId, String formType) {
-        ResourceSet resourceSet = resource.getResourceSet();
-        EList<Resource> resources = resourceSet.getResources();
-        for (Resource resource2 : resources) {
-            EObject eObject = resource2.getEObject(elementId);
-            if(eObject!=null){
-                return generateForm(modelPath,eObject , formType, true);
-            }
+    public Map<String, TaskFormInfo> generateFormFor(Path modelPath, XMLResource resource, String elementId, String formType) {
+        EObject eObject = JBPMECoreHelper.findEObject(resource.getResourceSet(), elementId);
+        if (eObject != null) {
+            return generateForm(modelPath, eObject, formType, true);
         }
         return Collections.emptyMap();
     }
 
     @Override
-    public Map<String,TaskFormInfo> ensureFormExistsFor(Path modelPath, XMLResource resource, String elementId, String formType) {
+    public Map<String, TaskFormInfo> ensureFormExistsFor(Path modelPath, XMLResource resource, String elementId, String formType) {
         return generateForm(modelPath, resource.getEObject(elementId), formType, false);
     }
 
-    protected Map<String,TaskFormInfo> prepareSubform(String repositoryInfo, Field field, EObject ref) {
+    protected Map<String, TaskFormInfo> prepareSubform(String repositoryInfo, Field field, EObject ref) {
         if (ref != null && !ref.eIsProxy()) {
             String profileName = profileNameMap.get(ref.eClass().getName());
             if (profileName != null) {
                 IEmfBasedFormBuilder found = getOtherFormBuilder(profileName);
-                if(found!=null){
-                    field.getForm().setDataHolder(found.buildDataHolderFor(field.getFieldName(), ref));
+                if (found != null) {
+//                    field.getForm().setDataHolder(found.buildDataHolderFor(field.getFieldName(), ref));
                     if (ref.eResource() instanceof XMLResource) {
                         XMLResource xr = (XMLResource) ref.eResource();
                         Path targetModelPath = PathFactory.newPath(xr.getURI().lastSegment(), repositoryInfo + xr.getURI().toPlatformString(true));
                         String refId = xr.getID(ref);
-                        if(refId==null && ref.eClass().getEIDAttribute()!=null){
-                            refId=(String) ref.eGet(ref.eClass().getEIDAttribute());
+                        if (refId == null && ref.eClass().getEIDAttribute() != null) {
+                            refId = (String) ref.eGet(ref.eClass().getEIDAttribute());
                         }
                         Map<String, TaskFormInfo> generatedSubForms = found.ensureFormExistsFor(targetModelPath, xr, refId, "");
                         TaskFormInfo subForm = generatedSubForms.get(refId);
-                        //TODO check what the formEditor expects
-                        field.setDefaultSubform(subForm.getId()+".form");
+                        // TODO check what the formEditor expects
+                        field.setDefaultSubform(subForm.getId() + ".form");
                         return generatedSubForms;
                     }
                 }
@@ -183,7 +177,7 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
     public IEmfBasedFormBuilder getOtherFormBuilder(String profileName) {
         Instance<IEmfBasedFormBuilder> otherFormBuilder2 = this.otherFormBuilder;
         for (IEmfBasedFormBuilder b : otherFormBuilder2) {
-            if(b.getProfileName().equals(profileName)){
+            if (b.getProfileName().equals(profileName)) {
                 return b;
             }
         }

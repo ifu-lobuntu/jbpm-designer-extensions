@@ -67,7 +67,9 @@ ORYX.Plugins.UCD = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		    			break;
 		    		}
 		    	}
+		    	console.log(name);
 		    	name=name.substring(0, name.indexOf("|"));
+                shape.properties["oryx-name"]=name;
 				labels[i].text(name);
 				labels[i].update();
 			}

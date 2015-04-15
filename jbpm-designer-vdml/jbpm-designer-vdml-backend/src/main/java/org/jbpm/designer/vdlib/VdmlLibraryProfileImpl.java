@@ -15,6 +15,8 @@ import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.designer.vdml.VdmlPotentialReferenceHelper;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
+import org.jbpm.vdml.dd.vdmldi.util.VDMLDIResourceFactoryImpl;
 import org.omg.smm.SMMPackage;
 import org.omg.vdml.VDMLPackage;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
@@ -71,6 +73,11 @@ public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl{
     @Override
     public void prepareResourceSet(ResourceSet resourceSet) {
         super.prepareResourceSet(resourceSet);
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdcol", new VDMLDIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdcm", new VDMLDIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdrc", new VDMLDIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdpe", new VDMLDIResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdlib", new UMLDIResourceFactoryImpl());
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("meas", new SMMDIResourceFactoryImpl());
     }
 

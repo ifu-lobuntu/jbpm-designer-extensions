@@ -18,12 +18,16 @@ package org.jbpm.formModeler.uml.integration;
 import java.net.URI;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Event;
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -34,12 +38,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Class;
-import org.jbpm.designer.extensions.api.IEmfProfile;
-import org.jbpm.designer.extensions.emf.util.UriHelper;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.filters.FilterByExtension;
 import org.jbpm.designer.server.service.PathEvent;
-import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
 import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.jbpm.formModeler.api.model.DataHolder;
 import org.jbpm.formModeler.core.config.builders.dataHolder.DataHolderBuildConfig;
@@ -56,6 +58,7 @@ import org.uberfire.io.IOService;
 public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
 
     public static final String HOLDER_TYPE_UML_CLASS = "umlClassEntry";
+    private static final String[] POTENTIAL_PROFILES = { "ucd", "vdlib", "vdcm" };
 
     private Logger log = LoggerFactory.getLogger(UmlClassDataHolderBuilder.class);
 
@@ -63,7 +66,8 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
     Event<PathEvent> event;
 
     @Inject
-    private ClassDiagramProfileImpl profile;
+    @Any
+    private Instance<IEmfDiagramProfile> profile;
 
     @Inject
     @Named("ioStrategy")
@@ -81,25 +85,23 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
         return result;
     }
 
-    private Map<String, String> getThem(String path) {
-        String[] elementTypes = { "Class" };
-        IEmfProfile targetDiagramProfile = profile;
-        ResourceSet rst = new ResourceSetImpl();
-        targetDiagramProfile.prepareResourceSet(rst);
-        UriHelper.setPlatformUriHandler(rst, targetDiagramProfile.getUriHandler());
-
-        int indexOfRepoRoot = path.indexOf("/", path.indexOf("@"));
-        int indexOfProjectRoot = path.indexOf("/", indexOfRepoRoot + 1);
-        String packageName = path.substring(indexOfRepoRoot, indexOfProjectRoot);
-        this.event.fire(new PathEvent(path));
-        @SuppressWarnings("rawtypes")
-        Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName,
-                new FilterByExtension(targetDiagramProfile.getSerializedModelExtension()));
-        for (Asset<?> asset : listAssetsRecursively) {
-            String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
-            org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createPlatformResourceURI(id, true);
-            rst.getResource(uri, true);
+    private IEmfDiagramProfile getOtherProfile(String name) {
+        for (IEmfDiagramProfile p : profile) {
+            if (p.getName().equals(name)) {
+                return p;
+            }
         }
+        return null;
+    }
+
+    private Map<String, String> getThem(String path) {
+        ResourceSet rst = aggregateResources(path);
+        return collectClasses(rst);
+    }
+
+    protected Map<String, String> collectClasses(ResourceSet rst) {
+        String[] elementTypes = { "Class" };
+        @SuppressWarnings("rawtypes")
         Map<String, String> classInfo = new HashMap<String, String>();
         for (Resource resource : rst.getResources()) {
             TreeIterator<EObject> ti = resource.getContents().get(0).eAllContents();
@@ -116,6 +118,52 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
             }
         }
         return classInfo;
+    }
+
+    protected ResourceSet aggregateResources(String path) {
+        String packageName = calculatePackageName(path);
+        Set<IEmfDiagramProfile> profiles = collectProfiles();
+        ResourceSet rst = new ResourceSetImpl();
+        prepareResourceSet(rst, profiles);
+        aggregateResources(rst, packageName, profiles);
+        return rst;
+    }
+
+    protected String calculatePackageName(String path) {
+        int indexOfRepoRoot = path.indexOf("/", path.indexOf("@"));
+        int indexOfProjectRoot = path.indexOf("/", indexOfRepoRoot + 1);
+        String packageName = path.substring(indexOfRepoRoot, indexOfProjectRoot);
+        this.event.fire(new PathEvent(path));
+        return packageName;
+    }
+
+    protected void aggregateResources(ResourceSet rst, String packageName, Set<IEmfDiagramProfile> profiles) {
+        for (IEmfDiagramProfile p : profiles) {
+            Collection<Asset> listAssetsRecursively = p.getRepository().listAssetsRecursively(packageName,
+                    new FilterByExtension(p.getSerializedModelExtension()));
+            for (Asset<?> asset : listAssetsRecursively) {
+                String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
+                org.eclipse.emf.common.util.URI uri = org.eclipse.emf.common.util.URI.createPlatformResourceURI(id, true);
+                rst.getResource(uri, true);
+            }
+        }
+    }
+
+    protected void prepareResourceSet(ResourceSet rst, Set<IEmfDiagramProfile> profiles) {
+        for (IEmfDiagramProfile p : profiles) {
+            p.prepareResourceSet(rst);
+        }
+    }
+
+    protected Set<IEmfDiagramProfile> collectProfiles() {
+        Set<IEmfDiagramProfile> profiles=new HashSet<IEmfDiagramProfile>();
+        for (String pn : POTENTIAL_PROFILES) {
+            IEmfDiagramProfile p = getOtherProfile(pn);
+            if (p != null) {
+                profiles.add(p);
+            }
+        }
+        return profiles;
     }
 
     @Override
@@ -146,7 +194,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
 
     private Class getUmlClass(String value) {
         ResourceSet rst = new ResourceSetImpl();
-        profile.prepareResourceSet(rst);
+        prepareResourceSet(rst, collectProfiles());
         Class holderClass = (Class) rst.getEObject(org.eclipse.emf.common.util.URI.createURI(value, true), true);
         EcoreUtil.resolveAll(holderClass);
         if (holderClass == null) {

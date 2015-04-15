@@ -34,7 +34,7 @@
 		</defs>
 		<rect id="text_frame" oryx:anchors="bottom top right left" x="1" y="1" width="94" height="79" rx="30" ry="30" stroke="none" stroke-width="0" fill="none" />
   		<ellipse id="bg_frame" cx="51" cy="41" rx="100" ry="50" oryx:resize="vertical horizontal" x="0" y="0" stroke="black" stroke-width="1" fill="url(#background) #ffffcc"/>
-		<text font-size="12" id="text_name" x="50" y="40" oryx:align="middle center" oryx:fittoelem="text_frame" stroke="black">
+		<text font-size="12" id="text_name" x="20" y="40" oryx:align="middle center" stroke="black">
 		</text>
 		<text oryx:anchors="bottom" font-size="12" id="requiredText" x="42" y="90" stroke="black" display="none">!
 		</text>

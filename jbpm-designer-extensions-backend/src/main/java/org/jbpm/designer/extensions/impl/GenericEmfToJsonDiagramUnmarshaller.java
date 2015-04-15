@@ -88,7 +88,12 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     public Diagram convert(XMLResource resource) {
 
         shapeMap = new ShapeMap(resource);
-        helper = profile.createEmfToJsonHelper(shapeMap);
+        try {
+            helper = profile.createEmfToJsonHelper(shapeMap);
+        } catch (Throwable e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         helper.preprocessResource();
         org.omg.dd.di.Diagram emfDiagram = helper.getDiagram(0);
         EObject modelElement = getModelElement(emfDiagram);
@@ -98,7 +103,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         helper.linkElements(emfDiagram, result);
         LinkedStencil linkedStencil = this.profile.getLinkedStencilSet().getLinkedStencil(result.getStencilId());
         createShapesRecursively(result, emfDiagram);
-        helper.doSwitch(linkedStencil, result, modelElement);
+        helper.refineJsonShape(linkedStencil, result, modelElement);
         setProperties(emfDiagram, modelElement, result);
         result.getProperties().put("diagramelementid", shapeMap.getId(emfDiagram));
         addLinkedShapes(emfDiagram, result);
@@ -134,7 +139,11 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                     }
                     if (ce.getTarget() != null) {
                         Shape targetShape = shapeMap.getShape(ce.getTarget());
-                        shape.addOutgoing(targetShape);
+                        if(targetShape==null){
+                            System.out.println();
+                        }else{
+                            shape.addOutgoing(targetShape);
+                        }
                     }
                 } else {
                     addLinkedShapes(de, shape);
@@ -142,7 +151,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                 if (de.getModelElement().size() > 0) {
                     StencilInfo stencil = helper.findStencilByElement(getModelElement(de), de);
                     LinkedStencil linkedStencil = this.profile.getLinkedStencilSet().getLinkedStencil(stencil.getStencilId());
-                    helper.doSwitch(linkedStencil, shape, getModelElement(de));
+                    helper.refineJsonShape(linkedStencil, shape, getModelElement(de));
                 }
             }
         }
@@ -232,6 +241,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     protected Object resolveBinding(EObject mee, Object val, String binding) {
+        if(mee==null){
+            return null;
+        }
         String[] split = binding.trim().split("\\.");
         Object currentTarget = mee;
         for (int i = 0; i < split.length; i++) {
@@ -340,7 +352,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         Map<String, Object> options = profile.buildDefaultResourceOptions();
         InputStream is = new ByteArrayInputStream(xmlModel.getBytes("UTF-8"));
         resource.load(is, options);
-        EcoreUtil.resolveAll(resourceSet);
+//        EcoreUtil.resolveAll(resource);
         EList<Resource> resources = resourceSet.getResources();
         for (Resource resource2 : resources) {
             if (!resource2.getErrors().isEmpty()) {

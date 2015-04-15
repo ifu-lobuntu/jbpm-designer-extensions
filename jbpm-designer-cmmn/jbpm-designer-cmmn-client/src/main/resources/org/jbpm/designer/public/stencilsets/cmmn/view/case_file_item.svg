@@ -3,31 +3,31 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:oryx="http://www.b3mn.org/oryx"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   width="200"
-   height="160"
+   xmlns:xlink="http://www.w3.org/499/xlink"
+   width="50"
+   height="80"
    version="1.0">
   <defs></defs>
   <oryx:magnets>
-  	<oryx:magnet oryx:cx="1" oryx:cy="50" oryx:anchors="left" />
-  	<oryx:magnet oryx:cx="1" oryx:cy="80" oryx:anchors="left" />
-  	<oryx:magnet oryx:cx="1" oryx:cy="110" oryx:anchors="left" />
+  	<oryx:magnet oryx:cx="1" oryx:cy="20" oryx:anchors="left" />
+  	<oryx:magnet oryx:cx="1" oryx:cy="40" oryx:anchors="left" />
+  	<oryx:magnet oryx:cx="1" oryx:cy="60" oryx:anchors="left" />
 
-  	<oryx:magnet oryx:cx="70" oryx:cy="159" oryx:anchors="bottom" />
-  	<oryx:magnet oryx:cx="100" oryx:cy="159" oryx:anchors="bottom" />
-  	<oryx:magnet oryx:cx="130" oryx:cy="159" oryx:anchors="bottom" />
+  	<oryx:magnet oryx:cx="12" oryx:cy="80" oryx:anchors="bottom" />
+  	<oryx:magnet oryx:cx="25" oryx:cy="80" oryx:anchors="bottom" />
+  	<oryx:magnet oryx:cx="37" oryx:cy="80" oryx:anchors="bottom" />
 
-  	<oryx:magnet oryx:cx="199" oryx:cy="50" oryx:anchors="right" />
-  	<oryx:magnet oryx:cx="199" oryx:cy="80" oryx:anchors="right" />
-  	<oryx:magnet oryx:cx="199" oryx:cy="110" oryx:anchors="right" />
+  	<oryx:magnet oryx:cx="49" oryx:cy="20" oryx:anchors="right" />
+  	<oryx:magnet oryx:cx="49" oryx:cy="40" oryx:anchors="right" />
+  	<oryx:magnet oryx:cx="49" oryx:cy="60" oryx:anchors="right" />
 
-  	<oryx:magnet oryx:cx="70" oryx:cy="1" oryx:anchors="top" />
-  	<oryx:magnet oryx:cx="100" oryx:cy="1" oryx:anchors="top" />
-  	<oryx:magnet oryx:cx="130" oryx:cy="1" oryx:anchors="top" />
+  	<oryx:magnet oryx:cx="12" oryx:cy="1" oryx:anchors="top" />
+  	<oryx:magnet oryx:cx="25" oryx:cy="1" oryx:anchors="top" />
+  	<oryx:magnet oryx:cx="37" oryx:cy="1" oryx:anchors="top" />
 
-  	<oryx:magnet oryx:cx="100" oryx:cy="80" oryx:default="yes" />
+  	<oryx:magnet oryx:cx="25" oryx:cy="40" oryx:default="yes" />
   </oryx:magnets>
-  <g pointer-events="fill" oryx:minimumSize="80	20" oryx:maximumSize="" >
+  <g pointer-events="fill" oryx:minimumSize="50	20" oryx:maximumSize="" >
   	<defs>
 		<radialGradient id="background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
 			<stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
@@ -35,9 +35,9 @@
 		</radialGradient>
 	</defs>
         <!--g transform="scale(0.8,0.8) translate(3,3)"-->
-         <polygon id="fram123" stroke="black" stroke-width="1" points="0,0 185,0  200,15 200,160 0,160" fill="url(#background) white"
+         <polygon id="fram123" stroke="black" stroke-width="1" points="0,0 35,0  50,15 50,80 0,80" fill="url(#background) white"
           oryx:resize="vertical horizontal" oryx:anchors="bottom top right left"/>
-         <polygon id="corner" stroke="black" stroke-width="1" points="185,0  185,15 200,15" fill="white"
+         <polygon id="corner" stroke="black" stroke-width="1" points="35,0  35,15 50,15" fill="white"
           oryx:resize="vertical horizontal" />
 	<text
 			font-size="12"

@@ -88,7 +88,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         return shapeMap.getModelElement(id);
     }
     @Override
-    public void doSwitch(LinkedStencil sv, Shape sourceShape) {
+    public void refineEmfElements(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
         this.currentStencil = sv;
         super.doSwitch(getModelElement(sourceShape.getResourceId()));

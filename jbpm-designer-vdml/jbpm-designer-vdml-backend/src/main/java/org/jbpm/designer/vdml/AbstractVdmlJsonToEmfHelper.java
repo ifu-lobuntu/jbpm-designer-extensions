@@ -2,6 +2,7 @@ package org.jbpm.designer.vdml;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -20,10 +21,15 @@ import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Measure;
+import org.omg.vdml.Assignment;
+import org.omg.vdml.Attribute;
 import org.omg.vdml.BusinessItem;
 import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.MeasuredCharacteristic;
+import org.omg.vdml.Participant;
+import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueDeliveryModel;
@@ -59,6 +65,50 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         }
         return vm;
     }
+    @Override
+    public Object caseDeliverableFlow(DeliverableFlow object) {
+        object.setDeliverable(buildBusinessItem("deliverableDefinition"));
+        if(object.getDeliverable()!=null){
+            object.setName(object.getDeliverable().getName());
+        }
+        return super.caseDeliverableFlow(object);
+    }
+    @Override
+    public Object caseRole(Role object) {
+        addAssignments(object);
+        return super.caseRole(object);
+    }
+    protected void putAttribute(VdmlElement object, String name) {
+        if(sourceShape.getProperty(name)!=null){
+            Attribute attr =null;
+            for (Attribute attribute2 : object.getAttribute()) {
+                if(attribute2.getTag().equals(name)){
+                    attr=attribute2;
+                }
+            }
+            if(attr==null){
+                attr = VDMLFactory.eINSTANCE.createAttribute();
+                attr.setName(name);
+                attr.setTag(name);
+                object.getAttribute().add(attr);
+            }
+            attr.setValue(sourceShape.getProperty(name));
+        }
+    }
+
+    private void addAssignments(Role object) {
+        Collection<Participant>assignedParticipants = (Collection<Participant>) sourceShape.getUnboundProperty("assignedParticipants");
+        if(assignedParticipants!=null){
+            for (Participant participant : assignedParticipants) {
+                Assignment as = VDMLFactory.eINSTANCE.createAssignment();
+                object.getRoleAssignment().add(as);
+                as.setParticipant(participant);
+                owningCollaboration.getOwnedAssignment().add(as);
+            }
+        }
+    }
+
+
 
     protected BusinessItem buildBusinessItem(String name) {
         BusinessItem result = null;
@@ -74,6 +124,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
                 owningCollaboration.getBusinessItem().add(result);
                 result.setDefinition(deliverableDefinition);
             }
+            result.setName(deliverableDefinition.getName());
         }
         return result;
     }
@@ -111,7 +162,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     }
 
     @Override
-    public void doSwitch(LinkedStencil sv, Shape sourceShape) {
+    public void refineEmfElements(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
         this.currentStencil = sv;
         super.doSwitch(shapeMap.getModelElement(sourceShape.getResourceId()));

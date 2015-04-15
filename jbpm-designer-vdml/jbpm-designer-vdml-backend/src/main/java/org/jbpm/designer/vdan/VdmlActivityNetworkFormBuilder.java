@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.impl.AbstractFormBuilderImpl;
+import org.jbpm.designer.extensions.util.NameConverter;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.formModeler.api.model.DataHolder;
@@ -60,8 +61,11 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
         Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
         if (eobject instanceof Port) {
             Port port = (Port) eobject;
+            if(port.getName()==null){
+                port.setName("anonymous");
+            }
             EList<ValueAdd> vas = VdmlHelper.getValueAdds(port);
-            String portName = Character.toLowerCase(port.getName().charAt(0)) + port.getName().substring(1);
+            String portName = NameConverter.decapitalize(port.getName());
             form.setDataHolder(buildDataHolderFor(portName, port));
             for (ValueAdd parameter : vas) {
                 if (VdmlHelper.hasValueMeasure(parameter)) {
@@ -87,7 +91,7 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
                 field.setOutputBinding(port.getName() + "Out");
                 results.putAll(prepareSubform(repositoryInfo, field, port));
                 I18nSet set = new I18nSet();
-                set.setValue(Locale.getDefault().getLanguage(), port.getName());
+                set.setValue(Locale.getDefault().getLanguage(), NameConverter.capitalize(port.getName()));
                 field.setLabel(set);
                 // field.setFieldRequired(?);
             }

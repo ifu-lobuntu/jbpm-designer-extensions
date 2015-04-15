@@ -93,7 +93,9 @@ public class VDMLResourceImpl extends XMIResourceImpl {
                 if(idAttr==null && externalPackages.contains(obj.eClass().getEPackage().getName())){
                     //From other emf package
                     VDMLResourceImpl eResource = (VDMLResourceImpl) obj.eResource();
-                    eResource.setID(obj, EcoreUtil.generateUUID());
+                    if(eResource.getID(obj)==null){
+                        eResource.setID(obj, EcoreUtil.generateUUID());
+                    }
                 }
             }
         }

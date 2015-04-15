@@ -27,7 +27,7 @@ import org.omg.smm.SMMFactory;
 import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.ValueDeliveryModel;
 
-public class VdmlLibraryDiagramMarshallingTests extends AbstractUmlDiagramTest {
+public class VdmlLibraryDiagramMarshallingTest extends AbstractUmlDiagramTest {
     protected XMLResource measureResource;
     protected String measureFile = "/jbpm-designer-vdml-backend/target/test.meas";
     private Characteristic characteristic;
