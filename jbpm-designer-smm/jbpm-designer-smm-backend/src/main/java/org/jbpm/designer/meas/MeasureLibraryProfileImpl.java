@@ -4,12 +4,15 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.type.MeasureLibraryTypeDefinition;
+import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.smm.dd.smmdi.SMMDIFactory;
 import org.jbpm.smm.dd.smmdi.SMMDIPackage;
 import org.jbpm.smm.dd.smmdi.SMMDiagram;
@@ -43,7 +46,11 @@ public class MeasureLibraryProfileImpl extends AbstractEmfDiagramProfile {
         return "http://b3mn.org/stencilset/meas#";
     }
 
-
+    @Override
+    public void prepareResourceSet(ResourceSet resourceSet) {
+        super.prepareResourceSet(resourceSet);
+        AbstractClassDiagramProfileImpl.getCmmnTypes(resourceSet);
+    }
 
     @Override
     public EmfToJsonHelper createEmfToJsonHelper(ShapeMap resource) {
@@ -64,10 +71,12 @@ public class MeasureLibraryProfileImpl extends AbstractEmfDiagramProfile {
     protected ResourceTypeDefinition getResourceTypeDefinition() {
         return new MeasureLibraryTypeDefinition();
     }
+
     @Override
     public boolean useIdAttribute() {
         return false;
     }
+
     @Override
     public String getDiagramStencilId() {
         return "MeasureLibraryDiagram";
@@ -84,14 +93,14 @@ public class MeasureLibraryProfileImpl extends AbstractEmfDiagramProfile {
         rs.setID(lib, "${processid}");
         lib.setName("${processid}");
         rs.getContents().add(lib);
-        SMMDiagram dgm=SMMDIFactory.eINSTANCE.createSMMDiagram();
+        SMMDiagram dgm = SMMDIFactory.eINSTANCE.createSMMDiagram();
         lib.getOwnedDiagram().add(dgm);
         dgm.setSmmElement(lib);
     }
 
     @Override
     public EPackage[] getEPackages() {
-        return ddPackages(SMMPackage.eINSTANCE,SMMDIPackage.eINSTANCE);
+        return ddPackages(SMMPackage.eINSTANCE, SMMDIPackage.eINSTANCE);
     }
 
     @Override

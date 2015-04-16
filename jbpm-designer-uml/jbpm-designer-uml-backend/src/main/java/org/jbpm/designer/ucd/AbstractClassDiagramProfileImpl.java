@@ -8,8 +8,6 @@ import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -20,8 +18,11 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
+import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jboss.errai.bus.server.api.RpcContext;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
+import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
 import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
@@ -34,6 +35,7 @@ import org.jbpm.designer.util.Utils;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.jbpm.uml2.dd.umldi.impl.UMLDIPackageImpl;
 import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
 import org.kie.workbench.common.screens.datamodeller.model.DataModelTO;
 import org.kie.workbench.common.screens.datamodeller.service.DataModelerService;
@@ -61,9 +63,17 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     Instance<HttpServletRequest> request;
     @Inject
     @ProfileName("ucd")
-    ClassDiagramFormBuilder classDiagramFormBuilderService;
+    ClassDiagramFormBuilder classDiagramFormBuilder;
+    static{
+        UMLPackageImpl.init();
+        UMLDIPackageImpl.init();
+    }
 
     public AbstractClassDiagramProfileImpl() {
+    }
+    @Override
+    public IEmfBasedFormBuilder getFormBuilder() {
+        return classDiagramFormBuilder;
     }
 
     public String getTitle() {
@@ -80,15 +90,27 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     public void prepareResourceSet(ResourceSet resourceSet) {
         super.prepareResourceSet(resourceSet);
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", getResourceFactory());
-        URL url = UMLDiagram.class.getResource("/libraries/cmmntypes.uml");
+        getCmmnTypes(resourceSet);
+    }
+
+    public  static Package getCmmnTypes(ResourceSet resourceSet) {
+        String resourcePath = "/libraries/cmmntypes.uml";
         URI uri = URI.createURI(CMMNTYPES_PATHMAP);
+        for (Resource resource : resourceSet.getResources()) {
+            if(resource.getURI().equals(uri)){
+                return (Package)resource.getContents().get(0);
+            }
+        }
+        for (EPackage ePackage : ddPackages(UMLPackage.eINSTANCE, UMLDIPackage.eINSTANCE)) {
+            resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
+        }
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
+        URL url = UMLDiagram.class.getResource(resourcePath);
         resourceSet.getURIConverter().getURIMap().put(uri, URI.createURI(url.toExternalForm()));
         Resource cmmnTypes = resourceSet.createResource(uri);
         try {
             cmmnTypes.load(url.openStream(), Collections.emptyMap());
-            EList<Adapter> eAdapters = resourceSet.eAdapters();
-            System.out.println();
+            return (Package)cmmnTypes.getContents().get(0);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

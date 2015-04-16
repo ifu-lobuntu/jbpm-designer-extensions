@@ -155,7 +155,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     }
     @Override
     public DefaultPotentialReferenceHelper createPotentialReferenceHelper() {
-        return new CmmnCalledElementHelper(this);
+        return new CmmnPotentialReferenceHelper(this);
     }
     @Override
     public EPackage[] getEPackages() {

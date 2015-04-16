@@ -90,6 +90,13 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
         object.setBatchSize(buildMeasuredCharacteristic("batchSizeMeasure"));
         object.setPlanningPercentage(buildMeasuredCharacteristic("planningPercentageMeasure"));
         object.setOffset(buildMeasuredCharacteristic("offsetMeasure"));
+        if(object.eResource()==null){
+            if(sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_INPUT_PORT.getStencilId()) || sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_OUTPUT_PORT.getStencilId())){
+                owningCollaboration.getContainedPort().add(object);
+            }else{
+                System.out.println();
+            }
+        }
         object.eResource().setModified(true);//for stores
         return super.casePort(object);
     }

@@ -19,12 +19,18 @@
 							"class","importedClass"
 						]
 					},
-					{
-						"from" : "businessItemDefinition",
-						"to" : [
-							"businessItemDefinition"
-						]
-					},
+                    {
+                        "from" : "businessItemDefinition",
+                        "to" : [
+                            "businessItemDefinition"
+                        ]
+                    },
+                    {
+                        "from" : "capability",
+                        "to" : [
+                            "capability"
+                        ]
+                    },
 					{
 						"from" : "interface",
 						"to" : [

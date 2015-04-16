@@ -242,11 +242,17 @@
     <eLiterals name="divide" value="3"/>
     <eLiterals name="custom" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RankingMeasureRelationship" eSuperTypes="#//BaseMeasureRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RankingMeasureRelationship" eSuperTypes="#//BaseMeasureRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromRankingMeasure" lowerBound="1"
+        eType="#//RankingMeasure" eOpposite="#//RankingMeasure/rankingTo"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toDimensionalMeasure" eType="#//DimensionalMeasure"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RankingMeasure" eSuperTypes="#//DimensionalMeasure">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interval" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//RankingInterval" containment="true"
         eOpposite="#//RankingInterval/ranking"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rankingTo" eType="#//RankingMeasureRelationship"
+        containment="true" eOpposite="#//RankingMeasureRelationship/fromRankingMeasure"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RankingInterval" eSuperTypes="#//Interval">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
@@ -272,10 +278,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="toRescaledMeasure" eType="#//RescaledMeasure"
         eOpposite="#//RescaledMeasure/rescalesFrom"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GradeMeasureRelationship" eSuperTypes="#//MeasureRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GradeMeasureRelationship" eSuperTypes="#//MeasureRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromGradeMeasure" lowerBound="1"
+        eType="#//GradeMeasure" eOpposite="#//GradeMeasure/gradeTo"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toDimensionalMeasure" eType="#//DimensionalMeasure"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GradeMeasure" eSuperTypes="#//Measure">
     <eStructuralFeatures xsi:type="ecore:EReference" name="interval" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//GradeInterval" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gradeTo" eType="#//GradeMeasureRelationship"
+        containment="true" eOpposite="#//GradeMeasureRelationship/fromGradeMeasure"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GradeInterval" eSuperTypes="#//Interval">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"

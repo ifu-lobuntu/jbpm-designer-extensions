@@ -4075,13 +4075,31 @@ public interface SMMPackage extends EPackage {
     int RANKING_MEASURE_RELATIONSHIP__RESCALED_MEASURE = BASE_MEASURE_RELATIONSHIP__RESCALED_MEASURE;
 
     /**
+     * The feature id for the '<em><b>From Ranking Measure</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE = BASE_MEASURE_RELATIONSHIP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>To Dimensional Measure</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RANKING_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE = BASE_MEASURE_RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Ranking Measure Relationship</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RANKING_MEASURE_RELATIONSHIP_FEATURE_COUNT = BASE_MEASURE_RELATIONSHIP_FEATURE_COUNT + 0;
+    int RANKING_MEASURE_RELATIONSHIP_FEATURE_COUNT = BASE_MEASURE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The number of operations of the '<em>Ranking Measure Relationship</em>' class.
@@ -4292,13 +4310,22 @@ public interface SMMPackage extends EPackage {
     int RANKING_MEASURE__INTERVAL = DIMENSIONAL_MEASURE_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Ranking To</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RANKING_MEASURE__RANKING_TO = DIMENSIONAL_MEASURE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Ranking Measure</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RANKING_MEASURE_FEATURE_COUNT = DIMENSIONAL_MEASURE_FEATURE_COUNT + 1;
+    int RANKING_MEASURE_FEATURE_COUNT = DIMENSIONAL_MEASURE_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get All Arguments</em>' operation.
@@ -4854,13 +4881,31 @@ public interface SMMPackage extends EPackage {
     int GRADE_MEASURE_RELATIONSHIP__MEASURAND_QUERY = MEASURE_RELATIONSHIP__MEASURAND_QUERY;
 
     /**
+     * The feature id for the '<em><b>From Grade Measure</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GRADE_MEASURE_RELATIONSHIP__FROM_GRADE_MEASURE = MEASURE_RELATIONSHIP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>To Dimensional Measure</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GRADE_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE = MEASURE_RELATIONSHIP_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Grade Measure Relationship</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GRADE_MEASURE_RELATIONSHIP_FEATURE_COUNT = MEASURE_RELATIONSHIP_FEATURE_COUNT + 0;
+    int GRADE_MEASURE_RELATIONSHIP_FEATURE_COUNT = MEASURE_RELATIONSHIP_FEATURE_COUNT + 2;
 
     /**
      * The number of operations of the '<em>Grade Measure Relationship</em>' class.
@@ -5053,13 +5098,22 @@ public interface SMMPackage extends EPackage {
     int GRADE_MEASURE__INTERVAL = MEASURE_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Grade To</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GRADE_MEASURE__GRADE_TO = MEASURE_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Grade Measure</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int GRADE_MEASURE_FEATURE_COUNT = MEASURE_FEATURE_COUNT + 1;
+    int GRADE_MEASURE_FEATURE_COUNT = MEASURE_FEATURE_COUNT + 2;
 
     /**
      * The operation id for the '<em>Get All Arguments</em>' operation.
@@ -10533,6 +10587,28 @@ public interface SMMPackage extends EPackage {
     EClass getRankingMeasureRelationship();
 
     /**
+     * Returns the meta object for the container reference '{@link org.omg.smm.RankingMeasureRelationship#getFromRankingMeasure <em>From Ranking Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>From Ranking Measure</em>'.
+     * @see org.omg.smm.RankingMeasureRelationship#getFromRankingMeasure()
+     * @see #getRankingMeasureRelationship()
+     * @generated
+     */
+    EReference getRankingMeasureRelationship_FromRankingMeasure();
+
+    /**
+     * Returns the meta object for the reference '{@link org.omg.smm.RankingMeasureRelationship#getToDimensionalMeasure <em>To Dimensional Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>To Dimensional Measure</em>'.
+     * @see org.omg.smm.RankingMeasureRelationship#getToDimensionalMeasure()
+     * @see #getRankingMeasureRelationship()
+     * @generated
+     */
+    EReference getRankingMeasureRelationship_ToDimensionalMeasure();
+
+    /**
      * Returns the meta object for class '{@link org.omg.smm.RankingMeasure <em>Ranking Measure</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10552,6 +10628,17 @@ public interface SMMPackage extends EPackage {
      * @generated
      */
     EReference getRankingMeasure_Interval();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.omg.smm.RankingMeasure#getRankingTo <em>Ranking To</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Ranking To</em>'.
+     * @see org.omg.smm.RankingMeasure#getRankingTo()
+     * @see #getRankingMeasure()
+     * @generated
+     */
+    EReference getRankingMeasure_RankingTo();
 
     /**
      * Returns the meta object for class '{@link org.omg.smm.RankingInterval <em>Ranking Interval</em>}'.
@@ -10682,6 +10769,28 @@ public interface SMMPackage extends EPackage {
     EClass getGradeMeasureRelationship();
 
     /**
+     * Returns the meta object for the container reference '{@link org.omg.smm.GradeMeasureRelationship#getFromGradeMeasure <em>From Grade Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>From Grade Measure</em>'.
+     * @see org.omg.smm.GradeMeasureRelationship#getFromGradeMeasure()
+     * @see #getGradeMeasureRelationship()
+     * @generated
+     */
+    EReference getGradeMeasureRelationship_FromGradeMeasure();
+
+    /**
+     * Returns the meta object for the reference '{@link org.omg.smm.GradeMeasureRelationship#getToDimensionalMeasure <em>To Dimensional Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>To Dimensional Measure</em>'.
+     * @see org.omg.smm.GradeMeasureRelationship#getToDimensionalMeasure()
+     * @see #getGradeMeasureRelationship()
+     * @generated
+     */
+    EReference getGradeMeasureRelationship_ToDimensionalMeasure();
+
+    /**
      * Returns the meta object for class '{@link org.omg.smm.GradeMeasure <em>Grade Measure</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10701,6 +10810,17 @@ public interface SMMPackage extends EPackage {
      * @generated
      */
     EReference getGradeMeasure_Interval();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.omg.smm.GradeMeasure#getGradeTo <em>Grade To</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Grade To</em>'.
+     * @see org.omg.smm.GradeMeasure#getGradeTo()
+     * @see #getGradeMeasure()
+     * @generated
+     */
+    EReference getGradeMeasure_GradeTo();
 
     /**
      * Returns the meta object for class '{@link org.omg.smm.GradeInterval <em>Grade Interval</em>}'.
@@ -12268,6 +12388,22 @@ public interface SMMPackage extends EPackage {
         EClass RANKING_MEASURE_RELATIONSHIP = eINSTANCE.getRankingMeasureRelationship();
 
         /**
+         * The meta object literal for the '<em><b>From Ranking Measure</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE = eINSTANCE.getRankingMeasureRelationship_FromRankingMeasure();
+
+        /**
+         * The meta object literal for the '<em><b>To Dimensional Measure</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RANKING_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE = eINSTANCE.getRankingMeasureRelationship_ToDimensionalMeasure();
+
+        /**
          * The meta object literal for the '{@link org.omg.smm.impl.RankingMeasureImpl <em>Ranking Measure</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -12284,6 +12420,14 @@ public interface SMMPackage extends EPackage {
          * @generated
          */
         EReference RANKING_MEASURE__INTERVAL = eINSTANCE.getRankingMeasure_Interval();
+
+        /**
+         * The meta object literal for the '<em><b>Ranking To</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RANKING_MEASURE__RANKING_TO = eINSTANCE.getRankingMeasure_RankingTo();
 
         /**
          * The meta object literal for the '{@link org.omg.smm.impl.RankingIntervalImpl <em>Ranking Interval</em>}' class.
@@ -12390,6 +12534,22 @@ public interface SMMPackage extends EPackage {
         EClass GRADE_MEASURE_RELATIONSHIP = eINSTANCE.getGradeMeasureRelationship();
 
         /**
+         * The meta object literal for the '<em><b>From Grade Measure</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference GRADE_MEASURE_RELATIONSHIP__FROM_GRADE_MEASURE = eINSTANCE.getGradeMeasureRelationship_FromGradeMeasure();
+
+        /**
+         * The meta object literal for the '<em><b>To Dimensional Measure</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference GRADE_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE = eINSTANCE.getGradeMeasureRelationship_ToDimensionalMeasure();
+
+        /**
          * The meta object literal for the '{@link org.omg.smm.impl.GradeMeasureImpl <em>Grade Measure</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -12406,6 +12566,14 @@ public interface SMMPackage extends EPackage {
          * @generated
          */
         EReference GRADE_MEASURE__INTERVAL = eINSTANCE.getGradeMeasure_Interval();
+
+        /**
+         * The meta object literal for the '<em><b>Grade To</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference GRADE_MEASURE__GRADE_TO = eINSTANCE.getGradeMeasure_GradeTo();
 
         /**
          * The meta object literal for the '{@link org.omg.smm.impl.GradeIntervalImpl <em>Grade Interval</em>}' class.

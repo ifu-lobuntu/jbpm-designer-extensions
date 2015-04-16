@@ -162,7 +162,58 @@
 							]
 						}
 				]
-			}
+			},
+            {
+                "name" : "store",
+                "properties": [
+                       {
+                           "id" : "inventoryLevelMeasure",
+                           "title" : "Inventory Level",
+                           "type" : "eobjectref",
+                           "value" : "",
+                           "description" : "The Measure to use for Inventory Level",
+                           "readonly" : false,
+                           "optional" : false,
+                           "reference":{
+                               "targetProfile":"meas",
+                               "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
+                               "nameFeature" : "name",
+                               "multiSelect" : false
+                           }
+                       },
+                       {
+                           "id" : "durationMeasure",
+                           "title" : "Duration",
+                           "type" : "eobjectref",
+                           "value" : "",
+                           "description" : "The Measure to use for the duration items remain in the store",
+                           "readonly" : false,
+                           "optional" : false,
+                           "reference":{
+                               "targetProfile":"meas",
+                               "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
+                               "nameFeature" : "name",
+                               "multiSelect" : false
+                           }
+                       },
+                    {
+                        "id" : "resourceDefinition",
+                        "type" : "eobjectref",
+                        "title" : "Resource Definition",
+                        "value" : "",
+                        "description" : "The Business Item Definition that describes the resource in this pool",
+                        "readonly" : false,
+                        "optional" : true,
+                        "reference" : {
+                            "targetProfile":"vdlib",
+                            "allowedElementTypes":"BusinessItemDefinition",
+                            "nameFeature" : "name",
+                            "multiSelect" : false
+                        },
+                        "length" : ""
+                    }
+                 ]
+            }
 	],
 	"stencils" : [
 			{
@@ -437,7 +488,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","store"
 				],
 				"properties" : [
 	                    {
@@ -514,25 +565,25 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","store"
 				],
 				"properties" : [
                         {
-                            "id" : "resourceDefinition",
+                            "id" : "poolSizeMeasure",
+                            "title" : "Pool Size",
                             "type" : "eobjectref",
-                            "title" : "Resource Definition",
                             "value" : "",
-                            "description" : "The Business Item Definition that describes the resource in this pool",
+                            "description" : "The Measure to use for the Pool Size",
                             "readonly" : false,
-                            "optional" : true,
-                            "reference" : {
-                                "targetProfile":"vdlib",
-                                "allowedElementTypes":"BusinessItemDefinition",
+                            "optional" : false,
+                            "reference":{
+                                "targetProfile":"meas",
+                                "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
                                 "nameFeature" : "name",
                                 "multiSelect" : false
-                            },
-                            "length" : ""
+                            }
                         }
+                        
 				]
 			},
 			{

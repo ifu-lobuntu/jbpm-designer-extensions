@@ -15,6 +15,7 @@ import org.omg.smm.SMMFactory;
 import org.omg.smm.SMMPackage;
 import org.omg.smm.SmmElement;
 import org.omg.smm.UnitOfMeasure;
+import org.omg.vdml.VDMLPackage;
 
 public enum MeasureLibraryStencil implements StencilInfo {
     MEASURE_LIBRARY(SMMPackage.eINSTANCE.getMeasureLibrary(), SMMDIPackage.eINSTANCE.getSMMDiagram(), "MeasureLibraryDiagram"),
@@ -25,8 +26,10 @@ public enum MeasureLibraryStencil implements StencilInfo {
     RESCALED_MEASURE(SMMPackage.eINSTANCE.getRescaledMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "RescaledMeasure"),
     GRADE_MEASURE(SMMPackage.eINSTANCE.getGradeMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "GradeMeasure"),
     GRADE_INTERVAL(SMMPackage.eINSTANCE.getGradeInterval(), SMMDIPackage.eINSTANCE.getSMMShape(), "GradeInterval"),
+    GRADE_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getGradeMeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "GradeMeasureRelationship"),
     RANKING_MEASURE(SMMPackage.eINSTANCE.getRankingMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "RankingMeasure"),
     RANKING_INTERVAL(SMMPackage.eINSTANCE.getRankingInterval(), SMMDIPackage.eINSTANCE.getSMMShape(), "RankingInterval"),
+    RANKING_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getRankingMeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "RankingMeasureRelationship"),
     BASE1_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getBase1MeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "Base1MeasureRelationship"),
     BASE2_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getBase2MeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "Base2MeasureRelationship"),
     BASEN_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getBaseNMeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "BaseNMeasureRelationship"),
@@ -102,5 +105,5 @@ public enum MeasureLibraryStencil implements StencilInfo {
         }
         return null;
     }
-
+    public static final String MEAS_URI= SMMPackage.eINSTANCE.getNsURI();
 }

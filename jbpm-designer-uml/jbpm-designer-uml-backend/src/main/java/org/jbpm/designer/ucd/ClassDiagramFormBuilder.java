@@ -7,10 +7,12 @@ import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TypedElement;
@@ -64,6 +66,16 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
             set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(property.getName()));
             field.setLabel(set);
             field.setFieldRequired(property.getLower() == 1);
+            if(property.getType() instanceof Enumeration){
+                Enumeration en=(Enumeration) property.getType();
+                StringBuilder sb = new StringBuilder();
+                for (EnumerationLiteral l : en.getOwnedLiterals()) {
+                    sb.append(l.getName());
+                    sb.append(",");
+                }
+                field.setParam4(sb.toString());
+                field.setParam5(en.getQualifiedName().replaceAll("\\:\\:", "."));
+            }
             maybePrepareSubform(repositoryInfo, field, property, results);
         }
         return results;

@@ -11,10 +11,12 @@ import org.omg.vdml.VDMLPackage;
 
 public enum VdmlLibraryStencil implements VdmlStencilInfo {
     BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "BusinessItemDefinition"),
+    CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "CapabilityCategory"),
+    CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "CapabilityDefinition"),
     IMPORTED_ORG_ELEMENT(VDMLPackage.eINSTANCE.getMeasurableElement(), ClassDiagramStencil.CLASS, "ImportedOrgElement"),
-    CHARACTERISTIC_DEFINITION_COMPARTMENT(null, ClassDiagramStencil.OWNED_ATTRIBUTE,
-            "CharacteristicDefinitionCompartment"),
-    CHARACTERISTIC_DEFINITION(SMMPackage.eINSTANCE.getCharacteristic(), ClassDiagramStencil.PROPERTY, "CharacteristicDefinition");
+    CHARACTERISTIC_DEFINITION(null, ClassDiagramStencil.OWNED_ATTRIBUTE,
+            "CharacteristicDefinition"),
+    CHARACTERISTIC(SMMPackage.eINSTANCE.getCharacteristic(), ClassDiagramStencil.PROPERTY, "Characteristic");
 
     private String stencilId;
     private ClassDiagramStencil baseStencil;

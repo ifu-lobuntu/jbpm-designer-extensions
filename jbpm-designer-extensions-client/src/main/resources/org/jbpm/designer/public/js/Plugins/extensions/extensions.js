@@ -201,6 +201,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		this.updateExpanded(event.shape);
 	},
 	handleLayoutList : function(event) {
+	    console.log(event);
 		var shape = event.shape;
 		var currentOffset = 15;
 		if (event.options && event.options.offsetY) {
@@ -210,6 +211,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 			item.bounds.set(1, currentOffset, shape.bounds.b.x - shape.bounds.a.x - 2, currentOffset + 20);
 			currentOffset += 21;
 		});
+		shape.bounds.set(shape.bounds.a.x,shape.bounds.a.y,shape.bounds.b.x, shape.bounds.a.y+currentOffset+10);
 		// if(ORYX.Plugins.Extensions.isCollapsible(shape)){
 		// this.updateExpanded(shape);
 		// }
@@ -251,9 +253,22 @@ ORYX.Plugins.Extensions.isCollapsible = function(shape) {
 }; 
 ORYX.Plugins.Extensions.extractName = function(reference) {
     if(reference){
-        return reference.slice(reference.indexOf("::") + 2, reference.indexOf("|"));
+        var split=reference.slice(0, reference.indexOf("|")).split(/[\:\.]{1,2}/);
+        return split[split.length-1];
     }else{
         return "";
+    }
+};
+ORYX.Plugins.Extensions.updateNameAndLabel = function(shape,refProperty,labelId) {
+    if(shape.properties["oryx-"+refProperty]){
+        var name=ORYX.Plugins.Extensions.extractName(shape.properties["oryx-"+refProperty]);
+        shape.properties["oryx-name"]=name;
+        shape.getLabels().forEach(function(label){
+           if(label.id=shape.id+labelId){
+               label.text(name);
+               label.update();
+           }
+        });
     }
 };
 ORYX.Plugins.Extensions.showShape = function(uiObject) {

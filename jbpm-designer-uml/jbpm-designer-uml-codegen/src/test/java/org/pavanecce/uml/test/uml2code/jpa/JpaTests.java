@@ -14,6 +14,7 @@ import org.jbpm.designer.uml.code.metamodel.CodePackage;
 import org.jbpm.designer.uml.codegen.AbstractCodeGenerator;
 import org.jbpm.designer.uml.codegen.java.JavaCodeGenerator;
 import org.jbpm.designer.uml.codegen.jpa.JpaCodeDecorator;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.pavanecce.common.test.util.ConstructionCaseExample;
 
@@ -23,7 +24,7 @@ public class JpaTests extends AbstractPersistenceTest {
 		super("JpaPersistence");
 	}
 
-	@BeforeClass
+	@Before
 	public void setup() throws Exception {
 		example = new ConstructionCaseExample("JpaPersistence");
 		helper.setDecorators(new JpaCodeDecorator());

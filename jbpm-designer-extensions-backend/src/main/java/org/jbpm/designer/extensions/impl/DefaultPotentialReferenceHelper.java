@@ -158,15 +158,21 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         JSONObject jsonObject = new JSONObject();
         for (EObject eObject : results) {
             try {
-                String className=eObject.eClass().getName();
-                if(eObject instanceof EModelElement){
+                String className = eObject.eClass().getName();
+                if (eObject instanceof EModelElement) {
                     EModelElement em = (EModelElement) eObject;
-                    if(em.getEAnnotations().size()==1 && em.getEAnnotations().get(0).getReferences().size()==1){
-                        className=em.getEAnnotations().get(0).getReferences().get(0).eClass().getName();
+                    if (em.getEAnnotations().size() == 1 && em.getEAnnotations().get(0).getReferences().size() == 1) {
+                        className = em.getEAnnotations().get(0).getReferences().get(0).eClass().getName();
                     }
                 }
-                jsonObject.put(eObject.eGet(eObject.eClass().getEStructuralFeature(nameFeature)) + "|" + eObject.eResource().getURI().toPlatformString(true) + "|" + className,
-                        "");
+                URI uri = eObject.eResource().getURI();
+                String resourceString;
+                if (uri.isPlatformResource()) {
+                    resourceString = uri.toPlatformString(true);
+                } else {
+                    resourceString = uri.lastSegment();
+                }
+                jsonObject.put(eObject.eGet(eObject.eClass().getEStructuralFeature(nameFeature)) + "|" + resourceString + "|" + className, "");
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

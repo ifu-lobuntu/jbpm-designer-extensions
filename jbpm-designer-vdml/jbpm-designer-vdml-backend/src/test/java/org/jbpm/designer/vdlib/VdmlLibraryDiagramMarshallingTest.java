@@ -14,6 +14,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
+import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.designer.ucd.AbstractUmlDiagramTest;
 import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
@@ -25,6 +26,8 @@ import org.omg.smm.DirectMeasure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
 import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.CapabilityDefinition;
+import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueDeliveryModel;
 
 public class VdmlLibraryDiagramMarshallingTest extends AbstractUmlDiagramTest {
@@ -33,7 +36,7 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractUmlDiagramTest {
     private Characteristic characteristic;
     private DirectMeasure measure;
     private TestUriHandler tuh;
-    private MeasureLibrary ml;
+    private MeasureLibrary measureLibrary;
     private ValueDeliveryModel vdm;
 
     @Before
@@ -62,39 +65,52 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractUmlDiagramTest {
         URI measureUri = URI.createPlatformResourceURI(measureFile, true);
         tuh.getFile(measureUri).delete();
         measureResource = (XMLResource) super.resourceSet.createResource(measureUri);
-        this.ml = SMMFactory.eINSTANCE.createMeasureLibrary();
+        this.measureLibrary = SMMFactory.eINSTANCE.createMeasureLibrary();
         this.characteristic = SMMFactory.eINSTANCE.createCharacteristic();
         this.characteristic.setName("Age");
-        ml.getMeasureElements().add(this.characteristic);
+        measureLibrary.getMeasureElements().add(this.characteristic);
         this.measure = SMMFactory.eINSTANCE.createDirectMeasure();
         this.measure.setName("Age");
-        ml.getMeasureElements().add(measure);
+        measureLibrary.getMeasureElements().add(measure);
         measure.setTrait(characteristic);
-        measureResource.getContents().add(ml);
+        measureResource.getContents().add(measureLibrary);
         vdm = VdmlLibraryJsonToEmfHelper.createValueDeliveryModel(inputResource, jbpmPackage);
         VdmlLibraryJsonToEmfHelper.createBusinessItemLibrary(inputResource, jbpmPackage, vdm);
+        VdmlLibraryJsonToEmfHelper.createCapabilityLibrary(inputResource, jbpmPackage, vdm);
         inputResource.getContents().add(vdm);
         measureResource.save(tuh.createOutputStream(measureUri, profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
     }
 
     @Test
     public void testIt() throws Exception {
-        Class clss = UMLFactory.eINSTANCE.createClass();
-        clss.setName("MyBusinessItemDefinition");
-        inputResource.setID(clss, EcoreUtil.generateUUID());
-        super.jbpmPackage.getOwnedTypes().add(clss);
+        Class clss = addCarrierClass("MyBusinessItemDefinition");
         BusinessItemDefinition def = VdmlLibraryJsonToEmfHelper.createBusinessDefinition(inputResource, clss, vdm.getBusinessItemLibrary().get(0));
         def.setIsFungible(false);
         def.setIsShareable(true);
         addShapeFor(clss);
-        UMLCompartment comp = addCompartmentFor(clss, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        UMLCompartment comp = addCompartmentFor(clss,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
         Property characteristicDef = UMLFactory.eINSTANCE.createProperty();
         characteristicDef.setName(characteristic.getName());
         characteristicDef.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(characteristic);
         clss.getOwnedAttributes().add(characteristicDef);
         def.getCharacteristicDefinition().add(characteristic);
-        addShapeToCompartment(clss, UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute(), characteristicDef);
+        characteristicDef.setType(AbstractClassDiagramProfileImpl.getCmmnTypes(resourceSet).getOwnedType("Double"));
+        addShapeToCompartment(clss, VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition(), characteristicDef);
+        Class clss2 = addCarrierClass("CapabilityDefinition");
+        CapabilityDefinition cd = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition(inputResource, clss2, vdm.getCapabilitylibrary().get(0));
+        addShapeFor(clss2);
+        Class clss3 = addCarrierClass("CapabilityCategory");
+        CapabilityDefinition cc = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition(inputResource, clss3, vdm.getCapabilitylibrary().get(0));
+        addShapeFor(clss3);
         print(inputResource);
         assertOutputValid();
+    }
+
+    public Class addCarrierClass(String value) {
+        Class clss = UMLFactory.eINSTANCE.createClass();
+        clss.setName(value);
+        inputResource.setID(clss, EcoreUtil.generateUUID());
+        super.jbpmPackage.getOwnedTypes().add(clss);
+        return clss;
     }
 }

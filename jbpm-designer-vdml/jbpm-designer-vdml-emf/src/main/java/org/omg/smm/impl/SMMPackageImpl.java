@@ -1581,6 +1581,24 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getRankingMeasureRelationship_FromRankingMeasure() {
+        return (EReference)rankingMeasureRelationshipEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRankingMeasureRelationship_ToDimensionalMeasure() {
+        return (EReference)rankingMeasureRelationshipEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getRankingMeasure() {
         return rankingMeasureEClass;
     }
@@ -1592,6 +1610,15 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
      */
     public EReference getRankingMeasure_Interval() {
         return (EReference)rankingMeasureEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRankingMeasure_RankingTo() {
+        return (EReference)rankingMeasureEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -1707,6 +1734,24 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getGradeMeasureRelationship_FromGradeMeasure() {
+        return (EReference)gradeMeasureRelationshipEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getGradeMeasureRelationship_ToDimensionalMeasure() {
+        return (EReference)gradeMeasureRelationshipEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getGradeMeasure() {
         return gradeMeasureEClass;
     }
@@ -1718,6 +1763,15 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
      */
     public EReference getGradeMeasure_Interval() {
         return (EReference)gradeMeasureEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getGradeMeasure_GradeTo() {
+        return (EReference)gradeMeasureEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -2453,9 +2507,12 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         createEReference(binaryMeasureEClass, BINARY_MEASURE__BASE_MEASURE2_TO);
 
         rankingMeasureRelationshipEClass = createEClass(RANKING_MEASURE_RELATIONSHIP);
+        createEReference(rankingMeasureRelationshipEClass, RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE);
+        createEReference(rankingMeasureRelationshipEClass, RANKING_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE);
 
         rankingMeasureEClass = createEClass(RANKING_MEASURE);
         createEReference(rankingMeasureEClass, RANKING_MEASURE__INTERVAL);
+        createEReference(rankingMeasureEClass, RANKING_MEASURE__RANKING_TO);
 
         rankingIntervalEClass = createEClass(RANKING_INTERVAL);
         createEAttribute(rankingIntervalEClass, RANKING_INTERVAL__VALUE);
@@ -2472,9 +2529,12 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         createEReference(rescaledMeasureRelationshipEClass, RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE);
 
         gradeMeasureRelationshipEClass = createEClass(GRADE_MEASURE_RELATIONSHIP);
+        createEReference(gradeMeasureRelationshipEClass, GRADE_MEASURE_RELATIONSHIP__FROM_GRADE_MEASURE);
+        createEReference(gradeMeasureRelationshipEClass, GRADE_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE);
 
         gradeMeasureEClass = createEClass(GRADE_MEASURE);
         createEReference(gradeMeasureEClass, GRADE_MEASURE__INTERVAL);
+        createEReference(gradeMeasureEClass, GRADE_MEASURE__GRADE_TO);
 
         gradeIntervalEClass = createEClass(GRADE_INTERVAL);
         createEAttribute(gradeIntervalEClass, GRADE_INTERVAL__SYMBOL);
@@ -2812,9 +2872,12 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         initEReference(getBinaryMeasure_BaseMeasure2To(), this.getBase2MeasureRelationship(), this.getBase2MeasureRelationship_FromBinaryMeasure(), "baseMeasure2To", null, 0, 1, BinaryMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rankingMeasureRelationshipEClass, RankingMeasureRelationship.class, "RankingMeasureRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getRankingMeasureRelationship_FromRankingMeasure(), this.getRankingMeasure(), this.getRankingMeasure_RankingTo(), "fromRankingMeasure", null, 1, 1, RankingMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRankingMeasureRelationship_ToDimensionalMeasure(), this.getDimensionalMeasure(), null, "toDimensionalMeasure", null, 0, 1, RankingMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rankingMeasureEClass, RankingMeasure.class, "RankingMeasure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getRankingMeasure_Interval(), this.getRankingInterval(), this.getRankingInterval_Ranking(), "interval", null, 1, -1, RankingMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getRankingMeasure_RankingTo(), this.getRankingMeasureRelationship(), this.getRankingMeasureRelationship_FromRankingMeasure(), "rankingTo", null, 0, 1, RankingMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(rankingIntervalEClass, RankingInterval.class, "RankingInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getRankingInterval_Value(), thePrimitiveTypesPackage.getReal(), "value", null, 1, 1, RankingInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2831,9 +2894,12 @@ public class SMMPackageImpl extends EPackageImpl implements SMMPackage {
         initEReference(getRescaledMeasureRelationship_ToRescaledMeasure(), this.getRescaledMeasure(), this.getRescaledMeasure_RescalesFrom(), "toRescaledMeasure", null, 0, 1, RescaledMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(gradeMeasureRelationshipEClass, GradeMeasureRelationship.class, "GradeMeasureRelationship", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getGradeMeasureRelationship_FromGradeMeasure(), this.getGradeMeasure(), this.getGradeMeasure_GradeTo(), "fromGradeMeasure", null, 1, 1, GradeMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getGradeMeasureRelationship_ToDimensionalMeasure(), this.getDimensionalMeasure(), null, "toDimensionalMeasure", null, 0, 1, GradeMeasureRelationship.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(gradeMeasureEClass, GradeMeasure.class, "GradeMeasure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGradeMeasure_Interval(), this.getGradeInterval(), null, "interval", null, 1, -1, GradeMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getGradeMeasure_GradeTo(), this.getGradeMeasureRelationship(), this.getGradeMeasureRelationship_FromGradeMeasure(), "gradeTo", null, 0, 1, GradeMeasure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(gradeIntervalEClass, GradeInterval.class, "GradeInterval", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getGradeInterval_Symbol(), thePrimitiveTypesPackage.getString(), "symbol", null, 1, 1, GradeInterval.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

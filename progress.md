@@ -20,6 +20,9 @@
  
 #TODO
 ##Misc
+ - *refine collapse/expand hiding/showing of svg elements by marking the name
+ - *support double-click expansion
+ - * on collapse, again look at the positioning of the boundaryShape - the shape may have moved 
  - Disabling rotation of labels on edges
  - Automatically creating child shapes e.g. compartments
  - Clipping items inside parent

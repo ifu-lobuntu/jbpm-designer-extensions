@@ -4,19 +4,35 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.designer.vdml.VdmlHelper;
+import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.jbpm.uml2.dd.umldi.UMLDiagram;
+import org.jbpm.uml2.dd.umldi.UMLShape;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
+import org.omg.dd.dc.DCFactory;
 import org.omg.vdml.Activity;
+import org.omg.vdml.BusinessItem;
+import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.BusinessItemLibraryElement;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
@@ -90,6 +106,63 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
+        object.setDeliverable(buildBusinessItem("deliverableDefinition"));
+        if ((object.getDeliverable() == null || object.getDeliverable().getDefinition() == null || object.getDeliverable().getDefinition().eResource() == null)
+                && object.getName() != null && object.getName().trim().length() > 0) {
+            try {
+                Resource r = object.eResource();
+                URI libUri = URI.createURI(r.getURI().toString().replaceAll("vdcol", "vdlib"));
+                EList<EObject> contents = r.getResourceSet().getResource(libUri, true).getContents();
+                ValueDeliveryModel vdm = null;
+                UMLDiagram dgm = null;
+                Package pkg = null;
+                for (EObject eo : contents) {
+                    if (eo instanceof ValueDeliveryModel) {
+                        vdm = (ValueDeliveryModel) eo;
+                    } else if (eo instanceof UMLDiagram) {
+                        dgm = (UMLDiagram) eo;
+                    } else if (eo instanceof Package) {
+                        pkg = (Package) eo;
+                    }
+                }
+                BusinessItemDefinition bid = null;
+                for (BusinessItemLibraryElement bile : vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement()) {
+                    if (bile instanceof BusinessItemDefinition && bile.getName().equals(object.getName())) {
+                        bid = (BusinessItemDefinition) bile;
+                        break;
+                    }
+                }
+                if (bid == null) {
+                    bid = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
+                    bid.setName(object.getName());
+                    vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(bid);
+                    org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
+                    cls.setName(object.getName());
+                    pkg.getOwnedTypes().add(cls);
+                    cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(bid);
+                    UMLShape shape = UMLDIFactory.eINSTANCE.createUMLShape();
+                    dgm.getOwnedUmlDiagramElement().add(shape);
+                    shape.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
+                    shape.setBounds(DCFactory.eINSTANCE.createBounds());
+                    shape.getBounds().setHeight(40d);
+                    shape.getBounds().setWidth(200d);
+                    shape.getBounds().setY(dgm.getOwnedUmlDiagramElement().size() * 50d);
+                    shape.setUmlElement(cls);
+                }
+                if (object.getDeliverable() == null) {
+                    BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();
+                    bi.setDefinition(bid);
+                    object.setDeliverable(bi);
+                    owningCollaboration.getBusinessItem().add(bi);
+                } else {
+                    object.getDeliverable().setDefinition(bid);
+                }
+                vdm.eResource().setModified(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
         object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
         if (sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
             for (ShapeReference sr : sourceShape.getOutgoing()) {

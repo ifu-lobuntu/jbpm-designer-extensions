@@ -1,6 +1,7 @@
 package org.jbpm.designer.vdan;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -25,7 +26,9 @@ import org.omg.smm.CollectiveMeasure;
 import org.omg.smm.DimensionalMeasure;
 import org.omg.smm.DirectMeasure;
 import org.omg.smm.GradeMeasure;
+import org.omg.smm.Interval;
 import org.omg.smm.Measure;
+import org.omg.smm.RankingMeasure;
 import org.omg.smm.UnitOfMeasure;
 import org.omg.smm.util.SmmHelper;
 import org.omg.vdml.Activity;
@@ -61,7 +64,7 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
         Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
         if (eobject instanceof Port) {
             Port port = (Port) eobject;
-            if(port.getName()==null){
+            if (port.getName() == null) {
                 port.setName("anonymous");
             }
             EList<ValueAdd> vas = VdmlHelper.getValueAdds(port);
@@ -119,8 +122,20 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
         } else if (measure instanceof CollectiveMeasure) {
             // TODO set formula if other measures present in
             // ValueAdd or in BusinessItem
-        } else if (measure instanceof GradeMeasure) {
-            // TODO add range
+        } else if (measure instanceof GradeMeasure || measure instanceof RankingMeasure) {
+            List<? extends Interval> intervals;
+            if (measure instanceof GradeMeasure) {
+                intervals = ((GradeMeasure) measure).getInterval();
+            } else {
+                intervals = ((RankingMeasure) measure).getInterval();
+            }
+            StringBuilder sb = new StringBuilder();
+            for (Interval l : intervals) {
+                sb.append(l.getName());
+                sb.append(",");
+            }
+            field.setParam5(measure.getName());//TODO calculate class
+            field.setParam4(sb.toString());
         }
         field.setLabel(labelSet);
     }
@@ -128,7 +143,7 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
     private String getTypeCode(Measure valueMeasure) {
         if (valueMeasure instanceof DirectMeasure) {
             return "InputTextDouble";
-        } else if (valueMeasure instanceof GradeMeasure) {
+        } else if (valueMeasure instanceof GradeMeasure || valueMeasure instanceof RankingMeasure) {
             return EnumLookupFieldType.CODE;
         }
         return "InputTextDouble";
@@ -137,7 +152,7 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
     @Override
     public DataHolder buildDataHolderFor(String name, EObject eobject) {
         if (eobject instanceof Port) {
-            //Because we are detached from the origin request from here on
+            // Because we are detached from the origin request from here on
             EcoreUtil.resolveAll(eobject);
             return new VdmlPortDataHolder(name, name + "In", name + "Out", (Port) eobject, "#6699FF");
         } else {

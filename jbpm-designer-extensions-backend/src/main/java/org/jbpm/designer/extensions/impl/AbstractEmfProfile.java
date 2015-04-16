@@ -37,7 +37,6 @@ public abstract class AbstractEmfProfile implements IEmfProfile {
     }
     @Override
     public void prepareResourceSet(ResourceSet resourceSet) {
-        System.out.println();
         EList<Adapter> eAdapters = resourceSet.eAdapters();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(getSerializedModelExtension(), getResourceFactory());
         for (EPackage ePackage : getEPackages()) {
@@ -45,7 +44,7 @@ public abstract class AbstractEmfProfile implements IEmfProfile {
         }
         UriHelper.setPlatformUriHandler(resourceSet, getUriHandler());
     }
-    protected EPackage[] ddPackages(EPackage ... p ){
+    protected static EPackage[] ddPackages(EPackage ... p ){
         EPackage[] result = new EPackage[p.length+3];
         int i=0;
         result[i++]=DIPackage.eINSTANCE;

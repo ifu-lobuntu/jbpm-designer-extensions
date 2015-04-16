@@ -6,6 +6,7 @@ if (!ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ)
 ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/vdlib#"] = {
     "BusinessItemDefinition" : 1,
     "OrgStructures" : 2,
+    "Capability" : 3,
     "Types" : 5,
     "Compartments" : 6,
     "Features" : 7,

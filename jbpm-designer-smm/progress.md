@@ -2,6 +2,7 @@
 ##Stencils
  - GradeMeasure
  - GradeMeasureInterval
+ - GradeMeasureRelationship
  - DirectMeasure
  - UnitOfMeasure
  - CollectiveMeasure
@@ -11,6 +12,9 @@
  - Base2MeasureRelationship
  - RescaledMeasure
  - RescaledMeasureRelationship 
+ - RankingMeasure
+ - RankingMeasureInterval
+ - RankingMeasureRelationship
 
 ##Property Editors
  - BinaryMeasure.functor
@@ -23,6 +27,10 @@
  - RescaledMeasure.offset
  - RescaledMeasure.multiplier
  - MeasureRelationship.influence
+ - RankingInterval.value
+
+##Misc
+ - Generate UML Enumeration for Ranking and Grade measures
 
 #In Progress
 ##Stencils
@@ -30,11 +38,7 @@
 
 #To do
 ##Stencils
- - RankingMeasure
- - RankingMeasureInterval
  - MeasureCategory
- - GradeMeasureRelationship
- - RankingMeasureRelationship
  - CountingMeasure?
 
 ##Collapse/Expand
@@ -42,4 +46,3 @@
 
 ##Property Editors
  - MeasureRelationship.rescaledMeasure (dropdown, from lib only)
- - RankingInterval.value

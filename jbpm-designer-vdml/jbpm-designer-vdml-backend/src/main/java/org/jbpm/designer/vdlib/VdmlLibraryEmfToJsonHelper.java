@@ -14,6 +14,8 @@ import org.jbpm.uml2.dd.umldi.UMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Characteristic;
 import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.CapabilityCategory;
+import org.omg.vdml.CapabilityDefinition;
 import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Store;
@@ -34,7 +36,7 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
     }
     @Override
     public Object caseProperty(Property object) {
-        if(targetShape.getStencilId().equals(VdmlLibraryStencil.CHARACTERISTIC_DEFINITION.getStencilId())){
+        if(targetShape.getStencilId().equals(VdmlLibraryStencil.CHARACTERISTIC.getStencilId())){
             Characteristic ch=(Characteristic) object.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
             if(ch.eResource()!=null && ch.getMeasure().size()>0){
                 targetShape.putProperty("measure", ch.getMeasure().get(0).getName() + "|" + ch.eResource().getURI().toPlatformString(true));
@@ -52,7 +54,13 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
                     return VdmlLibraryStencil.BUSINESS_ITEM_DEFINITION;
                 }
                 if(ref instanceof Characteristic){
-                    return VdmlLibraryStencil.CHARACTERISTIC_DEFINITION;
+                    return VdmlLibraryStencil.CHARACTERISTIC;
+                }
+                if(ref instanceof CapabilityCategory){
+                    return VdmlLibraryStencil.CAPABILITY_CATEGORY;
+                }
+                if(ref instanceof CapabilityDefinition){
+                    return VdmlLibraryStencil.CAPABILITY_DEFINITION;
                 }
                 if(ref instanceof OrgUnit || ref instanceof Store || ref instanceof CapabilityOffer){
                     return VdmlLibraryStencil.IMPORTED_ORG_ELEMENT;
@@ -61,8 +69,8 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
         }else if(de instanceof Compartment && ((UMLShape)de.eContainer()).getUmlElement() !=null ){
             EAnnotation ann = ((UMLShape)de.eContainer()).getUmlElement().getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
             if(ann!=null){
-                if(VdmlLibraryStencil.CHARACTERISTIC_DEFINITION_COMPARTMENT.getStencilId().equalsIgnoreCase(((UMLCompartment) de).getFeatureName())){
-                    return VdmlLibraryStencil.CHARACTERISTIC_DEFINITION_COMPARTMENT;
+                if(VdmlLibraryStencil.CHARACTERISTIC_DEFINITION.getStencilId().equalsIgnoreCase(((UMLCompartment) de).getFeatureName())){
+                    return VdmlLibraryStencil.CHARACTERISTIC_DEFINITION;
                 }
             }
         }

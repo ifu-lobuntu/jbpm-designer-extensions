@@ -10,35 +10,35 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Package;
 import org.junit.Test;
 import org.omg.smm.DirectMeasure;
-import org.omg.smm.GradeInterval;
-import org.omg.smm.GradeMeasure;
-import org.omg.smm.GradeMeasureRelationship;
+import org.omg.smm.RankingInterval;
+import org.omg.smm.RankingMeasure;
+import org.omg.smm.RankingMeasureRelationship;
 import org.omg.smm.SMMFactory;
 
-public class GradeMeasureDiagramMarshallingTest extends AbstractSmmDiagramMarshallingTest {
+public class RankingMeasureDiagramMarshallingTest extends AbstractSmmDiagramMarshallingTest {
     @Test
-    public void testGradeMeasureInterval() throws Exception {
-        GradeMeasure gm = SMMFactory.eINSTANCE.createGradeMeasure();
+    public void testRankingMeasureInterval() throws Exception {
+        RankingMeasure gm = SMMFactory.eINSTANCE.createRankingMeasure();
         gm.setName("gm1");
         measureLibrary.getMeasureElements().add(gm);
         addShapeFor(measureLibrary, gm);
-        GradeInterval gi1 = SMMFactory.eINSTANCE.createGradeInterval();
+        RankingInterval gi1 = SMMFactory.eINSTANCE.createRankingInterval();
         gi1.setName("gi1");
         gi1.setMaximumEndpoint(13.4);
         gi1.setMinimumEndpoint(12.4);
         gi1.setMaximumOpen(false);
         gi1.setMinimumOpen(false);
         gi1.setName("gi1");
-        gi1.setSymbol("GI1");
+        gi1.setValue(6345634.2);
         gm.getInterval().add(gi1);
         addShapeFor(gm, gi1);
-        GradeInterval gi2 = SMMFactory.eINSTANCE.createGradeInterval();
+        RankingInterval gi2 = SMMFactory.eINSTANCE.createRankingInterval();
         gi2.setMaximumEndpoint(123.4);
         gi2.setMinimumEndpoint(1.4);
         gi2.setMaximumOpen(true);
         gi2.setMinimumOpen(true);
         gi2.setName("gi2");
-        gi2.setSymbol("GI2");
+        gi2.setValue(1236344.2);
         gm.getInterval().add(gi2);
         addShapeFor(gm, gi2);
         XMLResource outputResource = assertOutputValid();
@@ -50,8 +50,8 @@ public class GradeMeasureDiagramMarshallingTest extends AbstractSmmDiagramMarsha
     }
 
     @Test
-    public void testGradeMeasureRelationsihp() throws Exception {
-        GradeMeasure gm = SMMFactory.eINSTANCE.createGradeMeasure();
+    public void testRankingMeasureRelationsihp() throws Exception {
+        RankingMeasure gm = SMMFactory.eINSTANCE.createRankingMeasure();
         gm.setName("gm1");
         measureLibrary.getMeasureElements().add(gm);
         addShapeFor(measureLibrary, gm);
@@ -59,9 +59,9 @@ public class GradeMeasureDiagramMarshallingTest extends AbstractSmmDiagramMarsha
         dm.setName("dm1");
         measureLibrary.getMeasureElements().add(dm);
         addShapeFor(measureLibrary, dm);
-        GradeMeasureRelationship gmr = SMMFactory.eINSTANCE.createGradeMeasureRelationship();
+        RankingMeasureRelationship gmr = SMMFactory.eINSTANCE.createRankingMeasureRelationship();
         gmr.setName("gmr1");
-        gm.setGradeTo(gmr);
+        gm.setRankingTo(gmr);
         gmr.setToDimensionalMeasure(dm);
         addEdge(gmr, gm, dm);
         XMLResource outputResource = assertOutputValid();

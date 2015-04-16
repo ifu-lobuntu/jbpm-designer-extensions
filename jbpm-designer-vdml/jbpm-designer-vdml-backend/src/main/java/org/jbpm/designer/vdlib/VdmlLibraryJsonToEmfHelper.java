@@ -19,7 +19,6 @@ import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.designer.ucd.ClassDiagramJsonToEmfHelper;
-import org.jbpm.designer.ucd.ClassDiagramStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
@@ -27,9 +26,14 @@ import org.jbpm.uml2.dd.umldi.UMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.DirectMeasure;
+import org.omg.smm.GradeMeasure;
 import org.omg.smm.Measure;
+import org.omg.smm.RankingMeasure;
 import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.BusinessItemLibrary;
+import org.omg.vdml.CapabilityCategory;
+import org.omg.vdml.CapabilityDefinition;
+import org.omg.vdml.CapabilityLibrary;
 import org.omg.vdml.MeasurableElement;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.VDMLFactory;
@@ -57,6 +61,8 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
 
     BusinessItemLibrary owningBusinessItemLibrary;
     private VdmlLibraryJsonToEmfSwitch vdmlSwitch;
+    private CapabilityLibrary owningCapabilityLibrary;
+    private Package cmmnTypes;
 
     public VdmlLibraryJsonToEmfHelper(ShapeMap resource) {
         super(resource);
@@ -69,6 +75,11 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
             BusinessItemDefinition bid = createBusinessDefinition(shapeMap.getResource(), object, owningBusinessItemLibrary);
             bid.setIsFungible("true".equals(sourceShape.getProperty("isFungible")));
             bid.setIsShareable("true".equals(sourceShape.getProperty("isShareable")));
+        } else if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.CAPABILITY_CATEGORY.getStencilId())) {
+            CapabilityCategory cc = createCapabilityCategory(shapeMap.getResource(), object, owningCapabilityLibrary);
+        } else if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.CAPABILITY_DEFINITION.getStencilId())) {
+            CapabilityDefinition cd = createCapabilityDefinition(shapeMap.getResource(), object, owningCapabilityLibrary);
+
         }
         return super.caseClass(object);
     }
@@ -87,7 +98,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
 
     @Override
     public Object caseProperty(Property object) {
-        if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.CHARACTERISTIC_DEFINITION.getStencilId())) {
+        if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.CHARACTERISTIC.getStencilId())) {
             LinkedProperty prop = currentStencil.getProperties().get("measure");
             Measure measure = (Measure) sourceShape.getUnboundProperty("measure");
             if (measure != null) {
@@ -120,19 +131,20 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
                         me.getMeasuredCharacteristic().add(mc);
                     }
                     XMLResource resource = (XMLResource) object.eResource();
-                    if(resource.getID(object)==null){
-                        resource.setID(object, ((XMLResource) measure.eResource()).getID(measure)+"prop");
+                    if (resource.getID(object) == null) {
+                        resource.setID(object, ((XMLResource) measure.eResource()).getID(measure) + "prop");
                     }
-                    System.out.println(resource.getID(object));
                 }
-                if(measure instanceof DirectMeasure){
-                    URI uri = URI.createURI(AbstractClassDiagramProfileImpl.CMMNTYPES_PATHMAP);
-                    Resource cmmnTypes = object.eResource().getResourceSet().getResource(uri, true);
-                    if(cmmnTypes!=null && cmmnTypes.getContents().size()>0){
-                        Package pkg = (Package) cmmnTypes.getContents().get(0);
-                        object.setType(pkg.getOwnedType("Double"));
+                if (measure instanceof DirectMeasure) {
+                    if (cmmnTypes != null) {
+                        object.setType(cmmnTypes.getOwnedType("Double"));
                     }
-
+                }else if(measure instanceof GradeMeasure || measure instanceof RankingMeasure){
+                    for (EObject e : measure.eResource().getContents()) {
+                        if(e instanceof Package){
+                            object.setType(((Package) e).getOwnedType(measure.getName()));
+                        }
+                    }
                 }
             }
         }
@@ -144,9 +156,13 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
         UMLDiagram d = super.prepareEmfDiagram(json, result);
         Package pkg = (Package) d.getUmlElement();
         ValueDeliveryModel vdm = createValueDeliveryModel(result, pkg);
+        CapabilityLibrary cl = createCapabilityLibrary(result, pkg, vdm);
+        cl.setName(json.getProperty("name"));
+        owningCapabilityLibrary = cl;
         BusinessItemLibrary bil = createBusinessItemLibrary(result, pkg, vdm);
         bil.setName(json.getProperty("name"));
         owningBusinessItemLibrary = bil;
+        this.cmmnTypes = AbstractClassDiagramProfileImpl.getCmmnTypes(result.getResourceSet());
         return d;
     }
 
@@ -155,6 +171,13 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
         bil.setId(result.getID(pkg) + "bil");
         vdm.getBusinessItemLibrary().add(bil);
         return bil;
+    }
+
+    public static CapabilityLibrary createCapabilityLibrary(XMLResource result, Package pkg, ValueDeliveryModel vdm) {
+        CapabilityLibrary cl = VDMLFactory.eINSTANCE.createCapabilityLibrary();
+        cl.setId(result.getID(pkg) + "cl");
+        vdm.getCapabilitylibrary().add(cl);
+        return cl;
     }
 
     public static ValueDeliveryModel createValueDeliveryModel(XMLResource result, Package pkg) {
@@ -178,13 +201,31 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
         }
     }
 
-    public static BusinessItemDefinition createBusinessDefinition(XMLResource inputResource, Class clss, BusinessItemLibrary businessItemLibrary) {
+    public static BusinessItemDefinition createBusinessDefinition(XMLResource inputResource, Class clss, BusinessItemLibrary library) {
         BusinessItemDefinition bid = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
         bid.setName(clss.getName());
-        businessItemLibrary.getBusinessItemLibraryElement().add(bid);
+        library.getBusinessItemLibraryElement().add(bid);
         bid.setId(inputResource.getID(clss) + "bid");
         forceGetAnnotation(clss).getReferences().add(bid);
         return bid;
+    }
+
+    public static CapabilityDefinition createCapabilityDefinition(XMLResource inputResource, Class clss, CapabilityLibrary library) {
+        CapabilityDefinition cd = VDMLFactory.eINSTANCE.createCapabilityDefinition();
+        cd.setName(clss.getName());
+        library.getCapability().add(cd);
+        cd.setId(inputResource.getID(clss) + "bid");
+        forceGetAnnotation(clss).getReferences().add(cd);
+        return cd;
+    }
+
+    public static CapabilityCategory createCapabilityCategory(XMLResource inputResource, Class clss, CapabilityLibrary library) {
+        CapabilityCategory cd = VDMLFactory.eINSTANCE.createCapabilityCategory();
+        cd.setName(clss.getName());
+        library.getCapability().add(cd);
+        cd.setId(inputResource.getID(clss) + "bid");
+        forceGetAnnotation(clss).getReferences().add(cd);
+        return cd;
     }
 
     protected static EAnnotation forceGetAnnotation(Element clss) {

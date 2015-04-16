@@ -35,9 +35,14 @@ ORYX.Plugins.VDAN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOUT, this.handleMouseOut.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOVER, this.handleMouseOver.bind(this));
         this.decoratorUpdaters["DeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
+        this.decoratorUpdaters["Store"]=this.updateStoreDecorations.bind(this);
+        this.decoratorUpdaters["Pool"]=this.updateStoreDecorations.bind(this);
 		ORYX.CONFIG.BORDER_OFFSET=30;
 		console.log("VDAN Initialized");
 	},
+    updateStoreDecorations:function (shape){
+        ORYX.Plugins.Extensions.updateNameAndLabel(shape,"storeref", "text_name");
+    },
     updateDeliverableFlowDecorations:function (shape){
         var dashArray=shape.properties["oryx-istangible"]==true || shape.properties["oryx-istangible"]=="true"?"none":"5,5";
         shape._paths[0].setAttributeNS(null,"stroke-dasharray",dashArray);

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
 import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
@@ -40,7 +41,9 @@ import org.omg.smm.SMMPackage;
 import org.omg.smm.SmmElement;
 
 public class AbstractSmmDiagramMarshallingTest {
-
+    static{
+        UMLPackageImpl.init();
+    }
     protected XMLResource inputResource;
     protected ResourceSet resourceSet;
     protected SMMDiagram inputDiagram;
@@ -69,9 +72,9 @@ public class AbstractSmmDiagramMarshallingTest {
         marshaller = new GenericJsonToEmfDiagramMarshaller(profile,URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
         resourceSet = new ResourceSetImpl();
         EList<URIHandler> uriHandlers = resourceSet.getURIConverter().getURIHandlers();
+        profile.prepareResourceSet(resourceSet);
         uriHandlers.clear();
         uriHandlers.add(new TestUriHandler());
-        profile.prepareResourceSet(resourceSet);
         inputResource = (XMLResource) resourceSet.createResource(URI.createURI("file:/dummy." + profile.getSerializedModelExtension()));
         measureLibrary = SMMFactory.eINSTANCE.createMeasureLibrary();
         inputResource.getContents().add(measureLibrary);
@@ -87,7 +90,7 @@ public class AbstractSmmDiagramMarshallingTest {
         return new MeasureLibraryProfileImpl();
     }
 
-    protected void assertOutputValid() throws IOException, Exception {
+    protected XMLResource assertOutputValid() throws IOException, Exception {
         String xmlString = buildXmlString(inputResource);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
@@ -97,7 +100,14 @@ public class AbstractSmmDiagramMarshallingTest {
         ignoreIdsOf.add(DCPackage.eINSTANCE.getColor());
         ignoreIdsOf.add(DCPackage.eINSTANCE.getBounds());
         ignoreIdsOf.add(SMMPackage.eINSTANCE.getCharacteristic());
-        new GenericEcoreComparator(inputResource, outputResource, ignoreIdsOf).validate();
+        try {
+            new GenericEcoreComparator(inputResource.getContents().get(0), outputResource.getContents().get(0), ignoreIdsOf).validate();
+        } catch (Error e) {
+            inputResource.save(System.out,profile.buildDefaultResourceOptions());
+            outputResource.save(System.out,profile.buildDefaultResourceOptions());
+            throw e;
+        }
+        return outputResource;
     }
 
     protected String buildXmlString(XMLResource resource) throws IOException {

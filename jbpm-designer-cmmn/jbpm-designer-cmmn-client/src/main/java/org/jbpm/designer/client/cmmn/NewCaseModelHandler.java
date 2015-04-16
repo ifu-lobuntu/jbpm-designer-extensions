@@ -28,7 +28,7 @@ public class NewCaseModelHandler extends DefaultNewResourceHandler {
     private PlaceManager placeManager;
 
     @Inject
-    private Cmmn1Type resourceType;
+    private CmmnType resourceType;
 
     @Override
     public String getDescription() {

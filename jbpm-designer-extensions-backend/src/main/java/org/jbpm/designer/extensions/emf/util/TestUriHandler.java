@@ -33,7 +33,14 @@ public class TestUriHandler implements URIHandler {
     }
 
     public File getFile(URI uri) throws IOException {
-        return new File(getFakeWorkspaceRoot(new File(".").getCanonicalFile()), uri.toPlatformString(true));
+        try {
+            File canonicalFile = new File(".").getCanonicalFile();
+            return new File(getFakeWorkspaceRoot(canonicalFile), uri.toPlatformString(true));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private File getFakeWorkspaceRoot(File currentDir) {

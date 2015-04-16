@@ -29,6 +29,9 @@
  - BusinessItemDefinition stencil
  - MeasuresCompartment
  - Measure
+ - CapabilityDefition
+ - CapabilityCategory
+ - Imported Organization Element
 
 ###Capability Management
  - OrgUnit
@@ -53,6 +56,7 @@
  - Store.storeRef
  - DeliverableFlow.deliverable (BusinessItemDefinition)
  - Role.assignedParticipants
+ - Port.batchSize.measure
 
 ###Role Collaboration
  - DeliverableFlow.fromActivity
@@ -64,6 +68,8 @@
  - ValuePropositionComponent.aggregatedFrom (filtered, multiselect, eobjectref)
  - ValueElement.valueMeasurement (filtered, singleselect, eobjectref)
  - Role.assignedParticipants
+ - ValuePropositionComponent.satisfactionLevel.measure (filtered, singleselect, eobjectref)
+ 
 
 ###Library Modeling
  - Characteristic.measure
@@ -74,6 +80,11 @@
  - ExternalCapabilityMethod.referencedCapabilityMethod
  - Role.assignedParticipants
  - Store/Pool.resourceDefinition
+ - Store.duration
+ - Store.inventoryLevel
+ - Store.resource
+ - Pool.poolSize
+ 
 
 ##1.3. Decorators
 ###ActivityNetworks
@@ -126,6 +137,7 @@
 ##1.6. Form Generation
 ###ActivityNetworks
  - VdmlPortValueHolder - decompose to received/offered ValueAdds and include port.offset, deliverableFlow.isTangible, port.batchSize
+ - Display Grade Intervals in dropdown for containing GradeMeasure
  
 ###Capability Management
    
@@ -144,6 +156,7 @@
  - Show images in Palette
 
 ###Capability Management
+ - Build equivalent UML elements for OrgUnit, CapabilityOffer, Store and Pool
 
 #2. In Progress
 
@@ -156,16 +169,10 @@
 ###Value Proposition Exchange
 
 ###Library Modeling
- - *CapabilityDefition
- - *CapabilityCategory
  - CapabilityDependency
  - Actor
  - RoleDefinition
  - ValueDefinition
- - *Imported Store
- - *Imported Pool
- - *Imported OrgUnit
- 
 
 ###Capability Management
  - Owned CapabilityMethod (need to solve containment issue)
@@ -177,22 +184,17 @@
 ##3.2. Property Editors
 ###ActivityNetworks
  - ResourceUse.isExclusive
- - Port.batchSize.measure ? (we don't really want to have to create a valueAdd just for quantity, but we do need to specify the UOM somewhere)
 
 ###Role Collaboration
 
 ###Value Proposition Exchange
  - ValueElement.valueDefinition - start thinking about repo of ValueDefinitions (UML Profile?)
- - *ValuePropositionComponent.satisfactionLevel.measure (filtered, singleselect, eobjectref)
  - ValueProposition.overallSatisfaction.measure (filtered, singleselect, eobjectref)
  - ValueElement.benchmark.measure (filtered, singleselect, eobjectref)
 
 ###Library Modeling
 
 ###Capability Management
- - *Store.inventoryLevel
- - *Store.resource
- - *Pool.poolSize
  - *Pool.position
  - CapabilityOffer.capability
  - OrgUnit.referencedOrgUnit
@@ -236,7 +238,6 @@
 ##3.6. Form generation
 ###ActivityNetworks
  - ActivityValueHolder - one per activity, decompose to ResourceUses, duration, MeasuredCharacteristics of Activity.capability
- - Display Grade Intervals in dropdown for containing GradeMeasure
  
 ###Library Modeling
 
@@ -248,12 +249,9 @@
  - Generate CMMN CaseModels from ActivityNetwork, assume front activity creates the case 
 
 ###Role Collaboration
+ - Generate Library (BusinessItemDefinitions,RoleDefinitions)
 
 ###Value Proposition Exchange
  
 ###Library Modeling
  - Generate Code for all the VDML Elements
-
-###Capability Management
- - Build equivalent UML elements for OrgUnit, CapabilityOffer, Store and Pool
- 

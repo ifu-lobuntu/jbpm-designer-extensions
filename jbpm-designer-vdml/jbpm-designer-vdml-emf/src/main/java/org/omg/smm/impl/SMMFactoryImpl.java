@@ -3,7 +3,6 @@
 package org.omg.smm.impl;
 
 import java.util.Date;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

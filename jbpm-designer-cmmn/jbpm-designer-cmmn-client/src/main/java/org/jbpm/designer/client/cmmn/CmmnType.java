@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.IsWidget;
 
 @ApplicationScoped
-public class Cmmn1Type
+public class CmmnType
         extends Cmmn1TypeDefinition
         implements ClientResourceType {
 

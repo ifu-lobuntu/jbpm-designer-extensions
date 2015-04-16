@@ -20,7 +20,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                     {
@@ -45,21 +45,74 @@
                         "value" : false,
                         "readonly" : false,
                         "hidden" : false
-                    },
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "CapabilityDefinition",
+                "title" : "CapabilityDefinition",
+                "childBinding" : "ownedType",
+                "position" : 1,
+                "groups" : [
+                    "Capability"
+                ],
+                "roles" : [
+                    "capability"
+                ],
+                "description" : "A Capability Definition",
+                "view" : "capability_definition.svg",
+                "icon" : "capability_definition.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","name","localStyle"
+                ],
+                "properties" : [
                     {
-                        "id" : "tasktype",
-                        "type" : "String",
-                        "value" : "User",
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
                         "readonly" : true,
                         "hidden" : true
-                    },
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "CapabilityCategory",
+                "title" : "CapabilityCategory",
+                "childBinding" : "ownedType",
+                "position" : 1,
+                "groups" : [
+                    "Capability"
+                ],
+                "roles" : [
+                    "capability"
+                ],
+                "description" : "A Capability Category",
+                "view" : "capability_category.svg",
+                "icon" : "capability_category.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","name","localStyle"
+                ],
+                "properties" : [
                     {
-                        "id" : "taskname",
-                        "type" : "String",
-                        "readonly" : false,
-                        "hidden" : false,
-                        "title": "BusinessItemDefinition Form Name",
-                        "binding":"name"
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
                     }
                ]
             },
@@ -96,21 +149,6 @@
                         "hidden" : true
                     },
                     {
-                        "id" : "tasktype",
-                        "type" : "String",
-                        "value" : "User",
-                        "readonly" : true,
-                        "hidden" : true
-                    },
-                    {
-                        "id" : "taskname",
-                        "type" : "String",
-                        "readonly" : false,
-                        "hidden" : false,
-                        "title": "Form Name",
-                        "binding":"name"
-                    },
-                    {
                         "id" : "importedelementRef",
                         "type" : "eobjectref",
                         "title" : "Imported Element",
@@ -132,19 +170,19 @@
             },
 			{
 				"type" : "node",
-				"id" : "CharacteristicDefinitionCompartment",
-				"title" : "CharacteristicDefinitionCompartment",
+				"id" : "CharacteristicDefinition",
+				"title" : "CharacteristicDefinition",
 				"position" : 2,
 				"groups" : [
 					"BusinessItemDefinition"
 				],
 				"roles" : [
-					"characteristicDefinitionCompartment"
+					"characteristicDefinition"
 				],
 				"description" : "The Characteristic Compartment",
 				"isCompartment":true,
-				"view" : "characteristic_definition_compartment.svg",
-				"icon" : "characteristic_definition_compartment.png",
+				"view" : "characteristic_definition.svg",
+				"icon" : "characteristic_definition.png",
 				"layout" : [
 					{
 						"type" : "layout.list"
@@ -171,22 +209,23 @@
 			},
 			{
 				"type" : "node",
-				"id" : "CharacteristicDefinition",
-				"title" : "Characteristic Definition",
+				"id" : "Characteristic",
+				"title" : "Characteristic",
 				"childBinding" : "ownedAttribute",
 				"position" : 2,
 				"groups" : [
 					"BusinessItemDefinition"
 				],
 				"roles" : [
-					"characteristicDefinition"
+					"characteristic"
 				],
-				"description" : "A Characteristic Definition",
-				"view" : "characteristic_definition.svg",
-				"icon" : "characteristic_definition.png",
+				"description" : "A Characteristic",
+				"view" : "characteristic.svg",
+				"icon" : "characteristic.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
+                         "elementBase",
 						"localStyle",
 						"multiplicity"
 				],
@@ -201,7 +240,7 @@
 						"optional" : true,
 						"reference" : {
 							"targetProfile":"meas",
-							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure",
+							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure|RankingMeasure",
 							"nameFeature" : "name"
 						},
 
@@ -220,31 +259,6 @@
                         "refToView" : [
                             "text_name"
                         ]
-                    },
-                    {
-                        "id" : "description",
-                        "type" : "Text",
-                        "title" : "Description",
-                        "value" : "",
-                        "binding": "ownedComment[0].body",
-                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : true,
-                        "popular" : true
-                    },
-                    {
-                        "id" : "diagramElementId",
-                        "type" : "String",
-                        "title" : "DiagramElementId",
-                        "value" : "",
-                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
-                        "readonly" : true,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "hidden" : true
                     }
 				]
 			},

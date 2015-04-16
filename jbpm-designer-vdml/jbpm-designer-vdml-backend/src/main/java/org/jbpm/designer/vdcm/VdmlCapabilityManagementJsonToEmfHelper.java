@@ -49,6 +49,7 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
         syncUmlClass(object);
         return super.caseCapabilityOffer(object);
     }
+
     @Override
     public Object caseRole(Role object) {
         return super.caseRole(object);
@@ -74,7 +75,6 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
         return super.caseOrgUnit(object);
     }
 
-
     @Override
     public Object caseStore(Store object) {
         owningOrgUnit.getOwnedStore().add(object);
@@ -91,7 +91,7 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
             cls = UMLFactory.eINSTANCE.createClass();
             cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(object);
             umlPackage.getOwnedTypes().add(cls);
-            ((XMLResource) umlPackage.eResource()).setID(cls,object.getId() + "Class");
+            ((XMLResource) umlPackage.eResource()).setID(cls, object.getId() + "Class");
         }
         cls.setName(object.getName());
     }
@@ -99,26 +99,24 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
     @Override
     public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
         VDMLDiagram diagram = super.prepareEmfDiagram(json, result);
-        if (super.owningCollaboration != null) {
-            this.owningOrgUnit = (OrgUnit) super.owningCollaboration;
-            for (CapabilityOffer co : this.owningOrgUnit.getCapabilityOffer()) {
-                co.getMethod().clear();
-                co.getCapabilityResource().clear();
-            }
-            for (Position p : this.owningOrgUnit.getPosition()) {
-                // TODO this is a problem for externally referenced pools
-                p.getActorPool().clear();
-            }
+        this.owningOrgUnit = (OrgUnit) super.owningCollaboration;
+        for (CapabilityOffer co : this.owningOrgUnit.getCapabilityOffer()) {
+            co.getMethod().clear();
+            co.getCapabilityResource().clear();
+        }
+        for (Position p : this.owningOrgUnit.getPosition()) {
+            // TODO this is a problem for externally referenced pools
+            p.getActorPool().clear();
         }
         this.umlPackage = null;
-        for (EObject o : result.getContents()) {
+        for (EObject o : this.owningOrgUnit.eResource().getContents()) {
             if (o instanceof Package) {
-               this. umlPackage = (Package) o;
+                this.umlPackage = (Package) o;
             }
         }
         if (umlPackage == null) {
             umlPackage = UMLFactory.eINSTANCE.createPackage();
-            result.getContents().add(umlPackage);
+            this.owningOrgUnit.eResource().getContents().add(umlPackage);
         }
         umlPackage.setName(owningOrgUnit.getName().toLowerCase());
         TreeIterator<EObject> eAllContents = umlPackage.eAllContents();
@@ -126,7 +124,7 @@ public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToE
             EObject e = (EObject) eAllContents.next();
             if (e instanceof Element) {
                 Element el = (Element) e;
-                if (el.getEAnnotation(VdmlLibraryStencil.VDLIB_URI) != null) {
+                if (el.getEAnnotation(VdmlLibraryStencil.VDLIB_URI) != null && el.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0) instanceof VdmlElement) {
                     VdmlElement ve = (VdmlElement) el.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
                     this.vdmlUmlElementMap.put(ve, el);
                 }

@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.omg.smm.RankingMeasure#getInterval <em>Interval</em>}</li>
+ *   <li>{@link org.omg.smm.RankingMeasure#getRankingTo <em>Ranking To</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,5 +39,33 @@ public interface RankingMeasure extends DimensionalMeasure {
      * @generated
      */
     EList<RankingInterval> getInterval();
+
+    /**
+     * Returns the value of the '<em><b>Ranking To</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.omg.smm.RankingMeasureRelationship#getFromRankingMeasure <em>From Ranking Measure</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Ranking To</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Ranking To</em>' containment reference.
+     * @see #setRankingTo(RankingMeasureRelationship)
+     * @see org.omg.smm.SMMPackage#getRankingMeasure_RankingTo()
+     * @see org.omg.smm.RankingMeasureRelationship#getFromRankingMeasure
+     * @model opposite="fromRankingMeasure" containment="true"
+     * @generated
+     */
+    RankingMeasureRelationship getRankingTo();
+
+    /**
+     * Sets the value of the '{@link org.omg.smm.RankingMeasure#getRankingTo <em>Ranking To</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Ranking To</em>' containment reference.
+     * @see #getRankingTo()
+     * @generated
+     */
+    void setRankingTo(RankingMeasureRelationship value);
 
 } // RankingMeasure

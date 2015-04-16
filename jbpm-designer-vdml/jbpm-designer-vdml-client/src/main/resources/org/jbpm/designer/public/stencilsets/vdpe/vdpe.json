@@ -397,9 +397,9 @@
 						"hidden" : true
 					},
 					{
-						"id" : "valueMeasure",
+						"id" : "satisfactionLevelMeasure",
 						"type" : "eobjectref",
-						"title" : "Value Measure",
+						"title" : "Satisfaction Level",
 						"value" : "",
 						"description" : "",
 						"readonly" : false,
@@ -411,6 +411,21 @@
 							"multiSelect" : false
 						}
 					},
+                    {
+                        "id" : "valueMeasure",
+                        "type" : "eobjectref",
+                        "title" : "Value Measure",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "reference":{
+                            "targetProfile":"meas",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure",
+                            "nameFeature" : "name",
+                            "multiSelect" : false
+                        }
+                    },
 					{
 						"id" : "aggregatedFrom",
 						"type" : "eobjectref",

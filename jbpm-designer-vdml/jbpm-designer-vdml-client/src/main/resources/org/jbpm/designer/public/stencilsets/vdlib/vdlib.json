@@ -37,358 +37,363 @@
 					}
 				]
 			},
-            {
-                "name" : "elementBase",
-                "properties": [
+          {
+              "name" : "name",
+              "properties": [
+                  {
+                      "id" : "name",
+                      "type" : "String",
+                      "title" : "Name",
+                      "value" : "",
+                      "description" : "The descriptive name of the UML element.",
+                      "readonly" : false,
+                      "optional" : true,
+                      "length" : "",
+                      "wrapLines" : false,
+                      "refToView" : [
+                          "text_name"
+                      ]
+                  }
+              ]
+          },
+        {
+            "name" : "elementBase",
+            "properties": [
+                {
+                    "id" : "description",
+                    "type" : "Text",
+                    "title" : "Description",
+                    "value" : "",
+                    "binding": "ownedComment[0].body",
+                    "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                    "readonly" : false,
+                    "optional" : true,
+                    "length" : "",
+                    "wrapLines" : true,
+                    "popular" : true
+                },
+                {
+                    "id" : "diagramElementId",
+                    "type" : "String",
+                    "title" : "DiagramElementId",
+                    "value" : "",
+                    "description" : "This is the unique id of the diagram element used to display the UML Element.",
+                    "readonly" : true,
+                    "optional" : true,
+                    "length" : "",
+                    "wrapLines" : false,
+                    "hidden" : true
+                }
+            ]
+        },
+        {
+            "name" : "compartment",
+            "properties": [
+                {
+                    "id" : "isExpanded",
+                    "type" : "Boolean",
+                    "title" : "Is Expanded",
+                    "value" : true,
+                    "viewBinding": "isExpanded",
+                    "hidden" : true
+                },
+                {
+                    "id" : "previousWidth",
+                    "type" : "Integer",
+                    "title" : "Previous Width",
+                    "viewBinding" : "previousWidth",
+                    "value" : 200,
+                    "readonly" : false,
+                    "hidden" : true
+                },
+                {
+                    "id" : "previousHeight",
+                    "type" : "Integer",
+                    "title" : "Previous Height",
+                    "viewBinding" : "previousHeight",
+                    "value" : 40,
+                    "readonly" : false,
+                    "hidden" : true
+                }
+            ]
+        },
+        {
+            "name" : "localStyle",
+            "properties" : [
                     {
-                        "id" : "name",
-                        "type" : "String",
-                        "title" : "Name",
-                        "value" : "",
-                        "description" : "The descriptive name of the UML element.",
+                        "id" : "bgcolor",
+                        "type" : "Color",
+                        "title" : "Background Color",
+                        "value" : "#ffffff",
+                        "viewBinding":"localStyle.fillColor",
+                        "description" : "",
                         "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
+                        "optional" : false,
+                        "refToView" : [
+                            "fill_el"
+                        ],
+                        "fill" : true,
+                        "stroke" : false
+                    },
+                    {
+                        "id" : "bordercolor",
+                        "type" : "Color",
+                        "title" : "Border Color",
+                        "value" : "#000000",
+                        "viewBinding":"localStyle.strokeColor",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "refToView" : [
+                                "edge", "fill_border", "bg_frame", "frame", "border"
+                        ],
+                        "fill" : false,
+                        "stroke" : true
+                    }, {
+                        "id" : "fontcolor",
+                        "type" : "Color",
+                        "title" : "Font Color",
+                        "value" : "#000000",
+                        "viewBinding":"localStyle.fontColor",
+                        "description" : "Font color",
+                        "description_ja" : "フォントの色",
+                        "readonly" : false,
+                        "optional" : false,
                         "refToView" : [
                             "text_name"
-                        ]
-                    },
-                    {
-                        "id" : "description",
-                        "type" : "Text",
-                        "title" : "Description",
+                        ],
+                        "fill" : true,
+                        "stroke" : false
+                    }, {
+                        "id" : "fontsize",
+                        "type" : "Choice",
+                        "title" : "Font Size",
                         "value" : "",
-                        "binding": "ownedComment[0].body",
-                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
+                        "viewBinding":"localStyle.fontSize",
+                        "description" : "The Font Size",
+                        "description_ja" : "フォントのサイズ",
                         "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : true,
-                        "popular" : true
-                    },
-                    {
-                        "id" : "diagramElementId",
-                        "type" : "String",
-                        "title" : "DiagramElementId",
-                        "value" : "",
-                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
-                        "readonly" : true,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "hidden" : true
-                    }
-                ]
-            },
-            {
-                "name" : "compartment",
-                "properties": [
-                    {
-                        "id" : "isExpanded",
-                        "type" : "Boolean",
-                        "title" : "Is Expanded",
-                        "value" : true,
-                        "viewBinding": "isExpanded",
-                        "hidden" : true
-                    },
-                    {
-                        "id" : "previousWidth",
-                        "type" : "Integer",
-                        "title" : "Previous Width",
-                        "viewBinding" : "previousWidth",
-                        "value" : 200,
-                        "readonly" : false,
-                        "hidden" : true
-                    },
-                    {
-                        "id" : "previousHeight",
-                        "type" : "Integer",
-                        "title" : "Previous Height",
-                        "viewBinding" : "previousHeight",
-                        "value" : 40,
-                        "readonly" : false,
-                        "hidden" : true
-                    }
-                ]
-            },
-            {
-                "name" : "localStyle",
-                "properties" : [
-                        {
-                            "id" : "bgcolor",
-                            "type" : "Color",
-                            "title" : "Background Color",
-                            "value" : "#ffffff",
-                            "viewBinding":"localStyle.fillColor",
-                            "description" : "",
-                            "readonly" : false,
-                            "optional" : false,
-                            "refToView" : [
-                                "fill_el"
-                            ],
-                            "fill" : true,
-                            "stroke" : false
-                        },
-                        {
-                            "id" : "bordercolor",
-                            "type" : "Color",
-                            "title" : "Border Color",
-                            "value" : "#000000",
-                            "viewBinding":"localStyle.strokeColor",
-                            "description" : "",
-                            "readonly" : false,
-                            "optional" : false,
-                            "refToView" : [
-                                    "edge", "fill_border", "bg_frame", "frame", "border"
-                            ],
-                            "fill" : false,
-                            "stroke" : true
-                        }, {
-                            "id" : "fontcolor",
-                            "type" : "Color",
-                            "title" : "Font Color",
-                            "value" : "#000000",
-                            "viewBinding":"localStyle.fontColor",
-                            "description" : "Font color",
-                            "description_ja" : "フォントの色",
-                            "readonly" : false,
-                            "optional" : false,
-                            "refToView" : [
-                                "text_name"
-                            ],
-                            "fill" : true,
-                            "stroke" : false
-                        }, {
-                            "id" : "fontsize",
-                            "type" : "Choice",
-                            "title" : "Font Size",
-                            "value" : "",
-                            "viewBinding":"localStyle.fontSize",
-                            "description" : "The Font Size",
-                            "description_ja" : "フォントのサイズ",
-                            "readonly" : false,
-                            "optional" : false,
-                            "refToView" : [
-                                "text_name"
-                            ],
-                            "items" : [
-                                    {
-                                        "id" : "c1",
-                                        "title" : "8",
-                                        "value" : "8"
-                                    }, {
-                                        "id" : "c2",
-                                        "title" : "9",
-                                        "value" : "9"
-                                    }, {
-                                        "id" : "c3",
-                                        "title" : "10",
-                                        "value" : "10"
-                                    }, {
-                                        "id" : "c4",
-                                        "title" : "11",
-                                        "value" : "11"
-                                    }, {
-                                        "id" : "c5",
-                                        "title" : "12",
-                                        "value" : "12"
-                                    }, {
-                                        "id" : "c6",
-                                        "title" : "14",
-                                        "value" : "14"
-                                    }, {
-                                        "id" : "c7",
-                                        "title" : "18",
-                                        "value" : "18"
-                                    }, {
-                                        "id" : "c8",
-                                        "title" : "20",
-                                        "value" : "20"
-                                    }, {
-                                        "id" : "c9",
-                                        "title" : "24",
-                                        "value" : "24"
-                                    }, {
-                                        "id" : "c10",
-                                        "title" : "36",
-                                        "value" : "36"
-                                    }, {
-                                        "id" : "c11",
-                                        "title" : "48",
-                                        "value" : "48"
-                                    }, {
-                                        "id" : "c12",
-                                        "title" : "72",
-                                        "value" : "72"
-                                    }
-                            ]
-                        }
-                ]
-            },
-            {
-                "name": "multiplicity",
-                "properties" : [
-                    {
-                        "id" : "multiplicity",
-                        "type" : "Choice",
-                        "title" : "Multiplicity",
-                        "value" : "[0..1]",
-                        "description" : "The Multiplicity of this Property",
-                        "readonly" : false,
-                        "optional" : true,
-                        "refToView" : ["multiplicity"],
-                        "length" : "",
+                        "optional" : false,
+                        "refToView" : [
+                            "text_name"
+                        ],
                         "items" : [
                                 {
-                                    "id" : "[0..1]",
-                                    "title" : "[0..1]",
-                                    "value" : "[0..1]",
-                                    "refToView" : ""
+                                    "id" : "c1",
+                                    "title" : "8",
+                                    "value" : "8"
                                 }, {
-                                    "id" : "[*]",
-                                    "title" : "[*]",
-                                    "value" : "[*]",
-                                    "refToView" : ""
+                                    "id" : "c2",
+                                    "title" : "9",
+                                    "value" : "9"
                                 }, {
-                                    "id" : "[1]",
-                                    "title" : "[1]",
-                                    "value" : "[1]",
-                                    "refToView" : ""
+                                    "id" : "c3",
+                                    "title" : "10",
+                                    "value" : "10"
                                 }, {
-                                    "id" : "[1..*]",
-                                    "title" : "[1..*]",
-                                    "value" : "[1..*]",
-                                    "refToView" : ""
+                                    "id" : "c4",
+                                    "title" : "11",
+                                    "value" : "11"
+                                }, {
+                                    "id" : "c5",
+                                    "title" : "12",
+                                    "value" : "12"
+                                }, {
+                                    "id" : "c6",
+                                    "title" : "14",
+                                    "value" : "14"
+                                }, {
+                                    "id" : "c7",
+                                    "title" : "18",
+                                    "value" : "18"
+                                }, {
+                                    "id" : "c8",
+                                    "title" : "20",
+                                    "value" : "20"
+                                }, {
+                                    "id" : "c9",
+                                    "title" : "24",
+                                    "value" : "24"
+                                }, {
+                                    "id" : "c10",
+                                    "title" : "36",
+                                    "value" : "36"
+                                }, {
+                                    "id" : "c11",
+                                    "title" : "48",
+                                    "value" : "48"
+                                }, {
+                                    "id" : "c12",
+                                    "title" : "72",
+                                    "value" : "72"
                                 }
                         ]
                     }
-                ]
-            },
-            {
-                "name" : "directedAssociation",
-                "properties": [
-                    {
-                        "id" : "endName",
-                        "type" : "String",
-                        "title" : "End Name",
-                        "value" : "end2Name",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "directlyEditable" : true,
-                        "wrapLines" : false,
-                        "binding" : "memberEnd[1].name",
-                        "refToView" : [
-                            "end2_name"
-                        ]
-                    }
-                ]
-            },
-            {
-                "name" : "biDirectionalAssociation",
-                "properties": [
-                    {
-                        "id" : "end1Name",
-                        "type" : "String",
-                        "title" : "End1 Name",
-                        "value" : "end1Name",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "binding" : "memberEnd[0].name",
-                        "refToView" : [
-                            "end1_name"
-                        ]
-                    },
-                    {
-                        "id" : "end2Name",
-                        "type" : "String",
-                        "title" : "End2 Name",
-                        "value" : "end2Name",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "binding" : "memberEnd[1].name",
-                        "refToView" : [
-                            "end2_name"
-                        ]
-                    },
-                    {
-                        "id" : "end1Multiplicity",
-                        "type" : "Choice",
-                        "title" : "End1 Multiplicity",
-                        "value" : "[0..1]",
-                        "description" : "The Multiplicity of this Property",
-                        "readonly" : false,
-                        "optional" : true,
-                        "refToView" : ["end1_multiplicity"],
-                        "length" : "",
-                        "items" : [
-                                {
-                                    "id" : "[0..1]",
-                                    "title" : "[0..1]",
-                                    "value" : "[0..1]",
-                                    "refToView" : ""
-                                }, {
-                                    "id" : "[*]",
-                                    "title" : "[*]",
-                                    "value" : "[*]",
-                                    "refToView" : ""
-                                }, {
-                                    "id" : "[1]",
-                                    "title" : "[1]",
-                                    "value" : "[1]",
-                                    "refToView" : ""
-                                }, {
-                                    "id" : "[1..*]",
-                                    "title" : "[1..*]",
-                                    "value" : "[1..*]",
-                                    "refToView" : ""
-                                }
-                        ]
-                    },
-                    {
-                        "id" : "end2Multiplicity",
-                        "type" : "Choice",
-                        "title" : "End2 Multiplicity",
-                        "value" : "[0..*]",
-                        "description" : "The Multiplicity of this Property",
-                        "readonly" : false,
-                        "optional" : true,
-                        "refToView" : ["end2_multiplicity"],
-                        "length" : "",
-                        "items" : [
-                                {
-                                    "id" : "[0..1]",
-                                    "title" : "[0..1]",
-                                    "value" : "[0..1]",
-                                    "refToView" : ""
-                                }, {
-                                    "id" : "[*]",
-                                    "title" : "[*]",
-                                    "value" : "[*]",
-                                    "refToView" : ""
-                                }, {
-                                    "id" : "[1]",
-                                    "title" : "[1]",
-                                    "value" : "[1]",
-                                    "refToView" : ""
-                                }, {
-                                    "id" : "[1..*]",
-                                    "title" : "[1..*]",
-                                    "value" : "[1..*]",
-                                    "refToView" : ""
-                                }
-                        ]
-                    }
-                ]
-            }
+            ]
+        },
+        {
+            "name": "multiplicity",
+            "properties" : [
+                {
+                    "id" : "multiplicity",
+                    "type" : "Choice",
+                    "title" : "Multiplicity",
+                    "value" : "[0..1]",
+                    "description" : "The Multiplicity of this Property",
+                    "readonly" : false,
+                    "optional" : true,
+                    "refToView" : ["multiplicity"],
+                    "length" : "",
+                    "items" : [
+                            {
+                                "id" : "[0..1]",
+                                "title" : "[0..1]",
+                                "value" : "[0..1]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[*]",
+                                "title" : "[*]",
+                                "value" : "[*]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[1]",
+                                "title" : "[1]",
+                                "value" : "[1]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[1..*]",
+                                "title" : "[1..*]",
+                                "value" : "[1..*]",
+                                "refToView" : ""
+                            }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "directedAssociation",
+            "properties": [
+                {
+                    "id" : "endName",
+                    "type" : "String",
+                    "title" : "End Name",
+                    "value" : "end2Name",
+                    "description" : "",
+                    "readonly" : false,
+                    "optional" : true,
+                    "length" : "",
+                    "directlyEditable" : true,
+                    "wrapLines" : false,
+                    "binding" : "memberEnd[1].name",
+                    "refToView" : [
+                        "end2_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "biDirectionalAssociation",
+            "properties": [
+                {
+                    "id" : "end1Name",
+                    "type" : "String",
+                    "title" : "End1 Name",
+                    "value" : "end1Name",
+                    "description" : "",
+                    "readonly" : false,
+                    "optional" : true,
+                    "length" : "",
+                    "wrapLines" : false,
+                    "binding" : "memberEnd[0].name",
+                    "refToView" : [
+                        "end1_name"
+                    ]
+                },
+                {
+                    "id" : "end2Name",
+                    "type" : "String",
+                    "title" : "End2 Name",
+                    "value" : "end2Name",
+                    "description" : "",
+                    "readonly" : false,
+                    "optional" : true,
+                    "length" : "",
+                    "wrapLines" : false,
+                    "binding" : "memberEnd[1].name",
+                    "refToView" : [
+                        "end2_name"
+                    ]
+                },
+                {
+                    "id" : "end1Multiplicity",
+                    "type" : "Choice",
+                    "title" : "End1 Multiplicity",
+                    "value" : "[0..1]",
+                    "description" : "The Multiplicity of this Property",
+                    "readonly" : false,
+                    "optional" : true,
+                    "refToView" : ["end1_multiplicity"],
+                    "length" : "",
+                    "items" : [
+                            {
+                                "id" : "[0..1]",
+                                "title" : "[0..1]",
+                                "value" : "[0..1]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[*]",
+                                "title" : "[*]",
+                                "value" : "[*]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[1]",
+                                "title" : "[1]",
+                                "value" : "[1]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[1..*]",
+                                "title" : "[1..*]",
+                                "value" : "[1..*]",
+                                "refToView" : ""
+                            }
+                    ]
+                },
+                {
+                    "id" : "end2Multiplicity",
+                    "type" : "Choice",
+                    "title" : "End2 Multiplicity",
+                    "value" : "[0..*]",
+                    "description" : "The Multiplicity of this Property",
+                    "readonly" : false,
+                    "optional" : true,
+                    "refToView" : ["end2_multiplicity"],
+                    "length" : "",
+                    "items" : [
+                            {
+                                "id" : "[0..1]",
+                                "title" : "[0..1]",
+                                "value" : "[0..1]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[*]",
+                                "title" : "[*]",
+                                "value" : "[*]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[1]",
+                                "title" : "[1]",
+                                "value" : "[1]",
+                                "refToView" : ""
+                            }, {
+                                "id" : "[1..*]",
+                                "title" : "[1..*]",
+                                "value" : "[1..*]",
+                                "refToView" : ""
+                            }
+                    ]
+                }
+            ]
+        }
     ],
     "stencils" : [
             {
@@ -413,7 +418,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                     {
@@ -438,20 +443,74 @@
                         "value" : false,
                         "readonly" : false,
                         "hidden" : false
-                    },
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "CapabilityDefinition",
+                "title" : "CapabilityDefinition",
+                "childBinding" : "ownedType",
+                "position" : 1,
+                "groups" : [
+                    "Capability"
+                ],
+                "roles" : [
+                    "capability"
+                ],
+                "description" : "A Capability Definition",
+                "view" : "capability_definition.svg",
+                "icon" : "capability_definition.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","name","localStyle"
+                ],
+                "properties" : [
                     {
-                        "id" : "tasktype",
-                        "type" : "String",
-                        "value" : "User",
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
                         "readonly" : true,
                         "hidden" : true
-                    },
+                    }
+               ]
+            },
+            {
+                "type" : "node",
+                "id" : "CapabilityCategory",
+                "title" : "CapabilityCategory",
+                "childBinding" : "ownedType",
+                "position" : 1,
+                "groups" : [
+                    "Capability"
+                ],
+                "roles" : [
+                    "capability"
+                ],
+                "description" : "A Capability Category",
+                "view" : "capability_category.svg",
+                "icon" : "capability_category.png",
+                "layout" : [ 
+                            
+                            {
+                                "type" : "layout.compartments"
+                            }
+                ],
+                "propertyPackages" : [
+                        "elementBase","name","localStyle"
+                ],
+                "properties" : [
                     {
-                        "id" : "taskname",
-                        "type" : "String",
-                        "readonly" : false,
-                        "hidden" : false,
-                        "title": "BusinessItemDefinition Form Name"
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
                     }
                ]
             },
@@ -488,21 +547,6 @@
                         "hidden" : true
                     },
                     {
-                        "id" : "tasktype",
-                        "type" : "String",
-                        "value" : "User",
-                        "readonly" : true,
-                        "hidden" : true
-                    },
-                    {
-                        "id" : "taskname",
-                        "type" : "String",
-                        "readonly" : false,
-                        "hidden" : false,
-                        "title": "Form Name",
-                        "binding":"name"
-                    },
-                    {
                         "id" : "importedelementRef",
                         "type" : "eobjectref",
                         "title" : "Imported Element",
@@ -524,19 +568,19 @@
             },
 			{
 				"type" : "node",
-				"id" : "CharacteristicDefinitionCompartment",
-				"title" : "CharacteristicDefinitionCompartment",
+				"id" : "CharacteristicDefinition",
+				"title" : "CharacteristicDefinition",
 				"position" : 2,
 				"groups" : [
 					"BusinessItemDefinition"
 				],
 				"roles" : [
-					"characteristicDefinitionCompartment"
+					"characteristicDefinition"
 				],
 				"description" : "The Characteristic Compartment",
 				"isCompartment":true,
-				"view" : "characteristic_definition_compartment.svg",
-				"icon" : "characteristic_definition_compartment.png",
+				"view" : "characteristic_definition.svg",
+				"icon" : "characteristic_definition.png",
 				"layout" : [
 					{
 						"type" : "layout.list"
@@ -563,22 +607,23 @@
 			},
 			{
 				"type" : "node",
-				"id" : "CharacteristicDefinition",
-				"title" : "Characteristic Definition",
+				"id" : "Characteristic",
+				"title" : "Characteristic",
 				"childBinding" : "ownedAttribute",
 				"position" : 2,
 				"groups" : [
 					"BusinessItemDefinition"
 				],
 				"roles" : [
-					"characteristicDefinition"
+					"characteristic"
 				],
-				"description" : "A Characteristic Definition",
-				"view" : "characteristic_definition.svg",
-				"icon" : "characteristic_definition.png",
+				"description" : "A Characteristic",
+				"view" : "characteristic.svg",
+				"icon" : "characteristic.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
+                         "elementBase",
 						"localStyle",
 						"multiplicity"
 				],
@@ -593,7 +638,7 @@
 						"optional" : true,
 						"reference" : {
 							"targetProfile":"meas",
-							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure",
+							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure|RankingMeasure",
 							"nameFeature" : "name"
 						},
 
@@ -612,31 +657,6 @@
                         "refToView" : [
                             "text_name"
                         ]
-                    },
-                    {
-                        "id" : "description",
-                        "type" : "Text",
-                        "title" : "Description",
-                        "value" : "",
-                        "binding": "ownedComment[0].body",
-                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : true,
-                        "popular" : true
-                    },
-                    {
-                        "id" : "diagramElementId",
-                        "type" : "String",
-                        "title" : "DiagramElementId",
-                        "value" : "",
-                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
-                        "readonly" : true,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "hidden" : true
                     }
 				]
 			},
@@ -652,7 +672,7 @@
                 "icon" : "diagram.png",
                 "mayBeRoot" : true,
                 "hide" : true,
-                "propertyPackages" : ["elementBase"
+                "propertyPackages" : ["elementBase","name"
                 ],
                 "roles" : [
                     "diagram"
@@ -685,7 +705,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                     {
@@ -732,7 +752,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -758,7 +778,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -784,7 +804,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -810,7 +830,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -833,9 +853,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase",
-                        "localStyle",
-                        "multiplicity"
+                        "localStyle", "multiplicity","elementBase"
                 ],
                 "properties" : [
                     {
@@ -854,6 +872,20 @@
                             "nameFeature" : "qualifiedName"
                         },
                         "length" : ""
+                    },
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "Property1",
+                        "description" : "The descriptive name of the UML element.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ]
                     }
                 ]
             },
@@ -875,7 +907,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "localStyle"
+                        "localStyle","elementBase"
                 ],
                 "properties" : [
                     {
@@ -891,31 +923,6 @@
                         "refToView" : [
                             "text_name"
                         ]
-                    },
-                    {
-                        "id" : "description",
-                        "type" : "Text",
-                        "title" : "Description",
-                        "value" : "",
-                        "binding": "ownedComment[0].body",
-                        "description" : "This attribute is used to annotate the UML element, such as descriptions and other documentation.",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : true,
-                        "popular" : true
-                    },
-                    {
-                        "id" : "diagramElementId",
-                        "type" : "String",
-                        "title" : "DiagramElementId",
-                        "value" : "",
-                        "description" : "This is the unique id of the diagram element used to display the UML Element.",
-                        "readonly" : true,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "hidden" : true
                     }
                 ]
             },
@@ -937,7 +944,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -1077,7 +1084,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase",
+                        "elementBase","name",
                         "directedAssociation",
                         "localStyle",
                         "multiplicity"
@@ -1103,7 +1110,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase",
+                        "elementBase","name",
                         "directedAssociation",
                         "localStyle",
                         "multiplicity"
@@ -1129,7 +1136,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase",
+                        "elementBase","name",
                         "biDirectionalAssociation",
                         "localStyle"
                 ],
@@ -1155,7 +1162,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -1179,7 +1186,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                 ]
@@ -1204,7 +1211,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                         {
@@ -1246,7 +1253,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                         {
@@ -1288,7 +1295,7 @@
                             }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle"
+                        "elementBase","name","localStyle"
                 ],
                 "properties" : [
                         {
@@ -1356,12 +1363,18 @@
 							"class","importedClass"
 						]
 					},
-					{
-						"from" : "businessItemDefinition",
-						"to" : [
-							"businessItemDefinition"
-						]
-					},
+                    {
+                        "from" : "businessItemDefinition",
+                        "to" : [
+                            "businessItemDefinition"
+                        ]
+                    },
+                    {
+                        "from" : "capability",
+                        "to" : [
+                            "capability"
+                        ]
+                    },
 					{
 						"from" : "interface",
 						"to" : [
@@ -1438,25 +1451,25 @@
 				{
 					"role" : "diagram",
 					"contains" : [
-						"businessItemDefinition","importedOrgElement"
+						"businessItemDefinition","importedOrgElement","capability"
 					]
 				},
                 {
                     "role" : "businessItemDefinition",
                     "contains" : [
-                        "characteristicDefinitionCompartment","ownedAttribute"
+                        "characteristicDefinition","ownedAttribute"
                     ]
                 },
                 {
                     "role" : "importedOrgElement",
                     "contains" : [
-                        "characteristicDefinitionCompartment","ownedAttribute"
+                        "characteristicDefinition","ownedAttribute"
                     ]
                 },
 				{
-					"role" : "characteristicDefinitionCompartment",
+					"role" : "characteristicDefinition",
 					"contains" : [
-						"characteristicDefinition"
+						"characteristic"
 					]
 				},
                 {

@@ -11,9 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.omg.cmmn.TCase;
 
-public class CmmnCalledElementHelper extends DefaultPotentialReferenceHelper {
+public class CmmnPotentialReferenceHelper extends DefaultPotentialReferenceHelper {
 
-    public CmmnCalledElementHelper(IEmfDiagramProfile profile) {
+    public CmmnPotentialReferenceHelper(IEmfDiagramProfile profile) {
         super(profile);
     }
 

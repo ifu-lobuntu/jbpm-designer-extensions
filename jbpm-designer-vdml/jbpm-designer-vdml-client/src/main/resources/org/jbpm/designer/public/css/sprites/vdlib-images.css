@@ -1,25 +1,39 @@
 /** sprite: vdlib-images-sprite; sprite-image: url('../../images/sprites/vdlib-images-sprite.png'); sprite-layout: vertical */
 /* Edges */
-.stencilsets_vdlib_vdlib_json_icons_deliverable_business_item_definition,
+.stencilsets_vdlib_vdlib_json_icons_business_item_definition,
 .x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_business_item_definition {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
     background-image: url(../../stencilsets/vdlib/icons/business_item_definition.png);  /** sprite-ref: vdlib-images-sprite; */
 }
-.stencilsets_vdlib_vdlib_json_icons_deliverable_characteristic_definition,
+.stencilsets_vdlib_vdlib_json_icons_capability_definition,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_capability_definition {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/capability_definition.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_deliverable_capability_category,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_capability_category {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/capability_category.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_characteristic,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_characteristic {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/characteristic.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_characteristic_definition,
 .x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_characteristic_definition {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
     background-image: url(../../stencilsets/vdlib/icons/characteristic_definition.png);  /** sprite-ref: vdlib-images-sprite; */
-}
-.stencilsets_vdlib_vdlib_json_icons_characteristic_definition_compartment,
-.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_characteristic_definition_compartment {
-    width: 16px;
-    height: 16px;
-    background-repeat: no-repeat;
-    background-image: url(../../stencilsets/vdlib/icons/characteristic_definition_compartment.png);  /** sprite-ref: vdlib-images-sprite; */
 }
 .stencilsets_vdlib_vdlib_json_icons_composition,
 .x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_composition {

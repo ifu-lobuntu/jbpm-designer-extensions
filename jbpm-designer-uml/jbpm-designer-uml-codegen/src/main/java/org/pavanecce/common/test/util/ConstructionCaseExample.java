@@ -63,8 +63,8 @@ public class ConstructionCaseExample  implements UmlExample{
 		setModel(UMLFactory.eINSTANCE.createModel());
 		getModel().setName("test");
 		r.getContents().add(getModel());
-		primitiveTypes = (Model) rst.getResource(URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI), true).getContents().get(0);
-		simpleTypes = LibraryImporter.importLibraryIfNecessary(getModel(), "CmmnSimpleTypes");
+        primitiveTypes = (Model) rst.getResource(URI.createURI(ClassDiagramProfileImpl.CMMNTYPES_PATHMAP), true).getContents().get(0);
+        simpleTypes = (Model) rst.getResource(URI.createURI(ClassDiagramProfileImpl.CMMNTYPES_PATHMAP), true).getContents().get(0);
 		createConstructionCase();
 		house = (Class) getModel().createOwnedType("House", UMLPackage.eINSTANCE.getClass_());
 		createOneToOne(constructionCase, house, AggregationKind.COMPOSITE_LITERAL, true);

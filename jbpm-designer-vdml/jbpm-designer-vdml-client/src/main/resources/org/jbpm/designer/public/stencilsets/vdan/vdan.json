@@ -176,7 +176,7 @@
                         "optional" : false,
                         "reference":{
                             "targetProfile":"meas",
-                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
                             "nameFeature" : "name",
                             "multiSelect" : false
                         }
@@ -354,7 +354,7 @@
                         "optional" : false,
                         "reference":{
                             "targetProfile":"meas",
-                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
                             "nameFeature" : "name",
                             "multiSelect" : false
                         }
@@ -491,7 +491,7 @@
 						"optional" : false,
 						"reference":{
 							"targetProfile":"meas",
-							"allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+							"allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
 							"nameFeature" : "name",
 							"multiSelect" : false
 						}
@@ -690,7 +690,7 @@
                         "optional" : false,
                         "reference":{
                             "targetProfile":"meas",
-                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
                             "nameFeature" : "name",
                             "multiSelect" : false
                         }
@@ -754,7 +754,7 @@
 							"optional" : true,
 							"reference" : {
 								"targetProfile":"meas",
-								"allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure",
+								"allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure|RankingMeasure|GradeMeasure",
 								"nameFeature" : "name"
 							},
 							"length" : ""
@@ -769,7 +769,7 @@
                             "optional" : true,
                             "reference" : {
                                 "targetProfile":"meas",
-                                "allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure",
+                                "allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure|RankingMeasure|GradeMeasure",
                                 "nameFeature" : "name"
                             },
                             "length" : ""
@@ -783,7 +783,7 @@
 	                        "optional" : false,
 	                        "reference":{
 	                            "targetProfile":"meas",
-	                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure",
+	                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure",
 	                            "nameFeature" : "name",
 	                            "multiSelect" : false
 	                        }

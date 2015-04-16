@@ -1,24 +1,24 @@
 				{
 					"role" : "diagram",
 					"contains" : [
-						"businessItemDefinition","importedOrgElement"
+						"businessItemDefinition","importedOrgElement","capability"
 					]
 				},
                 {
                     "role" : "businessItemDefinition",
                     "contains" : [
-                        "characteristicDefinitionCompartment","ownedAttribute"
+                        "characteristicDefinition","ownedAttribute"
                     ]
                 },
                 {
                     "role" : "importedOrgElement",
                     "contains" : [
-                        "characteristicDefinitionCompartment","ownedAttribute"
+                        "characteristicDefinition","ownedAttribute"
                     ]
                 },
 				{
-					"role" : "characteristicDefinitionCompartment",
+					"role" : "characteristicDefinition",
 					"contains" : [
-						"characteristicDefinition"
+						"characteristic"
 					]
 				},
