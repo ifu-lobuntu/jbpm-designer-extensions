@@ -17,7 +17,6 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -44,7 +43,7 @@ public abstract class AbstractUmlVisitorAdaptor<PACKAGE, CLASSIFIER, BUILDER ext
 
 	private Map<String, Classifier> interfacesToImplement;
 
-	private SortedSet<Model> models = new TreeSet<Model>(new ElementComparator());
+	private SortedSet<Package> models = new TreeSet<Package>(new ElementComparator());
 
 	public AbstractUmlVisitorAdaptor() {
 		this(new HashMap<String, Classifier>());
@@ -61,7 +60,7 @@ public abstract class AbstractUmlVisitorAdaptor<PACKAGE, CLASSIFIER, BUILDER ext
 		return EmfParameterUtil.toIdentifyingString(operation);
 	}
 
-	public void startVisiting(BUILDER builder, Model model) {
+	public void startVisiting(BUILDER builder, Package model) {
 		this.models.add(model);
 		builder.initialize(models, getCodeModel());
 		PACKAGE codeModel = builder.visitModel(model);

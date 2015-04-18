@@ -2,18 +2,23 @@
  */
 package org.jbpm.uml2.dd.umldi.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLLoadImpl;
+import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
 
 /**
@@ -48,7 +53,21 @@ public class UMLDIResourceImpl extends XMIResourceImpl {
 
     protected XMLSave createXMLSave() {
         prepareSave();
-        return super.createXMLSave();
+        return new XMISaveImpl(createXMLHelper()){
+            private SaveResourceListener saveListener;
+            @Override
+            protected void init(XMLResource resource, Map<?, ?> options) {
+                super.init(resource, options);
+                this.saveListener=(SaveResourceListener)options.get(SaveResourceListener.OPTION_SAVE_RESOURCE_LISTENER);
+            }
+            @Override
+            protected void endSave(List<? extends EObject> contents) throws IOException {
+                super.endSave(contents);
+                if(saveListener!=null){
+                    saveListener.onSave(this.xmlResource);
+                }
+            }
+        };
     }
 
     protected void prepareSave() {

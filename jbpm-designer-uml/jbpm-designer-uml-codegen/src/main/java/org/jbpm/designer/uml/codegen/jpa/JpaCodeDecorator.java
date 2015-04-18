@@ -33,11 +33,11 @@ public class JpaCodeDecorator extends AbstractJavaCodeDecorator {
 		dataTypeStrategies.put(new PrimitiveTypeReference(CodePrimitiveTypeKind.STRING), JpaRelationalDataType.STRING);
 		dataTypeStrategies.put(new PrimitiveTypeReference(CodePrimitiveTypeKind.BOOLEAN), JpaRelationalDataType.BOOLEAN);
 		dataTypeStrategies.put(new PrimitiveTypeReference(CodePrimitiveTypeKind.REAL), JpaRelationalDataType.DOUBLE);
-		dataTypeStrategies.put(new CodeTypeReference(false, "StandardSimpleTypes", "DateTime"), JpaRelationalDataType.DATETIME);
-		dataTypeStrategies.put(new CodeTypeReference(false, "StandardSimpleTypes", "Date"), JpaRelationalDataType.DATE);
-		dataTypeStrategies.put(new CodeTypeReference(false, "StandardSimpleTypes", "Time"), JpaRelationalDataType.TIME);
-		dataTypeStrategies.put(new CodeTypeReference(false, "StandardSimpleTypes", "LargeText"), JpaRelationalDataType.TEXT);
-		dataTypeStrategies.put(new CodeTypeReference(false, "StandardSimpleTypes", "BinaryLargeObject"), JpaRelationalDataType.BINARY);
+		dataTypeStrategies.put(new CodeTypeReference(false, "cmmntypes", "DateTime"), JpaRelationalDataType.DATETIME);
+		dataTypeStrategies.put(new CodeTypeReference(false, "cmmntypes", "Date"), JpaRelationalDataType.DATE);
+		dataTypeStrategies.put(new CodeTypeReference(false, "cmmntypes", "Time"), JpaRelationalDataType.TIME);
+		dataTypeStrategies.put(new CodeTypeReference(false, "cmmntypes", "LargeText"), JpaRelationalDataType.TEXT);
+		dataTypeStrategies.put(new CodeTypeReference(false, "cmmntypes", "Base64Bomary"), JpaRelationalDataType.BINARY);
 	}
 	private boolean softDelete = true;
 

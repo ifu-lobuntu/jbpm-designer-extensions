@@ -143,7 +143,6 @@ public abstract class AbstractPersistenceTest extends Assert {
 		assertEquals(1, eval("constructionCase.getPicture()[0]"));
 		assertEquals(6, eval("constructionCase.getPicture()[5]"));
 		assertEquals(eval("HouseStatus.FINISHED"), eval("constructionCase.getHouse().getStatus()"));
-
 	}
 
 	@Test
@@ -200,7 +199,9 @@ public abstract class AbstractPersistenceTest extends Assert {
 		// Objects that have not been persisted yet
 		eval("p.persist(constructionCase);");
 		eval("roomPlan1.getWallPlans().add(wallPlan1);");
-		eval("roomPlan1.getWallPlans().add(wallPlan2);");
+        eval("roomPlan1.getWallPlans().add(wallPlan2);");
+        eval("wallPlan1.getRoomPlans().add(roomPlan1);");
+        eval("wallPlan2.getRoomPlans().add(roomPlan1);");
 		assertEquals(1, eval("wallPlan1.getRoomPlans().size()"));
 		eval("p.update(constructionCase);");
 		eval("p.commit();");

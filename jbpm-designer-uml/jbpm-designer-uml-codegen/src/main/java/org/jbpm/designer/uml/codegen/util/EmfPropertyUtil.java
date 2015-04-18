@@ -125,7 +125,7 @@ public class EmfPropertyUtil {
         }
     }
 
-    private static Classifier getOwningClassifier(Property p) {
+    public static Classifier getOwningClassifier(Property p) {
         if (!isNavigable(p)) {
             return p.getAssociation();
         } else if (p.getOtherEnd() != null) {
@@ -167,7 +167,7 @@ public class EmfPropertyUtil {
         }
         return false;
     }
-    public static Property getEndToComposite(Class c) {
+    public static Property getEndToComposite(Classifier c) {
         Property result = getImmediateEndToComposite(c);
         if (result == null) {
             Iterator<Classifier> classes = c.getGenerals().iterator();

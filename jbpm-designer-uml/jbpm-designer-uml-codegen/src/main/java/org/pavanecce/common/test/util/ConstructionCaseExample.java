@@ -21,7 +21,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.resource.UMLResource;
 import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
 import org.jbpm.designer.uml.codegen.util.NameConverter;
 
@@ -126,9 +125,9 @@ public class ConstructionCaseExample  implements UmlExample{
 		;
 		Property numberOfWalls = constructionCase.createOwnedAttribute("numberOfWalls", primitiveTypes.getOwnedType("Integer"));
 		numberOfWalls.setLower(0);
-		Property pricePerSquareMetre = constructionCase.createOwnedAttribute("pricePerSquareMetre", primitiveTypes.getOwnedType("Real"));
+		Property pricePerSquareMetre = constructionCase.createOwnedAttribute("pricePerSquareMetre", primitiveTypes.getOwnedType("Double"));
 		pricePerSquareMetre.setLower(0);
-		Property picture = constructionCase.createOwnedAttribute("picture", simpleTypes.getOwnedType("BinaryLargeObject"));
+		Property picture = constructionCase.createOwnedAttribute("picture", simpleTypes.getOwnedType("Base64Binary"));
 		picture.setLower(0);
 	}
 

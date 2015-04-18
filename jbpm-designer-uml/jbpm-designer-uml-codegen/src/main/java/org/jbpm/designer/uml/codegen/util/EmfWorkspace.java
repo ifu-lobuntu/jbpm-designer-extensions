@@ -8,7 +8,10 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 public class EmfWorkspace {
-
+	@Deprecated
+	public String getIdentifier(){
+		return null;
+	}
 	public static String getId(Element object) {
 		if (object == null) {
 			return null;

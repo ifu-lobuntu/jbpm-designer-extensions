@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1429193221662
+Bnd-LastModified: 1429331905810
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Thu, 16 Apr 2015 16:06:49 +0200
+Build-Timestamp: Sat, 18 Apr 2015 06:37:36 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: jBPM Designer CMMN EMF Metamodel
 Bundle-SymbolicName: org.jbpm.cmmn.emf.metamodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201504161606
+Bundle-Version: 6.3.0.201504180637
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer CMMN EMF Metamodel
 Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
@@ -39,7 +39,7 @@ Private-Package: org.jbpm.cmmn.jbpmext.util,org.jbpm.cmmn.dd.cmmndi,org.
  cmmn.util
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
-Scm-Revision: ffc88ae65498ee0dd067635f4e6108e755aa7613
+Scm-Revision: 1e5a46c2c49750014340696ddc8d3aad03ed6e52
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-cmmn/jbpm-designer-cmmn-emf
 Specification-Title: jBPM Designer CMMN EMF Metamodel

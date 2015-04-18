@@ -15,7 +15,6 @@ import org.jbpm.designer.uml.codegen.AbstractCodeGenerator;
 import org.jbpm.designer.uml.codegen.java.JavaCodeGenerator;
 import org.jbpm.designer.uml.codegen.jpa.JpaCodeDecorator;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.pavanecce.common.test.util.ConstructionCaseExample;
 
 public class JpaTests extends AbstractPersistenceTest {

@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_j7ZcMMGyEeSOM_pby657_g" name="cmmntypes">
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_nOT-cMGyEeSOM_pby657_g" name="String"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_LI59gMGzEeSOM_pby657_g" name="Boolean"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_LYdccMGzEeSOM_pby657_g" name="Integer"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_LlDG8MGzEeSOM_pby657_g" name="Float"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Lr8ZIMGzEeSOM_pby657_g" name="Double"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_RiQsQMGzEeSOM_pby657_g" name="Duration"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_R872EMGzEeSOM_pby657_g" name="DateTime"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SIPuMMGzEeSOM_pby657_g" name="Time"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SNZT8MGzEeSOM_pby657_g" name="Date"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SSXTgMGzEeSOM_pby657_g" name="GYearMonth"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SXjVgMGzEeSOM_pby657_g" name="GYear"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ScVu4MGzEeSOM_pby657_g" name="GMonthDay"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SgufoMGzEeSOM_pby657_g" name="GDay"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_a1l40MGzEeSOM_pby657_g" name="GMonth"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_a8dV0MGzEeSOM_pby657_g" name="HexBinary"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_bEOxwMGzEeSOM_pby657_g" name="Base64Binary"/>
-  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_bLNjgMGzEeSOM_pby657_g" name="AnyURI"/>
-</uml:Model>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mp="http:///schemas/MappingProfile/0.0.1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/MappingProfile/0.0.1 ../profiles/mapping.profile.uml#_Q5IdoBuAEeO1Et3dhYErGQ">
+  <uml:Model xmi:id="_j7ZcMMGyEeSOM_pby657_g" name="cmmntypes">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_nOT-cMGyEeSOM_pby657_g" name="String">
+    </packagedElement>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_LI59gMGzEeSOM_pby657_g" name="Boolean"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_LYdccMGzEeSOM_pby657_g" name="Integer"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_LlDG8MGzEeSOM_pby657_g" name="Float"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_Lr8ZIMGzEeSOM_pby657_g" name="Double"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_RiQsQMGzEeSOM_pby657_g" name="Duration"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_R872EMGzEeSOM_pby657_g" name="DateTime"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SIPuMMGzEeSOM_pby657_g" name="Time"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SNZT8MGzEeSOM_pby657_g" name="Date"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SSXTgMGzEeSOM_pby657_g" name="GYearMonth"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SXjVgMGzEeSOM_pby657_g" name="GYear"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_ScVu4MGzEeSOM_pby657_g" name="GMonthDay"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_SgufoMGzEeSOM_pby657_g" name="GDay"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_a1l40MGzEeSOM_pby657_g" name="GMonth"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_a8dV0MGzEeSOM_pby657_g" name="HexBinary"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_bEOxwMGzEeSOM_pby657_g" name="Base64Binary"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_bLNjgMGzEeSOM_pby657_g" name="AnyURI"/>
+  </uml:Model>
+</xmi:XMI>

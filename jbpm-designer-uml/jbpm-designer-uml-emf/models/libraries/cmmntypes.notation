@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <css:ModelStyleSheets xmi:id="_lJWpwOS0EeSEaJFSjvykiQ"/>
+  <notation:Diagram xmi:id="_cSVB4OS4EeSEaJFSjvykiQ" type="PapyrusUMLClassDiagram" name="ClassDiagram" measurementUnit="Pixel">
+    <children xmi:type="notation:Shape" xmi:id="_7RZhIOTDEeSv7YhUbGLL9g" type="2009">
+      <children xmi:type="notation:DecorationNode" xmi:id="_7Rqm4OTDEeSv7YhUbGLL9g" type="5032"/>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_7RrN8OTDEeSv7YhUbGLL9g" type="7039">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_7RrN8eTDEeSv7YhUbGLL9g"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_7RrN8uTDEeSv7YhUbGLL9g"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_7RrN8-TDEeSv7YhUbGLL9g"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7RrN9OTDEeSv7YhUbGLL9g"/>
+      </children>
+      <children xmi:type="notation:BasicCompartment" xmi:id="_7RrN9eTDEeSv7YhUbGLL9g" type="7040">
+        <styles xmi:type="notation:TitleStyle" xmi:id="_7RrN9uTDEeSv7YhUbGLL9g"/>
+        <styles xmi:type="notation:SortingStyle" xmi:id="_7RrN9-TDEeSv7YhUbGLL9g"/>
+        <styles xmi:type="notation:FilteringStyle" xmi:id="_7RrN-OTDEeSv7YhUbGLL9g"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7RrN-eTDEeSv7YhUbGLL9g"/>
+      </children>
+      <element xmi:type="uml:PrimitiveType" href="cmmntypes.uml#_nOT-cMGyEeSOM_pby657_g"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7RaIMOTDEeSv7YhUbGLL9g" x="297" y="248"/>
+    </children>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_cSVB4eS4EeSEaJFSjvykiQ" name="diagram_compatibility_version" stringValue="1.0.0"/>
+    <styles xmi:type="notation:DiagramStyle" xmi:id="_cSVB4uS4EeSEaJFSjvykiQ"/>
+    <styles xmi:type="style:PapyrusViewStyle" xmi:id="_cSVB4-S4EeSEaJFSjvykiQ">
+      <owner xmi:type="uml:Model" href="cmmntypes.uml#_j7ZcMMGyEeSOM_pby657_g"/>
+    </styles>
+    <element xmi:type="uml:Model" href="cmmntypes.uml#_j7ZcMMGyEeSOM_pby657_g"/>
+  </notation:Diagram>
+</xmi:XMI>

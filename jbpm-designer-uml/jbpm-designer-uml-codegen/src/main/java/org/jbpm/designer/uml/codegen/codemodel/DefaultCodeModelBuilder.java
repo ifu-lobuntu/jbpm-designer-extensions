@@ -5,7 +5,6 @@ import java.util.SortedSet;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
-import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -55,7 +54,7 @@ public class DefaultCodeModelBuilder extends AbstractBuilder<CodePackage, CodeCl
 	}
 
 	@Override
-	public CodePackage visitModel(Model model) {
+	public CodePackage visitModel(Package model) {
 		return codeModel.getChildren().get(model.getName());
 	}
 
@@ -65,7 +64,7 @@ public class DefaultCodeModelBuilder extends AbstractBuilder<CodePackage, CodeCl
 	}
 
 	@Override
-	public void initialize(SortedSet<Model> models, CodePackage codeModel) {
+	public void initialize(SortedSet<Package> models, CodePackage codeModel) {
 		this.codeModel = (CodeModel) codeModel;
 	}
 

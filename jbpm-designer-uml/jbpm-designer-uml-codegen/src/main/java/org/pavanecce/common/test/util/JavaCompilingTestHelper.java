@@ -1,12 +1,15 @@
 package org.pavanecce.common.test.util;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +22,9 @@ import javax.tools.JavaFileObject;
 import javax.tools.StandardJavaFileManager;
 import javax.tools.ToolProvider;
 
+import org.jbpm.designer.uml.code.metamodel.CodeClassifier;
 import org.jbpm.designer.uml.code.metamodel.CodeModel;
+import org.jbpm.designer.uml.code.metamodel.CodePackage;
 import org.jbpm.designer.uml.codegen.AbstractCodeGenerator;
 import org.jbpm.designer.uml.codegen.codemodel.CodeModelBuilder;
 import org.jbpm.designer.uml.codegen.codemodel.DefaultCodeModelBuilder;
@@ -188,9 +193,47 @@ public abstract class JavaCompilingTestHelper {
 		generateSourceCode(this.getAdaptor().getCodeModel());
 	}
 
-	protected Object generateSourceCode(CodeModel codeModel) {
-		return null;
+	protected Object generateSourceCode(CodeModel codeModel) throws IOException {
+	    File tmpDir = new File(System.getProperty("java.io.tmpdir")); 
+	    File rootDir = new File(tmpDir,this.getTestName());
+        rootDir.delete();
+        rootDir.mkdirs();
+        Set<File> files= new HashSet<File>();
+        createText(codeModel, rootDir, files);
+        setClassLoader(compile(files));
+		return  files;
 	}
+    protected void createText(CodePackage codeModel, File sf, Set<File> files) {
+        Collection<CodeClassifier> values = codeModel.getClassifiers().values();
+        for (CodeClassifier codeClassifier : values) {
+            String javaSource = getCodeGenerator().toClassifierDeclaration(codeClassifier);
+            List<String> path = codeClassifier.getPackage().getPath();
+            File file = sf;
+            for (String string : path) {
+                file=new File(file,string);
+                file.mkdirs();
+            }
+            try {
+                file=new File(file,codeClassifier.getName() + getExtension());
+                System.out.println("writing " + file.getCanonicalPath());
+                FileWriter w = new FileWriter(file);
+                w.write(javaSource);
+                w.flush();
+                w.close();
+                files.add(file);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        for (CodePackage codePackage : codeModel.getChildren().values()) {
+            createText(codePackage, sf,files);
+        }
+    }
+
+    public String getExtension() {
+        return ".java";
+    }
 
 
 }

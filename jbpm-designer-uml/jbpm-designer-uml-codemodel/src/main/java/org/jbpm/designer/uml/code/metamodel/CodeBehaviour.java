@@ -25,6 +25,9 @@ public class CodeBehaviour extends CodeElement {
 			} else if (p instanceof CodeTypeReference) {
 				type = (CodeTypeReference) p;
 			}
+			if(type==null){
+			    System.out.println();
+			}
 			sb.append(type.getLastName());
 			if (iterator.hasNext()) {
 				sb.append(",");

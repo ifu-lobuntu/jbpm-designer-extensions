@@ -35,11 +35,17 @@ public class TestUriHandler implements URIHandler {
     public File getFile(URI uri) throws IOException {
         try {
             File canonicalFile = new File(".").getCanonicalFile();
-            return new File(getFakeWorkspaceRoot(canonicalFile), uri.toPlatformString(true));
-        } catch (IOException e) {
+            if(uri.isPlatformResource()){
+                String platformString = uri.toPlatformString(true);
+                return new File(getFakeWorkspaceRoot(canonicalFile), platformString);
+            }else{
+                return new File(uri.toFileString());
+            }
+        } catch (Exception e) {
+            System.out.println(uri);
             // TODO Auto-generated catch block
-            e.printStackTrace();
-            throw e;
+//            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

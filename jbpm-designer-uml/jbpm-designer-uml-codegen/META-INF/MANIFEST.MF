@@ -1,0 +1,56 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1429348240678
+Build-Jdk: 1.7.0_71
+Built-By: ampie
+Bundle-Description: jBPM Designer - web-based BPMN2 modeller
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jbpm.uml.codegen
+Bundle-SymbolicName: org.jbpm.uml.codegen
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 6.3.0.qualifier
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.jbpm.designer.uml.codegen;version="6.3.0.qualifier",
+ org.jbpm.designer.uml.codegen.codemodel;version="6.3.0.qualifier",org.j
+ bpm.designer.uml.codegen.java;version="6.3.0.qualifier",org.jbpm.design
+ er.uml.codegen.jpa;version="6.3.0.qualifier",org.jbpm.designer.uml.code
+ gen.util;version="6.3.0.qualifier",org.jbpm.designer.uml.codegen.util.e
+ mulated;version="6.3.0.qualifier",org.pavanecce.common.test.util;versio
+ n="6.3.0.qualifier"
+Implementation-Title: jBPM Designer UML Class Diagram Code Generation
+Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
+ igner-extensions/jbpm-designer-uml/jbpm-designer-uml-codegen
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.jbpm
+Implementation-Version: 6.3.0-SNAPSHOT
+Import-Package: javax.enterprise.context,javax.inject,javax.script,javax
+ .tools,org.eclipse.emf.common.notify,org.eclipse.emf.common.util,org.ec
+ lipse.emf.ecore,org.eclipse.emf.ecore.impl,org.eclipse.emf.ecore.resour
+ ce,org.eclipse.emf.ecore.resource.impl,org.eclipse.emf.ecore.xmi,org.ec
+ lipse.uml2.uml,org.eclipse.uml2.uml.internal.impl,org.eclipse.uml2.uml.
+ util,org.jbpm.designer.dd.jbpmdd,org.jbpm.designer.extensions.diagram,o
+ rg.jbpm.designer.extensions.util,org.jbpm.designer.repository,org.jbpm.
+ designer.repository.impl,org.jbpm.designer.ucd,org.jbpm.designer.uml.co
+ de.metamodel,org.jbpm.designer.uml.code.metamodel.documentdb,org.jbpm.d
+ esigner.uml.code.metamodel.expressions,org.jbpm.designer.uml.code.metam
+ odel.relationaldb,org.jbpm.designer.uml.code.metamodel.statements,org.j
+ bpm.designer.web.profile.impl,org.slf4j
+Imported-Package: !org.eclipse.uml2.*,
+Include-Resource: ErraiApp.properties=src/main/resources/ErraiApp.proper
+ ties,META-INF/beans.xml=src/main/resources/META-INF/beans.xml
+Java-Vendor: Oracle Corporation
+Java-Version: 1.7.0_71
+JBOSS_HOME: /opt/jboss-5.1.0.GA
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.17.3-200.fc20.x86_64
+Private-Package: .
+Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
+ -designer-extensions/jbpm-designer-uml/jbpm-designer-uml-codegen
+Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
+ sions/jbpm-designer-uml/jbpm-designer-uml-codegen
+Specification-Title: jBPM Designer UML Class Diagram Code Generation
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 6.3.0-SNAPSHOT
+Tool: Bnd-1.50.0

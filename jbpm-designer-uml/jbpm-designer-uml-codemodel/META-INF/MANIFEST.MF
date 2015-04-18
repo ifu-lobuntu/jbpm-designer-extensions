@@ -1,0 +1,43 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1429347452936
+Build-Jdk: 1.7.0_71
+Built-By: ampie
+Bundle-Description: jBPM Designer - web-based BPMN2 modeller
+Bundle-DocURL: http://www.jboss.org/
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jbpm.uml.codemodel
+Bundle-SymbolicName: org.jbpm.uml.codemodel
+Bundle-Vendor: JBoss by Red Hat
+Bundle-Version: 6.3.0.qualifier
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.jbpm.designer.uml.code.metamodel;version="6.3.0.qual
+ ifier",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.3.0.q
+ ualifier",org.jbpm.designer.uml.code.metamodel.expressions;version="6.3
+ .0.qualifier",org.jbpm.designer.uml.code.metamodel.relationaldb;version
+ ="6.3.0.qualifier",org.jbpm.designer.uml.code.metamodel.statements;vers
+ ion="6.3.0.qualifier"
+Implementation-Title: jBPM Designer Metamodel for Code generation
+Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
+ igner-extensions/jbpm-designer-uml/jbpm-designer-uml-codemodel
+Implementation-Vendor: JBoss by Red Hat
+Implementation-Vendor-Id: org.jbpm
+Implementation-Version: 6.3.0-SNAPSHOT
+Java-Vendor: Oracle Corporation
+Java-Version: 1.7.0_71
+JBOSS_HOME: /opt/jboss-5.1.0.GA
+Os-Arch: amd64
+Os-Name: Linux
+Os-Version: 3.17.3-200.fc20.x86_64
+Private-Package: org.jbpm.designer.uml.code.metamodel;org.jbpm.designer.
+ uml.code.metamodel.documentdb;org.jbpm.designer.uml.code.metamodel.expr
+ essions;org.jbpm.designer.uml.code.metamodel.relationaldb;org.jbpm.desi
+ gner.uml.code.metamodel.statements;-split-package:=merge-first
+Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
+ -designer-extensions/jbpm-designer-uml/jbpm-designer-uml-codemodel
+Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
+ sions/jbpm-designer-uml/jbpm-designer-uml-codemodel
+Specification-Title: jBPM Designer Metamodel for Code generation
+Specification-Vendor: JBoss by Red Hat
+Specification-Version: 6.3.0-SNAPSHOT
+Tool: Bnd-1.50.0

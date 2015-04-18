@@ -48,6 +48,7 @@ import org.jbpm.designer.uml.codegen.jpa.AbstractJavaCodeDecorator;
 import org.jbpm.designer.uml.codegen.util.NameConverter;
 
 public class JavaCodeGenerator extends AbstractCodeGenerator {
+    public static final String MARKER_COMMENT="/**Do not edit: generated from uml.*/\n";
 	Map<CodeTypeReference, String> mappedJavaTypes = new HashMap<CodeTypeReference, String>();
 	private List<AbstractJavaCodeDecorator> decorators = new ArrayList<AbstractJavaCodeDecorator>();
 
@@ -268,6 +269,7 @@ public class JavaCodeGenerator extends AbstractCodeGenerator {
 	}
 
 	protected JavaCodeGenerator appendPackageAndImports(CodeClassifier cc) {
+	    sb.append(MARKER_COMMENT);
 		sb.append("package ");
 		appendQualifiedName(cc.getPackage());
 		appendLineEnd();

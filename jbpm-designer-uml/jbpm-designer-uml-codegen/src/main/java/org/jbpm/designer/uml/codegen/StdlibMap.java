@@ -1,7 +1,13 @@
 package org.jbpm.designer.uml.codegen;
 
-import static org.jbpm.designer.uml.code.metamodel.CodeCollectionKind.*;
-import static org.jbpm.designer.uml.code.metamodel.CodePrimitiveTypeKind.*;
+import static org.jbpm.designer.uml.code.metamodel.CodeCollectionKind.BAG;
+import static org.jbpm.designer.uml.code.metamodel.CodeCollectionKind.ORDERED_SET;
+import static org.jbpm.designer.uml.code.metamodel.CodeCollectionKind.SEQUENCE;
+import static org.jbpm.designer.uml.code.metamodel.CodeCollectionKind.SET;
+import static org.jbpm.designer.uml.code.metamodel.CodePrimitiveTypeKind.BOOLEAN;
+import static org.jbpm.designer.uml.code.metamodel.CodePrimitiveTypeKind.INTEGER;
+import static org.jbpm.designer.uml.code.metamodel.CodePrimitiveTypeKind.REAL;
+import static org.jbpm.designer.uml.code.metamodel.CodePrimitiveTypeKind.STRING;
 
 import org.jbpm.designer.uml.code.metamodel.CodeTypeReference;
 import org.jbpm.designer.uml.code.metamodel.CollectionTypeReference;

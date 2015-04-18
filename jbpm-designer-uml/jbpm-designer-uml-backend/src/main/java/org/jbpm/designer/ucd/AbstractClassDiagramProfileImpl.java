@@ -1,8 +1,7 @@
 package org.jbpm.designer.ucd;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
+import java.util.Map;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -21,6 +21,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jboss.errai.bus.server.api.RpcContext;
+import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
 import org.jbpm.designer.extensions.api.JsonToEmfHelper;
@@ -61,16 +62,21 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     RepositoryDescriptor repositoryDescriptor;
     @Inject
     Instance<HttpServletRequest> request;
+
+    @Inject
+    @ProfileName("ucd")
+    Instance<SaveResourceListener> saveListener;
     @Inject
     @ProfileName("ucd")
     ClassDiagramFormBuilder classDiagramFormBuilder;
-    static{
+    static {
         UMLPackageImpl.init();
         UMLDIPackageImpl.init();
     }
 
     public AbstractClassDiagramProfileImpl() {
     }
+
     @Override
     public IEmfBasedFormBuilder getFormBuilder() {
         return classDiagramFormBuilder;
@@ -90,30 +96,49 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     public void prepareResourceSet(ResourceSet resourceSet) {
         super.prepareResourceSet(resourceSet);
+
         getCmmnTypes(resourceSet);
     }
 
-    public  static Package getCmmnTypes(ResourceSet resourceSet) {
-        String resourcePath = "/libraries/cmmntypes.uml";
+    @Override
+    public Map<String, Object> buildDefaultResourceOptions() {
+        Map<String, Object> options = super.buildDefaultResourceOptions();
+        if (!(saveListener.isAmbiguous() || saveListener.isUnsatisfied())) {
+            options.put(SaveResourceListener.OPTION_SAVE_RESOURCE_LISTENER, saveListener.get());
+        }
+        return options;
+    }
+
+    public static Package getCmmnTypes(ResourceSet resourceSet) {
         URI uri = URI.createURI(CMMNTYPES_PATHMAP);
         for (Resource resource : resourceSet.getResources()) {
-            if(resource.getURI().equals(uri)){
-                return (Package)resource.getContents().get(0);
+            if (resource.getURI().equals(uri)) {
+                return (Package) resource.getContents().get(0);
             }
         }
         for (EPackage ePackage : ddPackages(UMLPackage.eINSTANCE, UMLDIPackage.eINSTANCE)) {
             resourceSet.getPackageRegistry().put(ePackage.getNsURI(), ePackage);
         }
+        resourceSet.getPackageRegistry().put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
+        resourceSet.getPackageRegistry().put("http://www.eclipse.org/uml2/5.0.0/UML", UMLPackage.eINSTANCE);
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("uml", new UMLResourceFactoryImpl());
+        mapClassPathResource(resourceSet, uri, "/libraries/cmmntypes.uml");
+        return (Package) resourceSet.getResource(uri, true).getContents().get(0);
+    }
+
+    private static URL mapClassPathResource(ResourceSet resourceSet, URI uri, String resourcePath) {
         URL url = UMLDiagram.class.getResource(resourcePath);
-        resourceSet.getURIConverter().getURIMap().put(uri, URI.createURI(url.toExternalForm()));
-        Resource cmmnTypes = resourceSet.createResource(uri);
-        try {
-            cmmnTypes.load(url.openStream(), Collections.emptyMap());
-            return (Package)cmmnTypes.getContents().get(0);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        URI cmmnTypesUri = URI.createURI(url.toExternalForm().replace("jar:", "archive:"));
+        resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
+        String[] languages = { "java", "js" };
+        for (String l : languages) {
+            resourceSet.getURIConverter().getURIMap().put(mappingsUriForLanguage(uri, l), mappingsUriForLanguage(cmmnTypesUri, l));
         }
+        return url;
+    }
+
+    private static URI mappingsUriForLanguage(URI uri, String l) {
+        return uri.trimFileExtension().appendFileExtension("mappings").appendFileExtension(l);
     }
 
     @Override
@@ -128,24 +153,16 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     @Override
     public IDiagramMarshaller createMarshaller(URI uri) {
-        return new GenericJsonToEmfDiagramMarshaller(this,uri) {
-            // TODO!!! temp hack to generate classes
-            @Override
-            public XMLResource getResource(String jsonModel, String preProcessingData) throws Exception {
-                XMLResource r = super.getResource(jsonModel, preProcessingData);
-                return r;
-            }
-
-        };
+        return new GenericJsonToEmfDiagramMarshaller(this, uri);
     }
-    public void generateDataModel(XMLResource r) {
+
+    private void generateDataModel(XMLResource r) {
         if (dataModelerService != null) {
             String uuid = Utils.getEncodedParam(request.get(), "assetid");
             DataModelTO dm = new ClassDiagram2DataModel(dataModelerService.getAnnotationDefinitions()).toDataModel(r, uuid);
             // The price we pay for not using errai
             RpcContext.set(new FakeMessage());
-            Path newPath = PathFactory.newPath(dm.getParentProjectName(),
-                    repositoryDescriptor.getRepositoryRoot().toString() + dm.getParentProjectName());
+            Path newPath = PathFactory.newPath(dm.getParentProjectName(), repositoryDescriptor.getRepositoryRoot().toString() + dm.getParentProjectName());
             KieProject project = projectService.resolveProject(newPath);
             try {
                 dataModelerService.saveModel(dm, project, true, "Saving Data Objects");
@@ -202,7 +219,7 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     }
 
     @Override
-    public String getFormId(XMLResource resource , String classId, String formType) {
+    public String getFormId(XMLResource resource, String classId, String formType) {
         return ((Class) resource.getEObject(classId)).getName();
     }
 }
