@@ -32,8 +32,6 @@ ORYX.Plugins.VDAN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		console.log("Initializing VDAN");
 		this.facade.registerOnEvent('layout.vdml.role_lane', this.layoutRoleLanesOnLoad.bind(this));
 		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.layoutRoleLanesOnLoad.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOUT, this.handleMouseOut.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOVER, this.handleMouseOver.bind(this));
         this.decoratorUpdaters["DeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
         this.decoratorUpdaters["Store"]=this.updateStoreDecorations.bind(this);
         this.decoratorUpdaters["Pool"]=this.updateStoreDecorations.bind(this);
@@ -78,25 +76,6 @@ ORYX.Plugins.VDAN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		}catch(e){alert(e);}
 	},
 	handleLayoutRoleLanes : function(event) {
-	},
-	handleMouse : function (uiObject, display){
-		if(uiObject.getStencil && uiObject.getStencil().idWithoutNs()=="ActivityOutputPort"){
-			uiObject._svgShapes.each(function(shape){
-				if(shape.element.id.indexOf("expand")>0){
-					if(shape.element.id.indexOf("expand_vertical") > 0 && ORYX.Plugins.Extensions.isExpanded(uiObject)){
-						shape.element.setAttributeNS(null, "display","none");
-					}else{
-						shape.element.setAttributeNS(null, "display",display);
-					}
-				}
-			});
-		}
-	},
-	handleMouseOver : function (event,uiObject){
-		this.handleMouse(uiObject,"inherit");
-	},
-	handleMouseOut : function (event,uiObject){
-		this.handleMouse(uiObject,"none");
 	},
 	handleLayout: function (event,uiObject){
 	}

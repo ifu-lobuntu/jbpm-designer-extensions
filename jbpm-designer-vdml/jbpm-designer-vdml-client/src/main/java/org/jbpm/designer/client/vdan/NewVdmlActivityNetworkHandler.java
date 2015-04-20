@@ -17,7 +17,7 @@ public class NewVdmlActivityNetworkHandler extends DefaultNewCollaborationDiagra
     @Override
     public String getDescription() {
 //        return DesignerEditorConstants.INSTANCE.businessProcess();
-        return "Value Activity Network";
+        return "VDML Activity Network Diagram";
     }
 
     @Override

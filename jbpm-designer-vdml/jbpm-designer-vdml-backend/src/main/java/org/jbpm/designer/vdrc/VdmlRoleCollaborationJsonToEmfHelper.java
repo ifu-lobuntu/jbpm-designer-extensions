@@ -137,7 +137,7 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
                     bid.setName(object.getName());
                     vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(bid);
                     org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
-                    cls.setName(object.getName());
+                    cls.setName(bid.getName());
                     pkg.getOwnedTypes().add(cls);
                     cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(bid);
                     UMLShape shape = UMLDIFactory.eINSTANCE.createUMLShape();

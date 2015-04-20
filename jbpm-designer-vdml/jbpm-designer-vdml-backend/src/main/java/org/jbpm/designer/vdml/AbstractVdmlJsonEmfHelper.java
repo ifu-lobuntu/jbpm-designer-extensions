@@ -30,7 +30,6 @@ public abstract class AbstractVdmlJsonEmfHelper extends VDMLSwitch<Object> {
     protected static final VDMLPackage PACKAGE = VDMLPackage.eINSTANCE;
     protected static final Map<EClass, EAttribute> COLLABORATION_FEATURE_MAP = new HashMap<EClass, EAttribute>();
     protected ShapeMap shapeMap;
-    protected static Map<String, EClass> COLLABORATION_TYPE_MAP = new HashMap<String, EClass>();
     protected Collaboration owningCollaboration;
     private VDMLDiagram diagram;
     private Set<EClass> managedClassSet;

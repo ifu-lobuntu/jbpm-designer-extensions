@@ -2,7 +2,7 @@ package org.jbpm.designer.vdml;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -10,7 +10,6 @@ import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
-import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.vdrc.VdmlStencilInfo;
@@ -25,14 +24,12 @@ import org.omg.vdml.Assignment;
 import org.omg.vdml.Attribute;
 import org.omg.vdml.BusinessItem;
 import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.Participant;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
 
 public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHelper implements JsonToEmfHelper {
@@ -45,13 +42,6 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     }
     protected Shape sourceShape;
     protected LinkedStencil currentStencil;
-    static {
-        COLLABORATION_TYPE_MAP.put("CapabilityMethod", VDMLPackage.eINSTANCE.getCapabilityMethod());
-        COLLABORATION_TYPE_MAP.put("OrgUnit", VDMLPackage.eINSTANCE.getOrgUnit());
-        COLLABORATION_TYPE_MAP.put("BusinessNetwork", VDMLPackage.eINSTANCE.getBusinessNetwork());
-        COLLABORATION_TYPE_MAP.put("Community", VDMLPackage.eINSTANCE.getCommunity());
-    }
-
     public AbstractVdmlJsonToEmfHelper(ShapeMap shapeMap, Class<? extends VdmlStencilInfo> stencil) {
         super(shapeMap, stencil);
     }
@@ -65,28 +55,31 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         }
         return vm;
     }
+
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
         object.setDeliverable(buildBusinessItem("deliverableDefinition"));
-        if(object.getDeliverable()!=null){
+        if (object.getDeliverable() != null) {
             object.setName(object.getDeliverable().getName());
         }
         return super.caseDeliverableFlow(object);
     }
+
     @Override
     public Object caseRole(Role object) {
         addAssignments(object);
         return super.caseRole(object);
     }
+
     protected void putAttribute(VdmlElement object, String name) {
-        if(sourceShape.getProperty(name)!=null){
-            Attribute attr =null;
+        if (sourceShape.getProperty(name) != null) {
+            Attribute attr = null;
             for (Attribute attribute2 : object.getAttribute()) {
-                if(attribute2.getTag().equals(name)){
-                    attr=attribute2;
+                if (attribute2.getTag().equals(name)) {
+                    attr = attribute2;
                 }
             }
-            if(attr==null){
+            if (attr == null) {
                 attr = VDMLFactory.eINSTANCE.createAttribute();
                 attr.setName(name);
                 attr.setTag(name);
@@ -97,8 +90,9 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     }
 
     private void addAssignments(Role object) {
-        Collection<Participant>assignedParticipants = (Collection<Participant>) sourceShape.getUnboundProperty("assignedParticipants");
-        if(assignedParticipants!=null){
+        @SuppressWarnings("unchecked")
+        Collection<Participant> assignedParticipants = (Collection<Participant>) sourceShape.getUnboundProperty("assignedParticipants");
+        if (assignedParticipants != null) {
             for (Participant participant : assignedParticipants) {
                 Assignment as = VDMLFactory.eINSTANCE.createAssignment();
                 object.getRoleAssignment().add(as);
@@ -107,8 +101,6 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
             }
         }
     }
-
-
 
     protected BusinessItem buildBusinessItem(String name) {
         BusinessItem result = null;
@@ -169,33 +161,16 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     }
 
     public VDMLDiagram prepareEmfDiagram(Diagram json, XMLResource result) {
-        ValueDeliveryModel vdm = null;
         if (result.getContents().isEmpty()) {
-            vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-            result.getContents().add(vdm);
+            VDMLDiagram dgm = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
+            result.getContents().add(dgm);
+            this.setDiagram(dgm);
         } else {
-            vdm = (ValueDeliveryModel) result.getContents().get(0);
-        }
-        if (vdm.getDiagram().isEmpty()) {
-            this.setDiagram(VDMLDIFactory.eINSTANCE.createVDMLDiagram());
-            vdm.getDiagram().add(this.getDiagram());
-        } else {
-            this.setDiagram(vdm.getDiagram().get(0));
+            this.setDiagram((VDMLDiagram) result.getContents().get(0));
         }
         this.getDiagram().setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-        if (vdm.getCollaboration().isEmpty()) {
-            String ref = json.getProperty("collaboration");
-            if (ref != null && ref.contains("|")) {
-                this.owningCollaboration = UriHelper.resolveEObject(shapeMap.getResource().getResourceSet(), ref.split("\\|"), COLLABORATION_FEATURE_MAP);
-            } else {
-                EClass eClass = COLLABORATION_TYPE_MAP.get(json.getProperty("collaborationtype"));
-                this.owningCollaboration = (Collaboration) VDMLFactory.eINSTANCE.create(eClass);
-                vdm.getCollaboration().add(owningCollaboration);
-            }
-        } else {
-            this.owningCollaboration = vdm.getCollaboration().get(0);
-        }
-        this.owningCollaboration.setId(json.getResourceId());
+        URI collaborationUri = result.getURI().trimFileExtension().appendFileExtension("vdcol");
+        this.owningCollaboration =VdmlHelper.getCollaboration((XMLResource) result.getResourceSet().getResource(collaborationUri, true)); 
         this.getDiagram().setVdmlElement(this.owningCollaboration);
         // We assume that Oryx always owns the diagram
         this.getDiagram().getOwnedVdmlDiagramElement().clear();

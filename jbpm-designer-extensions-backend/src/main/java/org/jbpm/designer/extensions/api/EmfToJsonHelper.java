@@ -13,7 +13,7 @@ public interface EmfToJsonHelper {
 
     void refineJsonShape(LinkedStencil validator, Shape targetShape, EObject me);
 
-    Diagram getDiagram(int i);
+    Diagram getDiagram();
 
     StencilInfo findStencilByElement(EObject me, DiagramElement de);
 

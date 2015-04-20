@@ -63,7 +63,7 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     }
 
     @Override
-    public Diagram getDiagram(int i) {
+    public Diagram getDiagram() {
         return ImportHelper.getDefinitions(shapeMap.getResource()).getDiagram().get(0);
     }
 

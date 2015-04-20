@@ -111,7 +111,7 @@
                     "type" : "Integer",
                     "title" : "Previous Height",
                     "viewBinding" : "previousHeight",
-                    "value" : 40,
+                    "value" : 20,
                     "readonly" : false,
                     "hidden" : true
                 }

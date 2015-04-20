@@ -61,5 +61,53 @@
     height: 16px;
     background-repeat: no-repeat;
   background-image: url('../../images/sprites/ucd-images-sprite.png');
-  background-position: left -96px;
+  background-position: left -112px;
+}
+.stencilsets_ucd_ucd_json_icons_enumeration_literal,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_enumeration_literal{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/ucd-images-sprite.png');
+  background-position: left -128px;
+}
+.stencilsets_ucd_ucd_json_icons_property,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_property{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/ucd-images-sprite.png');
+  background-position: left -144px;
+}
+.stencilsets_ucd_ucd_json_icons_operation,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_operation{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/ucd-images-sprite.png');
+  background-position: left -160px;
+}
+.stencilsets_ucd_ucd_json_icons_owned_literal,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_owned_literal{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/ucd-images-sprite.png');
+  background-position: left -176px;
+}
+.stencilsets_ucd_ucd_json_icons_owned_attribute,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_owned_attribute{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/ucd-images-sprite.png');
+  background-position: left -192px;
+}
+.stencilsets_ucd_ucd_json_icons_owned_operation,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_owned_operation{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+  background-image: url('../../images/sprites/ucd-images-sprite.png');
+  background-position: left -208px;
 }

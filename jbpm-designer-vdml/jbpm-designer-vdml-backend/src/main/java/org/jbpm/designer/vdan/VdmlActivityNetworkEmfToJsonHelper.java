@@ -1,11 +1,14 @@
 package org.jbpm.designer.vdan;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.api.StencilInfo;
+import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
 import org.jbpm.designer.vdml.BoundaryShapePosition;
@@ -15,6 +18,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.DCFactory;
+import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
@@ -66,13 +70,13 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
         return super.caseValueAdd(object);
     }
 
-
     @Override
     public Object caseResourceUse(ResourceUse object) {
         putMeasuredCharacteristic("quantityMeasure", object.getQuantity());
         putMeasuredCharacteristic("planningPercentageMeasure", object.getPlanningPercentage());
         return super.caseResourceUse(object);
     }
+
     @Override
     public Object casePort(Port object) {
         putMeasuredCharacteristic("batchSizeMeasure", object.getBatchSize());
@@ -80,14 +84,25 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
         putMeasuredCharacteristic("offsetMeasure", object.getOffset());
         return super.casePort(object);
     }
+
     @Override
     public Object caseInputPort(InputPort object) {
+        ensurePortShapePresent((VdmlElement) object.eContainer());
         return super.caseInputPort(object);
     }
 
     @Override
     public Object caseOutputPort(OutputPort object) {
+        ensurePortShapePresent((VdmlElement) object.eContainer());
         return super.caseOutputPort(object);
+    }
+
+    protected void ensurePortShapePresent(VdmlElement eContainer) {
+        if (eContainer instanceof Activity || eContainer instanceof Store) {
+            Shape containerShape = shapeMap.getShape(eContainer);
+            VDMLShape parentVdmlShape = (VDMLShape) shapeMap.getDiagramElement(containerShape);
+            BoundaryShapePosition.ensureBoundaryShape(containerShape, targetShape, parentVdmlShape);
+        }
     }
 
     @Override
@@ -96,7 +111,6 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
         putBusinessItem(object.getDeliverable(), "deliverableDefinition");
         return super.caseDeliverableFlow(object);
     }
-
 
     @Override
     public Object caseInputDelegation(InputDelegation object) {

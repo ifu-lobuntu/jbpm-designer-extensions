@@ -1,6 +1,8 @@
 package org.jbpm.designer.vdcm;
 import static org.junit.Assert.assertNotNull;
 
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.Package;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.junit.Test;
@@ -10,8 +12,6 @@ import org.omg.vdml.Pool;
 import org.omg.vdml.Position;
 import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.uml2.uml.Package;
 public class CapabilityManagementDiagramMarshallingTest extends AbstractVdcmDiagramMarshallingTest {
     @Test
     public void testCapabilityOfferAndMethod() throws Exception {

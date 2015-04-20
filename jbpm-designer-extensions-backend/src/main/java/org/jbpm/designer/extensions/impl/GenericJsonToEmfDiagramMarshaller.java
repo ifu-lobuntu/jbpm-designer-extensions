@@ -96,9 +96,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                     listValue.add(helper.create((EClass) sf.getEType()));
                 }
             }
-            if(listValue.size()<=idx){
+            if (listValue.size() <= idx) {
                 return null;
-            }else{
+            } else {
                 return listValue.get(idx);
             }
         } else {
@@ -125,7 +125,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         removeFromContainer(collectOrphanedShapes(emfDiagram));
         result.setModified(true);
         this.helper.postprocessResource();
-        //TODO maybe clean up the orphanedEdges again?
+        // TODO maybe clean up the orphanedEdges again?
         result.getDefaultLoadOptions().putAll(profile.buildDefaultResourceOptions());
         result.getDefaultSaveOptions().putAll(profile.buildDefaultResourceOptions());
         return result;
@@ -354,11 +354,11 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                     writeBinding(de, property, property.getViewBinding(), stringValue);
                 } else if (me != null) {
                     EStructuralFeature eStructuralFeature = me.eClass().getEStructuralFeature(property.getId());
-                    if (eStructuralFeature == null){
-                        if(property.getReference()!=null || property.getExpectedType()!=null){
-                            sourceShape.putUnboundProperty(property.getId(),convert(property, stringValue, property.getExpectedType()));
+                    if (eStructuralFeature == null) {
+                        if (property.getReference() != null || property.getExpectedType() != null) {
+                            sourceShape.putUnboundProperty(property.getId(), convert(property, stringValue, property.getExpectedType()));
                         }
-                    }else if(!(eStructuralFeature instanceof EAttribute && ((EAttribute) eStructuralFeature).isID())) {
+                    } else if (!(eStructuralFeature instanceof EAttribute && ((EAttribute) eStructuralFeature).isID())) {
                         setFeatureValue(me, property, eStructuralFeature, stringValue);
                     }
                 }
@@ -420,7 +420,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             } else if (currentValue instanceof List) {
                 List listValue = (List) currentValue;
                 String index = split[i];
-                currentTarget = fillList(sf, listValue, index,hasValue);
+                currentTarget = fillList(sf, listValue, index, hasValue);
             } else {
                 currentTarget = (EObject) currentValue;
             }
@@ -432,7 +432,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     }
 
     private void setValueOn(Object currentTarget, EStructuralFeature sf, Object currentValue) {
-        if(sf.getEType().getInstanceClass().isPrimitive() && currentValue==null){
+        if (sf.getEType().getInstanceClass().isPrimitive() && currentValue == null) {
             return;
         }
         if (currentTarget instanceof EObject) {
@@ -452,11 +452,17 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             if (hasValue(stringValue)) {
                 String[] split = stringValue.split("\\,");
                 for (String string : split) {
-                    Collection convert = (Collection) convert(property, string, type);
-                    try {
-                        list.addAll(convert);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    Object convertedValue = convert(property, string, type);
+                    if (convertedValue instanceof Collection) {
+                        //not likely for bound property, but possible
+                        Collection convert = (Collection) convertedValue;
+                        try {
+                            list.addAll(convert);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        list.add(convertedValue);
                     }
                 }
             }
@@ -486,16 +492,16 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             return null;
         }
         if (property.getReference() != null && string.indexOf("|") > 0) {
-            if(property.getReference().isMultiSelect()){
+            if (property.getReference().isMultiSelect()) {
                 EList list = new BasicEList();
                 for (String ref : string.split("\\,")) {
                     EObject resolved = (EObject) resolveEObject(property, ref, targetType);
-                    if(!(resolved.eIsProxy() || resolved.eResource()==null)){
+                    if (!(resolved.eIsProxy() || resolved.eResource() == null)) {
                         list.add(resolved);
                     }
                 }
                 return list;
-            }else{
+            } else {
                 return resolveEObject(property, string, targetType);
             }
         } else if (targetType == String.class) {
@@ -533,7 +539,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
 
     private Object resolveEObject(LinkedProperty property, String string, Class<?> targetType) {
         EObject ref = UriHelper.resolveEObject(shapeMap.getResource().getResourceSet(), string.split("\\|"), property.getClassFeatureMap());
-        if (targetType!=null && javax.xml.namespace.QName.class.isAssignableFrom(targetType)) {
+        if (targetType != null && javax.xml.namespace.QName.class.isAssignableFrom(targetType)) {
             return new QName(ref.eResource().getURI().toString(), ref.eResource().getURIFragment(ref), "");
         }
         return ref;

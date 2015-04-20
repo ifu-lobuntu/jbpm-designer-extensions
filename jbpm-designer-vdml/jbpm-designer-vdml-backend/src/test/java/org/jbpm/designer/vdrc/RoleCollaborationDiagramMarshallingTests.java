@@ -2,9 +2,6 @@ package org.jbpm.designer.vdrc;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Diagram;
@@ -16,8 +13,6 @@ import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramMarshallingTest;
 import org.jbpm.designer.vdml.VdmlHelper;
-import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.junit.Before;
 import org.junit.Test;
 import org.omg.vdml.Activity;
@@ -26,11 +21,8 @@ import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueDeliveryModel;
 
 public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagramMarshallingTest {
-    protected XMLResource diagramResource;
-    protected String diagramFile = "/jbpm-designer-vdml-backend/target/test.vdrc";
 
     @Before
     public void deleteModel() throws Exception {
@@ -120,10 +112,11 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         assertEquals("MyRoleActivity", toActivity.getName());
         assertDiagramElementPresent(df, outputResource);
     }
+
     @Test
     public void testAssignment() throws Exception {
         Role role1 = addRole("MyRole", true);
-        //HACK should be created in other collaboration
+        // HACK should be created in other collaboration
         Role role2 = addRole("AssignedRole", true);
         Assignment a = VDMLFactory.eINSTANCE.createAssignment();
         role1.getRoleAssignment().add(a);
@@ -134,7 +127,6 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         XMLResource outputDiagram = assertConversionValid(diagramResource);
         new GenericEcoreComparator(VdmlHelper.getCollaboration(diagramResource), VdmlHelper.getCollaboration(outputDiagram));
     }
-    
 
     @Test
     public void testFlowDeletion() throws Exception {
@@ -168,33 +160,15 @@ public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagra
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(role2.getId()));
         json.deleteShape(json.findChildShapeById(df.getId()));
+        saveCollaborationResource();
         XMLResource outputResource = marshaller.convert(json);
         assertNull(outputResource.getEObject(role2.getId()));
         assertNull(outputResource.getEObject(act2.getId()));
         assertNull(outputResource.getEObject(df.getId()));
     }
 
-    protected void saveDiagramResource() throws IOException {
-        TestUriHandler tuh = new TestUriHandler();
-        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(diagramFile, true), emptyOptions);
-        diagramResource.save(os, emptyOptions);
-    }
     protected AbstractEmfDiagramProfile createProfile() {
         return new VdmlRoleCollaborationProfileImpl();
-    }
-
-    @Override
-    protected String getDiagramFileName() {
-        return this.diagramFile;
-    }
-    protected VDMLDiagram createDiagram() {
-        diagramResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(diagramFile, true));
-        VDMLDiagram inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        ValueDeliveryModel valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        diagramResource.getContents().add(valueDeliveryModel);
-        valueDeliveryModel.getDiagram().add(inputDiagram);
-        inputDiagram.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-        return inputDiagram;
     }
 
 }

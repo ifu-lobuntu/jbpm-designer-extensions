@@ -39,7 +39,7 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     protected Shape sourceShape;
     protected LinkedStencil currentStencil;
     protected ShapeMap shapeMap;
-    private Package thisPackage;
+    protected Package thisPackage;
 
     public ClassDiagramJsonToEmfHelper(ShapeMap shapeMap) {
         this.shapeMap = shapeMap;

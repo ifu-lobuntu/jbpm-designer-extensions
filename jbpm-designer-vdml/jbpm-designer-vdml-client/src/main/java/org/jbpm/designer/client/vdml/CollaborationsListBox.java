@@ -12,18 +12,80 @@ import org.guvnor.common.services.project.context.ProjectContext;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jbpm.designer.vdml.VdmlCollaborationAssetService;
+import org.kie.workbench.common.widgets.client.handlers.NewResourceView;
 import org.kie.workbench.common.widgets.client.resources.i18n.CommonConstants;
 import org.uberfire.backend.vfs.Path;
 
 import com.github.gwtbootstrap.client.ui.ListBox;
+import com.github.gwtbootstrap.client.ui.TextBox;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.logical.shared.AttachEvent;
+import com.google.gwt.event.logical.shared.AttachEvent.Handler;
+import com.google.gwt.user.client.ui.ComplexPanel;
+import com.google.gwt.user.client.ui.Widget;
 
 public class CollaborationsListBox extends ListBox {
+    public class NameSyncChangeHandler implements ChangeHandler, KeyPressHandler, Handler {
+        TextBox nameField;
+        private String extension;
+
+        @Override
+        public void onChange(ChangeEvent event) {
+            updateNameField();
+        }
+
+        private void updateNameField() {
+            if (nameField == null) {
+                nameField = findNameField();
+            }
+            if (nameField != null) {
+                nameField.setEnabled(false);
+                Path selectedCollaboration = getSelectedCollaboration();
+                if (selectedCollaboration == null) {
+                    nameField.setText("");
+                } else {
+                    nameField.setText(selectedCollaboration.getFileName().replace(".vdcol", "." + extension));
+                }
+            }
+        }
+
+        public void setExtension(String extension) {
+            this.extension = extension;
+        }
+
+        @Override
+        public void onKeyPress(KeyPressEvent event) {
+            int c=event.getUnicodeCharCode();
+//            updateNameField();
+        }
+
+        @Override
+        public void onAttachOrDetach(AttachEvent event) {
+            if (event.isAttached()) {
+                updateNameField();
+            }else if(nameField!=null){
+                nameField.setEnabled(true);
+            }
+        }
+    }
+
     @Inject
     protected Caller<VdmlCollaborationAssetService> projectService;
 
     private final List<Path> collaborationFiles = new ArrayList<Path>();
+    private NameSyncChangeHandler nameSync;
 
-    public void setContext(final ProjectContext context, final boolean includeDefaultPackage) {
+    public void setContext(final ProjectContext context, final String extension) {
+        if (nameSync == null) {
+            nameSync = new NameSyncChangeHandler();
+            addChangeHandler(nameSync);
+            addKeyPressHandler(nameSync);
+            addAttachHandler(nameSync);
+            nameSync.setExtension( extension);
+        }
         clear();
         collaborationFiles.clear();
         setEnabled(true);
@@ -48,12 +110,6 @@ public class CollaborationsListBox extends ListBox {
                     }
                 });
 
-                // Remove default package, if not required (after sorting it is
-                // guaranteed to be at index 0)
-                if (!includeDefaultPackage) {
-                    sortedPackages.remove(0);
-                }
-
                 // Disable and set default content if no Packages available
                 if (sortedPackages.size() == 0) {
                     addItem(CommonConstants.INSTANCE.ItemUndefinedPath());
@@ -62,21 +118,41 @@ public class CollaborationsListBox extends ListBox {
                 }
 
                 // Add to ListBox
-                int selectedIndex = -1;
                 for (Path pkg : sortedPackages) {
                     addItem(pkg.getFileName());
                     collaborationFiles.add(pkg);
-                    if (false) {
-                        selectedIndex = collaborationFiles.indexOf(pkg);
-                    }
                 }
-                if (selectedIndex != -1) {
-                    setSelectedIndex(selectedIndex);
-                } else {
-                    setSelectedIndex(0);
-                }
+                setSelectedIndex(-1);
             }
         }).resolveCollaborations(path);
+    }
+
+    private TextBox findNameField() {
+        Widget parent = getParent();
+        while (!(parent instanceof NewResourceView || parent == null)) {
+            parent = parent.getParent();
+        }
+        if (parent instanceof NewResourceView) {
+            return findNameField((ComplexPanel) parent);
+        }
+        return null;
+    }
+
+    private TextBox findNameField(ComplexPanel nrv) {
+        for (int i = 0; i < nrv.getWidgetCount(); i++) {
+            Widget widget = nrv.getWidget(i);
+            if (widget instanceof com.github.gwtbootstrap.client.ui.TextBox) {
+                // There is only one field
+                return (TextBox) widget;
+            } else if (widget instanceof ComplexPanel) {
+                TextBox f = findNameField((ComplexPanel) widget);
+                if (f != null) {
+                    return f;
+                }
+            }
+        }
+        ;
+        return null;
     }
 
     public Path getSelectedCollaboration() {

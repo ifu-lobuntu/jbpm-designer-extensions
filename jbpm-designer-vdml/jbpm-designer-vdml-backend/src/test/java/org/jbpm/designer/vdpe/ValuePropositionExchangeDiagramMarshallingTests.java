@@ -4,11 +4,11 @@ import static org.junit.Assert.*;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.vdml.VdmlHelper;
 import org.junit.Test;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.ValueProposition;
 import org.omg.vdml.ValuePropositionComponent;
 
@@ -58,12 +58,11 @@ public class ValuePropositionExchangeDiagramMarshallingTests extends AbstractVdp
         Activity act1 = addActivity(role1, false);
         Activity act2 = addActivity(role2, false);
         saveCollaborationResource();
-        collaborationResource.save(System.out, profile.buildDefaultResourceOptions());
+        saveDiagramResource();//To generate ids
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(role2.getId()));
         XMLResource outputResource = marshaller.convert(json);
-        ValueDeliveryModel vdm = (ValueDeliveryModel) outputResource.getContents().get(0);
-        XMLResource vdrc = (XMLResource) vdm.getDiagram().get(0).getVdmlElement().eResource();
+        XMLResource vdrc = (XMLResource) VdmlHelper.getCollaboration(outputResource).eResource();
         print(vdrc);
         assertNotNull(vdrc.getEObject(role1.getId()));
         assertNotNull(vdrc.getEObject(role3.getId()));
@@ -86,12 +85,11 @@ public class ValuePropositionExchangeDiagramMarshallingTests extends AbstractVdp
         ValueProposition valueProposition3 = addValueProposition(role3, role1);
         Activity act1 = addActivity(role1, false);
         saveCollaborationResource();
-        collaborationResource.save(System.out, profile.buildDefaultResourceOptions());
+        saveDiagramResource();//to generate ids
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(valueProposition2.getId()));
         XMLResource outputResource = marshaller.convert(json);
-        ValueDeliveryModel vdm = (ValueDeliveryModel) outputResource.getContents().get(0);
-        XMLResource vdrc = (XMLResource) vdm.getDiagram().get(0).getVdmlElement().eResource();
+        XMLResource vdrc = (XMLResource) VdmlHelper.getCollaboration(outputResource).eResource();
         print(vdrc);
         assertNotNull(vdrc.getEObject(role1.getId()));
         assertNotNull(vdrc.getEObject(role3.getId()));

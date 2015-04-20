@@ -101,7 +101,7 @@ public enum ClassDiagramStencil implements StencilInfo {
         return stencil;
     }
 
-    public static ClassDiagramStencil findStencilByElement(EObject me, DiagramElement de) {
+    public static ClassDiagramStencil findStencilByElement(EObject me, DiagramElement de, boolean isImported) {
         ClassDiagramStencil[] possibilities = values();
         if (me instanceof Association) {
             EList<Property> memberEnds = ((Association) me).getMemberEnds();
@@ -119,7 +119,7 @@ public enum ClassDiagramStencil implements StencilInfo {
             return findStencilById(new String(charArray));
         } else if (me == null) {
             return IMPORTED_CLASS;
-        } else if (de.eResource() != me.eResource()) {
+        } else if (isImported) {
             possibilities = new ClassDiagramStencil[] { IMPORTED_CLASS, IMPORTED_ENUMERATION, IMPORTED_INTERFACE };
         }
         for (ClassDiagramStencil umlStencil : possibilities) {

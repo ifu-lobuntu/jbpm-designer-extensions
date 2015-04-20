@@ -95,7 +95,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             e.printStackTrace();
         }
         helper.preprocessResource();
-        org.omg.dd.di.Diagram emfDiagram = helper.getDiagram(0);
+        org.omg.dd.di.Diagram emfDiagram = helper.getDiagram();
         EObject modelElement = getModelElement(emfDiagram);
         Diagram result = new Diagram(shapeMap.getId(modelElement), new StencilType(profile.getDiagramStencilId()), new StencilSet(profile.getStencilSetURL(),
                 profile.getStencilSetNamespaceURL()));
@@ -212,7 +212,11 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     private void setProperties(DiagramElement diagramElement, EObject mee, Shape shape) {
+        System.out.println();
         StencilInfo stencil = helper.findStencilByElement(mee, diagramElement);
+        if(stencil==null){
+            throw new IllegalArgumentException("No StencilInfo found for '" + mee + "'");
+        }
         LinkedStencil sv = profile.getLinkedStencilSet().getLinkedStencil(stencil.getStencilId());
         if (sv == null) {
             throw new IllegalArgumentException("No stencil found in the stencilSet definition for '" + stencil.getStencilId() + "'");

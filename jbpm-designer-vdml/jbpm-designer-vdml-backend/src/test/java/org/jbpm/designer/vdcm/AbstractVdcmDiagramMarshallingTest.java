@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramMarshallingTest;
-import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.junit.Before;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
@@ -21,8 +19,6 @@ import org.omg.vdml.ValueDeliveryModel;
 
 public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarshallingTest {
 
-    protected XMLResource diagramResource;
-    protected String diagramFile = "/jbpm-designer-vdml-backend/target/test.vdcm";
     protected XMLResource capabilityMethodResource;
     protected CapabilityMethod capabilityMethod;
     protected String capbilityMethodFile = "/jbpm-designer-vdml-backend/target/cpm.vdcol";
@@ -31,10 +27,6 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         super();
     }
 
-    @Override
-    protected String getDiagramFileName() {
-        return diagramFile;
-    }
 
     @Before
     public void setup() throws Exception {
@@ -80,21 +72,6 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(capbilityMethodFile, true), emptyOptions);
         capabilityMethodResource.save(os, emptyOptions);
     }
-    protected void saveDiagramResource() throws IOException {
-        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(getDiagramFileName(), true), emptyOptions);
-        diagramResource.save(os, emptyOptions);
-    }
-
-    protected VDMLDiagram createDiagram() {
-        diagramResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(diagramFile, true));
-        VDMLDiagram inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
-        ValueDeliveryModel valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
-        diagramResource.getContents().add(valueDeliveryModel);
-        valueDeliveryModel.getDiagram().add(inputDiagram);
-        inputDiagram.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-        return inputDiagram;
-    }
-
 
     protected XMLResource assertOutputValid() throws IOException, Exception {
         return assertConversionValid(diagramResource);
@@ -102,9 +79,7 @@ public class AbstractVdcmDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
 
     protected XMLResource assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
         String xmlString = buildXmlString(drscasdf);
-        System.out.println(xmlString);
         String json = unmarshaller.parseModel(xmlString, profile, "");
-        System.out.println(json);
         XMLResource outputResource = marshaller.getResource(json, "");
         print(outputResource);
         new GenericEcoreComparator(drscasdf.getContents().get(0), outputResource.getContents().get(0)).validate();

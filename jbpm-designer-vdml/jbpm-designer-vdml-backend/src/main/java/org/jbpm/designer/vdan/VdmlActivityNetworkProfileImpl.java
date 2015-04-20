@@ -12,7 +12,6 @@ import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlActivityNetworkTypeDefinition;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramProfile;
 import org.jbpm.designer.vdml.CollaborationType;
-import org.jbpm.designer.vdml.IVdmlCollaborationDiagramProfile;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
 /**
@@ -20,7 +19,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlActivityNetworkProfileImpl extends AbstractVdmlDiagramProfile implements IVdmlCollaborationDiagramProfile{
+public class VdmlActivityNetworkProfileImpl extends AbstractVdmlDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdan/vdan.json";
     @Inject

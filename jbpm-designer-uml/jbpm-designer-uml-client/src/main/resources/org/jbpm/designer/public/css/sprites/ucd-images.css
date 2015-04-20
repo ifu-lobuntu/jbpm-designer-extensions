@@ -56,3 +56,45 @@
     background-repeat: no-repeat;
     background-image: url(../../stencilsets/ucd/icons/enumeration.png);  /** sprite-ref: ucd-images-sprite; */
 }
+.stencilsets_ucd_ucd_json_icons_enumeration_literal,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_enumeration_literal{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/enumeration_literal.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_property,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_property{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/property.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_operation,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_operation{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/operation.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_owned_literal,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_owned_literal{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/owned_literal.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_owned_attribute,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_owned_attribute{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/owned_attribute.png);  /** sprite-ref: ucd-images-sprite; */
+}
+.stencilsets_ucd_ucd_json_icons_owned_operation,
+.x-tree-node-leaf .stencilsets_ucd_ucd_json_icons_owned_operation{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/ucd/icons/owned_operation.png);  /** sprite-ref: ucd-images-sprite; */
+}

@@ -189,6 +189,83 @@
                         "hidden" : true
                     }
 			    ]
+			},
+			{
+			    "name":"outputPort",
+			    "properties":[
+                    {
+                        "id" : "name",
+                        "type" : "String",
+                        "title" : "Name",
+                        "value" : "",
+                        "description" : "The descriptive name of the VDML element.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "directlyEditable":false,
+                        "refToView" : [
+                            "text_name"
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the VDML Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "isExpanded",
+                        "type" : "Boolean",
+                        "title" : "Is Expanded",
+                        "viewBinding" : "isExpanded",
+                        "value" : false,
+                        "description" : "Is Expanded",
+                        "readonly" : false,
+                        "optional" : false,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "previousWidth",
+                        "type" : "Integer",
+                        "title" : "Previous Width",
+                        "viewBinding" : "previousWidth",
+                        "value" : 200,
+                        "description" : "Previous Width ",
+                        "readonly" : false,
+                        "optional" : false,
+                        "hidden" : true
+                    },
+                    {
+                        "id" : "previousHeight",
+                        "type" : "Integer",
+                        "title" : "Previous Height",
+                        "viewBinding" : "previousHeight",
+                        "value" : 100,
+                        "description" : "Previous Height",
+                        "readonly" : false,
+                        "optional" : false,
+                        "hidden" : true
+                    }
+			    ]
 			}
 	],
 	"stencils" : [
@@ -315,9 +392,20 @@
 				"view" : "collaboration_output_port.svg",
 				"icon" : "collaboration_output_port.png",
 				"layout" : [
+                    {
+                        "type" : "layout.collapsible"
+                    },    
+                    {
+                        "type" : "layout.list",
+                        "options" : {
+                            "offsetY" :0,
+                            "bottomPadding" : 16,
+                            "minimumHeight" : 30
+                        }
+                    }
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"localStyle","outputPort"
 				],
 				"properties" : [
 				                
@@ -404,46 +492,18 @@
 			        	"type" : "layout.collapsible"
 			        },    
 					{
-						"type" : "layout.list"
+						"type" : "layout.list",
+						"options" : {
+                            "offsetY" :0,
+						    "bottomPadding" : 16,
+						    "minimumHeight" : 30
+						}
 					}
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle","port"
+						"localStyle","port","outputPort"
 				],
 				"properties" : [
-						{
-							"id" : "isExpanded",
-							"type" : "Boolean",
-							"title" : "Is Expanded",
-							"viewBinding" : "isExpanded",
-							"value" : false,
-							"description" : "Is Expanded",
-							"readonly" : false,
-							"optional" : false,
-							"hidden" : true
-						},
-						{
-							"id" : "previousWidth",
-							"type" : "Integer",
-							"title" : "Previous Width",
-							"viewBinding" : "previousWidth",
-							"value" : 200,
-							"description" : "Previous Width ",
-							"readonly" : false,
-							"optional" : false,
-							"hidden" : true
-						},
-						{
-							"id" : "previousHeight",
-							"type" : "Integer",
-							"title" : "Previous Height",
-							"viewBinding" : "previousHeight",
-							"value" : 100,
-							"description" : "Previous Height",
-							"readonly" : false,
-							"optional" : false,
-							"hidden" : true
-						}
 				]
 			},
 			{

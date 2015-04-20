@@ -15,9 +15,9 @@
     </defs>
 
     <rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" />
-    <rect id="expand_button" oryx:anchors="bottom" x="0" y="0" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="none" />
-    <path id="expand_vertical" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" stroke-width="1" display="none" d="M 7,2 L 7, 12 z" />
-    <path id="expand_horizontal" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 2,7 L 12,7 z" display="none" />
+    <rect id="expandbutton" oryx:anchors="bottom" oryx:expansion-trigger="doubleClick" x="0" y="0" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="none" oryx:expansion-display="expanded collapsedMouseOver" />
+    <path id="expandvertical" oryx:anchors="bottom" oryx:expansion-trigger="doubleClick" style="opacity:1;fill:#F0EFF0;" stroke="black" stroke-width="1" oryx:expansion-display="collapsedMouseOver" d="M 7,2 L 7, 12 z" />
+    <path id="expandhorizontal" oryx:anchors="bottom" oryx:expansion-trigger="doubleClick" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 2,7 L 12,7 z" oryx:expansion-display="expanded collapsedMouseOver" />
 
     <text font-size="11" id="text_name" x="6" y="20" oryx:align="top center" stroke="black"></text>
   </g>

@@ -16,8 +16,9 @@ import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
 
 public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements EmfToJsonHelper {
-    private ShapeMap shapeMap;
+    protected ShapeMap shapeMap;
     protected Shape targetShape;
+
     public ClassDiagramEmfToJsonHelper(ShapeMap diagramStateHolder) {
         super();
         this.shapeMap = diagramStateHolder;
@@ -31,29 +32,26 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
 
     @Override
     public Object caseAssociation(Association object) {
-        if(targetShape.getStencilId().equals(ClassDiagramStencil.BI_DIRECTIONAL_ASSOCIATION.getStencilId())){
+        if (targetShape.getStencilId().equals(ClassDiagramStencil.BI_DIRECTIONAL_ASSOCIATION.getStencilId())) {
             putMultiplicity("end1Multiplicity", object.getMemberEnds().get(0));
             putMultiplicity("end2Multiplicity", object.getMemberEnds().get(1));
-        }else{
+        } else {
             putMultiplicity("multiplicity", object.getMemberEnds().get(1));
         }
         return super.caseAssociation(object);
     }
 
     @Override
-    public Diagram getDiagram(int i) {
+    public Diagram getDiagram() {
         EList<EObject> contents = shapeMap.getResource().getContents();
         for (EObject eObject : contents) {
-            if(eObject instanceof UMLDiagram){
-                if(i==0){
-                    return (Diagram) eObject;
-                }else{
-                    i--;
-                }
+            if (eObject instanceof UMLDiagram) {
+                return (Diagram) eObject;
             }
         }
         return null;
     }
+
     @Override
     public Object caseProperty(Property object) {
         putMultiplicity("multiplicity", object);
@@ -61,18 +59,18 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
     }
 
     private void putMultiplicity(String key, Property object) {
-        String multiplicity=null;
-        if(object.isMultivalued()){
-            if(object.getLower()==1){
-                multiplicity="[1..*]";
-            }else{
-                multiplicity="[*]";
+        String multiplicity = null;
+        if (object.isMultivalued()) {
+            if (object.getLower() == 1) {
+                multiplicity = "[1..*]";
+            } else {
+                multiplicity = "[*]";
             }
-        }else{
-            if(object.getLower()==1){
-                multiplicity="[1]";
-            }else{
-                multiplicity="[0..1]";
+        } else {
+            if (object.getLower() == 1) {
+                multiplicity = "[1]";
+            } else {
+                multiplicity = "[0..1]";
             }
         }
         targetShape.putProperty(key, multiplicity);
@@ -80,18 +78,18 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
 
     @Override
     public StencilInfo findStencilByElement(EObject me, DiagramElement de) {
-        return ClassDiagramStencil.findStencilByElement(me, de);
+        return ClassDiagramStencil.findStencilByElement(me, de, me.eResource()!=de.eResource());
     }
 
     @Override
     public void linkElements(DiagramElement diagramElement, Shape shape) {
     }
 
-
     @Override
     public String convertToString(LinkedProperty property, Object val) {
         return null;
     }
+
     @Override
     public void preprocessResource() {
     }

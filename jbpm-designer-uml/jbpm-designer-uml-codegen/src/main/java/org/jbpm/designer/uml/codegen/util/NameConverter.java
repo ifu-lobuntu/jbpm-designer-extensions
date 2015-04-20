@@ -288,6 +288,9 @@ public class NameConverter {
 	}
 
 	public static String toValidVariableName(String name) {
+	    if(name==null){
+	        return "var1";
+	    }
 		if (reservedWords.contains(name)) {
 			return "_" + name;
 		} else {

@@ -7,6 +7,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.jbpm.smm.dd.smmdi.SMMDiagram;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.util.SMMSwitch;
 
@@ -25,15 +26,17 @@ public class MeasureLibraryEmfToJsonHelper extends SMMSwitch<Object> implements 
         doSwitch(me);
     }
 
-
     @Override
     public void linkElements(org.omg.dd.di.DiagramElement diagramElement, Shape shape) {
     }
 
     @Override
-    public org.omg.dd.di.Diagram getDiagram(int i) {
+    public org.omg.dd.di.Diagram getDiagram() {
         MeasureLibrary dr = (MeasureLibrary) shapeMap.getResource().getContents().get(0);
-        return dr.getOwnedDiagram().get(i);
+        for (SMMDiagram smmDiagram : dr.getOwnedDiagram()) {
+            return smmDiagram;
+        }
+        return null;
     }
 
     @Override

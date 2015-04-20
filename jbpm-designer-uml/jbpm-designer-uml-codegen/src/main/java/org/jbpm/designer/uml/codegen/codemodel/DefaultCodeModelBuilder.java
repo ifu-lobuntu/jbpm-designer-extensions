@@ -18,6 +18,7 @@ import org.jbpm.designer.uml.code.metamodel.CodePackage;
 import org.jbpm.designer.uml.code.metamodel.CodePackageReference;
 import org.jbpm.designer.uml.code.metamodel.CodeTypeReference;
 import org.jbpm.designer.uml.codegen.AbstractBuilder;
+import org.jbpm.designer.uml.codegen.StdlibMap;
 import org.jbpm.designer.uml.codegen.UmlToCodeReferenceMap;
 
 /**
@@ -36,6 +37,9 @@ public class DefaultCodeModelBuilder extends AbstractBuilder<CodePackage, CodeCl
 	}
 
 	protected CodeTypeReference calculateTypeReference(Type type) {
+	    if(type==null){
+	        return StdlibMap.javaStringType;
+	    }
 		return umlToCodeReferenceMap.classifierPathname(type);
 	}
 

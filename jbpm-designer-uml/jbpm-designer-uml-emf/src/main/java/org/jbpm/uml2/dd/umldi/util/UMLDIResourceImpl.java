@@ -8,10 +8,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
@@ -64,7 +66,11 @@ public class UMLDIResourceImpl extends XMIResourceImpl {
             protected void endSave(List<? extends EObject> contents) throws IOException {
                 super.endSave(contents);
                 if(saveListener!=null){
-                    saveListener.onSave(this.xmlResource);
+                    try{
+                        saveListener.onSave(this.xmlResource);
+                    }catch(Exception e){
+                        getWarnings().add(new XMIException(e));
+                    }
                 }
             }
         };

@@ -44,6 +44,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         op.getValueAdd().add(valueAdd);
         addShapeFor(op, valueAdd);
         saveCollaborationResource();
+        saveDiagramResource();//to generate ids
         Diagram json = unmarshaller.convert(diagramResource);
         Shape outputPortShape = json.findChildShapeById(op.getId());
         outputPortShape.deleteShape(outputPortShape.findChildShapeById(valueAdd.getId()));
@@ -73,6 +74,8 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         activity1.getResourceUse().add(resourceUse);
         addEdge(resourceUse,ip,op);
         saveCollaborationResource();
+        saveDiagramResource();//to generate ids
+
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(resourceUse.getId()));
         XMLResource xml = marshaller.convert(json);
@@ -127,6 +130,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         addEdge(deliverableFlow2, activity1.getContainedPort().get(1), activity2.getContainedPort().get(0));
         
         saveCollaborationResource();
+        saveDiagramResource();//To generate IDs
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(role1.getId()));
         XMLResource xml = marshaller.convert(json);
@@ -179,6 +183,8 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         collaboration.getFlow().add(deliverableFlow2);
         addEdge(deliverableFlow2, activity1.getContainedPort().get(1), store.getContainedPort().get(0));
         saveCollaborationResource();
+        saveDiagramResource();//to generate ids
+
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(deliverableFlow1.getId()));
         XMLResource xml = marshaller.convert(json);
@@ -215,6 +221,8 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         collaboration.getInternalPortDelegation().add(outputDelegation);
         addEdge(outputDelegation, activity2.getContainedPort().get(1), collaboration.getContainedPort().get(1));
         saveCollaborationResource();
+        saveDiagramResource();//to generate ids
+
         Diagram json = unmarshaller.convert(diagramResource);
         json.deleteShape(json.findChildShapeById(inputDelegation.getId()));
         XMLResource xml = marshaller.convert(json);

@@ -15,10 +15,13 @@ import org.jbpm.designer.vdml.CollaborationType;
 import org.jbpm.designer.vdml.VdmlCollaborationAssetService;
 import org.kie.workbench.common.widgets.client.handlers.DefaultNewResourceHandler;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcePresenter;
+import org.kie.workbench.common.widgets.client.resources.i18n.CommonConstants;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.commons.data.Pair;
+import org.uberfire.ext.editor.commons.client.validation.ValidatorWithReasonCallback;
 import org.uberfire.ext.widgets.common.client.callbacks.DefaultErrorCallback;
+import org.uberfire.ext.widgets.common.client.common.popups.errors.ErrorPopup;
 import org.uberfire.mvp.PlaceRequest;
 import org.uberfire.mvp.impl.PathPlaceRequest;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
@@ -56,6 +59,17 @@ public class NewVdmlCollaborationHandler extends DefaultNewResourceHandler {
     @Override
     public ResourceTypeDefinition getResourceType() {
         return resourceType;
+    }
+    @Override
+    public void validate(String baseFileName, ValidatorWithReasonCallback callback) {
+        CollaborationType type = CollaborationType.valueOf(collaborationTypeListBox.getValue());
+        CollaborationDiagramType diagramType = this.collaborationDiagramTypes.get(collaborationDiagramTypeListBox.getSelectedIndex());
+        if(diagramType.getProfileName().equals("vdcm") && type!=CollaborationType.ORG_UNIT){
+            ErrorPopup.showMessage( "Capability Management Diagrams are supported for Organization Collaborations only");
+            callback.onFailure();
+            return;
+        }
+        super.validate(baseFileName, callback);
     }
     @Override
     public List<Pair<String, ? extends IsWidget>> getExtensions() {

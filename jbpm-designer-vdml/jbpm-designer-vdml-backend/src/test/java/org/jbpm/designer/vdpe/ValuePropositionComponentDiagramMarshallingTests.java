@@ -48,20 +48,19 @@ public class ValuePropositionComponentDiagramMarshallingTests extends AbstractVd
         assertOutputValid();
         Diagram diagram = unmarshaller.convert(diagramResource);
         Shape vpShape = diagram.findChildShapeById(valuePropositionComponent.getId());
-        String aggregatedFromStringValue=vpShape.getProperty("aggregatedFrom");
+        String aggregatedFromStringValue = vpShape.getProperty("aggregatedFrom");
         vpShape.putProperty("aggregatedFrom", "");
         XMLResource foundResource = marshaller.convert(diagram);
-        ValueDeliveryModel vdm = (ValueDeliveryModel) foundResource.getContents().get(0);
-        ValuePropositionComponent found = (ValuePropositionComponent) vdm.getDiagram().get(0).getVdmlElement().eResource()
+        ValuePropositionComponent found = (ValuePropositionComponent) VdmlHelper.getCollaboration(foundResource).eResource()
                 .getEObject(valuePropositionComponent.getId());
         assertTrue(found.getAggregatedFrom().isEmpty());
         vpShape.putProperty("aggregatedFrom", aggregatedFromStringValue);
         foundResource = marshaller.convert(diagram);
-        vdm = (ValueDeliveryModel) foundResource.getContents().get(0);
-        found = (ValuePropositionComponent) vdm.getDiagram().get(0).getVdmlElement().eResource()
-                .getEObject(valuePropositionComponent.getId());
+        
+        found = (ValuePropositionComponent) VdmlHelper.getCollaboration(foundResource).eResource().getEObject(valuePropositionComponent.getId());
         assertEquals(2, found.getAggregatedFrom().size());
     }
+
     @Test
     public void testDeletion() throws Exception {
         Role role1 = addRole("MyRole", true);
@@ -87,6 +86,7 @@ public class ValuePropositionComponentDiagramMarshallingTests extends AbstractVd
         assertNotNull(foundCollaboration.eResource().getEObject(valuePropositionComponent1.getId()));
         assertNull(foundCollaboration.eResource().getEObject(valuePropositionComponent2.getId()));
     }
+
     @Test
     public void testValueMeasure() throws Exception {
         Role role1 = addRole("MyRole", true);
@@ -105,26 +105,26 @@ public class ValuePropositionComponentDiagramMarshallingTests extends AbstractVd
         saveDiagramResource();
         Diagram diagram = unmarshaller.convert(diagramResource);
         Shape vpShape = diagram.findChildShapeById(valuePropositionComponent.getId());
-        String valueMeasureStringValue=vpShape.getProperty("valueMeasure");
-        assertTrue(valueMeasureStringValue.indexOf("SizeMeasure")>=0);
+        String valueMeasureStringValue = vpShape.getProperty("valueMeasure");
+        assertTrue(valueMeasureStringValue.indexOf("SizeMeasure") >= 0);
         vpShape.putProperty("valueMeasure", valueMeasureStringValue.replaceAll("Size", "Motion"));
-        
+
         XMLResource foundResource = marshaller.convert(diagram);
-        ValueDeliveryModel vdm = (ValueDeliveryModel) foundResource.getContents().get(0);
-        ValuePropositionComponent found = (ValuePropositionComponent) vdm.getDiagram().get(0).getVdmlElement().eResource()
+        ValuePropositionComponent found = (ValuePropositionComponent) VdmlHelper.getCollaboration(foundResource).eResource()
                 .getEObject(valuePropositionComponent.getId());
-        assertEquals("Motion",found.getValueMeasurement().getCharacteristicDefinition().getName());
-        assertEquals("MotionMeasure",found.getValueMeasurement().getCharacteristicDefinition().getMeasure().get(0).getName());
+        assertEquals("Motion", found.getValueMeasurement().getCharacteristicDefinition().getName());
+        assertEquals("MotionMeasure", found.getValueMeasurement().getCharacteristicDefinition().getMeasure().get(0).getName());
     }
+
     protected MeasuredCharacteristic createMeasureCharacteristic(String value) {
         Characteristic characteristic = SMMFactory.eINSTANCE.createCharacteristic();
         characteristic.setName(value);
         measureLibrary.getMeasureElements().add(characteristic);
-        Measure measure= SMMFactory.eINSTANCE.createDirectMeasure();
-        measure.setName(value +"Measure");
+        Measure measure = SMMFactory.eINSTANCE.createDirectMeasure();
+        measure.setName(value + "Measure");
         measureLibrary.getMeasureElements().add(measure);
         characteristic.getMeasure().add(measure);
-        MeasuredCharacteristic measureCharacteristic=VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+        MeasuredCharacteristic measureCharacteristic = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
         measureCharacteristic.setCharacteristicDefinition(characteristic);
         return measureCharacteristic;
     }

@@ -9,7 +9,7 @@ import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.type.VdmlCapabilityManagementDiagramTypeDefinition;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramProfile;
 import org.jbpm.designer.vdml.CollaborationType;
-import org.jbpm.designer.vdml.IVdmlCollaborationDiagramProfile;
+import org.jbpm.designer.vdml.IVdmlDiagramProfile;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
 /**
@@ -17,7 +17,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlCapabilityManagementProfileImpl extends AbstractVdmlDiagramProfile implements IVdmlCollaborationDiagramProfile {
+public class VdmlCapabilityManagementProfileImpl extends AbstractVdmlDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdcm/vdcm.json";
 

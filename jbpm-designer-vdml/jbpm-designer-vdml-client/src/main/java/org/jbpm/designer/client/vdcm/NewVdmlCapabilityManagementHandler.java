@@ -17,7 +17,7 @@ public class NewVdmlCapabilityManagementHandler extends DefaultNewCollaborationD
     @Override
     public String getDescription() {
 //        return DesignerEditorConstants.INSTANCE.businessProcess();
-        return "Capability Management Diagram";
+        return "VDML Capability Management Diagram";
     }
 
     @Override

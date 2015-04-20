@@ -176,9 +176,8 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
     }
 
     @Override
-    public Diagram getDiagram(int i) {
-        ValueDeliveryModel dr = (ValueDeliveryModel) shapeMap.getResource().getContents().get(0);
-        return dr.getDiagram().get(i);
+    public VDMLDiagram getDiagram() {
+        return VdmlHelper.getDiagram(shapeMap.getResource());
     }
 
     @Override

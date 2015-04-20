@@ -65,12 +65,12 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
 
     @PostConstruct
     private void setupExtensions() {
-        this.extensions.add(Pair.newPair("Collaborations", collaborationsListBox));
+        this.extensions.add(Pair.newPair("Collaboration", collaborationsListBox));
     }
 
     @Override
     public List<Pair<String, ? extends IsWidget>> getExtensions() {
-        this.collaborationsListBox.setContext(context, true);
+        this.collaborationsListBox.setContext(context, getProfileName());
         return this.extensions;
     }
 
@@ -78,8 +78,6 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
 
     @Override
     public void create(final Package pkg, final String baseFileName, final NewResourcePresenter presenter) {
-        // TODO warn the user we're ignoring the filename, or find a better
-        // approach
         designerAssetService.call(getSuccessCallback(presenter), new DefaultErrorCallback()).createCollaborationDiagram(
                 collaborationsListBox.getSelectedCollaboration(), getProfileName());
     }

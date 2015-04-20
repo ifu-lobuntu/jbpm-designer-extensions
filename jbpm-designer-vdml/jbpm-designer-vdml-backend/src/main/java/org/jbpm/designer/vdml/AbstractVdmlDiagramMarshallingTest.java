@@ -84,6 +84,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     protected GenericJsonToEmfDiagramMarshaller marshaller;
     protected TestUriHandler tuh=new TestUriHandler();
+    protected XMLResource diagramResource;
 
     public AbstractVdmlDiagramMarshallingTest() {
         super();
@@ -99,10 +100,11 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         measureResource.save(os, emptyOptions);
     }
 
-    protected abstract String getDiagramFileName();
-
-    protected final String getClientProjectName() {
-        return "jbpm-designer-vdml-client";
+    protected final String getDiagramFileName(){
+        if(profile==null){
+            profile=createProfile();
+        }
+        return "/jbpm-designer-vdml-backend/target/test." + profile.getSerializedModelExtension();
     }
 
     protected abstract AbstractEmfDiagramProfile createProfile();
@@ -112,7 +114,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         this.tuh = new TestUriHandler();
         profile = createProfile();
         emptyOptions = profile.buildDefaultResourceOptions();
-        this.collaborationFile = "/" + getClientProjectName() + "/target/test.vdcol";
+        this.collaborationFile = "/jbpm-designer-vdml-backend/target/test.vdcol";
         tuh.getFile(URI.createPlatformResourceURI(getDiagramFileName(), true)).delete();
         tuh.getFile(URI.createPlatformResourceURI(collaborationFile, true)).delete();
         profile.setUriHandler(tuh);
@@ -132,8 +134,8 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         inputDiagram = createDiagram();
         collaborationResource.getContents().add(valueDeliveryModel);
-        profile.loadLinkedStencilSet("../" + getClientProjectName() + "/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
-        profile.initializeLocalPlugins("../" + getClientProjectName() + "/src/main/resources/org/jbpm/designer/public/profiles/"
+        profile.loadLinkedStencilSet("../" + "jbpm-designer-vdml-client" + "/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
+        profile.initializeLocalPlugins("../" + "jbpm-designer-vdml-client" + "/src/main/resources/org/jbpm/designer/public/profiles/"
                 + profile.getProfileDefinitionFileName());
         this.collaboration = createCollaboration();
         inputDiagram.setVdmlElement(collaboration);
@@ -146,7 +148,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected void buildTestMeasureLibrary() throws IOException {
-        this.measureLibraryFileName = "/" + getClientProjectName() + "/target/test.meas";
+        this.measureLibraryFileName = "/" + "jbpm-designer-vdml-client" + "/target/test.meas";
         tuh.getFile(URI.createPlatformResourceURI(measureLibraryFileName, true)).delete();
         measureLibrary = SMMFactory.eINSTANCE.createMeasureLibrary();
         measureLibrary.setName("DinkyDonky");
@@ -169,7 +171,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         measureResource.save(tuh.createOutputStream(measureResource.getURI(), profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
     }
     protected void buildTestBusinessItemLibrary() throws IOException {
-        this.businessItemLibraryFileName = "/" + getClientProjectName() + "/target/test.vdlib";
+        this.businessItemLibraryFileName = "/" + "jbpm-designer-vdml-client" + "/target/test.vdlib";
         tuh.getFile(URI.createPlatformResourceURI(businessItemLibraryFileName, true)).delete();
         ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         BusinessItemLibrary bil = VDMLFactory.eINSTANCE.createBusinessItemLibrary();
@@ -226,7 +228,13 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         return role1;
     }
 
-    protected abstract VDMLDiagram createDiagram();
+    protected final VDMLDiagram createDiagram() {
+        diagramResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(getDiagramFileName(), true));
+        VDMLDiagram inputDiagram = VDMLDIFactory.eINSTANCE.createVDMLDiagram();
+        diagramResource.getContents().add(inputDiagram);
+        inputDiagram.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
+        return inputDiagram;
+    }
 
     protected String buildXmlString(XMLResource resource) throws IOException {
         StringWriter writer = new StringWriter();
@@ -357,6 +365,11 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
 //        print(outputResource);
         new GenericEcoreComparator(drscasdf, outputResource).validate();
         return outputResource;
+    }
+    protected final void saveDiagramResource() throws IOException {
+        TestUriHandler tuh = new TestUriHandler();
+        OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(getDiagramFileName(), true), emptyOptions);
+        diagramResource.save(os, emptyOptions);
     }
 
 }

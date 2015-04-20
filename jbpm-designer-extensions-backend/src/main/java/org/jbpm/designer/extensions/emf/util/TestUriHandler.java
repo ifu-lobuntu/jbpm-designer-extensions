@@ -11,9 +11,10 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIHandler;
+import org.eclipse.emf.ecore.resource.impl.ArchiveURIHandlerImpl;
 
 public class TestUriHandler implements URIHandler {
-
+    ArchiveURIHandlerImpl archiveHandler=new ArchiveURIHandlerImpl();
     @Override
     public boolean canHandle(URI uri) {
         return true;
@@ -29,6 +30,9 @@ public class TestUriHandler implements URIHandler {
 
     @Override
     public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
+        if (uri.isArchive()) {
+            return archiveHandler.createInputStream(uri, options);
+        }
         return new FileInputStream(getFile(uri));
     }
 

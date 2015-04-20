@@ -17,7 +17,7 @@ public class NewVdmlPropositionExchangeHandler extends DefaultNewCollaborationDi
     @Override
     public String getDescription() {
 //        return DesignerEditorConstants.INSTANCE.businessProcess();
-        return "Value Proposition Exchange";
+        return "VDML Proposition Exchange Diagram";
     }
 
     @Override

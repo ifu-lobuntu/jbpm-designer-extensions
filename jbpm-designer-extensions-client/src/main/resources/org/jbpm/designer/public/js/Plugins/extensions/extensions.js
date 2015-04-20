@@ -96,7 +96,10 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		this.facade.registerOnEvent('layout.collapsible', this.handleLayoutCollapsible.bind(this));
 		this.facade.registerOnEvent('layout.list', this.handleLayoutList.bind(this));
 		this.facade.registerOnEvent('layout.compartments', this.handleLayoutCompartments.bind(this));
-		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpand.bind(this));
+		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handleExpandOnClick.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOUT, this.handleMouseOut.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEOVER, this.handleMouseOver.bind(this));
+		this.facade.registerOnEvent(ORYX.CONFIG.EVENT_DBLCLICK,this.handleExpandOnDoubleClick.bind(this));
 		console.log("Extensions initialized");
 		ORYX.I18N.forms.editForm = "Edit Form";
 		ORYX.I18N.forms.editFormDesc = "Edit Form";
@@ -107,67 +110,129 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		ORYX.I18N.extensions.eobjectAsset = "Asset";
 		ORYX.I18N.extensions.eobjectImage = "Image";
 	},
+	getExpansionTrigger : function(target,uiObject){
+        var expansionTrigger = target.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, 'expansion-trigger');
+        if(expansionTrigger){
+            if (ORYX.Plugins.Extensions.isExpanded(uiObject)) {
+                //Collapse is always simple click
+                return "click";
+            }else{
+                return expansionTrigger;
+            }
+        }else if(target && target.id && target.id.indexOf("expand_") >= 0){
+            //Default, legacy way of doing it - deprecated
+            return "click";
+        }else{
+            return null;
+        }
+	},
+    handleExpandOnClick : function(event, uiObject) {
+        if (this.getExpansionTrigger(event.target,uiObject)=="click") {
+            this.handleExpand(event,uiObject);
+        }
+    },
+    handleExpandOnDoubleClick : function(event, uiObject) {
+        if (this.getExpansionTrigger(event.target,uiObject)=="doubleClick") {
+            this.handleExpand(event,uiObject);
+        }
+    },
+    handleMouseOver : function (event,uiObject){
+        this.handleMouse(uiObject,true);
+    },
+    handleMouseOut : function (event,uiObject){
+        this.handleMouse(uiObject,false);
+    },
+    handleMouse: function (uiObject,mouseOver){
+        if(ORYX.Plugins.Extensions.isCollapsible(uiObject)){
+            var expanded=ORYX.Plugins.Extensions.isExpanded(uiObject);
+            uiObject._svgShapes.forEach(function(svgShape){
+                    svgShape.element.setAttributeNS(null, "display",this.calculateExpansionDisplay(svgShape.element,expanded,mouseOver));
+            }.bind(this));
+        }
+    },
 	handleExpand : function(event, uiObject) {
-		if (event.explicitOriginalTarget && event.explicitOriginalTarget.id && event.explicitOriginalTarget.id.indexOf("expand_") >= 0) {
-			
-			var newWidth = parseFloat(uiObject.properties["oryx-previouswidth"]);
-			if (isNaN(newWidth) || newWidth==0) {
-				newWidth = 200;
-			}
-			var newHeight = parseFloat(uiObject.properties["oryx-previousheight"]);
-			if (isNaN(newHeight)|| newHeight==0) {
-				newHeight = 30;
-			}
-			uiObject.properties["oryx-previouswidth"] = uiObject.bounds.width();
-			uiObject.properties["oryx-previousheight"] = uiObject.bounds.height();
-			var topLeft = {
-					x:uiObject.bounds.a.x,
-					y:uiObject.bounds.a.y,
-			}
-			var bottomRight = uiObject.bounds.b;
-			if(uiObject.incoming){
-				for(var i=0; i < uiObject.incoming.length; i++){
-					var boundariedShape=uiObject.incoming[i];
-					if( boundariedShape instanceof ORYX.Core.Shape){
-						//I'm a boundary shape
-						if(uiObject.bounds.a.x<boundariedShape.bounds.a.x){
-							topLeft.x=bottomRight.x-newWidth;
-							//Expand to the left
-						}
-						if(uiObject.bounds.a.y<boundariedShape.bounds.a.y){
-							topLeft.y=bottomRight.y-newHeight;
-							//Expand to the top
-						}
-						break;
+		var newWidth = parseFloat(uiObject.properties["oryx-previouswidth"]);
+		if (isNaN(newWidth) || newWidth==0) {
+			newWidth = 200;
+		}
+		var newHeight = parseFloat(uiObject.properties["oryx-previousheight"]);
+		if (isNaN(newHeight)|| newHeight==0) {
+			newHeight = 30;
+		}
+		uiObject.properties["oryx-previouswidth"] = uiObject.bounds.width();
+		uiObject.properties["oryx-previousheight"] = uiObject.bounds.height();
+		var topLeft = {
+				x:uiObject.bounds.a.x,
+				y:uiObject.bounds.a.y,
+		}
+		var bottomRight = uiObject.bounds.b;
+		if(uiObject.incoming){
+			for(var i=0; i < uiObject.incoming.length; i++){
+				var boundariedShape=uiObject.incoming[i];
+				if( boundariedShape instanceof ORYX.Core.Shape){
+					//I'm a boundary shape
+					if(uiObject.bounds.a.x<boundariedShape.bounds.a.x){
+						topLeft.x=bottomRight.x-newWidth;
+						//Expand to the left
 					}
+					if(uiObject.bounds.a.y<boundariedShape.bounds.a.y){
+						topLeft.y=bottomRight.y-newHeight;
+						//Expand to the top
+					}
+					break;
 				}
 			}
-			uiObject.bounds.set(topLeft, {
-				x : topLeft.x + newWidth,
-				y : topLeft.y + newHeight
-			});
-			if (ORYX.Plugins.Extensions.isExpanded(uiObject)) {
-				uiObject.properties["oryx-isexpanded"] = false;
-			} else {
-				uiObject.properties["oryx-isexpanded"] = true;
-			}
-			// TODO too many updates. Find the right one
-			uiObject._update();
-			uiObject._changed();
-			if (uiObject.getStencil()._jsonStencil.isCompartment && uiObject.parent instanceof ORYX.Core.Shape) {
-				uiObject.parent._update();
-				uiObject.parent._changed();
-			}
-			this.facade.getCanvas().update();
-			this.facade.updateSelection();
-			this.facade.raiseEvent({
-				type : ORYX.CONFIG.EVENT_RESIZE_END,
-				shapes : [
-					uiObject
-				]
-			});
 		}
+		uiObject.bounds.set(topLeft, {
+			x : topLeft.x + newWidth,
+			y : topLeft.y + newHeight
+		});
+		if (ORYX.Plugins.Extensions.isExpanded(uiObject)) {
+			uiObject.properties["oryx-isexpanded"] = false;
+		} else {
+			uiObject.properties["oryx-isexpanded"] = true;
+		}
+		// TODO too many updates. Find the right one
+		uiObject._update();
+		uiObject._changed();
+		if (uiObject.getStencil()._jsonStencil.isCompartment && uiObject.parent instanceof ORYX.Core.Shape) {
+			uiObject.parent._update();
+			uiObject.parent._changed();
+		}
+		this.facade.getCanvas().update();
+		this.facade.updateSelection();
+		this.facade.raiseEvent({
+			type : ORYX.CONFIG.EVENT_RESIZE_END,
+			shapes : [
+				uiObject
+			]
+		});
 	},
+    calculateExpansionDisplay : function(svgElement,expanded,mouseOver){
+        var expansionDisplay = svgElement.getAttributeNS(ORYX.CONFIG.NAMESPACE_ORYX, 'expansion-display');
+        if(expansionDisplay){
+            var display=expansionDisplay.split(" ");
+            if(expanded){
+                if(display.indexOf("expanded")>=0){
+                    return "inherit";
+                }else if(mouseOver && display.indexOf("expandedMouseOver")>=0){
+                    return "inherit";
+                }
+            }else{
+                if(display.indexOf("collapsed")>=0){
+                    return "inherit";
+                }else if(mouseOver && display.indexOf("collapsedMouseOver")>=0){
+                    return "inherit";
+                }
+            }
+            return "none";
+        }else if(svgElement.id.indexOf("expand_vertical") >= 0){
+            //Legacy way, deprecated
+            return expanded?"none":"inherit";
+        }else {
+            return svgElement.getAttributeNS(null,"display");
+        }  
+    },
 	updateExpanded : function(collapsibleShape) {
 		// var
 		// verticalPath=collapsibleShape.node.ownerDocument.getElementById(collapsibleShape.id+"expand_vertical");
@@ -181,37 +246,53 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 			}
 		}
 		if (ORYX.Plugins.Extensions.isExpanded(collapsibleShape)) {
-			verticalPath.setAttributeNS(null, 'display', 'none');
+            collapsibleShape._svgShapes.each(function(shape){
+                shape.element.setAttributeNS(null, "display",this.calculateExpansionDisplay(shape.element,true,false));
+            }.bind(this));
 			collapsibleShape.children.each(function(uiObject) {
 				if (uiObject instanceof ORYX.Core.Shape) {
 					ORYX.Plugins.Extensions.showShape(uiObject);
 				}
 			}.bind(this));
 		} else {
-			verticalPath.setAttributeNS(null, 'display', 'inherit');
+	        collapsibleShape._svgShapes.each(function(shape){
+	            shape.element.setAttributeNS(null, "display",this.calculateExpansionDisplay(shape.element,false,false));
+	        }.bind(this));
 			collapsibleShape.children.each(function(uiObject) {
 				if (uiObject instanceof ORYX.Core.Shape) {
 					ORYX.Plugins.Extensions.hideShape(uiObject);
 				}
 			}.bind(this));
 		}
-		;
 	},
 	handleLayoutCollapsible : function(event) {
 		this.updateExpanded(event.shape);
 	},
 	handleLayoutList : function(event) {
-	    console.log(event);
 		var shape = event.shape;
-		var currentOffset = 15;
-		if (event.options && event.options.offsetY) {
-			currentOffset = event.options.offsetY;
+		if(ORYX.Plugins.Extensions.isCollapsible(shape) && ORYX.Plugins.Extensions.isExpanded(shape)==false){
+		    return;
+		}else{
+    	    var currentOffset = 15;
+    		if (event.options && "offsetY" in event.options) {
+    			currentOffset = event.options.offsetY;
+    		}
+    		shape.getChildShapes(false).forEach(function(item) {
+    			item.bounds.set(1, currentOffset, shape.bounds.b.x - shape.bounds.a.x - 2, currentOffset + 20);
+    			currentOffset += 21;
+    		});
+            if (event.options && "bottomPadding" in event.options) {
+                currentOffset += event.options.bottomPadding;
+            }else{
+                currentOffset += 10;
+            }
+            if (event.options && "minimumHeight" in event.options) {
+                currentOffset = currentOffset=Math.max(currentOffset,event.options.minimumHeight);
+            }else{
+                currentOffset=Math.max(currentOffset,14);
+            }
+    		shape.bounds.set(shape.bounds.a.x,shape.bounds.a.y,shape.bounds.b.x, shape.bounds.a.y+currentOffset);
 		}
-		shape.getChildShapes(false).forEach(function(item) {
-			item.bounds.set(1, currentOffset, shape.bounds.b.x - shape.bounds.a.x - 2, currentOffset + 20);
-			currentOffset += 21;
-		});
-		shape.bounds.set(shape.bounds.a.x,shape.bounds.a.y,shape.bounds.b.x, shape.bounds.a.y+currentOffset+10);
 		// if(ORYX.Plugins.Extensions.isCollapsible(shape)){
 		// this.updateExpanded(shape);
 		// }
@@ -238,6 +319,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		if (height != 0) {
 			height += 15;
 			event.shape.bounds.set(bounds.a.x, bounds.a.y, bounds.b.x, bounds.a.y + height);
+			console.log(event.shape);
 		}
 		event.shape._changed();
 		event.shape._update();
@@ -249,7 +331,13 @@ ORYX.Plugins.Extensions.isExpanded = function(shape) {
 	return shape.properties["oryx-isexpanded"] == true || shape.properties["oryx-isexpanded"] == "true";
 }; 
 ORYX.Plugins.Extensions.isCollapsible = function(shape) {
-	return typeof (shape.properties["oryx-isexpanded"]) == "string" || typeof (shape.properties["oryx-isexpanded"]) == "boolean";
+    if("properties" in shape){
+        return typeof (shape.properties["oryx-isexpanded"]) == "string" || typeof (shape.properties["oryx-isexpanded"]) == "boolean";
+    }else{
+        console.log(shape);
+        return false;
+    }
+        
 }; 
 ORYX.Plugins.Extensions.extractName = function(reference) {
     if(reference){
@@ -590,11 +678,9 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
     																	}
     																	grid.stopEditing();
     																	grid.getView().refresh();
-    																	console.log(outValue);
     																	this.setValue(outValue);
     																	this.dataSource.getAt(this.row).set('value', outValue);
     																	this.dataSource.commitChanges();
-                                                                        console.log(this.dataSource.getAt(this.row).get('value'));
     																	dialog.hide();
 																    }catch(e){
 																        alert(e.toString());

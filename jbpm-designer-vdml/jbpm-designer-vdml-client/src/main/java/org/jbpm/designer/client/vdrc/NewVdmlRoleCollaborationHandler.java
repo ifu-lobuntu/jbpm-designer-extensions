@@ -18,7 +18,7 @@ public class NewVdmlRoleCollaborationHandler extends DefaultNewCollaborationDiag
     @Override
     public String getDescription() {
         // return DesignerEditorConstants.INSTANCE.businessProcess();
-        return "Value Role Collaboration";
+        return "VDML Role Collaboration Diagram";
     }
 
     @Override
