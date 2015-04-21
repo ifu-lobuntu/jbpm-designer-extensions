@@ -3,7 +3,6 @@ package org.jbpm.designer.meas;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -19,6 +18,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
@@ -29,11 +29,13 @@ import org.jbpm.smm.dd.smmdi.SMMEdge;
 import org.jbpm.smm.dd.smmdi.SMMShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Characteristic;
+import org.omg.smm.CountingMeasure;
 import org.omg.smm.GradeInterval;
 import org.omg.smm.GradeMeasure;
 import org.omg.smm.Interval;
 import org.omg.smm.Measure;
 import org.omg.smm.MeasureLibrary;
+import org.omg.smm.NamedMeasure;
 import org.omg.smm.RankingInterval;
 import org.omg.smm.RankingMeasure;
 import org.omg.smm.SMMFactory;
@@ -68,7 +70,7 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         smmDiagram.setSmmElement(owningLibrary);
         owningLibrary.getOwnedDiagram().add(smmDiagram);
         this.cmmnTypes = AbstractClassDiagramProfileImpl.getCmmnTypes(result.getResourceSet());
-        this.umlPackage=UMLFactory.eINSTANCE.createPackage();
+        this.umlPackage = UMLFactory.eINSTANCE.createPackage();
         this.umlPackage.setName(json.getProperty("name"));
         result.getContents().add(this.umlPackage);
         return smmDiagram;
@@ -91,6 +93,15 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         addEnumeration(object);
         return super.caseRankingMeasure(object);
     }
+    @Override
+    public Object caseCountingMeasure(CountingMeasure object) {
+        return super.caseCountingMeasure(object);
+    }
+
+    @Override
+    public Object caseNamedMeasure(NamedMeasure object) {
+        return super.caseNamedMeasure(object);
+    }
 
     private void addEnumeration(Measure object) {
         Enumeration enumeration = this.<Enumeration> syncUmlElement(object, UMLPackage.eINSTANCE.getEnumeration());
@@ -112,17 +123,17 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
         return super.caseRankingInterval(object);
     }
 
-    private  void addLiteral(Interval object) {
+    private void addLiteral(Interval object) {
         Enumeration en = (Enumeration) smmUmlElementMap.get(object.eContainer());
         EnumerationLiteral lit = syncUmlElement(object, UMLPackage.eINSTANCE.getEnumerationLiteral());
-        if(!en.getOwnedLiterals().contains(en)){
+        if (!en.getOwnedLiterals().contains(en)) {
             en.getOwnedLiterals().add(lit);
         }
         setBooleanSlot(lit, "minimumOpen", object.getMinimumOpen());
         setBooleanSlot(lit, "maximumOpen", object.getMaximumOpen());
         setDoubleSlot(lit, "maximumEndpoint", object.getMaximumEndpoint());
         setDoubleSlot(lit, "minimumEndpoint", object.getMinimumEndpoint());
-        if(object instanceof RankingInterval){
+        if (object instanceof RankingInterval) {
             setDoubleSlot(lit, "value", ((RankingInterval) object).getValue());
         }
     }
@@ -169,7 +180,7 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
             cls = (NamedElement) UMLFactory.eINSTANCE.create(type);
             cls.createEAnnotation(MeasureLibraryStencil.MEAS_URI).getReferences().add(object);
             XMLResource r = (XMLResource) umlPackage.eResource();
-            r.setID(cls, r.getID(object) + "MEAS");
+            r.setID(cls, JBPMECoreHelper.getID(object) + "MEAS");
             this.smmUmlElementMap.put(object, cls);
         }
         cls.setName(object.getName());

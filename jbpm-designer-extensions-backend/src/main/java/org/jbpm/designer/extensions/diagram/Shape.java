@@ -79,7 +79,7 @@ public class Shape implements Stencil, Bounded {
      *            StencilType with stencilId
      */
     public Shape(String resourceId, StencilType stencil) {
-        this.resourceId = resourceId;
+        this(resourceId);
         this.stencil = stencil;
     }
 
@@ -89,7 +89,7 @@ public class Shape implements Stencil, Bounded {
      * @param resourceId
      */
     public Shape(String resourceId) {
-        this.resourceId = resourceId;
+        this.setResourceId(resourceId);
     }
 
     public void deleteShape(Shape shape) {
@@ -142,9 +142,6 @@ public class Shape implements Stencil, Bounded {
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {
-        if (this.resourceId == null) {
-            System.out.println();
-        }
         return resourceId.hashCode();
     }
 
@@ -201,6 +198,10 @@ public class Shape implements Stencil, Bounded {
      */
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
+        if(resourceId==null){
+            throw new IllegalArgumentException("ResourceId cannot be null");
+        }
+
     }
 
     /**

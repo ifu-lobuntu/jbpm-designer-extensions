@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -56,15 +57,17 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
     }
 
     private Collection<EObject> findPotentialReferencesIn(HttpServletRequest req, ResourceSet rst) {
+
         Collection<EObject> results = new ArrayList<EObject>();
         String[] elementTypes = req.getParameter("elementTypes").split("\\|");
+        boolean matchFirstReference = "true".equals(req.getParameter("matchFirstReference"));
         for (Resource resource : new ArrayList<Resource>(rst.getResources())) {
-            addPotentialReferencesTo(resource, results, elementTypes);
+            addPotentialReferencesTo(resource, results, elementTypes, matchFirstReference);
         }
         return results;
     }
 
-    private void addPotentialReferencesTo(Resource resource, Collection<EObject> results, String[] elementTypes) {
+    private void addPotentialReferencesTo(Resource resource, Collection<EObject> results, String[] elementTypes, boolean matchFirstReference) {
         TreeIterator<EObject> ti = resource.getAllContents();
         while (ti.hasNext()) {
             EObject eObject = (EObject) ti.next();
@@ -74,12 +77,36 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
                     eObject = mes.get(0);
                 }
             }
-            for (String string : elementTypes) {
-                if (eObject.eClass().getName().equals(string)) {
+            if (matchFirstReference) {
+                if (eObject instanceof EModelElement) {
+                    EModelElement eme = (EModelElement) eObject;
+                    for (EAnnotation ea : eme.getEAnnotations()) {
+                        // TODO put annotation uri in filter parameters
+                        if (ea.getReferences().size() > 0) {
+                            EObject ref = ea.getReferences().get(0);
+                            if (isMatch(elementTypes, ref)) {
+                                results.add(eObject);
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (isMatch(elementTypes, eObject)) {
                     results.add(eObject);
                 }
             }
         }
+    }
+
+    protected boolean isMatch(String[] elementTypes, EObject eObject) {
+        boolean isMatch = false;
+        for (String string : elementTypes) {
+            if (eObject.eClass().getName().equals(string)) {
+                isMatch = true;
+            }
+        }
+        return isMatch;
     }
 
     @SuppressWarnings("unchecked")
@@ -165,17 +192,18 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
                         className = em.getEAnnotations().get(0).getReferences().get(0).eClass().getName();
                     }
                 }
-                URI uri = eObject.eResource().getURI();
-                String resourceString;
-                if (uri.isPlatformResource()) {
-                    resourceString = uri.toPlatformString(true);
-                } else {
-                    resourceString = uri.lastSegment();
+                if (eObject.eResource() != null) {
+                    URI uri = eObject.eResource().getURI();
+                    String resourceString;
+                    if (uri.isPlatformResource()) {
+                        resourceString = uri.toPlatformString(true);
+                    } else {
+                        resourceString = uri.lastSegment();
+                    }
+                    jsonObject.put(eObject.eGet(eObject.eClass().getEStructuralFeature(nameFeature)) + "|" + resourceString + "|" + className, "");
                 }
-                jsonObject.put(eObject.eGet(eObject.eClass().getEStructuralFeature(nameFeature)) + "|" + resourceString + "|" + className, "");
             } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
         return jsonObject;

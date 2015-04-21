@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.repository.Asset;
@@ -96,7 +97,7 @@ public class VdmlPortDataHolderBuilder implements RangedDataHolderBuilder {
                     String className = eObject.eClass().getName();
                     if (className.equals(string)) {
                         String platformString = resource.getURI().toString();
-                        portInfo.put(platformString + "#" + resource.getURIFragment(eObject),
+                        portInfo.put(platformString + "#" + ((XMLResource) resource).getID(eObject),
                                 (String) eObject.eGet(eObject.eClass().getEStructuralFeature("qualifiedName")));
                     }
                 }

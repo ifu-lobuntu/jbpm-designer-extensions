@@ -37,12 +37,36 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
         this.facade = facade;
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
         this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
+        this.facade.registerOnEvent(ORYX.CONFIG.EVENT_SHAPEADDED,this.handleShapeAdded.bind(this));
     },
     handlePropertyChanged: function (event){
         try{
             var d=this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
             if(d){
                 d(event.elements[0]);
+            }
+            if(event.elements[0] instanceof ORYX.Core.Shape){
+                var shape=event.elements[0];
+                var refProp=shape.getStencil()._jsonStencil.referenceProperty;
+                console.log(refProp);
+                if(refProp && event.key == "oryx-" + refProp.toLowerCase()){
+                    var name=shape.properties["oryx-"+ refProp.toLowerCase()];
+                    name=name.slice(name.lastIndexOf("::")+2,name.indexOf("|"));
+                    shape.setProperty("oryx-name", name,true);
+                    shape.refresh();
+                }
+            }
+        }catch(e){
+            alert(e.toString());
+        }
+    },
+    handleShapeAdded: function (event){
+        try{
+            if(event.shape instanceof ORYX.Core.Shape){
+                var d=this.decoratorUpdaters[event.shape.getStencil().idWithoutNs()];
+                if(d){
+                    d(event.shape);
+                }
             }
         }catch(e){
             alert(e.toString());
@@ -166,32 +190,60 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 				y:uiObject.bounds.a.y,
 		}
 		var bottomRight = uiObject.bounds.b;
-		if(uiObject.incoming){
-			for(var i=0; i < uiObject.incoming.length; i++){
-				var boundariedShape=uiObject.incoming[i];
-				if( boundariedShape instanceof ORYX.Core.Shape){
-					//I'm a boundary shape
-					if(uiObject.bounds.a.x<boundariedShape.bounds.a.x){
-						topLeft.x=bottomRight.x-newWidth;
-						//Expand to the left
-					}
-					if(uiObject.bounds.a.y<boundariedShape.bounds.a.y){
-						topLeft.y=bottomRight.y-newHeight;
-						//Expand to the top
-					}
-					break;
-				}
-			}
-		}
-		uiObject.bounds.set(topLeft, {
-			x : topLeft.x + newWidth,
-			y : topLeft.y + newHeight
-		});
 		if (ORYX.Plugins.Extensions.isExpanded(uiObject)) {
 			uiObject.properties["oryx-isexpanded"] = false;
+            uiObject.getIncomingNodes().forEach(function (boundariedShape){
+                //I'm a boundary shape
+                if(uiObject.bounds.a.x<boundariedShape.bounds.a.x){
+                    topLeft.x=bottomRight.x-newWidth;
+                    //Expand to the left
+                }
+                if(uiObject.bounds.a.y<boundariedShape.bounds.a.y){
+                    topLeft.y=bottomRight.y-newHeight;
+                    //Expand to the top
+                }
+                //Now check if we're still on the boundary - 2 corners inside, 2 outside
+                var corners=[topLeft,{x:topLeft.x,y:topLeft.y+newHeight},{x:topLeft.x+newWidth,y:topLeft.y+newHeight},{x:topLeft.x+newWidth,y:topLeft.y}];
+                var inside=0;
+                var outside=0;
+                corners.forEach(function(point){
+                    if(boundariedShape.bounds.isIncluded(point)){
+                        inside++;
+                    }else{
+                        outside++;
+                    }
+                })
+                if(inside==2 && outside == 2){
+                    //Still on boundary
+                    return false;
+                }else{
+                    //assuming its docker is in the center
+                    var center=uiObject.bounds.center();
+                    if(boundariedShape.bounds.isIncluded(center,7)){
+                        topLeft.x=center.x - (newWidth/2);
+                        topLeft.y=center.y - (newHeight/2);
+                    }
+                }
+            });
 		} else {
+            uiObject.getIncomingNodes().forEach(function (boundariedShape){
+                //I'm a boundary shape
+                if(uiObject.bounds.a.x<boundariedShape.bounds.a.x){
+                    topLeft.x=bottomRight.x-newWidth;
+                    //Expand to the left
+                }
+                if(uiObject.bounds.a.y<boundariedShape.bounds.a.y){
+                    topLeft.y=bottomRight.y-newHeight;
+                    //Expand to the top
+                }
+                return false;
+            });
 			uiObject.properties["oryx-isexpanded"] = true;
 		}
+        uiObject.bounds.set(topLeft, {
+            x : topLeft.x + newWidth,
+            y : topLeft.y + newHeight
+        });
 		// TODO too many updates. Find the right one
 		uiObject._update();
 		uiObject._changed();
@@ -234,17 +286,6 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
         }  
     },
 	updateExpanded : function(collapsibleShape) {
-		// var
-		// verticalPath=collapsibleShape.node.ownerDocument.getElementById(collapsibleShape.id+"expand_vertical");
-
-		var paths = collapsibleShape.node.ownerDocument.getElementsByTagName("path");
-		var verticalPath = null;
-		for (var j = 0; j < paths.length; j++) {
-			if (paths[j].id == collapsibleShape.id + "expand_vertical") {
-				verticalPath = paths[j];
-				break;
-			}
-		}
 		if (ORYX.Plugins.Extensions.isExpanded(collapsibleShape)) {
             collapsibleShape._svgShapes.each(function(shape){
                 shape.element.setAttributeNS(null, "display",this.calculateExpansionDisplay(shape.element,true,false));
@@ -277,7 +318,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
     		if (event.options && "offsetY" in event.options) {
     			currentOffset = event.options.offsetY;
     		}
-    		shape.getChildShapes(false).forEach(function(item) {
+    		shape.getPersistentChildShapes().forEach(function(item) {
     			item.bounds.set(1, currentOffset, shape.bounds.b.x - shape.bounds.a.x - 2, currentOffset + 20);
     			currentOffset += 21;
     		});
@@ -292,11 +333,8 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
                 currentOffset=Math.max(currentOffset,14);
             }
     		shape.bounds.set(shape.bounds.a.x,shape.bounds.a.y,shape.bounds.b.x, shape.bounds.a.y+currentOffset);
+    		shape.update();
 		}
-		// if(ORYX.Plugins.Extensions.isCollapsible(shape)){
-		// this.updateExpanded(shape);
-		// }
-
 	},
 	handleLayoutCompartments : function(event) {
 		var height = 30;
@@ -423,6 +461,7 @@ ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
 			var jsonProp = pair._jsonProp;
 			cf.targetProfile = jsonProp.reference.targetProfile;
 			cf.filter = jsonProp.reference.filter;
+			cf.matchFirstReference=jsonProp.reference.matchFirstReference;
 			cf.filterParamaters= jsonProp.reference.filterParamaters;
 			cf.elementTypes = jsonProp.reference.allowedElementTypes;
 			cf.nameFeature = jsonProp.reference.nameFeature;
@@ -503,7 +542,8 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 										targetProfile : this.targetProfile,
 										elementTypes : this.elementTypes,
 										nameFeature : this.nameFeature,
-										sourceElementId:this.sourceElementId,
+										matchFirstReference : this.matchFirstReference,
+										sourceElementId : this.sourceElementId,
 										uuid : ORYX.UUID,
 										assetid : ORYX.UUID,
 										json : ORYX.EDITOR.getSerializedJSON(),

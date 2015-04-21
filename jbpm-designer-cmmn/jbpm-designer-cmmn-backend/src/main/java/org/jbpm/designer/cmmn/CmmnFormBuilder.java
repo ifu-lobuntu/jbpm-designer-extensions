@@ -22,6 +22,7 @@ import org.jbpm.formModeler.api.model.wrappers.I18nSet;
 import org.omg.cmmn.MultiplicityEnum;
 import org.omg.cmmn.TCaseFileItem;
 import org.omg.cmmn.TCaseParameter;
+import org.omg.cmmn.TDiscretionaryItem;
 import org.omg.cmmn.THumanTask;
 import org.omg.cmmn.TPlanItem;
 
@@ -45,6 +46,22 @@ public class CmmnFormBuilder extends AbstractFormBuilderImpl {
     @Override
     protected boolean hasForm(EObject eObject) {
         return eObject instanceof TPlanItem && ((TPlanItem) eObject).getDefinitionRef() instanceof THumanTask;
+    }
+    @Override
+    public String getFormName(EObject source) {
+        if(source instanceof TPlanItem){
+            TPlanItem pi=(TPlanItem) source;
+            if(pi.getDefinitionRef()!=null){
+                return pi.getDefinitionRef().getName();
+            }
+        }else if(source instanceof TDiscretionaryItem){
+            TDiscretionaryItem di=(TDiscretionaryItem) source;
+            if(di.getDefinitionRef()!=null){
+                return di.getDefinitionRef().getName();
+            }
+        }
+            
+        return super.getFormName(source);
     }
 
     @Override

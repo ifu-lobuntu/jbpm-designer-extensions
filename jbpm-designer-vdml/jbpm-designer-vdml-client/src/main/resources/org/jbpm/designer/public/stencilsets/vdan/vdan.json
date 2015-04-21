@@ -386,7 +386,7 @@
 					"General"
 				],
 				"roles" : [
-					"collaborationOutputPort","port"
+					"collaborationOutputPort","port","outputPort"
 				],
 				"description" : "Collaboration Output Port",
 				"view" : "collaboration_output_port.svg",
@@ -482,7 +482,7 @@
 					"Activity"
 				],
 				"roles" : [
-					"activityOutputPort","activityPort"
+					"activityOutputPort","activityPort","outputPort"
 				],
 				"description" : "Output Port",
 				"view" : "output_port.svg",
@@ -513,7 +513,7 @@
 				"childBinding" : "valueAdd",
 				"position" : 6,
 				"groups" : [
-					"Activity"
+					"General"
 				],
 				"roles" : [
 					"valueAdd"
@@ -695,16 +695,27 @@
 					"Store"
 				],
 				"roles" : [
-					"storeOutputPort","storePort"
+					"storeOutputPort","storePort","outputPort"
 				],
 				"description" : "Store Output Port",
 				"view" : "output_port.svg",
 				"icon" : "output_port.png",
-				"layout" : [
-				],
-			    "propertyPackages" : [
-						"vdmlElement","localStyle","port"
-				],
+                "layout" : [
+                    {
+                        "type" : "layout.collapsible"
+                    },    
+                    {
+                        "type" : "layout.list",
+                        "options" : {
+                            "offsetY" :0,
+                            "bottomPadding" : 16,
+                            "minimumHeight" : 30
+                        }
+                    }
+                ],
+                "propertyPackages" : [
+                        "localStyle","port","outputPort"
+                ],
 				"properties" : [
 				]
 			},
@@ -995,7 +1006,7 @@
 					]
 				},
 				{
-					"role" : "activityOutputPort",
+					"role" : "outputPort",
 					"contains" : [
 						"valueAdd"
 					]

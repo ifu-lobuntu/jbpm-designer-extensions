@@ -102,9 +102,7 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
 
     protected void putBusinessItem(BusinessItem bi, String key) {
         if (bi != null && bi.getDefinition() != null) {
-            if(bi.getDefinition().eResource()==null){
-                System.out.println(bi.getDefinition());
-            }else{
+            if(bi.getDefinition().eResource()!=null){
                 targetShape.putProperty(key, toString(bi.getDefinition()));
             }
         }

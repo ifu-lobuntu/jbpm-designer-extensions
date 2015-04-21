@@ -56,23 +56,32 @@ ORYX.Plugins.UCD = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		}
 	},
 	updateImportDecorations : function(shape){
-		console.log("here");
 		var labels=shape.getLabels();
-		for(var i=0 ; i < labels.length; i++){
-		    if(labels[i].id==shape.id+"text_name"){
-		    	var name="";
-		    	for(var key in shape.properties){
-		    		if(key.indexOf("imported")>=0){
-		    			name=shape.properties[key];
-		    			break;
-		    		}
-		    	}
-		    	console.log(name);
-		    	name=name.substring(0, name.indexOf("|"));
-                shape.properties["oryx-name"]=name;
-				labels[i].text(name);
-				labels[i].update();
-			}
-		}
+        var name="";
+        for(var key in shape.properties){
+            if(key.indexOf("imported")>=0){
+                name=shape.properties[key];
+                break;
+            }
+        }
+        console.log(name);
+        if(name.length>0){
+            name=name.substring(0, name.indexOf("|"));
+            var pkgName="";
+            if(name.indexOf("::")>0){
+                pkgName=name.substring(0,name.indexOf("::"));
+                name=name.substring(name.indexOf("::")+2);
+            }
+            for(var i=0 ; i < labels.length; i++){
+    		    if(labels[i].id==shape.id+"text_name"){
+                    shape.properties["oryx-name"]=name;
+    				labels[i].text(name);
+    				labels[i].update();
+    			}else if(labels[i].id==shape.id+"text_from"){
+                    labels[i].text("("+pkgName+")");
+                    labels[i].update();
+    			}
+    		}
+        }
 	}
 });

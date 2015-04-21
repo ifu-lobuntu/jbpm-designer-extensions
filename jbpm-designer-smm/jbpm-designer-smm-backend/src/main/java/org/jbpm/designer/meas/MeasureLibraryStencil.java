@@ -21,6 +21,8 @@ public enum MeasureLibraryStencil implements StencilInfo {
     MEASURE_LIBRARY(SMMPackage.eINSTANCE.getMeasureLibrary(), SMMDIPackage.eINSTANCE.getSMMDiagram(), "MeasureLibraryDiagram"),
     UNIT_OF_MEASURE(SMMPackage.eINSTANCE.getUnitOfMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "UnitOfMeasure"),
     DIRECT_MEASURE(SMMPackage.eINSTANCE.getDirectMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "DirectMeasure"),
+    COUNTING_MEASURE(SMMPackage.eINSTANCE.getCountingMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "CountingMeasure"),
+    NAMED_MEASURE(SMMPackage.eINSTANCE.getNamedMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "NamedMeasure"),
     BINARY_MEASURE(SMMPackage.eINSTANCE.getBinaryMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "BinaryMeasure"),
     COLLECTIVE_MEASURE(SMMPackage.eINSTANCE.getCollectiveMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "CollectiveMeasure"),
     RESCALED_MEASURE(SMMPackage.eINSTANCE.getRescaledMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "RescaledMeasure"),

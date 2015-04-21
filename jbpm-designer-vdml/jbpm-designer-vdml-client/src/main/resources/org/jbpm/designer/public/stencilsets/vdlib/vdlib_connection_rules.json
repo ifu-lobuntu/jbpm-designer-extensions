@@ -22,13 +22,37 @@
                     {
                         "from" : "businessItemDefinition",
                         "to" : [
-                            "businessItemDefinition"
+                            "businessItemDefinition","importedBusinessItemDefinition"
                         ]
                     },
                     {
                         "from" : "capability",
                         "to" : [
                             "capability"
+                        ]
+                    },
+                    {
+                        "from" : "store",
+                        "to" : [
+                            "store","externalStore"
+                        ]
+                    },
+                    {
+                        "from" : "capabilityOffer",
+                        "to" : [
+                            "capabilityOffer","externalCapabilityOffer"
+                        ]
+                    },
+                    {
+                        "from" : "pool",
+                        "to" : [
+                            "pool","externalPool"
+                        ]
+                    },
+                    {
+                        "from" : "orgUnit",
+                        "to" : [
+                            "externalOrgUnit"
                         ]
                     },
 					{
@@ -60,21 +84,9 @@
 				"role" : "directedAssociation",
 				"connects" : [
 					{
-						"from" : "class",
+						"from" : "associationSource",
 						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
-						]
-					},
-					{
-						"from" : "businessItemDefinition",
-						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
-						]
-					},
-					{
-						"from" : "interface",
-						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition","importedOrgElement"
+							"associationTarget"
 						]
 					}
 				]
@@ -82,24 +94,12 @@
 			{
 				"role" : "biDirectionalAssociation",
 				"connects" : [
-					{
-						"from" : "class",
-						"to" : [
-							"interface","class","businessItemDefinition"
-						]
-					},
-					{
-						"from" : "businessItemDefinition",
-						"to" : [
-							"interface","class","businessItemDefinition"
-						]
-					},
-					{
-						"from" : "interface",
-						"to" : [
-							"interface","importedInterface","importedClass","enumeration","class","importedEnumeration","businessItemDefinition"
-						]
-					}
+				    {
+                        "from" : "associationSource",
+                        "to" : [
+                            "associationSource"
+                        ]
+				    }
 				]
 			}
 		],

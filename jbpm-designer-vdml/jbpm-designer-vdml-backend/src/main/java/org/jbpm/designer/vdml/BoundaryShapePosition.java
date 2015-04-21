@@ -20,7 +20,6 @@ public enum BoundaryShapePosition {
     LEFT_BOTTOM {
         @Override
         public Bounds getBounds(Bounds parent) {
-            System.out.println();
             Bounds result = super.getBounds(parent);
             result.setX(parent.getX() - getHalfSize());
             result.setY(parent.getY() + parent.getHeight() - getInset() - getFullSize());

@@ -1,5 +1,6 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,6 +11,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -20,12 +27,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.diagram.Diagram;
 import org.omg.dd.dc.DCPackage;
 
 public class GenericEcoreComparator {
     Map<String, EObject> outputMap = new HashMap<String, EObject>();
     Map<String, EObject> inputMap = new HashMap<String, EObject>();
     Set<EClassifier> ignoreIdsFrom = new HashSet<EClassifier>();
+    private IEmfDiagramProfile profile;
+    private String json;
     {
         ignoreIdsFrom.add(DCPackage.eINSTANCE.getPoint());
         ignoreIdsFrom.add(DCPackage.eINSTANCE.getBounds());
@@ -37,7 +48,24 @@ public class GenericEcoreComparator {
     }
 
     public GenericEcoreComparator(EObject input, EObject output) {
-        this(input,output,Collections.<EClassifier>emptySet());
+        this(input, output, Collections.<EClassifier> emptySet());
+    }
+
+    public void setDebugInfo(Diagram json, IEmfDiagramProfile profile) {
+        if (json != null) {
+            ObjectMapper om = new ObjectMapper();
+            om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
+            om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
+            String s;
+            try {
+                this.json = om.writeValueAsString(json);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        this.profile = profile;
     }
 
     public GenericEcoreComparator(XMLResource inputResource, XMLResource outputResource, Set<EClassifier> moreIdsToIgnore) {
@@ -48,8 +76,8 @@ public class GenericEcoreComparator {
 
     public GenericEcoreComparator(EObject input, EObject output, Set<EClassifier> ignoreIdsOf) {
         ignoreIdsFrom.addAll(ignoreIdsOf);
-        populateMap((XMLResource)input.eResource(),  input.eAllContents(),this.inputMap);
-        populateMap((XMLResource)output.eResource(),output.eAllContents(),this.outputMap);
+        populateMap((XMLResource) input.eResource(), input.eAllContents(), this.inputMap);
+        populateMap((XMLResource) output.eResource(), output.eAllContents(), this.outputMap);
     }
 
     private void populateMap(XMLResource sourceResource, Map<String, EObject> targetMap) {
@@ -67,7 +95,7 @@ public class GenericEcoreComparator {
                     idVal = (String) eObject.eGet(id);
                 }
                 if (idVal == null) {
-                    idVal = (String) sourceResource.getID(eObject);
+                    idVal = (String) JBPMECoreHelper.getID(eObject);
                 }
                 if (idVal != null) {
                     targetMap.put(idVal, eObject);
@@ -77,13 +105,32 @@ public class GenericEcoreComparator {
     }
 
     public void validate() {
-        for (Entry<String, EObject> entry : inputMap.entrySet()) {
-            EObject found = outputMap.get(entry.getKey());
-            EObject expected = entry.getValue();
-            fail("Entry " + describeIdentity(expected) + " not found", found != null);
-            validateAllFeatures( expected,found);
+        try {
+            for (Entry<String, EObject> entry : inputMap.entrySet()) {
+                EObject found = outputMap.get(entry.getKey());
+                EObject expected = entry.getValue();
+                fail("Entry " + describeIdentity(expected) + " not found", found != null);
+                validateAllFeatures(expected, found);
+            }
+            assertEquals(inputMap.size(), outputMap.size());
+        } catch (AssertionError e) {
+            try {
+                if (this.profile != null) {
+                    System.err.println("#####XML IN:");
+                    this.inputMap.values().iterator().next().eResource().save(System.err, profile.buildDefaultResourceOptions());
+                }
+                if (this.json != null) {
+                    System.err.println("#####JSON:");
+                    System.err.println(this.json);
+                }
+                if (this.profile != null) {
+                    System.err.println("#####XML OUT:");
+                    this.outputMap.values().iterator().next().eResource().save(System.err, profile.buildDefaultResourceOptions());
+                }
+            } catch (Exception e1) {
+            }
+            throw e;
         }
-        assertEquals(inputMap.size(), outputMap.size());
     }
 
     private void fail(String string, boolean b) {
@@ -99,7 +146,7 @@ public class GenericEcoreComparator {
 
     }
 
-    private void validateAllFeatures(EObject expected,EObject found) {
+    private void validateAllFeatures(EObject expected, EObject found) {
         for (EStructuralFeature f : expected.eClass().getEAllStructuralFeatures()) {
             if (!(f.isDerived() || f instanceof EAttribute && ((EAttribute) f).isID())) {
                 assertEquals("Element not of the same type!", expected.eClass(), found.eClass());
@@ -125,7 +172,8 @@ public class GenericEcoreComparator {
         } else {
             fail(evaluating + "Both values should be not-null:", foundObject != null);
             assertEquals(evaluating + "Value not of the same type!", expectedObject.getClass(), foundObject.getClass());
-            if (expectedObject instanceof Number || expectedObject instanceof String || expectedObject instanceof Boolean || expectedObject instanceof Enumerator) {
+            if (expectedObject instanceof Number || expectedObject instanceof String || expectedObject instanceof Boolean
+                    || expectedObject instanceof Enumerator) {
                 assertEquals(evaluating + "Values not the same.", expectedObject, foundObject);
             } else if (expectedObject instanceof EObject) {
                 EObject expected = (EObject) expectedObject;
@@ -202,7 +250,7 @@ public class GenericEcoreComparator {
             }
         }
         if (identifyingString == null) {
-            identifyingString = ((XMLResource) value.eResource()).getID(value);
+            identifyingString = JBPMECoreHelper.getID(value);
         }
         if (identifyingString == null) {
             identifyingString = describeState(value);
@@ -247,5 +295,10 @@ public class GenericEcoreComparator {
             }
         }
         return sb.toString();
+    }
+
+    public void setDebugInfo(String json2, IEmfDiagramProfile profile2) {
+        this.json = json2;
+        this.profile = profile2;
     }
 }

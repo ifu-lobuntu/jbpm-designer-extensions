@@ -34,6 +34,7 @@ import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
+import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
@@ -391,7 +392,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             if (a.isMany()) {
                 Object val = getValue(currentTarget, a);
                 EList list = (EList) val;
-                list.add(value);
+                if(!list.contains(value)){
+                    list.add(value);
+                }
             } else {
                 setValueOn(currentTarget, a, value);
             }
@@ -487,6 +490,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         }
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private Object convert(LinkedProperty property, String string, Class<?> targetType) {
         if (string == null || string.trim().isEmpty()) {
             return null;
@@ -540,7 +544,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
     private Object resolveEObject(LinkedProperty property, String string, Class<?> targetType) {
         EObject ref = UriHelper.resolveEObject(shapeMap.getResource().getResourceSet(), string.split("\\|"), property.getClassFeatureMap());
         if (targetType != null && javax.xml.namespace.QName.class.isAssignableFrom(targetType)) {
-            return new QName(ref.eResource().getURI().toString(), ref.eResource().getURIFragment(ref), "");
+            return new QName(ref.eResource().getURI().toString(), JBPMECoreHelper.getID(ref), "");
         }
         return ref;
     }
@@ -567,8 +571,6 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
             Bounds sourceBounds = ((org.omg.dd.di.Shape) source).getBounds();
             start.setX(sourceBounds.getX() + (sourceBounds.getWidth() / 2));
             start.setY(sourceBounds.getY() + (sourceBounds.getHeight() / 2));
-        } else {
-            System.out.println();
         }
         edge.getWaypoint().add(start);
     }

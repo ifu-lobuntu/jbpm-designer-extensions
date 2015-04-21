@@ -36,7 +36,6 @@ ORYX.Plugins.MEAS = Clazz.extend(
 	testEvent: function (event,uiObject){
 		console.log(event.type);
 		this.facade.getCanvas().getChildEdges(true, function(shape){
-				console.log(shape);
 		}.bind(this));
 	}
 });

@@ -4,9 +4,11 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
+import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
 import org.jbpm.designer.ucd.UmlTypeMap;
 import org.jbpm.formModeler.api.client.FormRenderContext;
 import org.jbpm.formModeler.api.model.DataFieldHolder;
@@ -32,7 +34,7 @@ public class UmlClassDataHolder extends PojoDataHolder {
         this.holderClass = holderClass;
         Resource resource = holderClass.eResource();
         String platformString = resource.getURI().toString();
-        super.setClassName(platformString + "#" + resource.getURIFragment(holderClass));
+        super.setClassName(platformString + "#" + JBPMECoreHelper.getID(holderClass));
         
     }
 
@@ -80,7 +82,7 @@ public class UmlClassDataHolder extends PojoDataHolder {
             String type = UmlTypeMap.get(umlType.getQualifiedName());
             if(type==null){
                 Resource resource = umlType.eResource();
-                type=resource.getURI() + "#" + resource.getURIFragment(umlType);
+                type=resource.getURI() + "#" + JBPMECoreHelper.getID(umlType);
             }
             DataFieldHolder fieldHolder = new DataFieldHolder(this, field.getName(), type);
             dataFieldHolders.add(fieldHolder);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:oryx="http://www.b3mn.org/oryx" xmlns:xlink="http://www.w3.org/1999/xlink" width="102"
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:oryx="http://www.b3mn.org/oryx" xmlns:xlink="http://www.w3.org/1999/xlink" width="152"
   height="82" version="1.0">
   <defs></defs>
   <oryx:magnets>
@@ -19,9 +19,9 @@
     <oryx:magnet oryx:cx="50" oryx:cy="1" oryx:anchors="top" />
     <oryx:magnet oryx:cx="75" oryx:cy="1" oryx:anchors="top" />
 
-    <oryx:magnet oryx:cx="50" oryx:cy="40" oryx:default="yes" />
+    <oryx:magnet oryx:cx="76" oryx:cy="41" oryx:default="yes" />
   </oryx:magnets>
-  <g pointer-events="fill" oryx:minimumSize="80 40">
+  <g pointer-events="fill" oryx:minimumSize="80 30">
     <defs>
       <radialGradient id="background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
         <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
@@ -32,15 +32,13 @@
         <stop id="fill_border" offset="100%" stop-color="#ffffff" stop-opacity="1" />
       </radialGradient>
     </defs>
-
-    <rect id="text_frame" oryx:anchors="bottom top right left" x="1" y="1" width="94" height="79" rx="1" ry="1" stroke="none" stroke-width="0" fill="none" />
-    <rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="80" rx="1" ry="1" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" />
-    <text font-size="10" id="keyword" x="40" y="10" oryx:align="middle center" oryx:anchors="top" stroke="black">≪Graded≫</text>
-    <text font-size="12" id="text_name" x="40" y="22" oryx:fittoelem="text_frame" oryx:align="middle center" oryx:anchors="top" stroke="black"></text>
-<!--     <g transform="translate(51,68)"> -->
-<!--       <rect id="expand_button" oryx:fittoelem="bg_frame" oryx:anchors="bottom" x="0" y="0" width="12" height="12" stroke="black" stroke-width="1" fill="none" rx="2" ry="2" /> -->
-<!--       <path id="expand_vertical" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 6,2 L 6, 10 z" /> -->
-<!--       <path id="expand_horizontal" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 2,6 L 10,6 z" /> -->
-<!--     </g> -->
+    <rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="152" height="82" rx="1" ry="1" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" />
+    <text font-size="10" id="keyword" x="40" y="10" oryx:anchors="top" stroke="black">≪Grade≫</text>
+    <text font-size="12" id="text_name" x="40" y="22" oryx:anchors="top" stroke="black"></text>
+    <rect id="expandbutton" oryx:anchors="bottom" oryx:expansion-trigger="click" x="69" y="66" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="none"
+      oryx:expansion-display="expanded collapsed" />
+    <path id="expandvertical" oryx:anchors="bottom" oryx:expansion-trigger="click" style="opacity:1;fill:#F0EFF0;" stroke="black" stroke-width="1" oryx:expansion-display="collapsed"
+      d="M 76,68 L 76, 78 z" />
+    <path id="expandhorizontal" oryx:anchors="bottom" oryx:expansion-trigger="click" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 73,73 L 79,73 z" oryx:expansion-display="expanded collapsed" />
   </g>
 </svg>

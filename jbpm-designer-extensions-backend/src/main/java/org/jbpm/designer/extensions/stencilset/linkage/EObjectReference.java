@@ -8,6 +8,7 @@ public class EObjectReference {
     private String nameFeature;
     private String allowedElementTypes;
     private boolean multiSelect=false;
+    private boolean matchFirstReference=false;
     public String getTargetProfile() {
         return targetProfile;
     }
@@ -31,6 +32,12 @@ public class EObjectReference {
     }
     public void setMultiSelect(boolean multiSelect) {
         this.multiSelect = multiSelect;
+    }
+    public boolean isMatchFirstReference() {
+        return matchFirstReference;
+    }
+    public void setMatchFirstReference(boolean matchFirstReference) {
+        this.matchFirstReference = matchFirstReference;
     }
     
 }

@@ -97,9 +97,6 @@ public class ShapeMap {
 
     public EObject getModelElement(String resourceId) {
         Mapping mapping = this.shapeMap.get(resourceId);
-        if(mapping==null){
-            System.out.println();
-        }
         DiagramElement de = mapping.diagramElement;
         return getModelElement(de);
     }
@@ -113,15 +110,7 @@ public class ShapeMap {
     }
 
     public String getId(EObject modelElement) {
-        EAttribute eidAttribute = modelElement.eClass().getEIDAttribute();
-        String idVal=null;
-        if (eidAttribute != null) {
-            idVal = (String) modelElement.eGet(eidAttribute);
-        }
-        if (idVal == null && modelElement.eResource()!=null) {
-            return modelElement.eResource().getURIFragment(modelElement);
-        }
-        return idVal;
+        return JBPMECoreHelper.getID(modelElement);
     }
     public <T extends EObject> List<T> getOutgoingModelElements(Shape shape, StencilInfo ... stencils){
         List<T> result = new ArrayList<T>();

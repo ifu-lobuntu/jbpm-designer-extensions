@@ -22,10 +22,7 @@ public class TestUriHandler implements URIHandler {
 
     public static void main(String[] args) throws Exception {
         URI uri = URI.createPlatformResourceURI("/jbpm-designer-backend/src/test/resources/org/jbpm/designer/test/cmmn/test.cmmn", true);
-        System.out.println(uri);
         File file = new TestUriHandler().getFile(uri);
-        System.out.println(file);
-        System.out.println(file.exists());
     }
 
     @Override
@@ -36,7 +33,7 @@ public class TestUriHandler implements URIHandler {
         return new FileInputStream(getFile(uri));
     }
 
-    public File getFile(URI uri) throws IOException {
+    public File getFile(URI uri)  {
         try {
             File canonicalFile = new File(".").getCanonicalFile();
             if(uri.isPlatformResource()){
@@ -45,10 +42,9 @@ public class TestUriHandler implements URIHandler {
             }else{
                 return new File(uri.toFileString());
             }
+        } catch (RuntimeException e) {
+            throw e;
         } catch (Exception e) {
-            System.out.println(uri);
-            // TODO Auto-generated catch block
-//            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

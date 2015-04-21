@@ -6,14 +6,31 @@
 ##Value Proposition Exchange
 
 ##Library Modeling
+ - OwnedPool
+ - OwnedStore
+ - OwnedCapabilityOffer
+ - OrgUnit
+ - ExternalPool
+ - ExternalStore
+ - ExternalCapabilityOffer
+ - ExternalOrgUnit
  - BusinessItemCategory
+ - ImportedBusinessItemCategory
+ - ImportedBusinessItemDefinition
  - CapabilityDependency
+ - ImportedCapabilityCategory
+ - ImportedCapabilityDefinition
  - Actor
+ - ImportedActor
  - RoleCategory
+ - ImportedRoleCategory
  - RoleDefinition
+ - ImportedRoleDefinition
  - ValueDefinition
+ - ImportedValueDefinition
  - ValueCategory
-
+ - ImportedValueCategory
+ 
 ##Capability Management
  - Owned CapabilityMethod (need to solve containment issue)
  - Activity.appliedCapabilityOffer (do fromActivity in propertyEditor)
@@ -103,9 +120,13 @@
 ##Role Collaboration
  - Generate Library (BusinessItemDefinitions,RoleDefinitions)
 
+##Capability Management
+ - Update names of imported elements
+
 ##Value Proposition Exchange
  
 ##Library Modeling
  - Generate Code for all the VDML Elements
  - Associate one library of each type with a single collaboration and store it in the vdcol file
  - Only remove characteristics from elements associated with the current collaboration
+ - 

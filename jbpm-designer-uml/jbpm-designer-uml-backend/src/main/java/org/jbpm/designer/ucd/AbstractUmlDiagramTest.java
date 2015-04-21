@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
@@ -20,6 +24,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
@@ -107,8 +112,9 @@ public class AbstractUmlDiagramTest {
         idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
         idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralInteger());
         idsToIgnore.add(EcorePackage.eINSTANCE.getEAnnotation());
-        print(outputResource);
-        new GenericEcoreComparator(inputResource, outputResource,idsToIgnore).validate();
+        GenericEcoreComparator v = new GenericEcoreComparator(inputResource, outputResource,idsToIgnore);
+        v.setDebugInfo(json, profile);
+        v.validate();
     }
 
     protected String buildXmlString(XMLResource resource) throws IOException {
@@ -186,8 +192,5 @@ public class AbstractUmlDiagramTest {
     protected void addShapeToCompartment(Element parentElement, EReference feature, Element element, int... boundsInfo) {
         UMLCompartment comp= (UMLCompartment) this.elementCompartmentMap.get(new CompartmentKey(parentElement, feature));
         addShapeToParent(element, comp, boundsInfo);
-    }
-    protected void print(XMLResource r) throws IOException{
-        r.save(System.out,profile.buildDefaultResourceOptions());
     }
 }

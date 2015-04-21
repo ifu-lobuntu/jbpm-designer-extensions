@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -18,7 +19,7 @@ public class EmfWorkspace {
 		} else {
 			String uid = null;
 			if (object.eResource() != null) {
-				uid = getResourceId(object.eResource()) + "@" + object.eResource().getURIFragment(object);
+				uid = getResourceId(object.eResource()) + "@" + ((XMLResource) object.eResource()).getID(object);
 			} else if (object instanceof EModelElement && ((EModelElement) object).getEAnnotation(StereotypeNames.VDFP_ANNOTATION) != null) {
 				return ((EModelElement) object).getEAnnotation(StereotypeNames.VDFP_ANNOTATION).getDetails().get("tempIdStoredOnDeletion");
 			} else {

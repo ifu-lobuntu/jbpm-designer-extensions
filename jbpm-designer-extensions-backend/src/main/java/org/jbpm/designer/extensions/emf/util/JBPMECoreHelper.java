@@ -4,6 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class JBPMECoreHelper {
     /**
@@ -22,6 +23,21 @@ public class JBPMECoreHelper {
             if (eObject != null) {
                 return eObject;
             }
+        }
+        return null;
+    }
+    public static String getID(EObject e){
+        if(e==null){
+            return null;
+        }
+        if(e.eResource() instanceof XMLResource){
+            String id=((XMLResource) e.eResource()).getID(e);
+            if(id!=null){
+                return id;
+            }
+        }
+        if(e.eClass().getEIDAttribute()!=null){
+            return (String) e.eGet(e.eClass().getEIDAttribute());
         }
         return null;
     }

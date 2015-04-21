@@ -1353,6 +1353,7 @@
 				],
 				"view" : "case_file_item.svg",
 				"icon" : "case_file_item.png",
+				"referenceProperty" : "caseFileItemStructureRef",
 				"defaultAlign" : "southeast",
 				"layout" : [
 							{
@@ -1388,7 +1389,7 @@
 							"popular" : true,
 							"binding":"definitionRef.structureRef",
 							"reference":{
-								"targetProfile":"ucd|vdcol|vdlib",
+								"targetProfile":"ucd|vdcol",
 								"allowedElementTypes":"Class|Interface",
 								"nameFeature" : "qualifiedName"
 							},

@@ -399,7 +399,7 @@
                     "Types"
                 ],
                 "roles" : [
-                    "class"
+                    "class","associationSource","associationTarget"
                 ],
                 "description" : "A Class",
                 "view" : "class.svg",
@@ -446,7 +446,7 @@
                     "Types"
                 ],
                 "roles" : [
-                    "interface"
+                    "interface","associationSource","associationTarget"
                 ],
                 "description" : "A Class",
                 "view" : "interface.svg",
@@ -472,59 +472,7 @@
                     "Types"
                 ],
                 "roles" : [
-                    "enumeration"
-                ],
-                "description" : "A Class",
-                "view" : "enumeration.svg",
-                "icon" : "enumeration.png",
-                "layout" : [
-                            {
-                                "type" : "layout.compartments"
-                            }
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle"
-                ],
-                "properties" : [
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "Interface",
-                "title" : "Interface",
-                "childBinding" : "ownedType", 
-                "position" : 1,
-                "groups" : [
-                    "Types"
-                ],
-                "roles" : [
-                    "interface"
-                ],
-                "description" : "A Class",
-                "view" : "interface.svg",
-                "icon" : "interface.png",
-                "layout" : [
-                            {
-                                "type" : "layout.compartments"
-                            }
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle"
-                ],
-                "properties" : [
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "Enumeration",
-                "title" : "Enumeration",
-                "childBinding" : "ownedType", 
-                "position" : 1,
-                "groups" : [
-                    "Types"
-                ],
-                "roles" : [
-                    "enumeration"
+                    "enumeration","associationTarget"
                 ],
                 "description" : "A Class",
                 "view" : "enumeration.svg",
@@ -905,7 +853,7 @@
                     "Imports"
                 ],
                 "roles" : [
-                    "importedClass"
+                    "importedClass","associationTarget"
                 ],
                 "description" : "A Class",
                 "view" : "class.svg",
@@ -947,7 +895,7 @@
                     "Imports"
                 ],
                 "roles" : [
-                    "importedEnumeration"
+                    "importedEnumeration","associationTarget"
                 ],
                 "description" : "An Enumeration",
                 "view" : "class.svg",
@@ -989,7 +937,7 @@
                     "Imports"
                 ],
                 "roles" : [
-                    "importedInterface"
+                    "importedInterface","associationTarget"
                 ],
                 "description" : "An Interface",
                 "view" : "class.svg",
@@ -1091,15 +1039,9 @@
                 "role" : "directedAssociation",
                 "connects" : [
                     {
-                        "from" : "class",
+                        "from" : "associationSource",
                         "to" : [
-                            "interface","importedInterface","importedClass","enumeration","class","importedEnumeration"
-                        ]
-                    },
-                    {
-                        "from" : "interface",
-                        "to" : [
-                            "interface","importedInterface","importedClass","enumeration","class","importedEnumeration"
+                            "associationTarget"
                         ]
                     }
                 ]
@@ -1108,15 +1050,9 @@
                 "role" : "biDirectionalAssociation",
                 "connects" : [
                     {
-                        "from" : "class",
+                        "from" : "associationSource",
                         "to" : [
-                            "interface","class"
-                        ]
-                    },
-                    {
-                        "from" : "interface",
-                        "to" : [
-                            "interface","importedInterface","importedClass","enumeration","class","importedEnumeration"
+                            "associationSource"
                         ]
                     }
                 ]

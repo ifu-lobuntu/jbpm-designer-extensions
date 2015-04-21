@@ -3,6 +3,7 @@ package org.jbpm.designer.extensions.stencilset.linkage;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -23,20 +24,23 @@ public class LinkedProperty {
         if (property.getReference() != null) {
             String allowedElementTypes = property.getReference().getAllowedElementTypes();
             String[] elementTypes = allowedElementTypes.split("\\|");
-            for (String string : elementTypes) {
-                for (EPackage ePackage : packages) {
-                    EClass eClassifier = (EClass) ePackage.getEClassifier(string);
-                    if (eClassifier != null) {
-                        EStructuralFeature f = eClassifier.getEStructuralFeature(property.getReference().getNameFeature());
-                        elementNameFeatureMap.put(eClassifier, (EAttribute) f);
+            for (EPackage ePackage : packages) {
+                if (this.property.getReference().isMatchFirstReference()) {
+                    findSuperMostClassifiersWithNameFeature(ePackage);
+                } else {
+                    for (String string : elementTypes) {
+                        EClass eClassifier = (EClass) ePackage.getEClassifier(string);
+                        if (eClassifier == null) {
+                        } else {
+                            EStructuralFeature f = eClassifier.getEStructuralFeature(property.getReference().getNameFeature());
+                            elementNameFeatureMap.put(eClassifier, (EAttribute) f);
+
+                        }
                     }
                 }
             }
-            if(elementNameFeatureMap.isEmpty()){
-                System.out.println();
-            }
         }
-        if (property.getExpectedType() != null && expectedType==null) {
+        if (property.getExpectedType() != null && expectedType == null) {
             for (EPackage ePackage : packages) {
                 EClass eClassifier = (EClass) ePackage.getEClassifier(property.getExpectedType());
                 if (eClassifier != null) {
@@ -51,6 +55,21 @@ public class LinkedProperty {
                 }
                 if (eClassifier != null) {
                     this.expectedType = eClassifier.getInstanceClass();
+                }
+            }
+        }
+    }
+
+    protected void findSuperMostClassifiersWithNameFeature(EPackage ePackage) {
+        for (EClassifier ec : ePackage.getEClassifiers()) {
+            if (ec instanceof EClass) {
+                EClass eclass = (EClass) ec;
+                String nameFeature = property.getReference().getNameFeature();
+                if (EcorePackage.eINSTANCE.getEModelElement().isSuperTypeOf(eclass)) {
+                    EStructuralFeature f = eclass.getEStructuralFeature(nameFeature);
+                    if (f != null && f.getEContainingClass().equals(ec)) {
+                        elementNameFeatureMap.put(eclass, (EAttribute) f);
+                    }
                 }
             }
         }

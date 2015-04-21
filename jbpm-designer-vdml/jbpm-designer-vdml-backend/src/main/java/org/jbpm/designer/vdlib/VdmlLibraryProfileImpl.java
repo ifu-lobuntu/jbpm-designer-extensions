@@ -37,7 +37,7 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  *
  */
 @ApplicationScoped
-public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl implements IVdmlDiagramProfile{
+public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl implements IVdmlDiagramProfile {
 
     private static final String STENCILSET_PATH = "stencilsets/vdlib/vdlib.json";
 
@@ -115,13 +115,11 @@ public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl impl
     @Override
     public Diagram buildDiagramStub(ResourceSet rst, URI uri) {
         EList<Resource> resources = rst.getResources();
-        Package pkg =null;
-        outer:for (Resource resource : resources) {
-            for (EObject eo : resource.getContents()) {
-                if(eo instanceof Package){
-                    pkg=(Package) eo;
-                    break outer;
-                }
+        Package pkg = null;
+        for (EObject eo : rst.getResource(uri.trimFileExtension().appendFileExtension("vdcol"), true).getContents()) {
+            if (eo instanceof Package) {
+                pkg = (Package) eo;
+                break;
             }
         }
         XMLResource rs = (XMLResource) rst.createResource(uri);
@@ -130,6 +128,5 @@ public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl impl
         dgm.setUmlElement(pkg);
         return dgm;
     }
-
 
 }

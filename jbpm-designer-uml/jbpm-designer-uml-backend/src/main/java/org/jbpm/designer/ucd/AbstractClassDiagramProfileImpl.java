@@ -130,8 +130,6 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
         URL url = UMLDiagram.class.getResource(resourcePath);
         URI cmmnTypesUri = URI.createURI(url.toExternalForm().replace("jar:", "archive:"));
         resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
-        System.out.println(uri);
-        System.out.println(cmmnTypesUri);
         String[] languages = { "java", "js" };
         for (String l : languages) {
             resourceSet.getURIConverter().getURIMap().put(mappingsUriForLanguage(uri, l), mappingsUriForLanguage(cmmnTypesUri, l));

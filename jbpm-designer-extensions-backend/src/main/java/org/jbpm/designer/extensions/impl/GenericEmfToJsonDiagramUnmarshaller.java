@@ -55,14 +55,14 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
     public GenericEmfToJsonDiagramUnmarshaller(IEmfDiagramProfile profile, URI uri) {
         super(profile);
-        this.uri=uri;
+        this.uri = uri;
     }
 
     /**
      * For tests only
      */
     public GenericEmfToJsonDiagramUnmarshaller(IEmfDiagramProfile profile, URI uri, boolean validate) {
-        this(profile,uri);
+        this(profile, uri);
         this.validate = validate;
     }
 
@@ -77,7 +77,6 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             om.configure(JsonParser.Feature.ALLOW_COMMENTS, true);
             om.configure(SerializationConfig.Feature.INDENT_OUTPUT, true);
             String s = om.writeValueAsString(json);
-            System.out.println(s);
             return s;
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,9 +138,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
                     }
                     if (ce.getTarget() != null) {
                         Shape targetShape = shapeMap.getShape(ce.getTarget());
-                        if(targetShape==null){
-                            System.out.println();
-                        }else{
+                        if (targetShape != null) {
                             shape.addOutgoing(targetShape);
                         }
                     }
@@ -162,8 +159,8 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             EObject me = getModelElement(de);
             if (shouldGenerateJson(de, me)) {
                 StencilInfo stencil = helper.findStencilByElement(me, de);
-                if(stencil==null){
-                    System.out.println();
+                if (stencil == null) {
+                    throw new IllegalStateException("No StencilInfo found for " + me);
                 }
                 String resourceId = me == null ? shapeMap.getId(de) : shapeMap.getId(me);
                 Shape shape = new Shape(resourceId, new StencilType(stencil.getStencilId()));
@@ -212,9 +209,8 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     private void setProperties(DiagramElement diagramElement, EObject mee, Shape shape) {
-        System.out.println();
         StencilInfo stencil = helper.findStencilByElement(mee, diagramElement);
-        if(stencil==null){
+        if (stencil == null) {
             throw new IllegalArgumentException("No StencilInfo found for '" + mee + "'");
         }
         LinkedStencil sv = profile.getLinkedStencilSet().getLinkedStencil(stencil.getStencilId());
@@ -230,10 +226,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             } else if (mee != null) {
                 if (mee != null) {
                     EStructuralFeature eStructuralFeature = mee.eClass().getEStructuralFeature(property.getId());
-                    if (eStructuralFeature == null) {
-                        // TODO validate
-                        System.out.println(mee.eClass().getName() + "." + property.getId() + " does not exist");
-                    } else {
+                    if (eStructuralFeature != null) {
                         val = mee.eGet(eStructuralFeature);
                     }
                 }
@@ -245,7 +238,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
     }
 
     protected Object resolveBinding(EObject mee, Object val, String binding) {
-        if(mee==null){
+        if (mee == null) {
             return null;
         }
         String[] split = binding.trim().split("\\.");
@@ -291,16 +284,21 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
             }
         } else if (val instanceof QName) {
             if (property.getReference() != null) {
-                Resource res = shapeMap.getResource().getResourceSet().getResource(URI.createURI(((QName) val).getNamespaceURI()), true);
-                if (res != null) {
-                    EObject eObject = res.getEObject(((QName) val).getLocalPart());
-                    String platformString = res.getURI().toPlatformString(true);
-                    if (platformString == null) {
-                        platformString = res.getURI().toString();
+                URI externalUri = URI.createURI(((QName) val).getNamespaceURI());
+                ResourceSet rst = shapeMap.getResource().getResourceSet();
+                if (rst.getURIConverter().exists(externalUri, profile.buildDefaultResourceOptions())) {
+                    Resource res = rst.getResource(externalUri, true);
+                    if (res != null) {
+                        EObject eObject = res.getEObject(((QName) val).getLocalPart());
+                        String platformString = res.getURI().toPlatformString(true);
+                        if (platformString == null) {
+                            platformString = res.getURI().toString();
+                        }
+                        Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
+                        return name + "|" + platformString;
                     }
-                    Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
-                    return name + "|" + platformString;
-
+                }else{
+                    return "";
                 }
             }
             return val.toString();
@@ -328,12 +326,16 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
 
     private String convertToEObjectReference(LinkedProperty property, EObject eObject) {
         Resource eResource = eObject.eResource();
-        String platformString = eResource.getURI().toPlatformString(true);
-        if (platformString == null) {
-            platformString = eResource.getURI().toString();
+        if (eResource != null) {
+            String platformString = eResource.getURI().toPlatformString(true);
+            if (platformString == null) {
+                platformString = eResource.getURI().toString();
+            }
+            Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
+            return name + "|" + platformString;
+        } else {
+            return "";
         }
-        Object name = eObject.eGet(eObject.eClass().getEStructuralFeature(property.getReference().getNameFeature()));
-        return name + "|" + platformString;
     }
 
     private String formatColorQuantity(Integer blue2) {
@@ -356,7 +358,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         Map<String, Object> options = profile.buildDefaultResourceOptions();
         InputStream is = new ByteArrayInputStream(xmlModel.getBytes("UTF-8"));
         resource.load(is, options);
-//        EcoreUtil.resolveAll(resource);
+        // EcoreUtil.resolveAll(resource);
         EList<Resource> resources = resourceSet.getResources();
         for (Resource resource2 : resources) {
             if (!resource2.getErrors().isEmpty()) {

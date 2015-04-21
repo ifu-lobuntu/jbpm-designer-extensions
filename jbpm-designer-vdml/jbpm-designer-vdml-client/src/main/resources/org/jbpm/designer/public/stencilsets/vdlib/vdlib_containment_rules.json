@@ -1,17 +1,11 @@
 				{
 					"role" : "diagram",
 					"contains" : [
-						"businessItemDefinition","importedOrgElement","capability"
+						"associationSource","associationTarget"
 					]
 				},
                 {
-                    "role" : "businessItemDefinition",
-                    "contains" : [
-                        "characteristicDefinition","ownedAttribute"
-                    ]
-                },
-                {
-                    "role" : "importedOrgElement",
+                    "role" : "associationSource",
                     "contains" : [
                         "characteristicDefinition","ownedAttribute"
                     ]

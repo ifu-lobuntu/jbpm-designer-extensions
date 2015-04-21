@@ -12,6 +12,7 @@ import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
+import org.jbpm.designer.vdml.VDMLRoleCollaborationOrphanFilter;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
@@ -52,7 +53,6 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
         return super.caseRole(object);
     }
 
-
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {
         if (object.getProvider() != null) {
@@ -74,7 +74,10 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
         buildRoleShapes(map, 200d, 70d);
         buildDeliverableFlowEdges(map);
     }
-
+    @Override
+    protected OrphanFilter getOrphanFilter() {
+        return new VDMLRoleCollaborationOrphanFilter();
+    }
     private void buildDeliverableFlowEdges(Map<VdmlElement, VDMLDiagramElement> map) {
         OrphanFilter of = getOrphanFilter();
         TreeIterator<EObject> allContents = owningCollaboration.eAllContents();
@@ -83,12 +86,14 @@ public class VdmlRoleCollaborationEmfToJsonHelper extends AbstractVdmlEmfToJsonH
             if (eObject instanceof DeliverableFlow && of.shouldHaveDiagramElement((VdmlElement) eObject) && !map.containsKey(eObject)) {
                 DeliverableFlow d = (DeliverableFlow) eObject;
                 // Create flow
+                Role providingRole = VdmlHelper.getRoleResponsibleFor(d.getProvider());
+                Role receivingRole = VdmlHelper.getRoleResponsibleFor(d.getRecipient());
                 VDMLEdge edge = VDMLDIFactory.eINSTANCE.createVDMLEdge();
                 getDiagram().getOwnedVdmlDiagramElement().add(edge);
                 edge.setId(EcoreUtil.generateUUID());
                 edge.setVdmlElement(d);
-                edge.setSourceShape((VDMLShape) map.get(VdmlHelper.getRoleResponsibleFor(d.getProvider())));
-                edge.setTargetShape((VDMLShape) map.get(VdmlHelper.getRoleResponsibleFor(d.getRecipient())));
+                edge.setSourceShape((VDMLShape) map.get(providingRole));
+                edge.setTargetShape((VDMLShape) map.get(receivingRole));
                 map.put(d, edge);
             }
         }

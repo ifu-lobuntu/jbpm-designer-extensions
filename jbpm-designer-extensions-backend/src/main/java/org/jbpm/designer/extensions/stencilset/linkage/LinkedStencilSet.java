@@ -172,7 +172,6 @@ public class LinkedStencilSet {
         }
         for (ConnectionRule connectionRule : this.stencilSet.getRules().getConnectionRules()) {
                 List<Connects> connects = connectionRule.getConnects();
-                System.out.println();
         }
         return false;
     }

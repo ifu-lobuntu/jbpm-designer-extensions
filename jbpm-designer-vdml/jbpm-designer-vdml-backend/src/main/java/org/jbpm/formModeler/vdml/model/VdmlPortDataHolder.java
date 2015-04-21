@@ -5,6 +5,7 @@ import java.util.TreeSet;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.formModeler.api.client.FormRenderContext;
 import org.jbpm.formModeler.api.model.DataFieldHolder;
@@ -38,7 +39,7 @@ public class VdmlPortDataHolder extends PojoDataHolder {
         this.holderPort = holderPort;
         Resource resource = holderPort.eResource();
         String platformString = resource.getURI().toString();
-        super.setClassName(platformString + "#" + resource.getURIFragment(holderPort));
+        super.setClassName(platformString + "#" + ((XMLResource) resource).getID(holderPort));
 
     }
 

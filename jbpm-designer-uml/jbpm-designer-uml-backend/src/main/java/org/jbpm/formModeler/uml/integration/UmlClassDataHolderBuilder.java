@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Class;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
+import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.filters.FilterByExtension;
 import org.jbpm.designer.server.service.PathEvent;
@@ -101,7 +102,6 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
 
     protected Map<String, String> collectClasses(ResourceSet rst) {
         String[] elementTypes = { "Class" };
-        @SuppressWarnings("rawtypes")
         Map<String, String> classInfo = new HashMap<String, String>();
         for (Resource resource : rst.getResources()) {
             TreeIterator<EObject> ti = resource.getContents().get(0).eAllContents();
@@ -111,7 +111,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
                     String className = eObject.eClass().getName();
                     if (className.equals(string)) {
                         String platformString = resource.getURI().toString();
-                        classInfo.put(platformString + "#" + resource.getURIFragment(eObject),
+                        classInfo.put(platformString + "#" + JBPMECoreHelper.getID(eObject),
                                 (String) eObject.eGet(eObject.eClass().getEStructuralFeature("qualifiedName")));
                     }
                 }

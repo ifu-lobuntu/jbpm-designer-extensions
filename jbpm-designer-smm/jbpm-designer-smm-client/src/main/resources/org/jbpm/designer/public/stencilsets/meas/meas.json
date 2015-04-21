@@ -165,6 +165,44 @@
                 ]
             },
             {
+                "name":"expandable",
+                "properties":[
+                      {
+                          "id" : "isExpanded",
+                          "type" : "Boolean",
+                          "title" : "Is Expanded",
+                          "viewBinding" : "isExpanded",
+                          "value" : true,
+                          "description" : "Is Expanded",
+                          "readonly" : false,
+                          "optional" : false,
+                          "hidden" : true
+                      },
+                      {
+                          "id" : "previousWidth",
+                          "type" : "Integer",
+                          "title" : "Previous Width",
+                          "viewBinding" : "previousWidth",
+                          "value" : 200,
+                          "description" : "Previous Width ",
+                          "readonly" : false,
+                          "optional" : false,
+                          "hidden" : true
+                      },
+                      {
+                          "id" : "previousHeight",
+                          "type" : "Integer",
+                          "title" : "Previous Height",
+                          "viewBinding" : "previousHeight",
+                          "value" : 100,
+                          "description" : "Previous Height",
+                          "readonly" : false,
+                          "optional" : false,
+                          "hidden" : true
+                      }
+                ]
+            },
+            {
                 "name" : "measureRelationship",
                 "properties": [
                     {
@@ -313,6 +351,52 @@
                 "description" : "Direct Measure",
                 "view" : "direct_measure.svg",
                 "icon" : "direct_measure.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "smmElement","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "CountingMeasure",
+                "title" : "Counting Measure",
+                "position" : 4,
+                "childBinding": "measureElements",
+                "groups" : [
+                    "Basic"
+                ],
+                "roles" : [
+                    "directMeasure", "measure","dimensionalMeasure"
+                ],
+                "description" : "Counting Measure",
+                "view" : "counting_measure.svg",
+                "icon" : "counting_measure.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "smmElement","localStyle"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "NamedMeasure",
+                "title" : "Named Measure",
+                "position" : 4,
+                "childBinding": "measureElements",
+                "groups" : [
+                    "Basic"
+                ],
+                "roles" : [
+                    "directMeasure", "measure","dimensionalMeasure"
+                ],
+                "description" : "Named Measure",
+                "view" : "named_measure.svg",
+                "icon" : "named_measure.png",
                 "layout" : [
                 ],
                 "propertyPackages" : [
@@ -652,18 +736,19 @@
                 "view" : "grade_measure.svg",
                 "icon" : "grade_measure.png",
                 "layout" : [
-                    {
-                        "type" : "layout.list",
-                        "options" : {
-                                "offsetY" :40
-                        }
-                    //                  },
-//                  {
-//                      "type" : "layout.collapsible"
-                    }
+                      {
+                            "type" : "layout.list",
+                            "options" : {
+                                    "offsetY" :40,
+                                    "bottomPadding" : 35
+                            }
+                      },
+                      {
+                          "type" : "layout.collapsible"
+                      }
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","expandable"
                 ],
                 "properties" : [
                 ]
@@ -744,17 +829,19 @@
                     {
                         "type" : "layout.list",
                         "options" : {
-                                "offsetY" :40
+                                "offsetY" :40,
+                                "bottomPadding" : 35
                         }
-                    //                  },
-//                  {
-//                      "type" : "layout.collapsible"
-                    }
+                  },
+                  {
+                      "type" : "layout.collapsible"
+                  }
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","expandable"
                 ],
                 "properties" : [
+                                
                 ]
             },
             {

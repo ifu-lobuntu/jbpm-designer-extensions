@@ -79,8 +79,13 @@ public class UriHelper {
     protected static boolean isMatch(Set<Entry<EClass, EAttribute>> entrySet, String identifier, EObject eObject) {
         boolean isMatch = false;
         for (Entry<EClass, EAttribute> entry : entrySet) {
-            if (entry.getKey().isInstance(eObject) && eObject.eGet(entry.getValue()).equals(identifier)) {
-                isMatch = true;
+            if (entry.getKey().isInstance(eObject)) {
+                String name = (String) eObject.eGet(entry.getValue());
+                System.out.println(name);
+                if (name.equals(identifier)) {
+                    isMatch = true;
+                    break;
+                }
             }
         }
         return isMatch;

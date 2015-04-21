@@ -530,7 +530,7 @@
 				],
 				"properties" : [
 	                {
-						"id" : "externalStore",
+						"id" : "importedStore",
 						"type" : "eobjectref",
 						"title" : "StoreRef",
 						"value" : "",
@@ -607,7 +607,7 @@
 				],
 				"properties" : [
 	                {
-						"id" : "externalPool",
+						"id" : "importedPool",
 						"type" : "eobjectref",
 						"title" : "PoolRef",
 						"value" : "",

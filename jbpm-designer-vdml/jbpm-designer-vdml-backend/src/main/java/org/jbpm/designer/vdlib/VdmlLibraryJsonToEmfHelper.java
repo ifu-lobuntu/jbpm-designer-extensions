@@ -1,20 +1,26 @@
 package org.jbpm.designer.vdlib;
 
 import java.beans.Introspector;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
@@ -22,16 +28,23 @@ import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.designer.ucd.ClassDiagramJsonToEmfHelper;
+import org.jbpm.designer.ucd.ClassDiagramStencil;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
 import org.jbpm.uml2.dd.umldi.UMLDiagramElement;
+import org.jbpm.uml2.dd.umldi.UMLEdge;
+import org.jbpm.uml2.dd.umldi.UMLShape;
+import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
+import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.omg.dd.di.DiagramElement;
+import org.omg.smm.Characteristic;
 import org.omg.smm.DirectMeasure;
 import org.omg.smm.GradeMeasure;
 import org.omg.smm.Measure;
 import org.omg.smm.RankingMeasure;
+import org.omg.vdml.BusinessItem;
 import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.BusinessItemLibrary;
 import org.omg.vdml.BusinessItemLibraryElement;
@@ -39,10 +52,14 @@ import org.omg.vdml.Capability;
 import org.omg.vdml.CapabilityCategory;
 import org.omg.vdml.CapabilityDefinition;
 import org.omg.vdml.CapabilityLibrary;
+import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;
+import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.MeasurableElement;
 import org.omg.vdml.MeasuredCharacteristic;
+import org.omg.vdml.OrgUnit;
 import org.omg.vdml.RoleDefinition;
+import org.omg.vdml.Store;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDefinition;
 import org.omg.vdml.ValueDeliveryModel;
@@ -60,14 +77,19 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
 
     @Override
     public Object caseClass(Class object) {
+        object.eResource().setModified(true);
         if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.BUSINESS_ITEM_DEFINITION.getStencilId())) {
             BusinessItemDefinition bid = createBusinessDefinition(object, owningBusinessItemLibrary);
             bid.setIsFungible("true".equals(sourceShape.getProperty("isFungible")));
             bid.setIsShareable("true".equals(sourceShape.getProperty("isShareable")));
+            bid.eResource().setModified(true);
         } else if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.CAPABILITY_CATEGORY.getStencilId())) {
             CapabilityCategory cc = createCapabilityCategory(object, owningCapabilityLibrary);
+            cc.eResource().setModified(true);
         } else if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.CAPABILITY_DEFINITION.getStencilId())) {
             CapabilityDefinition cd = createCapabilityDefinition(object, owningCapabilityLibrary);
+            cd.eResource().setModified(true);
+
         }
         return super.caseClass(object);
     }
@@ -83,7 +105,6 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
 
         }
     }
-    
 
     @Override
     public Object caseProperty(Property object) {
@@ -125,7 +146,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
                     }
                     XMLResource resource = (XMLResource) object.eResource();
                     if (resource.getID(object) == null) {
-                        resource.setID(object, ((XMLResource) measure.eResource()).getID(measure) + "prop");
+                        resource.setID(object, EcoreUtil.generateUUID());
                     }
                 }
                 if (measure instanceof DirectMeasure) {
@@ -145,20 +166,121 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
     }
 
     @Override
+    public UMLDiagramElement createElements(Shape shape) {
+        VdmlLibraryStencil st = VdmlLibraryStencil.findStencilById(shape.getStencilId());
+        String umlStencilId = st == null ? shape.getStencilId() : st.getBaseStencil().getStencilId();
+        UMLDiagramElement de = ClassDiagramStencil.createDiagramElement(umlStencilId);
+        de.setLocalStyle(UMLDIFactory.eINSTANCE.createUMLStyle());
+        if (de instanceof UMLCompartment) {
+            ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(shape.getStencilId()));
+        } else {
+            Element modelElement = (Element) shapeMap.findEObjectById(shape.getResourceId());
+            if (modelElement == null) {
+                modelElement = ClassDiagramStencil.createElement(umlStencilId);
+            }
+            if (de instanceof UMLShape) {
+                ((UMLShape) de).setUmlElement(modelElement);
+            } else if (de instanceof UMLEdge) {
+                ((UMLEdge) de).setUmlElement(modelElement);
+            }
+        }
+        return de;
+    }
+
+    @Override
     public void postprocessResource() {
         super.postprocessResource();
-        TreeIterator<EObject> eAllContents = thisPackage.eAllContents();
-        Set<Element> orphanUmlElements=new HashSet<Element>();
-        while (eAllContents.hasNext()) {
-            EObject eObject = eAllContents.next();
-            if(eObject instanceof Element && ((Element) eObject).getEAnnotation(VdmlLibraryStencil.VDLIB_URI)!=null){
-                EAnnotation en= ((EModelElement) eObject).getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
-                if(en.getReferences().isEmpty() || en.getReferences().get(0).eResource()==null){
-                    orphanUmlElements.add((Element) eObject);
+        thisPackage = (Package) this.diagram.getUmlElement();
+        TreeIterator<EObject> eAllContents2 = this.diagram.eAllContents();
+        Map<Element, UMLDiagramElement> map = new HashMap<Element, UMLDiagramElement>();
+        while (eAllContents2.hasNext()) {
+            EObject eObject = eAllContents2.next();
+            if (eObject instanceof UMLDiagramElement) {
+                UMLDiagramElement de = (UMLDiagramElement) eObject;
+                map.put(de.getUmlElement(), (UMLDiagramElement) eObject);
+            }
+
+        }
+        for (Type type : new ArrayList<Type>(thisPackage.getOwnedTypes())) {
+
+            boolean remove = true;
+            if (!map.containsKey(type)) {
+                EAnnotation ann = type.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
+                if (ann != null) {
+                    if (ann.getReferences().size() > 0) {
+                        EObject eObject = ann.getReferences().get(0);
+                        if (eObject instanceof BusinessItemDefinition) {
+                            for (DeliverableFlow f : this.owningCollaboration.getFlow()) {
+                                if (f.getDeliverable() != null && f.getDeliverable().getDefinition() != null
+                                        && f.getDeliverable().getDefinition().equals(eObject)) {
+                                    
+                                    f.setDeliverable(null);
+                                }
+                            }
+                            for (BusinessItem f : new ArrayList<BusinessItem>(this.owningCollaboration.getBusinessItem())) {
+                                if (f.getDefinition() != null && f.getDefinition().equals(eObject)) {
+                                    this.owningCollaboration.getBusinessItem().remove(f);
+                                }
+                            }
+                            this.owningBusinessItemLibrary.getBusinessItemLibraryElement().remove(eObject);
+                        } else if (eObject instanceof Capability) {
+                            this.owningCapabilityLibrary.getCapability().remove(eObject);
+                        } else if (eObject instanceof Store || eObject instanceof OrgUnit || eObject instanceof CapabilityOffer) {
+                            remove = false;
+                        }
+                    }
+                }
+                if (remove) {
+                    thisPackage.getOwnedTypes().remove(type);
+                    EList<Association> associations = type.getAssociations();
+                    for (Association association : associations) {
+                        association.getOwnedEnds().clear();
+                        for (Property property : association.getMemberEnds()) {
+                            deleteProperty(property);
+                        }
+                    }
+                    thisPackage.getOwnedMembers().removeAll(associations);
+                }
+            }
+            if (!remove) {
+                EList<Property> attributes = ((Classifier) type).getAttributes();
+                for (Property property : new ArrayList<Property>(attributes)) {
+                    if (!map.containsKey(property) && property.getAssociation() == null) {
+                        if (property.getEAnnotation(VdmlLibraryStencil.VDLIB_URI) != null) {
+                            EAnnotation ann = property.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
+                            if (ann.getReferences().size() > 0 && ann.getReferences().get(0) instanceof Characteristic) {
+                                Characteristic eObject = (Characteristic) ann.getReferences().get(0);
+                                if (eObject instanceof BusinessItemDefinition) {
+                                    ((BusinessItemDefinition) eObject).getCharacteristicDefinition().remove(eObject);
+                                } else if (eObject instanceof Capability) {
+                                    ((Capability) eObject).getCharacteristicDefinition().remove(eObject);
+                                } else if (eObject instanceof MeasurableElement) {
+                                    MeasurableElement meas = (MeasurableElement) eObject;
+                                    for (MeasuredCharacteristic mc : new ArrayList<MeasuredCharacteristic>(meas.getMeasuredCharacteristic())) {
+                                        if (mc.getCharacteristicDefinition() != null && mc.getCharacteristicDefinition().equals(eObject)) {
+                                            meas.getMeasuredCharacteristic().remove(mc);
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                        deleteProperty(property);
+                    }
+
                 }
             }
         }
-        TreeIterator<EObject> eAllContents2 = this.diagram.eAllContents();
+    }
+
+    protected void deleteProperty(Property property) {
+        if (property.getOwner() instanceof Class) {
+            ((Class) property.getOwner()).getOwnedAttributes().remove(property);
+        } else if (property.getOwner() instanceof Interface) {
+            ((Interface) property.getOwner()).getOwnedAttributes().remove(property);
+        } else if (property.getOwner() instanceof Enumeration) {
+            ((Enumeration) property.getOwner()).getOwnedAttributes().remove(property);
+        }
     }
 
     @Override
@@ -174,8 +296,8 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
                 break;
             }
         }
-        if(pkg==null){
-            pkg=UMLFactory.eINSTANCE.createPackage();
+        if (pkg == null) {
+            pkg = UMLFactory.eINSTANCE.createPackage();
             pkg.setName(this.owningCollaboration.getName().toLowerCase());
             this.owningCollaboration.eResource().getContents().add(pkg);
         }
@@ -202,7 +324,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
     }
 
     public static CapabilityLibrary findOrCreateCapabilityLibrary(Package pkg, ValueDeliveryModel vdm) {
-        XMLResource resource=(XMLResource) pkg.eResource();
+        XMLResource resource = (XMLResource) pkg.eResource();
         for (CapabilityLibrary cl : vdm.getCapabilitylibrary()) {
             return cl;
         }
@@ -213,7 +335,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
     }
 
     public static ValueDeliveryModel findOrcreateValueDeliveryModel(Package pkg) {
-        XMLResource resource=(XMLResource) pkg.eResource();
+        XMLResource resource = (XMLResource) pkg.eResource();
         for (EObject eo : resource.getContents()) {
             if (eo instanceof ValueDeliveryModel) {
                 return (ValueDeliveryModel) eo;
@@ -225,22 +347,8 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
         return vdm;
     }
 
-    @Override
-    public DiagramElement createElements(Shape shape) {
-        VdmlLibraryStencil st = VdmlLibraryStencil.findStencilById(shape.getStencilId());
-        if (st == null) {
-            return super.createElements(shape);
-        } else {
-            UMLDiagramElement de = super.createElements(st.getBaseStencil().getStencilId());
-            if (de instanceof UMLCompartment) {
-                ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(shape.getStencilId()));
-            }
-            return de;
-        }
-    }
-
     public static BusinessItemDefinition createBusinessDefinition(Class clss, BusinessItemLibrary library) {
-        XMLResource resource=(XMLResource) clss.eResource();
+        XMLResource resource = (XMLResource) clss.eResource();
         BusinessItemDefinition bid = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
         bid.setName(clss.getName());
         library.getBusinessItemLibraryElement().add(bid);

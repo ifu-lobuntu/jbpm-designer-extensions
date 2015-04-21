@@ -58,7 +58,7 @@ public abstract class AbstractVdmlJsonEmfHelper extends VDMLSwitch<Object> {
         this.managedClassSet.add(PACKAGE.getParty());
     }
 
-    protected interface OrphanFilter {
+    public interface OrphanFilter {
         boolean shouldHaveDiagramElement(VdmlElement e);
     }
 

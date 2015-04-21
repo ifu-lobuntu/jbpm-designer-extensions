@@ -15,6 +15,21 @@
     background-repeat: no-repeat;
     background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
 }
+.stencilsets_meas_meas_json_icons_counting_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_counting_measure {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+}
+.stencilsets_meas_meas_json_icons_named_measure,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_named_measure {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+}
+
 .stencilsets_meas_meas_json_icons_binary_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_binary_measure {
     width: 16px;

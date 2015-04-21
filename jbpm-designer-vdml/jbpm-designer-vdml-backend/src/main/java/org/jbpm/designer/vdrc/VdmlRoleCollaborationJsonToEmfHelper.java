@@ -15,6 +15,7 @@ import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
+import org.jbpm.designer.vdml.VDMLRoleCollaborationOrphanFilter;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
@@ -88,20 +89,7 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
 
     @Override
     protected OrphanFilter getOrphanFilter() {
-        return new OrphanFilter() {
-
-            @Override
-            public boolean shouldHaveDiagramElement(VdmlElement e) {
-                if (e instanceof DeliverableFlow) {
-                    DeliverableFlow flow = (DeliverableFlow) e;
-                    Role receivingRole = VdmlHelper.getRoleResponsibleFor(flow.getRecipient());
-                    Role providingRole = VdmlHelper.getRoleResponsibleFor(flow.getProvider());
-                    return receivingRole != null && providingRole != null && receivingRole != providingRole;
-                } else {
-                    return true;
-                }
-            }
-        };
+        return new VDMLRoleCollaborationOrphanFilter();
     }
 
     @Override
@@ -110,13 +98,10 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
         if ((object.getDeliverable() == null || object.getDeliverable().getDefinition() == null || object.getDeliverable().getDefinition().eResource() == null)
                 && object.getName() != null && object.getName().trim().length() > 0) {
             try {
-                Resource r = object.eResource();
-                URI libUri = URI.createURI(r.getURI().toString().replaceAll("vdcol", "vdlib"));
-                EList<EObject> contents = r.getResourceSet().getResource(libUri, true).getContents();
                 ValueDeliveryModel vdm = null;
                 UMLDiagram dgm = null;
                 Package pkg = null;
-                for (EObject eo : contents) {
+                for (EObject eo : object.eResource().getContents()) {
                     if (eo instanceof ValueDeliveryModel) {
                         vdm = (ValueDeliveryModel) eo;
                     } else if (eo instanceof UMLDiagram) {
@@ -140,14 +125,6 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
                     cls.setName(bid.getName());
                     pkg.getOwnedTypes().add(cls);
                     cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(bid);
-                    UMLShape shape = UMLDIFactory.eINSTANCE.createUMLShape();
-                    dgm.getOwnedUmlDiagramElement().add(shape);
-                    shape.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-                    shape.setBounds(DCFactory.eINSTANCE.createBounds());
-                    shape.getBounds().setHeight(40d);
-                    shape.getBounds().setWidth(200d);
-                    shape.getBounds().setY(dgm.getOwnedUmlDiagramElement().size() * 50d);
-                    shape.setUmlElement(cls);
                 }
                 if (object.getDeliverable() == null) {
                     BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();

@@ -18,7 +18,7 @@ ORYX.CONFIG.STENCIL_GROUP_ORDER_OBJ["http://b3mn.org/stencilset/cmmn#"]= {
  * @extends Clazz
  * @param {Object} facade The facade of the editor
  */
-ORYX.Plugins.CMMN = Clazz.extend(
+ORYX.Plugins.CMMN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 /** @lends ORYX.Plugins.CMMN.prototype */
 {
 	/**
@@ -30,10 +30,9 @@ ORYX.Plugins.CMMN = Clazz.extend(
 	 */
 	construct: function(facade) {
 		try{
+            arguments.callee.$.construct.apply(this, arguments);
 			this.facade = facade;
-			this.decoratorUpdaters={};
 			this.affectedShapes=[];
-			this.decoratorUpdaters["CaseFileItem"]=this.updateCaseFileItemDecorations.bind(this);
 			this.decoratorUpdaters["HumanTask1"]=this.updateHumanTaskDecorations.bind(this);
 			this.decoratorUpdaters["DiscretionaryHumanTask1"]=this.updateHumanTaskDecorations.bind(this);
 			this.decoratorUpdaters["Stage"]=this.updateStageAndCaseDecorations.bind(this);
@@ -127,17 +126,8 @@ ORYX.Plugins.CMMN = Clazz.extend(
 		this.bufferedAffectedShapes=this.affectedShapes;
 		this.affectedShapes=[];
 	},
-	updateCaseFileItemDecorations: function(shape){
-		var name=shape.properties["oryx-casefileitemstructureref"];
-		name=name.slice(name.indexOf("::")+2,name.indexOf("|"));
-		shape.setProperty("oryx-name", name,true);
-		shape.refresh();
-	},
 	handlePropertyChanged : function(event) {
-		var handler=this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
-		if(handler){
-			handler(event.elements[0]);
-		}
+        arguments.callee.$.handlePropertyChanged.apply(this, arguments);
 		//TODO : clean this up as above
 		if (event["key"] == "oryx-autocomplete" || event["key"] == "oryx-manualactivationrulebody" || event["key"] == "oryx-repetitionrulebody"
 			|| event["key"] == "oryx-requiredrulebody" || event["key"] == "oryx-propertytype" || event["key"] == "oryx-name" || event["key"] == "oryx-standardevent") {

@@ -99,11 +99,7 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
             }
             result.setPkgName(folder);
             result.setModelerOutput(formSerializationManager.generateFormXML(form));
-            XMLResource xmlResource = (XMLResource) source.eResource();
-            String id = xmlResource.getID(source);
-            if (id == null && source.eClass().getEIDAttribute() != null) {
-                id = (String) source.eGet(source.eClass().getEIDAttribute());
-            }
+            String id = JBPMECoreHelper.getID(source);
             results.put(id, result);
             return results;
         } catch (RuntimeException e) {
@@ -158,10 +154,7 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
                     if (ref.eResource() instanceof XMLResource) {
                         XMLResource xr = (XMLResource) ref.eResource();
                         Path targetModelPath = PathFactory.newPath(xr.getURI().lastSegment(), repositoryInfo + xr.getURI().toPlatformString(true));
-                        String refId = xr.getID(ref);
-                        if (refId == null && ref.eClass().getEIDAttribute() != null) {
-                            refId = (String) ref.eGet(ref.eClass().getEIDAttribute());
-                        }
+                        String refId = JBPMECoreHelper.getID(ref);
                         Map<String, TaskFormInfo> generatedSubForms = found.ensureFormExistsFor(targetModelPath, xr, refId, "");
                         TaskFormInfo subForm = generatedSubForms.get(refId);
                         // TODO check what the formEditor expects

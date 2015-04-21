@@ -41,6 +41,7 @@ public class ValuePropositionExchangeDiagramMarshallingTests extends AbstractVdp
         addEdge(null, role1, valueProposition);
         addEdge(null, valueProposition, role2);
         saveCollaborationResource();
+        saveDiagramResource();//To generate ids
         Diagram json = unmarshaller.convert(diagramResource);
         assertNotNull(json.findChildShapeById(role3.getId()));
     }

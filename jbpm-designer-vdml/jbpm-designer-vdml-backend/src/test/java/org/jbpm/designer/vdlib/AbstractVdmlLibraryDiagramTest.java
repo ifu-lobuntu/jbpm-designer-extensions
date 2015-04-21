@@ -22,6 +22,8 @@ import org.omg.smm.Characteristic;
 import org.omg.smm.DirectMeasure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
+import org.omg.vdml.CapabilityMethod;
+import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
 
 public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
@@ -35,6 +37,7 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
     protected TestUriHandler tuh;
     protected MeasureLibrary measureLibrary;
     protected ValueDeliveryModel vdm;
+    
 
     public AbstractVdmlLibraryDiagramTest() {
         super();
@@ -45,8 +48,8 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         this.tuh = new TestUriHandler();
         this.profile = new VdmlLibraryProfileImpl();
         this.unmarshaller = new GenericEmfToJsonDiagramUnmarshaller(profile,
-                URI.createPlatformResourceURI("jbpm-designer-vdml-client/target/test.vdlib", true), true);
-        this.marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI("jbpm-designer-vdml-client/target/test.vdlib", true));
+                URI.createPlatformResourceURI("jbpm-designer-vdml-backend/target/test.vdlib", true), true);
+        this.marshaller = new GenericJsonToEmfDiagramMarshaller(profile, URI.createPlatformResourceURI("jbpm-designer-vdml-backend/target/test.vdlib", true));
         resourceSet = new ResourceSetImpl();
         tuh.getFile(URI.createPlatformResourceURI(measureFile, true)).delete();
         tuh.getFile(getCollaborationUri()).delete();
@@ -56,7 +59,7 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         this.profile.setUriHandler(tuh);
         profile.prepareResourceSet(resourceSet);
         this.cmmnTypes = (Package) resourceSet.getResource(URI.createURI(ClassDiagramProfileImpl.CMMNTYPES_PATHMAP), false).getContents().get(0);
-        inputResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI("jbpm-designer-vdml-client/target/test.vdlib", true));
+        inputResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI("jbpm-designer-vdml-backend/target/test.vdlib", true));
         inputDiagram = UMLDIFactory.eINSTANCE.createUMLDiagram();
         jbpmPackage = UMLFactory.eINSTANCE.createPackage();
         profile.loadLinkedStencilSet("../jbpm-designer-vdml-client/src/main/resources/org/jbpm/designer/public/stencilsets/vdlib/vdlib.json");
@@ -79,6 +82,9 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         measure.setTrait(characteristic);
         measureResource.getContents().add(measureLibrary);
         vdm = VdmlLibraryJsonToEmfHelper.findOrcreateValueDeliveryModel(jbpmPackage);
+        CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
+        cm.setName("MyCapability");
+        vdm.getCollaboration().add(cm);
         VdmlLibraryJsonToEmfHelper.findOrCreateBusinessItemLibrary(jbpmPackage, vdm);
         VdmlLibraryJsonToEmfHelper.findOrCreateCapabilityLibrary(jbpmPackage, vdm);
         saveCollaborationResource();

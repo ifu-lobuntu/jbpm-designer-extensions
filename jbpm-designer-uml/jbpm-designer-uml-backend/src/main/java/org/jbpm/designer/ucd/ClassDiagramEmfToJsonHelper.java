@@ -78,7 +78,7 @@ public class ClassDiagramEmfToJsonHelper extends UMLSwitch<Object> implements Em
 
     @Override
     public StencilInfo findStencilByElement(EObject me, DiagramElement de) {
-        return ClassDiagramStencil.findStencilByElement(me, de, me.eResource()!=de.eResource());
+        return ClassDiagramStencil.findStencilByElement(me, de, me!=null && me.eResource()!=de.eResource());
     }
 
     @Override
