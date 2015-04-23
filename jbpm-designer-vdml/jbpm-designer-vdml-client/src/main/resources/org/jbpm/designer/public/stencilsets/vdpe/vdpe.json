@@ -326,7 +326,8 @@
 					{
 						"type" : "layout.list",
 						"options" : {
-							"offsetY" :40
+                            "paddingTop" :30,
+                            "paddingBottom" :15
 						}
 					}
 				],
@@ -406,7 +407,7 @@
 						"optional" : false,
 						"reference":{
 							"targetProfile":"meas",
-							"allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure",
+                            "allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure|RankingMeasure|GradeMeasure|NamedMeasure",
 							"nameFeature" : "name",
 							"multiSelect" : false
 						}
@@ -421,7 +422,7 @@
                         "optional" : false,
                         "reference":{
                             "targetProfile":"meas",
-                            "allowedElementTypes":"BinaryMeasure|CollectiveMeasure|DirectMeasure",
+                            "allowedElementTypes":"DirectMeasure|CollectiveMeasure|BinaryMeasure|RankingMeasure|GradeMeasure|NamedMeasure",
                             "nameFeature" : "name",
                             "multiSelect" : false
                         }

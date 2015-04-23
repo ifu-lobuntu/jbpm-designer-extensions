@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1429627529336
+Bnd-LastModified: 1429806354449
 Build-Jdk: 1.7.0_71
+Build-Timestamp: Thu, 23 Apr 2015 18:24:51 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -9,15 +10,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codegen
 Bundle-SymbolicName: org.jbpm.uml.codegen
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.qualifier
+Bundle-Version: 6.3.0.201504231824
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.jbpm.designer.uml.codegen;version="6.3.0.qualifier",
- org.jbpm.designer.uml.codegen.codemodel;version="6.3.0.qualifier",org.j
- bpm.designer.uml.codegen.java;version="6.3.0.qualifier",org.jbpm.design
- er.uml.codegen.jpa;version="6.3.0.qualifier",org.jbpm.designer.uml.code
- gen.util;version="6.3.0.qualifier",org.jbpm.designer.uml.codegen.util.e
- mulated;version="6.3.0.qualifier",org.pavanecce.common.test.util;versio
- n="6.3.0.qualifier"
+Export-Package: org.jbpm.designer.uml.codegen;version="6.3.0.20150423182
+ 4",org.jbpm.designer.uml.codegen.codemodel;version="6.3.0.201504231824"
+ ,org.jbpm.designer.uml.codegen.java;version="6.3.0.201504231824",org.jb
+ pm.designer.uml.codegen.jpa;version="6.3.0.201504231824",org.jbpm.desig
+ ner.uml.codegen.util;version="6.3.0.201504231824",org.jbpm.designer.uml
+ .codegen.util.emulated;version="6.3.0.201504231824",org.pavanecce.commo
+ n.test.util;version="6.3.0.201504231824"
 Implementation-Title: jBPM Designer UML Class Diagram Code Generation
 Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
  igner-extensions/jbpm-designer-uml/jbpm-designer-uml-codegen
@@ -48,6 +49,7 @@ Os-Version: 3.17.3-200.fc20.x86_64
 Private-Package: .
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-uml/jbpm-designer-uml-codegen
+Scm-Revision: d6c3f18d8f8b239d8e1e5e5b92d2151f0600d23d
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-uml/jbpm-designer-uml-codegen
 Specification-Title: jBPM Designer UML Class Diagram Code Generation

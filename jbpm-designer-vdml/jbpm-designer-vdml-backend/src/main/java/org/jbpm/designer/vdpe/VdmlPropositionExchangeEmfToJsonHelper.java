@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.api.StencilInfo;
+import org.jbpm.designer.extensions.diagram.Shape;
+import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
@@ -27,6 +29,7 @@ public class VdmlPropositionExchangeEmfToJsonHelper extends AbstractVdmlEmfToJso
 
     @Override
     public Object caseValuePropositionComponent(ValuePropositionComponent object) {
+        Shape shape = shapeMap.get(JBPMECoreHelper.getID(object.eContainer()));
         putMeasuredCharacteristic("valueMeasure", object.getValueMeasurement());
         putMeasuredCharacteristic("satisfactionLevelMeausure", object.getSatisfactionLevel());
         putMeasuredCharacteristic("percentageWeightMeasure", object.getPercentageWeight());

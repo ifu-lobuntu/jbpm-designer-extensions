@@ -380,7 +380,7 @@
                 ],
                 "description" : "An external Store",
                 "view" : "vdml_classifier.svg",
-                "icon" : "store.png",
+                "icon" : "external_store.png",
                 "layout" : [ 
                 ],
                 "propertyPackages" : [
@@ -420,7 +420,7 @@
                 ],
                 "description" : "An external Pool",
                 "view" : "vdml_classifier.svg",
-                "icon" : "pool.png",
+                "icon" : "external_pool.png",
                 "layout" : [ 
                 ],
                 "propertyPackages" : [
@@ -460,7 +460,7 @@
                 ],
                 "description" : "An external OrgUnit",
                 "view" : "vdml_classifier.svg",
-                "icon" : "org_unit.png",
+                "icon" : "external_org_unit.png",
                 "layout" : [ 
                 ],
                 "propertyPackages" : [
@@ -500,7 +500,7 @@
                 ],
                 "description" : "An external OrgUnit",
                 "view" : "vdml_classifier.svg",
-                "icon" : "capability_offer.png",
+                "icon" : "external_capability_offer.png",
                 "layout" : [ 
                 ],
                 "propertyPackages" : [

@@ -315,15 +315,15 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 		    return;
 		}else{
     	    var currentOffset = 15;
-    		if (event.options && "offsetY" in event.options) {
-    			currentOffset = event.options.offsetY;
+    		if (event.options && "paddingTop" in event.options) {
+    			currentOffset = event.options.paddingTop;
     		}
     		shape.getPersistentChildShapes().forEach(function(item) {
     			item.bounds.set(1, currentOffset, shape.bounds.b.x - shape.bounds.a.x - 2, currentOffset + 20);
     			currentOffset += 21;
     		});
-            if (event.options && "bottomPadding" in event.options) {
-                currentOffset += event.options.bottomPadding;
+            if (event.options && "paddingBottom" in event.options) {
+                currentOffset += event.options.paddingBottom;
             }else{
                 currentOffset += 10;
             }

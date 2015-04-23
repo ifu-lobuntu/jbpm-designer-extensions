@@ -1,5 +1,61 @@
 /** sprite: vdlib-images-sprite; sprite-image: url('../../images/sprites/vdlib-images-sprite.png'); sprite-layout: vertical */
 /* Edges */
+.stencilsets_vdlib_vdlib_json_icons_external_store,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_external_store {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/external_store.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_external_pool,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_external_pool {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/external_pool.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_external_org_unit,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_external_org_unit {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/external_org_unit.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_external_capability_offer,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_external_capability_offer {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/external_capability_offer.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_store,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_store {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/store.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_pool,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_pool {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/pool.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_org_unit,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_org_unit {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/org_unit.png);  /** sprite-ref: vdlib-images-sprite; */
+}
+.stencilsets_vdlib_vdlib_json_icons_external_capability_offer,
+.x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_external_capability_offer {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/vdlib/icons/external_capability_offer.png);  /** sprite-ref: vdlib-images-sprite; */
+}
 .stencilsets_vdlib_vdlib_json_icons_business_item_definition,
 .x-tree-node-leaf .stencilsets_vdlib_vdlib_json_icons_business_item_definition {
     width: 16px;

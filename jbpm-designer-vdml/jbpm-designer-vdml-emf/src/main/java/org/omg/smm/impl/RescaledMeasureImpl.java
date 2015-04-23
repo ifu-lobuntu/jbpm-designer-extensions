@@ -2,12 +2,16 @@
  */
 package org.omg.smm.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.smm.BaseMeasureRelationship;
 import org.omg.smm.Operation;
 import org.omg.smm.RescaledMeasure;
@@ -83,14 +87,14 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
     protected Double multiplier = MULTIPLIER_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getRescalesFrom() <em>Rescales From</em>}' containment reference.
+     * The cached value of the '{@link #getRescalesFrom() <em>Rescales From</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getRescalesFrom()
      * @generated
      * @ordered
      */
-    protected RescaledMeasureRelationship rescalesFrom;
+    protected EList<RescaledMeasureRelationship> rescalesFrom;
 
     /**
      * <!-- begin-user-doc -->
@@ -237,7 +241,10 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
      * <!-- end-user-doc -->
      * @generated
      */
-    public RescaledMeasureRelationship getRescalesFrom() {
+    public EList<RescaledMeasureRelationship> getRescalesFrom() {
+        if (rescalesFrom == null) {
+            rescalesFrom = new EObjectContainmentWithInverseEList<RescaledMeasureRelationship>(RescaledMeasureRelationship.class, this, SMMPackage.RESCALED_MEASURE__RESCALES_FROM, SMMPackage.RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE);
+        }
         return rescalesFrom;
     }
 
@@ -246,40 +253,7 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetRescalesFrom(RescaledMeasureRelationship newRescalesFrom, NotificationChain msgs) {
-        RescaledMeasureRelationship oldRescalesFrom = rescalesFrom;
-        rescalesFrom = newRescalesFrom;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SMMPackage.RESCALED_MEASURE__RESCALES_FROM, oldRescalesFrom, newRescalesFrom);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setRescalesFrom(RescaledMeasureRelationship newRescalesFrom) {
-        if (newRescalesFrom != rescalesFrom) {
-            NotificationChain msgs = null;
-            if (rescalesFrom != null)
-                msgs = ((InternalEObject)rescalesFrom).eInverseRemove(this, SMMPackage.RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE, RescaledMeasureRelationship.class, msgs);
-            if (newRescalesFrom != null)
-                msgs = ((InternalEObject)newRescalesFrom).eInverseAdd(this, SMMPackage.RESCALED_MEASURE_RELATIONSHIP__TO_RESCALED_MEASURE, RescaledMeasureRelationship.class, msgs);
-            msgs = basicSetRescalesFrom(newRescalesFrom, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RESCALED_MEASURE__RESCALES_FROM, newRescalesFrom, newRescalesFrom));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+    @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -288,9 +262,7 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
                     msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetRescales((BaseMeasureRelationship)otherEnd, msgs);
             case SMMPackage.RESCALED_MEASURE__RESCALES_FROM:
-                if (rescalesFrom != null)
-                    msgs = ((InternalEObject)rescalesFrom).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SMMPackage.RESCALED_MEASURE__RESCALES_FROM, null, msgs);
-                return basicSetRescalesFrom((RescaledMeasureRelationship)otherEnd, msgs);
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getRescalesFrom()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -306,7 +278,7 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
             case SMMPackage.RESCALED_MEASURE__RESCALES:
                 return basicSetRescales(null, msgs);
             case SMMPackage.RESCALED_MEASURE__RESCALES_FROM:
-                return basicSetRescalesFrom(null, msgs);
+                return ((InternalEList<?>)getRescalesFrom()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -353,6 +325,7 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -369,7 +342,8 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
                 setRescales((BaseMeasureRelationship)newValue);
                 return;
             case SMMPackage.RESCALED_MEASURE__RESCALES_FROM:
-                setRescalesFrom((RescaledMeasureRelationship)newValue);
+                getRescalesFrom().clear();
+                getRescalesFrom().addAll((Collection<? extends RescaledMeasureRelationship>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -396,7 +370,7 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
                 setRescales((BaseMeasureRelationship)null);
                 return;
             case SMMPackage.RESCALED_MEASURE__RESCALES_FROM:
-                setRescalesFrom((RescaledMeasureRelationship)null);
+                getRescalesFrom().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -419,7 +393,7 @@ public class RescaledMeasureImpl extends DimensionalMeasureImpl implements Resca
             case SMMPackage.RESCALED_MEASURE__RESCALES:
                 return getRescales() != null;
             case SMMPackage.RESCALED_MEASURE__RESCALES_FROM:
-                return rescalesFrom != null;
+                return rescalesFrom != null && !rescalesFrom.isEmpty();
         }
         return super.eIsSet(featureID);
     }

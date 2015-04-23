@@ -20,6 +20,7 @@ public class VDMLRoleCollaborationOrphanFilter implements OrphanFilter {
                     return receivingRole!=providingRole;
                 }
             }
+            return false;
         }
         return true;
     }

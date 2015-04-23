@@ -5,7 +5,7 @@
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/unit_of_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 
 .stencilsets_meas_meas_json_icons_direct_measure,
@@ -13,21 +13,21 @@
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/direct_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_counting_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_counting_measure {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/counting_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_named_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_named_measure {
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/named_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 
 .stencilsets_meas_meas_json_icons_binary_measure,
@@ -35,57 +35,94 @@
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/binary_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_collective_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_collective_measure{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/collective_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_grade_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_grade_measure{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/grade_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_grade_interval,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_grade_interval{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/grade_interval.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_ranking_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_ranking_measure{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/ranking_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_ranking_interval,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_ranking_interval{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/ranking_interval.png);  /** sprite-ref: meas-images-sprite; */
 }
 .stencilsets_meas_meas_json_icons_rescaled_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_rescaled_measure{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/measure.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/rescaled_measure.png);  /** sprite-ref: meas-images-sprite; */
 }
-.stencilsets_meas_meas_json_icons_base_measure_relationship,
-.x-tree-node-leaf .stencilsets_meas_meas_json_icons_base_measure_relationship{
+.stencilsets_meas_meas_json_icons_base1_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_base1_measure_relationship{
     width: 16px;
     height: 16px;
     background-repeat: no-repeat;
-    background-image: url(../../stencilsets/meas/icons/base_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
+    background-image: url(../../stencilsets/meas/icons/base1_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
 }
+.stencilsets_meas_meas_json_icons_base2_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_base2_measure_relationship{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/base2_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
+}
+.stencilsets_meas_meas_json_icons_basen_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_basen_measure_relationship{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/basen_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
+}
+.stencilsets_meas_meas_json_icons_grade_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_grade_measure_relationship{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/grade_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
+}
+.stencilsets_meas_meas_json_icons_ranking_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_ranking_measure_relationship{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/ranking_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
+}
+
+.stencilsets_meas_meas_json_icons_rescaled_measure_relationship,
+.x-tree-node-leaf .stencilsets_meas_meas_json_icons_rescaled_measure_relationship{
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-image: url(../../stencilsets/meas/icons/rescaled_measure_relationship.png);  /** sprite-ref: meas-images-sprite; */
+}
+
 .stencilsets_meas_meas_json_icons_use_unit_of_measure,
 .x-tree-node-leaf .stencilsets_meas_meas_json_icons_use_unit_of_measure{
     width: 16px;

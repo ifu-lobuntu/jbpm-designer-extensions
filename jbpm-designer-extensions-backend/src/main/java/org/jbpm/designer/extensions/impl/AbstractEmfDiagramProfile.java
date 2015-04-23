@@ -35,9 +35,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
+import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.api.IEmfProfile;
+import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
@@ -75,6 +77,9 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     @Inject
     User user;
     private LinkedStencilSet stencilSetValidator;
+    @Inject
+    @ProfileName("ucd")
+    private Instance<SaveResourceListener> saveListener;
 
     private File stencilSetDefinitionfile;
     private long filesLastRead;
@@ -441,6 +446,9 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
         options.put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, true);
         options.put(XMLResource.OPTION_URI_HANDLER, SIMPLE_URI_HANDLER);
         options.put(XMLResource.OPTION_PROCESS_DANGLING_HREF, XMLResource.OPTION_PROCESS_DANGLING_HREF_RECORD);
+        if (!(saveListener==null || saveListener.isAmbiguous() || saveListener.isUnsatisfied())) {
+            options.put(SaveResourceListener.OPTION_SAVE_RESOURCE_LISTENER, saveListener.get());
+        }
         return options;
     }
 

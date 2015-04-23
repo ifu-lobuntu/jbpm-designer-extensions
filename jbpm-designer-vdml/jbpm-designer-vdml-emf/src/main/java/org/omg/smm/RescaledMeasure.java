@@ -2,6 +2,8 @@
  */
 package org.omg.smm;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -131,7 +133,8 @@ public interface RescaledMeasure extends DimensionalMeasure {
     void setRescales(BaseMeasureRelationship value);
 
     /**
-     * Returns the value of the '<em><b>Rescales From</b></em>' containment reference.
+     * Returns the value of the '<em><b>Rescales From</b></em>' containment reference list.
+     * The list contents are of type {@link org.omg.smm.RescaledMeasureRelationship}.
      * It is bidirectional and its opposite is '{@link org.omg.smm.RescaledMeasureRelationship#getToRescaledMeasure <em>To Rescaled Measure</em>}'.
      * <!-- begin-user-doc -->
      * <p>
@@ -139,23 +142,12 @@ public interface RescaledMeasure extends DimensionalMeasure {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Rescales From</em>' containment reference.
-     * @see #setRescalesFrom(RescaledMeasureRelationship)
+     * @return the value of the '<em>Rescales From</em>' containment reference list.
      * @see org.omg.smm.SMMPackage#getRescaledMeasure_RescalesFrom()
      * @see org.omg.smm.RescaledMeasureRelationship#getToRescaledMeasure
      * @model opposite="toRescaledMeasure" containment="true"
      * @generated
      */
-    RescaledMeasureRelationship getRescalesFrom();
-
-    /**
-     * Sets the value of the '{@link org.omg.smm.RescaledMeasure#getRescalesFrom <em>Rescales From</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Rescales From</em>' containment reference.
-     * @see #getRescalesFrom()
-     * @generated
-     */
-    void setRescalesFrom(RescaledMeasureRelationship value);
+    EList<RescaledMeasureRelationship> getRescalesFrom();
 
 } // RescaledMeasure

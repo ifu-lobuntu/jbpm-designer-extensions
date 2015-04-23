@@ -239,7 +239,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
                             deleteProperty(property);
                         }
                     }
-                    thisPackage.getOwnedMembers().removeAll(associations);
+                    thisPackage.getPackagedElements().removeAll(associations);
                 }
             }
             if (!remove) {

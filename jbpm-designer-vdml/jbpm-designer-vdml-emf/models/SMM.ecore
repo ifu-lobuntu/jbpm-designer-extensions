@@ -197,8 +197,8 @@
         eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//Real"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rescales" ordered="false"
         eType="#//BaseMeasureRelationship" eOpposite="#//BaseMeasureRelationship/rescaledMeasure"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rescalesFrom" eType="#//RescaledMeasureRelationship"
-        containment="true" eOpposite="#//RescaledMeasureRelationship/toRescaledMeasure"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rescalesFrom" upperBound="-1"
+        eType="#//RescaledMeasureRelationship" containment="true" eOpposite="#//RescaledMeasureRelationship/toRescaledMeasure"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DimensionalMeasure" abstract="true"
       eSuperTypes="#//Measure">

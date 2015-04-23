@@ -13,6 +13,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.vdlib.VdmlLibraryJsonToEmfHelper;
 import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.designer.vdml.VDMLRoleCollaborationOrphanFilter;
@@ -26,6 +27,7 @@ import org.omg.dd.dc.DCFactory;
 import org.omg.vdml.Activity;
 import org.omg.vdml.BusinessItem;
 import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.BusinessItemLibrary;
 import org.omg.vdml.BusinessItemLibraryElement;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
@@ -54,7 +56,7 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
         }
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape targetShape = shapeMap.get(sr);
-            if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
+            if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_TANGIBLE_DELIVERABLE_FLOW.getStencilId())||targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_INTANGIBLE_DELIVERABLE_FLOW.getStencilId())) {
                 DeliverableFlow flow = (DeliverableFlow) shapeMap.getModelElement(targetShape.getResourceId());
                 String providingActivityName = targetShape.getProperty("providingActivityName");
                 if (providingActivityName == null || providingActivityName.trim().isEmpty()) {
@@ -98,50 +100,55 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
         if ((object.getDeliverable() == null || object.getDeliverable().getDefinition() == null || object.getDeliverable().getDefinition().eResource() == null)
                 && object.getName() != null && object.getName().trim().length() > 0) {
             try {
-                ValueDeliveryModel vdm = null;
-                UMLDiagram dgm = null;
-                Package pkg = null;
-                for (EObject eo : object.eResource().getContents()) {
-                    if (eo instanceof ValueDeliveryModel) {
-                        vdm = (ValueDeliveryModel) eo;
-                    } else if (eo instanceof UMLDiagram) {
-                        dgm = (UMLDiagram) eo;
-                    } else if (eo instanceof Package) {
-                        pkg = (Package) eo;
+                if ("true".equals(sourceShape.getProperty("syncBusinessItem"))) {
+                    ValueDeliveryModel vdm = null;
+                    UMLDiagram dgm = null;
+                    Package pkg = null;
+                    for (EObject eo : object.eResource().getContents()) {
+                        if (eo instanceof ValueDeliveryModel) {
+                            vdm = (ValueDeliveryModel) eo;
+                        } else if (eo instanceof UMLDiagram) {
+                            dgm = (UMLDiagram) eo;
+                        } else if (eo instanceof Package) {
+                            pkg = (Package) eo;
+                        }
                     }
-                }
-                BusinessItemDefinition bid = null;
-                for (BusinessItemLibraryElement bile : vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement()) {
-                    if (bile instanceof BusinessItemDefinition && bile.getName().equals(object.getName())) {
-                        bid = (BusinessItemDefinition) bile;
-                        break;
+                    BusinessItemDefinition bid = null;
+                    BusinessItemLibrary bil = VdmlLibraryJsonToEmfHelper.findOrCreateBusinessItemLibrary(pkg, vdm);
+                    for (BusinessItemLibraryElement bile : bil.getBusinessItemLibraryElement()) {
+                        if (bile instanceof BusinessItemDefinition && bile.getName().equals(object.getName())) {
+                            bid = (BusinessItemDefinition) bile;
+                            break;
+                        }
                     }
+                    if (bid == null) {
+                        bid = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
+                        bid.setName(object.getName());
+                        vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(bid);
+                        org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
+                        cls.setName(bid.getName());
+                        pkg.getOwnedTypes().add(cls);
+                        cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(bid);
+                    }
+                    if (object.getDeliverable() == null) {
+                        BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();
+                        bi.setDefinition(bid);
+                        object.setDeliverable(bi);
+                        owningCollaboration.getBusinessItem().add(bi);
+                    } else {
+                        object.getDeliverable().setDefinition(bid);
+                    }
+                    object.getDeliverable().setName(object.getName());
+                    object.getDeliverable().getDefinition().setName(object.getName());
+                    vdm.eResource().setModified(true);
                 }
-                if (bid == null) {
-                    bid = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
-                    bid.setName(object.getName());
-                    vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(bid);
-                    org.eclipse.uml2.uml.Class cls = UMLFactory.eINSTANCE.createClass();
-                    cls.setName(bid.getName());
-                    pkg.getOwnedTypes().add(cls);
-                    cls.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(bid);
-                }
-                if (object.getDeliverable() == null) {
-                    BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();
-                    bi.setDefinition(bid);
-                    object.setDeliverable(bi);
-                    owningCollaboration.getBusinessItem().add(bi);
-                } else {
-                    object.getDeliverable().setDefinition(bid);
-                }
-                vdm.eResource().setModified(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
         object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
-        if (sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_DELIVERABLE_FLOW.getStencilId())) {
+        if (sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_TANGIBLE_DELIVERABLE_FLOW.getStencilId())||sourceShape.getStencilId().equals(VdmlRoleCollaborationStencil.NEW_INTANGIBLE_DELIVERABLE_FLOW.getStencilId())) {
             for (ShapeReference sr : sourceShape.getOutgoing()) {
                 Shape targetShape = shapeMap.get(sr);
                 if (targetShape.getStencilId().equals(VdmlRoleCollaborationStencil.ROLE.getStencilId())) {

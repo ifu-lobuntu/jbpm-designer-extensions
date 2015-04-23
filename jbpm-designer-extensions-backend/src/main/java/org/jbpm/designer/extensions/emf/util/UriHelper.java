@@ -81,7 +81,6 @@ public class UriHelper {
         for (Entry<EClass, EAttribute> entry : entrySet) {
             if (entry.getKey().isInstance(eObject)) {
                 String name = (String) eObject.eGet(entry.getValue());
-                System.out.println(name);
                 if (name.equals(identifier)) {
                     isMatch = true;
                     break;

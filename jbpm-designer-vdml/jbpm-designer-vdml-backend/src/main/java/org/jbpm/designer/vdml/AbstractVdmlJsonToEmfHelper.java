@@ -1,6 +1,8 @@
 package org.jbpm.designer.vdml;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -42,6 +44,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     }
     protected Shape sourceShape;
     protected LinkedStencil currentStencil;
+
     public AbstractVdmlJsonToEmfHelper(ShapeMap shapeMap, Class<? extends VdmlStencilInfo> stencil) {
         super(shapeMap, stencil);
     }
@@ -93,13 +96,33 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         @SuppressWarnings("unchecked")
         Collection<Participant> assignedParticipants = (Collection<Participant>) sourceShape.getUnboundProperty("assignedParticipants");
         if (assignedParticipants != null) {
+            List<Assignment> oldOnes = new ArrayList<Assignment>(object.getRoleAssignment());
             for (Participant participant : assignedParticipants) {
-                Assignment as = VDMLFactory.eINSTANCE.createAssignment();
-                object.getRoleAssignment().add(as);
-                as.setParticipant(participant);
-                owningCollaboration.getOwnedAssignment().add(as);
+                if (!hasAssignmentFor(object, participant)) {
+                    Assignment as = VDMLFactory.eINSTANCE.createAssignment();
+                    object.getRoleAssignment().add(as);
+                    as.setParticipant(participant);
+                    owningCollaboration.getOwnedAssignment().add(as);
+                }
+            }
+            for (Assignment assignment : oldOnes) {
+                if(assignment.getParticipant()!=null && !assignedParticipants.contains(assignment.getParticipant())){
+                    owningCollaboration.getOwnedAssignment().remove(assignment);
+                    object.getRoleAssignment().remove(assignment);
+                }
             }
         }
+    }
+
+    protected boolean hasAssignmentFor(Role object, Participant participant) {
+        boolean found=false;
+        for (Assignment assignment : object.getRoleAssignment()) {
+            if (assignment.getParticipant() != null && assignment.getParticipant().equals(participant)) {
+                found = true;
+                break;
+            }
+        }
+        return found;
     }
 
     protected BusinessItem buildBusinessItem(String name) {
@@ -170,7 +193,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         }
         this.getDiagram().setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
         URI collaborationUri = result.getURI().trimFileExtension().appendFileExtension("vdcol");
-        this.owningCollaboration =VdmlHelper.getCollaboration((XMLResource) result.getResourceSet().getResource(collaborationUri, true)); 
+        this.owningCollaboration = VdmlHelper.getCollaboration((XMLResource) result.getResourceSet().getResource(collaborationUri, true));
         this.getDiagram().setVdmlElement(this.owningCollaboration);
         // We assume that Oryx always owns the diagram
         this.getDiagram().getOwnedVdmlDiagramElement().clear();

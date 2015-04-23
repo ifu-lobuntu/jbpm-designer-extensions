@@ -65,9 +65,6 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     @Inject
     @ProfileName("ucd")
-    Instance<SaveResourceListener> saveListener;
-    @Inject
-    @ProfileName("ucd")
     ClassDiagramFormBuilder classDiagramFormBuilder;
     static {
         UMLPackageImpl.init();
@@ -103,9 +100,6 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     @Override
     public Map<String, Object> buildDefaultResourceOptions() {
         Map<String, Object> options = super.buildDefaultResourceOptions();
-        if (!(saveListener==null || saveListener.isAmbiguous() || saveListener.isUnsatisfied())) {
-            options.put(SaveResourceListener.OPTION_SAVE_RESOURCE_LISTENER, saveListener.get());
-        }
         return options;
     }
 

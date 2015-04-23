@@ -16,7 +16,8 @@ public enum VdmlRoleCollaborationStencil implements VdmlStencilInfo {
     VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "RoleCollaborationDiagram"),
     ROLE(VDMLPackage.eINSTANCE.getRole(), VDMLDIPackage.eINSTANCE.getVDMLShape(), "Role"),
     EXISITING_DELIVERABLE_FLOW(VDMLPackage.eINSTANCE.getDeliverableFlow(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "ExistingDeliverableFlow"),
-    NEW_DELIVERABLE_FLOW(VDMLPackage.eINSTANCE.getDeliverableFlow(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "NewDeliverableFlow");
+    NEW_INTANGIBLE_DELIVERABLE_FLOW(VDMLPackage.eINSTANCE.getDeliverableFlow(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "NewIntangibleDeliverableFlow"),
+    NEW_TANGIBLE_DELIVERABLE_FLOW(VDMLPackage.eINSTANCE.getDeliverableFlow(), VDMLDIPackage.eINSTANCE.getVDMLEdge(), "NewTangibleDeliverableFlow");
     private EClass type;
     private EClass shapeType;
     private String stencilId;

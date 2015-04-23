@@ -12,7 +12,6 @@ import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
 import org.jbpm.designer.extensions.diagram.ProfileName;
 import org.jbpm.designer.repository.Asset;
 import org.jbpm.designer.repository.AssetBuilderFactory;
-import org.jbpm.designer.repository.Directory;
 import org.jbpm.designer.repository.Repository;
 import org.jbpm.designer.repository.impl.AssetBuilder;
 import org.jbpm.designer.uml.code.metamodel.CodeClassifier;
@@ -54,26 +53,23 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
             }
         }
         String start = EMFVFSURIConverter.getProjectName(resource.getURI()) + "src/main/java/";
-        cleanDirectories(start);
         for (CodePackage codePackage : adaptor.getCodeModel().getChildren().values()) {
             createText(codePackage, start);
         }
     }
 
-    private void cleanDirectories(String start) {
-        for (@SuppressWarnings("rawtypes")
-        Asset asset : repository.listAssets(start)) {
-            asset=repository.loadAsset(asset.getUniqueId());
+    @SuppressWarnings({ "rawtypes"})
+    private void cleanDirectory(String start) {
+        for (Asset asset : repository.listAssets(start)) {
+            asset = repository.loadAsset(asset.getUniqueId());
             if (asset.getAssetContent().toString().startsWith(JavaCodeGenerator.MARKER_COMMENT)) {
                 repository.deleteAsset(asset.getUniqueId());
             }
         }
-        for (Directory directory : repository.listDirectories(start)) {
-            cleanDirectories(start + directory.getName() + "/");
-        }
     }
 
     private void createText(CodePackage codeModel, String start) {
+        cleanDirectory(start);
         Collection<CodeClassifier> values = codeModel.getClassifiers().values();
         String packageLocation = start + codeModel.getName();
         if (!repository.directoryExists(packageLocation)) {

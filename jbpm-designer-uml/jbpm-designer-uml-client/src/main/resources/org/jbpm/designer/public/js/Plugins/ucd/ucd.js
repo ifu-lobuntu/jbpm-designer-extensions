@@ -44,13 +44,12 @@ ORYX.Plugins.UCD = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		}
 	},
 	updatePropertyDecorations : function(shape){
-	    console.log(shape);
 		var labels=shape.getLabels();
 		for(var i=0 ; i < labels.length; i++){
 		    if(labels[i].id==shape.id+"text_fullname"){
 				var type= ORYX.Plugins.Extensions.extractName(shape.properties["oryx-propertytype"]);
-				var mult= ORYX.Plugins.Extensions.extractName(shape.properties["oryx-multiplicity"]);
-				labels[i].text(shape.properties["oryx-name"] + " : " + type +" [" + mult + "]");
+				var mult= shape.properties["oryx-multiplicity"];
+				labels[i].text(shape.properties["oryx-name"] + " : " + type + mult);
 				labels[i].update();
 			}
 		}

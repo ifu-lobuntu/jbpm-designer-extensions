@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -27,6 +28,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.omg.dd.dc.DCFactory;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Characteristic;
+import org.omg.smm.Measure;
 import org.omg.vdml.BusinessItemDefinition;
 
 public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
@@ -51,50 +53,53 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
             }
         }
         for (Type type : owningPackage.getOwnedTypes()) {
-            UMLShape shape = (UMLShape) map.get(type);
-            if (shape == null) {
-                shape = UMLDIFactory.eINSTANCE.createUMLShape();
-                map.put(type, shape);
-                umlDiagram.getOwnedUmlDiagramElement().add(shape);
-                shape.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-                shape.setBounds(DCFactory.eINSTANCE.createBounds());
-                shape.getBounds().setHeight(40d);
-                shape.getBounds().setWidth(200d);
-                shape.getBounds().setY((umlDiagram.getOwnedUmlDiagramElement().size() % 8) * 50d);
-                shape.getBounds().setX((umlDiagram.getOwnedUmlDiagramElement().size() / 8) * 220d);
-                shape.setUmlElement(type);
-            }
-            UMLCompartment attributes = null;
-            UMLCompartment characteristics = null;
-            for (UMLCompartment c : shape.getOwnedCompartment()) {
-                if (c.getFeatureName().equalsIgnoreCase("ownedattribute")) {
-                    attributes = c;
-                } else if (c.getFeatureName().equalsIgnoreCase("characteristicDefinition")) {
-                    characteristics = c;
+            if (type instanceof Association) {
+                // TODO create edge
+            } else {
+                UMLShape shape = (UMLShape) map.get(type);
+                if (shape == null) {
+                    shape = UMLDIFactory.eINSTANCE.createUMLShape();
+                    map.put(type, shape);
+                    umlDiagram.getOwnedUmlDiagramElement().add(shape);
+                    shape.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
+                    shape.setBounds(DCFactory.eINSTANCE.createBounds());
+                    shape.getBounds().setHeight(40d);
+                    shape.getBounds().setWidth(200d);
+                    shape.getBounds().setY((umlDiagram.getOwnedUmlDiagramElement().size() % 8) * 50d);
+                    shape.getBounds().setX((umlDiagram.getOwnedUmlDiagramElement().size() / 8) * 220d);
+                    shape.setUmlElement(type);
                 }
-            }
-            if (attributes == null) {
-                attributes=addCompartment(shape, "ownedAttribute");
-            }
-            if (type.getEAnnotation(VdmlLibraryStencil.VDLIB_URI) != null && characteristics == null) {
-                characteristics=addCompartment(shape, "characteristicDefinition");
-            }
-            if (type instanceof Classifier) {
-                for (Property property : ((Classifier) type).getAttributes()) {
-                    if (!map.containsKey(property)) {
-                        EAnnotation ann = property.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
-                        if (ann != null) {
-                            if (ann.getReferences().size() > 0 && ann.getReferences().get(0) instanceof Characteristic) {
-                                addPropertyShape(characteristics, property);
+                UMLCompartment attributes = null;
+                UMLCompartment characteristics = null;
+                for (UMLCompartment c : shape.getOwnedCompartment()) {
+                    if (c.getFeatureName().equalsIgnoreCase("ownedattribute")) {
+                        attributes = c;
+                    } else if (c.getFeatureName().equalsIgnoreCase("characteristicDefinition")) {
+                        characteristics = c;
+                    }
+                }
+                if (attributes == null) {
+                    attributes = addCompartment(shape, "ownedAttribute");
+                }
+                if (type.getEAnnotation(VdmlLibraryStencil.VDLIB_URI) != null && characteristics == null) {
+                    characteristics = addCompartment(shape, "characteristicDefinition");
+                }
+                if (type instanceof Classifier) {
+                    for (Property property : ((Classifier) type).getAttributes()) {
+                        if (!map.containsKey(property)) {
+                            EAnnotation ann = property.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
+                            if (ann != null) {
+                                if (ann.getReferences().size() > 0 && ann.getReferences().get(0) instanceof Characteristic) {
+                                    addPropertyShape(characteristics, property);
+                                }
+                            } else if (property.getAssociation() == null) {
+                                addPropertyShape(attributes, property);
                             }
-                        } else if (property.getAssociation() == null) {
-                            addPropertyShape(attributes, property);
                         }
                     }
                 }
             }
         }
-
         super.shapeMap.getResource().getResourceSet();
     }
 
@@ -131,10 +136,10 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
         }
         if (ann != null) {
             if (ann.getReferences().size() > 0) {
-                EObject ref=ann.getReferences().get(0);
+                EObject ref = ann.getReferences().get(0);
                 String name = ref.eClass().getName();
-                if(ref.eResource()!=owningPackage.eResource()){
-                    name="Imported " +name;
+                if (ref.eResource() != owningPackage.eResource()) {
+                    name = "Imported " + name;
                 }
                 targetShape.putProperty("vdmlElementType", name);
             }
@@ -145,9 +150,19 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
     @Override
     public Object caseProperty(Property object) {
         if (targetShape.getStencilId().equals(VdmlLibraryStencil.CHARACTERISTIC.getStencilId())) {
-            Characteristic ch = (Characteristic) object.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
-            if (ch.eResource() != null && ch.getMeasure().size() > 0) {
-                targetShape.putProperty("measure", ch.getMeasure().get(0).getName() + "|" + ch.eResource().getURI().toPlatformString(true));
+            EAnnotation ann = object.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
+            Measure measure=null;
+            if (ann != null && ann.getReferences().size() > 0) {
+                Characteristic ch = (Characteristic) ann.getReferences().get(0);
+                if (ch.eResource() != null && ch.getMeasure().size() > 0) {
+                    measure = ch.getMeasure().get(0);
+                    targetShape.putProperty("measure", measure.getName() + "|" + ch.eResource().getURI().toPlatformString(true));
+                }
+            }
+            if(measure==null){
+                targetShape.putProperty("name", object.getName());
+            }else{
+                targetShape.putProperty("name", measure.getName());
             }
         }
         return super.caseProperty(object);
@@ -158,9 +173,15 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
         if (me instanceof EModelElement) {
             EAnnotation ann = ((EModelElement) me).getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
             if (ann == null) {
+                if (me instanceof Property && de.eContainer() instanceof Compartment) {
+                    UMLCompartment uc = (UMLCompartment) de.eContainer();
+                    if (VdmlLibraryStencil.CHARACTERISTIC_DEFINITION.getStencilId().equalsIgnoreCase(uc.getFeatureName())) {
+                        return VdmlLibraryStencil.CHARACTERISTIC;
+                    }
+                }
                 return ClassDiagramStencil.findStencilByElement(me, de, me.eResource() != owningPackage.eResource());
             } else {
-                EObject ref =  ann.getReferences().get(0);
+                EObject ref = ann.getReferences().get(0);
                 return VdmlLibraryStencil.findStencilByElement(ref, de, ref.eResource() != owningPackage.eResource());
             }
         } else if (de instanceof Compartment && ((UMLShape) de.eContainer()).getUmlElement() != null) {

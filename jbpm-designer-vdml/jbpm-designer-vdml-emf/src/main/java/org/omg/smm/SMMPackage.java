@@ -3089,7 +3089,7 @@ public interface SMMPackage extends EPackage {
     int RESCALED_MEASURE__RESCALES = DIMENSIONAL_MEASURE_FEATURE_COUNT + 3;
 
     /**
-     * The feature id for the '<em><b>Rescales From</b></em>' containment reference.
+     * The feature id for the '<em><b>Rescales From</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -10373,10 +10373,10 @@ public interface SMMPackage extends EPackage {
     EReference getRescaledMeasure_Rescales();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.omg.smm.RescaledMeasure#getRescalesFrom <em>Rescales From</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.omg.smm.RescaledMeasure#getRescalesFrom <em>Rescales From</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Rescales From</em>'.
+     * @return the meta object for the containment reference list '<em>Rescales From</em>'.
      * @see org.omg.smm.RescaledMeasure#getRescalesFrom()
      * @see #getRescaledMeasure()
      * @generated
@@ -12216,7 +12216,7 @@ public interface SMMPackage extends EPackage {
         EReference RESCALED_MEASURE__RESCALES = eINSTANCE.getRescaledMeasure_Rescales();
 
         /**
-         * The meta object literal for the '<em><b>Rescales From</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Rescales From</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated

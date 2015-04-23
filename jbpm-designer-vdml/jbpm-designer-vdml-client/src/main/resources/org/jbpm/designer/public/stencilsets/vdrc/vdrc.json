@@ -206,19 +206,40 @@
 						}
 				]
 			},
+            {
+                "name" : "newDeliverableFlow",
+                "properties": [
+                       {
+                           "id" : "providingActivityName",
+                           "type" : "activity",
+                           "title" : "From Activity",
+                           "value" : "",
+                           "description" : "The Activity in the Collaboration that provides this deliverable",
+                           "readonly" : false
+                       },
+                       {
+                           "id" : "receivingActivityName",
+                           "type" : "activity",
+                           "title" : "To Activity",
+                           "value" : "",
+                           "description" : "The Activity in the Collaboration that receives this deliverable",
+                           "readonly" : false
+                       }
+                 ]
+            },
 	        {
 	        	"name" : "deliverableFlow",
 	        	"properties": [
-					{
-						"id" : "isTangible",
-						"type" : "Boolean",
-						"title" : "Is Tangible",
-						"value" : "true",
-						"description" : "Tangible DeliverableFlows represent contractually binding flows",
-						"readonly" : false,
-						"optional" : false		
-					},
                     {
+                        "id" : "syncBusinessItem",
+                        "type" : "Boolean",
+                        "title" : "Sync Business Item",
+                        "value" : "true",
+                        "description" : "If true, the BusinessItem representing the deliverable will be kept in sync with the DeliverableFlow",
+                        "readonly" : false,
+                        "optional" : false      
+                    },
+					{
                         "id" : "deliverableDefinition",
                         "type" : "eobjectref",
                         "title" : "Deliverable",
@@ -227,7 +248,7 @@
                         "readonly" : false,
                         "optional" : true,
                         "reference" : {
-                            "targetProfile":"vdlib",
+                            "targetProfile":"vdcol",
                             "allowedElementTypes":"BusinessItemDefinition",
                             "nameFeature" : "qualifiedName"
                         },
@@ -326,46 +347,72 @@
                     }
 				]
 			},
-			{
-				"type" : "edge",
-				"id" : "NewDeliverableFlow",
-				"title" : "NewDeliverableFlow",
-				"childBinding" : "flow",
-				"position" : 2,
-				"curved": true,
-				"groups" : [
-					"Elements"
-				],
-				"roles" : [
-					"newDeliverableFlow"
-				],
-				"description" : "A New DeliverableFlow",
-				"view" : "deliverable_flow.svg",
-				"icon" : "deliverable_flow.png",
-				"layout" : [
-				],
-			    "propertyPackages" : [
-						"elementBase","localStyle","deliverableFlow"
-				],
-				"properties" : [
-						{
-							"id" : "providingActivityName",
-							"type" : "activity",
-							"title" : "From Activity",
-							"value" : "",
-							"description" : "The Activity in the Collaboration that provides this deliverable",
-							"readonly" : false
-						},
-						{
-							"id" : "receivingActivityName",
-							"type" : "activity",
-							"title" : "To Activity",
-							"value" : "",
-							"description" : "The Activity in the Collaboration that receives this deliverable",
-							"readonly" : false
-						}
-				]
-			},
+            {
+                "type" : "edge",
+                "id" : "NewTangibleDeliverableFlow",
+                "title" : "Tangible Flow",
+                "childBinding" : "flow",
+                "position" : 2,
+                "curved": true,
+                "groups" : [
+                    "Elements"
+                ],
+                "roles" : [
+                    "newDeliverableFlow"
+                ],
+                "description" : "A New Tangible Deliverable Flow",
+                "view" : "deliverable_flow.svg",
+                "icon" : "new_tangible_deliverable_flow.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle","deliverableFlow","newDeliverableFlow"
+                ],
+                "properties" : [
+                                {
+                                    "id" : "isTangible",
+                                    "type" : "Boolean",
+                                    "title" : "Is Tangible",
+                                    "value" : "true",
+                                    "description" : "Tangible DeliverableFlows represent contractually binding flows",
+                                    "readonly" : false,
+                                    "optional" : false      
+                                }
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "NewIntangibleDeliverableFlow",
+                "title" : "Intangible Flow",
+                "childBinding" : "flow",
+                "position" : 3,
+                "curved": true,
+                "groups" : [
+                    "Elements"
+                ],
+                "roles" : [
+                    "newDeliverableFlow"
+                ],
+                "description" : "A New Tangible Deliverable Flow",
+                "view" : "deliverable_flow.svg",
+                "icon" : "new_intangible_deliverable_flow.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                        "elementBase","localStyle","deliverableFlow","newDeliverableFlow"
+                ],
+                "properties" : [
+                        {
+                            "id" : "isTangible",
+                            "type" : "Boolean",
+                            "title" : "Is Tangible",
+                            "value" : "false",
+                            "description" : "Tangible DeliverableFlows represent contractually binding flows",
+                            "readonly" : false,
+                            "optional" : false      
+                        }
+                ]
+            },
 			{
 				"type" : "edge",
 				"id" : "ExistingDeliverableFlow",
@@ -382,7 +429,7 @@
 				],
 				"description" : "An Existing DeliverableFlow",
 				"view" : "deliverable_flow.svg",
-				"icon" : "deliverable_flow.png",
+				"icon" : "existing_deliverable_flow.png",
 				"layout" : [
 				],
 			    "propertyPackages" : [
@@ -404,7 +451,16 @@
 						"value" : "",
 						"description" : "The Activity in the Collaboration that receives this deliverable",
 						"readonly" : true
-					}
+					},
+                    {
+                        "id" : "isTangible",
+                        "type" : "Boolean",
+                        "title" : "Is Tangible",
+                        "value" : "true",
+                        "description" : "Tangible DeliverableFlows represent contractually binding flows",
+                        "readonly" : false,
+                        "optional" : false      
+                    }
 				]
 			}
 	],

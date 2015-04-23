@@ -229,6 +229,32 @@
                 ]
             },
             {
+                "name" : "scaleOfMeasurement",
+                "properties": [
+                    {
+                        "id" : "scale",
+                        "type" : "Choice",
+                        "title" : "Scale",
+                        "value" : "interval",
+                        "description" : "The Scale of Measurement",
+                        "readonly" : false,
+                        "optional" : false,
+                        "items" : [
+                            {
+                                "id" : "interval",
+                                "title" : "Interval",
+                                "value" : "interval"
+                            }, 
+                            {
+                                "id" : "ratio",
+                                "title" : "Ratio",
+                                "value" : "ratio"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
                 "name" : "interval",
                 "properties": [
                     {
@@ -354,7 +380,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
                 ]
@@ -377,7 +403,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
                 ]
@@ -400,7 +426,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
                 ]
@@ -446,7 +472,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
                     {
@@ -505,7 +531,7 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
                     {
@@ -596,7 +622,7 @@
                 ],
                 "description" : "Base1 Measure Relationship",
                 "view" : "base1_measure_relationship.svg",
-                "icon" : "base_measure_relationship.png",
+                "icon" : "base1_measure_relationship.png",
                 "layout" : [
                 ],
                 "propertyPackages" : [
@@ -620,7 +646,7 @@
                 ],
                 "description" : "Base2 Measure Relationship",
                 "view" : "base2_measure_relationship.svg",
-                "icon" : "base_measure_relationship.png",
+                "icon" : "base2_measure_relationship.png",
                 "layout" : [
                 ],
                 "propertyPackages" : [
@@ -643,8 +669,8 @@
                     "baseNMeasureRelationship"
                 ],
                 "description" : "Base N Measure Relationship",
-                "view" : "base_measure_relationship.svg",
-                "icon" : "base_measure_relationship.png",
+                "view" : "basen_measure_relationship.svg",
+                "icon" : "basen_measure_relationship.png",
                 "layout" : [
                 ],
                 "propertyPackages" : [
@@ -671,14 +697,14 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle"
+                        "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
                     {
                         "id" : "offset",
-                        "type" : "Double",
+                        "type" : "Float",
                         "title" : "Offset",
-                        "value" : "",
+                        "value" : "0.0",
                         "description" : "",
                         "readonly" : false,
                         "optional" : true,
@@ -686,13 +712,16 @@
                     },
                     {
                         "id" : "multiplier",
-                        "type" : "Double",
+                        "type" : "Float",
                         "title" : "Multiplier",
-                        "value" : "",
+                        "value" : "1.0",
                         "description" : "",
                         "readonly" : false,
                         "optional" : true,
-                        "wrapLines" : false
+                        "wrapLines" : false,
+                        "length" : 20,
+                        "min" : 0
+                        
                     }
                 ]
             },
@@ -700,8 +729,8 @@
                 "type" : "edge",
                 "id" : "RescaledMeasureRelationship",
                 "title" : "Rescaled Measure Relationship",
-                "targetBinding" : "toRescaledMeasure",
-                "sourceBinding" : "fromDimensionalMeasure",
+                "sourceBinding" : "toRescaledMeasure",
+                "targetBinding" : "fromDimensionalMeasure",
                 "position" : 7,
                 "groups" : [
                     "Rescaled"
@@ -739,8 +768,8 @@
                       {
                             "type" : "layout.list",
                             "options" : {
-                                    "offsetY" :40,
-                                    "bottomPadding" : 35
+                                    "paddingTop" :40,
+                                    "paddingBottom" : 35
                             }
                       },
                       {
@@ -751,6 +780,27 @@
                         "smmElement","localStyle","expandable"
                 ],
                 "properties" : [
+                        {
+                            "id" : "scale",
+                            "type" : "Choice",
+                            "title" : "scale",
+                            "value" : "nominal",
+                            "description" : "The Scale of Measurement",
+                            "readonly" : false,
+                            "optional" : false,
+                            "items" : [
+                                {
+                                    "id" : "nominal",
+                                    "title" : "Nominal",
+                                    "value" : "nominal"
+                                }, 
+                                {
+                                    "id" : "ordinal",
+                                    "title" : "Ordinal",
+                                    "value" : "ordinal"
+                                }
+                            ]
+                        }
                 ]
             },
             {
@@ -802,8 +852,8 @@
                     "gradeMeasureRelationship"
                 ],
                 "description" : "Grade Measure Relationship",
-                "view" : "base_measure_relationship.svg",
-                "icon" : "base_measure_relationship.png",
+                "view" : "grade_measure_relationship.svg",
+                "icon" : "grade_measure_relationship.png",
                 "propertyPackages" : [
                         "smmElement","localStyle","measureRelationship"
                 ],
@@ -829,8 +879,8 @@
                     {
                         "type" : "layout.list",
                         "options" : {
-                                "offsetY" :40,
-                                "bottomPadding" : 35
+                                "paddingTop" :40,
+                                "paddingBottom" : 35
                         }
                   },
                   {
@@ -838,7 +888,7 @@
                   }
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle","expandable"
+                        "smmElement","localStyle","expandable","scaleOfMeasurement"
                 ],
                 "properties" : [
                                 
@@ -893,15 +943,15 @@
                     "rankingMeasureRelationship"
                 ],
                 "description" : "Ranking Measure Relationship",
-                "view" : "base_measure_relationship.svg",
-                "icon" : "base_measure_relationship.png",
+                "view" : "ranking_measure_relationship.svg",
+                "icon" : "ranking_measure_relationship.png",
                 "propertyPackages" : [
                         "smmElement","localStyle","measureRelationship"
                 ],
                 "properties" : [
                 ]
             }
-    ],
+    ], 
 
     "rules" : {
         "cardinalityRules" : [
@@ -914,6 +964,25 @@
                         }
                     ]
                 },
+                {
+                    "role" : "rankingMeasure",
+                    "outgoingEdges" : [
+                        {
+                            "role" : "rankingMeasureRelationship",
+                            "maximum" : 1
+                        }
+                    ]
+                },
+                {
+                    "role" : "gradeMeasure",
+                    "outgoingEdges" : [
+                        {
+                            "role" : "gradeMeasureRelationship",
+                            "maximum" : 1
+                        }
+                    ]
+                },
+
                 {
                     "role" : "binaryMeasure",
                     "outgoingEdges" : [
@@ -966,9 +1035,9 @@
                 "role" : "rescaledMeasureRelationship",
                 "connects" : [
                     {
-                        "from" : "dimensionalMeasure",
+                        "from" : "rescaledMeasure",
                         "to" : [
-                            "rescaledMeasure"
+                            "dimensionalMeasure"
                         ]
                     }
                 ]

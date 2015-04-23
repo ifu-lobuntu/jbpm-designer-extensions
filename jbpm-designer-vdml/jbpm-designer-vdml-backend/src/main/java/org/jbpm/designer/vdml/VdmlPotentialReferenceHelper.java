@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.api.IEmfProfile;
@@ -16,7 +17,9 @@ import org.omg.smm.BinaryMeasure;
 import org.omg.smm.CollectiveMeasure;
 import org.omg.smm.Measure;
 import org.omg.smm.RescaledMeasure;
+import org.omg.smm.RescaledMeasureRelationship;
 import org.omg.vdml.Activity;
+import org.omg.vdml.Assignment;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DelegationContext;
 import org.omg.vdml.OutputPort;
@@ -29,7 +32,6 @@ import org.omg.vdml.ValueProposition;
 import org.omg.vdml.ValuePropositionComponent;
 
 public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelper {
-
 
     public VdmlPotentialReferenceHelper(IEmfProfile profile) {
         super(profile);
@@ -62,8 +64,10 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
     protected JSONObject toEobjectReferenceJson(List<? extends EObject> results) {
         return toEobjectReferenceJson(results, "name");
     }
+
     /**
-     * NB!! Expects calling EObjects to have a "vdmlElement" feature 
+     * NB!! Expects calling EObjects to have a "vdmlElement" feature
+     * 
      * @param req
      * @return
      * @throws Exception
@@ -71,16 +75,16 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
     private List<? extends EObject> findActivitiesInCollaboration(HttpServletRequest req) throws Exception {
         EObject ve = getSourceElement(req);
         IEmfDiagramProfile sourceProfile = getSourceProfile(req);
-        String vdmlElementBinding=req.getParameter("vdmlElementBinding");
-        Object vdmlElement=null;
-        EObject parent=ve;
-        while(!(vdmlElement instanceof Collaboration || parent==null)){
-            vdmlElement=getValue(sourceProfile, parent, vdmlElementBinding);
-            parent=parent.eContainer();
+        String vdmlElementBinding = req.getParameter("vdmlElementBinding");
+        Object vdmlElement = null;
+        EObject parent = ve;
+        while (!(vdmlElement instanceof Collaboration || parent == null)) {
+            vdmlElement = getValue(sourceProfile, parent, vdmlElementBinding);
+            parent = parent.eContainer();
         }
-        if(vdmlElement instanceof Collaboration){
+        if (vdmlElement instanceof Collaboration) {
             return ((Collaboration) vdmlElement).getActivity();
-        }else{
+        } else {
             return Collections.emptyList();
         }
     }
@@ -113,8 +117,8 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
             }
         } else if (measure instanceof RescaledMeasure) {
             RescaledMeasure rm = (RescaledMeasure) measure;
-            if (rm.getRescalesFrom() != null) {
-                results.add(rm.getRescalesFrom().getFromDimensionalMeasure());
+            for (RescaledMeasureRelationship rel: rm.getRescalesFrom()) {
+                results.add(rel.getFromDimensionalMeasure());
             }
         } else {
             // TODO Ranking measure,
@@ -144,6 +148,13 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
             if (responsibleRole != null) {
                 for (Activity activity : responsibleRole.getPerformedWork()) {
                     addValueAdds(results, activity);
+                }
+                for (Assignment as : responsibleRole.getAssignment()) {
+                    if (as.eContainer() instanceof Collaboration && as.getAssignedRole() != null) {
+                        for (Activity activity : as.getAssignedRole().getPerformedWork()) {
+                            addValueAdds(results, activity);
+                        }
+                    }
                 }
             }
             return results;
@@ -188,7 +199,14 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
                 Activity childActivity = (Activity) ve.eContainer().eContainer();
                 Collaboration parentCollaboration = (Collaboration) childActivity.eContainer();
                 addValueAdds(results, parentCollaboration);
-                addPropositionComponents(results, childActivity.getPerformingRole());
+                Role responsibleRole = childActivity.getPerformingRole();
+                addPropositionComponents(results, responsibleRole);
+                for (Assignment ass : responsibleRole.getRoleAssignment()) {
+                    if (ass.eContainer() instanceof Collaboration && ass.getParticipant() instanceof Role) {
+                        Role assignedTo = (Role) ass.getParticipant();
+                        addPropositionComponents(results, assignedTo);
+                    }
+                }
                 return results;
             }
         } else if (ve instanceof ValuePropositionComponent) {

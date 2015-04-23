@@ -215,6 +215,9 @@ public class CodeModelBuilder extends DefaultCodeModelBuilder {
 
     private CodePrimitiveTypeKind getPrimitiveTypeKind(PrimitiveType type) {
         try {
+            if(type==null){
+                return null;
+            }
             return CodePrimitiveTypeKind.valueOf(type.getName().toUpperCase());
         } catch (IllegalArgumentException e) {
             if (type.getGenerals().size() > 0) {

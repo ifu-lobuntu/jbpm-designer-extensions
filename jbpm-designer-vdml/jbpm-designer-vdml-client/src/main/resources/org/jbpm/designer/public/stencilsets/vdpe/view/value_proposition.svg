@@ -34,11 +34,11 @@
     </defs>
 
     <rect id="text_frame" oryx:anchors="top" x="1" y="1" width="94" height="79" rx="1" ry="1" stroke="none" stroke-width="0" fill="none" />
-    <rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="80" rx="1" ry="1" stroke="black" stroke-width="1" fill="url(#background) #ffffcc"/>
-    <text font-size="12" id="text_name" x="40" y="5"  oryx:anchors="top" oryx:align="top center" stroke="black">
+    <rect id="bg_frame" oryx:resize="vertical horizontal" x="0" y="0" width="100" height="80" rx="1" ry="1" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" />
+    <text font-size="12" id="text_name" x="40" y="5" oryx:anchors="top" oryx:align="top center" stroke="black">
     </text>
-    <rect id="expand_button" oryx:fittoelem="bg_frame" oryx:anchors="bottom" x="45" y="68" width="12" height="12" stroke="black" stroke-width="1" fill="none" rx="2" ry="2" />
-    <path id="expand_vertical" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 51,70 L 51, 78 z" />
-    <path id="expand_horizontal" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 47,74 L 55,74 z" />
+    <rect id="expandbutton" oryx:expansion-trigger="click"  oryx:anchors="bottom" x="45" y="68" width="12" height="12" stroke="black" stroke-width="1" fill="none" rx="2" ry="2" oryx:expansion-display="expanded collapsed" />
+    <path id="expandvertical" oryx:expansion-trigger="click" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 51,70 L 51, 78 z" oryx:expansion-display="collapsed" />
+    <path id="expandhorizontal" oryx:expansion-trigger="click" oryx:anchors="bottom" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 47,74 L 55,74 z" oryx:expansion-display="expanded collapsed" />
   </g>
 </svg>

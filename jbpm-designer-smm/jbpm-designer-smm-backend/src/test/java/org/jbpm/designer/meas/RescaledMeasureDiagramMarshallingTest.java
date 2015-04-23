@@ -25,7 +25,7 @@ public class RescaledMeasureDiagramMarshallingTest extends AbstractSmmDiagramMar
         rsmr.setInfluence(Influence.NEGATIVE);
         rsmr.setFromDimensionalMeasure(dm1);
         rsmr.setToRescaledMeasure(rsm);
-        addEdge(rsmr, dm1, rsm);
+        addEdge(rsmr, rsm,dm1);
         assertOutputValid();
     }
 }
