@@ -1,9 +1,10 @@
 package org.jbpm.designer.ucd;
 
-import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Map;
+import java.util.zip.ZipFile;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -15,8 +16,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ArchiveURIHandlerImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -45,6 +44,8 @@ import org.kie.workbench.common.screens.datamodeller.model.DataModelTO;
 import org.kie.workbench.common.screens.datamodeller.service.DataModelerService;
 import org.kie.workbench.common.services.shared.project.KieProject;
 import org.kie.workbench.common.services.shared.project.KieProjectService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.PathFactory;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
@@ -57,6 +58,16 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     public static final String CMMNTYPES_PATHMAP = "pathmap://jbpm-cmmn/libraries/cmmntypes.uml";
     private static final String STENCILSET_PATH = "stencilsets/ucd/ucd.json";
+    static Logger LOGGER = LoggerFactory.getLogger(AbstractClassDiagramProfileImpl.class);
+    static {
+        try {
+            ensureVfsUriHandlerPresent();
+            UMLPackageImpl.init();
+            UMLDIPackageImpl.init();
+        } catch (Throwable t) {
+            LOGGER.error("Could not initialize UML EMF", t);
+        }
+    }
     @Inject
     private DataModelerService dataModelerService;
     @Inject
@@ -69,28 +80,6 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     @Inject
     @ProfileName("ucd")
     ClassDiagramFormBuilder classDiagramFormBuilder;
-    static {
-        try {
-            Resource d = new ResourceImpl() {
-                // Jeez!!!!
-                {
-                    getDefaultURIConverter().getURIHandlers().add(new ArchiveURIHandlerImpl(){
-                        public boolean canHandle(URI uri) {
-                            return uri.toString().startsWith("vfs");
-                        };
-                        public InputStream createInputStream(URI uri, java.util.Map<?,?> options) throws IOException {
-                            String newUri = uri.toString().replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/");
-                            return super.createInputStream(URI.createURI(newUri), options);
-                        };
-                    });
-                }
-            };
-            UMLPackageImpl.init();
-            UMLDIPackageImpl.init();
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-    }
 
     public AbstractClassDiagramProfileImpl() {
     }
@@ -143,7 +132,20 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     private static URL mapClassPathResource(ResourceSet resourceSet, URI uri, String resourcePath) {
         URL url = UMLDiagram.class.getResource(resourcePath);
-        URI cmmnTypesUri = URI.createURI(url.toExternalForm().replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/"));
+        String externalForm = url.toExternalForm();
+        try {
+            //Hack for wildfly's VFS
+            //TODO find a better way to do this
+            InputStream openStream = url.openStream();
+            Field this$0 = openStream.getClass().getDeclaredField("this$0");
+            this$0.setAccessible(true);
+            ZipFile zf = (ZipFile) this$0.get(openStream);
+            String jarUri = "jar:file:" + zf.getName() +"!" + resourcePath;
+            externalForm =new URL(jarUri).toExternalForm();
+        } catch (Throwable t) {
+            LOGGER.error("Could not calculate jar file path", t);
+        }
+        URI cmmnTypesUri = URI.createURI(externalForm.replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/"));
         resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
         String[] languages = { "java", "js" };
         for (String l : languages) {

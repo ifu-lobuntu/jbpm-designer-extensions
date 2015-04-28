@@ -6,7 +6,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.JsonToEmfHelper;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
@@ -16,11 +15,16 @@ import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.smm.dd.smmdi.SMMDIFactory;
 import org.jbpm.smm.dd.smmdi.SMMDIPackage;
 import org.jbpm.smm.dd.smmdi.SMMDiagram;
+import org.jbpm.smm.dd.smmdi.impl.SMMDIPackageImpl;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
 import org.omg.smm.SMMPackage;
+import org.omg.smm.impl.SMMPackageImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
+
 
 /**
  * The implementation of the SMM Activity Network profile for Process Designer.
@@ -28,6 +32,16 @@ import org.uberfire.workbench.type.ResourceTypeDefinition;
  */
 @ApplicationScoped
 public class MeasureLibraryProfileImpl extends AbstractEmfDiagramProfile {
+    static Logger LOGGER = LoggerFactory.getLogger(MeasureLibraryProfileImpl.class);
+    static {
+        try {
+            ensureVfsUriHandlerPresent();
+            SMMPackageImpl.init();
+            SMMDIPackageImpl.init();
+        } catch (Throwable t) {
+            LOGGER.error("Could not initialize SMM EMF",t);
+        }
+    }
 
     private static final String STENCILSET_PATH = "stencilsets/meas/meas.json";
 

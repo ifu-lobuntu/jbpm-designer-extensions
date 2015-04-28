@@ -13,11 +13,13 @@ import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIFactory;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
 import org.jbpm.cmmn.dd.cmmndi.CMMNDiagram;
 import org.jbpm.cmmn.dd.cmmndi.CMMNShape;
+import org.jbpm.cmmn.dd.cmmndi.impl.CMMNDIPackageImpl;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
@@ -36,6 +38,7 @@ import org.omg.cmmn.DocumentRoot;
 import org.omg.cmmn.TCase;
 import org.omg.cmmn.TDefinitions;
 import org.omg.cmmn.TStage;
+import org.omg.cmmn.impl.CMMNPackageImpl;
 import org.omg.cmmn.util.CMMNResourceFactoryImpl;
 import org.omg.dd.dc.DCFactory;
 import org.slf4j.Logger;
@@ -54,7 +57,17 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         customFeatures.put("externalProcess", JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess());
         customFeatures.put("vdmlElement", JbpmextPackage.eINSTANCE.getDocumentRoot_VdmlElement());
     }
-    static Logger _logger = LoggerFactory.getLogger(CmmnProfileImpl.class);
+    static Logger LOGGER = LoggerFactory.getLogger(CmmnProfileImpl.class);
+    static {
+        try {
+            ensureVfsUriHandlerPresent();
+            UMLPackageImpl.init();
+            CMMNDIPackageImpl.init();
+            CMMNPackageImpl.init();
+        } catch (Throwable t) {
+            LOGGER.error("Could not initialize UML EMF", t);
+        }
+    }
     @Inject
     @ProfileName("cmmn")
     private CmmnFormBuilder formBuilder;

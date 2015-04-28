@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1430193764078
+Bnd-LastModified: 1430224427056
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Tue, 28 Apr 2015 06:02:33 +0200
+Build-Timestamp: Tue, 28 Apr 2015 14:33:34 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -10,7 +10,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: jbpm-designer-extensions-emf
 Bundle-SymbolicName: jbpm-designer-extensions-emf
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201504280602
+Bundle-Version: 6.3.0.201504281433
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer Extensions EMF Metamodel for Diagram
  s
@@ -36,7 +36,7 @@ Private-Package: org.omg.dd.di.impl,org.omg.dd.dc.impl,org.jbpm.designer
  dd.util,org.omg.dd.dc.util,org.omg.dd.dg.impl,org.omg.dd.dg.util
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-extensions-emf
-Scm-Revision: d425259f604294c8bff1a5508898ceece626667f
+Scm-Revision: 317f97641e2a7ebb744a8f71c6a2e872da9f311c
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-extensions-emf
 Specification-Title: jBPM Designer Extensions EMF Metamodel for Diagrams
