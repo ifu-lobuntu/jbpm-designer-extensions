@@ -1,15 +1,14 @@
 package org.jbpm.designer.client.navbar;
 
-import static java.lang.Integer.MAX_VALUE;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 import org.uberfire.client.workbench.Header;
 import org.uberfire.client.workbench.widgets.menu.WorkbenchMenuBarPresenter;
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import static java.lang.Integer.*;
 
 @ApplicationScoped
 public class AppNavBar

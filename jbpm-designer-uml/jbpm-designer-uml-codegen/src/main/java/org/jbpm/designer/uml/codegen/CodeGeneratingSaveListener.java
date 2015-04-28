@@ -39,26 +39,31 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
 
     @Override
     public void onSave(XMLResource resource) {
-        if (codeGenerator instanceof JavaCodeGenerator) {
-            JavaCodeGenerator jcg = (JavaCodeGenerator) codeGenerator;
-            for (AbstractJavaCodeDecorator cd : decorators) {
-                jcg.addDecorator(cd);
-            }
-        }
-        for (DefaultCodeModelBuilder b : this.builders) {
-            for (EObject o : resource.getContents()) {
-                if (o instanceof Package) {
-                    this.adaptor.startVisiting(b, (Package) o);
+        try {
+            if (codeGenerator instanceof JavaCodeGenerator) {
+                JavaCodeGenerator jcg = (JavaCodeGenerator) codeGenerator;
+                for (AbstractJavaCodeDecorator cd : decorators) {
+                    jcg.addDecorator(cd);
                 }
             }
-        }
-        String start = EMFVFSURIConverter.getProjectName(resource.getURI()) + "src/main/java/";
-        for (CodePackage codePackage : adaptor.getCodeModel().getChildren().values()) {
-            createText(codePackage, start);
+            for (DefaultCodeModelBuilder b : this.builders) {
+                for (EObject o : resource.getContents()) {
+                    if (o instanceof Package) {
+                        this.adaptor.startVisiting(b, (Package) o);
+                    }
+                }
+            }
+            String start = EMFVFSURIConverter.getProjectName(resource.getURI()) + "src/main/java/";
+            for (CodePackage codePackage : adaptor.getCodeModel().getChildren().values()) {
+                createText(codePackage, start);
+            }
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 
-    @SuppressWarnings({ "rawtypes"})
+    @SuppressWarnings({ "rawtypes" })
     private void cleanDirectory(String start) {
         for (Asset asset : repository.listAssets(start)) {
             asset = repository.loadAsset(asset.getUniqueId());
@@ -69,10 +74,11 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
     }
 
     private void createText(CodePackage codeModel, String start) {
-        cleanDirectory(start);
         Collection<CodeClassifier> values = codeModel.getClassifiers().values();
         String packageLocation = start + codeModel.getName();
-        if (!repository.directoryExists(packageLocation)) {
+        if (repository.directoryExists(packageLocation)) {
+            cleanDirectory(packageLocation);
+        }else{
             repository.createDirectory(packageLocation);
         }
         for (CodeClassifier codeClassifier : values) {

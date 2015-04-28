@@ -27,7 +27,6 @@ import org.jbpm.smm.dd.smmdi.impl.SMMDIPackageImpl;
 import org.jbpm.vdml.dd.vdmldi.impl.VDMLDIPackageImpl;
 import org.omg.cmmn.impl.CMMNPackageImpl;
 import org.omg.dd.dc.impl.DCPackageImpl;
-import org.omg.dd.di.DIPackage;
 import org.omg.dd.di.impl.DIPackageImpl;
 import org.omg.smm.impl.SMMPackageImpl;
 import org.omg.vdml.impl.VDMLPackageImpl;
@@ -62,6 +61,12 @@ public class AppSetup {
     private static final String JBPM_REPO_PLAYGROUND = "examples";
     private static final String JBPM_URL = "https://github.com/ifu-lobuntu/examples.git";
 
+//    private static final String JBPM_REPO_PLAYGROUND = "jbpm-playground";
+    //    private static final String GUVNOR_REPO_PLAYGROUND = "uf-playground";
+    // default repository section - start
+//    private static final String JBPM_URL = "https://github.com/guvnorngtestuser1/jbpm-console-ng-playground-kjar.git";
+//    private static final String GUVNOR_URL = "https://github.com/guvnorngtestuser1/guvnorng-playground.git";
+
     private final String userName = "guvnorngtestuser1";
     private final String password = "test1234";
 
@@ -86,68 +91,77 @@ public class AppSetup {
     @PostConstruct
     public void onStartup() {
         try {
-            Repository jbpmRepo = repositoryService.getRepository(JBPM_REPO_PLAYGROUND);
-            if (jbpmRepo == null) {
-                jbpmRepo = repositoryService.createRepository("git", JBPM_REPO_PLAYGROUND, new HashMap<String, Object>() {
-                    {
-                        put("origin", JBPM_URL);
-                        put("username", userName);
-                        put("crypt:password", password);
-                    }
-                });
+            Repository jbpmRepo = repositoryService.getRepository( JBPM_REPO_PLAYGROUND );
+            if ( jbpmRepo == null ) {
+                jbpmRepo = repositoryService.createRepository( "git",
+                                                               JBPM_REPO_PLAYGROUND,
+                                                               new HashMap<String, Object>() {{
+                                                                   put( "origin", JBPM_URL );
+                                                                   put( "username", userName );
+                                                                   put( "crypt:password", password );
+                                                               }} );
             }
 
-            // TODO in case repo is not defined in system repository so we add
-            // default
-            // Repository guvnorRepo = repositoryService.getRepository(
-            // GUVNOR_REPO_PLAYGROUND );
-            // if ( guvnorRepo == null ) {
-            // guvnorRepo = repositoryService.createRepository( "git",
-            // GUVNOR_REPO_PLAYGROUND,
-            // new HashMap<String, Object>() {{
-            // put( "origin", GUVNOR_URL );
-            // put( "username", userName );
-            // put( "crypt:password", password );
-            // }} );
-            // }
+            // TODO in case repo is not defined in system repository so we add default
+//            Repository guvnorRepo = repositoryService.getRepository( GUVNOR_REPO_PLAYGROUND );
+//            if ( guvnorRepo == null ) {
+//                guvnorRepo = repositoryService.createRepository( "git",
+//                                                                 GUVNOR_REPO_PLAYGROUND,
+//                                                                 new HashMap<String, Object>() {{
+//                                                                     put( "origin", GUVNOR_URL );
+//                                                                     put( "username", userName );
+//                                                                     put( "crypt:password", password );
+//                                                                 }} );
+//            }
 
             // TODO in case groups are not defined
             Collection<OrganizationalUnit> groups = organizationalUnitService.getOrganizationalUnits();
-            if (groups == null || groups.isEmpty()) {
+            if ( groups == null || groups.isEmpty() ) {
                 final List<Repository> repositories = new ArrayList<Repository>();
-                repositories.add(jbpmRepo);
-                // repositories.add( guvnorRepo );
+                repositories.add( jbpmRepo );
+//                repositories.add( guvnorRepo );
 
-                organizationalUnitService.createOrganizationalUnit("demo", "demo@jbpm.org", null, repositories);
+                organizationalUnitService.createOrganizationalUnit( "demo",
+                                                                    "demo@jbpm.org",
+                                                                    null,
+                                                                    repositories );
             }
 
-            // Define mandatory properties
-            List<ConfigGroup> globalConfigGroups = configurationService.getConfiguration(ConfigType.GLOBAL);
+            //Define mandatory properties
+            List<ConfigGroup> globalConfigGroups = configurationService.getConfiguration( ConfigType.GLOBAL );
             boolean globalSettingsDefined = false;
-            for (ConfigGroup globalConfigGroup : globalConfigGroups) {
-                if (GLOBAL_SETTINGS.equals(globalConfigGroup.getName())) {
+            for ( ConfigGroup globalConfigGroup : globalConfigGroups ) {
+                if ( GLOBAL_SETTINGS.equals( globalConfigGroup.getName() ) ) {
                     globalSettingsDefined = true;
                     break;
                 }
             }
-            if (!globalSettingsDefined) {
-                configurationService.addConfiguration(getGlobalConfiguration());
+            if ( !globalSettingsDefined ) {
+                configurationService.addConfiguration( getGlobalConfiguration() );
             }
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error when starting designer " + e.getMessage(), e);
+        } catch ( Exception e ) {
+            throw new RuntimeException( "Error when starting designer " + e.getMessage(), e );
         }
     }
 
     private ConfigGroup getGlobalConfiguration() {
-        // Global Configurations used by many of Drools Workbench editors
-        final ConfigGroup group = configurationFactory.newConfigGroup(ConfigType.GLOBAL, GLOBAL_SETTINGS, "");
-        group.addConfigItem(configurationFactory.newConfigItem("drools.dateformat", "dd-MMM-yyyy"));
-        group.addConfigItem(configurationFactory.newConfigItem("drools.datetimeformat", "dd-MMM-yyyy hh:mm:ss"));
-        group.addConfigItem(configurationFactory.newConfigItem("drools.defaultlanguage", "en"));
-        group.addConfigItem(configurationFactory.newConfigItem("drools.defaultcountry", "US"));
-        group.addConfigItem(configurationFactory.newConfigItem("build.enable-incremental", "true"));
-        group.addConfigItem(configurationFactory.newConfigItem("rule-modeller-onlyShowDSLStatements", "false"));
+        //Global Configurations used by many of Drools Workbench editors
+        final ConfigGroup group = configurationFactory.newConfigGroup( ConfigType.GLOBAL,
+                                                                       GLOBAL_SETTINGS,
+                                                                       "" );
+        group.addConfigItem( configurationFactory.newConfigItem( "drools.dateformat",
+                                                                 "dd-MMM-yyyy" ) );
+        group.addConfigItem( configurationFactory.newConfigItem( "drools.datetimeformat",
+                                                                 "dd-MMM-yyyy hh:mm:ss" ) );
+        group.addConfigItem( configurationFactory.newConfigItem( "drools.defaultlanguage",
+                                                                 "en" ) );
+        group.addConfigItem( configurationFactory.newConfigItem( "drools.defaultcountry",
+                                                                 "US" ) );
+        group.addConfigItem( configurationFactory.newConfigItem( "build.enable-incremental",
+                                                                 "true" ) );
+        group.addConfigItem( configurationFactory.newConfigItem( "rule-modeller-onlyShowDSLStatements",
+                                                                 "false" ) );
         return group;
     }
 }
+

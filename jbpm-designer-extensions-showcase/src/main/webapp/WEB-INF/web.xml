@@ -8,18 +8,6 @@
 
   <display-name>jBPM Designer</display-name>
 
-  <listener>
-    <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-  </listener>
-
-  <filter>
-    <filter-name>HttpProducerFilter</filter-name>
-    <filter-class>org.jbpm.designer.uberfire.backend.server.impl.HttpRequestProducer</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>HttpProducerFilter</filter-name>
-    <url-pattern>*</url-pattern>
-  </filter-mapping>
   <!-- UF -->
   <filter>
     <filter-name>UI Security Filter</filter-name>
@@ -52,23 +40,9 @@
     <url-pattern>/org.jbpm.designer.jBPMDesigner/*</url-pattern>
   </filter-mapping>
 
-  <!-- Designer Injection Filter -->
-  <filter>
-    <filter-name>Designer Injection Filter</filter-name>
-    <filter-class>org.jbpm.designer.filter.DesignerInjectionFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>Designer Injection Filter</filter-name>
-    <url-pattern>*.html</url-pattern>
-  </filter-mapping>
-
   <servlet>
     <servlet-name>ErraiServlet</servlet-name>
     <servlet-class>org.jboss.errai.bus.server.servlet.DefaultBlockingServlet</servlet-class>
-    <init-param>
-      <param-name>service-locator</param-name>
-      <param-value>org.jboss.errai.cdi.server.CDIServiceLocator</param-value>
-    </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
 
@@ -78,29 +52,17 @@
   </servlet-mapping>
 
 
-  <resource-env-ref>
-    <description>Object factory for the CDI Bean Manager</description>
-    <resource-env-ref-name>BeanManager</resource-env-ref-name>
-    <resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
-  </resource-env-ref>
-
-  <resource-env-ref>
-    <description>Object factory for the Errai Service</description>
-    <resource-env-ref-name>ErraiService</resource-env-ref-name>
-    <resource-env-ref-type>org.jboss.errai.bus.server.service.ErraiService</resource-env-ref-type>
-  </resource-env-ref>
-
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
   <!-- END UF -->
-
-  <!-- Designer -->
   <servlet>
     <display-name>Extensions Forms</display-name>
     <servlet-name>ExtensionsFormServlet</servlet-name>
     <servlet-class>org.jbpm.designer.extensions.web.ExtensionsFormServlet</servlet-class>
   </servlet>
+
+  <!-- Designer -->
   <servlet>
     <display-name>Resource List</display-name>
     <servlet-name>ResourceList</servlet-name>
@@ -116,7 +78,7 @@
     </init-param>
     <init-param>
       <param-name>designer.preprocess</param-name>
-      <param-value>false</param-value>
+      <param-value>true</param-value>
     </init-param>
     <init-param>
       <param-name>designer.skin</param-name>
@@ -240,6 +202,10 @@
       <param-value>bpmn2.0jbpm</param-value>
     </init-param>
   </servlet>
+ <servlet-mapping>
+    <servlet-name>ExtensionsFormServlet</servlet-name>
+    <url-pattern>/extensionsforms/*</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>ResourceList</servlet-name>
     <url-pattern>/resourceList</url-pattern>
@@ -255,10 +221,6 @@
   <servlet-mapping>
     <servlet-name>MenuConnectorServlet</servlet-name>
     <url-pattern>/menuconnector/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ExtensionsFormServlet</servlet-name>
-    <url-pattern>/extensionsforms/*</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>MenuServlet</servlet-name>

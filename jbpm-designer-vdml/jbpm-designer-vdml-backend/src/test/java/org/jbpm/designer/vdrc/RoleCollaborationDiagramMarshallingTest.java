@@ -22,7 +22,7 @@ import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 
-public class RoleCollaborationDiagramMarshallingTests extends AbstractVdmlDiagramMarshallingTest {
+public class RoleCollaborationDiagramMarshallingTest extends AbstractVdmlDiagramMarshallingTest {
 
     @Before
     public void deleteModel() throws Exception {

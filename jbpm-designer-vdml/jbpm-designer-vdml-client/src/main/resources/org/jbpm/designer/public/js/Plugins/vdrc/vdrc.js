@@ -29,18 +29,21 @@ ORYX.Plugins.VDRC = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		console.log("Initializing VDRC");
 	    ORYX.FieldEditors["activity"] = new ORYX.Plugins.VDRC.ActivityEditorFactory();
         this.decoratorUpdaters["ExistingDeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
-        this.decoratorUpdaters["NewDeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
+        this.decoratorUpdaters["NewIntangibleDeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
+        this.decoratorUpdaters["NewTangibleDeliverableFlow"]=this.updateDeliverableFlowDecorations.bind(this);
 		console.log("VDRC Initialized");
 	},
 	updateDeliverableFlowDecorations:function (shape){
 		var dashArray=shape.properties["oryx-istangible"]==true || shape.properties["oryx-istangible"]=="true"?"none":"5,5";
 		shape._paths[0].setAttributeNS(null,"stroke-dasharray",dashArray);
-		if(shape.properties["oryx-deliverabledefinition"]){
-		    var name=shape.properties["oryx-deliverabledefinition"].split("|")[0];
-		    name=name.substring(name.indexOf("::")+2);
-            shape.properties["oryx-name"]=name;
-		    shape.getLabels()[0].text(name);
-		    shape.getLabels()[0].update();
+		if("oryx-syncbusinessitem" in shape.properties && (shape.properties["oryx-syncbusinessitem"]+"")=="false"){
+		    if(shape.properties["oryx-deliverabledefinition"]){
+		        var name=shape.properties["oryx-deliverabledefinition"].split("|")[0];
+		        name=name.substring(name.indexOf("::")+2);
+		        shape.properties["oryx-name"]=name;
+		        shape.getLabels()[0].text(name);
+		        shape.getLabels()[0].update();
+		    }
 		}
 	}
 });

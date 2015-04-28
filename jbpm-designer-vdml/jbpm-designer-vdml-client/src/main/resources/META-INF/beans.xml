@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://xmlns.jcp.org/xml/ns/javaee" bean-discovery-mode="none">
+  <scan>
+    <exclude name="org.jbpm.designer.client.vdan.**"/>
+    <exclude name="org.jbpm.designer.client.vdcm.**"/>
+    <exclude name="org.jbpm.designer.client.vdlib.**"/>
+    <exclude name="org.jbpm.designer.client.vdml.**"/>
+    <exclude name="org.jbpm.designer.client.vdpe.**"/>
+    <exclude name="org.jbpm.designer.client.vdrc.**"/>
+  </scan>
+</beans>

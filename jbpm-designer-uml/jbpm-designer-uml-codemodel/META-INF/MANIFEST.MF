@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1429806345002
+Bnd-LastModified: 1430193819982
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Thu, 23 Apr 2015 18:24:51 +0200
+Build-Timestamp: Tue, 28 Apr 2015 06:02:33 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -10,14 +10,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codemodel
 Bundle-SymbolicName: org.jbpm.uml.codemodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201504231824
+Bundle-Version: 6.3.0.201504280602
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.jbpm.designer.uml.code.metamodel;version="6.3.0.2015
- 04231824",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.3.
- 0.201504231824",org.jbpm.designer.uml.code.metamodel.expressions;versio
- n="6.3.0.201504231824",org.jbpm.designer.uml.code.metamodel.relationald
- b;version="6.3.0.201504231824",org.jbpm.designer.uml.code.metamodel.sta
- tements;version="6.3.0.201504231824"
+ 04280602",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.3.
+ 0.201504280602",org.jbpm.designer.uml.code.metamodel.expressions;versio
+ n="6.3.0.201504280602",org.jbpm.designer.uml.code.metamodel.relationald
+ b;version="6.3.0.201504280602",org.jbpm.designer.uml.code.metamodel.sta
+ tements;version="6.3.0.201504280602"
 Implementation-Title: jBPM Designer Metamodel for Code generation
 Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
  igner-extensions/jbpm-designer-uml/jbpm-designer-uml-codemodel
@@ -36,7 +36,7 @@ Private-Package: org.jbpm.designer.uml.code.metamodel;org.jbpm.designer.
  gner.uml.code.metamodel.statements;-split-package:=merge-first
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-uml/jbpm-designer-uml-codemodel
-Scm-Revision: d6c3f18d8f8b239d8e1e5e5b92d2151f0600d23d
+Scm-Revision: d425259f604294c8bff1a5508898ceece626667f
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-uml/jbpm-designer-uml-codemodel
 Specification-Title: jBPM Designer Metamodel for Code generation

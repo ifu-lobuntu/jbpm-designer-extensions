@@ -129,17 +129,7 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         BusinessItem result = null;
         BusinessItemDefinition deliverableDefinition = (BusinessItemDefinition) sourceShape.getUnboundProperty(name);
         if (deliverableDefinition != null) {
-            for (BusinessItem bi : owningCollaboration.getBusinessItem()) {
-                if (bi.getDefinition() != null && bi.getDefinition() == deliverableDefinition) {
-                    result = bi;
-                }
-            }
-            if (result == null) {
-                result = VDMLFactory.eINSTANCE.createBusinessItem();
-                owningCollaboration.getBusinessItem().add(result);
-                result.setDefinition(deliverableDefinition);
-            }
-            result.setName(deliverableDefinition.getName());
+            result=VdmlHelper.findOrCreateBusinessItemFor(deliverableDefinition, owningCollaboration);
         }
         return result;
     }

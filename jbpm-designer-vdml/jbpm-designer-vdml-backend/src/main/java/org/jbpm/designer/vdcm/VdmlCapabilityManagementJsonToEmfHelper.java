@@ -19,7 +19,6 @@ import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
-import org.omg.vdml.Attribute;
 import org.omg.vdml.CapabilityOffer;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.OrgUnit;
@@ -27,7 +26,6 @@ import org.omg.vdml.Pool;
 import org.omg.vdml.Position;
 import org.omg.vdml.Role;
 import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VdmlElement;
 
 public class VdmlCapabilityManagementJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {

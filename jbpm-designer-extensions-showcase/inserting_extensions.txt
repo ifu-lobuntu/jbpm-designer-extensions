@@ -1,0 +1,203 @@
+In web.xml:
+  <servlet>
+    <display-name>Extensions Forms</display-name>
+    <servlet-name>ExtensionsFormServlet</servlet-name>
+    <servlet-class>org.jbpm.designer.extensions.web.ExtensionsFormServlet</servlet-class>
+  </servlet>
+
+    <servlet-mapping>
+    <servlet-name>ExtensionsFormServlet</servlet-name>
+    <url-pattern>/extensionsforms/*</url-pattern>
+  </servlet-mapping>
+  
+in jBPMDesigner.gwt.xml:
+  <!-- designer extension -->
+  <inherits name="org.jbpm.designer.jBPMDesignerExtensionsClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDMLClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerSMMClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerCMMNClient"/>
+
+In AppSet.java
+    static {
+        try {
+            // HACK
+            // Sometimes the initialization fails for unpredictable reasons
+            // TODO investigate if it has anything to do with the VFSURIHandler.
+            Bpmn2PackageImpl.init();
+            UMLPackageImpl.init();
+            DIPackageImpl.init();
+            DCPackageImpl.init();
+            JBPMDDPackageImpl.init();
+            SMMPackageImpl.init();
+            SMMDIPackageImpl.init();
+            VDMLPackageImpl.init();
+            VDMLDIPackageImpl.init();
+            CMMNPackageImpl.init();
+            CMMNDIPackageImpl.init();
+            JbpmextPackageImpl.init();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+    }
+    private static final String JBPM_REPO_PLAYGROUND = "examples";
+    private static final String JBPM_URL = "https://github.com/ifu-lobuntu/examples.git";
+    
+pom.xml
+    <!-- jBPM Designer Extensions -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-emf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-extensions-client</artifactId>
+    </dependency>
+    <!-- jBPM Designer CMMN -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-cmmn-emf</artifactId>
+    </dependency>
+    <!-- jBPM Designer UML -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-emf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-backend</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-codemodel</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-uml-codegen</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.uml2</groupId>
+      <artifactId>org.eclipse.uml2.uml</artifactId>
+    </dependency>
+    <!-- jBPM Designer VDML -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdml-emf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdml-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdml-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-vdml-backend</artifactId>
+    </dependency>
+    <!-- jBPM Designer SMM -->
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-smm-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-smm-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-designer-smm-backend</artifactId>
+    </dependency>
+    <!-- additional transitive dependencies for designer-extensions -->
+    <dependency>
+      <groupId>org.drools</groupId>
+      <artifactId>drools-workbench-models-datamodel-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-refactoring-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.services</groupId>
+      <artifactId>kie-wb-common-datamodel-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.screens</groupId>
+      <artifactId>kie-wb-common-default-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.workbench.screens</groupId>
+      <artifactId>kie-wb-common-project-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-widgets-service-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-commons-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-widgets-properties-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-widgets-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-backend-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.uberfire</groupId>
+      <artifactId>kie-uberfire-social-activities-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-marshalling</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.guvnor</groupId>
+      <artifactId>guvnor-asset-mgmt-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-form-modeler-api</artifactId>
+    </dependency>
+--In Pom, under gwt-maven-plugin's config add: 
+            <!-- designer extensions -->
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-cmmn-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-cmmn-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-uml-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-smm-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-smm-client</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdml-api</compileSourcesArtifact>
+            <compileSourcesArtifact>org.jbpm:jbpm-designer-vdml-client</compileSourcesArtifact>
+    

@@ -25,6 +25,8 @@ import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
+import org.jbpm.designer.vdlib.VdmlLibHelper;
+import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdrc.VdmlRoleCollaborationProfileImpl;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
@@ -56,12 +58,14 @@ import org.omg.vdml.Role;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.VdmlElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLFactory;
 
 public abstract class AbstractVdmlDiagramMarshallingTest {
     protected Map<String, Object> emptyOptions;
     protected String collaborationFile;
     protected XMLResource collaborationResource;
-    
+
     private String measureLibraryFileName;
     protected XMLResource measureResource;
     protected MeasureLibrary measureLibrary;
@@ -70,11 +74,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected Characteristic characteristic2;
     protected DirectMeasure measure2;
 
-    private String businessItemLibraryFileName;
-    protected XMLResource businessItemLibraryResource;
     protected BusinessItemDefinition businessItemDefinition1;
     protected BusinessItemDefinition businessItemDefinition2;
-    
+
     protected ResourceSet resourceSet;
     protected VDMLDiagram inputDiagram;
     protected ValueDeliveryModel valueDeliveryModel;
@@ -83,8 +85,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected AbstractEmfDiagramProfile profile;
     protected GenericEmfToJsonDiagramUnmarshaller unmarshaller;
     protected GenericJsonToEmfDiagramMarshaller marshaller;
-    protected TestUriHandler tuh=new TestUriHandler();
+    protected TestUriHandler tuh = new TestUriHandler();
     protected XMLResource diagramResource;
+    protected Package pkg;
 
     public AbstractVdmlDiagramMarshallingTest() {
         super();
@@ -100,9 +103,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         measureResource.save(os, emptyOptions);
     }
 
-    protected final String getDiagramFileName(){
-        if(profile==null){
-            profile=createProfile();
+    protected final String getDiagramFileName() {
+        if (profile == null) {
+            profile = createProfile();
         }
         return "/jbpm-designer-vdml-backend/target/test." + profile.getSerializedModelExtension();
     }
@@ -110,7 +113,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected abstract AbstractEmfDiagramProfile createProfile();
 
     public void setup() throws Exception {
-        UMLDIPackage.eINSTANCE.getNsURI();//init UML
+        UMLDIPackage.eINSTANCE.getNsURI();// init UML
         this.tuh = new TestUriHandler();
         profile = createProfile();
         emptyOptions = profile.buildDefaultResourceOptions();
@@ -144,7 +147,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         elementDiagramElementMap.put(collaboration, inputDiagram);
         buildTestMeasureLibrary();
         buildTestBusinessItemLibrary();
-
+        saveCollaborationResource();
     }
 
     protected void buildTestMeasureLibrary() throws IOException {
@@ -168,24 +171,19 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         this.measure2.setName("Gender");
         measureLibrary.getMeasureElements().add(measure2);
         measure2.setTrait(characteristic2);
-        measureResource.save(tuh.createOutputStream(measureResource.getURI(), profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
+        measureResource.save(tuh.createOutputStream(measureResource.getURI(), profile.buildDefaultResourceOptions()), profile.buildDefaultResourceOptions());
     }
+
     protected void buildTestBusinessItemLibrary() throws IOException {
-        this.businessItemLibraryFileName = "/" + "jbpm-designer-vdml-client" + "/target/test.vdlib";
-        tuh.getFile(URI.createPlatformResourceURI(businessItemLibraryFileName, true)).delete();
-        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         BusinessItemLibrary bil = VDMLFactory.eINSTANCE.createBusinessItemLibrary();
         bil.setName("lib");
-        vdm.getBusinessItemLibrary().add(bil);
-        businessItemLibraryResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(businessItemLibraryFileName, true));
-        businessItemLibraryResource.getContents().add(vdm);
-        this.businessItemDefinition1 = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
-        this.businessItemDefinition1.setName("Invoice");
-        vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(this.businessItemDefinition1);
-        this.businessItemDefinition2 = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
-        this.businessItemDefinition2.setName("Payment");
-        vdm.getBusinessItemLibrary().get(0).getBusinessItemLibraryElement().add(this.businessItemDefinition2);
-        businessItemLibraryResource.save(tuh.createOutputStream(businessItemLibraryResource.getURI(), profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
+        valueDeliveryModel.getBusinessItemLibrary().add(bil);
+        collaborationResource.getContents().add(pkg = UMLFactory.eINSTANCE.createPackage());
+        pkg.setName(bil.getName());
+        this.businessItemDefinition1 = (BusinessItemDefinition) VdmlLibHelper.findOrCreateBusinessItemDefinitionClass("Invoice", valueDeliveryModel)
+                .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
+        this.businessItemDefinition2 = (BusinessItemDefinition) VdmlLibHelper.findOrCreateBusinessItemDefinitionClass("Payment", valueDeliveryModel)
+                .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
     }
 
     protected Collaboration createCollaboration() {
@@ -196,9 +194,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         TreeIterator<EObject> allContents = r.getAllContents();
         while (allContents.hasNext()) {
             EObject eObject = allContents.next();
-            if (eObject instanceof VDMLDiagramElement){
+            if (eObject instanceof VDMLDiagramElement) {
                 VDMLDiagramElement de = (VDMLDiagramElement) eObject;
-                if(de.getVdmlElement() !=null && de.getVdmlElement().getId().equals(ve.getId())) {
+                if (de.getVdmlElement() != null && de.getVdmlElement().getId().equals(ve.getId())) {
                     return;
                 }
             }
@@ -313,7 +311,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         bounds.setWidth(boundsInfo.length > 2 ? boundsInfo[2] : 300d);
         bounds.setHeight(boundsInfo.length > 3 ? boundsInfo[3] : 300d);
         shape.setLocalStyle(buildTestStyle(false));
-        if(element!=null){
+        if (element != null) {
             this.elementDiagramElementMap.put(element, shape);
         }
         return shape;
@@ -358,14 +356,16 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     protected void print(XMLResource resource) throws Exception {
         resource.save(System.out, profile.buildDefaultResourceOptions());
     }
+
     protected XMLResource assertConversionValid(XMLResource drscasdf) throws IOException, Exception {
         String xmlString = buildXmlString(drscasdf);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
-//        print(outputResource);
+        // print(outputResource);
         new GenericEcoreComparator(drscasdf, outputResource).validate();
         return outputResource;
     }
+
     protected final void saveDiagramResource() throws IOException {
         TestUriHandler tuh = new TestUriHandler();
         OutputStream os = tuh.createOutputStream(URI.createPlatformResourceURI(getDiagramFileName(), true), emptyOptions);

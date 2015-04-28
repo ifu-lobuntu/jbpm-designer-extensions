@@ -12,7 +12,7 @@ import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueProposition;
 import org.omg.vdml.ValuePropositionComponent;
 
-public class ValuePropositionExchangeDiagramMarshallingTests extends AbstractVdpeDiagramMarshallingTest {
+public class ValuePropositionExchangeDiagramMarshallingTest extends AbstractVdpeDiagramMarshallingTest {
     @Test
     public void testBasicDiagram() throws Exception {
         Role role1 = addRole("MyRole", true);

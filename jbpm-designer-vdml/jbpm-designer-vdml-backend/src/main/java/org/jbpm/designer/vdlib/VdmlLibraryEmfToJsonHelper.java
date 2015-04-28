@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.Type;
 import org.jbpm.designer.dd.jbpmdd.Compartment;
 import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.util.ShapeLayoutHelper;
 import org.jbpm.designer.ucd.ClassDiagramEmfToJsonHelper;
 import org.jbpm.designer.ucd.ClassDiagramStencil;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
@@ -62,11 +63,7 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
                     map.put(type, shape);
                     umlDiagram.getOwnedUmlDiagramElement().add(shape);
                     shape.setLocalStyle(VDMLDIFactory.eINSTANCE.createVDMLStyle());
-                    shape.setBounds(DCFactory.eINSTANCE.createBounds());
-                    shape.getBounds().setHeight(40d);
-                    shape.getBounds().setWidth(200d);
-                    shape.getBounds().setY((umlDiagram.getOwnedUmlDiagramElement().size() % 8) * 50d);
-                    shape.getBounds().setX((umlDiagram.getOwnedUmlDiagramElement().size() / 8) * 220d);
+                    ShapeLayoutHelper.positionElementOn(umlDiagram, shape);
                     shape.setUmlElement(type);
                 }
                 UMLCompartment attributes = null;

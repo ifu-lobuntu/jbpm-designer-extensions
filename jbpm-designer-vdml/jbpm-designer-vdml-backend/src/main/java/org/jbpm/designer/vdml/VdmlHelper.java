@@ -2,11 +2,13 @@ package org.jbpm.designer.vdml;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
-import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
+import org.omg.vdml.BusinessItem;
+import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.BusinessNetwork;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
@@ -112,5 +114,31 @@ public class VdmlHelper {
             valueAdds = ((OutputPort) p).getValueAdd();
         }
         return valueAdds;
+    }
+
+    public static BusinessItem findOrCreateBusinessItemFor(BusinessItemDefinition bid, Collaboration owningCollaboration2) {
+        BusinessItem deliverable = null;
+        for (BusinessItem bi : owningCollaboration2.getBusinessItem()) {
+            if (bi.getDefinition() != null && bi.getDefinition().equals(bid)) {
+                deliverable = bi;
+                break;
+            }
+        }
+        if (deliverable == null) {
+            deliverable = VDMLFactory.eINSTANCE.createBusinessItem();
+            deliverable.setDefinition(bid);
+            deliverable.setName(bid.getName());
+            owningCollaboration2.getBusinessItem().add(deliverable);
+        }
+        return deliverable;
+    }
+
+    public static ValueDeliveryModel getValueDeliveryModelIn(Resource eResource) {
+        for (EObject eo : eResource.getContents()) {
+            if (eo instanceof ValueDeliveryModel) {
+                return (ValueDeliveryModel) eo;
+            } 
+        }
+        return null;
     }
 }

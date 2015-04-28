@@ -1,9 +1,8 @@
-package org.jbpm.designer.vdml;
+package org.jbpm.designer.extensions.util;
 
 import org.jbpm.designer.extensions.diagram.Point;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
-import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.DCFactory;
 
@@ -97,7 +96,7 @@ public enum BoundaryShapePosition {
     protected double getFullSize() {
         return 14d;
     }
-    public static void ensureBoundaryShape(Shape containerShape, Shape targetShape2, VDMLShape parentVdmlShape) {
+    public static void ensureBoundaryShape(Shape containerShape, Shape targetShape2, org.omg.dd.di.Shape parentVdmlShape) {
         boolean found = false;
         for (ShapeReference sr : containerShape.getOutgoing()) {
             if (sr.getResourceId().equals(targetShape2.getResourceId())) {

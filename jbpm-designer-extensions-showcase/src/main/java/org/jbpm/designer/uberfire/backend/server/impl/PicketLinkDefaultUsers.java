@@ -17,7 +17,6 @@
 package org.jbpm.designer.uberfire.backend.server.impl;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;

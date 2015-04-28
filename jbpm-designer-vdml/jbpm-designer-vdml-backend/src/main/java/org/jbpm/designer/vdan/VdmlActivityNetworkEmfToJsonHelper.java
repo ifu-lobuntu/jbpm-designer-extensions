@@ -1,24 +1,21 @@
 package org.jbpm.designer.vdan;
 
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
+import org.jbpm.designer.extensions.util.BoundaryShapePosition;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
-import org.jbpm.designer.vdml.BoundaryShapePosition;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.DCFactory;
-import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Activity;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;

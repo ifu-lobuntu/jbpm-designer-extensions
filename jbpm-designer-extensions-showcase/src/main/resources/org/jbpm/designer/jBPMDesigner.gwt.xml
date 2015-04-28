@@ -9,6 +9,7 @@
 
   <!-- Uberfire dependencies -->
   <inherits name="org.uberfire.UberfireClientAll"/>
+  <inherits name="org.uberfire.client.views.Bootstrap2"/>
 
   <!-- Uberfire Extensions - Core Widgets -->
   <inherits name="org.uberfire.ext.widgets.core.UberfireWidgetsCore"/>
@@ -34,6 +35,7 @@
   <inherits name="org.kie.workbench.common.screens.datamodeller.KieWorkbenchDatamodellerClient"/>
   <inherits name="org.drools.workbench.screens.workitems.DroolsWorkbenchWorkItemsEditorClient"/>
   <inherits name="org.kie.workbench.common.screens.defaulteditor.DroolsWorkbenchDefaultEditorClient"/>
+
     <!-- Common Services -->
   <inherits name="org.kie.workbench.common.widgets.KieWorkbenchWidgetsCommon"/>
   <inherits name='org.kie.workbench.common.services.KieWorkbenchCommonServicesAPI'/>
@@ -42,16 +44,17 @@
   <!-- designer -->
   <inherits name="org.jbpm.designer.jBPMDesignerAPI"/>
   <inherits name="org.jbpm.designer.jBPMDesignerClient"/>
-  <!-- Designer extensions -->
-  <inherits name="org.jbpm.designer.jBPMDesignerExtensionsClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerVDMLClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerVDMLAPI"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerSMMClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerCMMNClient"/>
+
   <!-- Form-Modeler -->
   <inherits name="org.jbpm.formModeler.editor.FormModelerEditorClient"/>
   <inherits name="org.jbpm.formModeler.renderer.FormRendererClient"/>
+
+  <!-- designer extension -->
+  <inherits name="org.jbpm.designer.jBPMDesignerExtensionsClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerVDMLClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerSMMClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerCMMNClient"/>
 
   <!-- Specify the application specific style sheet. -->
   <stylesheet src='css/uberfire-showcase.css'/>
@@ -65,7 +68,5 @@
 
   <!-- Specify the paths for translatable code -->
   <source path='client'/>
-
-  <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
 
 </module>

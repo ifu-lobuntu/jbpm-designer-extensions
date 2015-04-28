@@ -26,11 +26,10 @@
     <rect id="text_frame" oryx:anchors="bottom top right left" x="1" y="1" width="38" height="26" rx="10" ry="10" stroke="none" stroke-width="0" fill="none" />
     <polygon id="bg_frame" oryx:resize="vertical horizontal" points="0,0 0,28 40,14" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" oryx:expansion-display="collapsed" />
     <rect id="bg_frame2" oryx:anchors="bottom top right left" x="0" y="0" width="40" height="28" rx="0" ry="0" stroke="black" stroke-width="1" fill="url(#background) #ffffcc" oryx:expansion-display="expanded"/>
-    <rect id="expandbutton" oryx:anchors="bottom" oryx:expansion-trigger="doubleClick" x="13" y="14" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="none" oryx:expansion-display="expanded collapsedMouseOver" />
-    <path id="expandvertical" oryx:anchors="bottom" oryx:expansion-trigger="doubleClick" style="opacity:1;fill:#F0EFF0;" stroke="black" stroke-width="1" oryx:expansion-display="collapsedMouseOver" d="M 20,16 L 20, 26 z" />
-    <path id="expandhorizontal" oryx:anchors="bottom" oryx:expansion-trigger="doubleClick" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 15,21 L 25,21 z" oryx:expansion-display="expanded collapsedMouseOver" />
+    <rect id="expandbutton" oryx:anchors="bottom right" oryx:expansion-trigger="doubleClick" x="26" y="14" width="14" height="14" rx="0" ry="0" stroke="black" stroke-width="1" fill="none" oryx:expansion-display="expanded collapsedMouseOver" />
+    <path id="expandvertical" oryx:anchors="bottom right" oryx:expansion-trigger="doubleClick" style="opacity:1;fill:#F0EFF0;" stroke="black" stroke-width="1" oryx:expansion-display="collapsedMouseOver" d="M 33,16 L 33, 26 z" />
+    <path id="expandhorizontal" oryx:anchors="bottom right" oryx:expansion-trigger="doubleClick" style="opacity:1;fill:#F0EFF0;" stroke="black" d="M 28,21 L 38,21 z" oryx:expansion-display="expanded collapsedMouseOver" />
     
-    <text font-size="12" id="text_name" x="12" y="36" oryx:align="middle center" stroke="black">
-    </text>
+    <text font-size="12" id="text_name" x="12" y="36" oryx:align="middle center" stroke="black"/>
   </g>
 </svg>

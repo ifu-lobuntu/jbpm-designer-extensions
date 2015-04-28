@@ -494,9 +494,9 @@
 					{
 						"type" : "layout.list",
 						"options" : {
-                            "paddingTop" :0,
-						    "paddingBottom" : 16,
-						    "minimumHeight" : 30
+                            "paddingTop" :1,
+						    "paddingBottom" : 20,
+						    "minimumHeight" : 40
 						}
 					}
 				],

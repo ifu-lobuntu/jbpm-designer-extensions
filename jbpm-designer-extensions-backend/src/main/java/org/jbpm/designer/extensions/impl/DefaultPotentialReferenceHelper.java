@@ -126,7 +126,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         for (String packageName : allPackageNames) {
             @SuppressWarnings("rawtypes")
             Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName,
-                    new FilterByExtension(profile.getSerializedModelExtension()));
+                    new FilterByExtension("." + profile.getSerializedModelExtension()));
             for (Asset<?> asset : listAssetsRecursively) {
                 String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
                 URI uri = URI.createPlatformResourceURI(id, true);

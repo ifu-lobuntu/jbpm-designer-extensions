@@ -4,6 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
+import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.vdml.Activity;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.DeliverableFlow;
@@ -96,6 +97,10 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
             }
         }
         object.eResource().setModified(true);//for stores
+        VDMLShape shape = (VDMLShape) shapeMap.getDiagramElement(sourceShape).eContainer();
+        if(shape.getVdmlElement() instanceof Role){
+            object.setHandler((Role) shape.getVdmlElement());
+        }
         return super.casePort(object);
     }
     @Override

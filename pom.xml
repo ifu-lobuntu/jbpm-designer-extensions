@@ -90,6 +90,21 @@
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-multi-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-multi-client</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-designer-multi-backend</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
         <artifactId>jbpm-designer-cmmn-emf</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -163,6 +178,7 @@
     <module>jbpm-designer-uml</module>
     <module>jbpm-designer-vdml</module>
     <module>jbpm-designer-smm</module>
+    <module>jbpm-designer-multi</module>
     <module>jbpm-designer-extensions-showcase</module>
   </modules>
   <dependencies>

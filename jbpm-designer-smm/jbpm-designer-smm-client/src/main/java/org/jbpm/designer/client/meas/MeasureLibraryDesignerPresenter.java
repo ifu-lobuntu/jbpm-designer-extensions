@@ -1,4 +1,4 @@
-package org.jbpm.designer.client.vdan;
+package org.jbpm.designer.client.meas;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;

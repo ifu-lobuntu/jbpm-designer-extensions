@@ -1,5 +1,7 @@
 package org.jbpm.designer.ucd;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Map;
 
@@ -13,6 +15,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ArchiveURIHandlerImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
@@ -21,7 +25,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
 import org.eclipse.uml2.uml.internal.resource.UMLResourceFactoryImpl;
 import org.jboss.errai.bus.server.api.RpcContext;
-import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
 import org.jbpm.designer.extensions.api.JsonToEmfHelper;
@@ -67,8 +70,26 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     @ProfileName("ucd")
     ClassDiagramFormBuilder classDiagramFormBuilder;
     static {
-        UMLPackageImpl.init();
-        UMLDIPackageImpl.init();
+        try {
+            Resource d = new ResourceImpl() {
+                // Jeez!!!!
+                {
+                    getDefaultURIConverter().getURIHandlers().add(new ArchiveURIHandlerImpl(){
+                        public boolean canHandle(URI uri) {
+                            return uri.toString().startsWith("vfs");
+                        };
+                        public InputStream createInputStream(URI uri, java.util.Map<?,?> options) throws IOException {
+                            String newUri = uri.toString().replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/");
+                            return super.createInputStream(URI.createURI(newUri), options);
+                        };
+                    });
+                }
+            };
+            UMLPackageImpl.init();
+            UMLDIPackageImpl.init();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
     }
 
     public AbstractClassDiagramProfileImpl() {
@@ -122,7 +143,7 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
 
     private static URL mapClassPathResource(ResourceSet resourceSet, URI uri, String resourcePath) {
         URL url = UMLDiagram.class.getResource(resourcePath);
-        URI cmmnTypesUri = URI.createURI(url.toExternalForm().replace("jar:", "archive:"));
+        URI cmmnTypesUri = URI.createURI(url.toExternalForm().replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/"));
         resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
         String[] languages = { "java", "js" };
         for (String l : languages) {

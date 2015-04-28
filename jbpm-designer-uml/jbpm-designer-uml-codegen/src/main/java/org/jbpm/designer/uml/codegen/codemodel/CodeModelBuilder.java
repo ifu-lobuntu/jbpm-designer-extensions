@@ -6,6 +6,7 @@ import static org.jbpm.designer.uml.codegen.util.NameConverter.toUnderscoreStyle
 import static org.jbpm.designer.uml.codegen.util.NameConverter.toValidVariableName;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
@@ -51,6 +52,7 @@ import org.jbpm.designer.uml.code.metamodel.documentdb.IDocumentElement;
 import org.jbpm.designer.uml.code.metamodel.expressions.BinaryOperatorExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.IsNullExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.LiteralPrimitiveExpression;
+import org.jbpm.designer.uml.code.metamodel.expressions.MappedExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.NewInstanceExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.NotExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.NullExpression;
@@ -215,7 +217,7 @@ public class CodeModelBuilder extends DefaultCodeModelBuilder {
 
     private CodePrimitiveTypeKind getPrimitiveTypeKind(PrimitiveType type) {
         try {
-            if(type==null){
+            if(type==null || type.eIsProxy()){
                 return null;
             }
             return CodePrimitiveTypeKind.valueOf(type.getName().toUpperCase());
@@ -318,6 +320,16 @@ public class CodeModelBuilder extends DefaultCodeModelBuilder {
                             } else {
                                 value = new LiteralPrimitiveExpression(CodePrimitiveTypeKind.REAL, literal.stringValue() + "");
                             }
+                        }else if(valueSpecification instanceof OpaqueExpression){
+                            OpaqueExpression oe = (OpaqueExpression) valueSpecification;
+                            MappedExpression me=new MappedExpression();
+                            EList<String> languages = oe.getLanguages();
+                            for(int i=0; i <languages.size() ; i++){
+                                if(oe.getBodies().size()>i){
+                                    me.addExpression(languages.get(i), oe.getBodies().get(i));
+                                }
+                            }
+                            value=me;
                         }
                     } else {
                         throw new IllegalStateException("Property '" + slot.getDefiningFeature().getName() + "' can only have one value");
@@ -330,6 +342,17 @@ public class CodeModelBuilder extends DefaultCodeModelBuilder {
                 codeLiteral.addToFieldValues(field, value);
             }
         }
+    }
+
+    protected MappedExpression buildMappedExpression(OpaqueExpression oe) {
+        MappedExpression me=new MappedExpression();
+        EList<String> languages = oe.getLanguages();
+        for(int i=0; i <languages.size() ; i++){
+            if(oe.getBodies().size()>i){
+                me.addExpression(languages.get(i), oe.getBodies().get(i));
+            }
+        }
+        return me;
     }
 
     @Override

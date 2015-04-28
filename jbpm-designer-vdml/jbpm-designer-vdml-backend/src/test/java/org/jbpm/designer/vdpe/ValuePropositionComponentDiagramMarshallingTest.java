@@ -21,7 +21,7 @@ import org.omg.vdml.ValueDeliveryModel;
 import org.omg.vdml.ValueProposition;
 import org.omg.vdml.ValuePropositionComponent;
 
-public class ValuePropositionComponentDiagramMarshallingTests extends AbstractVdpeDiagramMarshallingTest {
+public class ValuePropositionComponentDiagramMarshallingTest extends AbstractVdpeDiagramMarshallingTest {
 
     @Test
     public void testAggregatedTo() throws Exception {

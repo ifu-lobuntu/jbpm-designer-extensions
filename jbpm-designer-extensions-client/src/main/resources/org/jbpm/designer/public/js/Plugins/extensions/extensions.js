@@ -332,6 +332,10 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
             }else{
                 currentOffset=Math.max(currentOffset,14);
             }
+            if(shape.minimumSize){
+                currentOffset=Math.max(currentOffset,shape.minimumSize.height);
+                console.log(currentOffset);
+            }
     		shape.bounds.set(shape.bounds.a.x,shape.bounds.a.y,shape.bounds.b.x, shape.bounds.a.y+currentOffset);
     		shape.update();
 		}
