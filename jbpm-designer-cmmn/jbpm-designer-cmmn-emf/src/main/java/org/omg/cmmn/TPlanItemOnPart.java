@@ -92,7 +92,8 @@ public interface TPlanItemOnPart extends TOnPart {
      * @return the value of the '<em>Sentry Ref</em>' reference.
      * @see #setSentryRef(TSentry)
      * @see org.omg.cmmn.CMMNPackage#getTPlanItemOnPart_SentryRef()
-     * @model extendedMetaData="kind='attribute' name='sentryRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sentryRef'"
      * @generated
      */
     TSentry getSentryRef();
@@ -119,7 +120,8 @@ public interface TPlanItemOnPart extends TOnPart {
      * @return the value of the '<em>Source Ref</em>' reference.
      * @see #setSourceRef(TPlanItem)
      * @see org.omg.cmmn.CMMNPackage#getTPlanItemOnPart_SourceRef()
-     * @model extendedMetaData="kind='attribute' name='sourceRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sourceRef'"
      * @generated
      */
     TPlanItem getSourceRef();

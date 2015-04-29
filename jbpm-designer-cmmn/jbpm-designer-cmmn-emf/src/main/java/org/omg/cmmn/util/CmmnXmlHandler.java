@@ -36,9 +36,9 @@ public class CmmnXmlHandler extends SAXXMLHandler {
      */
     @Override
     protected void setValueFromId(EObject object, EReference eReference, String ids) {
-        boolean resolveProxies = eReference.isResolveProxies();
         String convertQNameToUri = ((QNameURIHandler) uriHandler).convertQNameToUri(ids);
-        super.setValueFromId(object, eReference, resolveProxies ? convertQNameToUri : ids);
+        String ids2 = eReference.isResolveProxies()? convertQNameToUri : ids;
+        super.setValueFromId(object, eReference, ids2);
     }
 
     /**

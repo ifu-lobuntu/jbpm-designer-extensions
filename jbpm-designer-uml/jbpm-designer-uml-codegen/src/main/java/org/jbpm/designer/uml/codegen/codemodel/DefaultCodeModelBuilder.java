@@ -35,7 +35,9 @@ public class DefaultCodeModelBuilder extends AbstractBuilder<CodePackage, CodeCl
 	public DefaultCodeModelBuilder() {
 		super();
 	}
-
+	public UmlToCodeReferenceMap getUmlToCodeReferenceMap() {
+        return umlToCodeReferenceMap;
+    }
 	protected CodeTypeReference calculateTypeReference(Type type) {
 	    if(type==null){
 	        return StdlibMap.javaStringType;

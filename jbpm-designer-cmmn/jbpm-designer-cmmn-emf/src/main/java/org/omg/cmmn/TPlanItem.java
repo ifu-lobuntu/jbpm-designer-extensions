@@ -65,7 +65,8 @@ public interface TPlanItem extends TCmmnElement {
      * @return the value of the '<em>Definition Ref</em>' reference.
      * @see #setDefinitionRef(TPlanItemDefinition)
      * @see org.omg.cmmn.CMMNPackage#getTPlanItem_DefinitionRef()
-     * @model extendedMetaData="kind='attribute' name='definitionRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='definitionRef'"
      * @generated
      */
     TPlanItemDefinition getDefinitionRef();

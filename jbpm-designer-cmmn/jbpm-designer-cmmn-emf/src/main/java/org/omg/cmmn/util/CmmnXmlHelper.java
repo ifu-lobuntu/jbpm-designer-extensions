@@ -3,6 +3,7 @@ package org.omg.cmmn.util;
 import javax.xml.XMLConstants;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl;
 import org.omg.cmmn.TDefinitions;
@@ -12,6 +13,14 @@ public class CmmnXmlHelper extends XMLHelperImpl {
 
     public CmmnXmlHelper(CMMNResourceImpl resource) {
         super(resource);
+    }
+    @Override
+    public String getHREF(EObject obj) {
+        String href = super.getHREF(obj);
+//        if(obj.eResource()==this.resource && href.startsWith("#")){
+//            href=href.substring(1);
+//        }
+        return href;
     }
 
     private TDefinitions getDefinitions() {

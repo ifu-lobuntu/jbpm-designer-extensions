@@ -61,7 +61,8 @@ public interface TCaseParameter extends TParameter {
      * @return the value of the '<em>Binding Ref</em>' reference.
      * @see #setBindingRef(TCaseFileItem)
      * @see org.omg.cmmn.CMMNPackage#getTCaseParameter_BindingRef()
-     * @model extendedMetaData="kind='attribute' name='bindingRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='bindingRef'"
      * @generated
      */
     TCaseFileItem getBindingRef();

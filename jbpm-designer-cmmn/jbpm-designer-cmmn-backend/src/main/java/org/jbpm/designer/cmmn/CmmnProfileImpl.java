@@ -194,7 +194,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     @Override
     public Map<String, Object> buildDefaultResourceOptions() {
         Map<String, Object> options = super.buildDefaultResourceOptions();
-        options.remove(XMLResource.OPTION_URI_HANDLER);//Let the resource override it 
+        options.remove(XMLResource.OPTION_URI_HANDLER);//Let the resource override it
         return options;
     }
 }

@@ -94,7 +94,9 @@ public class UmlToCodeReferenceMap {
         }
         return result;
     }
-
+    public void registerPathname(Namespace p,CodePackageReference ref){
+        packagePaths.put(p, ref);
+    }
     public CodePackageReference packagePathname(Namespace p) {
         // TODO populate mappings
         CodePackageReference result = packagePaths.get(p);

@@ -115,23 +115,6 @@ public class TCaseParameterImpl extends TParameterImpl implements TCaseParameter
      * @generated
      */
     public TCaseFileItem getBindingRef() {
-        if (bindingRef != null && bindingRef.eIsProxy()) {
-            InternalEObject oldBindingRef = (InternalEObject)bindingRef;
-            bindingRef = (TCaseFileItem)eResolveProxy(oldBindingRef);
-            if (bindingRef != oldBindingRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TCASE_PARAMETER__BINDING_REF, oldBindingRef, bindingRef));
-            }
-        }
-        return bindingRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TCaseFileItem basicGetBindingRef() {
         return bindingRef;
     }
 
@@ -172,8 +155,7 @@ public class TCaseParameterImpl extends TParameterImpl implements TCaseParameter
             case CMMNPackage.TCASE_PARAMETER__BINDING_REFINEMENT:
                 return getBindingRefinement();
             case CMMNPackage.TCASE_PARAMETER__BINDING_REF:
-                if (resolve) return getBindingRef();
-                return basicGetBindingRef();
+                return getBindingRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

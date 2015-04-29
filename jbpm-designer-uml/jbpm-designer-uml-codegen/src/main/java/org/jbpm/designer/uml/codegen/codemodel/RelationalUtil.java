@@ -24,7 +24,7 @@ import org.jbpm.designer.uml.codegen.util.PersistentNameUtil;
 public class RelationalUtil {
 	public static IRelationalElement buildRelationalElement(Property p) {
 		IRelationalElement result = null;
-		if (EmfClassifierUtil.isSimpleType(p.getType())) {
+		if (p.getType()==null || EmfClassifierUtil.isSimpleType(p.getType())) {
 			result = new RelationalColumn(PersistentNameUtil.getPersistentName(p), EmfPropertyUtil.isRequired(p));
 		} else if (EmfClassifierUtil.isPersistent(p.getType())) {
 			if (EmfPropertyUtil.isMany(p)) {

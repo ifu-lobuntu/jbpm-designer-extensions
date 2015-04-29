@@ -4,7 +4,6 @@ package org.omg.cmmn.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.PlanItemTransition;
@@ -148,23 +147,6 @@ public class TPlanItemOnPartImpl extends TOnPartImpl implements TPlanItemOnPart 
      * @generated
      */
     public TSentry getSentryRef() {
-        if (sentryRef != null && sentryRef.eIsProxy()) {
-            InternalEObject oldSentryRef = (InternalEObject)sentryRef;
-            sentryRef = (TSentry)eResolveProxy(oldSentryRef);
-            if (sentryRef != oldSentryRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPLAN_ITEM_ON_PART__SENTRY_REF, oldSentryRef, sentryRef));
-            }
-        }
-        return sentryRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TSentry basicGetSentryRef() {
         return sentryRef;
     }
 
@@ -186,23 +168,6 @@ public class TPlanItemOnPartImpl extends TOnPartImpl implements TPlanItemOnPart 
      * @generated
      */
     public TPlanItem getSourceRef() {
-        if (sourceRef != null && sourceRef.eIsProxy()) {
-            InternalEObject oldSourceRef = (InternalEObject)sourceRef;
-            sourceRef = (TPlanItem)eResolveProxy(oldSourceRef);
-            if (sourceRef != oldSourceRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPLAN_ITEM_ON_PART__SOURCE_REF, oldSourceRef, sourceRef));
-            }
-        }
-        return sourceRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TPlanItem basicGetSourceRef() {
         return sourceRef;
     }
 
@@ -229,11 +194,9 @@ public class TPlanItemOnPartImpl extends TOnPartImpl implements TPlanItemOnPart 
             case CMMNPackage.TPLAN_ITEM_ON_PART__STANDARD_EVENT:
                 return getStandardEvent();
             case CMMNPackage.TPLAN_ITEM_ON_PART__SENTRY_REF:
-                if (resolve) return getSentryRef();
-                return basicGetSentryRef();
+                return getSentryRef();
             case CMMNPackage.TPLAN_ITEM_ON_PART__SOURCE_REF:
-                if (resolve) return getSourceRef();
-                return basicGetSourceRef();
+                return getSourceRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

@@ -4,7 +4,6 @@ package org.omg.cmmn.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.CaseFileItemTransition;
@@ -136,23 +135,6 @@ public class TCaseFileItemStartTriggerImpl extends TStartTriggerImpl implements 
      * @generated
      */
     public TCaseFileItem getSourceRef() {
-        if (sourceRef != null && sourceRef.eIsProxy()) {
-            InternalEObject oldSourceRef = (InternalEObject)sourceRef;
-            sourceRef = (TCaseFileItem)eResolveProxy(oldSourceRef);
-            if (sourceRef != oldSourceRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TCASE_FILE_ITEM_START_TRIGGER__SOURCE_REF, oldSourceRef, sourceRef));
-            }
-        }
-        return sourceRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TCaseFileItem basicGetSourceRef() {
         return sourceRef;
     }
 
@@ -179,8 +161,7 @@ public class TCaseFileItemStartTriggerImpl extends TStartTriggerImpl implements 
             case CMMNPackage.TCASE_FILE_ITEM_START_TRIGGER__STANDARD_EVENT:
                 return getStandardEvent();
             case CMMNPackage.TCASE_FILE_ITEM_START_TRIGGER__SOURCE_REF:
-                if (resolve) return getSourceRef();
-                return basicGetSourceRef();
+                return getSourceRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

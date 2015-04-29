@@ -1037,7 +1037,7 @@ ORYX.Plugins.CMMN.CaseRoleRefEditorFactory = Clazz.extend({
 		var options=[];
 		try{
 			var caseShape=this.facade.getSelection().first();
-			while(caseShape.getStencil().idWithoutNs() != "CMMNDiagram"){
+			while(caseShape.getStencil().idWithoutNs() != "Case"){
 				caseShape=caseShape.getParentShape();
 			}
 			if(caseShape.properties["oryx-caseroles"]){

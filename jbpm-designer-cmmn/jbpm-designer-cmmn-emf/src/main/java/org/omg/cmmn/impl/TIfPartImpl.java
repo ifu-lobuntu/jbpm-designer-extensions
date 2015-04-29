@@ -89,23 +89,6 @@ public class TIfPartImpl extends TCmmnElementImpl implements TIfPart {
      * @generated
      */
     public TCaseFileItem getContextRef() {
-        if (contextRef != null && contextRef.eIsProxy()) {
-            InternalEObject oldContextRef = (InternalEObject)contextRef;
-            contextRef = (TCaseFileItem)eResolveProxy(oldContextRef);
-            if (contextRef != oldContextRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TIF_PART__CONTEXT_REF, oldContextRef, contextRef));
-            }
-        }
-        return contextRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TCaseFileItem basicGetContextRef() {
         return contextRef;
     }
 
@@ -146,8 +129,7 @@ public class TIfPartImpl extends TCmmnElementImpl implements TIfPart {
             case CMMNPackage.TIF_PART__CONDITION:
                 return getCondition();
             case CMMNPackage.TIF_PART__CONTEXT_REF:
-                if (resolve) return getContextRef();
-                return basicGetContextRef();
+                return getContextRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

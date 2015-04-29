@@ -91,7 +91,8 @@ public interface TCaseFileItemStartTrigger extends TStartTrigger {
      * @return the value of the '<em>Source Ref</em>' reference.
      * @see #setSourceRef(TCaseFileItem)
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItemStartTrigger_SourceRef()
-     * @model extendedMetaData="kind='attribute' name='sourceRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sourceRef'"
      * @generated
      */
     TCaseFileItem getSourceRef();

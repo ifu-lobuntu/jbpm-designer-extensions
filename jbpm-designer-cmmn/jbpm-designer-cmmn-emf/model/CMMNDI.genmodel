@@ -11,19 +11,19 @@
     <genClasses ecoreClass="CMMNDI.ecore#//CMMNDiagram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagram/ownedCmmnDiagramElement"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagram/ownedCmmnStyles"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMNDI.ecore#//CMMNDiagram/isPlanningTableExpanded"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagram/cmmnElement"/>
     </genClasses>
     <genClasses ecoreClass="CMMNDI.ecore#//CMMNEdge">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNEdge/sourceShape"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNEdge/targetShape"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNEdge/cmmnElement"/>
     </genClasses>
     <genClasses ecoreClass="CMMNDI.ecore#//CMMNShape">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNShape/ownedShape"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMNDI.ecore#//CMMNShape/isPlanningTableExpanded"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNShape/cmmnElement"/>
     </genClasses>
-    <genClasses ecoreClass="CMMNDI.ecore#//CMMNDiagramElement">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMNDI.ecore#//CMMNDiagramElement/cmmnElement"/>
-    </genClasses>
+    <genClasses ecoreClass="CMMNDI.ecore#//CMMNDiagramElement"/>
     <genClasses ecoreClass="CMMNDI.ecore#//CMMNStyle"/>
   </genPackages>
   <genPackages prefix="CMMN" basePackage="org.omg" resource="XML" disposableProviderFactory="true"
@@ -156,7 +156,8 @@
     </genClasses>
     <genClasses ecoreClass="CMMN.ecore#//TCaseFileItem">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/children"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/definitionRef"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="" propertyDescription=""
+          propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/definitionRef"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItem/multiplicity"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CMMN.ecore#//TCaseFileItem/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CMMN.ecore#//TCaseFileItem/sourceRef"/>

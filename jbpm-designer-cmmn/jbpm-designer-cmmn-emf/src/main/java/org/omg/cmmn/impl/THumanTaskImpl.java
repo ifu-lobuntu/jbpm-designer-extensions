@@ -89,23 +89,6 @@ public class THumanTaskImpl extends TTaskImpl implements THumanTask {
      * @generated
      */
     public TRole getPerformerRef() {
-        if (performerRef != null && performerRef.eIsProxy()) {
-            InternalEObject oldPerformerRef = (InternalEObject)performerRef;
-            performerRef = (TRole)eResolveProxy(oldPerformerRef);
-            if (performerRef != oldPerformerRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.THUMAN_TASK__PERFORMER_REF, oldPerformerRef, performerRef));
-            }
-        }
-        return performerRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TRole basicGetPerformerRef() {
         return performerRef;
     }
 
@@ -146,8 +129,7 @@ public class THumanTaskImpl extends TTaskImpl implements THumanTask {
             case CMMNPackage.THUMAN_TASK__PLANNING_TABLE:
                 return getPlanningTable();
             case CMMNPackage.THUMAN_TASK__PERFORMER_REF:
-                if (resolve) return getPerformerRef();
-                return basicGetPerformerRef();
+                return getPerformerRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

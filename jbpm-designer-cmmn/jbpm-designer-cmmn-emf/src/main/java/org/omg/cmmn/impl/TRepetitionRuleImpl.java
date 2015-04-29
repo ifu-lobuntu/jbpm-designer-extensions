@@ -136,23 +136,6 @@ public class TRepetitionRuleImpl extends TCmmnElementImpl implements TRepetition
      * @generated
      */
     public TCaseFileItem getContextRef() {
-        if (contextRef != null && contextRef.eIsProxy()) {
-            InternalEObject oldContextRef = (InternalEObject)contextRef;
-            contextRef = (TCaseFileItem)eResolveProxy(oldContextRef);
-            if (contextRef != oldContextRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TREPETITION_RULE__CONTEXT_REF, oldContextRef, contextRef));
-            }
-        }
-        return contextRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TCaseFileItem basicGetContextRef() {
         return contextRef;
     }
 
@@ -214,8 +197,7 @@ public class TRepetitionRuleImpl extends TCmmnElementImpl implements TRepetition
             case CMMNPackage.TREPETITION_RULE__CONDITION:
                 return getCondition();
             case CMMNPackage.TREPETITION_RULE__CONTEXT_REF:
-                if (resolve) return getContextRef();
-                return basicGetContextRef();
+                return getContextRef();
             case CMMNPackage.TREPETITION_RULE__NAME:
                 return getName();
         }

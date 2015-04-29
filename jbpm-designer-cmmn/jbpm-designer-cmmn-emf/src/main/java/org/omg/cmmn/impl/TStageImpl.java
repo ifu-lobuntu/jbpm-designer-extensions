@@ -3,7 +3,6 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -11,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.BasicFeatureMap;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.cmmn.CMMNPackage;
@@ -233,7 +232,7 @@ public class TStageImpl extends TPlanFragmentImpl implements TStage {
      */
     public EList<TSentry> getExitCriteriaRefs() {
         if (exitCriteriaRefs == null) {
-            exitCriteriaRefs = new EObjectResolvingEList<TSentry>(TSentry.class, this, CMMNPackage.TSTAGE__EXIT_CRITERIA_REFS);
+            exitCriteriaRefs = new EObjectEList<TSentry>(TSentry.class, this, CMMNPackage.TSTAGE__EXIT_CRITERIA_REFS);
         }
         return exitCriteriaRefs;
     }

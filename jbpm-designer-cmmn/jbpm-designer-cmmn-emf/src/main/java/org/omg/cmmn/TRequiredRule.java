@@ -68,7 +68,8 @@ public interface TRequiredRule extends TCmmnElement {
      * @return the value of the '<em>Context Ref</em>' reference.
      * @see #setContextRef(TCaseFileItem)
      * @see org.omg.cmmn.CMMNPackage#getTRequiredRule_ContextRef()
-     * @model extendedMetaData="kind='attribute' name='contextRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='contextRef'"
      * @generated
      */
     TCaseFileItem getContextRef();

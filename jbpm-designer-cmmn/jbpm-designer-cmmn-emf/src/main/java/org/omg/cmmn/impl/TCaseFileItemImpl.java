@@ -3,14 +3,13 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.MultiplicityEnum;
 import org.omg.cmmn.TCaseFileItem;
@@ -193,23 +192,6 @@ public class TCaseFileItemImpl extends TCmmnElementImpl implements TCaseFileItem
      * @generated
      */
     public TCaseFileItemDefinition getDefinitionRef() {
-        if (definitionRef != null && definitionRef.eIsProxy()) {
-            InternalEObject oldDefinitionRef = (InternalEObject)definitionRef;
-            definitionRef = (TCaseFileItemDefinition)eResolveProxy(oldDefinitionRef);
-            if (definitionRef != oldDefinitionRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TCASE_FILE_ITEM__DEFINITION_REF, oldDefinitionRef, definitionRef));
-            }
-        }
-        return definitionRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TCaseFileItemDefinition basicGetDefinitionRef() {
         return definitionRef;
     }
 
@@ -299,7 +281,7 @@ public class TCaseFileItemImpl extends TCmmnElementImpl implements TCaseFileItem
      */
     public EList<TCaseFileItem> getSourceRef() {
         if (sourceRef == null) {
-            sourceRef = new EObjectResolvingEList<TCaseFileItem>(TCaseFileItem.class, this, CMMNPackage.TCASE_FILE_ITEM__SOURCE_REF);
+            sourceRef = new EObjectEList<TCaseFileItem>(TCaseFileItem.class, this, CMMNPackage.TCASE_FILE_ITEM__SOURCE_REF);
         }
         return sourceRef;
     }
@@ -311,7 +293,7 @@ public class TCaseFileItemImpl extends TCmmnElementImpl implements TCaseFileItem
      */
     public EList<TCaseFileItem> getTargetRefs() {
         if (targetRefs == null) {
-            targetRefs = new EObjectResolvingEList<TCaseFileItem>(TCaseFileItem.class, this, CMMNPackage.TCASE_FILE_ITEM__TARGET_REFS);
+            targetRefs = new EObjectEList<TCaseFileItem>(TCaseFileItem.class, this, CMMNPackage.TCASE_FILE_ITEM__TARGET_REFS);
         }
         return targetRefs;
     }
@@ -341,8 +323,7 @@ public class TCaseFileItemImpl extends TCmmnElementImpl implements TCaseFileItem
             case CMMNPackage.TCASE_FILE_ITEM__CHILDREN:
                 return getChildren();
             case CMMNPackage.TCASE_FILE_ITEM__DEFINITION_REF:
-                if (resolve) return getDefinitionRef();
-                return basicGetDefinitionRef();
+                return getDefinitionRef();
             case CMMNPackage.TCASE_FILE_ITEM__MULTIPLICITY:
                 return getMultiplicity();
             case CMMNPackage.TCASE_FILE_ITEM__NAME:

@@ -3,14 +3,13 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.TDiscretionaryItem;
 import org.omg.cmmn.TPlanItemControl;
@@ -142,23 +141,6 @@ public class TDiscretionaryItemImpl extends TTableItemImpl implements TDiscretio
      * @generated
      */
     public TPlanItemDefinition getDefinitionRef() {
-        if (definitionRef != null && definitionRef.eIsProxy()) {
-            InternalEObject oldDefinitionRef = (InternalEObject)definitionRef;
-            definitionRef = (TPlanItemDefinition)eResolveProxy(oldDefinitionRef);
-            if (definitionRef != oldDefinitionRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TDISCRETIONARY_ITEM__DEFINITION_REF, oldDefinitionRef, definitionRef));
-            }
-        }
-        return definitionRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TPlanItemDefinition basicGetDefinitionRef() {
         return definitionRef;
     }
 
@@ -181,7 +163,7 @@ public class TDiscretionaryItemImpl extends TTableItemImpl implements TDiscretio
      */
     public EList<TSentry> getEntryCriteriaRefs() {
         if (entryCriteriaRefs == null) {
-            entryCriteriaRefs = new EObjectResolvingEList<TSentry>(TSentry.class, this, CMMNPackage.TDISCRETIONARY_ITEM__ENTRY_CRITERIA_REFS);
+            entryCriteriaRefs = new EObjectEList<TSentry>(TSentry.class, this, CMMNPackage.TDISCRETIONARY_ITEM__ENTRY_CRITERIA_REFS);
         }
         return entryCriteriaRefs;
     }
@@ -193,7 +175,7 @@ public class TDiscretionaryItemImpl extends TTableItemImpl implements TDiscretio
      */
     public EList<TSentry> getExitCriteriaRefs() {
         if (exitCriteriaRefs == null) {
-            exitCriteriaRefs = new EObjectResolvingEList<TSentry>(TSentry.class, this, CMMNPackage.TDISCRETIONARY_ITEM__EXIT_CRITERIA_REFS);
+            exitCriteriaRefs = new EObjectEList<TSentry>(TSentry.class, this, CMMNPackage.TDISCRETIONARY_ITEM__EXIT_CRITERIA_REFS);
         }
         return exitCriteriaRefs;
     }
@@ -223,8 +205,7 @@ public class TDiscretionaryItemImpl extends TTableItemImpl implements TDiscretio
             case CMMNPackage.TDISCRETIONARY_ITEM__ITEM_CONTROL:
                 return getItemControl();
             case CMMNPackage.TDISCRETIONARY_ITEM__DEFINITION_REF:
-                if (resolve) return getDefinitionRef();
-                return basicGetDefinitionRef();
+                return getDefinitionRef();
             case CMMNPackage.TDISCRETIONARY_ITEM__ENTRY_CRITERIA_REFS:
                 return getEntryCriteriaRefs();
             case CMMNPackage.TDISCRETIONARY_ITEM__EXIT_CRITERIA_REFS:

@@ -64,7 +64,8 @@ public interface TDiscretionaryItem extends TTableItem {
      * @return the value of the '<em>Definition Ref</em>' reference.
      * @see #setDefinitionRef(TPlanItemDefinition)
      * @see org.omg.cmmn.CMMNPackage#getTDiscretionaryItem_DefinitionRef()
-     * @model extendedMetaData="kind='attribute' name='definitionRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='definitionRef'"
      * @generated
      */
     TPlanItemDefinition getDefinitionRef();
@@ -91,7 +92,8 @@ public interface TDiscretionaryItem extends TTableItem {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Entry Criteria Refs</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTDiscretionaryItem_EntryCriteriaRefs()
-     * @model extendedMetaData="kind='attribute' name='entryCriteriaRefs'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='entryCriteriaRefs'"
      * @generated
      */
     EList<TSentry> getEntryCriteriaRefs();
@@ -108,7 +110,8 @@ public interface TDiscretionaryItem extends TTableItem {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Exit Criteria Refs</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTDiscretionaryItem_ExitCriteriaRefs()
-     * @model extendedMetaData="kind='attribute' name='exitCriteriaRefs'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='exitCriteriaRefs'"
      * @generated
      */
     EList<TSentry> getExitCriteriaRefs();

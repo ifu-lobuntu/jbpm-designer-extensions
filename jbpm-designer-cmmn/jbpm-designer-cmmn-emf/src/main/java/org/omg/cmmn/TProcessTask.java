@@ -58,7 +58,8 @@ public interface TProcessTask extends TTask {
      * @return the value of the '<em>Process Ref</em>' reference.
      * @see #setProcessRef(TProcess)
      * @see org.omg.cmmn.CMMNPackage#getTProcessTask_ProcessRef()
-     * @model extendedMetaData="kind='attribute' name='processRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='processRef'"
      * @generated
      */
     TProcess getProcessRef();

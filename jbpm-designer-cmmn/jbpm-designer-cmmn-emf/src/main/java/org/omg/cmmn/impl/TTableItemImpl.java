@@ -3,10 +3,9 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.TApplicabilityRule;
 import org.omg.cmmn.TRole;
@@ -73,7 +72,7 @@ public abstract class TTableItemImpl extends TCmmnElementImpl implements TTableI
      */
     public EList<TApplicabilityRule> getApplicabilityRuleRefs() {
         if (applicabilityRuleRefs == null) {
-            applicabilityRuleRefs = new EObjectResolvingEList<TApplicabilityRule>(TApplicabilityRule.class, this, CMMNPackage.TTABLE_ITEM__APPLICABILITY_RULE_REFS);
+            applicabilityRuleRefs = new EObjectEList<TApplicabilityRule>(TApplicabilityRule.class, this, CMMNPackage.TTABLE_ITEM__APPLICABILITY_RULE_REFS);
         }
         return applicabilityRuleRefs;
     }
@@ -85,7 +84,7 @@ public abstract class TTableItemImpl extends TCmmnElementImpl implements TTableI
      */
     public EList<TRole> getAuthorizedRoleRefs() {
         if (authorizedRoleRefs == null) {
-            authorizedRoleRefs = new EObjectResolvingEList<TRole>(TRole.class, this, CMMNPackage.TTABLE_ITEM__AUTHORIZED_ROLE_REFS);
+            authorizedRoleRefs = new EObjectEList<TRole>(TRole.class, this, CMMNPackage.TTABLE_ITEM__AUTHORIZED_ROLE_REFS);
         }
         return authorizedRoleRefs;
     }

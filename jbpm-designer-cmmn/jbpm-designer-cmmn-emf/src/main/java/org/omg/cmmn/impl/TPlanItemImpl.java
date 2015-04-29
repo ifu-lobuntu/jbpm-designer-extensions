@@ -163,23 +163,6 @@ public class TPlanItemImpl extends TCmmnElementImpl implements TPlanItem {
      * @generated
      */
     public TPlanItemDefinition getDefinitionRef() {
-        if (definitionRef != null && definitionRef.eIsProxy()) {
-            InternalEObject oldDefinitionRef = (InternalEObject)definitionRef;
-            definitionRef = (TPlanItemDefinition)eResolveProxy(oldDefinitionRef);
-            if (definitionRef != oldDefinitionRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPLAN_ITEM__DEFINITION_REF, oldDefinitionRef, definitionRef));
-            }
-        }
-        return definitionRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TPlanItemDefinition basicGetDefinitionRef() {
         return definitionRef;
     }
 
@@ -265,8 +248,7 @@ public class TPlanItemImpl extends TCmmnElementImpl implements TPlanItem {
             case CMMNPackage.TPLAN_ITEM__ITEM_CONTROL:
                 return getItemControl();
             case CMMNPackage.TPLAN_ITEM__DEFINITION_REF:
-                if (resolve) return getDefinitionRef();
-                return basicGetDefinitionRef();
+                return getDefinitionRef();
             case CMMNPackage.TPLAN_ITEM__ENTRY_CRITERIA_REFS:
                 return getEntryCriteriaRefs();
             case CMMNPackage.TPLAN_ITEM__EXIT_CRITERIA_REFS:

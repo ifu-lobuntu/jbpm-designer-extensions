@@ -136,23 +136,6 @@ public class TRequiredRuleImpl extends TCmmnElementImpl implements TRequiredRule
      * @generated
      */
     public TCaseFileItem getContextRef() {
-        if (contextRef != null && contextRef.eIsProxy()) {
-            InternalEObject oldContextRef = (InternalEObject)contextRef;
-            contextRef = (TCaseFileItem)eResolveProxy(oldContextRef);
-            if (contextRef != oldContextRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TREQUIRED_RULE__CONTEXT_REF, oldContextRef, contextRef));
-            }
-        }
-        return contextRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TCaseFileItem basicGetContextRef() {
         return contextRef;
     }
 
@@ -214,8 +197,7 @@ public class TRequiredRuleImpl extends TCmmnElementImpl implements TRequiredRule
             case CMMNPackage.TREQUIRED_RULE__CONDITION:
                 return getCondition();
             case CMMNPackage.TREQUIRED_RULE__CONTEXT_REF:
-                if (resolve) return getContextRef();
-                return basicGetContextRef();
+                return getContextRef();
             case CMMNPackage.TREQUIRED_RULE__NAME:
                 return getName();
         }

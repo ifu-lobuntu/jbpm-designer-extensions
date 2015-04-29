@@ -35,7 +35,8 @@ public interface TTableItem extends TCmmnElement {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Applicability Rule Refs</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTTableItem_ApplicabilityRuleRefs()
-     * @model extendedMetaData="kind='attribute' name='applicabilityRuleRefs'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='applicabilityRuleRefs'"
      * @generated
      */
     EList<TApplicabilityRule> getApplicabilityRuleRefs();
@@ -52,7 +53,8 @@ public interface TTableItem extends TCmmnElement {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Authorized Role Refs</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTTableItem_AuthorizedRoleRefs()
-     * @model extendedMetaData="kind='attribute' name='authorizedRoleRefs'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='authorizedRoleRefs'"
      * @generated
      */
     EList<TRole> getAuthorizedRoleRefs();

@@ -91,7 +91,8 @@ public interface TCaseFileItemOnPart extends TOnPart {
      * @return the value of the '<em>Source Ref</em>' reference.
      * @see #setSourceRef(TCaseFileItem)
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItemOnPart_SourceRef()
-     * @model extendedMetaData="kind='attribute' name='sourceRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sourceRef'"
      * @generated
      */
     TCaseFileItem getSourceRef();

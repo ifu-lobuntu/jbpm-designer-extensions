@@ -23,6 +23,7 @@ import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
+import org.jbpm.designer.extensions.util.NameConverter;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.DocumentRoot;
@@ -529,6 +530,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         cmmnDiagram.setCmmnElement(def);
         def.setId(json.getResourceId());
         DocumentRoot root = CMMNFactory.eINSTANCE.createDocumentRoot();
+        root.getXSISchemaLocation().put("http://www.omg.org/spec/CMMN/20131201/MODEL", "CMMN10.xsd");
         root.setDefinitions(def);
         result.getContents().add(root);
         def.getDiagram().add(cmmnDiagram);
@@ -556,7 +558,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
             if (role == null) {
                 role = CMMNFactory.eINSTANCE.createTRole();
                 role.setName(caseRoleId);
-                role.setId(caseRoleId);
+                role.setId(NameConverter.toValidVariableName(caseRoleId));
             }
             return role;
         }

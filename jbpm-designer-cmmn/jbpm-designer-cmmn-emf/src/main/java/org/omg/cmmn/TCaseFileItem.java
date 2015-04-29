@@ -73,7 +73,8 @@ public interface TCaseFileItem extends TCmmnElement {
      * @return the value of the '<em>Definition Ref</em>' reference.
      * @see #setDefinitionRef(TCaseFileItemDefinition)
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItem_DefinitionRef()
-     * @model extendedMetaData="kind='attribute' name='definitionRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='definitionRef'"
      * @generated
      */
     TCaseFileItemDefinition getDefinitionRef();
@@ -186,7 +187,8 @@ public interface TCaseFileItem extends TCmmnElement {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Source Ref</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItem_SourceRef()
-     * @model extendedMetaData="kind='attribute' name='sourceRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sourceRef'"
      * @generated
      */
     EList<TCaseFileItem> getSourceRef();
@@ -204,7 +206,8 @@ public interface TCaseFileItem extends TCmmnElement {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Target Refs</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItem_TargetRefs()
-     * @model extendedMetaData="kind='attribute' name='targetRefs'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='targetRefs'"
      * @generated
      */
     EList<TCaseFileItem> getTargetRefs();

@@ -1,12 +1,15 @@
 package org.jbpm.designer.uml.codegen;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
 import org.jbpm.designer.extensions.diagram.ProfileName;
@@ -16,6 +19,7 @@ import org.jbpm.designer.repository.Repository;
 import org.jbpm.designer.repository.impl.AssetBuilder;
 import org.jbpm.designer.uml.code.metamodel.CodeClassifier;
 import org.jbpm.designer.uml.code.metamodel.CodePackage;
+import org.jbpm.designer.uml.code.metamodel.CodePackageReference;
 import org.jbpm.designer.uml.codegen.codemodel.CodeModelBuilder;
 import org.jbpm.designer.uml.codegen.codemodel.DefaultCodeModelBuilder;
 import org.jbpm.designer.uml.codegen.codemodel.UmlCodeModelVisitorAdaptor;
@@ -40,6 +44,8 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
     @Override
     public void onSave(XMLResource resource) {
         try {
+            String ps = resource.getURI().toPlatformString(true);
+            String packageName = getPackageName(ps);
             if (codeGenerator instanceof JavaCodeGenerator) {
                 JavaCodeGenerator jcg = (JavaCodeGenerator) codeGenerator;
                 for (AbstractJavaCodeDecorator cd : decorators) {
@@ -49,18 +55,38 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
             for (DefaultCodeModelBuilder b : this.builders) {
                 for (EObject o : resource.getContents()) {
                     if (o instanceof Package) {
+                        //Replace Package
+                        if (packageName != null) {
+                            b.getUmlToCodeReferenceMap().registerPathname((Namespace) o,
+                                    new CodePackageReference(null, "", Collections.singletonMap("java", packageName)));
+                        }
                         this.adaptor.startVisiting(b, (Package) o);
                     }
                 }
             }
             String start = EMFVFSURIConverter.getProjectName(resource.getURI()) + "src/main/java/";
+            if(packageName!=null){
+                start=start + packageName.replace('.', '/');
+            }
             for (CodePackage codePackage : adaptor.getCodeModel().getChildren().values()) {
+                //immaterial because we only do one package per resource
                 createText(codePackage, start);
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
             throw e;
         }
+    }
+
+    protected static String getPackageName(String ps) {
+        String resourcePath = "src/main/resources";
+        int indexOf = ps.indexOf(resourcePath);
+        CodePackageReference cp = null;
+        String packageName = null;
+        if (indexOf > 0) {
+            packageName = ps.substring(indexOf + resourcePath.length()+1, ps.lastIndexOf("/")).replace('/', '.');
+        }
+        return packageName;
     }
 
     @SuppressWarnings({ "rawtypes" })
@@ -75,10 +101,10 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
 
     private void createText(CodePackage codeModel, String start) {
         Collection<CodeClassifier> values = codeModel.getClassifiers().values();
-        String packageLocation = start + codeModel.getName();
+        String packageLocation = start;
         if (repository.directoryExists(packageLocation)) {
             cleanDirectory(packageLocation);
-        }else{
+        } else {
             repository.createDirectory(packageLocation);
         }
         for (CodeClassifier codeClassifier : values) {

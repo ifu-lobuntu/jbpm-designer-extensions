@@ -91,7 +91,8 @@ public interface TPlanItemStartTrigger extends TStartTrigger {
      * @return the value of the '<em>Source Ref</em>' reference.
      * @see #setSourceRef(TPlanItem)
      * @see org.omg.cmmn.CMMNPackage#getTPlanItemStartTrigger_SourceRef()
-     * @model extendedMetaData="kind='attribute' name='sourceRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sourceRef'"
      * @generated
      */
     TPlanItem getSourceRef();

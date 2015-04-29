@@ -4,7 +4,6 @@ package org.omg.cmmn.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.PlanItemTransition;
@@ -136,23 +135,6 @@ public class TPlanItemStartTriggerImpl extends TStartTriggerImpl implements TPla
      * @generated
      */
     public TPlanItem getSourceRef() {
-        if (sourceRef != null && sourceRef.eIsProxy()) {
-            InternalEObject oldSourceRef = (InternalEObject)sourceRef;
-            sourceRef = (TPlanItem)eResolveProxy(oldSourceRef);
-            if (sourceRef != oldSourceRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPLAN_ITEM_START_TRIGGER__SOURCE_REF, oldSourceRef, sourceRef));
-            }
-        }
-        return sourceRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TPlanItem basicGetSourceRef() {
         return sourceRef;
     }
 
@@ -179,8 +161,7 @@ public class TPlanItemStartTriggerImpl extends TStartTriggerImpl implements TPla
             case CMMNPackage.TPLAN_ITEM_START_TRIGGER__STANDARD_EVENT:
                 return getStandardEvent();
             case CMMNPackage.TPLAN_ITEM_START_TRIGGER__SOURCE_REF:
-                if (resolve) return getSourceRef();
-                return basicGetSourceRef();
+                return getSourceRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

@@ -57,7 +57,8 @@ public interface THumanTask extends TTask {
      * @return the value of the '<em>Performer Ref</em>' reference.
      * @see #setPerformerRef(TRole)
      * @see org.omg.cmmn.CMMNPackage#getTHumanTask_PerformerRef()
-     * @model extendedMetaData="kind='attribute' name='performerRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='performerRef'"
      * @generated
      */
     TRole getPerformerRef();

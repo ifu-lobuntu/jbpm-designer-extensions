@@ -3014,7 +3014,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tApplicabilityRuleEClass, TApplicabilityRule.class, "TApplicabilityRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTApplicabilityRule_Condition(), this.getTExpression(), null, "condition", null, 0, 1, TApplicabilityRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTApplicabilityRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TApplicabilityRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTApplicabilityRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TApplicabilityRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tCaseEClass, TCase.class, "TCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCase_CaseFileModel(), this.getTCaseFile(), null, "caseFileModel", null, 0, 1, TCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3029,11 +3029,11 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tCaseFileItemEClass, TCaseFileItem.class, "TCaseFileItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCaseFileItem_Children(), this.getTChildren(), null, "children", null, 0, 1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseFileItem_DefinitionRef(), this.getTCaseFileItemDefinition(), null, "definitionRef", null, 0, 1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseFileItem_DefinitionRef(), this.getTCaseFileItemDefinition(), null, "definitionRef", null, 0, 1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTCaseFileItem_Multiplicity(), this.getMultiplicityEnum(), "multiplicity", "Unspecified", 0, 1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTCaseFileItem_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseFileItem_SourceRef(), this.getTCaseFileItem(), null, "sourceRef", null, 0, -1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseFileItem_TargetRefs(), this.getTCaseFileItem(), null, "targetRefs", null, 0, -1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseFileItem_SourceRef(), this.getTCaseFileItem(), null, "sourceRef", null, 0, -1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseFileItem_TargetRefs(), this.getTCaseFileItem(), null, "targetRefs", null, 0, -1, TCaseFileItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tCaseFileItemDefinitionEClass, TCaseFileItemDefinition.class, "TCaseFileItemDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCaseFileItemDefinition_Property(), this.getTProperty(), null, "property", null, 0, -1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3044,15 +3044,15 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tCaseFileItemOnPartEClass, TCaseFileItemOnPart.class, "TCaseFileItemOnPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTCaseFileItemOnPart_StandardEvent(), this.getCaseFileItemTransition(), "standardEvent", null, 0, 1, TCaseFileItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseFileItemOnPart_SourceRef(), this.getTCaseFileItem(), null, "sourceRef", null, 0, 1, TCaseFileItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseFileItemOnPart_SourceRef(), this.getTCaseFileItem(), null, "sourceRef", null, 0, 1, TCaseFileItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tCaseFileItemStartTriggerEClass, TCaseFileItemStartTrigger.class, "TCaseFileItemStartTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTCaseFileItemStartTrigger_StandardEvent(), this.getCaseFileItemTransition(), "standardEvent", null, 0, 1, TCaseFileItemStartTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseFileItemStartTrigger_SourceRef(), this.getTCaseFileItem(), null, "sourceRef", null, 0, 1, TCaseFileItemStartTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseFileItemStartTrigger_SourceRef(), this.getTCaseFileItem(), null, "sourceRef", null, 0, 1, TCaseFileItemStartTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tCaseParameterEClass, TCaseParameter.class, "TCaseParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCaseParameter_BindingRefinement(), this.getTExpression(), null, "bindingRefinement", null, 0, 1, TCaseParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseParameter_BindingRef(), this.getTCaseFileItem(), null, "bindingRef", null, 0, 1, TCaseParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseParameter_BindingRef(), this.getTCaseFileItem(), null, "bindingRef", null, 0, 1, TCaseParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tCaseTaskEClass, TCaseTask.class, "TCaseTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCaseTask_ParameterMapping(), this.getTParameterMapping(), null, "parameterMapping", null, 0, -1, TCaseTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3090,9 +3090,9 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tDiscretionaryItemEClass, TDiscretionaryItem.class, "TDiscretionaryItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTDiscretionaryItem_ItemControl(), this.getTPlanItemControl(), null, "itemControl", null, 0, 1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTDiscretionaryItem_DefinitionRef(), this.getTPlanItemDefinition(), null, "definitionRef", null, 0, 1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTDiscretionaryItem_EntryCriteriaRefs(), this.getTSentry(), null, "entryCriteriaRefs", null, 0, -1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTDiscretionaryItem_ExitCriteriaRefs(), this.getTSentry(), null, "exitCriteriaRefs", null, 0, -1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTDiscretionaryItem_DefinitionRef(), this.getTPlanItemDefinition(), null, "definitionRef", null, 0, 1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTDiscretionaryItem_EntryCriteriaRefs(), this.getTSentry(), null, "entryCriteriaRefs", null, 0, -1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTDiscretionaryItem_ExitCriteriaRefs(), this.getTSentry(), null, "exitCriteriaRefs", null, 0, -1, TDiscretionaryItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tEventEClass, TEvent.class, "TEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -3102,11 +3102,11 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tHumanTaskEClass, THumanTask.class, "THumanTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTHumanTask_PlanningTable(), this.getTPlanningTable(), null, "planningTable", null, 0, -1, THumanTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTHumanTask_PerformerRef(), this.getTRole(), null, "performerRef", null, 0, 1, THumanTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTHumanTask_PerformerRef(), this.getTRole(), null, "performerRef", null, 0, 1, THumanTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tIfPartEClass, TIfPart.class, "TIfPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTIfPart_Condition(), this.getTExpression(), null, "condition", null, 0, -1, TIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTIfPart_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTIfPart_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TIfPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tImportEClass, TImport.class, "TImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTImport_ImportType(), theXMLTypePackage.getAnyURI(), "importType", null, 1, 1, TImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3115,7 +3115,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tManualActivationRuleEClass, TManualActivationRule.class, "TManualActivationRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTManualActivationRule_Condition(), this.getTExpression(), null, "condition", null, 0, 1, TManualActivationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTManualActivationRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TManualActivationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTManualActivationRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TManualActivationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTManualActivationRule_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TManualActivationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tMilestoneEClass, TMilestone.class, "TMilestone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3136,7 +3136,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tPlanItemEClass, TPlanItem.class, "TPlanItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTPlanItem_ItemControl(), this.getTPlanItemControl(), null, "itemControl", null, 0, 1, TPlanItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTPlanItem_DefinitionRef(), this.getTPlanItemDefinition(), null, "definitionRef", null, 0, 1, TPlanItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTPlanItem_DefinitionRef(), this.getTPlanItemDefinition(), null, "definitionRef", null, 0, 1, TPlanItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTPlanItem_EntryCriteriaRefs(), this.getTSentry(), null, "entryCriteriaRefs", null, 0, -1, TPlanItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTPlanItem_ExitCriteriaRefs(), this.getTSentry(), null, "exitCriteriaRefs", null, 0, -1, TPlanItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTPlanItem_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TPlanItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3152,12 +3152,12 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tPlanItemOnPartEClass, TPlanItemOnPart.class, "TPlanItemOnPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTPlanItemOnPart_StandardEvent(), this.getPlanItemTransition(), "standardEvent", null, 0, 1, TPlanItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTPlanItemOnPart_SentryRef(), this.getTSentry(), null, "sentryRef", null, 0, 1, TPlanItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTPlanItemOnPart_SourceRef(), this.getTPlanItem(), null, "sourceRef", null, 0, 1, TPlanItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTPlanItemOnPart_SentryRef(), this.getTSentry(), null, "sentryRef", null, 0, 1, TPlanItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTPlanItemOnPart_SourceRef(), this.getTPlanItem(), null, "sourceRef", null, 0, 1, TPlanItemOnPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tPlanItemStartTriggerEClass, TPlanItemStartTrigger.class, "TPlanItemStartTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTPlanItemStartTrigger_StandardEvent(), this.getPlanItemTransition(), "standardEvent", null, 0, 1, TPlanItemStartTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTPlanItemStartTrigger_SourceRef(), this.getTPlanItem(), null, "sourceRef", null, 0, 1, TPlanItemStartTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTPlanItemStartTrigger_SourceRef(), this.getTPlanItem(), null, "sourceRef", null, 0, 1, TPlanItemStartTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tPlanningTableEClass, TPlanningTable.class, "TPlanningTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTPlanningTable_TableItemGroup(), ecorePackage.getEFeatureMapEntry(), "tableItemGroup", null, 0, -1, TPlanningTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3174,7 +3174,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tProcessTaskEClass, TProcessTask.class, "TProcessTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTProcessTask_ParameterMapping(), this.getTParameterMapping(), null, "parameterMapping", null, 0, -1, TProcessTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTProcessTask_ProcessRef(), this.getTProcess(), null, "processRef", null, 0, 1, TProcessTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTProcessTask_ProcessRef(), this.getTProcess(), null, "processRef", null, 0, 1, TProcessTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tPropertyEClass, TProperty.class, "TProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTProperty_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3182,12 +3182,12 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tRepetitionRuleEClass, TRepetitionRule.class, "TRepetitionRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTRepetitionRule_Condition(), this.getTExpression(), null, "condition", null, 0, 1, TRepetitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTRepetitionRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TRepetitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTRepetitionRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TRepetitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTRepetitionRule_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TRepetitionRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tRequiredRuleEClass, TRequiredRule.class, "TRequiredRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTRequiredRule_Condition(), this.getTExpression(), null, "condition", null, 0, 1, TRequiredRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTRequiredRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TRequiredRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTRequiredRule_ContextRef(), this.getTCaseFileItem(), null, "contextRef", null, 0, 1, TRequiredRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTRequiredRule_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TRequiredRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tRoleEClass, TRole.class, "TRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3204,13 +3204,13 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
         initEAttribute(getTStage_PlanItemDefinitionGroup(), ecorePackage.getEFeatureMapEntry(), "planItemDefinitionGroup", null, 0, -1, TStage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTStage_PlanItemDefinition(), this.getTPlanItemDefinition(), null, "planItemDefinition", null, 0, -1, TStage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
         initEAttribute(getTStage_AutoComplete(), theXMLTypePackage.getBoolean(), "autoComplete", "false", 0, 1, TStage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTStage_ExitCriteriaRefs(), this.getTSentry(), null, "exitCriteriaRefs", null, 0, -1, TStage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTStage_ExitCriteriaRefs(), this.getTSentry(), null, "exitCriteriaRefs", null, 0, -1, TStage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tStartTriggerEClass, TStartTrigger.class, "TStartTrigger", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(tTableItemEClass, TTableItem.class, "TTableItem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getTTableItem_ApplicabilityRuleRefs(), this.getTApplicabilityRule(), null, "applicabilityRuleRefs", null, 0, -1, TTableItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTTableItem_AuthorizedRoleRefs(), this.getTRole(), null, "authorizedRoleRefs", null, 0, -1, TTableItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTTableItem_ApplicabilityRuleRefs(), this.getTApplicabilityRule(), null, "applicabilityRuleRefs", null, 0, -1, TTableItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTTableItem_AuthorizedRoleRefs(), this.getTRole(), null, "authorizedRoleRefs", null, 0, -1, TTableItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tTaskEClass, TTask.class, "TTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTTask_Inputs(), this.getTCaseParameter(), null, "inputs", null, 0, -1, TTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

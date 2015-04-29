@@ -160,7 +160,8 @@ public interface TStage extends TPlanFragment {
      * <!-- end-model-doc -->
      * @return the value of the '<em>Exit Criteria Refs</em>' reference list.
      * @see org.omg.cmmn.CMMNPackage#getTStage_ExitCriteriaRefs()
-     * @model extendedMetaData="kind='attribute' name='exitCriteriaRefs'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='exitCriteriaRefs'"
      * @generated
      */
     EList<TSentry> getExitCriteriaRefs();

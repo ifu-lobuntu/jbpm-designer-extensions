@@ -89,23 +89,6 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
      * @generated
      */
     public TProcess getProcessRef() {
-        if (processRef != null && processRef.eIsProxy()) {
-            InternalEObject oldProcessRef = (InternalEObject)processRef;
-            processRef = (TProcess)eResolveProxy(oldProcessRef);
-            if (processRef != oldProcessRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPROCESS_TASK__PROCESS_REF, oldProcessRef, processRef));
-            }
-        }
-        return processRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TProcess basicGetProcessRef() {
         return processRef;
     }
 
@@ -146,8 +129,7 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
             case CMMNPackage.TPROCESS_TASK__PARAMETER_MAPPING:
                 return getParameterMapping();
             case CMMNPackage.TPROCESS_TASK__PROCESS_REF:
-                if (resolve) return getProcessRef();
-                return basicGetProcessRef();
+                return getProcessRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }
