@@ -2,6 +2,7 @@
  */
 package org.omg.cmmn;
 
+import javax.xml.namespace.QName;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -46,7 +47,7 @@ public interface TCaseTask extends TTask {
     EList<TParameterMapping> getParameterMapping();
 
     /**
-     * Returns the value of the '<em><b>Case Ref</b></em>' reference.
+     * Returns the value of the '<em><b>Case Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
@@ -55,22 +56,23 @@ public interface TCaseTask extends TTask {
      *               be imported via some other file.
      *             
      * <!-- end-model-doc -->
-     * @return the value of the '<em>Case Ref</em>' reference.
-     * @see #setCaseRef(TCase)
+     * @return the value of the '<em>Case Ref</em>' attribute.
+     * @see #setCaseRef(QName)
      * @see org.omg.cmmn.CMMNPackage#getTCaseTask_CaseRef()
-     * @model extendedMetaData="kind='attribute' name='caseRef'"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.QName"
+     *        extendedMetaData="kind='attribute' name='caseRef'"
      * @generated
      */
-    TCase getCaseRef();
+    QName getCaseRef();
 
     /**
-     * Sets the value of the '{@link org.omg.cmmn.TCaseTask#getCaseRef <em>Case Ref</em>}' reference.
+     * Sets the value of the '{@link org.omg.cmmn.TCaseTask#getCaseRef <em>Case Ref</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Case Ref</em>' reference.
+     * @param value the new value of the '<em>Case Ref</em>' attribute.
      * @see #getCaseRef()
      * @generated
      */
-    void setCaseRef(TCase value);
+    void setCaseRef(QName value);
 
 } // TCaseTask

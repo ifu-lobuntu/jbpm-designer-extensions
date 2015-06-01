@@ -42,6 +42,7 @@ import org.jbpm.uml2.dd.umldi.impl.UMLDIPackageImpl;
 import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
 import org.kie.workbench.common.screens.datamodeller.model.DataModelTO;
 import org.kie.workbench.common.screens.datamodeller.service.DataModelerService;
+import org.kie.workbench.common.services.datamodeller.core.DataModel;
 import org.kie.workbench.common.services.shared.project.KieProject;
 import org.kie.workbench.common.services.shared.project.KieProjectService;
 import org.slf4j.Logger;
@@ -143,7 +144,7 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
             String jarUri = "jar:file:" + zf.getName() +"!" + resourcePath;
             externalForm =new URL(jarUri).toExternalForm();
         } catch (Throwable t) {
-            LOGGER.error("Could not calculate jar file path", t);
+            LOGGER.warn("Could not calculate jar file path", t);
         }
         URI cmmnTypesUri = URI.createURI(externalForm.replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/"));
         resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
@@ -176,10 +177,11 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
     private void generateDataModel(XMLResource r) {
         if (dataModelerService != null) {
             String uuid = Utils.getEncodedParam(request.get(), "assetid");
-            DataModelTO dm = new ClassDiagram2DataModel(dataModelerService.getAnnotationDefinitions()).toDataModel(r, uuid);
+            ClassDiagram2DataModel c = new ClassDiagram2DataModel(dataModelerService.getAnnotationDefinitions(),r, uuid);
+            DataModel dm = c.toDataModel();
             // The price we pay for not using errai
             RpcContext.set(new FakeMessage());
-            Path newPath = PathFactory.newPath(dm.getParentProjectName(), repositoryDescriptor.getRepositoryRoot().toString() + dm.getParentProjectName());
+            Path newPath = PathFactory.newPath(c.getProjectName(), repositoryDescriptor.getRepositoryRoot().toString() + c.getProjectName());
             KieProject project = projectService.resolveProject(newPath);
             try {
                 dataModelerService.saveModel(dm, project, true, "Saving Data Objects");

@@ -1,13 +1,39 @@
 package org.jbpm.designer.cmmn;
 
+import javax.xml.namespace.QName;
+
 import org.junit.Test;
 import org.omg.cmmn.CMMNFactory;
+import org.omg.cmmn.DefinitionType;
 import org.omg.cmmn.MultiplicityEnum;
 import org.omg.cmmn.TCaseFileItem;
 import org.omg.cmmn.TCaseFileItemDefinition;
+import org.omg.cmmn.TImport;
 import org.omg.cmmn.TProperty;
 
 public class CaseFileItemMarshallingTest extends AbstractCmmnDiagramMarshallingTest {
+    @Test
+    public void testCaseFileItemsFromUml() throws Exception {
+        TCaseFileItemDefinition def = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition();
+        inputDefinitions.getCaseFileItemDefinition().add(def);
+        def.setName("TheStructure");
+        def.setDescription("Desc");
+        TImport imp = CMMNFactory.eINSTANCE.createTImport();
+        inputDefinitions.getImport().add(imp);
+        def.setImportRef(imp);
+        imp.setImportType("UML");
+        imp.setLocation("platform:/resource/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CaseFileStructure.uml");
+        imp.setNamespace("http://www.jbpm.org/designer/test/cmmn");
+        def.setStructureRef(new QName("http://www.jbpm.org/designer/test/cmmn", "TheStructure"));
+        TCaseFileItem cfi = CMMNFactory.eINSTANCE.createTCaseFileItem();
+        tCase.getCaseFileModel().getCaseFileItem().add(cfi);
+        def.setDefinitionType(DefinitionType.UML_CLASS);
+        cfi.setDefinitionRef(def);
+        cfi.setName("MyCaseFileItem");
+        cfi.setMultiplicity(MultiplicityEnum.ONE_OR_MORE);
+        addShapeFor(tCase, cfi);
+        assertOutputValid();
+    }
     @Test
     public void testCaseFileItemsWithAssociations() throws Exception {
         TCaseFileItemDefinition childDef = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition();

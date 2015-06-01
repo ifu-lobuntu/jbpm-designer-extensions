@@ -889,11 +889,10 @@
 			"name"	: "caseTask",
 			"properties" : [
 					{
-						"id" : "calledcase",
+						"id" : "caseRefQName",
 						"type" : "eobjectref",
 						"title" : "Called Case",
 						"value" : "",
-						"binding" : "definitionRef.caseRef",
 						"description" : "",
 						"readonly" : false,
 						"optional" : false,
@@ -937,10 +936,9 @@
 			"name"	: "processTask",
 			"properties" : [
 					{
-						"id" : "calledprocess",
+						"id" : "processRefQName",
 						"type" : "eobjectref",
 						"title" : "Called Process",
-						"binding": "definitionRef.anyAttribute.externalProcess",
 						"value" : "",
 						"description" : "",
 						"readonly" : false,
@@ -1387,11 +1385,10 @@
 							"optional" : true,
 							"refToView" : [],
 							"popular" : true,
-							"binding":"definitionRef.structureRef",
 							"reference":{
 								"targetProfile":"ucd|vdcol",
 								"allowedElementTypes":"Class|Interface",
-								"nameFeature" : "qualifiedName"
+								"nameFeature" : "name"
 							},
 							"length" : ""
 						},

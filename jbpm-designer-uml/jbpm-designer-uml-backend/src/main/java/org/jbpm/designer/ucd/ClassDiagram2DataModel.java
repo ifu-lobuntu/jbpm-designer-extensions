@@ -13,25 +13,34 @@ import org.eclipse.uml2.uml.TypedElement;
 import org.kie.api.definition.type.Description;
 import org.kie.api.definition.type.Label;
 import org.kie.api.definition.type.Position;
-import org.kie.workbench.common.screens.datamodeller.model.AnnotationDefinitionTO;
-import org.kie.workbench.common.screens.datamodeller.model.AnnotationTO;
-import org.kie.workbench.common.screens.datamodeller.model.DataModelTO;
-import org.kie.workbench.common.screens.datamodeller.model.DataModelTO.TOStatus;
-import org.kie.workbench.common.screens.datamodeller.model.DataObjectTO;
-import org.kie.workbench.common.screens.datamodeller.model.ObjectPropertyTO;
+import org.kie.workbench.common.services.datamodeller.core.AnnotationDefinition;
+import org.kie.workbench.common.services.datamodeller.core.DataModel;
+import org.kie.workbench.common.services.datamodeller.core.impl.AnnotationImpl;
+import org.kie.workbench.common.services.datamodeller.core.impl.DataModelImpl;
+import org.kie.workbench.common.services.datamodeller.core.impl.DataObjectImpl;
+import org.kie.workbench.common.services.datamodeller.core.impl.ObjectPropertyImpl;
 /**
  * Just an experiment. 
  * @author ampie
  *
  */
 public class ClassDiagram2DataModel {
-    private Map<String, AnnotationDefinitionTO> annotationDefinitions;
-    public ClassDiagram2DataModel(Map<String, AnnotationDefinitionTO> annotationDefinitions) {
+    private Map<String, AnnotationDefinition> annotationDefinitions;
+    private XMLResource umlResource;
+    private String modelUri;
+    public ClassDiagram2DataModel(Map<String, AnnotationDefinition> annotationDefinitions,XMLResource umlResource, String modelUri) {
         this.annotationDefinitions = annotationDefinitions;
+        this.umlResource=umlResource;
+        this.modelUri=modelUri;
     }
-
-    public DataModelTO toDataModel(XMLResource umlResource, String modelUri) {
-        DataModelTO dm = new DataModelTO();
+    public String getProjectName(){
+        String projectName = modelUri.substring(modelUri.indexOf("@") + 1);
+        projectName = projectName.substring(projectName.indexOf("/") + 1);
+        projectName = projectName.substring(0, projectName.indexOf("/"));
+        return projectName;
+    }
+    public DataModel toDataModel() {
+        DataModelImpl dm = new DataModelImpl();
         String projectName = modelUri.substring(modelUri.indexOf("@") + 1);
         projectName = projectName.substring(projectName.indexOf("/") + 1);
         projectName = projectName.substring(0, projectName.indexOf("/"));
@@ -41,7 +50,6 @@ public class ClassDiagram2DataModel {
         } else {
             packageName = null;
         }
-        dm.setParentProjectName(projectName);
         Package pkg = (Package) umlResource.getContents().get(0);
         if (packageName == null) {
             packageName = pkg.getName();
@@ -50,8 +58,7 @@ public class ClassDiagram2DataModel {
         }
         for (Type type : pkg.getOwnedTypes()) {
             if (type instanceof Class) {
-                DataObjectTO current = new DataObjectTO(type.getName(), packageName, null);
-                current.setStatus(TOStatus.PERSISTENT_EXTERNALLY_MODIFIED);
+                DataObjectImpl current = new DataObjectImpl(type.getName(), packageName);
                 dm.getDataObjects().add(current);
                 EList<Property> ownedAttributes = ((Class) type).getOwnedAttributes();
                 for (Property property : ownedAttributes) {
@@ -60,15 +67,14 @@ public class ClassDiagram2DataModel {
                         if (property.getType().getPackage() == pkg) {
                             typeName = packageName + "." + property.getType().getName();
                         }
-                        ObjectPropertyTO op = new ObjectPropertyTO(property.getName(), typeName, property.isMultivalued(),
-                                property.getType() instanceof PrimitiveType);
-                        AnnotationTO position = new AnnotationTO(annotationDefinitions.get(Position.class.getName()));
+                        ObjectPropertyImpl op = new ObjectPropertyImpl(property.getName(), typeName, property.isMultivalued());
+                        AnnotationImpl position = new AnnotationImpl(annotationDefinitions.get(Position.class.getName()));
                         position.setValue("value", (ownedAttributes.indexOf(property) + 1) + "");
                         op.getAnnotations().add(position);
-                        AnnotationTO label = new AnnotationTO(annotationDefinitions.get(Label.class.getName()));
+                        AnnotationImpl label = new AnnotationImpl(annotationDefinitions.get(Label.class.getName()));
                         label.setValue("value", property.getName());
                         op.getAnnotations().add(label);
-                        AnnotationTO desc = new AnnotationTO(annotationDefinitions.get(Description.class.getName()));
+                        AnnotationImpl desc = new AnnotationImpl(annotationDefinitions.get(Description.class.getName()));
                         desc.setValue("value", property.getName());
                         op.getAnnotations().add(desc);
                         current.getProperties().add(op);

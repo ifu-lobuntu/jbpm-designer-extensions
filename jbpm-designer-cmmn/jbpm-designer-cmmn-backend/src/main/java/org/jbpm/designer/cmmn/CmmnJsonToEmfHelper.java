@@ -2,12 +2,15 @@ package org.jbpm.designer.cmmn;
 
 import java.util.ArrayList;
 
+import javax.xml.namespace.QName;
+
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.bpmn2.Process;
 import org.eclipse.bpmn2.Property;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -24,11 +27,14 @@ import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedProperty;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencil;
 import org.jbpm.designer.extensions.util.NameConverter;
+import org.jbpm.designer.extensions.util.NamespacePackageConverter;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
+import org.omg.cmmn.DefinitionType;
 import org.omg.cmmn.DocumentRoot;
 import org.omg.cmmn.TCase;
 import org.omg.cmmn.TCaseFileItem;
+import org.omg.cmmn.TCaseFileItemDefinition;
 import org.omg.cmmn.TCaseFileItemOnPart;
 import org.omg.cmmn.TCaseFileItemStartTrigger;
 import org.omg.cmmn.TCaseParameter;
@@ -39,6 +45,7 @@ import org.omg.cmmn.TDiscretionaryItem;
 import org.omg.cmmn.TEvent;
 import org.omg.cmmn.TExpression;
 import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TImport;
 import org.omg.cmmn.TMilestone;
 import org.omg.cmmn.TOnPart;
 import org.omg.cmmn.TParameter;
@@ -88,6 +95,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     private EObject getModelElement(String id) {
         return shapeMap.getModelElement(id);
     }
+
     @Override
     public void refineEmfElements(LinkedStencil sv, Shape sourceShape) {
         this.sourceShape = sourceShape;
@@ -124,7 +132,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     private void addContainerSentries(TStage stage) {
         for (ShapeReference sr : sourceShape.getOutgoing()) {
-            Shape shape=shapeMap.get(sr);
+            Shape shape = shapeMap.get(sr);
             if (shape.getStencilId().equals(CmmnStencil.CONTAINER_EXIT_SENTRY.getStencilId())) {
                 TSentry s = (TSentry) shapeMap.getModelElement(sr.getResourceId());
                 stage.getSentry().add(s);
@@ -148,7 +156,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
             if (s.getStencilId().startsWith("Discretionary")) {
                 TDiscretionaryItem di = (TDiscretionaryItem) getModelElement(shape.getResourceId());
                 if (di.eContainer() == null) {
-                    //May have been set by discretionaryLink
+                    // May have been set by discretionaryLink
                     if (stage.getPlanningTable() == null) {
                         stage.setPlanningTable(CMMNFactory.eINSTANCE.createTPlanningTable());
                     }
@@ -168,7 +176,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
-        getDefinitions().getCaseFileItemDefinition().add(object.getDefinitionRef());
+        TCaseFileItemDefinition def = importDefinitionRef(object);
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(sr.getResourceId());
             if (shape.getStencilId().equals(CmmnStencil.CASE_FILE_ITEM_CHILD.getStencilId())) {
@@ -196,10 +204,36 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         }
         for (Shape shape : sourceShape.getChildShapes()) {
             if (shape.getStencilId().equals(CmmnStencil.PROPERTY.getStencilId())) {
-                object.getDefinitionRef().getProperty().add((TProperty) getModelElement(shape.getResourceId()));
+                def.getProperty().add((TProperty) getModelElement(shape.getResourceId()));
             }
         }
         return super.caseTCaseFileItem(object);
+    }
+
+    private TCaseFileItemDefinition importDefinitionRef(TCaseFileItem object) {
+        TCaseFileItemDefinition def = object.getDefinitionRef();
+        if (def == null) {
+            object.setDefinitionRef(def = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition());
+            def.setName(object.getName() + "Definition");
+        }
+        getDefinitions().getCaseFileItemDefinition().add(def);
+        EObject obj = (EObject) sourceShape.getUnboundProperty("caseFileItemStructureRef");
+        if (obj != null) {
+            String normalizedNamespace = NamespacePackageConverter.uriToNamespace(obj.eResource().getURI()).toString();
+            TImport imp = ImportHelper.findImportForNamespace(getDefinitions(), normalizedNamespace);
+            if (imp == null) {
+                imp = CMMNFactory.eINSTANCE.createTImport();
+                getDefinitions().getImport().add(imp);
+                def.setDefinitionType(DefinitionType.UML_CLASS);
+                def.setImportRef(imp);
+                imp.setImportType("UML");
+                imp.setLocation(obj.eResource().getURI().toString());
+                imp.setNamespace(normalizedNamespace);
+            }
+            QName qname = new QName(normalizedNamespace, sourceShape.getProperty("caseFileItemStructureRef").split("\\|")[0], "");
+            def.setStructureRef(qname);
+        }
+        return def;
     }
 
     private TDefinitions getDefinitions() {
@@ -208,10 +242,18 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTCaseTask(TCaseTask object) {
-        addTaskParameters(object, object.getInputs(), "input", object.getCaseRef() == null ? null : object.getCaseRef().getInput(),
-                object.getParameterMapping());
-        addTaskParameters(object, object.getOutputs(), "output", object.getCaseRef() == null ? null : object.getCaseRef().getOutput(),
-                object.getParameterMapping());
+        TCase caseRef = (TCase) sourceShape.getUnboundProperty("caseRefQName");
+        if (caseRef != null) {
+            CaseRefHelper helper = new CaseRefHelper(object, caseRef);
+            TImport imp = helper.findOrCreateImport();
+            TCase caseImport = helper.syncCaseInDefinitions();
+            addTaskParameters(object, object.getInputs(), "input", caseImport.getInput(), object.getParameterMapping());
+            addTaskParameters(object, object.getOutputs(), "output", caseImport.getOutput(), object.getParameterMapping());
+            object.setCaseRef(new QName(imp.getNamespace(), caseRef.getName()));
+        } else {
+            addTaskParameters(object, object.getInputs(), "input", null, object.getParameterMapping());
+            addTaskParameters(object, object.getOutputs(), "output", null, object.getParameterMapping());
+        }
         return super.caseTCaseTask(object);
     }
 
@@ -225,7 +267,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     private void addTaskParameters(TCmmnElement object, EList<TCaseParameter> list, String paramListName, EList<? extends TParameter> mappedParameterList,
             EList<TParameterMapping> parameterMappings) {
         String parmListJson = sourceShape.getProperty(paramListName);
-        if (parmListJson != null && parmListJson.trim().length()>0 && !"[]".equals(parmListJson)) {
+        if (parmListJson != null && parmListJson.trim().length() > 0 && !"[]".equals(parmListJson)) {
             try {
                 ObjectMapper om = new ObjectMapper();
                 om.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -248,16 +290,20 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
                         e.setLanguage(cp.getBindingRefinementLanguage());
                         p.setBindingRefinement(e);
                     }
-                    if (cp.getMappedParameter() != null && cp.getMappedParameter().length() > 0) {
+                    if (parameterMappings != null) {
                         TParameterMapping mapping = CMMNFactory.eINSTANCE.createTParameterMapping();
+                        parameterMappings.add(mapping);
+                        String mappedParameter = cp.getName();
+                        if (cp.getMappedParameter() != null && cp.getMappedParameter().length() > 0) {
+                            mappedParameter = cp.getMappedParameter();
+                        }
                         if (paramListName.contains("in")) {
                             mapping.setSourceRef(p);
-                            mapping.setTargetRef(findParameter(cp.getMappedParameter(), mappedParameterList));
+                            mapping.setTargetRef(findParameter(mappedParameter, mappedParameterList));
                         } else {
-                            mapping.setSourceRef(findParameter(cp.getMappedParameter(), mappedParameterList));
+                            mapping.setSourceRef(findParameter(mappedParameter, mappedParameterList));
                             mapping.setTargetRef(p);
                         }
-                        parameterMappings.add(mapping);
                     }
                     list.add(p);
                 }
@@ -268,6 +314,9 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
     }
 
     private TParameter findParameter(String mappedParameter, EList<? extends TParameter> mappedParameterList) {
+        if (mappedParameterList == null) {
+            return null;
+        }
         for (TParameter p : mappedParameterList) {
             if (p.getName().equals(mappedParameter)) {
                 return p;
@@ -307,61 +356,20 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
 
     @Override
     public Object caseTProcessTask(TProcessTask object) {
-        Object externalProcess = object.getAnyAttribute().get(JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess(), true);
-        if (externalProcess instanceof Process) {
-            TDefinitions td = (TDefinitions) getCase(object).eContainer();
-            TProcess process = syncProcessInDefinitions(object, (Process) externalProcess, td);
-            object.setProcessRef(process);
+        Process externalProcess = (Process) sourceShape.getUnboundProperty("processRefQName");
+        if (externalProcess != null) {
+            TDefinitions td = getDefinitions();
+            BpmnProcessRefHelper ph = new BpmnProcessRefHelper(object, externalProcess);
+            TImport imp = ph.findOrCreateImport();
+            TProcess process = ph.syncProcessInDefinitions();
+            object.setProcessRef(new QName(imp.getNamespace(), process.getId()));
+            addTaskParameters(object, object.getInputs(), "input", process.getInput(), object.getParameterMapping());
+            addTaskParameters(object, object.getOutputs(), "output", process.getOutput(), object.getParameterMapping());
+        } else {
+            addTaskParameters(object, object.getInputs(), "input", null, object.getParameterMapping());
+            addTaskParameters(object, object.getOutputs(), "output", null, object.getParameterMapping());
         }
-        addTaskParameters(object, object.getInputs(), "input", object.getProcessRef() == null ? null : object.getProcessRef().getInput(),
-                object.getParameterMapping());
-        addTaskParameters(object, object.getOutputs(), "output", object.getProcessRef() == null ? null : object.getProcessRef().getOutput(),
-                object.getParameterMapping());
         return super.caseTProcessTask(object);
-    }
-
-    public static TProcess syncProcessInDefinitions(TProcessTask object, Process externalProcess, TDefinitions td) {
-        Process calledProcess = (Process) externalProcess;
-        TProcess process = (TProcess) object.eResource().getEObject(calledProcess.getId());
-        if (process == null) {
-            process = CMMNFactory.eINSTANCE.createTProcess();
-            process.setId(calledProcess.getId());
-            td.getProcess().add(process);
-        }
-        syncParameters(object, calledProcess, process.getInput());
-        syncParameters(object, calledProcess, process.getOutput());
-        process.setName(isEmpty(process.getName()) ? process.getId() : process.getName());
-        return process;
-    }
-
-    private static void syncParameters(TProcessTask object, Process calledProcess, EList<TProcessParameter> input) {
-        for (Property property : calledProcess.getProperties()) {
-            String parameterId = calledProcess.getId() + "." + (isEmpty(property.getName()) ? property.getId() : property.getName());
-            TProcessParameter parameter = (TProcessParameter) object.eResource().getEObject(parameterId);
-            if (parameter == null) {
-                parameter = CMMNFactory.eINSTANCE.createTProcessParameter();
-                parameter.setId(parameterId);
-                input.add(parameter);
-            }
-            parameter.setName(isEmpty(property.getName()) ? property.getId() : property.getName());
-        }
-        for (TProcessParameter p : new ArrayList<TProcessParameter>(input)) {
-            if (!isParameterPresentInProcess(calledProcess, p)) {
-                input.remove(p);
-            }
-        }
-    }
-
-    private static boolean isParameterPresentInProcess(Process calledProcess, TProcessParameter p) {
-        boolean found = false;
-        for (Property property : calledProcess.getProperties()) {
-            String parameterId = calledProcess.getId() + "." + (isEmpty(property.getName()) ? property.getId() : property.getName());
-            if (p.getId().equals(parameterId)) {
-                found = true;
-                break;
-            }
-        }
-        return found;
     }
 
     @Override
@@ -494,7 +502,7 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         for (ShapeReference sr : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(sr.getResourceId());
             CmmnStencil cs = CmmnStencil.findStencilById(shape.getStencilId());
-            if(cs.getType()==CMMNPackage.eINSTANCE.getTSentry()){
+            if (cs.getType() == CMMNPackage.eINSTANCE.getTSentry()) {
                 TSentry s = (TSentry) getModelElement(shape.getResourceId());
                 s.getOnPart().add(onPart);
             }
@@ -564,7 +572,6 @@ public class CmmnJsonToEmfHelper extends CMMNSwitch<Object> implements JsonToEmf
         }
         return null;
     }
-
 
     @Override
     public void postprocessResource() {

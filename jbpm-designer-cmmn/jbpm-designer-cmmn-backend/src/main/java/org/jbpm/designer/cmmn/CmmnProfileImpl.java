@@ -1,5 +1,6 @@
 package org.jbpm.designer.cmmn;
 
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource.Factory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.internal.impl.UMLPackageImpl;
@@ -31,7 +33,9 @@ import org.jbpm.designer.extensions.emf.util.UriHelper;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.impl.Bpmn2EmfProfile;
 import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
+import org.jbpm.designer.extensions.util.NamespacePackageConverter;
 import org.jbpm.designer.type.Cmmn1TypeDefinition;
+import org.jbpm.designer.web.profile.impl.EMFVFSURIConverter;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.DocumentRoot;
@@ -79,6 +83,7 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
         TDefinitions inputDefinitions = CMMNFactory.eINSTANCE.createTDefinitions();
         DocumentRoot root = CMMNFactory.eINSTANCE.createDocumentRoot();
         root.setDefinitions(inputDefinitions);
+        inputDefinitions.setId(EcoreUtil.generateUUID());
         CMMNDiagram inputDiagram = CMMNDIFactory.eINSTANCE.createCMMNDiagram();
         inputDefinitions.getDiagram().add(inputDiagram);
         inputResource.getContents().add(root);
@@ -104,7 +109,9 @@ public class CmmnProfileImpl extends AbstractEmfDiagramProfile {
     private TCase createCase(TDefinitions inputDefinitions) {
         TCase tCase = CMMNFactory.eINSTANCE.createTCase();
         inputDefinitions.getCase().add(tCase);
-        inputDefinitions.setTargetNamespace("http://asdf.com/");
+        URL ns = NamespacePackageConverter.uriToNamespace(inputDefinitions.eResource().getURI());
+        inputDefinitions.eResource().getURI().toPlatformString(true);
+        inputDefinitions.setTargetNamespace(ns.toExternalForm());
         tCase.setCaseFileModel(CMMNFactory.eINSTANCE.createTCaseFile());
         return tCase;
     }

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1430305469448
+Bnd-LastModified: 1433145931733
 Build-Jdk: 1.7.0_71
-Build-Timestamp: Wed, 29 Apr 2015 13:03:11 +0200
+Build-Timestamp: Mon, 1 Jun 2015 10:03:04 +0200
 Built-By: ampie
 Bundle-Description: jBPM Designer - web-based BPMN2 modeller
 Bundle-DocURL: http://www.jboss.org/
@@ -10,15 +10,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codegen
 Bundle-SymbolicName: org.jbpm.uml.codegen
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201504291302
+Bundle-Version: 6.3.0.201506010802
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.jbpm.designer.uml.codegen;version="6.3.0.20150429130
- 2",org.jbpm.designer.uml.codegen.codemodel;version="6.3.0.201504291302"
- ,org.jbpm.designer.uml.codegen.java;version="6.3.0.201504291302",org.jb
- pm.designer.uml.codegen.jpa;version="6.3.0.201504291302",org.jbpm.desig
- ner.uml.codegen.util;version="6.3.0.201504291302",org.jbpm.designer.uml
- .codegen.util.emulated;version="6.3.0.201504291302",org.pavanecce.commo
- n.test.util;version="6.3.0.201504291302"
+Export-Package: org.jbpm.designer.uml.codegen;version="6.3.0.20150601080
+ 2",org.jbpm.designer.uml.codegen.codemodel;version="6.3.0.201506010802"
+ ,org.jbpm.designer.uml.codegen.java;version="6.3.0.201506010802",org.jb
+ pm.designer.uml.codegen.jpa;version="6.3.0.201506010802",org.jbpm.desig
+ ner.uml.codegen.util;version="6.3.0.201506010802",org.jbpm.designer.uml
+ .codegen.util.emulated;version="6.3.0.201506010802",org.pavanecce.commo
+ n.test.util;version="6.3.0.201506010802"
 Implementation-Title: jBPM Designer UML Class Diagram Code Generation
 Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
  igner-extensions/jbpm-designer-uml/jbpm-designer-uml-codegen
@@ -49,7 +49,7 @@ Os-Version: 3.17.3-200.fc20.x86_64
 Private-Package: .
 Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
  -designer-extensions/jbpm-designer-uml/jbpm-designer-uml-codegen
-Scm-Revision: 9f50240c7b194bff5e78ddaeabe391c2fbe445a6
+Scm-Revision: f9a5d3276e50fb1b4f466ebcb59da29a5c42f309
 Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
  sions/jbpm-designer-uml/jbpm-designer-uml-codegen
 Specification-Title: jBPM Designer UML Class Diagram Code Generation

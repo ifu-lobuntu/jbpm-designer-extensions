@@ -1,5 +1,7 @@
 package org.jbpm.designer.cmmn;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.bpmn2.Bpmn2Package;
 import org.eclipse.bpmn2.Process;
 import org.jbpm.cmmn.jbpmext.JbpmextPackage;
@@ -11,6 +13,7 @@ import org.omg.cmmn.TCaseFileItem;
 import org.omg.cmmn.TCaseFileItemDefinition;
 import org.omg.cmmn.TCaseParameter;
 import org.omg.cmmn.TExpression;
+import org.omg.cmmn.TImport;
 import org.omg.cmmn.TParameterMapping;
 import org.omg.cmmn.TPlanItem;
 import org.omg.cmmn.TProcess;
@@ -25,7 +28,10 @@ public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTe
         TProcessTask task = (TProcessTask) ctpi.getDefinitionRef();
         String[] split = "scrum.CalledProcess|/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledProcess.bpmn2".split("\\|");
         Process p = UriHelper.resolveEObject(resourceSet, split, Bpmn2Package.eINSTANCE.getBaseElement_Id(), Bpmn2Package.eINSTANCE.getProcess());
-        TProcess calledProcess = CmmnJsonToEmfHelper.syncProcessInDefinitions(task, p , super.inputDefinitions);
+        BpmnProcessRefHelper h = new BpmnProcessRefHelper(task, p);
+        TImport imp = h.findOrCreateImport();
+        TProcess importedProcess = h.syncProcessInDefinitions();
+        task.setProcessRef(new QName(imp.getNamespace(),p.getId()));
         task.getAnyAttribute().set(JbpmextPackage.eINSTANCE.getDocumentRoot_ExternalProcess(), p);
         TCaseFileItemDefinition childDef = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition();
         inputDefinitions.getCaseFileItemDefinition().add(childDef);
@@ -38,10 +44,10 @@ public class ProcessTaskMarshallingTest extends AbstractCmmnDiagramMarshallingTe
         childCfi.setMultiplicity(MultiplicityEnum.ONE_OR_MORE);
         addShapeFor(tCase, childCfi);
 
-        task.getInputs().add(createMappedParameter(task, childCfi, calledProcess.getInput().get(0)));
-        task.getInputs().add(createMappedParameter(task, childCfi, calledProcess.getInput().get(1)));
-        task.getOutputs().add(createMappedParameter(task, childCfi, calledProcess.getInput().get(0)));
-        task.getOutputs().add(createMappedParameter(task, childCfi, calledProcess.getInput().get(1)));
+        task.getInputs().add(createMappedParameter(task, childCfi, importedProcess.getInput().get(0)));
+        task.getInputs().add(createMappedParameter(task, childCfi, importedProcess.getInput().get(1)));
+        task.getOutputs().add(createMappedParameter(task, childCfi, importedProcess.getInput().get(0)));
+        task.getOutputs().add(createMappedParameter(task, childCfi, importedProcess.getInput().get(1)));
 
         assertOutputValid();
     }

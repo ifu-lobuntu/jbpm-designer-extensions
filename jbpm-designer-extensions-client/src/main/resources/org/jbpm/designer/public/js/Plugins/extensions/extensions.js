@@ -51,7 +51,11 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
                 console.log(refProp);
                 if(refProp && event.key == "oryx-" + refProp.toLowerCase()){
                     var name=shape.properties["oryx-"+ refProp.toLowerCase()];
-                    name=name.slice(name.lastIndexOf("::")+2,name.indexOf("|"));
+                    if(name.indexOf(":")>0){
+                        name=name.slice(name.lastIndexOf("::")+2,name.indexOf("|"));
+                    }else{
+                        name=name.slice(0,name.indexOf("|"));
+                    }
                     shape.setProperty("oryx-name", name,true);
                     shape.refresh();
                 }

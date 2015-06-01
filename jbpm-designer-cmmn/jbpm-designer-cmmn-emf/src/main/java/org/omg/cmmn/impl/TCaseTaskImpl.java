@@ -3,7 +3,7 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
+import javax.xml.namespace.QName;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.cmmn.CMMNPackage;
-import org.omg.cmmn.TCase;
 import org.omg.cmmn.TCaseTask;
 import org.omg.cmmn.TParameterMapping;
 
@@ -43,14 +42,24 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
     protected EList<TParameterMapping> parameterMapping;
 
     /**
-     * The cached value of the '{@link #getCaseRef() <em>Case Ref</em>}' reference.
+     * The default value of the '{@link #getCaseRef() <em>Case Ref</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getCaseRef()
      * @generated
      * @ordered
      */
-    protected TCase caseRef;
+    protected static final QName CASE_REF_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getCaseRef() <em>Case Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCaseRef()
+     * @generated
+     * @ordered
+     */
+    protected QName caseRef = CASE_REF_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -88,15 +97,7 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
      * <!-- end-user-doc -->
      * @generated
      */
-    public TCase getCaseRef() {
-        if (caseRef != null && caseRef.eIsProxy()) {
-            InternalEObject oldCaseRef = (InternalEObject)caseRef;
-            caseRef = (TCase)eResolveProxy(oldCaseRef);
-            if (caseRef != oldCaseRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TCASE_TASK__CASE_REF, oldCaseRef, caseRef));
-            }
-        }
+    public QName getCaseRef() {
         return caseRef;
     }
 
@@ -105,17 +106,8 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
      * <!-- end-user-doc -->
      * @generated
      */
-    public TCase basicGetCaseRef() {
-        return caseRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setCaseRef(TCase newCaseRef) {
-        TCase oldCaseRef = caseRef;
+    public void setCaseRef(QName newCaseRef) {
+        QName oldCaseRef = caseRef;
         caseRef = newCaseRef;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CMMNPackage.TCASE_TASK__CASE_REF, oldCaseRef, caseRef));
@@ -146,8 +138,7 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
             case CMMNPackage.TCASE_TASK__PARAMETER_MAPPING:
                 return getParameterMapping();
             case CMMNPackage.TCASE_TASK__CASE_REF:
-                if (resolve) return getCaseRef();
-                return basicGetCaseRef();
+                return getCaseRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -166,7 +157,7 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
                 getParameterMapping().addAll((Collection<? extends TParameterMapping>)newValue);
                 return;
             case CMMNPackage.TCASE_TASK__CASE_REF:
-                setCaseRef((TCase)newValue);
+                setCaseRef((QName)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -184,7 +175,7 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
                 getParameterMapping().clear();
                 return;
             case CMMNPackage.TCASE_TASK__CASE_REF:
-                setCaseRef((TCase)null);
+                setCaseRef(CASE_REF_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -201,9 +192,25 @@ public class TCaseTaskImpl extends TTaskImpl implements TCaseTask {
             case CMMNPackage.TCASE_TASK__PARAMETER_MAPPING:
                 return parameterMapping != null && !parameterMapping.isEmpty();
             case CMMNPackage.TCASE_TASK__CASE_REF:
-                return caseRef != null;
+                return CASE_REF_EDEFAULT == null ? caseRef != null : !CASE_REF_EDEFAULT.equals(caseRef);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (caseRef: ");
+        result.append(caseRef);
+        result.append(')');
+        return result.toString();
     }
 
 } //TCaseTaskImpl

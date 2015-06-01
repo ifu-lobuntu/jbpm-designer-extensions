@@ -18,14 +18,15 @@ public class VdmlRoleCollaborationPreprocessingUnit implements IDiagramPreproces
     public VdmlRoleCollaborationPreprocessingUnit(ServletContext servletContext, VFSService vfsService) {
 
     }
-	@Override
+
+    @Override
     public void preprocess(HttpServletRequest request, HttpServletResponse response, IDiagramProfile profile, ServletContext serlvetContext, boolean readOnly,
-            IOService ioService, RepositoryDescriptor descriptor) {
+            boolean viewLocked, IOService ioService, RepositoryDescriptor descriptor) {
 
     }
 
-	@Override
+    @Override
     public String getOutData() {
-	    return null;
+        return null;
     }
 }

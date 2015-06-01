@@ -12,6 +12,7 @@ import org.uberfire.client.annotations.WorkbenchEditor;
 import org.uberfire.client.annotations.WorkbenchPartTitle;
 import org.uberfire.client.annotations.WorkbenchPartView;
 import org.uberfire.client.workbench.events.ChangeTitleWidgetEvent;
+import org.uberfire.ext.widgets.common.client.ace.AceEditorMode;
 import org.uberfire.ext.widgets.core.client.editors.texteditor.TextEditorPresenter;
 import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 import org.uberfire.lifecycle.IsDirty;
@@ -40,9 +41,9 @@ public class VdmlCollaborationEditorPresenter
             @Override
             public void callback(String response) {
                 if (response == null) {
-                    view.setContent( CoreConstants.INSTANCE.EmptyEntry());
+                    view.setContent( CoreConstants.INSTANCE.EmptyEntry(),AceEditorMode.XML);
                 } else {
-                    view.setContent(response);
+                    view.setContent(response,AceEditorMode.XML);
                 }
                 changeTitleWidgetEvent.fire(
                         new ChangeTitleWidgetEvent(

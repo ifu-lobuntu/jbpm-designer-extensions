@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.cmmn.TImport#getImportType <em>Import Type</em>}</li>
  *   <li>{@link org.omg.cmmn.TImport#getLocation <em>Location</em>}</li>
  *   <li>{@link org.omg.cmmn.TImport#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.omg.cmmn.TImport#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,5 +104,31 @@ public interface TImport extends EObject {
      * @generated
      */
     void setNamespace(String value);
+
+    /**
+     * Returns the value of the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Id</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Id</em>' attribute.
+     * @see #setId(String)
+     * @see org.omg.cmmn.CMMNPackage#getTImport_Id()
+     * @model id="true"
+     * @generated
+     */
+    String getId();
+
+    /**
+     * Sets the value of the '{@link org.omg.cmmn.TImport#getId <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Id</em>' attribute.
+     * @see #getId()
+     * @generated
+     */
+    void setId(String value);
 
 } // TImport

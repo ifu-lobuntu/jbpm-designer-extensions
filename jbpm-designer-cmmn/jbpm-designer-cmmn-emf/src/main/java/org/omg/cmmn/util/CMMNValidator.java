@@ -6,63 +6,13 @@ import java.util.Map;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.ecore.xml.type.util.XMLTypeValidator;
-import org.omg.cmmn.CMMNPackage;
-import org.omg.cmmn.CaseFileItemTransition;
-import org.omg.cmmn.DefinitionTypeEnumMember1;
-import org.omg.cmmn.DocumentRoot;
-import org.omg.cmmn.MultiplicityEnum;
-import org.omg.cmmn.PlanItemTransition;
-import org.omg.cmmn.ProcessTypeEnumMember1;
-import org.omg.cmmn.TApplicabilityRule;
-import org.omg.cmmn.TCase;
-import org.omg.cmmn.TCaseFile;
-import org.omg.cmmn.TCaseFileItem;
-import org.omg.cmmn.TCaseFileItemDefinition;
-import org.omg.cmmn.TCaseFileItemOnPart;
-import org.omg.cmmn.TCaseFileItemStartTrigger;
-import org.omg.cmmn.TCaseParameter;
-import org.omg.cmmn.TCaseTask;
-import org.omg.cmmn.TChildren;
-import org.omg.cmmn.TCmmnElement;
-import org.omg.cmmn.TCmmnElementWithMixedContent;
-import org.omg.cmmn.TDefinitions;
-import org.omg.cmmn.TDiscretionaryItem;
-import org.omg.cmmn.TEvent;
-import org.omg.cmmn.TExpression;
-import org.omg.cmmn.THumanTask;
-import org.omg.cmmn.TIfPart;
-import org.omg.cmmn.TImport;
-import org.omg.cmmn.TManualActivationRule;
-import org.omg.cmmn.TMilestone;
-import org.omg.cmmn.TOnPart;
-import org.omg.cmmn.TParameter;
-import org.omg.cmmn.TParameterMapping;
-import org.omg.cmmn.TPlanFragment;
-import org.omg.cmmn.TPlanItem;
-import org.omg.cmmn.TPlanItemControl;
-import org.omg.cmmn.TPlanItemDefinition;
-import org.omg.cmmn.TPlanItemOnPart;
-import org.omg.cmmn.TPlanItemStartTrigger;
-import org.omg.cmmn.TPlanningTable;
-import org.omg.cmmn.TProcess;
-import org.omg.cmmn.TProcessParameter;
-import org.omg.cmmn.TProcessTask;
-import org.omg.cmmn.TProperty;
-import org.omg.cmmn.TRepetitionRule;
-import org.omg.cmmn.TRequiredRule;
-import org.omg.cmmn.TRole;
-import org.omg.cmmn.TSentry;
-import org.omg.cmmn.TStage;
-import org.omg.cmmn.TStartTrigger;
-import org.omg.cmmn.TTableItem;
-import org.omg.cmmn.TTask;
-import org.omg.cmmn.TTimerEvent;
-import org.omg.cmmn.TUserEvent;
+import org.omg.cmmn.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -239,8 +189,8 @@ public class CMMNValidator extends EObjectValidator {
                 return validateTUserEvent((TUserEvent)value, diagnostics, context);
             case CMMNPackage.CASE_FILE_ITEM_TRANSITION:
                 return validateCaseFileItemTransition((CaseFileItemTransition)value, diagnostics, context);
-            case CMMNPackage.DEFINITION_TYPE_ENUM_MEMBER1:
-                return validateDefinitionTypeEnumMember1((DefinitionTypeEnumMember1)value, diagnostics, context);
+            case CMMNPackage.DEFINITION_TYPE:
+                return validateDefinitionType((DefinitionType)value, diagnostics, context);
             case CMMNPackage.MULTIPLICITY_ENUM:
                 return validateMultiplicityEnum((MultiplicityEnum)value, diagnostics, context);
             case CMMNPackage.PLAN_ITEM_TRANSITION:
@@ -249,10 +199,10 @@ public class CMMNValidator extends EObjectValidator {
                 return validateProcessTypeEnumMember1((ProcessTypeEnumMember1)value, diagnostics, context);
             case CMMNPackage.CASE_FILE_ITEM_TRANSITION_OBJECT:
                 return validateCaseFileItemTransitionObject((CaseFileItemTransition)value, diagnostics, context);
-            case CMMNPackage.DEFINITION_TYPE_ENUM:
-                return validateDefinitionTypeEnum(value, diagnostics, context);
-            case CMMNPackage.DEFINITION_TYPE_ENUM_MEMBER1_OBJECT:
-                return validateDefinitionTypeEnumMember1Object((DefinitionTypeEnumMember1)value, diagnostics, context);
+            case CMMNPackage.DEFINITION_TYPE_ENUM_OBJECT:
+                return validateDefinitionTypeEnumObject((Enumerator)value, diagnostics, context);
+            case CMMNPackage.DEFINITION_TYPE_OBJECT:
+                return validateDefinitionTypeObject((Enumerator)value, diagnostics, context);
             case CMMNPackage.MULTIPLICITY_ENUM_OBJECT:
                 return validateMultiplicityEnumObject((MultiplicityEnum)value, diagnostics, context);
             case CMMNPackage.PLAN_ITEM_TRANSITION_OBJECT:
@@ -694,7 +644,7 @@ public class CMMNValidator extends EObjectValidator {
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean validateDefinitionTypeEnumMember1(DefinitionTypeEnumMember1 definitionTypeEnumMember1, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateDefinitionType(DefinitionType definitionType, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return true;
     }
 
@@ -739,36 +689,28 @@ public class CMMNValidator extends EObjectValidator {
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean validateDefinitionTypeEnum(Object definitionTypeEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        boolean result = validateDefinitionTypeEnum_MemberTypes(definitionTypeEnum, diagnostics, context);
+    public boolean validateDefinitionTypeEnumObject(Enumerator definitionTypeEnumObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        boolean result = validateDefinitionTypeEnumObject_MemberTypes(definitionTypeEnumObject, diagnostics, context);
         return result;
     }
 
     /**
-     * Validates the MemberTypes constraint of '<em>Definition Type Enum</em>'.
+     * Validates the MemberTypes constraint of '<em>Definition Type Enum Object</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean validateDefinitionTypeEnum_MemberTypes(Object definitionTypeEnum, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateDefinitionTypeEnumObject_MemberTypes(Enumerator definitionTypeEnumObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
         if (diagnostics != null) {
             BasicDiagnostic tempDiagnostics = new BasicDiagnostic();
-            if (XMLTypePackage.Literals.ANY_URI.isInstance(definitionTypeEnum)) {
-                if (xmlTypeValidator.validateAnyURI((String)definitionTypeEnum, tempDiagnostics, context)) return true;
-            }
-            if (CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1.isInstance(definitionTypeEnum)) {
-                if (validateDefinitionTypeEnumMember1((DefinitionTypeEnumMember1)definitionTypeEnum, tempDiagnostics, context)) return true;
+            if (XMLTypePackage.Literals.ANY_URI.isInstance(definitionTypeEnumObject)) {
             }
             for (Diagnostic diagnostic : tempDiagnostics.getChildren()) {
                 diagnostics.add(diagnostic);
             }
         }
         else {
-            if (XMLTypePackage.Literals.ANY_URI.isInstance(definitionTypeEnum)) {
-                if (xmlTypeValidator.validateAnyURI((String)definitionTypeEnum, null, context)) return true;
-            }
-            if (CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1.isInstance(definitionTypeEnum)) {
-                if (validateDefinitionTypeEnumMember1((DefinitionTypeEnumMember1)definitionTypeEnum, null, context)) return true;
+            if (XMLTypePackage.Literals.ANY_URI.isInstance(definitionTypeEnumObject)) {
             }
         }
         return false;
@@ -779,7 +721,7 @@ public class CMMNValidator extends EObjectValidator {
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean validateDefinitionTypeEnumMember1Object(DefinitionTypeEnumMember1 definitionTypeEnumMember1Object, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    public boolean validateDefinitionTypeObject(Enumerator definitionTypeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return true;
     }
 

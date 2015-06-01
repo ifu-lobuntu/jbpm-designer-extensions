@@ -3,7 +3,7 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
+import javax.xml.namespace.QName;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.TParameterMapping;
-import org.omg.cmmn.TProcess;
 import org.omg.cmmn.TProcessTask;
 
 /**
@@ -43,14 +42,24 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
     protected EList<TParameterMapping> parameterMapping;
 
     /**
-     * The cached value of the '{@link #getProcessRef() <em>Process Ref</em>}' reference.
+     * The default value of the '{@link #getProcessRef() <em>Process Ref</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getProcessRef()
      * @generated
      * @ordered
      */
-    protected TProcess processRef;
+    protected static final QName PROCESS_REF_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getProcessRef() <em>Process Ref</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProcessRef()
+     * @generated
+     * @ordered
+     */
+    protected QName processRef = PROCESS_REF_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -88,7 +97,7 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
      * <!-- end-user-doc -->
      * @generated
      */
-    public TProcess getProcessRef() {
+    public QName getProcessRef() {
         return processRef;
     }
 
@@ -97,8 +106,8 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setProcessRef(TProcess newProcessRef) {
-        TProcess oldProcessRef = processRef;
+    public void setProcessRef(QName newProcessRef) {
+        QName oldProcessRef = processRef;
         processRef = newProcessRef;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CMMNPackage.TPROCESS_TASK__PROCESS_REF, oldProcessRef, processRef));
@@ -148,7 +157,7 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
                 getParameterMapping().addAll((Collection<? extends TParameterMapping>)newValue);
                 return;
             case CMMNPackage.TPROCESS_TASK__PROCESS_REF:
-                setProcessRef((TProcess)newValue);
+                setProcessRef((QName)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -166,7 +175,7 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
                 getParameterMapping().clear();
                 return;
             case CMMNPackage.TPROCESS_TASK__PROCESS_REF:
-                setProcessRef((TProcess)null);
+                setProcessRef(PROCESS_REF_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -183,9 +192,25 @@ public class TProcessTaskImpl extends TTaskImpl implements TProcessTask {
             case CMMNPackage.TPROCESS_TASK__PARAMETER_MAPPING:
                 return parameterMapping != null && !parameterMapping.isEmpty();
             case CMMNPackage.TPROCESS_TASK__PROCESS_REF:
-                return processRef != null;
+                return PROCESS_REF_EDEFAULT == null ? processRef != null : !PROCESS_REF_EDEFAULT.equals(processRef);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (processRef: ");
+        result.append(processRef);
+        result.append(')');
+        return result.toString();
     }
 
 } //TProcessTaskImpl

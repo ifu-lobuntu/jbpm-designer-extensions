@@ -45,6 +45,7 @@ ORYX.Plugins.CMMN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 			this.facade.registerOnEvent(ORYX.CONFIG.EVENT_PROPWINDOW_PROP_CHANGED, this.handlePropertyChanged.bind(this));
 			this.facade.registerOnEvent(ORYX.CONFIG.EVENT_LOADED, this.updateDecorationsOnLoad.bind(this));
 			this.facade.registerOnEvent(ORYX.CONFIG.EVENT_MOUSEDOWN, this.handlePlanningTableExpand.bind(this));
+			console.log("CMMN initialized");
 		}catch(e){
             console.log(e);
 		    alert(e.toString());
@@ -684,12 +685,12 @@ ORYX.Plugins.CMMN.TaskParameterAndMappingsEditorFactory = Clazz.extend({
         	});
 
             cf.servletAction=pair.type().endsWith('taskinparameterandmappings') ? 'showprocessinput' : 'showprocessoutput';
-            if(this.shapeSelection.shapes.first().getStencil().id().contains('ProcessTask')){
+            if(this.shapeSelection.shapes.first().getStencil().id().indexOf('ProcessTask')>=0){
             	cf.targetProfile= 'jbpm';
-        		cf.processId=this.shapeSelection.shapes.first().properties['oryx-calledprocess'];
+        		cf.processId=this.shapeSelection.shapes.first().properties['oryx-processrefqname'];
         	}else{
             	cf.targetProfile='cmmn';
-        		cf.processId=this.shapeSelection.shapes.first().properties['oryx-calledcase'];
+        		cf.processId=this.shapeSelection.shapes.first().properties['oryx-caserefqname'];
         	}
         	cf.on('dialogClosed', this.dialogClosed, {scope:this, row:index, col:1,field:cf});
         	return new Ext.Editor(cf);

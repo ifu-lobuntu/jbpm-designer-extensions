@@ -1,8 +1,6 @@
 package org.omg.cmmn.util;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import javax.xml.namespace.QName;
 
@@ -12,15 +10,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.SAXXMLHandler;
-import org.omg.cmmn.CMMNPackage;
 
 public class CmmnXmlHandler extends SAXXMLHandler {
-    private static Set<EReference> qnameReferences=new HashSet<EReference>();
-    static{
-        qnameReferences.add(CMMNPackage.eINSTANCE.getTCaseTask_CaseRef());
-        qnameReferences.add(CMMNPackage.eINSTANCE.getTProcessTask_ProcessRef());
-        qnameReferences.add(CMMNPackage.eINSTANCE.getTCaseFileItem_DefinitionRef());
-    }
 
     public CmmnXmlHandler(XMLResource xmiResource, XMLHelper helper, Map<?, ?> options) {
         super(xmiResource, helper, options);

@@ -1,5 +1,7 @@
 package org.jbpm.designer.cmmn;
 
+import javax.xml.namespace.QName;
+
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 import org.omg.cmmn.CMMNFactory;
@@ -42,10 +44,11 @@ public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshalling
         TExpression e2 = CMMNFactory.eINSTANCE.createTExpression();
         e2.setBody("return caseFileItem.getAll()");
         e2.setLanguage("java");
-        op.setBindingRefinement(e2 );
+        op.setBindingRefinement(e2);
         tCase.getOutput().add(op);
         assertOutputValid();
     }
+
     @Test
     public void testHumanTask() throws Exception {
         TPlanItem htpi = addHumanTaskPlanItem(tCase, casePlanModel);
@@ -66,7 +69,7 @@ public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshalling
         TExpression e = CMMNFactory.eINSTANCE.createTExpression();
         e.setBody("return caseFileItem.getAll()");
         e.setLanguage("java");
-        ip.setBindingRefinement(e );
+        ip.setBindingRefinement(e);
         task.getInputs().add(ip);
         TCaseParameter op = CMMNFactory.eINSTANCE.createTCaseParameter();
         op.setName("Parm1");
@@ -74,10 +77,11 @@ public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshalling
         TExpression e2 = CMMNFactory.eINSTANCE.createTExpression();
         e2.setBody("return caseFileItem.getAll()");
         e2.setLanguage("java");
-        op.setBindingRefinement(e2 );
+        op.setBindingRefinement(e2);
         task.getOutputs().add(op);
         assertOutputValid();
     }
+
     @Test
     public void testCaseTask() throws Exception {
         URI testUri = URI.createPlatformResourceURI("/jbpm-designer-cmmn-backend/src/test/resources/org/jbpm/designer/test/cmmn/CalledCase.cmmn", true);
@@ -85,7 +89,10 @@ public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshalling
         TCase calledCase = root.getDefinitions().getCase().get(0);
         TPlanItem ctpi = addCaseTaskPlanItem(tCase, casePlanModel);
         TCaseTask task = (TCaseTask) ctpi.getDefinitionRef();
-        task.setCaseRef(calledCase);
+        task.setCaseRef(new QName("http://www.calledcase.com/", "MyCalledCase", "ccc"));
+        CaseRefHelper helper = new CaseRefHelper(task, calledCase);
+        helper.findOrCreateImport();
+        TCase importedCase = helper.syncCaseInDefinitions();
         TCaseFileItemDefinition childDef = CMMNFactory.eINSTANCE.createTCaseFileItemDefinition();
         inputDefinitions.getCaseFileItemDefinition().add(childDef);
         childDef.setName("MyChildCaseFileItemDefinition");
@@ -98,29 +105,29 @@ public class TaskParameterMarshallingTest extends AbstractCmmnDiagramMarshalling
         addShapeFor(tCase, childCfi);
 
         TCaseParameter ip = CMMNFactory.eINSTANCE.createTCaseParameter();
-        ip.setName(calledCase.getInput().get(0).getName());
-        TParameterMapping inMapping=CMMNFactory.eINSTANCE.createTParameterMapping();
+        ip.setName(importedCase.getInput().get(0).getName());
+        TParameterMapping inMapping = CMMNFactory.eINSTANCE.createTParameterMapping();
         inMapping.setSourceRef(ip);
-        inMapping.setTargetRef(calledCase.getInput().get(0));
+        inMapping.setTargetRef(importedCase.getInput().get(0));
         task.getParameterMapping().add(inMapping);
         ip.setBindingRef(childCfi);
         TExpression e = CMMNFactory.eINSTANCE.createTExpression();
         e.setBody("return caseFileItem.getAll()");
         e.setLanguage("java");
-        ip.setBindingRefinement(e );
+        ip.setBindingRefinement(e);
         task.getInputs().add(ip);
 
         TCaseParameter op = CMMNFactory.eINSTANCE.createTCaseParameter();
-        op.setName(calledCase.getOutput().get(0).getName());
-        TParameterMapping outMapping=CMMNFactory.eINSTANCE.createTParameterMapping();
-        outMapping.setSourceRef(calledCase.getOutput().get(0));
+        op.setName(importedCase.getOutput().get(0).getName());
+        TParameterMapping outMapping = CMMNFactory.eINSTANCE.createTParameterMapping();
+        outMapping.setSourceRef(importedCase.getOutput().get(0));
         outMapping.setTargetRef(op);
         task.getParameterMapping().add(outMapping);
         op.setBindingRef(childCfi);
         TExpression e2 = CMMNFactory.eINSTANCE.createTExpression();
         e2.setBody("return caseFileItem.getAll()");
         e2.setLanguage("java");
-        op.setBindingRefinement(e2 );
+        op.setBindingRefinement(e2);
         task.getOutputs().add(op);
         assertOutputValid();
     }

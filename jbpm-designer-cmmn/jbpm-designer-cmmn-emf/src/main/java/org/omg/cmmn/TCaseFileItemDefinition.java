@@ -53,6 +53,7 @@ public interface TCaseFileItemDefinition extends TCmmnElement {
     /**
      * Returns the value of the '<em><b>Definition Type</b></em>' attribute.
      * The default value is <code>"http://www.omg.org/spec/CMMN/DefinitionType/Unspecified"</code>.
+     * The literals are from the enumeration {@link org.omg.cmmn.DefinitionType}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Definition Type</em>' attribute isn't clear,
@@ -60,27 +61,29 @@ public interface TCaseFileItemDefinition extends TCmmnElement {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Definition Type</em>' attribute.
+     * @see org.omg.cmmn.DefinitionType
      * @see #isSetDefinitionType()
      * @see #unsetDefinitionType()
-     * @see #setDefinitionType(Object)
+     * @see #setDefinitionType(DefinitionType)
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItemDefinition_DefinitionType()
-     * @model default="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" unsettable="true" dataType="org.omg.cmmn.DefinitionTypeEnum"
+     * @model default="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified" unsettable="true"
      *        extendedMetaData="kind='attribute' name='definitionType'"
      * @generated
      */
-    Object getDefinitionType();
+    DefinitionType getDefinitionType();
 
     /**
      * Sets the value of the '{@link org.omg.cmmn.TCaseFileItemDefinition#getDefinitionType <em>Definition Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Definition Type</em>' attribute.
+     * @see org.omg.cmmn.DefinitionType
      * @see #isSetDefinitionType()
      * @see #unsetDefinitionType()
      * @see #getDefinitionType()
      * @generated
      */
-    void setDefinitionType(Object value);
+    void setDefinitionType(DefinitionType value);
 
     /**
      * Unsets the value of the '{@link org.omg.cmmn.TCaseFileItemDefinition#getDefinitionType <em>Definition Type</em>}' attribute.
@@ -88,7 +91,7 @@ public interface TCaseFileItemDefinition extends TCmmnElement {
      * <!-- end-user-doc -->
      * @see #isSetDefinitionType()
      * @see #getDefinitionType()
-     * @see #setDefinitionType(Object)
+     * @see #setDefinitionType(DefinitionType)
      * @generated
      */
     void unsetDefinitionType();
@@ -100,13 +103,13 @@ public interface TCaseFileItemDefinition extends TCmmnElement {
      * @return whether the value of the '<em>Definition Type</em>' attribute is set.
      * @see #unsetDefinitionType()
      * @see #getDefinitionType()
-     * @see #setDefinitionType(Object)
+     * @see #setDefinitionType(DefinitionType)
      * @generated
      */
     boolean isSetDefinitionType();
 
     /**
-     * Returns the value of the '<em><b>Import Ref</b></em>' attribute.
+     * Returns the value of the '<em><b>Import Ref</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
@@ -114,24 +117,24 @@ public interface TCaseFileItemDefinition extends TCmmnElement {
      *               importRef refers an "import" element under "definitions"
      *             
      * <!-- end-model-doc -->
-     * @return the value of the '<em>Import Ref</em>' attribute.
-     * @see #setImportRef(QName)
+     * @return the value of the '<em>Import Ref</em>' reference.
+     * @see #setImportRef(TImport)
      * @see org.omg.cmmn.CMMNPackage#getTCaseFileItemDefinition_ImportRef()
-     * @model dataType="org.eclipse.emf.ecore.xml.type.QName"
+     * @model resolveProxies="false"
      *        extendedMetaData="kind='attribute' name='importRef'"
      * @generated
      */
-    QName getImportRef();
+    TImport getImportRef();
 
     /**
-     * Sets the value of the '{@link org.omg.cmmn.TCaseFileItemDefinition#getImportRef <em>Import Ref</em>}' attribute.
+     * Sets the value of the '{@link org.omg.cmmn.TCaseFileItemDefinition#getImportRef <em>Import Ref</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Import Ref</em>' attribute.
+     * @param value the new value of the '<em>Import Ref</em>' reference.
      * @see #getImportRef()
      * @generated
      */
-    void setImportRef(QName value);
+    void setImportRef(TImport value);
 
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.

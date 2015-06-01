@@ -3,9 +3,7 @@
 package org.omg.cmmn.impl;
 
 import java.util.Collection;
-
 import javax.xml.namespace.QName;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -14,9 +12,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
+import org.omg.cmmn.DefinitionType;
 import org.omg.cmmn.TCaseFileItemDefinition;
+import org.omg.cmmn.TImport;
 import org.omg.cmmn.TProperty;
 
 /**
@@ -55,7 +54,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * @generated
      * @ordered
      */
-    protected static final Object DEFINITION_TYPE_EDEFAULT = CMMNFactory.eINSTANCE.createFromString(CMMNPackage.eINSTANCE.getDefinitionTypeEnum(), "http://www.omg.org/spec/CMMN/DefinitionType/Unspecified");
+    protected static final DefinitionType DEFINITION_TYPE_EDEFAULT = DefinitionType.UNSPECIFIED;
 
     /**
      * The cached value of the '{@link #getDefinitionType() <em>Definition Type</em>}' attribute.
@@ -65,7 +64,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * @generated
      * @ordered
      */
-    protected Object definitionType = DEFINITION_TYPE_EDEFAULT;
+    protected DefinitionType definitionType = DEFINITION_TYPE_EDEFAULT;
 
     /**
      * This is true if the Definition Type attribute has been set.
@@ -77,24 +76,14 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
     protected boolean definitionTypeESet;
 
     /**
-     * The default value of the '{@link #getImportRef() <em>Import Ref</em>}' attribute.
+     * The cached value of the '{@link #getImportRef() <em>Import Ref</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getImportRef()
      * @generated
      * @ordered
      */
-    protected static final QName IMPORT_REF_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getImportRef() <em>Import Ref</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getImportRef()
-     * @generated
-     * @ordered
-     */
-    protected QName importRef = IMPORT_REF_EDEFAULT;
+    protected TImport importRef;
 
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -172,7 +161,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object getDefinitionType() {
+    public DefinitionType getDefinitionType() {
         return definitionType;
     }
 
@@ -181,9 +170,9 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDefinitionType(Object newDefinitionType) {
-        Object oldDefinitionType = definitionType;
-        definitionType = newDefinitionType;
+    public void setDefinitionType(DefinitionType newDefinitionType) {
+        DefinitionType oldDefinitionType = definitionType;
+        definitionType = newDefinitionType == null ? DEFINITION_TYPE_EDEFAULT : newDefinitionType;
         boolean oldDefinitionTypeESet = definitionTypeESet;
         definitionTypeESet = true;
         if (eNotificationRequired())
@@ -196,7 +185,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * @generated
      */
     public void unsetDefinitionType() {
-        Object oldDefinitionType = definitionType;
+        DefinitionType oldDefinitionType = definitionType;
         boolean oldDefinitionTypeESet = definitionTypeESet;
         definitionType = DEFINITION_TYPE_EDEFAULT;
         definitionTypeESet = false;
@@ -218,7 +207,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * <!-- end-user-doc -->
      * @generated
      */
-    public QName getImportRef() {
+    public TImport getImportRef() {
         return importRef;
     }
 
@@ -227,8 +216,8 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setImportRef(QName newImportRef) {
-        QName oldImportRef = importRef;
+    public void setImportRef(TImport newImportRef) {
+        TImport oldImportRef = importRef;
         importRef = newImportRef;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, CMMNPackage.TCASE_FILE_ITEM_DEFINITION__IMPORT_REF, oldImportRef, importRef));
@@ -326,10 +315,10 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
                 getProperty().addAll((Collection<? extends TProperty>)newValue);
                 return;
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__DEFINITION_TYPE:
-                setDefinitionType(newValue);
+                setDefinitionType((DefinitionType)newValue);
                 return;
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__IMPORT_REF:
-                setImportRef((QName)newValue);
+                setImportRef((TImport)newValue);
                 return;
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__NAME:
                 setName((String)newValue);
@@ -356,7 +345,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
                 unsetDefinitionType();
                 return;
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__IMPORT_REF:
-                setImportRef(IMPORT_REF_EDEFAULT);
+                setImportRef((TImport)null);
                 return;
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__NAME:
                 setName(NAME_EDEFAULT);
@@ -381,7 +370,7 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__DEFINITION_TYPE:
                 return isSetDefinitionType();
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__IMPORT_REF:
-                return IMPORT_REF_EDEFAULT == null ? importRef != null : !IMPORT_REF_EDEFAULT.equals(importRef);
+                return importRef != null;
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__NAME:
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case CMMNPackage.TCASE_FILE_ITEM_DEFINITION__STRUCTURE_REF:
@@ -402,8 +391,6 @@ public class TCaseFileItemDefinitionImpl extends TCmmnElementImpl implements TCa
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (definitionType: ");
         if (definitionTypeESet) result.append(definitionType); else result.append("<unset>");
-        result.append(", importRef: ");
-        result.append(importRef);
         result.append(", name: ");
         result.append(name);
         result.append(", structureRef: ");

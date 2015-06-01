@@ -957,7 +957,7 @@ public interface CMMNPackage extends EPackage {
     int TCASE_FILE_ITEM_DEFINITION__DEFINITION_TYPE = TCMMN_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Import Ref</b></em>' attribute.
+     * The feature id for the '<em><b>Import Ref</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1668,7 +1668,7 @@ public interface CMMNPackage extends EPackage {
     int TCASE_TASK__PARAMETER_MAPPING = TTASK_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Case Ref</b></em>' reference.
+     * The feature id for the '<em><b>Case Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2542,13 +2542,22 @@ public interface CMMNPackage extends EPackage {
     int TIMPORT__NAMESPACE = 2;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TIMPORT__ID = 3;
+
+    /**
      * The number of structural features of the '<em>TImport</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TIMPORT_FEATURE_COUNT = 3;
+    int TIMPORT_FEATURE_COUNT = 4;
 
     /**
      * The number of operations of the '<em>TImport</em>' class.
@@ -3571,7 +3580,7 @@ public interface CMMNPackage extends EPackage {
     int TPROCESS_TASK__PARAMETER_MAPPING = TTASK_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Process Ref</b></em>' reference.
+     * The feature id for the '<em><b>Process Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -4309,14 +4318,14 @@ public interface CMMNPackage extends EPackage {
     int CASE_FILE_ITEM_TRANSITION = 46;
 
     /**
-     * The meta object id for the '{@link org.omg.cmmn.DefinitionTypeEnumMember1 <em>Definition Type Enum Member1</em>}' enum.
+     * The meta object id for the '{@link org.omg.cmmn.DefinitionType <em>Definition Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.omg.cmmn.DefinitionTypeEnumMember1
-     * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnumMember1()
+     * @see org.omg.cmmn.DefinitionType
+     * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionType()
      * @generated
      */
-    int DEFINITION_TYPE_ENUM_MEMBER1 = 47;
+    int DEFINITION_TYPE = 47;
 
     /**
      * The meta object id for the '{@link org.omg.cmmn.MultiplicityEnum <em>Multiplicity Enum</em>}' enum.
@@ -4359,24 +4368,24 @@ public interface CMMNPackage extends EPackage {
     int CASE_FILE_ITEM_TRANSITION_OBJECT = 51;
 
     /**
-     * The meta object id for the '<em>Definition Type Enum</em>' data type.
+     * The meta object id for the '<em>Definition Type Enum Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see java.lang.Object
-     * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnum()
+     * @see org.eclipse.emf.common.util.Enumerator
+     * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnumObject()
      * @generated
      */
-    int DEFINITION_TYPE_ENUM = 52;
+    int DEFINITION_TYPE_ENUM_OBJECT = 52;
 
     /**
-     * The meta object id for the '<em>Definition Type Enum Member1 Object</em>' data type.
+     * The meta object id for the '<em>Definition Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.omg.cmmn.DefinitionTypeEnumMember1
-     * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnumMember1Object()
+     * @see org.eclipse.emf.common.util.Enumerator
+     * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeObject()
      * @generated
      */
-    int DEFINITION_TYPE_ENUM_MEMBER1_OBJECT = 53;
+    int DEFINITION_TYPE_OBJECT = 53;
 
     /**
      * The meta object id for the '<em>Multiplicity Enum Object</em>' data type.
@@ -5162,15 +5171,15 @@ public interface CMMNPackage extends EPackage {
     EAttribute getTCaseFileItemDefinition_DefinitionType();
 
     /**
-     * Returns the meta object for the attribute '{@link org.omg.cmmn.TCaseFileItemDefinition#getImportRef <em>Import Ref</em>}'.
+     * Returns the meta object for the reference '{@link org.omg.cmmn.TCaseFileItemDefinition#getImportRef <em>Import Ref</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Import Ref</em>'.
+     * @return the meta object for the reference '<em>Import Ref</em>'.
      * @see org.omg.cmmn.TCaseFileItemDefinition#getImportRef()
      * @see #getTCaseFileItemDefinition()
      * @generated
      */
-    EAttribute getTCaseFileItemDefinition_ImportRef();
+    EReference getTCaseFileItemDefinition_ImportRef();
 
     /**
      * Returns the meta object for the attribute '{@link org.omg.cmmn.TCaseFileItemDefinition#getName <em>Name</em>}'.
@@ -5312,15 +5321,15 @@ public interface CMMNPackage extends EPackage {
     EReference getTCaseTask_ParameterMapping();
 
     /**
-     * Returns the meta object for the reference '{@link org.omg.cmmn.TCaseTask#getCaseRef <em>Case Ref</em>}'.
+     * Returns the meta object for the attribute '{@link org.omg.cmmn.TCaseTask#getCaseRef <em>Case Ref</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Case Ref</em>'.
+     * @return the meta object for the attribute '<em>Case Ref</em>'.
      * @see org.omg.cmmn.TCaseTask#getCaseRef()
      * @see #getTCaseTask()
      * @generated
      */
-    EReference getTCaseTask_CaseRef();
+    EAttribute getTCaseTask_CaseRef();
 
     /**
      * Returns the meta object for class '{@link org.omg.cmmn.TChildren <em>TChildren</em>}'.
@@ -5806,6 +5815,17 @@ public interface CMMNPackage extends EPackage {
      * @generated
      */
     EAttribute getTImport_Namespace();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.omg.cmmn.TImport#getId <em>Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see org.omg.cmmn.TImport#getId()
+     * @see #getTImport()
+     * @generated
+     */
+    EAttribute getTImport_Id();
 
     /**
      * Returns the meta object for class '{@link org.omg.cmmn.TManualActivationRule <em>TManual Activation Rule</em>}'.
@@ -6310,15 +6330,15 @@ public interface CMMNPackage extends EPackage {
     EReference getTProcessTask_ParameterMapping();
 
     /**
-     * Returns the meta object for the reference '{@link org.omg.cmmn.TProcessTask#getProcessRef <em>Process Ref</em>}'.
+     * Returns the meta object for the attribute '{@link org.omg.cmmn.TProcessTask#getProcessRef <em>Process Ref</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Process Ref</em>'.
+     * @return the meta object for the attribute '<em>Process Ref</em>'.
      * @see org.omg.cmmn.TProcessTask#getProcessRef()
      * @see #getTProcessTask()
      * @generated
      */
-    EReference getTProcessTask_ProcessRef();
+    EAttribute getTProcessTask_ProcessRef();
 
     /**
      * Returns the meta object for class '{@link org.omg.cmmn.TProperty <em>TProperty</em>}'.
@@ -6727,14 +6747,14 @@ public interface CMMNPackage extends EPackage {
     EEnum getCaseFileItemTransition();
 
     /**
-     * Returns the meta object for enum '{@link org.omg.cmmn.DefinitionTypeEnumMember1 <em>Definition Type Enum Member1</em>}'.
+     * Returns the meta object for enum '{@link org.omg.cmmn.DefinitionType <em>Definition Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Definition Type Enum Member1</em>'.
-     * @see org.omg.cmmn.DefinitionTypeEnumMember1
+     * @return the meta object for enum '<em>Definition Type</em>'.
+     * @see org.omg.cmmn.DefinitionType
      * @generated
      */
-    EEnum getDefinitionTypeEnumMember1();
+    EEnum getDefinitionType();
 
     /**
      * Returns the meta object for enum '{@link org.omg.cmmn.MultiplicityEnum <em>Multiplicity Enum</em>}'.
@@ -6779,28 +6799,28 @@ public interface CMMNPackage extends EPackage {
     EDataType getCaseFileItemTransitionObject();
 
     /**
-     * Returns the meta object for data type '{@link java.lang.Object <em>Definition Type Enum</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.Enumerator <em>Definition Type Enum Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>Definition Type Enum</em>'.
-     * @see java.lang.Object
-     * @model instanceClass="java.lang.Object"
-     *        extendedMetaData="name='DefinitionTypeEnum' memberTypes='http://www.eclipse.org/emf/2003/XMLType#anyURI DefinitionTypeEnum_._member_._1'"
+     * @return the meta object for data type '<em>Definition Type Enum Object</em>'.
+     * @see org.eclipse.emf.common.util.Enumerator
+     * @model instanceClass="org.eclipse.emf.common.util.Enumerator"
+     *        extendedMetaData="name='DefinitionTypeEnumObject' memberTypes='http://www.eclipse.org/emf/2003/XMLType#anyURI DefinitionTypeEnum_._member_._1'"
      * @generated
      */
-    EDataType getDefinitionTypeEnum();
+    EDataType getDefinitionTypeEnumObject();
 
     /**
-     * Returns the meta object for data type '{@link org.omg.cmmn.DefinitionTypeEnumMember1 <em>Definition Type Enum Member1 Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.Enumerator <em>Definition Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>Definition Type Enum Member1 Object</em>'.
-     * @see org.omg.cmmn.DefinitionTypeEnumMember1
-     * @model instanceClass="org.omg.cmmn.DefinitionTypeEnumMember1"
+     * @return the meta object for data type '<em>Definition Type Object</em>'.
+     * @see org.eclipse.emf.common.util.Enumerator
+     * @model instanceClass="org.eclipse.emf.common.util.Enumerator"
      *        extendedMetaData="name='DefinitionTypeEnum_._member_._1:Object' baseType='DefinitionTypeEnum_._member_._1'"
      * @generated
      */
-    EDataType getDefinitionTypeEnumMember1Object();
+    EDataType getDefinitionTypeObject();
 
     /**
      * Returns the meta object for data type '{@link org.omg.cmmn.MultiplicityEnum <em>Multiplicity Enum Object</em>}'.
@@ -7430,12 +7450,12 @@ public interface CMMNPackage extends EPackage {
         EAttribute TCASE_FILE_ITEM_DEFINITION__DEFINITION_TYPE = eINSTANCE.getTCaseFileItemDefinition_DefinitionType();
 
         /**
-         * The meta object literal for the '<em><b>Import Ref</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Import Ref</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute TCASE_FILE_ITEM_DEFINITION__IMPORT_REF = eINSTANCE.getTCaseFileItemDefinition_ImportRef();
+        EReference TCASE_FILE_ITEM_DEFINITION__IMPORT_REF = eINSTANCE.getTCaseFileItemDefinition_ImportRef();
 
         /**
          * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -7550,12 +7570,12 @@ public interface CMMNPackage extends EPackage {
         EReference TCASE_TASK__PARAMETER_MAPPING = eINSTANCE.getTCaseTask_ParameterMapping();
 
         /**
-         * The meta object literal for the '<em><b>Case Ref</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Case Ref</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference TCASE_TASK__CASE_REF = eINSTANCE.getTCaseTask_CaseRef();
+        EAttribute TCASE_TASK__CASE_REF = eINSTANCE.getTCaseTask_CaseRef();
 
         /**
          * The meta object literal for the '{@link org.omg.cmmn.impl.TChildrenImpl <em>TChildren</em>}' class.
@@ -7936,6 +7956,14 @@ public interface CMMNPackage extends EPackage {
          * @generated
          */
         EAttribute TIMPORT__NAMESPACE = eINSTANCE.getTImport_Namespace();
+
+        /**
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute TIMPORT__ID = eINSTANCE.getTImport_Id();
 
         /**
          * The meta object literal for the '{@link org.omg.cmmn.impl.TManualActivationRuleImpl <em>TManual Activation Rule</em>}' class.
@@ -8344,12 +8372,12 @@ public interface CMMNPackage extends EPackage {
         EReference TPROCESS_TASK__PARAMETER_MAPPING = eINSTANCE.getTProcessTask_ParameterMapping();
 
         /**
-         * The meta object literal for the '<em><b>Process Ref</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Process Ref</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference TPROCESS_TASK__PROCESS_REF = eINSTANCE.getTProcessTask_ProcessRef();
+        EAttribute TPROCESS_TASK__PROCESS_REF = eINSTANCE.getTProcessTask_ProcessRef();
 
         /**
          * The meta object literal for the '{@link org.omg.cmmn.impl.TPropertyImpl <em>TProperty</em>}' class.
@@ -8680,14 +8708,14 @@ public interface CMMNPackage extends EPackage {
         EEnum CASE_FILE_ITEM_TRANSITION = eINSTANCE.getCaseFileItemTransition();
 
         /**
-         * The meta object literal for the '{@link org.omg.cmmn.DefinitionTypeEnumMember1 <em>Definition Type Enum Member1</em>}' enum.
+         * The meta object literal for the '{@link org.omg.cmmn.DefinitionType <em>Definition Type</em>}' enum.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.omg.cmmn.DefinitionTypeEnumMember1
-         * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnumMember1()
+         * @see org.omg.cmmn.DefinitionType
+         * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionType()
          * @generated
          */
-        EEnum DEFINITION_TYPE_ENUM_MEMBER1 = eINSTANCE.getDefinitionTypeEnumMember1();
+        EEnum DEFINITION_TYPE = eINSTANCE.getDefinitionType();
 
         /**
          * The meta object literal for the '{@link org.omg.cmmn.MultiplicityEnum <em>Multiplicity Enum</em>}' enum.
@@ -8730,24 +8758,24 @@ public interface CMMNPackage extends EPackage {
         EDataType CASE_FILE_ITEM_TRANSITION_OBJECT = eINSTANCE.getCaseFileItemTransitionObject();
 
         /**
-         * The meta object literal for the '<em>Definition Type Enum</em>' data type.
+         * The meta object literal for the '<em>Definition Type Enum Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see java.lang.Object
-         * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnum()
+         * @see org.eclipse.emf.common.util.Enumerator
+         * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnumObject()
          * @generated
          */
-        EDataType DEFINITION_TYPE_ENUM = eINSTANCE.getDefinitionTypeEnum();
+        EDataType DEFINITION_TYPE_ENUM_OBJECT = eINSTANCE.getDefinitionTypeEnumObject();
 
         /**
-         * The meta object literal for the '<em>Definition Type Enum Member1 Object</em>' data type.
+         * The meta object literal for the '<em>Definition Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.omg.cmmn.DefinitionTypeEnumMember1
-         * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeEnumMember1Object()
+         * @see org.eclipse.emf.common.util.Enumerator
+         * @see org.omg.cmmn.impl.CMMNPackageImpl#getDefinitionTypeObject()
          * @generated
          */
-        EDataType DEFINITION_TYPE_ENUM_MEMBER1_OBJECT = eINSTANCE.getDefinitionTypeEnumMember1Object();
+        EDataType DEFINITION_TYPE_OBJECT = eINSTANCE.getDefinitionTypeObject();
 
         /**
          * The meta object literal for the '<em>Multiplicity Enum Object</em>' data type.

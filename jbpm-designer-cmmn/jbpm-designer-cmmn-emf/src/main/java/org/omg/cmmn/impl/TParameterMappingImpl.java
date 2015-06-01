@@ -126,23 +126,6 @@ public class TParameterMappingImpl extends TCmmnElementImpl implements TParamete
      * @generated
      */
     public TParameter getSourceRef() {
-        if (sourceRef != null && sourceRef.eIsProxy()) {
-            InternalEObject oldSourceRef = (InternalEObject)sourceRef;
-            sourceRef = (TParameter)eResolveProxy(oldSourceRef);
-            if (sourceRef != oldSourceRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPARAMETER_MAPPING__SOURCE_REF, oldSourceRef, sourceRef));
-            }
-        }
-        return sourceRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TParameter basicGetSourceRef() {
         return sourceRef;
     }
 
@@ -164,23 +147,6 @@ public class TParameterMappingImpl extends TCmmnElementImpl implements TParamete
      * @generated
      */
     public TParameter getTargetRef() {
-        if (targetRef != null && targetRef.eIsProxy()) {
-            InternalEObject oldTargetRef = (InternalEObject)targetRef;
-            targetRef = (TParameter)eResolveProxy(oldTargetRef);
-            if (targetRef != oldTargetRef) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, CMMNPackage.TPARAMETER_MAPPING__TARGET_REF, oldTargetRef, targetRef));
-            }
-        }
-        return targetRef;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TParameter basicGetTargetRef() {
         return targetRef;
     }
 
@@ -221,11 +187,9 @@ public class TParameterMappingImpl extends TCmmnElementImpl implements TParamete
             case CMMNPackage.TPARAMETER_MAPPING__TRANSFORMATION:
                 return getTransformation();
             case CMMNPackage.TPARAMETER_MAPPING__SOURCE_REF:
-                if (resolve) return getSourceRef();
-                return basicGetSourceRef();
+                return getSourceRef();
             case CMMNPackage.TPARAMETER_MAPPING__TARGET_REF:
-                if (resolve) return getTargetRef();
-                return basicGetTargetRef();
+                return getTargetRef();
         }
         return super.eGet(featureID, resolve, coreType);
     }

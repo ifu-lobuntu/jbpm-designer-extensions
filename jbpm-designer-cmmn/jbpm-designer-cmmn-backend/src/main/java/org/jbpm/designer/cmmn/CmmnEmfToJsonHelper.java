@@ -1,5 +1,7 @@
 package org.jbpm.designer.cmmn;
 
+import org.eclipse.emf.common.util.URI;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +12,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
 import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Bounds;
@@ -26,9 +29,11 @@ import org.omg.cmmn.TCaseFileItemOnPart;
 import org.omg.cmmn.TCaseParameter;
 import org.omg.cmmn.TCaseTask;
 import org.omg.cmmn.TCmmnElement;
+import org.omg.cmmn.TDefinitions;
 import org.omg.cmmn.TDiscretionaryItem;
 import org.omg.cmmn.TEvent;
 import org.omg.cmmn.THumanTask;
+import org.omg.cmmn.TImport;
 import org.omg.cmmn.TMilestone;
 import org.omg.cmmn.TParameter;
 import org.omg.cmmn.TParameterMapping;
@@ -77,11 +82,38 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     @Override
     public Object caseTCaseFileItem(TCaseFileItem object) {
+        TCaseFileItemDefinition def = object.getDefinitionRef();
+        if (def != null && def.getImportRef() != null && def.getStructureRef() != null) {
+            URI uri = URI.createURI(def.getImportRef().getLocation());
+            String location = toSimpleLocation(uri);
+            targetShape.putProperty("caseFileItemStructureRef", def.getStructureRef().getLocalPart() + "|" + location);
+        } else if (def != null && def.getStructureRef() != null) {
+            // Legacy files - TODO remove
+            URI uri = URI.createURI(def.getStructureRef().getNamespaceURI());
+            Resource res = object.eResource().getResourceSet().getResource(uri, true);
+            EObject eObject = res.getEObject(def.getStructureRef().getLocalPart());
+            if (eObject != null) {
+                String location = toSimpleLocation(uri);
+                targetShape.putProperty("caseFileItemStructureRef", eObject.eGet(eObject.eClass().getEStructuralFeature("name")) + "|" + location);
+            }
+
+        }
         return super.caseTCaseFileItem(object);
+    }
+
+    public String toSimpleLocation(URI uri) {
+        String location = uri.isPlatform() ? uri.toPlatformString(true) : uri.toFileString();
+        return location;
     }
 
     @Override
     public Object caseTCaseTask(TCaseTask object) {
+        if (object.getCaseRef() != null) {
+            TDefinitions defs = ImportHelper.getDefinitions(shapeMap.getResource());
+            TImport imp = ImportHelper.findImportForNamespace(defs, object.getCaseRef().getNamespaceURI());
+            String location = toSimpleLocation(URI.createURI(imp.getLocation()));
+            targetShape.putProperty("caseRefQName", object.getCaseRef().getLocalPart() + "|" + location);
+        }
         addTaskParameters(object.getInputs(), "input", object.getParameterMapping());
         addTaskParameters(object.getOutputs(), "output", object.getParameterMapping());
         return super.caseTCaseTask(object);
@@ -151,7 +183,10 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
 
     private static String getExpectedType(TParameter sourceRef) {
         if (sourceRef instanceof TCaseParameter) {
-            return ((TCaseParameter) sourceRef).getBindingRef().getName();
+            TCaseFileItem bindingRef = ((TCaseParameter) sourceRef).getBindingRef();
+            if(bindingRef!=null){
+                return bindingRef.getName();
+            }
         }
         return null;// we don't know
     }
@@ -160,6 +195,12 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     public Object caseTProcessTask(TProcessTask object) {
         addTaskParameters(object.getInputs(), "input", object.getParameterMapping());
         addTaskParameters(object.getOutputs(), "output", object.getParameterMapping());
+        if (object.getProcessRef() != null) {
+            TDefinitions defs = ImportHelper.getDefinitions(shapeMap.getResource());
+            TImport imp = ImportHelper.findImportForNamespace(defs, object.getProcessRef().getNamespaceURI());
+            String location = toSimpleLocation(URI.createURI(imp.getLocation()));
+            targetShape.putProperty("processRefQName", object.getProcessRef().getLocalPart() + "|" + location);
+        }
         return super.caseTProcessTask(object);
     }
 
@@ -269,7 +310,7 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
             TPlanItem pi = (TPlanItem) modelElement;
             putSentries(modelElement, pi.getEntryCriteriaRefs());
             putSentries(modelElement, pi.getExitCriteriaRefs());
-            if(pi.getDefinitionRef() instanceof TStage){
+            if (pi.getDefinitionRef() instanceof TStage) {
                 putSentries(pi.getDefinitionRef(), ((TStage) pi.getDefinitionRef()).getExitCriteriaRefs());
             }
         } else if (modelElement instanceof TCase) {
@@ -291,10 +332,10 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
             TCmmnElement container = this.sentryContainers.get(me);
             if (container instanceof TDiscretionaryItem && ((TDiscretionaryItem) container).getEntryCriteriaRefs().contains(me)) {
                 return CmmnStencil.ENTRY_SENTRY;
-            } else if (container instanceof TPlanItem){
-                if(((TPlanItem) container).getEntryCriteriaRefs().contains(me)) {
+            } else if (container instanceof TPlanItem) {
+                if (((TPlanItem) container).getEntryCriteriaRefs().contains(me)) {
                     return CmmnStencil.ENTRY_SENTRY;
-                }else{
+                } else {
                     return CmmnStencil.EXIT_SENTRY;
                 }
             } else if (container instanceof TCase && ((TCase) container).getCasePlanModel().getExitCriteriaRefs().contains(me)) {
@@ -312,6 +353,7 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     public String convertToString(LinkedProperty property, Object val) {
         return null;
     }
+
     @Override
     public void preprocessResource() {
     }

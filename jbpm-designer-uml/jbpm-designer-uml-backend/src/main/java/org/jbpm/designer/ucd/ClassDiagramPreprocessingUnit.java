@@ -19,13 +19,12 @@ public class ClassDiagramPreprocessingUnit implements IDiagramPreprocessingUnit 
 
     }
 	@Override
-    public void preprocess(HttpServletRequest request, HttpServletResponse response, IDiagramProfile profile, ServletContext serlvetContext, boolean readOnly,
-            IOService ioService, RepositoryDescriptor descriptor) {
-
-    }
-
-	@Override
     public String getOutData() {
 	    return null;
+    }
+    @Override
+    public void preprocess(HttpServletRequest request, HttpServletResponse response, IDiagramProfile profile, ServletContext serlvetContext, boolean readOnly,
+            boolean viewLocked, IOService ioService, RepositoryDescriptor descriptor) {
+        
     }
 }

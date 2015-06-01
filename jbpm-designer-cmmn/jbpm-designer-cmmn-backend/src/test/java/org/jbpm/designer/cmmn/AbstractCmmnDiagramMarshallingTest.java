@@ -122,7 +122,9 @@ public class AbstractCmmnDiagramMarshallingTest {
         XMLResource outputResource = marshaller.getResource(json, "");
         Set<EClassifier> ignore =new HashSet<EClassifier>();
         ignore.add(CMMNPackage.eINSTANCE.getTApplicabilityRule());
-        new GenericEcoreComparator(inputResource, outputResource,ignore).validate();
+        GenericEcoreComparator comp = new GenericEcoreComparator(inputResource, outputResource,ignore);
+        comp.setDebugInfo(json, profile);
+        comp.validate();
     }
 
     protected String buildXmlString(CMMNResourceImpl resource) throws IOException {

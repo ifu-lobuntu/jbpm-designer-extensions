@@ -2,6 +2,7 @@
  */
 package org.omg.cmmn.impl;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -11,52 +12,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-import org.omg.cmmn.CMMNFactory;
-import org.omg.cmmn.CMMNPackage;
-import org.omg.cmmn.CaseFileItemTransition;
-import org.omg.cmmn.DefinitionTypeEnumMember1;
-import org.omg.cmmn.DocumentRoot;
-import org.omg.cmmn.MultiplicityEnum;
-import org.omg.cmmn.PlanItemTransition;
-import org.omg.cmmn.ProcessTypeEnumMember1;
-import org.omg.cmmn.TApplicabilityRule;
-import org.omg.cmmn.TCase;
-import org.omg.cmmn.TCaseFile;
-import org.omg.cmmn.TCaseFileItem;
-import org.omg.cmmn.TCaseFileItemDefinition;
-import org.omg.cmmn.TCaseFileItemOnPart;
-import org.omg.cmmn.TCaseFileItemStartTrigger;
-import org.omg.cmmn.TCaseParameter;
-import org.omg.cmmn.TCaseTask;
-import org.omg.cmmn.TChildren;
-import org.omg.cmmn.TDefinitions;
-import org.omg.cmmn.TDiscretionaryItem;
-import org.omg.cmmn.TEvent;
-import org.omg.cmmn.TExpression;
-import org.omg.cmmn.THumanTask;
-import org.omg.cmmn.TIfPart;
-import org.omg.cmmn.TImport;
-import org.omg.cmmn.TManualActivationRule;
-import org.omg.cmmn.TMilestone;
-import org.omg.cmmn.TParameterMapping;
-import org.omg.cmmn.TPlanFragment;
-import org.omg.cmmn.TPlanItem;
-import org.omg.cmmn.TPlanItemControl;
-import org.omg.cmmn.TPlanItemOnPart;
-import org.omg.cmmn.TPlanItemStartTrigger;
-import org.omg.cmmn.TPlanningTable;
-import org.omg.cmmn.TProcess;
-import org.omg.cmmn.TProcessParameter;
-import org.omg.cmmn.TProcessTask;
-import org.omg.cmmn.TProperty;
-import org.omg.cmmn.TRepetitionRule;
-import org.omg.cmmn.TRequiredRule;
-import org.omg.cmmn.TRole;
-import org.omg.cmmn.TSentry;
-import org.omg.cmmn.TStage;
-import org.omg.cmmn.TTask;
-import org.omg.cmmn.TTimerEvent;
-import org.omg.cmmn.TUserEvent;
+import org.omg.cmmn.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -156,8 +112,8 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
         switch (eDataType.getClassifierID()) {
             case CMMNPackage.CASE_FILE_ITEM_TRANSITION:
                 return createCaseFileItemTransitionFromString(eDataType, initialValue);
-            case CMMNPackage.DEFINITION_TYPE_ENUM_MEMBER1:
-                return createDefinitionTypeEnumMember1FromString(eDataType, initialValue);
+            case CMMNPackage.DEFINITION_TYPE:
+                return createDefinitionTypeFromString(eDataType, initialValue);
             case CMMNPackage.MULTIPLICITY_ENUM:
                 return createMultiplicityEnumFromString(eDataType, initialValue);
             case CMMNPackage.PLAN_ITEM_TRANSITION:
@@ -166,10 +122,10 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
                 return createProcessTypeEnumMember1FromString(eDataType, initialValue);
             case CMMNPackage.CASE_FILE_ITEM_TRANSITION_OBJECT:
                 return createCaseFileItemTransitionObjectFromString(eDataType, initialValue);
-            case CMMNPackage.DEFINITION_TYPE_ENUM:
-                return createDefinitionTypeEnumFromString(eDataType, initialValue);
-            case CMMNPackage.DEFINITION_TYPE_ENUM_MEMBER1_OBJECT:
-                return createDefinitionTypeEnumMember1ObjectFromString(eDataType, initialValue);
+            case CMMNPackage.DEFINITION_TYPE_ENUM_OBJECT:
+                return createDefinitionTypeEnumObjectFromString(eDataType, initialValue);
+            case CMMNPackage.DEFINITION_TYPE_OBJECT:
+                return createDefinitionTypeObjectFromString(eDataType, initialValue);
             case CMMNPackage.MULTIPLICITY_ENUM_OBJECT:
                 return createMultiplicityEnumObjectFromString(eDataType, initialValue);
             case CMMNPackage.PLAN_ITEM_TRANSITION_OBJECT:
@@ -193,8 +149,8 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
         switch (eDataType.getClassifierID()) {
             case CMMNPackage.CASE_FILE_ITEM_TRANSITION:
                 return convertCaseFileItemTransitionToString(eDataType, instanceValue);
-            case CMMNPackage.DEFINITION_TYPE_ENUM_MEMBER1:
-                return convertDefinitionTypeEnumMember1ToString(eDataType, instanceValue);
+            case CMMNPackage.DEFINITION_TYPE:
+                return convertDefinitionTypeToString(eDataType, instanceValue);
             case CMMNPackage.MULTIPLICITY_ENUM:
                 return convertMultiplicityEnumToString(eDataType, instanceValue);
             case CMMNPackage.PLAN_ITEM_TRANSITION:
@@ -203,10 +159,10 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
                 return convertProcessTypeEnumMember1ToString(eDataType, instanceValue);
             case CMMNPackage.CASE_FILE_ITEM_TRANSITION_OBJECT:
                 return convertCaseFileItemTransitionObjectToString(eDataType, instanceValue);
-            case CMMNPackage.DEFINITION_TYPE_ENUM:
-                return convertDefinitionTypeEnumToString(eDataType, instanceValue);
-            case CMMNPackage.DEFINITION_TYPE_ENUM_MEMBER1_OBJECT:
-                return convertDefinitionTypeEnumMember1ObjectToString(eDataType, instanceValue);
+            case CMMNPackage.DEFINITION_TYPE_ENUM_OBJECT:
+                return convertDefinitionTypeEnumObjectToString(eDataType, instanceValue);
+            case CMMNPackage.DEFINITION_TYPE_OBJECT:
+                return convertDefinitionTypeObjectToString(eDataType, instanceValue);
             case CMMNPackage.MULTIPLICITY_ENUM_OBJECT:
                 return convertMultiplicityEnumObjectToString(eDataType, instanceValue);
             case CMMNPackage.PLAN_ITEM_TRANSITION_OBJECT:
@@ -635,8 +591,8 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public DefinitionTypeEnumMember1 createDefinitionTypeEnumMember1FromString(EDataType eDataType, String initialValue) {
-        DefinitionTypeEnumMember1 result = DefinitionTypeEnumMember1.get(initialValue);
+    public DefinitionType createDefinitionTypeFromString(EDataType eDataType, String initialValue) {
+        DefinitionType result = DefinitionType.get(initialValue);
         if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
@@ -646,7 +602,7 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertDefinitionTypeEnumMember1ToString(EDataType eDataType, Object instanceValue) {
+    public String convertDefinitionTypeToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }
 
@@ -733,21 +689,12 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object createDefinitionTypeEnumFromString(EDataType eDataType, String initialValue) {
+    public Enumerator createDefinitionTypeEnumObjectFromString(EDataType eDataType, String initialValue) {
         if (initialValue == null) return null;
-        Object result = null;
+        Enumerator result = null;
         RuntimeException exception = null;
         try {
-            result = XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.ANY_URI, initialValue);
-            if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
-                return result;
-            }
-        }
-        catch (RuntimeException e) {
-            exception = e;
-        }
-        try {
-            result = createDefinitionTypeEnumMember1FromString(CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1, initialValue);
+            result = (Enumerator)XMLTypeFactory.eINSTANCE.createFromString(XMLTypePackage.Literals.ANY_URI, initialValue);
             if (result != null && Diagnostician.INSTANCE.validate(eDataType, result, null, null)) {
                 return result;
             }
@@ -765,20 +712,11 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertDefinitionTypeEnumToString(EDataType eDataType, Object instanceValue) {
+    public String convertDefinitionTypeEnumObjectToString(EDataType eDataType, Object instanceValue) {
         if (instanceValue == null) return null;
         if (XMLTypePackage.Literals.ANY_URI.isInstance(instanceValue)) {
             try {
                 String value = XMLTypeFactory.eINSTANCE.convertToString(XMLTypePackage.Literals.ANY_URI, instanceValue);
-                if (value != null) return value;
-            }
-            catch (Exception e) {
-                // Keep trying other member types until all have failed.
-            }
-        }
-        if (CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1.isInstance(instanceValue)) {
-            try {
-                String value = convertDefinitionTypeEnumMember1ToString(CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1, instanceValue);
                 if (value != null) return value;
             }
             catch (Exception e) {
@@ -793,8 +731,8 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public DefinitionTypeEnumMember1 createDefinitionTypeEnumMember1ObjectFromString(EDataType eDataType, String initialValue) {
-        return createDefinitionTypeEnumMember1FromString(CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1, initialValue);
+    public Enumerator createDefinitionTypeObjectFromString(EDataType eDataType, String initialValue) {
+        return (Enumerator)super.createFromString(eDataType, initialValue);
     }
 
     /**
@@ -802,8 +740,8 @@ public class CMMNFactoryImpl extends EFactoryImpl implements CMMNFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertDefinitionTypeEnumMember1ObjectToString(EDataType eDataType, Object instanceValue) {
-        return convertDefinitionTypeEnumMember1ToString(CMMNPackage.Literals.DEFINITION_TYPE_ENUM_MEMBER1, instanceValue);
+    public String convertDefinitionTypeObjectToString(EDataType eDataType, Object instanceValue) {
+        return super.convertToString(eDataType, instanceValue);
     }
 
     /**

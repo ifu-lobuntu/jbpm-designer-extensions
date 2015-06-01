@@ -44,6 +44,7 @@ public class CMMNResourceImpl extends XMLResourceImpl {
         referrables.add(CMMNPackage.eINSTANCE.getTDefinitions());
         referrables.add(CMMNPackage.eINSTANCE.getTDiscretionaryItem());
         referrables.add(CMMNPackage.eINSTANCE.getTHumanTask());
+        referrables.add(CMMNPackage.eINSTANCE.getTImport());
         referrables.add(CMMNPackage.eINSTANCE.getTPlanFragment());
         referrables.add(CMMNPackage.eINSTANCE.getTPlanItem());
         referrables.add(CMMNPackage.eINSTANCE.getTPlanItemOnPart());

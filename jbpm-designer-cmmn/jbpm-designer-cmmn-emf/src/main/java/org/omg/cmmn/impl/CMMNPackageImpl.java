@@ -2,6 +2,7 @@
  */
 package org.omg.cmmn.impl;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -17,7 +18,7 @@ import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
 import org.omg.cmmn.CMMNFactory;
 import org.omg.cmmn.CMMNPackage;
 import org.omg.cmmn.CaseFileItemTransition;
-import org.omg.cmmn.DefinitionTypeEnumMember1;
+import org.omg.cmmn.DefinitionType;
 import org.omg.cmmn.DocumentRoot;
 import org.omg.cmmn.MultiplicityEnum;
 import org.omg.cmmn.PlanItemTransition;
@@ -410,7 +411,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EEnum definitionTypeEnumMember1EEnum = null;
+    private EEnum definitionTypeEEnum = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -445,14 +446,14 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EDataType definitionTypeEnumEDataType = null;
+    private EDataType definitionTypeEnumObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private EDataType definitionTypeEnumMember1ObjectEDataType = null;
+    private EDataType definitionTypeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -1178,8 +1179,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getTCaseFileItemDefinition_ImportRef() {
-        return (EAttribute)tCaseFileItemDefinitionEClass.getEStructuralFeatures().get(2);
+    public EReference getTCaseFileItemDefinition_ImportRef() {
+        return (EReference)tCaseFileItemDefinitionEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -1304,8 +1305,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getTCaseTask_CaseRef() {
-        return (EReference)tCaseTaskEClass.getEStructuralFeatures().get(1);
+    public EAttribute getTCaseTask_CaseRef() {
+        return (EAttribute)tCaseTaskEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -1711,6 +1712,15 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      */
     public EAttribute getTImport_Namespace() {
         return (EAttribute)tImportEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTImport_Id() {
+        return (EAttribute)tImportEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -2141,8 +2151,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getTProcessTask_ProcessRef() {
-        return (EReference)tProcessTaskEClass.getEStructuralFeatures().get(1);
+    public EAttribute getTProcessTask_ProcessRef() {
+        return (EAttribute)tProcessTaskEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -2492,8 +2502,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EEnum getDefinitionTypeEnumMember1() {
-        return definitionTypeEnumMember1EEnum;
+    public EEnum getDefinitionType() {
+        return definitionTypeEEnum;
     }
 
     /**
@@ -2537,8 +2547,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EDataType getDefinitionTypeEnum() {
-        return definitionTypeEnumEDataType;
+    public EDataType getDefinitionTypeEnumObject() {
+        return definitionTypeEnumObjectEDataType;
     }
 
     /**
@@ -2546,8 +2556,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EDataType getDefinitionTypeEnumMember1Object() {
-        return definitionTypeEnumMember1ObjectEDataType;
+    public EDataType getDefinitionTypeObject() {
+        return definitionTypeObjectEDataType;
     }
 
     /**
@@ -2687,7 +2697,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
         tCaseFileItemDefinitionEClass = createEClass(TCASE_FILE_ITEM_DEFINITION);
         createEReference(tCaseFileItemDefinitionEClass, TCASE_FILE_ITEM_DEFINITION__PROPERTY);
         createEAttribute(tCaseFileItemDefinitionEClass, TCASE_FILE_ITEM_DEFINITION__DEFINITION_TYPE);
-        createEAttribute(tCaseFileItemDefinitionEClass, TCASE_FILE_ITEM_DEFINITION__IMPORT_REF);
+        createEReference(tCaseFileItemDefinitionEClass, TCASE_FILE_ITEM_DEFINITION__IMPORT_REF);
         createEAttribute(tCaseFileItemDefinitionEClass, TCASE_FILE_ITEM_DEFINITION__NAME);
         createEAttribute(tCaseFileItemDefinitionEClass, TCASE_FILE_ITEM_DEFINITION__STRUCTURE_REF);
 
@@ -2705,7 +2715,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         tCaseTaskEClass = createEClass(TCASE_TASK);
         createEReference(tCaseTaskEClass, TCASE_TASK__PARAMETER_MAPPING);
-        createEReference(tCaseTaskEClass, TCASE_TASK__CASE_REF);
+        createEAttribute(tCaseTaskEClass, TCASE_TASK__CASE_REF);
 
         tChildrenEClass = createEClass(TCHILDREN);
         createEReference(tChildrenEClass, TCHILDREN__CASE_FILE_ITEM);
@@ -2761,6 +2771,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
         createEAttribute(tImportEClass, TIMPORT__IMPORT_TYPE);
         createEAttribute(tImportEClass, TIMPORT__LOCATION);
         createEAttribute(tImportEClass, TIMPORT__NAMESPACE);
+        createEAttribute(tImportEClass, TIMPORT__ID);
 
         tManualActivationRuleEClass = createEClass(TMANUAL_ACTIVATION_RULE);
         createEReference(tManualActivationRuleEClass, TMANUAL_ACTIVATION_RULE__CONDITION);
@@ -2823,7 +2834,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         tProcessTaskEClass = createEClass(TPROCESS_TASK);
         createEReference(tProcessTaskEClass, TPROCESS_TASK__PARAMETER_MAPPING);
-        createEReference(tProcessTaskEClass, TPROCESS_TASK__PROCESS_REF);
+        createEAttribute(tProcessTaskEClass, TPROCESS_TASK__PROCESS_REF);
 
         tPropertyEClass = createEClass(TPROPERTY);
         createEAttribute(tPropertyEClass, TPROPERTY__NAME);
@@ -2875,15 +2886,15 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         // Create enums
         caseFileItemTransitionEEnum = createEEnum(CASE_FILE_ITEM_TRANSITION);
-        definitionTypeEnumMember1EEnum = createEEnum(DEFINITION_TYPE_ENUM_MEMBER1);
+        definitionTypeEEnum = createEEnum(DEFINITION_TYPE);
         multiplicityEnumEEnum = createEEnum(MULTIPLICITY_ENUM);
         planItemTransitionEEnum = createEEnum(PLAN_ITEM_TRANSITION);
         processTypeEnumMember1EEnum = createEEnum(PROCESS_TYPE_ENUM_MEMBER1);
 
         // Create data types
         caseFileItemTransitionObjectEDataType = createEDataType(CASE_FILE_ITEM_TRANSITION_OBJECT);
-        definitionTypeEnumEDataType = createEDataType(DEFINITION_TYPE_ENUM);
-        definitionTypeEnumMember1ObjectEDataType = createEDataType(DEFINITION_TYPE_ENUM_MEMBER1_OBJECT);
+        definitionTypeEnumObjectEDataType = createEDataType(DEFINITION_TYPE_ENUM_OBJECT);
+        definitionTypeObjectEDataType = createEDataType(DEFINITION_TYPE_OBJECT);
         multiplicityEnumObjectEDataType = createEDataType(MULTIPLICITY_ENUM_OBJECT);
         planItemTransitionObjectEDataType = createEDataType(PLAN_ITEM_TRANSITION_OBJECT);
         processTypeEnumEDataType = createEDataType(PROCESS_TYPE_ENUM);
@@ -3037,8 +3048,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tCaseFileItemDefinitionEClass, TCaseFileItemDefinition.class, "TCaseFileItemDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCaseFileItemDefinition_Property(), this.getTProperty(), null, "property", null, 0, -1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getTCaseFileItemDefinition_DefinitionType(), this.getDefinitionTypeEnum(), "definitionType", "http://www.omg.org/spec/CMMN/DefinitionType/Unspecified", 0, 1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getTCaseFileItemDefinition_ImportRef(), theXMLTypePackage.getQName(), "importRef", null, 0, 1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTCaseFileItemDefinition_DefinitionType(), this.getDefinitionType(), "definitionType", "http://www.omg.org/spec/CMMN/DefinitionType/Unspecified", 0, 1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTCaseFileItemDefinition_ImportRef(), this.getTImport(), null, "importRef", null, 0, 1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTCaseFileItemDefinition_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTCaseFileItemDefinition_StructureRef(), theXMLTypePackage.getQName(), "structureRef", null, 0, 1, TCaseFileItemDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -3056,7 +3067,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tCaseTaskEClass, TCaseTask.class, "TCaseTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTCaseTask_ParameterMapping(), this.getTParameterMapping(), null, "parameterMapping", null, 0, -1, TCaseTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTCaseTask_CaseRef(), this.getTCase(), null, "caseRef", null, 0, 1, TCaseTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTCaseTask_CaseRef(), theXMLTypePackage.getQName(), "caseRef", null, 0, 1, TCaseTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tChildrenEClass, TChildren.class, "TChildren", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTChildren_CaseFileItem(), this.getTCaseFileItem(), null, "caseFileItem", null, 0, -1, TChildren.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3112,6 +3123,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
         initEAttribute(getTImport_ImportType(), theXMLTypePackage.getAnyURI(), "importType", null, 1, 1, TImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTImport_Location(), theXMLTypePackage.getString(), "location", null, 1, 1, TImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTImport_Namespace(), theXMLTypePackage.getAnyURI(), "namespace", null, 0, 1, TImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTImport_Id(), ecorePackage.getEString(), "id", null, 0, 1, TImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tManualActivationRuleEClass, TManualActivationRule.class, "TManualActivationRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTManualActivationRule_Condition(), this.getTExpression(), null, "condition", null, 0, 1, TManualActivationRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3127,8 +3139,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tParameterMappingEClass, TParameterMapping.class, "TParameterMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTParameterMapping_Transformation(), this.getTExpression(), null, "transformation", null, 0, 1, TParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTParameterMapping_SourceRef(), this.getTParameter(), null, "sourceRef", null, 0, 1, TParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTParameterMapping_TargetRef(), this.getTParameter(), null, "targetRef", null, 0, 1, TParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTParameterMapping_SourceRef(), this.getTParameter(), null, "sourceRef", null, 0, 1, TParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTParameterMapping_TargetRef(), this.getTParameter(), null, "targetRef", null, 0, 1, TParameterMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tPlanFragmentEClass, TPlanFragment.class, "TPlanFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTPlanFragment_PlanItem(), this.getTPlanItem(), null, "planItem", null, 0, -1, TPlanFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3174,7 +3186,7 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         initEClass(tProcessTaskEClass, TProcessTask.class, "TProcessTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getTProcessTask_ParameterMapping(), this.getTParameterMapping(), null, "parameterMapping", null, 0, -1, TProcessTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTProcessTask_ProcessRef(), this.getTProcess(), null, "processRef", null, 0, 1, TProcessTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getTProcessTask_ProcessRef(), theXMLTypePackage.getQName(), "processRef", null, 0, 1, TProcessTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tPropertyEClass, TProperty.class, "TProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTProperty_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, TProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3235,17 +3247,17 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
         addEEnumLiteral(caseFileItemTransitionEEnum, CaseFileItemTransition.REPLACE);
         addEEnumLiteral(caseFileItemTransitionEEnum, CaseFileItemTransition.UPDATE);
 
-        initEEnum(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.class, "DefinitionTypeEnumMember1");
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_CMIS_FOLDER);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_CMIS_DOCUMENT);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_CMIS_RELATIONSHIP);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_XSD_ELEMENT);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_XSD_COMPLEX_TYPE);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_XSD_SIMPLE_TYPE);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_WSDL_MESSAGE);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_UML_CLASS);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_UNKNOWN);
-        addEEnumLiteral(definitionTypeEnumMember1EEnum, DefinitionTypeEnumMember1.HTTP_WWW_OMG_ORG_SPEC_CMMN_DEFINITION_TYPE_UNSPECIFIED);
+        initEEnum(definitionTypeEEnum, DefinitionType.class, "DefinitionType");
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.CMIS_FOLDER);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.CMIS_DOCUMENT);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.CMIS_RELATIONSHIP);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.XSD_ELEMENT);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.XSD_COMPLEX_TYPE);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.XSD_SIMPLE_TYPE);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.WSDL_MESSAGE);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.UML_CLASS);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.UNKNOWN);
+        addEEnumLiteral(definitionTypeEEnum, DefinitionType.UNSPECIFIED);
 
         initEEnum(multiplicityEnumEEnum, MultiplicityEnum.class, "MultiplicityEnum");
         addEEnumLiteral(multiplicityEnumEEnum, MultiplicityEnum.ZERO_OR_ONE);
@@ -3284,8 +3296,8 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
 
         // Initialize data types
         initEDataType(caseFileItemTransitionObjectEDataType, CaseFileItemTransition.class, "CaseFileItemTransitionObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
-        initEDataType(definitionTypeEnumEDataType, Object.class, "DefinitionTypeEnum", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-        initEDataType(definitionTypeEnumMember1ObjectEDataType, DefinitionTypeEnumMember1.class, "DefinitionTypeEnumMember1Object", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(definitionTypeEnumObjectEDataType, Enumerator.class, "DefinitionTypeEnumObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+        initEDataType(definitionTypeObjectEDataType, Enumerator.class, "DefinitionTypeObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
         initEDataType(multiplicityEnumObjectEDataType, MultiplicityEnum.class, "MultiplicityEnumObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
         initEDataType(planItemTransitionObjectEDataType, PlanItemTransition.class, "PlanItemTransitionObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS);
         initEDataType(processTypeEnumEDataType, Object.class, "ProcessTypeEnum", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -3321,20 +3333,20 @@ public class CMMNPackageImpl extends EPackageImpl implements CMMNPackage {
              "baseType", "CaseFileItemTransition"
            });	
         addAnnotation
-          (definitionTypeEnumEDataType, 
+          (definitionTypeEnumObjectEDataType, 
            source, 
            new String[] {
-             "name", "DefinitionTypeEnum",
+             "name", "DefinitionTypeEnumObject",
              "memberTypes", "http://www.eclipse.org/emf/2003/XMLType#anyURI DefinitionTypeEnum_._member_._1"
            });	
         addAnnotation
-          (definitionTypeEnumMember1EEnum, 
+          (definitionTypeEEnum, 
            source, 
            new String[] {
-             "name", "DefinitionTypeEnum_._member_._1"
+             "name", "DefinitionType"
            });	
         addAnnotation
-          (definitionTypeEnumMember1ObjectEDataType, 
+          (definitionTypeObjectEDataType, 
            source, 
            new String[] {
              "name", "DefinitionTypeEnum_._member_._1:Object",

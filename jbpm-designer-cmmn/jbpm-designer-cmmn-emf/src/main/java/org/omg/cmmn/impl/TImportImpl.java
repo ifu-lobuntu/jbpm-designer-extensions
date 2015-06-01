@@ -19,6 +19,7 @@ import org.omg.cmmn.TImport;
  *   <li>{@link org.omg.cmmn.impl.TImportImpl#getImportType <em>Import Type</em>}</li>
  *   <li>{@link org.omg.cmmn.impl.TImportImpl#getLocation <em>Location</em>}</li>
  *   <li>{@link org.omg.cmmn.impl.TImportImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.omg.cmmn.impl.TImportImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +85,26 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
      * @ordered
      */
     protected String namespace = NAMESPACE_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    protected static final String ID_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    protected String id = ID_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -172,6 +193,27 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
      * <!-- end-user-doc -->
      * @generated
      */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setId(String newId) {
+        String oldId = id;
+        id = newId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, CMMNPackage.TIMPORT__ID, oldId, id));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -181,6 +223,8 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
                 return getLocation();
             case CMMNPackage.TIMPORT__NAMESPACE:
                 return getNamespace();
+            case CMMNPackage.TIMPORT__ID:
+                return getId();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -201,6 +245,9 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
                 return;
             case CMMNPackage.TIMPORT__NAMESPACE:
                 setNamespace((String)newValue);
+                return;
+            case CMMNPackage.TIMPORT__ID:
+                setId((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -223,6 +270,9 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
             case CMMNPackage.TIMPORT__NAMESPACE:
                 setNamespace(NAMESPACE_EDEFAULT);
                 return;
+            case CMMNPackage.TIMPORT__ID:
+                setId(ID_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -241,6 +291,8 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
                 return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
             case CMMNPackage.TIMPORT__NAMESPACE:
                 return NAMESPACE_EDEFAULT == null ? namespace != null : !NAMESPACE_EDEFAULT.equals(namespace);
+            case CMMNPackage.TIMPORT__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
         }
         return super.eIsSet(featureID);
     }
@@ -261,6 +313,8 @@ public class TImportImpl extends MinimalEObjectImpl.Container implements TImport
         result.append(location);
         result.append(", namespace: ");
         result.append(namespace);
+        result.append(", id: ");
+        result.append(id);
         result.append(')');
         return result.toString();
     }

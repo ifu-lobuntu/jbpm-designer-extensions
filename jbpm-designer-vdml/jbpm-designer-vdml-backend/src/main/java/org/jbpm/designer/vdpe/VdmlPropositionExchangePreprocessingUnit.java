@@ -18,10 +18,10 @@ public class VdmlPropositionExchangePreprocessingUnit implements IDiagramPreproc
     public VdmlPropositionExchangePreprocessingUnit(ServletContext servletContext, VFSService vfsService) {
 
     }
-	@Override
+    @Override
     public void preprocess(HttpServletRequest request, HttpServletResponse response, IDiagramProfile profile, ServletContext serlvetContext, boolean readOnly,
-            IOService ioService, RepositoryDescriptor descriptor) {
-
+            boolean viewLocked, IOService ioService, RepositoryDescriptor descriptor) {
+        
     }
 
 	@Override

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cmmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmmn="http://www.omg.org/spec/CMMN/20131201/MODEL" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20131201/DI">
-	xmlns:cmmn="http://www.omg.org/spec/CMMN/20131201/MODEL" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20131201/DI" id="_8v7bILJvEeSsAbolkFjXoQ" targetNamespace="http://asdf.com/">
+<cmmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cmmn="http://www.omg.org/spec/CMMN/20131201/MODEL" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20131201/DI" targetNamespace="http://www.calledcase.com/">
 	<cmmn:caseFileItemDefinition description="Desc" id="_8v7bIbJvEeSsAbolkFjXoQ" name="MyChildCaseFileItemDefinition" />
 	<cmmn:case id="MyCalledCase" name="MyCalledCase">
 		<cmmn:caseFileModel>

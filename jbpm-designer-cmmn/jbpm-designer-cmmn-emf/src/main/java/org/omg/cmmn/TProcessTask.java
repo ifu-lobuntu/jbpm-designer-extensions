@@ -2,6 +2,7 @@
  */
 package org.omg.cmmn;
 
+import javax.xml.namespace.QName;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -46,7 +47,7 @@ public interface TProcessTask extends TTask {
     EList<TParameterMapping> getParameterMapping();
 
     /**
-     * Returns the value of the '<em><b>Process Ref</b></em>' reference.
+     * Returns the value of the '<em><b>Process Ref</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
@@ -55,23 +56,23 @@ public interface TProcessTask extends TTask {
      *               be imported via some other file.
      *             
      * <!-- end-model-doc -->
-     * @return the value of the '<em>Process Ref</em>' reference.
-     * @see #setProcessRef(TProcess)
+     * @return the value of the '<em>Process Ref</em>' attribute.
+     * @see #setProcessRef(QName)
      * @see org.omg.cmmn.CMMNPackage#getTProcessTask_ProcessRef()
-     * @model resolveProxies="false"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.QName"
      *        extendedMetaData="kind='attribute' name='processRef'"
      * @generated
      */
-    TProcess getProcessRef();
+    QName getProcessRef();
 
     /**
-     * Sets the value of the '{@link org.omg.cmmn.TProcessTask#getProcessRef <em>Process Ref</em>}' reference.
+     * Sets the value of the '{@link org.omg.cmmn.TProcessTask#getProcessRef <em>Process Ref</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Process Ref</em>' reference.
+     * @param value the new value of the '<em>Process Ref</em>' attribute.
      * @see #getProcessRef()
      * @generated
      */
-    void setProcessRef(TProcess value);
+    void setProcessRef(QName value);
 
 } // TProcessTask

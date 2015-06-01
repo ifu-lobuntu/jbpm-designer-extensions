@@ -3,7 +3,6 @@ package org.jbpm.designer.extensions.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Collections;
@@ -32,8 +31,6 @@ import org.eclipse.bpmn2.Definitions;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ArchiveURIHandlerImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jboss.errai.security.shared.api.identity.User;
@@ -107,10 +104,11 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
     protected abstract ResourceTypeDefinition getResourceTypeDefinition();
 
     @Override
-    public String getModelStub() {
+    public String getModelStub(Path path) {
+        URI uri = EMFVFSURIConverter.toPlatformResourceURI(path);
         ResourceSetImpl rst = new ResourceSetImpl();
         prepareResourceSet(rst);
-        XMLResource rs = (XMLResource) rst.createResource(URI.createURI("file:///dummy." + getSerializedModelExtension()));
+        XMLResource rs = (XMLResource) rst.createResource(uri);
         populateModelStub(rs);
         StringWriter sw = new StringWriter();
         try {

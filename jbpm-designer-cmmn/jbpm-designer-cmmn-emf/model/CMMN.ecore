@@ -23,31 +23,28 @@
       <details key="baseType" value="CaseFileItemTransition"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="DefinitionTypeEnum" instanceClassName="java.lang.Object">
+  <eClassifiers xsi:type="ecore:EDataType" name="DefinitionTypeEnumObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="DefinitionTypeEnum"/>
+      <details key="name" value="DefinitionTypeEnumObject"/>
       <details key="memberTypes" value="http://www.eclipse.org/emf/2003/XMLType#anyURI DefinitionTypeEnum_._member_._1"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="DefinitionTypeEnumMember1">
+  <eClassifiers xsi:type="ecore:EEnum" name="DefinitionType">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="DefinitionTypeEnum_._member_._1"/>
+      <details key="name" value="DefinitionType"/>
     </eAnnotations>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeCMISFolder" literal="http://www.omg.org/spec/CMMN/DefinitionType/CMISFolder"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeCMISDocument" value="1" literal="http://www.omg.org/spec/CMMN/DefinitionType/CMISDocument"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeCMISRelationship" value="2"
-        literal="http://www.omg.org/spec/CMMN/DefinitionType/CMISRelationship"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeXSDElement" value="3" literal="http://www.omg.org/spec/CMMN/DefinitionType/XSDElement"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeXSDComplexType" value="4"
-        literal="http://www.omg.org/spec/CMMN/DefinitionType/XSDComplexType"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeXSDSimpleType" value="5" literal="http://www.omg.org/spec/CMMN/DefinitionType/XSDSimpleType"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeWSDLMessage" value="6" literal="http://www.omg.org/spec/CMMN/DefinitionType/WSDLMessage"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeUMLClass" value="7" literal="http://www.omg.org/spec/CMMN/DefinitionType/UMLClass"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeUnknown" value="8" literal="http://www.omg.org/spec/CMMN/DefinitionType/Unknown"/>
-    <eLiterals name="httpWwwOmgOrgSpecCMMNDefinitionTypeUnspecified" value="9" literal="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified"/>
+    <eLiterals name="CMISFolder" literal="http://www.omg.org/spec/CMMN/DefinitionType/CMISFolder"/>
+    <eLiterals name="CMISDocument" value="1" literal="http://www.omg.org/spec/CMMN/DefinitionType/CMISDocument"/>
+    <eLiterals name="CMISRelationship" value="2" literal="http://www.omg.org/spec/CMMN/DefinitionType/CMISRelationship"/>
+    <eLiterals name="XSDElement" value="3" literal="http://www.omg.org/spec/CMMN/DefinitionType/XSDElement"/>
+    <eLiterals name="XSDComplexType" value="4" literal="http://www.omg.org/spec/CMMN/DefinitionType/XSDComplexType"/>
+    <eLiterals name="XSDSimpleType" value="5" literal="http://www.omg.org/spec/CMMN/DefinitionType/XSDSimpleType"/>
+    <eLiterals name="WSDLMessage" value="6" literal="http://www.omg.org/spec/CMMN/DefinitionType/WSDLMessage"/>
+    <eLiterals name="UMLClass" value="7" literal="http://www.omg.org/spec/CMMN/DefinitionType/UMLClass"/>
+    <eLiterals name="Unknown" value="8" literal="http://www.omg.org/spec/CMMN/DefinitionType/Unknown"/>
+    <eLiterals name="Unspecified" value="9" literal="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="DefinitionTypeEnumMember1Object"
-      instanceClassName="org.eclipse.emf.common.util.Enumerator">
+  <eClassifiers xsi:type="ecore:EDataType" name="DefinitionTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="DefinitionTypeEnum_._member_._1:Object"/>
       <details key="baseType" value="DefinitionTypeEnum_._member_._1"/>
@@ -781,7 +778,7 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="definitionType" eType="#//DefinitionTypeEnum"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="definitionType" eType="#//DefinitionType"
         defaultValueLiteral="http://www.omg.org/spec/CMMN/DefinitionType/Unspecified"
         unsettable="true">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -789,7 +786,8 @@
         <details key="name" value="definitionType"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="importRef" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//QName">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importRef" eType="#//TImport"
+        resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;              importRef refers an &quot;import&quot; element under &quot;definitions&quot;&#xA;            "/>
       </eAnnotations>
@@ -902,7 +900,7 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="caseRef" eType="#//TCase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="caseRef" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//QName">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;              caseRef refers a &quot;case&quot; element which is re-usable and can&#xA;              be imported via some other file.&#xA;            "/>
       </eAnnotations>
@@ -1260,6 +1258,8 @@
         <details key="name" value="namespace"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TManualActivationRule" eSuperTypes="#//TCmmnElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1331,7 +1331,8 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRef" eType="#//TParameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceRef" eType="#//TParameter"
+        resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;              sourceRef refers a &quot;parameter&quot; element&#xA;            "/>
       </eAnnotations>
@@ -1340,7 +1341,8 @@
         <details key="name" value="sourceRef"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetRef" eType="#//TParameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetRef" eType="#//TParameter"
+        resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;              targetRef refers a &quot;parameter&quot; element&#xA;            "/>
       </eAnnotations>
@@ -1642,8 +1644,7 @@
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="processRef" eType="#//TProcess"
-        resolveProxies="false">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processRef" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//QName">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="&#xA;              processRef refers a &quot;process&quot; element which is re-usable and can&#xA;              be imported via some other file.&#xA;            "/>
       </eAnnotations>

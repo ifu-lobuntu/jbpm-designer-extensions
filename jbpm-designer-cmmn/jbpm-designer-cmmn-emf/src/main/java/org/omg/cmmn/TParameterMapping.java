@@ -62,7 +62,8 @@ public interface TParameterMapping extends TCmmnElement {
      * @return the value of the '<em>Source Ref</em>' reference.
      * @see #setSourceRef(TParameter)
      * @see org.omg.cmmn.CMMNPackage#getTParameterMapping_SourceRef()
-     * @model extendedMetaData="kind='attribute' name='sourceRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='sourceRef'"
      * @generated
      */
     TParameter getSourceRef();
@@ -89,7 +90,8 @@ public interface TParameterMapping extends TCmmnElement {
      * @return the value of the '<em>Target Ref</em>' reference.
      * @see #setTargetRef(TParameter)
      * @see org.omg.cmmn.CMMNPackage#getTParameterMapping_TargetRef()
-     * @model extendedMetaData="kind='attribute' name='targetRef'"
+     * @model resolveProxies="false"
+     *        extendedMetaData="kind='attribute' name='targetRef'"
      * @generated
      */
     TParameter getTargetRef();

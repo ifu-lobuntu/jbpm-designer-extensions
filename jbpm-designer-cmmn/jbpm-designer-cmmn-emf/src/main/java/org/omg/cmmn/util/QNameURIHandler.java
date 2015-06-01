@@ -83,6 +83,10 @@ public class QNameURIHandler extends URIHandlerImpl {
                 return URI.createURI(prefix + ":" + fragment);
             }
         }
-        return super.deresolve(uri);
+        if(uri.trimFragment().equals(super.baseURI.trimFragment())){
+            //same file
+            return super.deresolve(uri);
+        }
+        return uri;//Let's not deresolve at all
     }
 }
