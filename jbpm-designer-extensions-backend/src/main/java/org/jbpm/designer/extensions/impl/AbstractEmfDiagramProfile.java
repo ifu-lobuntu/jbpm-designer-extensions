@@ -382,31 +382,33 @@ public abstract class AbstractEmfDiagramProfile extends AbstractEmfProfile imple
             String[] split = targetProfileName.split("\\|");
             for (String otherProfileName : split) {
                 IEmfProfile targetProfile = getOtherProfile(otherProfileName);
-                String assetContent = UriUtils.decode(Utils.getEncodedParam(req, "json"));
-                String assetId = Utils.getEncodedParam(req, "assetid");
-                if (!(isEmpty(assetId) || isEmpty(assetContent))) {
-                    XMLResource res = (XMLResource) createMarshaller(EMFVFSURIConverter.toPlatformResourceURI(assetId)).getResource(assetContent, "");
-                    String sourceElementId = req.getParameter("sourceElementId");
-                    req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_RESOURCE, res);
-                    if (!isEmpty(sourceElementId)) {
-                        for (Resource resource : res.getResourceSet().getResources()) {
-                            EObject sourceElement = resource.getEObject(sourceElementId);
-                            if (sourceElement != null) {
-                                req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, sourceElement);
-                                break;
+                if(targetProfile!=null) {
+                    String assetContent = UriUtils.decode(Utils.getEncodedParam(req, "json"));
+                    String assetId = Utils.getEncodedParam(req, "assetid");
+                    if (!(isEmpty(assetId) || isEmpty(assetContent))) {
+                        XMLResource res = (XMLResource) createMarshaller(EMFVFSURIConverter.toPlatformResourceURI(assetId)).getResource(assetContent, "");
+                        String sourceElementId = req.getParameter("sourceElementId");
+                        req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_RESOURCE, res);
+                        if (!isEmpty(sourceElementId)) {
+                            for (Resource resource : res.getResourceSet().getResources()) {
+                                EObject sourceElement = resource.getEObject(sourceElementId);
+                                if (sourceElement != null) {
+                                    req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_ELEMENT, sourceElement);
+                                    break;
+                                }
                             }
                         }
                     }
-                }
 
-                req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_PROFILE, this);
-                JSONObject output = targetProfile.createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
-                if (output != null) {
-                    processed=true;
-                    Iterator sortedKeys = output.sortedKeys();
-                    while (sortedKeys.hasNext()) {
-                        String name = (String) sortedKeys.next();
-                        json.put(name, output.get(name));
+                    req.setAttribute(DefaultPotentialReferenceHelper.SOURCE_PROFILE, this);
+                    JSONObject output = targetProfile.createPotentialReferenceHelper().findPotentialReferences(req, action, processId);
+                    if (output != null) {
+                        processed = true;
+                        Iterator sortedKeys = output.sortedKeys();
+                        while (sortedKeys.hasNext()) {
+                            String name = (String) sortedKeys.next();
+                            json.put(name, output.get(name));
+                        }
                     }
                 }
             }
