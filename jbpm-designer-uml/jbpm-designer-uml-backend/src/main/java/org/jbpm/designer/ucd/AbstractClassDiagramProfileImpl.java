@@ -40,7 +40,6 @@ import org.jbpm.uml2.dd.umldi.UMLDIPackage;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
 import org.jbpm.uml2.dd.umldi.impl.UMLDIPackageImpl;
 import org.jbpm.uml2.dd.umldi.util.UMLDIResourceFactoryImpl;
-import org.kie.workbench.common.screens.datamodeller.model.DataModelTO;
 import org.kie.workbench.common.screens.datamodeller.service.DataModelerService;
 import org.kie.workbench.common.services.datamodeller.core.DataModel;
 import org.kie.workbench.common.services.shared.project.KieProject;
@@ -146,7 +145,16 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
         } catch (Throwable t) {
             LOGGER.warn("Could not calculate jar file path", t);
         }
-        URI cmmnTypesUri = URI.createURI(externalForm.replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/"));
+        URI cmmnTypesUri=null;
+        if(externalForm.contains("vfs:/")) {
+            if (externalForm.lastIndexOf(".jar/") > 0) {
+                cmmnTypesUri = URI.createURI(externalForm.replace("jar:", "archive:").replace("vfs:", "archive:file:").replace(".jar/", ".jar!/"));
+            } else {
+                cmmnTypesUri = URI.createURI(externalForm.replace("vfs:", "file:"));
+            }
+        }else{
+            cmmnTypesUri=URI.createURI(externalForm);
+        }
         resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
         String[] languages = { "java", "js" };
         for (String l : languages) {

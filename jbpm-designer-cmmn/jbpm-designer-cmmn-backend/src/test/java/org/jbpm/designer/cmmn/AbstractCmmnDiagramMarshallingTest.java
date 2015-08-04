@@ -119,9 +119,12 @@ public class AbstractCmmnDiagramMarshallingTest {
     protected void assertOutputValid() throws IOException, Exception {
         String xmlString = buildXmlString(inputResource);
         String json = unmarshaller.parseModel(xmlString, profile, "");
+        System.out.println(xmlString);
+        System.out.println(json);
         XMLResource outputResource = marshaller.getResource(json, "");
         Set<EClassifier> ignore =new HashSet<EClassifier>();
         ignore.add(CMMNPackage.eINSTANCE.getTApplicabilityRule());
+        ignore.add(CMMNPackage.eINSTANCE.getTImport());
         GenericEcoreComparator comp = new GenericEcoreComparator(inputResource, outputResource,ignore);
         comp.setDebugInfo(json, profile);
         comp.validate();

@@ -1,4 +1,5 @@
 In web.xml:
+  <!-- start designer extensions -->
   <servlet>
     <display-name>Extensions Forms</display-name>
     <servlet-name>ExtensionsFormServlet</servlet-name>
@@ -9,14 +10,15 @@ In web.xml:
     <servlet-name>ExtensionsFormServlet</servlet-name>
     <url-pattern>/extensionsforms/*</url-pattern>
   </servlet-mapping>
-  
+  <!-- end designer extensions -->
+
 in jBPMDesigner.gwt.xml:
-  <!-- designer extension -->
+  <!-- designer extensions -->
   <inherits name="org.jbpm.designer.jBPMDesignerExtensionsClient"/>
+  <inherits name="org.jbpm.designer.jBPMDesignerCMMNClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerUMLClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerVDMLClient"/>
   <inherits name="org.jbpm.designer.jBPMDesignerSMMClient"/>
-  <inherits name="org.jbpm.designer.jBPMDesignerCMMNClient"/>
 
 In AppSet.java
     static {

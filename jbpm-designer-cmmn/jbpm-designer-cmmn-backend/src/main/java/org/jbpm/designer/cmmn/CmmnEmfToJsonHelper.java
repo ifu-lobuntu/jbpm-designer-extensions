@@ -59,6 +59,8 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
     public CmmnEmfToJsonHelper(ShapeMap resource) {
         super();
         this.shapeMap = resource;
+        System.out.println("14234");
+        System.out.println("14234");
     }
 
     @Override

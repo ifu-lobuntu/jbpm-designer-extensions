@@ -1,45 +1,49 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1433218968947
-Build-Jdk: 1.7.0_71
-Build-Timestamp: Tue, 2 Jun 2015 06:22:38 +0200
+Bnd-LastModified: 1438434683412
+Build-Jdk: 1.7.0_79
+Build-Timestamp: Sat, 1 Aug 2015 15:11:15 +0200
 Built-By: ampie
-Bundle-Description: jBPM Designer - web-based BPMN2 modeller
+Bundle-Description: The parent with dependencies imports the CMMN extens
+ ions to the jBPM platform.    All the CMMN extension modules extend thi
+ s parent, except for the user-facing BOMs (which are used here).
 Bundle-DocURL: http://www.jboss.org/
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
 Bundle-Name: jbpm-designer-extensions-emf
 Bundle-SymbolicName: jbpm-designer-extensions-emf
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.3.0.201506020422
+Bundle-Version: 6.4.0.201508011311
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer Extensions EMF Metamodel for Diagram
  s
-Implementation-URL: https://github.com/droolsjbpm/jbpm-designer/jbpm-des
- igner-extensions/jbpm-designer-extensions-emf
+Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
+ cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
+ designer-extensions/jbpm-designer-extensions-emf
 Implementation-Vendor: JBoss by Red Hat
 Implementation-Vendor-Id: org.jbpm
-Implementation-Version: 6.3.0-SNAPSHOT
+Implementation-Version: 6.4.0-SNAPSHOT
 Import-Package: org.eclipse.emf.common.notify,org.eclipse.emf.common.not
  ify.impl,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.
  emf.ecore.impl,org.eclipse.emf.ecore.plugin,org.eclipse.emf.ecore.resou
  rce,org.eclipse.emf.ecore.util,org.eclipse.emf.ecore.xmi
 Java-Vendor: Oracle Corporation
-Java-Version: 1.7.0_71
-JBOSS_HOME: /opt/jboss-5.1.0.GA
+Java-Version: 1.7.0_79
 Os-Arch: amd64
 Os-Name: Linux
-Os-Version: 3.17.3-200.fc20.x86_64
+Os-Version: 4.0.4-303.fc22.x86_64
 Private-Package: org.omg.dd.di.impl,org.omg.dd.dc.impl,org.jbpm.designer
  .dd.jbpmdd,org.jbpm.designer.dd.jbpmdd.util,org.omg.dd.dg,org.omg.dd.di
  ,org.omg.dd.primitivetypes,org.omg.dd.dc,org.omg.dd.primitivetypes.impl
  ,org.omg.dd.di.util,org.jbpm.designer.dd.jbpmdd.impl,org.jbpm.designer.
  dd.util,org.omg.dd.dc.util,org.omg.dd.dg.impl,org.omg.dd.dg.util
-Scm-Connection: scm:git:git@github.com:droolsjbpm/jbpm-designer.git/jbpm
- -designer-extensions/jbpm-designer-extensions-emf
-Scm-Revision: e660c3d4f29d1f9bf6744a2b8941e9e81452d911
-Scm-Url: https://github.com/droolsjbpm/jbpm-designer/jbpm-designer-exten
- sions/jbpm-designer-extensions-emf
+Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
+ trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
+ pm-designer-extensions-emf
+Scm-Revision: 06845d764795e8d2dae495925a134dd5967e4f87
+Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
+ mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-ext
+ ensions-emf
 Specification-Title: jBPM Designer Extensions EMF Metamodel for Diagrams
 Specification-Vendor: JBoss by Red Hat
-Specification-Version: 6.3.0-SNAPSHOT
+Specification-Version: 6.4.0-SNAPSHOT
 Tool: Bnd-1.50.0
