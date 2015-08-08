@@ -92,11 +92,15 @@ public class CmmnEmfToJsonHelper extends CMMNSwitch<Object> implements EmfToJson
         } else if (def != null && def.getStructureRef() != null) {
             // Legacy files - TODO remove
             URI uri = URI.createURI(def.getStructureRef().getNamespaceURI());
-            Resource res = object.eResource().getResourceSet().getResource(uri, true);
-            EObject eObject = res.getEObject(def.getStructureRef().getLocalPart());
-            if (eObject != null) {
-                String location = toSimpleLocation(uri);
-                targetShape.putProperty("caseFileItemStructureRef", eObject.eGet(eObject.eClass().getEStructuralFeature("name")) + "|" + location);
+            try {
+                Resource res = object.eResource().getResourceSet().getResource(uri, true);
+                EObject eObject = res.getEObject(def.getStructureRef().getLocalPart());
+                if (eObject != null) {
+                    String location = toSimpleLocation(uri);
+                    targetShape.putProperty("caseFileItemStructureRef", eObject.eGet(eObject.eClass().getEStructuralFeature("name")) + "|" + location);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }
