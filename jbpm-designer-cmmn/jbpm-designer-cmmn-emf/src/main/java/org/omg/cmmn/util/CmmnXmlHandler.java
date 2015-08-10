@@ -33,7 +33,7 @@ public class CmmnXmlHandler extends SAXXMLHandler {
     }
 
     /**
-     * Used from the <extension><definition> tag to load referenced extension
+     * Used from the <extension><impl> tag to load referenced extension
      * schemes. The extension scheme will be loaded and converted to EMF Ecore
      * on the fly.
      *

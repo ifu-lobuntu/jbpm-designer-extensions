@@ -56,27 +56,29 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
         form.setDataHolder(new UmlClassDataHolder(name, name + "In", name + "Out", (Class) cls, "#0099FF"));
 
         for (Property property : cls.getAllAttributes()) {
-            Field field = form.getField(property.getName());
-            if (field == null) {
-                field = formManager.addFieldToForm(form, property.getName(), fieldTypeManager.getTypeByCode(getTypeCode(property)), null);
-            }
-            field.setInputBinding(name + "In/" + property.getName());
-            field.setOutputBinding(name + "Out/" + property.getName());
-            I18nSet set = new I18nSet();
-            set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(property.getName()));
-            field.setLabel(set);
-            field.setFieldRequired(property.getLower() == 1);
-            if(property.getType() instanceof Enumeration){
-                Enumeration en=(Enumeration) property.getType();
-                StringBuilder sb = new StringBuilder();
-                for (EnumerationLiteral l : en.getOwnedLiterals()) {
-                    sb.append(l.getName());
-                    sb.append(",");
+            if(property.getOtherEnd()==null || !property.getOtherEnd().isComposite()){
+                Field field = form.getField(property.getName());
+                if (field == null) {
+                    field = formManager.addFieldToForm(form, property.getName(), fieldTypeManager.getTypeByCode(getTypeCode(property)), null);
                 }
-                field.setParam4(sb.toString());
-                field.setParam5(en.getQualifiedName().replaceAll("\\:\\:", "."));
+                field.setInputBinding(name + "In/" + property.getName());
+                field.setOutputBinding(name + "Out/" + property.getName());
+                I18nSet set = new I18nSet();
+                set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(property.getName()));
+                field.setLabel(set);
+                field.setFieldRequired(property.getLower() == 1);
+                if(property.getType() instanceof Enumeration){
+                    Enumeration en=(Enumeration) property.getType();
+                    StringBuilder sb = new StringBuilder();
+                    for (EnumerationLiteral l : en.getOwnedLiterals()) {
+                        sb.append(l.getName());
+                        sb.append(",");
+                    }
+                    field.setParam4(sb.toString());
+                    field.setParam5(en.getQualifiedName().replaceAll("\\:\\:", "."));
+                }
+                maybePrepareSubform(repositoryInfo, field, property, results);
             }
-            maybePrepareSubform(repositoryInfo, field, property, results);
         }
         return results;
     }

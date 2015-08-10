@@ -78,7 +78,7 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
             char[] formName = getFormName(source).toCharArray();
             for (int i = 0; i < formName.length; i++) {
                 char c = formName[i];
-                if (!Character.isJavaIdentifierPart(c)) {
+                if (!(Character.isJavaIdentifierPart(c) || c== '-' || c == '.')) {
                     formName[i] = '_';
                 }
             }

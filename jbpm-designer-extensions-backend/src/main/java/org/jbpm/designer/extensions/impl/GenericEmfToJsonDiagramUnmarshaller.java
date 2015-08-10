@@ -215,7 +215,7 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         }
         LinkedStencil sv = profile.getLinkedStencilSet().getLinkedStencil(stencil.getStencilId());
         if (sv == null) {
-            throw new IllegalArgumentException("No stencil found in the stencilSet definition for '" + stencil.getStencilId() + "'");
+            throw new IllegalArgumentException("No stencil found in the stencilSet impl for '" + stencil.getStencilId() + "'");
         }
         for (LinkedProperty property : sv.getProperties().values()) {
             Object val = null;
