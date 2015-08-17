@@ -106,10 +106,7 @@ public class VDMLEdgeImpl extends EdgeImpl implements VDMLEdge {
      * @generated
      */
     public void setVdmlElement(VdmlElement newVdmlElement) {
-        if(this.vdmlElement instanceof ResourceUse){
-            System.out.println();
-        }
-        VdmlElement oldVdmlElement = vdmlElement;
+         VdmlElement oldVdmlElement = vdmlElement;
         vdmlElement = newVdmlElement;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, VDMLDIPackage.VDML_EDGE__VDML_ELEMENT, oldVdmlElement, vdmlElement));

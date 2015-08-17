@@ -96,10 +96,12 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
                 owningCollaboration.getContainedPort().add(object);
             }
         }
-        object.eResource().setModified(true);//for stores
+        if(object.eResource()!=null) {
+            object.eResource().setModified(true);//for stores
         VDMLShape shape = (VDMLShape) shapeMap.getDiagramElement(sourceShape).eContainer();
         if(shape.getVdmlElement() instanceof Role){
             object.setHandler((Role) shape.getVdmlElement());
+        }
         }
         return super.casePort(object);
     }

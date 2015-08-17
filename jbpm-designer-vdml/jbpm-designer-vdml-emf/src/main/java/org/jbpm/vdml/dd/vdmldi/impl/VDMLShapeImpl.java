@@ -197,9 +197,6 @@ public class VDMLShapeImpl extends ShapeImpl implements VDMLShape {
      * @generated
      */
     public void setVdmlElement(VdmlElement newVdmlElement) {
-        if(newVdmlElement instanceof OrgUnit){
-            System.out.println();
-        }
         VdmlElement oldVdmlElement = vdmlElement;
         vdmlElement = newVdmlElement;
         if (eNotificationRequired())
