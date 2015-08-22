@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1439784073034
+Bnd-LastModified: 1440137442469
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Mon, 17 Aug 2015 06:00:05 +0200
+Build-Timestamp: Fri, 21 Aug 2015 08:09:58 +0200
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,14 +12,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codemodel
 Bundle-SymbolicName: org.jbpm.uml.codemodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201508170359
+Bundle-Version: 6.4.0.201508210609
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.jbpm.designer.uml.code.metamodel;version="6.4.0.2015
- 08170359",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.4.
- 0.201508170359",org.jbpm.designer.uml.code.metamodel.expressions;versio
- n="6.4.0.201508170359",org.jbpm.designer.uml.code.metamodel.relationald
- b;version="6.4.0.201508170359",org.jbpm.designer.uml.code.metamodel.sta
- tements;version="6.4.0.201508170359"
+ 08210609",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.4.
+ 0.201508210609",org.jbpm.designer.uml.code.metamodel.expressions;versio
+ n="6.4.0.201508210609",org.jbpm.designer.uml.code.metamodel.relationald
+ b;version="6.4.0.201508210609",org.jbpm.designer.uml.code.metamodel.sta
+ tements;version="6.4.0.201508210609"
 Implementation-Title: jBPM Designer Metamodel for Code generation
 Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
  cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
@@ -31,7 +31,7 @@ Java-Vendor: Oracle Corporation
 Java-Version: 1.7.0_79
 Os-Arch: amd64
 Os-Name: Linux
-Os-Version: 4.1.3-200.fc22.x86_64
+Os-Version: 4.1.3-100.fc21.x86_64
 Private-Package: org.jbpm.designer.uml.code.metamodel;org.jbpm.designer.
  uml.code.metamodel.documentdb;org.jbpm.designer.uml.code.metamodel.expr
  essions;org.jbpm.designer.uml.code.metamodel.relationaldb;org.jbpm.desi
@@ -39,7 +39,7 @@ Private-Package: org.jbpm.designer.uml.code.metamodel;org.jbpm.designer.
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-uml/jbpm-designer-uml-codemodel
-Scm-Revision: d2e78a185cf61d27daabc1b5079395f5e896b8d9
+Scm-Revision: 215a48689fe3b248100517c6091aa34382290ef0
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-uml
  /jbpm-designer-uml-codemodel

@@ -153,7 +153,7 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
                 cmmnTypesUri = URI.createURI(externalForm.replace("vfs:", "file:"));
             }
         }else{
-            cmmnTypesUri=URI.createURI(externalForm);
+            cmmnTypesUri=URI.createURI(externalForm.replace("jar:", "archive:"));
         }
         resourceSet.getURIConverter().getURIMap().put(uri, cmmnTypesUri);
         String[] languages = { "java", "js" };
