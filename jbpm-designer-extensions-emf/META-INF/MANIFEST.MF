@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1440294951168
+Bnd-LastModified: 1440325113997
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Sun, 23 Aug 2015 03:55:43 +0200
+Build-Timestamp: Sun, 23 Aug 2015 12:18:20 +0200
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,7 +12,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: jbpm-designer-extensions-emf
 Bundle-SymbolicName: jbpm-designer-extensions-emf
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201508230155
+Bundle-Version: 6.4.0.201508231018
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer Extensions EMF Metamodel for Diagram
  s
@@ -39,7 +39,7 @@ Private-Package: org.omg.dd.di.impl,org.omg.dd.dc.impl,org.jbpm.designer
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-extensions-emf
-Scm-Revision: 34cc590aab4d8951d9444c9be4a23fbd55e0c1c5
+Scm-Revision: f9b60549d4a15d18bc514b3ba3256b2db4271baa
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-ext
  ensions-emf
