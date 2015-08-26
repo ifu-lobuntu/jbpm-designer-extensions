@@ -85,7 +85,7 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
 
     protected void maybePrepareSubform(String repositoryInfo, Field field, Property property, Map<String, TaskFormInfo> forms) {
         if (property.isComposite() && property.getType() != null) {
-            forms.putAll(prepareSubform(repositoryInfo, field, property.getType()));
+            forms.putAll(prepareSubform(repositoryInfo, field, property.getType(),false));
         }
     }
 

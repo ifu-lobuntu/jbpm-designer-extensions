@@ -92,7 +92,7 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
                 }
                 field.setInputBinding(port.getName() + "In");
                 field.setOutputBinding(port.getName() + "Out");
-                results.putAll(prepareSubform(repositoryInfo, field, port));
+                results.putAll(prepareSubform(repositoryInfo, field, port,true));
                 I18nSet set = new I18nSet();
                 set.setValue(Locale.getDefault().getLanguage(), NameConverter.capitalize(port.getName()));
                 field.setLabel(set);

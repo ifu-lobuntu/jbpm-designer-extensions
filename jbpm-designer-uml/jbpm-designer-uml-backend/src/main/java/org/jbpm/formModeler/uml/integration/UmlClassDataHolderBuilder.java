@@ -177,7 +177,7 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
             dataHolder = new UmlClassDataHolder(config.getHolderId(), config.getInputId(), config.getOutputId(), config.getValue(), config.getRenderColor());
             isExternal = Boolean.TRUE.equals(config.getAttribute("supportedType"));
         } else {
-            Class holderClass = getUmlClass(config);
+                Class holderClass = getUmlClass(config);
             dataHolder = new UmlClassDataHolder(config.getHolderId(), config.getInputId(), config.getOutputId(), holderClass, config.getRenderColor());
         }
 
@@ -195,7 +195,11 @@ public class UmlClassDataHolderBuilder implements RangedDataHolderBuilder {
     private Class getUmlClass(String value) {
         ResourceSet rst = new ResourceSetImpl();
         prepareResourceSet(rst, collectProfiles());
-        Class holderClass = (Class) rst.getEObject(org.eclipse.emf.common.util.URI.createURI(value, true), true);
+        String uri = value;
+        if (uri.indexOf(',') > 0) {
+            uri= uri.substring(uri.indexOf(',')+1);
+        }
+        Class holderClass = (Class) rst.getEObject(org.eclipse.emf.common.util.URI.createURI(uri, true), true);
         EcoreUtil.resolveAll(holderClass);
         if (holderClass == null) {
             return null;

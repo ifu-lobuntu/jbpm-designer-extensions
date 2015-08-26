@@ -144,13 +144,15 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
         return generateForm(modelPath, resource.getEObject(elementId), formType, false);
     }
 
-    protected Map<String, TaskFormInfo> prepareSubform(String repositoryInfo, Field field, EObject ref) {
+    protected Map<String, TaskFormInfo> prepareSubform(String repositoryInfo, Field field, EObject ref, boolean addDataHolder) {
         if (ref != null && !ref.eIsProxy()) {
             String profileName = profileNameMap.get(ref.eClass().getName());
             if (profileName != null) {
                 IEmfBasedFormBuilder found = getOtherFormBuilder(profileName);
                 if (found != null) {
-//                    field.getForm().setDataHolder(found.buildDataHolderFor(field.getFieldName(), ref));
+                    if(addDataHolder) {
+                        field.getForm().setDataHolder(found.buildDataHolderFor(field.getFieldName(), ref));
+                    }
                     if (ref.eResource() instanceof XMLResource) {
                         XMLResource xr = (XMLResource) ref.eResource();
                         Path targetModelPath = PathFactory.newPath(xr.getURI().lastSegment(), repositoryInfo + xr.getURI().toPlatformString(true));
