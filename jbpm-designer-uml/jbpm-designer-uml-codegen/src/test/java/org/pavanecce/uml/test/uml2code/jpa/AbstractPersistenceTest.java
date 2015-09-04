@@ -61,7 +61,7 @@ public abstract class AbstractPersistenceTest extends Assert {
 		eval("p.persist(constructionCase);");
 		eval("house.setRoofPlan(roofPlan);");
 		eval("p.update(constructionCase);");
-		eval("p.commit();");
+		eval("p.commitAndSendCaseFileItemEvents();");
 		// eval("p.close();");
 		eval("p.start();");
 		eval("constructionCase=p.find(ConstructionCase,constructionCase.getId());");
@@ -82,7 +82,7 @@ public abstract class AbstractPersistenceTest extends Assert {
 		// sadly, OCM requires this
 		eval("p.update(housePlan);");
 		eval("p.update(house);");
-		eval("p.commit();");
+		eval("p.commitAndSendCaseFileItemEvents();");
 		// eval("p.close();");
 		eval("p.start();");
 		eval("constructionCase=p.find(ConstructionCase,constructionCase.getId());");
@@ -93,7 +93,7 @@ public abstract class AbstractPersistenceTest extends Assert {
 	@After
 	public void cleanup() {
 		try {
-			eval("p.commit();");
+			eval("p.commitAndSendCaseFileItemEvents();");
 		} catch (Exception e) {
 		}
 		try {
@@ -131,7 +131,7 @@ public abstract class AbstractPersistenceTest extends Assert {
 		eval("constructionCase.setPicture(picture);");
 		eval("p.start();");
 		eval("p.persist(constructionCase);");
-		eval("p.commit();");
+		eval("p.commitAndSendCaseFileItemEvents();");
 		// eval("p.close();");
 		eval("p.start();");
 		eval("constructionCase=p.find(ConstructionCase,constructionCase.getId());");
@@ -164,7 +164,7 @@ public abstract class AbstractPersistenceTest extends Assert {
 		eval("house.getWalls().add(wall);");
 		eval("p.start();");
 		eval("p.persist(constructionCase);");
-		eval("p.commit();");
+		eval("p.commitAndSendCaseFileItemEvents();");
 		// eval("p.close();");
 		eval("p.start();");
 		eval("house=p.find(House,house.getId());");
@@ -204,7 +204,7 @@ public abstract class AbstractPersistenceTest extends Assert {
         eval("wallPlan2.getRoomPlans().add(roomPlan1);");
 		assertEquals(1, eval("wallPlan1.getRoomPlans().size()"));
 		eval("p.update(constructionCase);");
-		eval("p.commit();");
+		eval("p.commitAndSendCaseFileItemEvents();");
 		// eval("p.close();");
 		eval("p.start();");
 		eval("roomPlan1=p.find(RoomPlan,roomPlan1.getId());");

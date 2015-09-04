@@ -49,7 +49,7 @@ public class JpaCodeDecorator extends AbstractJavaCodeDecorator {
 			if (!hasPkField(cc, relationalTable)) {
 				sb.append("  @Id\n");
 				sb.append("  @GeneratedValue\n");
-				sb.append("  String ");
+				sb.append("  Long ");
 				sb.append(getPkFieldName(relationalTable));
 				sb.appendLineEnd();
 			}
@@ -71,7 +71,7 @@ public class JpaCodeDecorator extends AbstractJavaCodeDecorator {
 			RelationalTable relationalTable = (RelationalTable) element;
 			if (!hasPkField(cc, relationalTable)) {
 				String pkFieldName = getPkFieldName(relationalTable);
-				sb.append("  public String get");
+				sb.append("  public Long get");
 				sb.append(NameConverter.capitalize(pkFieldName));
 				sb.append("(){\n");
 				sb.append("    return this.");
@@ -80,7 +80,7 @@ public class JpaCodeDecorator extends AbstractJavaCodeDecorator {
 				sb.append("  }\n");
 				sb.append("  public void set");
 				sb.append(NameConverter.capitalize(pkFieldName));
-				sb.append("(String value){\n");
+				sb.append("(Long value){\n");
 				sb.append("    this.");
 				sb.append(pkFieldName);
 				sb.append("=value");

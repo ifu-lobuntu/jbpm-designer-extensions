@@ -34,7 +34,7 @@ public class JpaTests extends AbstractPersistenceTest {
 		HibernatePersistence hibernatePersistence = new HibernatePersistence();
 		EntityManagerFactory emf = hibernatePersistence.createContainerEntityManagerFactory(pui, new HashMap<String, String>());
 		helper.initScriptingEngine();
-		helper.getJavaScriptContext().setAttribute("p", new JpaCaseFilePersistence(emf,null), ScriptContext.ENGINE_SCOPE);
+		helper.getJavaScriptContext().setAttribute("p", new JpaCaseFilePersistence("blah", emf,null), ScriptContext.ENGINE_SCOPE);
 	}
 
 	protected static void addMappedClasses(TestPersistenceUnitInfo pui, CodePackage codePackage, AbstractCodeGenerator jcg) {
