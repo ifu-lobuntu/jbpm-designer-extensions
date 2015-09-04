@@ -53,7 +53,7 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
         Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
         Classifier cls = (Classifier) eobject;
         String name = Character.toLowerCase(cls.getName().charAt(0)) + cls.getName().substring(1);
-        form.setDataHolder(new UmlClassDataHolder(name, name + "In", name + "Out", (Class) cls, "#0099FF"));
+        form.setDataHolder(new UmlClassDataHolder(name, name, name, (Class) cls, "#0099FF"));
 
         for (Property property : cls.getAllAttributes()) {
             if(property.getOtherEnd()==null || !property.getOtherEnd().isComposite()){
@@ -61,8 +61,8 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
                 if (field == null) {
                     field = formManager.addFieldToForm(form, property.getName(), fieldTypeManager.getTypeByCode(getTypeCode(property)), null);
                 }
-                field.setInputBinding(name + "In/" + property.getName());
-                field.setOutputBinding(name + "Out/" + property.getName());
+                field.setInputBinding(name + "/" + property.getName());
+                field.setOutputBinding(name + "/" + property.getName());
                 I18nSet set = new I18nSet();
                 set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(property.getName()));
                 field.setLabel(set);
@@ -115,7 +115,7 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
 
     @Override
     public DataHolder buildDataHolderFor(String name, EObject cls) {
-        return new UmlClassDataHolder(name, name + "In", name + "Out", (Class) cls, "#0099FF");
+        return new UmlClassDataHolder(name, name, name , (Class) cls, "#0099FF");
     }
 
     @Override

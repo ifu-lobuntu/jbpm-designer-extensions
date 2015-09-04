@@ -83,11 +83,11 @@ public class CmmnFormBuilder extends AbstractFormBuilderImpl {
                 }
                 if (maybePrepareSubform(repositoryInfo, field, parameter, results)) {
                     //Special syntax for UmlDataHolder
-                    field.setInputBinding(parameter.getName() + "\this");
-                    field.setOutputBinding(parameter.getName() + "Out\this");
+                    field.setInputBinding(parameter.getName() + "/this");
+                    field.setOutputBinding(parameter.getName() + "/this");
                 } else {
                     field.setInputBinding(parameter.getName());
-                    field.setOutputBinding(parameter.getName() + "Out");
+                    field.setOutputBinding(parameter.getName());
 
                 }
                 I18nSet set = new I18nSet();
@@ -111,11 +111,11 @@ public class CmmnFormBuilder extends AbstractFormBuilderImpl {
                 }
                 if (maybePrepareSubform(repositoryInfo, field, parameter, results)) {
                     //Special syntax for UmlDataHolder
-                    field.setInputBinding(parameter.getName() + "\this");
-                    field.setOutputBinding(parameter.getName() + "Out\this");
+                    field.setInputBinding(parameter.getName() + "/this");
+                    field.setOutputBinding(parameter.getName() + "/this");
                 } else {
                     field.setInputBinding(parameter.getName());
-                    field.setOutputBinding(parameter.getName() + "Out");
+                    field.setOutputBinding(parameter.getName());
 
                 }
                 I18nSet set = new I18nSet();

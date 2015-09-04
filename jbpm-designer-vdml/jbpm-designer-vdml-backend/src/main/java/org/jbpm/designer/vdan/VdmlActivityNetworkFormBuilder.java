@@ -90,8 +90,8 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
                 if (field == null) {
                     field = formManager.addFieldToForm(form, port.getName(), fieldTypeManager.getTypeByCode("Subform"), null);
                 }
-                field.setInputBinding(port.getName() + "In");
-                field.setOutputBinding(port.getName() + "Out");
+                field.setInputBinding(port.getName());
+                field.setOutputBinding(port.getName());
                 results.putAll(prepareSubform(repositoryInfo, field, port,true));
                 I18nSet set = new I18nSet();
                 set.setValue(Locale.getDefault().getLanguage(), NameConverter.capitalize(port.getName()));
@@ -107,8 +107,8 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
         if (field == null) {
             field = formManager.addFieldToForm(form, fieldName, fieldTypeManager.getTypeByCode(getTypeCode(measure)), null);
         }
-        field.setInputBinding(portName + "In/" + fieldName);
-        field.setOutputBinding(portName + "Out/" + fieldName);
+        field.setInputBinding(portName + "/" + fieldName);
+        field.setOutputBinding(portName + "/" + fieldName);
         I18nSet labelSet = new I18nSet();
         if (measure instanceof DimensionalMeasure && ((DimensionalMeasure) measure).getUnit() != null) {
             UnitOfMeasure u = ((DimensionalMeasure) measure).getUnit();
@@ -154,7 +154,7 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
         if (eobject instanceof Port) {
             // Because we are detached from the origin request from here on
             EcoreUtil.resolveAll(eobject);
-            return new VdmlPortDataHolder(name, name + "In", name + "Out", (Port) eobject, "#6699FF");
+            return new VdmlPortDataHolder(name, name, name, (Port) eobject, "#6699FF");
         } else {
             return null;
         }
