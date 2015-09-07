@@ -1,21 +1,9 @@
 package org.jbpm.designer.extensions.impl;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.IEmfBasedFormBuilder;
@@ -31,6 +19,12 @@ import org.uberfire.backend.server.util.Paths;
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.backend.vfs.PathFactory;
 import org.uberfire.io.IOService;
+
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.util.*;
 
 public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
     // TODO load this from CDI info, maybe
@@ -121,7 +115,7 @@ public abstract class AbstractFormBuilderImpl implements IEmfBasedFormBuilder {
         for (Resource resource2 : resources) {
             TreeIterator<EObject> allContents = resource2.getAllContents();
             while (allContents.hasNext()) {
-                EObject eObject = (EObject) allContents.next();
+                EObject eObject = allContents.next();
                 if (hasForm(eObject)) {
                     result.addAll(generateForm(modelPath, eObject, "default", true).values());
                 }

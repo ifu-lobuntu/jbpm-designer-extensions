@@ -76,6 +76,19 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
                     }
                     field.setParam4(sb.toString());
                     field.setParam5(en.getQualifiedName().replaceAll("\\:\\:", "."));
+                }else if(property.getType() instanceof Class){
+                    field.setParam3("readFromCaseInstance");
+                    if(((Class) property.getType()).getAttribute("name", null)!=null) {
+                        field.setParam4("name");
+                    }else{
+                        field.setParam4("name property");
+                    }
+                    String s = eobject.eResource().getURI().trimSegments(1).toPlatformString(true);
+                    s = s.substring(s.indexOf('/', 2) + 1);
+                    s = s.replaceAll("src/main/resources/", "");
+                    s = s.replaceAll("/", ".");
+                    s = s + "." + property.getType().getName();
+                    field.setParam5(s);
                 }
                 maybePrepareSubform(repositoryInfo, field, property, results);
             }

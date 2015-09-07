@@ -60,11 +60,7 @@ import org.jbpm.designer.uml.code.metamodel.expressions.PortableExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.PrimitiveDefaultExpression;
 import org.jbpm.designer.uml.code.metamodel.expressions.ReadFieldExpression;
 import org.jbpm.designer.uml.code.metamodel.relationaldb.IRelationalElement;
-import org.jbpm.designer.uml.code.metamodel.statements.AssignmentStatement;
-import org.jbpm.designer.uml.code.metamodel.statements.CodeIfStatement;
-import org.jbpm.designer.uml.code.metamodel.statements.MappedStatement;
-import org.jbpm.designer.uml.code.metamodel.statements.MethodCallStatement;
-import org.jbpm.designer.uml.code.metamodel.statements.PortableStatement;
+import org.jbpm.designer.uml.code.metamodel.statements.*;
 import org.jbpm.designer.uml.codegen.util.EmfClassifierUtil;
 import org.jbpm.designer.uml.codegen.util.EmfParameterUtil;
 import org.jbpm.designer.uml.codegen.util.EmfPropertyUtil;
@@ -120,7 +116,13 @@ public class CodeModelBuilder extends DefaultCodeModelBuilder {
                 new PortableStatement(ifOldNotNull.getThenBlock(), "${self}." + fieldName + ".get" + capitalize(p.getOtherEnd().getName()) + "().remove(this)");
                 new AssignmentStatement(setter.getBody(), "${self}." + fieldName, new PortableExpression(param.getName()));
             } else if (EmfPropertyUtil.isManyToOne(p)) {
-                new AssignmentStatement(setter.getBody(), "${self}." + fieldName, new PortableExpression(param.getName()));
+                CodeTypeReference type = cf.getType().getElementTypes().get(0).getType();
+                CodeForStatement forOld = new CodeForStatement(setter.getBody(), "cur", type, new ReadFieldExpression(fieldName));
+                new MethodCallStatement(forOld.getBody(), "cur.set" + capitalize(p.getOtherEnd().getName()), new NullExpression());
+                CodeIfStatement ifNotNull = new CodeIfStatement(setter.getBody(), new NotExpression(new IsNullExpression(new PortableExpression(param.getName()))));
+                CodeForStatement forNew = new CodeForStatement(ifNotNull.getThenBlock(), "cur", type, new PortableExpression(param.getName()));
+                new PortableStatement(forNew.getBody(), "cur.set" + capitalize(p.getOtherEnd().getName()) + "(${self})");
+
             } else if (EmfPropertyUtil.isOneToOne(p)) {
                 new CodeField(setter.getBody(), "oldValue", param.getType()).setInitExp("${self}." + fieldName);
                 NotExpression notEquals = new NotExpression(new BinaryOperatorExpression(new PortableExpression(param.getName()), "${equals}",

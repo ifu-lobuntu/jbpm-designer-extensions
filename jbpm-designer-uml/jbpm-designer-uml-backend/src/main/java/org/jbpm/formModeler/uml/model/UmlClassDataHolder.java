@@ -1,6 +1,7 @@
 package org.jbpm.formModeler.uml.model;
 
 import org.apache.commons.lang3.StringUtils;
+import org.codehaus.jackson.map.util.BeanUtil;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Property;
@@ -18,6 +19,8 @@ import org.kie.internal.task.api.ContentMarshallerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Method;
 import java.util.*;
 
@@ -87,21 +90,32 @@ public class UmlClassDataHolder extends PojoDataHolder {
 
     @Override
     public void writeValue(Object destination, String propName, Object value) throws Exception {
-        if (propName !=null&&  propName.length() > 0 && !"this".equals(propName)) {
-            if (destination == null) return;
-            java.lang.reflect.Field field = destination.getClass().getDeclaredField(propName);
-            propName= Character.toUpperCase(propName.charAt(0)) + propName.substring(1);
-            if(value instanceof List && field.getType().isAssignableFrom(Set.class)){
-                value = new HashSet((List)value);
+        if (destination != null && propName != null && propName.length() > 0) {
+            if ("this".equals(propName)) {
+                if(value!=null && destination!=value){
+                    //Will only happen when there was no Input object associated, such as on process creation
+                    for (PropertyDescriptor pd : Introspector.getBeanInfo(destination.getClass()).getPropertyDescriptors()) {
+                        if(pd.getWriteMethod()!=null && pd.getReadMethod()!=null) {
+                            writeValue(destination, pd.getName(), readValue(value,pd.getName()));
+                        }
+                    }
+                }
+                return;
+            } else {
+                java.lang.reflect.Field field = destination.getClass().getDeclaredField(propName);
+                propName = Character.toUpperCase(propName.charAt(0)) + propName.substring(1);
+                if (value instanceof List && field.getType().isAssignableFrom(Set.class)) {
+                    value = new HashSet((List) value);
+                }
+                Method setterMethod = destination.getClass().getMethod("set" + propName, new java.lang.Class[]{field.getType()});
+                setterMethod.invoke(destination, new Object[]{value});
             }
-            Method setterMethod = destination.getClass().getMethod("set" + propName, new java.lang.Class[]{field.getType()});
-            setterMethod.invoke(destination, new Object[]{value});
         }
     }
 
     @Override
     public Object readFromBindingExperssion(Object source, String bindingExpression) throws Exception {
-        if(bindingExpression.equals("this")){
+        if (bindingExpression.endsWith("/this")) {
             return source;
         }
         return super.readFromBindingExperssion(source, bindingExpression);
@@ -109,7 +123,14 @@ public class UmlClassDataHolder extends PojoDataHolder {
 
     @Override
     public Object readValue(Object source, String propName) throws Exception {
-        return super.readValue(source, propName);
+        if (propName.equals("this")) {
+            return source;
+        }
+        Object value = super.readValue(source, propName);
+        if(value instanceof Set){
+            return new ArrayList((Set) value);
+        }
+        return value;
     }
 
     @Override
@@ -119,7 +140,18 @@ public class UmlClassDataHolder extends PojoDataHolder {
 
     @Override
     public boolean isAssignableValue(Object value) {
-        return super.isAssignableValue(value);
+        if(value==null){
+            return false;
+        }else{
+            java.lang.Class<?> cls = value.getClass();
+            while(cls!=Object.class) {
+                if (getClassName().startsWith(cls.getName())) {
+                    return true;
+                }
+                cls=cls.getSuperclass();
+            }
+        }
+        return false;
     }
 
     @Override
