@@ -20,7 +20,7 @@ import org.jbpm.formModeler.api.model.Field;
 import org.jbpm.formModeler.api.model.Form;
 import org.jbpm.formModeler.api.model.wrappers.I18nSet;
 import org.jbpm.formModeler.fieldTypes.lookup.EnumLookupFieldType;
-import org.jbpm.formModeler.vdml.model.VdmlPortDataHolder;
+import org.jbpm.formModeler.vdml.model.DeliverableFlowDataHolder;
 import org.omg.smm.BinaryMeasure;
 import org.omg.smm.CollectiveMeasure;
 import org.omg.smm.DimensionalMeasure;
@@ -31,11 +31,7 @@ import org.omg.smm.Measure;
 import org.omg.smm.RankingMeasure;
 import org.omg.smm.UnitOfMeasure;
 import org.omg.smm.util.SmmHelper;
-import org.omg.vdml.Activity;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.Port;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.ValueAdd;
+import org.omg.vdml.*;
 
 @ApplicationScoped
 @ProfileName("vdan")
@@ -151,10 +147,10 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
 
     @Override
     public DataHolder buildDataHolderFor(String name, EObject eobject) {
-        if (eobject instanceof Port) {
+        if (eobject instanceof DeliverableFlow) {
             // Because we are detached from the origin request from here on
             EcoreUtil.resolveAll(eobject);
-            return new VdmlPortDataHolder(name, name, name, (Port) eobject, "#6699FF");
+            return new DeliverableFlowDataHolder((DeliverableFlow) eobject,name);
         } else {
             return null;
         }

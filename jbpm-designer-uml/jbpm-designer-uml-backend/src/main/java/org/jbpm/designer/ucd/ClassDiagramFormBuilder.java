@@ -33,6 +33,7 @@ import org.jbpm.formModeler.uml.model.UmlClassDataHolder;
 @ProfileName("ucd")
 public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
     private static Map<String, String> cmmnTypeMap = new HashMap<String, String>();
+
     static {
         cmmnTypeMap.put("String", "InputText");
         cmmnTypeMap.put("Date", "InputDate");
@@ -56,7 +57,7 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
         form.setDataHolder(new UmlClassDataHolder(name, name, name, (Class) cls, "#0099FF"));
 
         for (Property property : cls.getAllAttributes()) {
-            if(property.getOtherEnd()==null || !property.getOtherEnd().isComposite()){
+            if (property.getOtherEnd() == null || !property.getOtherEnd().isComposite()) {
                 Field field = form.getField(property.getName());
                 if (field == null) {
                     field = formManager.addFieldToForm(form, property.getName(), fieldTypeManager.getTypeByCode(getTypeCode(property)), null);
@@ -67,20 +68,25 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
                 set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(property.getName()));
                 field.setLabel(set);
                 field.setFieldRequired(property.getLower() == 1);
-                if(property.getType() instanceof Enumeration){
-                    Enumeration en=(Enumeration) property.getType();
+                if (property.getType() instanceof Enumeration) {
+                    Enumeration en = (Enumeration) property.getType();
                     StringBuilder sb = new StringBuilder();
                     for (EnumerationLiteral l : en.getOwnedLiterals()) {
                         sb.append(l.getName());
                         sb.append(",");
                     }
                     field.setParam4(sb.toString());
-                    field.setParam5(en.getQualifiedName().replaceAll("\\:\\:", "."));
-                }else if(property.getType() instanceof Class){
+                    String s = eobject.eResource().getURI().trimSegments(1).toPlatformString(true);
+                    s = s.substring(s.indexOf('/', 2) + 1);
+                    s = s.replaceAll("src/main/resources/", "");
+                    s = s.replaceAll("/", ".");
+                    s = s + "." + property.getType().getName();
+                    field.setParam5(s);
+                } else if (property.getType() instanceof Class) {
                     field.setParam3("readFromCaseInstance");
-                    if(((Class) property.getType()).getAttribute("name", null)!=null) {
+                    if (((Class) property.getType()).getAttribute("name", null) != null) {
                         field.setParam4("name");
-                    }else{
+                    } else {
                         field.setParam4("name property");
                     }
                     String s = eobject.eResource().getURI().trimSegments(1).toPlatformString(true);
@@ -98,7 +104,11 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
 
     protected void maybePrepareSubform(String repositoryInfo, Field field, Property property, Map<String, TaskFormInfo> forms) {
         if (property.isComposite() && property.getType() != null) {
-            forms.putAll(prepareSubform(repositoryInfo, field, property.getType(),false));
+            if (property.isMultivalued()) {
+                field.setUpdateItems(true);
+                field.setEnableTableEnterData(true);
+            }
+            forms.putAll(prepareSubform(repositoryInfo, field, property.getType(), false));
         }
     }
 
@@ -128,7 +138,7 @@ public class ClassDiagramFormBuilder extends AbstractFormBuilderImpl {
 
     @Override
     public DataHolder buildDataHolderFor(String name, EObject cls) {
-        return new UmlClassDataHolder(name, name, name , (Class) cls, "#0099FF");
+        return new UmlClassDataHolder(name, name, name, (Class) cls, "#0099FF");
     }
 
     @Override

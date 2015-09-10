@@ -117,7 +117,10 @@ public class CodeModelBuilder extends DefaultCodeModelBuilder {
                 new AssignmentStatement(setter.getBody(), "${self}." + fieldName, new PortableExpression(param.getName()));
             } else if (EmfPropertyUtil.isManyToOne(p)) {
                 CodeTypeReference type = cf.getType().getElementTypes().get(0).getType();
-                CodeForStatement forOld = new CodeForStatement(setter.getBody(), "cur", type, new ReadFieldExpression(fieldName));
+                CodeField old=new CodeField(setter.getBody(), "oldValues",cf.getType());
+                old.setInitialization(cf.getInitialization());
+                new MethodCallStatement(setter.getBody(),"oldValues.addAll",new ReadFieldExpression(fieldName));
+                CodeForStatement forOld = new CodeForStatement(setter.getBody(), "cur", type, new PortableExpression("oldValues"));
                 new MethodCallStatement(forOld.getBody(), "cur.set" + capitalize(p.getOtherEnd().getName()), new NullExpression());
                 CodeIfStatement ifNotNull = new CodeIfStatement(setter.getBody(), new NotExpression(new IsNullExpression(new PortableExpression(param.getName()))));
                 CodeForStatement forNew = new CodeForStatement(ifNotNull.getThenBlock(), "cur", type, new PortableExpression(param.getName()));
