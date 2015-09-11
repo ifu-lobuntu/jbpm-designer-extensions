@@ -114,10 +114,10 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
         }
         if (measure instanceof BinaryMeasure) {
             // TODO set formula if other measures present in
-            // ValueAdd or in BusinessItem
+            // ValueAdd or in BusinessItemDefinition
         } else if (measure instanceof CollectiveMeasure) {
             // TODO set formula if other measures present in
-            // ValueAdd or in BusinessItem
+            // ValueAdd or in BusinessItemDefinition
         } else if (measure instanceof GradeMeasure || measure instanceof RankingMeasure) {
             List<? extends Interval> intervals;
             if (measure instanceof GradeMeasure) {

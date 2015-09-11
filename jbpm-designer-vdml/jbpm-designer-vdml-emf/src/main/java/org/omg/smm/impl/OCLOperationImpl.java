@@ -14,200 +14,200 @@ import org.omg.smm.SMMPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.OCLOperationImpl#getBody <em>Body</em>}</li>
  *   <li>{@link org.omg.smm.impl.OCLOperationImpl#getContext <em>Context</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class OCLOperationImpl extends AbstractMeasureElementImpl implements OCLOperation {
     /**
-     * The default value of the '{@link #getBody() <em>Body</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getBody() <em>Body</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBody()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBody()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String BODY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBody() <em>Body</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBody()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBody()
+	 * @generated
+	 * @ordered
+	 */
     protected String body = BODY_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getContext() <em>Context</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getContext() <em>Context</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContext()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContext()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String CONTEXT_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getContext() <em>Context</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContext()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContext()
+	 * @generated
+	 * @ordered
+	 */
     protected String context = CONTEXT_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected OCLOperationImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.OCL_OPERATION;
-    }
+		return SMMPackage.Literals.OCL_OPERATION;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getBody() {
-        return body;
-    }
+		return body;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setBody(String newBody) {
-        String oldBody = body;
-        body = newBody;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.OCL_OPERATION__BODY, oldBody, body));
-    }
+		String oldBody = body;
+		body = newBody;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.OCL_OPERATION__BODY, oldBody, body));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getContext() {
-        return context;
-    }
+		return context;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setContext(String newContext) {
-        String oldContext = context;
-        context = newContext;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.OCL_OPERATION__CONTEXT, oldContext, context));
-    }
+		String oldContext = context;
+		context = newContext;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.OCL_OPERATION__CONTEXT, oldContext, context));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.OCL_OPERATION__BODY:
-                return getBody();
-            case SMMPackage.OCL_OPERATION__CONTEXT:
-                return getContext();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.OCL_OPERATION__BODY:
+				return getBody();
+			case SMMPackage.OCL_OPERATION__CONTEXT:
+				return getContext();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.OCL_OPERATION__BODY:
-                setBody((String)newValue);
-                return;
-            case SMMPackage.OCL_OPERATION__CONTEXT:
-                setContext((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.OCL_OPERATION__BODY:
+				setBody((String)newValue);
+				return;
+			case SMMPackage.OCL_OPERATION__CONTEXT:
+				setContext((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.OCL_OPERATION__BODY:
-                setBody(BODY_EDEFAULT);
-                return;
-            case SMMPackage.OCL_OPERATION__CONTEXT:
-                setContext(CONTEXT_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.OCL_OPERATION__BODY:
+				setBody(BODY_EDEFAULT);
+				return;
+			case SMMPackage.OCL_OPERATION__CONTEXT:
+				setContext(CONTEXT_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.OCL_OPERATION__BODY:
-                return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
-            case SMMPackage.OCL_OPERATION__CONTEXT:
-                return CONTEXT_EDEFAULT == null ? context != null : !CONTEXT_EDEFAULT.equals(context);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.OCL_OPERATION__BODY:
+				return BODY_EDEFAULT == null ? body != null : !BODY_EDEFAULT.equals(body);
+			case SMMPackage.OCL_OPERATION__CONTEXT:
+				return CONTEXT_EDEFAULT == null ? context != null : !CONTEXT_EDEFAULT.equals(context);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (body: ");
-        result.append(body);
-        result.append(", context: ");
-        result.append(context);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (body: ");
+		result.append(body);
+		result.append(", context: ");
+		result.append(context);
+		result.append(')');
+		return result.toString();
+	}
 
 } //OCLOperationImpl

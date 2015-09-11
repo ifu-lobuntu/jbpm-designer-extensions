@@ -2,24 +2,26 @@
  */
 package org.jbpm.uml2.dd.umldi.impl;
 
-import java.util.Collection;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.resource.*;
+import org.eclipse.emf.ecore.resource.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.eclipse.emf.ecore.xmi.*;
+import org.eclipse.uml2.uml.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.jbpmdd.impl.*;
+import org.jbpm.designer.dd.util.*;
+import org.jbpm.uml2.dd.umldi.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.di.*;
+import org.omg.dd.di.impl.*;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.uml.Element;
-import org.jbpm.designer.dd.util.Collections;
-import org.jbpm.uml2.dd.umldi.UMLDIPackage;
-import org.jbpm.uml2.dd.umldi.UMLDiagram;
-import org.jbpm.uml2.dd.umldi.UMLDiagramElement;
-import org.jbpm.uml2.dd.umldi.UMLStyle;
-import org.omg.dd.di.impl.DiagramImpl;
+import java.lang.Class;
+import java.util.HashMap;
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->

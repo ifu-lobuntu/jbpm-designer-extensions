@@ -10,29 +10,27 @@ import org.omg.vdml.VDMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Member</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class MemberImpl extends RoleImpl implements Member {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MemberImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.MEMBER;
-    }
+		return VDMLPackage.Literals.MEMBER;
+	}
 
 } //MemberImpl

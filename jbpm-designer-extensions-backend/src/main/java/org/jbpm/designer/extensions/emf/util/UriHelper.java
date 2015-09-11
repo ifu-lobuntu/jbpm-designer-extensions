@@ -1,11 +1,5 @@
 package org.jbpm.designer.extensions.emf.util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -16,6 +10,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 public class UriHelper {
     public static void setPlatformUriHandler(ResourceSet resourceSet, final URIHandler uriHandlerToUse) {
@@ -58,7 +57,7 @@ public class UriHelper {
 
     @SuppressWarnings("unchecked")
     public static <T extends EObject> T resolveEObject(ResourceSet rst, String[] split, Map<EClass, EAttribute> classFeatureMap) {
-        Set<Entry<EClass, EAttribute>> entrySet = classFeatureMap.entrySet();
+        Set<Map.Entry<EClass, EAttribute>> entrySet = classFeatureMap.entrySet();
         URI uri = findMappedUri(rst, split[1]);
         String identifier = split[0];
         if (uri == null) {
@@ -76,9 +75,9 @@ public class UriHelper {
         return null;
     }
 
-    protected static boolean isMatch(Set<Entry<EClass, EAttribute>> entrySet, String identifier, EObject eObject) {
+    protected static boolean isMatch(Set<Map.Entry<EClass, EAttribute>> entrySet, String identifier, EObject eObject) {
         boolean isMatch = false;
-        for (Entry<EClass, EAttribute> entry : entrySet) {
+        for (Map.Entry<EClass, EAttribute> entry : entrySet) {
             if (entry.getKey().isInstance(eObject)) {
                 String name = (String) eObject.eGet(entry.getValue());
                 if (name.equals(identifier)) {

@@ -24,274 +24,274 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.PoolImpl#getPoolCalendar <em>Pool Calendar</em>}</li>
  *   <li>{@link org.omg.vdml.impl.PoolImpl#getPoolSize <em>Pool Size</em>}</li>
  *   <li>{@link org.omg.vdml.impl.PoolImpl#getPosition <em>Position</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class PoolImpl extends StoreImpl implements Pool {
     /**
-     * The cached value of the '{@link #getPoolCalendar() <em>Pool Calendar</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPoolCalendar() <em>Pool Calendar</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPoolCalendar()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPoolCalendar()
+	 * @generated
+	 * @ordered
+	 */
     protected CalendarService poolCalendar;
 
     /**
-     * The cached value of the '{@link #getPoolSize() <em>Pool Size</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPoolSize() <em>Pool Size</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPoolSize()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPoolSize()
+	 * @generated
+	 * @ordered
+	 */
     protected MeasuredCharacteristic poolSize;
 
     /**
-     * The cached value of the '{@link #getPosition() <em>Position</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPosition() <em>Position</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPosition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPosition()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Position> position;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PoolImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.POOL;
-    }
+		return VDMLPackage.Literals.POOL;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CalendarService getPoolCalendar() {
-        return poolCalendar;
-    }
+		return poolCalendar;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetPoolCalendar(CalendarService newPoolCalendar, NotificationChain msgs) {
-        CalendarService oldPoolCalendar = poolCalendar;
-        poolCalendar = newPoolCalendar;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_CALENDAR, oldPoolCalendar, newPoolCalendar);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		CalendarService oldPoolCalendar = poolCalendar;
+		poolCalendar = newPoolCalendar;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_CALENDAR, oldPoolCalendar, newPoolCalendar);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setPoolCalendar(CalendarService newPoolCalendar) {
-        if (newPoolCalendar != poolCalendar) {
-            NotificationChain msgs = null;
-            if (poolCalendar != null)
-                msgs = ((InternalEObject)poolCalendar).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_CALENDAR, null, msgs);
-            if (newPoolCalendar != null)
-                msgs = ((InternalEObject)newPoolCalendar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_CALENDAR, null, msgs);
-            msgs = basicSetPoolCalendar(newPoolCalendar, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_CALENDAR, newPoolCalendar, newPoolCalendar));
-    }
+		if (newPoolCalendar != poolCalendar) {
+			NotificationChain msgs = null;
+			if (poolCalendar != null)
+				msgs = ((InternalEObject)poolCalendar).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_CALENDAR, null, msgs);
+			if (newPoolCalendar != null)
+				msgs = ((InternalEObject)newPoolCalendar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_CALENDAR, null, msgs);
+			msgs = basicSetPoolCalendar(newPoolCalendar, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_CALENDAR, newPoolCalendar, newPoolCalendar));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MeasuredCharacteristic getPoolSize() {
-        return poolSize;
-    }
+		return poolSize;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetPoolSize(MeasuredCharacteristic newPoolSize, NotificationChain msgs) {
-        MeasuredCharacteristic oldPoolSize = poolSize;
-        poolSize = newPoolSize;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_SIZE, oldPoolSize, newPoolSize);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		MeasuredCharacteristic oldPoolSize = poolSize;
+		poolSize = newPoolSize;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_SIZE, oldPoolSize, newPoolSize);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setPoolSize(MeasuredCharacteristic newPoolSize) {
-        if (newPoolSize != poolSize) {
-            NotificationChain msgs = null;
-            if (poolSize != null)
-                msgs = ((InternalEObject)poolSize).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_SIZE, null, msgs);
-            if (newPoolSize != null)
-                msgs = ((InternalEObject)newPoolSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_SIZE, null, msgs);
-            msgs = basicSetPoolSize(newPoolSize, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_SIZE, newPoolSize, newPoolSize));
-    }
+		if (newPoolSize != poolSize) {
+			NotificationChain msgs = null;
+			if (poolSize != null)
+				msgs = ((InternalEObject)poolSize).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_SIZE, null, msgs);
+			if (newPoolSize != null)
+				msgs = ((InternalEObject)newPoolSize).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.POOL__POOL_SIZE, null, msgs);
+			msgs = basicSetPoolSize(newPoolSize, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL__POOL_SIZE, newPoolSize, newPoolSize));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Position> getPosition() {
-        if (position == null) {
-            position = new EObjectWithInverseResolvingEList.ManyInverse<Position>(Position.class, this, VDMLPackage.POOL__POSITION, VDMLPackage.POSITION__ACTOR_POOL);
-        }
-        return position;
-    }
+		if (position == null) {
+			position = new EObjectWithInverseResolvingEList.ManyInverse<Position>(Position.class, this, VDMLPackage.POOL__POSITION, VDMLPackage.POSITION__ACTOR_POOL);
+		}
+		return position;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.POOL__POSITION:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getPosition()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.POOL__POSITION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPosition()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.POOL__POOL_CALENDAR:
-                return basicSetPoolCalendar(null, msgs);
-            case VDMLPackage.POOL__POOL_SIZE:
-                return basicSetPoolSize(null, msgs);
-            case VDMLPackage.POOL__POSITION:
-                return ((InternalEList<?>)getPosition()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.POOL__POOL_CALENDAR:
+				return basicSetPoolCalendar(null, msgs);
+			case VDMLPackage.POOL__POOL_SIZE:
+				return basicSetPoolSize(null, msgs);
+			case VDMLPackage.POOL__POSITION:
+				return ((InternalEList<?>)getPosition()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.POOL__POOL_CALENDAR:
-                return getPoolCalendar();
-            case VDMLPackage.POOL__POOL_SIZE:
-                return getPoolSize();
-            case VDMLPackage.POOL__POSITION:
-                return getPosition();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.POOL__POOL_CALENDAR:
+				return getPoolCalendar();
+			case VDMLPackage.POOL__POOL_SIZE:
+				return getPoolSize();
+			case VDMLPackage.POOL__POSITION:
+				return getPosition();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.POOL__POOL_CALENDAR:
-                setPoolCalendar((CalendarService)newValue);
-                return;
-            case VDMLPackage.POOL__POOL_SIZE:
-                setPoolSize((MeasuredCharacteristic)newValue);
-                return;
-            case VDMLPackage.POOL__POSITION:
-                getPosition().clear();
-                getPosition().addAll((Collection<? extends Position>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.POOL__POOL_CALENDAR:
+				setPoolCalendar((CalendarService)newValue);
+				return;
+			case VDMLPackage.POOL__POOL_SIZE:
+				setPoolSize((MeasuredCharacteristic)newValue);
+				return;
+			case VDMLPackage.POOL__POSITION:
+				getPosition().clear();
+				getPosition().addAll((Collection<? extends Position>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.POOL__POOL_CALENDAR:
-                setPoolCalendar((CalendarService)null);
-                return;
-            case VDMLPackage.POOL__POOL_SIZE:
-                setPoolSize((MeasuredCharacteristic)null);
-                return;
-            case VDMLPackage.POOL__POSITION:
-                getPosition().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.POOL__POOL_CALENDAR:
+				setPoolCalendar((CalendarService)null);
+				return;
+			case VDMLPackage.POOL__POOL_SIZE:
+				setPoolSize((MeasuredCharacteristic)null);
+				return;
+			case VDMLPackage.POOL__POSITION:
+				getPosition().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.POOL__POOL_CALENDAR:
-                return poolCalendar != null;
-            case VDMLPackage.POOL__POOL_SIZE:
-                return poolSize != null;
-            case VDMLPackage.POOL__POSITION:
-                return position != null && !position.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.POOL__POOL_CALENDAR:
+				return poolCalendar != null;
+			case VDMLPackage.POOL__POOL_SIZE:
+				return poolSize != null;
+			case VDMLPackage.POOL__POSITION:
+				return position != null && !position.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //PoolImpl

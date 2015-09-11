@@ -131,6 +131,10 @@
       <groupId>de.malkusch.whois-server-list</groupId>
       <artifactId>public-suffix-list</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
 
   </dependencies>
 

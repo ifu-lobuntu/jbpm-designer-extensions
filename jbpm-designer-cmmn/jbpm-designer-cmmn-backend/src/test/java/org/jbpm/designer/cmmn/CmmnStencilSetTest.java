@@ -1,14 +1,14 @@
 package org.jbpm.designer.cmmn;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.jbpm.designer.extensions.stencilset.linkage.LinkedStencilSet;
 import org.jbpm.designer.extensions.stencilset.linkage.StencilSet;
 import org.junit.Test;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class CmmnStencilSetTest {
     @Test

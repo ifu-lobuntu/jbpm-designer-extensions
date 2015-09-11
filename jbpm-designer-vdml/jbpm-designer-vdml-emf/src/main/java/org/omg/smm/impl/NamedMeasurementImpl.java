@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Named Measurement</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class NamedMeasurementImpl extends DimensionalMeasurementImpl implements NamedMeasurement {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected NamedMeasurementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.NAMED_MEASUREMENT;
-    }
+		return SMMPackage.Literals.NAMED_MEASUREMENT;
+	}
 
 } //NamedMeasurementImpl

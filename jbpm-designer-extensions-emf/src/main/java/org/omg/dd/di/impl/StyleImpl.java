@@ -2,28 +2,23 @@
  */
 package org.omg.dd.di.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.Map;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.plugin.*;
+import org.eclipse.emf.ecore.util.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.dg.*;
+import org.omg.dd.dg.util.*;
+import org.omg.dd.di.impl.ShapeImpl;
+import org.omg.dd.di.util.*;
+import org.omg.dd.dc.util.*;
+import org.omg.dd.di.*;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.omg.dd.dc.Color;
-import org.omg.dd.dg.Fill;
-import org.omg.dd.di.DIPackage;
-import org.omg.dd.di.Style;
-import org.omg.dd.di.util.DIValidator;
+import java.lang.reflect.*;
+import java.util.*;
 
 /**
  * <!-- begin-user-doc -->

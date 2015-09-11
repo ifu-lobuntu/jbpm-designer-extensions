@@ -1,10 +1,11 @@
 package org.jbpm.designer.extensions.api;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.jbpm.designer.taskforms.TaskFormInfo;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.jbpm.designer.taskforms.TaskFormInfo;
 
 public class FormBuildingContext {
     private String repository;

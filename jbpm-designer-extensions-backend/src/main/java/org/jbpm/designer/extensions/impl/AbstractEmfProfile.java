@@ -1,9 +1,5 @@
 package org.jbpm.designer.extensions.impl;
 
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.Instance;
-import javax.inject.Inject;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
@@ -22,6 +18,11 @@ import org.omg.dd.di.DIPackage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.backend.vfs.VFSService;
+
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
+
 
 public abstract class AbstractEmfProfile implements IEmfProfile {
     @Inject

@@ -14,8 +14,6 @@ public class RolePerformance {
     @ManyToOne
     private Role role;
     @ManyToOne
-    private RolePerformance extendedRolePerformance;
-    @ManyToOne
     private Participant participant;
     @OneToMany(mappedBy = "provider",cascade = CascadeType.ALL)
     private Set<ValuePropositionPerformance> providedValuePropositions=new HashSet<ValuePropositionPerformance>();
@@ -23,8 +21,6 @@ public class RolePerformance {
     private Set<ProvidedValuePropositionPerformance> overallProvidedValuePropositions=new HashSet<ProvidedValuePropositionPerformance>();
     @OneToMany(mappedBy = "receiver",cascade = CascadeType.ALL)
     private Set<ValuePropositionPerformance> receivedValuePropositions=new HashSet<ValuePropositionPerformance>();
-    @OneToMany(mappedBy = "responsibleRole")
-    private Set<RoleStorePerformance> stores=new HashSet<RoleStorePerformance>();
 
     public RolePerformance() {
     }
@@ -55,17 +51,6 @@ public class RolePerformance {
         return overallProvidedValuePropositions;
     }
 
-    public Set<RoleStorePerformance> getStores() {
-        return stores;
-    }
-
-    public RolePerformance getExtendedRolePerformance() {
-        return extendedRolePerformance;
-    }
-
-    public void setExtendedRolePerformance(RolePerformance extendedRolePerformance) {
-        this.extendedRolePerformance = extendedRolePerformance;
-    }
 
     public Long getId() {
         return id;

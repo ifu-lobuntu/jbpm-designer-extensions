@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Base2 Measurement Relationship</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class Base2MeasurementRelationshipImpl extends BaseMeasurementRelationshipImpl implements Base2MeasurementRelationship {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected Base2MeasurementRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.BASE2_MEASUREMENT_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.BASE2_MEASUREMENT_RELATIONSHIP;
+	}
 
 } //Base2MeasurementRelationshipImpl

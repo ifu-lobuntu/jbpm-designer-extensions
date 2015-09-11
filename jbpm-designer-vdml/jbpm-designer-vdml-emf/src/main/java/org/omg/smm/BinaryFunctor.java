@@ -2,11 +2,11 @@
  */
 package org.omg.smm;
 
+import org.eclipse.emf.common.util.Enumerator;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,271 +19,277 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum BinaryFunctor implements Enumerator {
     /**
-     * The '<em><b>Plus</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Plus</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #PLUS_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #PLUS_VALUE
+	 * @generated
+	 * @ordered
+	 */
     PLUS(0, "plus", "plus"),
 
     /**
-     * The '<em><b>Minus</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Minus</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #MINUS_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #MINUS_VALUE
+	 * @generated
+	 * @ordered
+	 */
     MINUS(1, "minus", "minus"),
 
     /**
-     * The '<em><b>Multiply</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Multiply</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #MULTIPLY_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #MULTIPLY_VALUE
+	 * @generated
+	 * @ordered
+	 */
     MULTIPLY(2, "multiply", "multiply"),
 
     /**
-     * The '<em><b>Divide</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Divide</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #DIVIDE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #DIVIDE_VALUE
+	 * @generated
+	 * @ordered
+	 */
     DIVIDE(3, "divide", "divide"),
 
     /**
-     * The '<em><b>Custom</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Custom</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #CUSTOM_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #CUSTOM_VALUE
+	 * @generated
+	 * @ordered
+	 */
     CUSTOM(4, "custom", "custom");
 
     /**
-     * The '<em><b>Plus</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Plus</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Plus</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #PLUS
-     * @model name="plus"
-     * @generated
-     * @ordered
-     */
+	 * @see #PLUS
+	 * @model name="plus"
+	 * @generated
+	 * @ordered
+	 */
     public static final int PLUS_VALUE = 0;
 
     /**
-     * The '<em><b>Minus</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Minus</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Minus</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #MINUS
-     * @model name="minus"
-     * @generated
-     * @ordered
-     */
+	 * @see #MINUS
+	 * @model name="minus"
+	 * @generated
+	 * @ordered
+	 */
     public static final int MINUS_VALUE = 1;
 
     /**
-     * The '<em><b>Multiply</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Multiply</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Multiply</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #MULTIPLY
-     * @model name="multiply"
-     * @generated
-     * @ordered
-     */
+	 * @see #MULTIPLY
+	 * @model name="multiply"
+	 * @generated
+	 * @ordered
+	 */
     public static final int MULTIPLY_VALUE = 2;
 
     /**
-     * The '<em><b>Divide</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Divide</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Divide</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #DIVIDE
-     * @model name="divide"
-     * @generated
-     * @ordered
-     */
+	 * @see #DIVIDE
+	 * @model name="divide"
+	 * @generated
+	 * @ordered
+	 */
     public static final int DIVIDE_VALUE = 3;
 
     /**
-     * The '<em><b>Custom</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Custom</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Custom</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #CUSTOM
-     * @model name="custom"
-     * @generated
-     * @ordered
-     */
+	 * @see #CUSTOM
+	 * @model name="custom"
+	 * @generated
+	 * @ordered
+	 */
     public static final int CUSTOM_VALUE = 4;
 
     /**
-     * An array of all the '<em><b>Binary Functor</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Binary Functor</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private static final BinaryFunctor[] VALUES_ARRAY =
         new BinaryFunctor[] {
-            PLUS,
-            MINUS,
-            MULTIPLY,
-            DIVIDE,
-            CUSTOM,
-        };
+			PLUS,
+			MINUS,
+			MULTIPLY,
+			DIVIDE,
+			CUSTOM,
+		};
 
     /**
-     * A public read-only list of all the '<em><b>Binary Functor</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Binary Functor</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final List<BinaryFunctor> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Binary Functor</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Binary Functor</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @param literal the literal.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
     public static BinaryFunctor get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            BinaryFunctor result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			BinaryFunctor result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Binary Functor</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Binary Functor</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @param name the name.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
     public static BinaryFunctor getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            BinaryFunctor result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			BinaryFunctor result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Binary Functor</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Binary Functor</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @param value the integer value.
+	 * @return the matching enumerator or <code>null</code>.
+	 * @generated
+	 */
     public static BinaryFunctor get(int value) {
-        switch (value) {
-            case PLUS_VALUE: return PLUS;
-            case MINUS_VALUE: return MINUS;
-            case MULTIPLY_VALUE: return MULTIPLY;
-            case DIVIDE_VALUE: return DIVIDE;
-            case CUSTOM_VALUE: return CUSTOM;
-        }
-        return null;
-    }
+		switch (value) {
+			case PLUS_VALUE: return PLUS;
+			case MINUS_VALUE: return MINUS;
+			case MULTIPLY_VALUE: return MULTIPLY;
+			case DIVIDE_VALUE: return DIVIDE;
+			case CUSTOM_VALUE: return CUSTOM;
+		}
+		return null;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final int value;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String name;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String literal;
 
     /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private BinaryFunctor(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getValue() {
-      return value;
-    }
+	  return value;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-      return name;
-    }
+	  return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getLiteral() {
-      return literal;
-    }
+	  return literal;
+	}
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        return literal;
-    }
+		return literal;
+	}
     
 } //BinaryFunctor

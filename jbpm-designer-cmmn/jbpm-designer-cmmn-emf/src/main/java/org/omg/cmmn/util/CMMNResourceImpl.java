@@ -6,22 +6,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLHelper;
-import org.eclipse.emf.ecore.xmi.XMLLoad;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.XMLSave;
-import org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLSaveImpl;
-import org.jbpm.cmmn.dd.cmmndi.CMMNDIPackage;
-import org.omg.cmmn.CMMNPackage;
-import org.omg.cmmn.TDefinitions;
+import org.eclipse.emf.ecore.util.*;
+import org.eclipse.emf.ecore.xmi.*;
+import org.eclipse.emf.ecore.xmi.impl.*;
+import org.jbpm.cmmn.dd.cmmndi.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.util.Collections;
+import org.omg.cmmn.*;
+import org.omg.dd.di.impl.*;
+import org.omg.dd.di.*;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**

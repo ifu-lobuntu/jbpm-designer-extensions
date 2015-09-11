@@ -22,218 +22,218 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getCategory <em>Category</em>}</li>
  *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getCapability <em>Capability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getResourceDefinition <em>Resource Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeDefinition {
     /**
-     * The cached value of the '{@link #getCategory() <em>Category</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCategory() <em>Category</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCategory()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCategory()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<PracticeCategory> category;
 
     /**
-     * The cached value of the '{@link #getCapability() <em>Capability</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCapability() <em>Capability</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCapability()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCapability()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<CapabilityDefinition> capability;
 
     /**
-     * The cached value of the '{@link #getResourceDefinition() <em>Resource Definition</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getResourceDefinition() <em>Resource Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getResourceDefinition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getResourceDefinition()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<BusinessItemDefinition> resourceDefinition;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PracticeDefinitionImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.PRACTICE_DEFINITION;
-    }
+		return VDMLPackage.Literals.PRACTICE_DEFINITION;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<PracticeCategory> getCategory() {
-        if (category == null) {
-            category = new EObjectWithInverseResolvingEList.ManyInverse<PracticeCategory>(PracticeCategory.class, this, VDMLPackage.PRACTICE_DEFINITION__CATEGORY, VDMLPackage.PRACTICE_CATEGORY__CATEGORY_PRACTICE);
-        }
-        return category;
-    }
+		if (category == null) {
+			category = new EObjectWithInverseResolvingEList.ManyInverse<PracticeCategory>(PracticeCategory.class, this, VDMLPackage.PRACTICE_DEFINITION__CATEGORY, VDMLPackage.PRACTICE_CATEGORY__CATEGORY_PRACTICE);
+		}
+		return category;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<CapabilityDefinition> getCapability() {
-        if (capability == null) {
-            capability = new EObjectWithInverseResolvingEList.ManyInverse<CapabilityDefinition>(CapabilityDefinition.class, this, VDMLPackage.PRACTICE_DEFINITION__CAPABILITY, VDMLPackage.CAPABILITY_DEFINITION__PRACTICE_DEFINITION);
-        }
-        return capability;
-    }
+		if (capability == null) {
+			capability = new EObjectWithInverseResolvingEList.ManyInverse<CapabilityDefinition>(CapabilityDefinition.class, this, VDMLPackage.PRACTICE_DEFINITION__CAPABILITY, VDMLPackage.CAPABILITY_DEFINITION__PRACTICE_DEFINITION);
+		}
+		return capability;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<BusinessItemDefinition> getResourceDefinition() {
-        if (resourceDefinition == null) {
-            resourceDefinition = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemDefinition>(BusinessItemDefinition.class, this, VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION, VDMLPackage.BUSINESS_ITEM_DEFINITION__PRACTICE_DEFINITION);
-        }
-        return resourceDefinition;
-    }
+		if (resourceDefinition == null) {
+			resourceDefinition = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemDefinition>(BusinessItemDefinition.class, this, VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION, VDMLPackage.BUSINESS_ITEM_DEFINITION__PRACTICE_DEFINITION);
+		}
+		return resourceDefinition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategory()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getCapability()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getResourceDefinition()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategory()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCapability()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getResourceDefinition()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
-                return ((InternalEList<?>)getCategory()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-                return ((InternalEList<?>)getCapability()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
-                return ((InternalEList<?>)getResourceDefinition()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
+				return ((InternalEList<?>)getCategory()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
+				return ((InternalEList<?>)getCapability()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
+				return ((InternalEList<?>)getResourceDefinition()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
-                return getCategory();
-            case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-                return getCapability();
-            case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
-                return getResourceDefinition();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
+				return getCategory();
+			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
+				return getCapability();
+			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
+				return getResourceDefinition();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
-                getCategory().clear();
-                getCategory().addAll((Collection<? extends PracticeCategory>)newValue);
-                return;
-            case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-                getCapability().clear();
-                getCapability().addAll((Collection<? extends CapabilityDefinition>)newValue);
-                return;
-            case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
-                getResourceDefinition().clear();
-                getResourceDefinition().addAll((Collection<? extends BusinessItemDefinition>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
+				getCategory().clear();
+				getCategory().addAll((Collection<? extends PracticeCategory>)newValue);
+				return;
+			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
+				getCapability().clear();
+				getCapability().addAll((Collection<? extends CapabilityDefinition>)newValue);
+				return;
+			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
+				getResourceDefinition().clear();
+				getResourceDefinition().addAll((Collection<? extends BusinessItemDefinition>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
-                getCategory().clear();
-                return;
-            case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-                getCapability().clear();
-                return;
-            case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
-                getResourceDefinition().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
+				getCategory().clear();
+				return;
+			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
+				getCapability().clear();
+				return;
+			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
+				getResourceDefinition().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
-                return category != null && !category.isEmpty();
-            case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-                return capability != null && !capability.isEmpty();
-            case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
-                return resourceDefinition != null && !resourceDefinition.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
+				return category != null && !category.isEmpty();
+			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
+				return capability != null && !capability.isEmpty();
+			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
+				return resourceDefinition != null && !resourceDefinition.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //PracticeDefinitionImpl

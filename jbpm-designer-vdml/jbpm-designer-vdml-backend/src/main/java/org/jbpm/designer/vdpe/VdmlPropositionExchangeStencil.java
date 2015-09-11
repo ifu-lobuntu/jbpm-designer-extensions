@@ -1,8 +1,5 @@
 package org.jbpm.designer.vdpe;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -15,6 +12,9 @@ import org.omg.dd.di.DiagramElement;
 import org.omg.vdml.Role;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueProposition;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public enum VdmlPropositionExchangeStencil implements VdmlStencilInfo {
     VDML_PROPOSITION_EXCHANGE_DIAGRAM(VDMLPackage.eINSTANCE.getCollaboration(), VDMLDIPackage.eINSTANCE.getVDMLDiagram(), "PropositionExchangeDiagram"),

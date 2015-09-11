@@ -10,29 +10,27 @@ import org.omg.vdml.VDMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Party</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class PartyImpl extends RoleImpl implements Party {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PartyImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.PARTY;
-    }
+		return VDMLPackage.Literals.PARTY;
+	}
 
 } //PartyImpl

@@ -16,11 +16,6 @@
  */
 package org.jbpm.designer.uberfire.backend.server.impl;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
-import javax.inject.Inject;
-
 import org.picketlink.authentication.event.PreAuthenticateEvent;
 import org.picketlink.idm.IdentityManager;
 import org.picketlink.idm.PartitionManager;
@@ -29,6 +24,11 @@ import org.picketlink.idm.credential.Password;
 import org.picketlink.idm.model.basic.Grant;
 import org.picketlink.idm.model.basic.Role;
 import org.picketlink.idm.model.basic.User;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.event.Observes;
+import javax.inject.Inject;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @ApplicationScoped
 public class PicketLinkDefaultUsers {

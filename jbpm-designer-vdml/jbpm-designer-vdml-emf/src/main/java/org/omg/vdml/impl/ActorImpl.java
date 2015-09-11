@@ -1,7 +1,6 @@
 /**
  */
 package org.omg.vdml.impl;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,142 +19,142 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.ActorImpl#getScenario <em>Scenario</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ActorImpl extends ParticipantImpl implements Actor {
     /**
-     * The cached value of the '{@link #getScenario() <em>Scenario</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getScenario() <em>Scenario</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getScenario()
-     * @generated
-     * @ordered
-     */
+	 * @see #getScenario()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Scenario> scenario;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ActorImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.ACTOR;
-    }
+		return VDMLPackage.Literals.ACTOR;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Scenario> getScenario() {
-        if (scenario == null) {
-            scenario = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, VDMLPackage.ACTOR__SCENARIO, VDMLPackage.SCENARIO__CONTEXT_ACTOR);
-        }
-        return scenario;
-    }
+		if (scenario == null) {
+			scenario = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, VDMLPackage.ACTOR__SCENARIO, VDMLPackage.SCENARIO__CONTEXT_ACTOR);
+		}
+		return scenario;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.ACTOR__SCENARIO:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.ACTOR__SCENARIO:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.ACTOR__SCENARIO:
-                return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.ACTOR__SCENARIO:
+				return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.ACTOR__SCENARIO:
-                return getScenario();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.ACTOR__SCENARIO:
+				return getScenario();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.ACTOR__SCENARIO:
-                getScenario().clear();
-                getScenario().addAll((Collection<? extends Scenario>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.ACTOR__SCENARIO:
+				getScenario().clear();
+				getScenario().addAll((Collection<? extends Scenario>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.ACTOR__SCENARIO:
-                getScenario().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.ACTOR__SCENARIO:
+				getScenario().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.ACTOR__SCENARIO:
-                return scenario != null && !scenario.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.ACTOR__SCENARIO:
+				return scenario != null && !scenario.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ActorImpl

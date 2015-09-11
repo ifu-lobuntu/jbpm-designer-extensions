@@ -342,7 +342,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="CategoryRelationship" eSuperTypes="#//SmmRelationship"/>
   <eClassifiers xsi:type="ecore:EClass" name="CountingMeasurement" eSuperTypes="#//DirectMeasurement"/>
   <eClassifiers xsi:type="ecore:EClass" name="DirectMeasurement" eSuperTypes="#//DimensionalMeasurement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CountingMeasure" eSuperTypes="#//DirectMeasure"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CountingMeasure" eSuperTypes="#//DirectMeasure">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="countedMeasureTo" eType="#//CountingMeasureRelationship"
+        containment="true" eOpposite="#//CountingMeasureRelationship/fromCountingMeasure"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectMeasure" eSuperTypes="#//DimensionalMeasure">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
         eType="#//Operation"/>
@@ -396,5 +399,10 @@
         upperBound="-1" eType="#//MeasureLibrary" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="observations" ordered="false"
         upperBound="-1" eType="#//Observation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CountingMeasureRelationship" eSuperTypes="#//MeasureRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromCountingMeasure" lowerBound="1"
+        eType="#//CountingMeasure" eOpposite="#//CountingMeasure/countedMeasureTo"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toCountedMeasure" eType="#//Measure"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -2,13 +2,25 @@ package org.omg.cmmn.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.omg.cmmn.DocumentRoot;
-import org.omg.cmmn.TDefinitions;
-import org.omg.cmmn.TImport;
+import org.eclipse.emf.ecore.util.*;
+import org.eclipse.emf.ecore.xmi.*;
+import org.eclipse.emf.ecore.xmi.impl.*;
+import org.jbpm.cmmn.dd.cmmndi.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.util.Collections;
+import org.omg.cmmn.*;
+import org.omg.dd.di.impl.*;
+import org.omg.dd.di.*;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Provides static helper methods for dealing with imports.

@@ -12,27 +12,27 @@ public class DeliverableFlow implements  MetaEntity{
     @Id
     private String uri;
     private String name;
-    private String inputName;
-    private String outputName;
+    private String recipientName;
+    private String providerName;
     @ManyToOne
     private Collaboration collaboration;
     @ManyToOne
-    private PortContainer fromPortContainer;
+    private RoleBasedPortContainer providingPortContainer;
     @ManyToOne
-    private PortContainer toPortContainer;
+    private RoleBasedPortContainer receivingPortContainer;
     @ManyToOne
     private Measure quantity;
     @ManyToOne
     private Measure duration;
     @ManyToOne
-    private BusinessItem deliverable;
+    private BusinessItemDefinition deliverable;
     @ManyToMany
     private Set<Measure> valueAdds=new HashSet<Measure>();
 
     public DeliverableFlow(String uri, Collaboration collaboration) {
         this.uri=uri;
         this.collaboration = collaboration;
-        this.collaboration.getDeliverableFlows().add(this);
+        this.collaboration.getFlows().add(this);
     }
 
     public DeliverableFlow() {
@@ -58,28 +58,28 @@ public class DeliverableFlow implements  MetaEntity{
         return valueAdds;
     }
 
-    public BusinessItem getDeliverable() {
+    public BusinessItemDefinition getDeliverable() {
         return deliverable;
     }
 
-    public PortContainer getFromPortContainer() {
-        return fromPortContainer;
+    public RoleBasedPortContainer getProvidingPortContainer() {
+        return providingPortContainer;
     }
 
-    public void setDeliverable(BusinessItem deliverable) {
+    public void setDeliverable(BusinessItemDefinition deliverable) {
         this.deliverable = deliverable;
     }
 
-    public void setFromPortContainer(PortContainer fromPortContainer) {
-        this.fromPortContainer = fromPortContainer;
+    public void setProvidingPortContainer(RoleBasedPortContainer fromRoleBasedPortContainer) {
+        this.providingPortContainer = fromRoleBasedPortContainer;
     }
 
-    public PortContainer getToPortContainer() {
-        return toPortContainer;
+    public RoleBasedPortContainer getReceivingPortContainer() {
+        return receivingPortContainer;
     }
 
-    public void setToPortContainer(PortContainer toPortContainer) {
-        this.toPortContainer = toPortContainer;
+    public void setReceivingPortContainer(RoleBasedPortContainer toRoleBasedPortContainer) {
+        this.receivingPortContainer = toRoleBasedPortContainer;
     }
 
     public Collaboration getCollaboration() {
@@ -102,19 +102,19 @@ public class DeliverableFlow implements  MetaEntity{
         this.name = name;
     }
 
-    public String getInputName() {
-        return inputName;
+    public String getRecipientName() {
+        return recipientName;
     }
 
-    public void setInputName(String inputName) {
-        this.inputName = inputName;
+    public void setRecipientName(String inputName) {
+        this.recipientName = inputName;
     }
 
-    public String getOutputName() {
-        return outputName;
+    public String getProviderName() {
+        return providerName;
     }
 
-    public void setOutputName(String outputName) {
-        this.outputName = outputName;
+    public void setProviderName(String outputName) {
+        this.providerName = outputName;
     }
 }

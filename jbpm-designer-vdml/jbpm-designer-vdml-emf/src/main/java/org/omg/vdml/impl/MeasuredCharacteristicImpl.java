@@ -14,180 +14,179 @@ import org.omg.smm.Characteristic;
 import org.omg.smm.Measurement;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.VDMLPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Measured Characteristic</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.MeasuredCharacteristicImpl#getMeasurement <em>Measurement</em>}</li>
  *   <li>{@link org.omg.vdml.impl.MeasuredCharacteristicImpl#getCharacteristicDefinition <em>Characteristic Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class MeasuredCharacteristicImpl extends VdmlElementImpl implements MeasuredCharacteristic {
     /**
-     * The cached value of the '{@link #getMeasurement() <em>Measurement</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMeasurement() <em>Measurement</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMeasurement()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMeasurement()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Measurement> measurement;
 
     /**
-     * The cached value of the '{@link #getCharacteristicDefinition() <em>Characteristic Definition</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCharacteristicDefinition() <em>Characteristic Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCharacteristicDefinition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCharacteristicDefinition()
+	 * @generated
+	 * @ordered
+	 */
     protected Characteristic characteristicDefinition;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MeasuredCharacteristicImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.MEASURED_CHARACTERISTIC;
-    }
+		return VDMLPackage.Literals.MEASURED_CHARACTERISTIC;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Measurement> getMeasurement() {
-        if (measurement == null) {
-            measurement = new EObjectResolvingEList<Measurement>(Measurement.class, this, VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT);
-        }
-        return measurement;
-    }
+		if (measurement == null) {
+			measurement = new EObjectResolvingEList<Measurement>(Measurement.class, this, VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT);
+		}
+		return measurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Characteristic getCharacteristicDefinition() {
-        if (characteristicDefinition != null && characteristicDefinition.eIsProxy()) {
-            InternalEObject oldCharacteristicDefinition = (InternalEObject)characteristicDefinition;
-            characteristicDefinition = (Characteristic)eResolveProxy(oldCharacteristicDefinition);
-            if (characteristicDefinition != oldCharacteristicDefinition) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION, oldCharacteristicDefinition, characteristicDefinition));
-            }
-        }
-        return characteristicDefinition;
-    }
+		if (characteristicDefinition != null && characteristicDefinition.eIsProxy()) {
+			InternalEObject oldCharacteristicDefinition = (InternalEObject)characteristicDefinition;
+			characteristicDefinition = (Characteristic)eResolveProxy(oldCharacteristicDefinition);
+			if (characteristicDefinition != oldCharacteristicDefinition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION, oldCharacteristicDefinition, characteristicDefinition));
+			}
+		}
+		return characteristicDefinition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Characteristic basicGetCharacteristicDefinition() {
-        return characteristicDefinition;
-    }
+		return characteristicDefinition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setCharacteristicDefinition(Characteristic newCharacteristicDefinition) {
-        Characteristic oldCharacteristicDefinition = characteristicDefinition;
-        characteristicDefinition = newCharacteristicDefinition;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION, oldCharacteristicDefinition, characteristicDefinition));
-    }
+		Characteristic oldCharacteristicDefinition = characteristicDefinition;
+		characteristicDefinition = newCharacteristicDefinition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION, oldCharacteristicDefinition, characteristicDefinition));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
-                return getMeasurement();
-            case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
-                if (resolve) return getCharacteristicDefinition();
-                return basicGetCharacteristicDefinition();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
+				return getMeasurement();
+			case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
+				if (resolve) return getCharacteristicDefinition();
+				return basicGetCharacteristicDefinition();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
-                getMeasurement().clear();
-                getMeasurement().addAll((Collection<? extends Measurement>)newValue);
-                return;
-            case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
-                setCharacteristicDefinition((Characteristic)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
+				getMeasurement().clear();
+				getMeasurement().addAll((Collection<? extends Measurement>)newValue);
+				return;
+			case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
+				setCharacteristicDefinition((Characteristic)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
-                getMeasurement().clear();
-                return;
-            case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
-                setCharacteristicDefinition((Characteristic)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
+				getMeasurement().clear();
+				return;
+			case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
+				setCharacteristicDefinition((Characteristic)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
-                return measurement != null && !measurement.isEmpty();
-            case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
-                return characteristicDefinition != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.MEASURED_CHARACTERISTIC__MEASUREMENT:
+				return measurement != null && !measurement.isEmpty();
+			case VDMLPackage.MEASURED_CHARACTERISTIC__CHARACTERISTIC_DEFINITION:
+				return characteristicDefinition != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //MeasuredCharacteristicImpl

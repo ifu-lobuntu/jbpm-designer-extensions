@@ -16,206 +16,206 @@ import org.omg.smm.UnitOfMeasure;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.DimensionalMeasureImpl#getUnit <em>Unit</em>}</li>
  *   <li>{@link org.omg.smm.impl.DimensionalMeasureImpl#getFormula <em>Formula</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class DimensionalMeasureImpl extends MeasureImpl implements DimensionalMeasure {
     /**
-     * The cached value of the '{@link #getUnit() <em>Unit</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getUnit() <em>Unit</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUnit()
-     * @generated
-     * @ordered
-     */
+	 * @see #getUnit()
+	 * @generated
+	 * @ordered
+	 */
     protected UnitOfMeasure unit;
 
     /**
-     * The default value of the '{@link #getFormula() <em>Formula</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFormula() <em>Formula</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFormula()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFormula()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String FORMULA_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getFormula() <em>Formula</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFormula() <em>Formula</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFormula()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFormula()
+	 * @generated
+	 * @ordered
+	 */
     protected String formula = FORMULA_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected DimensionalMeasureImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.DIMENSIONAL_MEASURE;
-    }
+		return SMMPackage.Literals.DIMENSIONAL_MEASURE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public UnitOfMeasure getUnit() {
-        if (unit != null && unit.eIsProxy()) {
-            InternalEObject oldUnit = (InternalEObject)unit;
-            unit = (UnitOfMeasure)eResolveProxy(oldUnit);
-            if (unit != oldUnit) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.DIMENSIONAL_MEASURE__UNIT, oldUnit, unit));
-            }
-        }
-        return unit;
-    }
+		if (unit != null && unit.eIsProxy()) {
+			InternalEObject oldUnit = (InternalEObject)unit;
+			unit = (UnitOfMeasure)eResolveProxy(oldUnit);
+			if (unit != oldUnit) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.DIMENSIONAL_MEASURE__UNIT, oldUnit, unit));
+			}
+		}
+		return unit;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public UnitOfMeasure basicGetUnit() {
-        return unit;
-    }
+		return unit;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setUnit(UnitOfMeasure newUnit) {
-        UnitOfMeasure oldUnit = unit;
-        unit = newUnit;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.DIMENSIONAL_MEASURE__UNIT, oldUnit, unit));
-    }
+		UnitOfMeasure oldUnit = unit;
+		unit = newUnit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.DIMENSIONAL_MEASURE__UNIT, oldUnit, unit));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getFormula() {
-        return formula;
-    }
+		return formula;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setFormula(String newFormula) {
-        String oldFormula = formula;
-        formula = newFormula;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.DIMENSIONAL_MEASURE__FORMULA, oldFormula, formula));
-    }
+		String oldFormula = formula;
+		formula = newFormula;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.DIMENSIONAL_MEASURE__FORMULA, oldFormula, formula));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
-                if (resolve) return getUnit();
-                return basicGetUnit();
-            case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
-                return getFormula();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
+				if (resolve) return getUnit();
+				return basicGetUnit();
+			case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
+				return getFormula();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
-                setUnit((UnitOfMeasure)newValue);
-                return;
-            case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
-                setFormula((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
+				setUnit((UnitOfMeasure)newValue);
+				return;
+			case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
+				setFormula((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
-                setUnit((UnitOfMeasure)null);
-                return;
-            case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
-                setFormula(FORMULA_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
+				setUnit((UnitOfMeasure)null);
+				return;
+			case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
+				setFormula(FORMULA_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
-                return unit != null;
-            case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
-                return FORMULA_EDEFAULT == null ? formula != null : !FORMULA_EDEFAULT.equals(formula);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.DIMENSIONAL_MEASURE__UNIT:
+				return unit != null;
+			case SMMPackage.DIMENSIONAL_MEASURE__FORMULA:
+				return FORMULA_EDEFAULT == null ? formula != null : !FORMULA_EDEFAULT.equals(formula);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (formula: ");
-        result.append(formula);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (formula: ");
+		result.append(formula);
+		result.append(')');
+		return result.toString();
+	}
 
 } //DimensionalMeasureImpl

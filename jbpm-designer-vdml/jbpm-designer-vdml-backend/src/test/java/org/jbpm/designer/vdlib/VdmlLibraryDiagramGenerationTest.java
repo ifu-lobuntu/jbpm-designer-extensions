@@ -1,15 +1,31 @@
 package org.jbpm.designer.vdlib;
 
-import static org.junit.Assert.assertNotNull;
-
-import org.eclipse.uml2.uml.Class;
+import static org.junit.Assert.*;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.URIHandler;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
 import org.jbpm.designer.extensions.diagram.Diagram;
+import org.jbpm.designer.extensions.emf.util.TestUriHandler;
+import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
+import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
+import org.jbpm.designer.ucd.AbstractUmlDiagramTest;
+import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
+import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.junit.Before;
 import org.junit.Test;
-import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.CapabilityDefinition;
+import org.omg.smm.Characteristic;
+import org.omg.smm.DirectMeasure;
+import org.omg.smm.MeasureLibrary;
+import org.omg.smm.SMMFactory;
+import org.omg.vdml.*;
 
 public class VdmlLibraryDiagramGenerationTest extends AbstractVdmlLibraryDiagramTest {
     @SuppressWarnings("unused")

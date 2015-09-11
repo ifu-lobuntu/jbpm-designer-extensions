@@ -1,15 +1,23 @@
 /**
  */
 package org.omg.dd.di;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.plugin.*;
+import org.eclipse.emf.ecore.util.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.dg.*;
+import org.omg.dd.dg.util.*;
+import org.omg.dd.di.impl.ShapeImpl;
+import org.omg.dd.di.util.*;
+import org.omg.dd.dc.util.*;
+import org.omg.dd.di.*;
 
-import java.util.Map;
-
-import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.omg.dd.dc.Color;
-import org.omg.dd.dg.Fill;
-
+import java.lang.reflect.*;
+import java.util.*;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Style</b></em>'.

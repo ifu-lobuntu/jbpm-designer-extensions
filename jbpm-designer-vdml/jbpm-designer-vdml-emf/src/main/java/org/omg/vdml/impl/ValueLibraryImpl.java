@@ -1,7 +1,6 @@
 /**
  */
 package org.omg.vdml.impl;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,170 +13,169 @@ import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueCategory;
 import org.omg.vdml.ValueDefinition;
 import org.omg.vdml.ValueLibrary;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Value Library</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.ValueLibraryImpl#getValueDefinition <em>Value Definition</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ValueLibraryImpl#getValueCategory <em>Value Category</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ValueLibraryImpl extends VdmlElementImpl implements ValueLibrary {
     /**
-     * The cached value of the '{@link #getValueDefinition() <em>Value Definition</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValueDefinition() <em>Value Definition</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValueDefinition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValueDefinition()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<ValueDefinition> valueDefinition;
 
     /**
-     * The cached value of the '{@link #getValueCategory() <em>Value Category</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValueCategory() <em>Value Category</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValueCategory()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValueCategory()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<ValueCategory> valueCategory;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueLibraryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.VALUE_LIBRARY;
-    }
+		return VDMLPackage.Literals.VALUE_LIBRARY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<ValueDefinition> getValueDefinition() {
-        if (valueDefinition == null) {
-            valueDefinition = new EObjectContainmentEList<ValueDefinition>(ValueDefinition.class, this, VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION);
-        }
-        return valueDefinition;
-    }
+		if (valueDefinition == null) {
+			valueDefinition = new EObjectContainmentEList<ValueDefinition>(ValueDefinition.class, this, VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION);
+		}
+		return valueDefinition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<ValueCategory> getValueCategory() {
-        if (valueCategory == null) {
-            valueCategory = new EObjectContainmentEList<ValueCategory>(ValueCategory.class, this, VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY);
-        }
-        return valueCategory;
-    }
+		if (valueCategory == null) {
+			valueCategory = new EObjectContainmentEList<ValueCategory>(ValueCategory.class, this, VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY);
+		}
+		return valueCategory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
-                return ((InternalEList<?>)getValueDefinition()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
-                return ((InternalEList<?>)getValueCategory()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
+				return ((InternalEList<?>)getValueDefinition()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
+				return ((InternalEList<?>)getValueCategory()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
-                return getValueDefinition();
-            case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
-                return getValueCategory();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
+				return getValueDefinition();
+			case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
+				return getValueCategory();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
-                getValueDefinition().clear();
-                getValueDefinition().addAll((Collection<? extends ValueDefinition>)newValue);
-                return;
-            case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
-                getValueCategory().clear();
-                getValueCategory().addAll((Collection<? extends ValueCategory>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
+				getValueDefinition().clear();
+				getValueDefinition().addAll((Collection<? extends ValueDefinition>)newValue);
+				return;
+			case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
+				getValueCategory().clear();
+				getValueCategory().addAll((Collection<? extends ValueCategory>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
-                getValueDefinition().clear();
-                return;
-            case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
-                getValueCategory().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
+				getValueDefinition().clear();
+				return;
+			case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
+				getValueCategory().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
-                return valueDefinition != null && !valueDefinition.isEmpty();
-            case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
-                return valueCategory != null && !valueCategory.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.VALUE_LIBRARY__VALUE_DEFINITION:
+				return valueDefinition != null && !valueDefinition.isEmpty();
+			case VDMLPackage.VALUE_LIBRARY__VALUE_CATEGORY:
+				return valueCategory != null && !valueCategory.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ValueLibraryImpl

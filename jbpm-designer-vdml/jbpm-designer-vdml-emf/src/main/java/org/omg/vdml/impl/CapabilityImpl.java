@@ -21,214 +21,214 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getParentCabability <em>Parent Cabability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getChildCapability <em>Child Capability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getCharacteristicDefinition <em>Characteristic Definition</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class CapabilityImpl extends VdmlElementImpl implements Capability {
     /**
-     * The cached value of the '{@link #getParentCabability() <em>Parent Cabability</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParentCabability() <em>Parent Cabability</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParentCabability()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParentCabability()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Capability> parentCabability;
 
     /**
-     * The cached value of the '{@link #getChildCapability() <em>Child Capability</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getChildCapability() <em>Child Capability</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getChildCapability()
-     * @generated
-     * @ordered
-     */
+	 * @see #getChildCapability()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Capability> childCapability;
 
     /**
-     * The cached value of the '{@link #getCharacteristicDefinition() <em>Characteristic Definition</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCharacteristicDefinition() <em>Characteristic Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCharacteristicDefinition()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCharacteristicDefinition()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Characteristic> characteristicDefinition;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CapabilityImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.CAPABILITY;
-    }
+		return VDMLPackage.Literals.CAPABILITY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Capability> getParentCabability() {
-        if (parentCabability == null) {
-            parentCabability = new EObjectWithInverseResolvingEList.ManyInverse<Capability>(Capability.class, this, VDMLPackage.CAPABILITY__PARENT_CABABILITY, VDMLPackage.CAPABILITY__CHILD_CAPABILITY);
-        }
-        return parentCabability;
-    }
+		if (parentCabability == null) {
+			parentCabability = new EObjectWithInverseResolvingEList.ManyInverse<Capability>(Capability.class, this, VDMLPackage.CAPABILITY__PARENT_CABABILITY, VDMLPackage.CAPABILITY__CHILD_CAPABILITY);
+		}
+		return parentCabability;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Capability> getChildCapability() {
-        if (childCapability == null) {
-            childCapability = new EObjectWithInverseResolvingEList.ManyInverse<Capability>(Capability.class, this, VDMLPackage.CAPABILITY__CHILD_CAPABILITY, VDMLPackage.CAPABILITY__PARENT_CABABILITY);
-        }
-        return childCapability;
-    }
+		if (childCapability == null) {
+			childCapability = new EObjectWithInverseResolvingEList.ManyInverse<Capability>(Capability.class, this, VDMLPackage.CAPABILITY__CHILD_CAPABILITY, VDMLPackage.CAPABILITY__PARENT_CABABILITY);
+		}
+		return childCapability;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Characteristic> getCharacteristicDefinition() {
-        if (characteristicDefinition == null) {
-            characteristicDefinition = new EObjectResolvingEList<Characteristic>(Characteristic.class, this, VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION);
-        }
-        return characteristicDefinition;
-    }
+		if (characteristicDefinition == null) {
+			characteristicDefinition = new EObjectResolvingEList<Characteristic>(Characteristic.class, this, VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION);
+		}
+		return characteristicDefinition;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getParentCabability()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildCapability()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParentCabability()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildCapability()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
-                return ((InternalEList<?>)getParentCabability()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
-                return ((InternalEList<?>)getChildCapability()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
+				return ((InternalEList<?>)getParentCabability()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
+				return ((InternalEList<?>)getChildCapability()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
-                return getParentCabability();
-            case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
-                return getChildCapability();
-            case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
-                return getCharacteristicDefinition();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
+				return getParentCabability();
+			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
+				return getChildCapability();
+			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
+				return getCharacteristicDefinition();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
-                getParentCabability().clear();
-                getParentCabability().addAll((Collection<? extends Capability>)newValue);
-                return;
-            case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
-                getChildCapability().clear();
-                getChildCapability().addAll((Collection<? extends Capability>)newValue);
-                return;
-            case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
-                getCharacteristicDefinition().clear();
-                getCharacteristicDefinition().addAll((Collection<? extends Characteristic>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
+				getParentCabability().clear();
+				getParentCabability().addAll((Collection<? extends Capability>)newValue);
+				return;
+			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
+				getChildCapability().clear();
+				getChildCapability().addAll((Collection<? extends Capability>)newValue);
+				return;
+			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
+				getCharacteristicDefinition().clear();
+				getCharacteristicDefinition().addAll((Collection<? extends Characteristic>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
-                getParentCabability().clear();
-                return;
-            case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
-                getChildCapability().clear();
-                return;
-            case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
-                getCharacteristicDefinition().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
+				getParentCabability().clear();
+				return;
+			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
+				getChildCapability().clear();
+				return;
+			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
+				getCharacteristicDefinition().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
-                return parentCabability != null && !parentCabability.isEmpty();
-            case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
-                return childCapability != null && !childCapability.isEmpty();
-            case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
-                return characteristicDefinition != null && !characteristicDefinition.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.CAPABILITY__PARENT_CABABILITY:
+				return parentCabability != null && !parentCabability.isEmpty();
+			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
+				return childCapability != null && !childCapability.isEmpty();
+			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
+				return characteristicDefinition != null && !characteristicDefinition.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //CapabilityImpl

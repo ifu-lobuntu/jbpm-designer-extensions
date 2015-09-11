@@ -10,29 +10,27 @@ import org.omg.vdml.VDMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Performer</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class PerformerImpl extends RoleImpl implements Performer {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PerformerImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.PERFORMER;
-    }
+		return VDMLPackage.Literals.PERFORMER;
+	}
 
 } //PerformerImpl

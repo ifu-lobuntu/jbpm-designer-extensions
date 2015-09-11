@@ -1,11 +1,13 @@
 package org.jbpm.designer.client.ucd;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 
 import org.jbpm.designer.client.DesignerPresenter;
 import org.jbpm.designer.client.DesignerView;
 import org.uberfire.client.annotations.WorkbenchEditor;
+
+import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
+
 
 @Dependent
 @WorkbenchEditor(identifier = "jbpm.ucd.designer", supportedTypes = { ClassDiagramType.class })

@@ -1,8 +1,9 @@
 package org.jbpm.designer.uml.code.metamodel.statements;
 
+import org.jbpm.designer.uml.code.metamodel.CodeBlock;
+
 import java.util.Map;
 
-import org.jbpm.designer.uml.code.metamodel.CodeBlock;
 
 public class MappedStatement extends CodeStatement {
 	private Map<String, String> statementInLanguages;

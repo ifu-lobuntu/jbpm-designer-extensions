@@ -1,13 +1,14 @@
 package org.jbpm.designer.ucd.errai;
 
-import java.util.Map;
-
 import org.jboss.errai.bus.client.api.RoutingFlag;
 import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.bus.client.api.messaging.MessageBus;
 import org.jboss.errai.bus.client.api.messaging.RequestDispatcher;
 import org.jboss.errai.common.client.api.ErrorCallback;
 import org.jboss.errai.common.client.api.ResourceProvider;
+
+import java.util.Map;
+
 
 public final class FakeMessage implements Message {
     @Override

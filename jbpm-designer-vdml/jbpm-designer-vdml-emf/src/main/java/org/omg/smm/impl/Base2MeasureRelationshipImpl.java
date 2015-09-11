@@ -20,235 +20,235 @@ import org.omg.smm.SmmElement;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.Base2MeasureRelationshipImpl#getFromBinaryMeasure <em>From Binary Measure</em>}</li>
  *   <li>{@link org.omg.smm.impl.Base2MeasureRelationshipImpl#getToDimensionalMeasure <em>To Dimensional Measure</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class Base2MeasureRelationshipImpl extends BaseMeasureRelationshipImpl implements Base2MeasureRelationship {
     /**
-     * The cached value of the '{@link #getToDimensionalMeasure() <em>To Dimensional Measure</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getToDimensionalMeasure() <em>To Dimensional Measure</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getToDimensionalMeasure()
-     * @generated
-     * @ordered
-     */
+	 * @see #getToDimensionalMeasure()
+	 * @generated
+	 * @ordered
+	 */
     protected DimensionalMeasure toDimensionalMeasure;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected Base2MeasureRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.BASE2_MEASURE_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.BASE2_MEASURE_RELATIONSHIP;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BinaryMeasure getFromBinaryMeasure() {
-        if (eContainerFeatureID() != SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE) return null;
-        return (BinaryMeasure)eInternalContainer();
-    }
+		if (eContainerFeatureID() != SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE) return null;
+		return (BinaryMeasure)eInternalContainer();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetFromBinaryMeasure(BinaryMeasure newFromBinaryMeasure, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject)newFromBinaryMeasure, SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE, msgs);
-        return msgs;
-    }
+		msgs = eBasicSetContainer((InternalEObject)newFromBinaryMeasure, SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE, msgs);
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setFromBinaryMeasure(BinaryMeasure newFromBinaryMeasure) {
-        if (newFromBinaryMeasure != eInternalContainer() || (eContainerFeatureID() != SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE && newFromBinaryMeasure != null)) {
-            if (EcoreUtil.isAncestor(this, newFromBinaryMeasure))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newFromBinaryMeasure != null)
-                msgs = ((InternalEObject)newFromBinaryMeasure).eInverseAdd(this, SMMPackage.BINARY_MEASURE__BASE_MEASURE2_TO, BinaryMeasure.class, msgs);
-            msgs = basicSetFromBinaryMeasure(newFromBinaryMeasure, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE, newFromBinaryMeasure, newFromBinaryMeasure));
-    }
+		if (newFromBinaryMeasure != eInternalContainer() || (eContainerFeatureID() != SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE && newFromBinaryMeasure != null)) {
+			if (EcoreUtil.isAncestor(this, newFromBinaryMeasure))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newFromBinaryMeasure != null)
+				msgs = ((InternalEObject)newFromBinaryMeasure).eInverseAdd(this, SMMPackage.BINARY_MEASURE__BASE_MEASURE2_TO, BinaryMeasure.class, msgs);
+			msgs = basicSetFromBinaryMeasure(newFromBinaryMeasure, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE, newFromBinaryMeasure, newFromBinaryMeasure));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DimensionalMeasure getToDimensionalMeasure() {
-        if (toDimensionalMeasure != null && toDimensionalMeasure.eIsProxy()) {
-            InternalEObject oldToDimensionalMeasure = (InternalEObject)toDimensionalMeasure;
-            toDimensionalMeasure = (DimensionalMeasure)eResolveProxy(oldToDimensionalMeasure);
-            if (toDimensionalMeasure != oldToDimensionalMeasure) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE, oldToDimensionalMeasure, toDimensionalMeasure));
-            }
-        }
-        return toDimensionalMeasure;
-    }
+		if (toDimensionalMeasure != null && toDimensionalMeasure.eIsProxy()) {
+			InternalEObject oldToDimensionalMeasure = (InternalEObject)toDimensionalMeasure;
+			toDimensionalMeasure = (DimensionalMeasure)eResolveProxy(oldToDimensionalMeasure);
+			if (toDimensionalMeasure != oldToDimensionalMeasure) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE, oldToDimensionalMeasure, toDimensionalMeasure));
+			}
+		}
+		return toDimensionalMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DimensionalMeasure basicGetToDimensionalMeasure() {
-        return toDimensionalMeasure;
-    }
+		return toDimensionalMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setToDimensionalMeasure(DimensionalMeasure newToDimensionalMeasure) {
-        DimensionalMeasure oldToDimensionalMeasure = toDimensionalMeasure;
-        toDimensionalMeasure = newToDimensionalMeasure;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE, oldToDimensionalMeasure, toDimensionalMeasure));
-    }
+		DimensionalMeasure oldToDimensionalMeasure = toDimensionalMeasure;
+		toDimensionalMeasure = newToDimensionalMeasure;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE, oldToDimensionalMeasure, toDimensionalMeasure));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetFromBinaryMeasure((BinaryMeasure)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetFromBinaryMeasure((BinaryMeasure)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                return basicSetFromBinaryMeasure(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				return basicSetFromBinaryMeasure(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                return eInternalContainer().eInverseRemove(this, SMMPackage.BINARY_MEASURE__BASE_MEASURE2_TO, BinaryMeasure.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+		switch (eContainerFeatureID()) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				return eInternalContainer().eInverseRemove(this, SMMPackage.BINARY_MEASURE__BASE_MEASURE2_TO, BinaryMeasure.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                return getFromBinaryMeasure();
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
-                if (resolve) return getToDimensionalMeasure();
-                return basicGetToDimensionalMeasure();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				return getFromBinaryMeasure();
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
+				if (resolve) return getToDimensionalMeasure();
+				return basicGetToDimensionalMeasure();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                setFromBinaryMeasure((BinaryMeasure)newValue);
-                return;
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
-                setToDimensionalMeasure((DimensionalMeasure)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				setFromBinaryMeasure((BinaryMeasure)newValue);
+				return;
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
+				setToDimensionalMeasure((DimensionalMeasure)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                setFromBinaryMeasure((BinaryMeasure)null);
-                return;
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
-                setToDimensionalMeasure((DimensionalMeasure)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				setFromBinaryMeasure((BinaryMeasure)null);
+				return;
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
+				setToDimensionalMeasure((DimensionalMeasure)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
-                return getFromBinaryMeasure() != null;
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
-                return toDimensionalMeasure != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__FROM_BINARY_MEASURE:
+				return getFromBinaryMeasure() != null;
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP__TO_DIMENSIONAL_MEASURE:
+				return toDimensionalMeasure != null;
+		}
+		return super.eIsSet(featureID);
+	}
     @Override
     public SmmElement basicGetFrom() {
         return getFromBinaryMeasure();

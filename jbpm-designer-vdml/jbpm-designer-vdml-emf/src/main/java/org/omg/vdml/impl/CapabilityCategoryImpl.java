@@ -10,29 +10,27 @@ import org.omg.vdml.VDMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Capability Category</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class CapabilityCategoryImpl extends CapabilityImpl implements CapabilityCategory {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CapabilityCategoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.CAPABILITY_CATEGORY;
-    }
+		return VDMLPackage.Literals.CAPABILITY_CATEGORY;
+	}
 
 } //CapabilityCategoryImpl

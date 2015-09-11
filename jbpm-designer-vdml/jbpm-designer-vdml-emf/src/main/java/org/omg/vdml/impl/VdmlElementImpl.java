@@ -25,6 +25,7 @@ import org.omg.vdml.VdmlElement;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getDescription <em>Description</em>}</li>
@@ -34,257 +35,256 @@ import org.omg.vdml.VdmlElement;
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.omg.vdml.impl.VdmlElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container implements VdmlElement {
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDescription()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String DESCRIPTION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDescription()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
     protected String description = DESCRIPTION_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAttribute()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAttribute()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Attribute> attribute;
 
     /**
-     * The default value of the '{@link #getRepresents() <em>Represents</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getRepresents() <em>Represents</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRepresents()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRepresents()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String REPRESENTS_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getRepresents() <em>Represents</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRepresents() <em>Represents</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRepresents()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRepresents()
+	 * @generated
+	 * @ordered
+	 */
     protected String represents = REPRESENTS_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAnnotation() <em>Annotation</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAnnotation()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAnnotation()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Annotation> annotation;
 
     /**
-     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String ID_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getId()
-     * @generated
-     * @ordered
-     */
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
     protected String id = ID_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQualifiedName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String QUALIFIED_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getQualifiedName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
     protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected VdmlElementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.VDML_ELEMENT;
-    }
+		return VDMLPackage.Literals.VDML_ELEMENT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-        return name;
-    }
+		return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__NAME, oldName, name));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getDescription() {
-        return description;
-    }
+		return description;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setDescription(String newDescription) {
-        String oldDescription = description;
-        description = newDescription;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__DESCRIPTION, oldDescription, description));
-    }
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__DESCRIPTION, oldDescription, description));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Attribute> getAttribute() {
-        if (attribute == null) {
-            attribute = new EObjectContainmentEList<Attribute>(Attribute.class, this, VDMLPackage.VDML_ELEMENT__ATTRIBUTE);
-        }
-        return attribute;
-    }
+		if (attribute == null) {
+			attribute = new EObjectContainmentEList<Attribute>(Attribute.class, this, VDMLPackage.VDML_ELEMENT__ATTRIBUTE);
+		}
+		return attribute;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getRepresents() {
-        return represents;
-    }
+		return represents;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setRepresents(String newRepresents) {
-        String oldRepresents = represents;
-        represents = newRepresents;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__REPRESENTS, oldRepresents, represents));
-    }
+		String oldRepresents = represents;
+		represents = newRepresents;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__REPRESENTS, oldRepresents, represents));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Annotation> getAnnotation() {
-        if (annotation == null) {
-            annotation = new EObjectContainmentEList<Annotation>(Annotation.class, this, VDMLPackage.VDML_ELEMENT__ANNOTATION);
-        }
-        return annotation;
-    }
+		if (annotation == null) {
+			annotation = new EObjectContainmentEList<Annotation>(Annotation.class, this, VDMLPackage.VDML_ELEMENT__ANNOTATION);
+		}
+		return annotation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getId() {
-        return id;
-    }
+		return id;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setId(String newId) {
-        String oldId = id;
-        id = newId;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__ID, oldId, id));
-    }
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__ID, oldId, id));
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -309,176 +309,176 @@ public abstract class VdmlElementImpl extends MinimalEObjectImpl.Container imple
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setQualifiedName(String newQualifiedName) {
-        String oldQualifiedName = qualifiedName;
-        qualifiedName = newQualifiedName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
-    }
+		String oldQualifiedName = qualifiedName;
+		qualifiedName = newQualifiedName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
-                return ((InternalEList<?>)getAttribute()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.VDML_ELEMENT__ANNOTATION:
-                return ((InternalEList<?>)getAnnotation()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
+				return ((InternalEList<?>)getAttribute()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.VDML_ELEMENT__ANNOTATION:
+				return ((InternalEList<?>)getAnnotation()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.VDML_ELEMENT__NAME:
-                return getName();
-            case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
-                return getDescription();
-            case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
-                return getAttribute();
-            case VDMLPackage.VDML_ELEMENT__REPRESENTS:
-                return getRepresents();
-            case VDMLPackage.VDML_ELEMENT__ANNOTATION:
-                return getAnnotation();
-            case VDMLPackage.VDML_ELEMENT__ID:
-                return getId();
-            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
-                return getQualifiedName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.VDML_ELEMENT__NAME:
+				return getName();
+			case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
+				return getDescription();
+			case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
+				return getAttribute();
+			case VDMLPackage.VDML_ELEMENT__REPRESENTS:
+				return getRepresents();
+			case VDMLPackage.VDML_ELEMENT__ANNOTATION:
+				return getAnnotation();
+			case VDMLPackage.VDML_ELEMENT__ID:
+				return getId();
+			case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+				return getQualifiedName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.VDML_ELEMENT__NAME:
-                setName((String)newValue);
-                return;
-            case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
-                setDescription((String)newValue);
-                return;
-            case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
-                getAttribute().clear();
-                getAttribute().addAll((Collection<? extends Attribute>)newValue);
-                return;
-            case VDMLPackage.VDML_ELEMENT__REPRESENTS:
-                setRepresents((String)newValue);
-                return;
-            case VDMLPackage.VDML_ELEMENT__ANNOTATION:
-                getAnnotation().clear();
-                getAnnotation().addAll((Collection<? extends Annotation>)newValue);
-                return;
-            case VDMLPackage.VDML_ELEMENT__ID:
-                setId((String)newValue);
-                return;
-            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
-                setQualifiedName((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.VDML_ELEMENT__NAME:
+				setName((String)newValue);
+				return;
+			case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
+				getAttribute().clear();
+				getAttribute().addAll((Collection<? extends Attribute>)newValue);
+				return;
+			case VDMLPackage.VDML_ELEMENT__REPRESENTS:
+				setRepresents((String)newValue);
+				return;
+			case VDMLPackage.VDML_ELEMENT__ANNOTATION:
+				getAnnotation().clear();
+				getAnnotation().addAll((Collection<? extends Annotation>)newValue);
+				return;
+			case VDMLPackage.VDML_ELEMENT__ID:
+				setId((String)newValue);
+				return;
+			case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+				setQualifiedName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.VDML_ELEMENT__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
-                setDescription(DESCRIPTION_EDEFAULT);
-                return;
-            case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
-                getAttribute().clear();
-                return;
-            case VDMLPackage.VDML_ELEMENT__REPRESENTS:
-                setRepresents(REPRESENTS_EDEFAULT);
-                return;
-            case VDMLPackage.VDML_ELEMENT__ANNOTATION:
-                getAnnotation().clear();
-                return;
-            case VDMLPackage.VDML_ELEMENT__ID:
-                setId(ID_EDEFAULT);
-                return;
-            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
-                setQualifiedName(QUALIFIED_NAME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.VDML_ELEMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
+				getAttribute().clear();
+				return;
+			case VDMLPackage.VDML_ELEMENT__REPRESENTS:
+				setRepresents(REPRESENTS_EDEFAULT);
+				return;
+			case VDMLPackage.VDML_ELEMENT__ANNOTATION:
+				getAnnotation().clear();
+				return;
+			case VDMLPackage.VDML_ELEMENT__ID:
+				setId(ID_EDEFAULT);
+				return;
+			case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.VDML_ELEMENT__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
-                return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-            case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
-                return attribute != null && !attribute.isEmpty();
-            case VDMLPackage.VDML_ELEMENT__REPRESENTS:
-                return REPRESENTS_EDEFAULT == null ? represents != null : !REPRESENTS_EDEFAULT.equals(represents);
-            case VDMLPackage.VDML_ELEMENT__ANNOTATION:
-                return annotation != null && !annotation.isEmpty();
-            case VDMLPackage.VDML_ELEMENT__ID:
-                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
-            case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
-                return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.VDML_ELEMENT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case VDMLPackage.VDML_ELEMENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case VDMLPackage.VDML_ELEMENT__ATTRIBUTE:
+				return attribute != null && !attribute.isEmpty();
+			case VDMLPackage.VDML_ELEMENT__REPRESENTS:
+				return REPRESENTS_EDEFAULT == null ? represents != null : !REPRESENTS_EDEFAULT.equals(represents);
+			case VDMLPackage.VDML_ELEMENT__ANNOTATION:
+				return annotation != null && !annotation.isEmpty();
+			case VDMLPackage.VDML_ELEMENT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case VDMLPackage.VDML_ELEMENT__QUALIFIED_NAME:
+				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(", description: ");
-        result.append(description);
-        result.append(", represents: ");
-        result.append(represents);
-        result.append(", id: ");
-        result.append(id);
-        result.append(", qualifiedName: ");
-        result.append(qualifiedName);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(", represents: ");
+		result.append(represents);
+		result.append(", id: ");
+		result.append(id);
+		result.append(", qualifiedName: ");
+		result.append(qualifiedName);
+		result.append(')');
+		return result.toString();
+	}
 
 } //VdmlElementImpl

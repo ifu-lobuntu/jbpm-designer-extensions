@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ratio Measurement</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class RatioMeasurementImpl extends BinaryMeasurementImpl implements RatioMeasurement {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RatioMeasurementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.RATIO_MEASUREMENT;
-    }
+		return SMMPackage.Literals.RATIO_MEASUREMENT;
+	}
 
 } //RatioMeasurementImpl

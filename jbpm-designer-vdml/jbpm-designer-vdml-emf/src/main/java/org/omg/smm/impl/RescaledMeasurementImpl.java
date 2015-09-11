@@ -16,206 +16,206 @@ import org.omg.smm.SMMPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.RescaledMeasurementImpl#getIsBaseSupplied <em>Is Base Supplied</em>}</li>
  *   <li>{@link org.omg.smm.impl.RescaledMeasurementImpl#getBaseQuery <em>Base Query</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class RescaledMeasurementImpl extends DimensionalMeasurementImpl implements RescaledMeasurement {
     /**
-     * The default value of the '{@link #getIsBaseSupplied() <em>Is Base Supplied</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getIsBaseSupplied() <em>Is Base Supplied</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIsBaseSupplied()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIsBaseSupplied()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Boolean IS_BASE_SUPPLIED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getIsBaseSupplied() <em>Is Base Supplied</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getIsBaseSupplied() <em>Is Base Supplied</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIsBaseSupplied()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIsBaseSupplied()
+	 * @generated
+	 * @ordered
+	 */
     protected Boolean isBaseSupplied = IS_BASE_SUPPLIED_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getBaseQuery() <em>Base Query</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBaseQuery() <em>Base Query</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBaseQuery()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBaseQuery()
+	 * @generated
+	 * @ordered
+	 */
     protected Operation baseQuery;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RescaledMeasurementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.RESCALED_MEASUREMENT;
-    }
+		return SMMPackage.Literals.RESCALED_MEASUREMENT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Boolean getIsBaseSupplied() {
-        return isBaseSupplied;
-    }
+		return isBaseSupplied;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setIsBaseSupplied(Boolean newIsBaseSupplied) {
-        Boolean oldIsBaseSupplied = isBaseSupplied;
-        isBaseSupplied = newIsBaseSupplied;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED, oldIsBaseSupplied, isBaseSupplied));
-    }
+		Boolean oldIsBaseSupplied = isBaseSupplied;
+		isBaseSupplied = newIsBaseSupplied;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED, oldIsBaseSupplied, isBaseSupplied));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Operation getBaseQuery() {
-        if (baseQuery != null && baseQuery.eIsProxy()) {
-            InternalEObject oldBaseQuery = (InternalEObject)baseQuery;
-            baseQuery = (Operation)eResolveProxy(oldBaseQuery);
-            if (baseQuery != oldBaseQuery) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY, oldBaseQuery, baseQuery));
-            }
-        }
-        return baseQuery;
-    }
+		if (baseQuery != null && baseQuery.eIsProxy()) {
+			InternalEObject oldBaseQuery = (InternalEObject)baseQuery;
+			baseQuery = (Operation)eResolveProxy(oldBaseQuery);
+			if (baseQuery != oldBaseQuery) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY, oldBaseQuery, baseQuery));
+			}
+		}
+		return baseQuery;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Operation basicGetBaseQuery() {
-        return baseQuery;
-    }
+		return baseQuery;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setBaseQuery(Operation newBaseQuery) {
-        Operation oldBaseQuery = baseQuery;
-        baseQuery = newBaseQuery;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY, oldBaseQuery, baseQuery));
-    }
+		Operation oldBaseQuery = baseQuery;
+		baseQuery = newBaseQuery;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY, oldBaseQuery, baseQuery));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
-                return getIsBaseSupplied();
-            case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
-                if (resolve) return getBaseQuery();
-                return basicGetBaseQuery();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
+				return getIsBaseSupplied();
+			case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
+				if (resolve) return getBaseQuery();
+				return basicGetBaseQuery();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
-                setIsBaseSupplied((Boolean)newValue);
-                return;
-            case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
-                setBaseQuery((Operation)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
+				setIsBaseSupplied((Boolean)newValue);
+				return;
+			case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
+				setBaseQuery((Operation)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
-                setIsBaseSupplied(IS_BASE_SUPPLIED_EDEFAULT);
-                return;
-            case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
-                setBaseQuery((Operation)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
+				setIsBaseSupplied(IS_BASE_SUPPLIED_EDEFAULT);
+				return;
+			case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
+				setBaseQuery((Operation)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
-                return IS_BASE_SUPPLIED_EDEFAULT == null ? isBaseSupplied != null : !IS_BASE_SUPPLIED_EDEFAULT.equals(isBaseSupplied);
-            case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
-                return baseQuery != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.RESCALED_MEASUREMENT__IS_BASE_SUPPLIED:
+				return IS_BASE_SUPPLIED_EDEFAULT == null ? isBaseSupplied != null : !IS_BASE_SUPPLIED_EDEFAULT.equals(isBaseSupplied);
+			case SMMPackage.RESCALED_MEASUREMENT__BASE_QUERY:
+				return baseQuery != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (isBaseSupplied: ");
-        result.append(isBaseSupplied);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isBaseSupplied: ");
+		result.append(isBaseSupplied);
+		result.append(')');
+		return result.toString();
+	}
 
 } //RescaledMeasurementImpl

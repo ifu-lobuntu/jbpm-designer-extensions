@@ -2,18 +2,23 @@
  */
 package org.jbpm.smm.dd.smmdi.util;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.util.*;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.jbpm.designer.dd.jbpmdd.SaveResourceListener;
+import org.omg.smm.*;
+
+import java.io.IOException;
+import java.lang.reflect.*;
+import java.util.*;
 
 /**
  * <!-- begin-user-doc -->

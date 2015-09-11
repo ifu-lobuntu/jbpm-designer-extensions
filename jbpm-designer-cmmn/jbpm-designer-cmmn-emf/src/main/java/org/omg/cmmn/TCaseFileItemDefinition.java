@@ -2,9 +2,9 @@
  */
 package org.omg.cmmn;
 
-import javax.xml.namespace.QName;
-
 import org.eclipse.emf.common.util.EList;
+
+import javax.xml.namespace.QName;
 
 /**
  * <!-- begin-user-doc -->

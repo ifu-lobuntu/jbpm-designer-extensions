@@ -10,29 +10,27 @@ import org.omg.smm.UnitOfMeasure;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Unit Of Measure</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class UnitOfMeasureImpl extends AbstractMeasureElementImpl implements UnitOfMeasure {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected UnitOfMeasureImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.UNIT_OF_MEASURE;
-    }
+		return SMMPackage.Literals.UNIT_OF_MEASURE;
+	}
 
 } //UnitOfMeasureImpl

@@ -7,15 +7,13 @@ import java.util.HashMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.*;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.omg.dd.dc.DCPackage;
 import org.omg.dd.dg.DGPackage;
-import org.omg.dd.di.DIPackage;
-import org.omg.vdml.VDMLPackage;
-
+import org.omg.dd.di.*;
+import org.omg.vdml.*;
 /**
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
@@ -25,14 +23,14 @@ import org.omg.vdml.VDMLPackage;
  */
 public class VDMLResourceFactoryImpl extends ResourceFactoryImpl {
     /**
-     * Creates an instance of the resource factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public VDMLResourceFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
      * Creates an instance of the resource.

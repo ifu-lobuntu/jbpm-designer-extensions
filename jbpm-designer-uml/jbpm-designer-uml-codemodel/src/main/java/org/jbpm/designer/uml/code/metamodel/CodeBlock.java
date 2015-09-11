@@ -1,9 +1,10 @@
 package org.jbpm.designer.uml.code.metamodel;
 
+import org.jbpm.designer.uml.code.metamodel.statements.CodeStatement;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jbpm.designer.uml.code.metamodel.statements.CodeStatement;
 
 public class CodeBlock extends CodeElement {
 	private List<CodeField> locals = new ArrayList<CodeField>();

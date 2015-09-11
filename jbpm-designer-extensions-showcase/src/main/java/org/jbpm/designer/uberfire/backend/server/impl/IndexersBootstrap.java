@@ -15,21 +15,18 @@
  */
 package org.jbpm.designer.uberfire.backend.server.impl;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import org.uberfire.ext.metadata.engine.Indexer;
+import org.uberfire.ext.metadata.io.IndexersFactory;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.uberfire.ext.metadata.engine.Indexer;
-import org.uberfire.ext.metadata.io.IndexersFactory;
-import org.uberfire.commons.services.cdi.Startup;
-import org.uberfire.commons.services.cdi.StartupType;
-
-@Startup(StartupType.EAGER)
 @ApplicationScoped
 public class IndexersBootstrap {
 
@@ -40,7 +37,7 @@ public class IndexersBootstrap {
     @PostConstruct
     public void setup() {
         for ( Indexer indexer : getIndexers() ) {
-            IndexersFactory.addIndexer( indexer );
+            IndexersFactory.addIndexer(indexer);
         }
     }
 

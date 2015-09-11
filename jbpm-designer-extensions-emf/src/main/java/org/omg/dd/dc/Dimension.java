@@ -2,10 +2,10 @@
  */
 package org.omg.dd.dc;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
+
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->

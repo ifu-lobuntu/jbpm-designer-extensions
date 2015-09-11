@@ -11,8 +11,53 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <jta-data-source >jdbc/jbpm-ds</jta-data-source>
         <!--<mapping-file>META-INF/TaskAuditorm.xml</mapping-file>-->
-
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>org.jbpm.vdml.services.model.meta.Activity</class>
+        <class>org.jbpm.vdml.services.model.meta.BinaryMeasure</class>
+        <class>org.jbpm.vdml.services.model.meta.BusinessItemDefinition</class>
+        <class>org.jbpm.vdml.services.model.meta.Capability</class>
+        <class>org.jbpm.vdml.services.model.meta.Collaboration</class>
+        <class>org.jbpm.vdml.services.model.meta.CollectiveMeasure</class>
+        <class>org.jbpm.vdml.services.model.meta.CountingMeasure</class>
+        <class>org.jbpm.vdml.services.model.meta.DeliverableFlow</class>
+        <class>org.jbpm.vdml.services.model.meta.DirectMeasure</class>
+        <class>org.jbpm.vdml.services.model.meta.EnumeratedMeasure</class>
+        <class>org.jbpm.vdml.services.model.meta.Measure</class>
+        <class>org.jbpm.vdml.services.model.meta.RescaledMeasure</class>
+        <class>org.jbpm.vdml.services.model.meta.ResourceUse</class>
+        <class>org.jbpm.vdml.services.model.meta.RoleBasedPortContainer</class>
+        <class>org.jbpm.vdml.services.model.meta.Role</class>
+        <class>org.jbpm.vdml.services.model.meta.StoreDefinition</class>
+        <class>org.jbpm.vdml.services.model.meta.SuppliedStore</class>
+        <class>org.jbpm.vdml.services.model.meta.ValueProposition</class>
+        <class>org.jbpm.vdml.services.model.meta.ValuePropositionComponent</class>
+        <class>org.jbpm.vdml.services.model.runtime.ActivityMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.ActivityObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.BusinessItemMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.BusinessItemObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.CapabilityMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.CapabilityPerformance</class>
+        <class>org.jbpm.vdml.services.model.runtime.CollaborationObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.DeliverableFlowMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.DeliverableFlowObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.IndividualParticipant</class>
+        <class>org.jbpm.vdml.services.model.runtime.Measurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.Participant</class>
+        <class>org.jbpm.vdml.services.model.runtime.ProvidedValuePropositionComponentMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.ProvidedValuePropositionComponentPerformance</class>
+        <class>org.jbpm.vdml.services.model.runtime.ProvidedValuePropositionPerformance</class>
+        <class>org.jbpm.vdml.services.model.runtime.ResourceUseMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.ResourceUseObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.StoreMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.RolePerformance</class>
+        <class>org.jbpm.vdml.services.model.runtime.StoreMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.StorePerformance</class>
+        <class>org.jbpm.vdml.services.model.runtime.SuppliedStoreMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.SuppliedStoreObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.ValueAddMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.ValuePropositionComponentMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.ValuePropositionComponentPerformance</class>
+        <class>org.jbpm.vdml.services.model.runtime.ValuePropositionPerformance</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
             <property name="hibernate.max_fetch_depth" value="3"/>

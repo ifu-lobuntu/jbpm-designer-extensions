@@ -1,24 +1,16 @@
 /**
  */
 package org.omg.dd.dg.impl;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.dg.*;
+import org.omg.dd.di.*;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.dd.dc.Color;
-import org.omg.dd.dg.Canvas;
-import org.omg.dd.dg.DGPackage;
-import org.omg.dd.dg.Fill;
-import org.omg.dd.dg.Marker;
-import org.omg.dd.di.Style;
+import java.util.*;
 
 /**
  * <!-- begin-user-doc -->

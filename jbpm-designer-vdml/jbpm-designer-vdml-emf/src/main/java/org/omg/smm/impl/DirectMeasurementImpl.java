@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Direct Measurement</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class DirectMeasurementImpl extends DimensionalMeasurementImpl implements DirectMeasurement {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected DirectMeasurementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.DIRECT_MEASUREMENT;
-    }
+		return SMMPackage.Literals.DIRECT_MEASUREMENT;
+	}
 
 } //DirectMeasurementImpl

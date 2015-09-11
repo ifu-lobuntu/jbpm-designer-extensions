@@ -1,8 +1,10 @@
 package org.jbpm.designer.uml.codegen.util;
 
+import org.eclipse.uml2.uml.Element;
+
 import java.util.Comparator;
 
-import org.eclipse.uml2.uml.Element;
+
 
 public class DefaultElementComparator implements Comparator<Element> {
 	@Override

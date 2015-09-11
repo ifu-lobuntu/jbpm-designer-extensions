@@ -1,12 +1,8 @@
 package org.jbpm.designer.client.perspectives;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
+import org.guvnor.common.services.shared.security.KieWorkbenchACL;
 import org.jboss.errai.ioc.client.container.SyncBeanManager;
 import org.kie.workbench.common.screens.projecteditor.client.menu.ProjectMenu;
-import org.guvnor.common.services.shared.security.KieWorkbenchACL;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcePresenter;
 import org.kie.workbench.common.widgets.client.handlers.NewResourcesMenu;
 import org.uberfire.client.annotations.Perspective;
@@ -26,7 +22,9 @@ import org.uberfire.workbench.model.impl.PerspectiveDefinitionImpl;
 import org.uberfire.workbench.model.menu.MenuFactory;
 import org.uberfire.workbench.model.menu.Menus;
 
-@ApplicationScoped
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
 @WorkbenchPerspective(identifier = "home", isDefault = true)
 public class HomePerspective {
 
@@ -83,7 +81,7 @@ public class HomePerspective {
 
     private void buildMenuBar() {
         this.menus = MenuFactory
-                .newTopLevelMenu( "Projects" )
+                .newTopLevelMenu("Projects")
                 .withRoles(kieACL.getGrantedRoles("wb_administration"))
                 .respondsWith(new Command() {
                     @Override

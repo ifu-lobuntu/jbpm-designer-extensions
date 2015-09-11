@@ -2,9 +2,6 @@
  */
 package org.omg.dd.dg.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -21,6 +18,10 @@ import org.omg.dd.dc.Color;
 import org.omg.dd.dg.DGPackage;
 import org.omg.dd.dg.GradientStop;
 import org.omg.dd.dg.util.DGValidator;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+
 
 /**
  * <!-- begin-user-doc -->

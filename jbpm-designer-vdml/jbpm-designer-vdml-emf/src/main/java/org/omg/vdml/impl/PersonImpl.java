@@ -10,29 +10,27 @@ import org.omg.vdml.VDMLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Person</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class PersonImpl extends ActorImpl implements Person {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PersonImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.PERSON;
-    }
+		return VDMLPackage.Literals.PERSON;
+	}
 
 } //PersonImpl

@@ -2,11 +2,11 @@
  */
 package org.omg.dd.dc;
 
+import org.eclipse.emf.common.util.Enumerator;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->

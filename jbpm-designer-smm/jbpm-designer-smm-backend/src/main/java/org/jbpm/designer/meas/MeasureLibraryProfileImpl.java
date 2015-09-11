@@ -1,9 +1,8 @@
 package org.jbpm.designer.meas;
 
-import javax.enterprise.context.ApplicationScoped;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource.Factory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
@@ -25,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  * The implementation of the SMM Activity Network profile for Process Designer.
@@ -118,7 +118,7 @@ public class MeasureLibraryProfileImpl extends AbstractEmfDiagramProfile {
     }
 
     @Override
-    public Factory getResourceFactory() {
+    public Resource.Factory getResourceFactory() {
         return new SMMDIResourceFactoryImpl();
     }
 }

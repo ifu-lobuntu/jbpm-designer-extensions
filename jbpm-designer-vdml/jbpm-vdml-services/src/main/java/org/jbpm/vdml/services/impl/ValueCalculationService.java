@@ -4,7 +4,6 @@ package org.jbpm.vdml.services.impl;
 import org.jbpm.vdml.services.model.meta.*;
 import org.jbpm.vdml.services.model.runtime.*;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.*;
@@ -22,6 +21,7 @@ public class ValueCalculationService {
             Map<String,Measurement> context=new HashMap<String, Measurement>();
             addToContext(context, measurements);
             resolveMeasurements(context, measurements);
+
         }
         //Then the flows
         for (DeliverableFlowObservation flow : collaboration.getDeliverableFlowObservations()) {
@@ -30,7 +30,7 @@ public class ValueCalculationService {
             resolveMeasurements(context, flow.getValueAddMeasurements());
         }
         //Then the activities?
-        for (ActivityObservation a : collaboration.getObservedActivities()) {
+        for (ActivityObservation a : collaboration.getActivities()) {
             Map<String,Measurement> context=new HashMap<String, Measurement>();
             addToContext(context, a.getMeasurements());
             for (DeliverableFlowObservation flow : a.getObservedInput()) {
@@ -90,10 +90,10 @@ public class ValueCalculationService {
         }
         resolveDerivedMeasures(otherMeasurements, measurements);
     }
-    public void calculateStorePerformance(RoleStorePerformance rsp) {
+    public void calculateStorePerformance(SuppliedStoreObservation rsp) {
         Map<String, Measurement> measurements = new HashMap<String, Measurement>();
         Set<Measurement> otherMeasurements = new HashSet<Measurement>();
-        for (RoleStoreMeasurement measurement : rsp.getMeasurements()) {
+        for (SuppliedStoreMeasurement measurement : rsp.getMeasurements()) {
             measurements.put(measurement.getMeasure().getUri(), measurement);
             String additionalCriteria = "and m.activity.responsibleRole.participant= :owner and m.deliverableFlow.toActivity.performer= :receiver";
             if (measurement.getMeasure() instanceof CollectiveMeasure) {

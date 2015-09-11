@@ -26,6 +26,7 @@ import org.omg.smm.SmmRelationship;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.SmmElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.omg.smm.impl.SmmElementImpl#getName <em>Name</em>}</li>
@@ -35,172 +36,171 @@ import org.omg.smm.SmmRelationship;
  *   <li>{@link org.omg.smm.impl.SmmElementImpl#getAttributes <em>Attributes</em>}</li>
  *   <li>{@link org.omg.smm.impl.SmmElementImpl#getAnnotations <em>Annotations</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class SmmElementImpl extends MinimalEObjectImpl.Container implements SmmElement {
     /**
-     * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDescription()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String DESCRIPTION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDescription()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
     protected String description = DESCRIPTION_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getShortDescription()
-     * @generated
-     * @ordered
-     */
+	 * @see #getShortDescription()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String SHORT_DESCRIPTION_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getShortDescription() <em>Short Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getShortDescription()
-     * @generated
-     * @ordered
-     */
+	 * @see #getShortDescription()
+	 * @generated
+	 * @ordered
+	 */
     protected String shortDescription = SHORT_DESCRIPTION_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAttributes()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAttributes()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Attribute> attributes;
 
     /**
-     * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAnnotations()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAnnotations()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Annotation> annotations;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SmmElementImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.SMM_ELEMENT;
-    }
+		return SMMPackage.Literals.SMM_ELEMENT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getDescription() {
-        return description;
-    }
+		return description;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setDescription(String newDescription) {
-        String oldDescription = description;
-        description = newDescription;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.SMM_ELEMENT__DESCRIPTION, oldDescription, description));
-    }
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.SMM_ELEMENT__DESCRIPTION, oldDescription, description));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-        return name;
-    }
+		return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.SMM_ELEMENT__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.SMM_ELEMENT__NAME, oldName, name));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getShortDescription() {
-        return shortDescription;
-    }
+		return shortDescription;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setShortDescription(String newShortDescription) {
-        String oldShortDescription = shortDescription;
-        shortDescription = newShortDescription;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION, oldShortDescription, shortDescription));
-    }
+		String oldShortDescription = shortDescription;
+		shortDescription = newShortDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION, oldShortDescription, shortDescription));
+	}
 
     /**
      * <!-- begin-user-doc -->
@@ -229,186 +229,186 @@ public abstract class SmmElementImpl extends MinimalEObjectImpl.Container implem
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Attribute> getAttributes() {
-        if (attributes == null) {
-            attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, SMMPackage.SMM_ELEMENT__ATTRIBUTES);
-        }
-        return attributes;
-    }
+		if (attributes == null) {
+			attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, SMMPackage.SMM_ELEMENT__ATTRIBUTES);
+		}
+		return attributes;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Annotation> getAnnotations() {
-        if (annotations == null) {
-            annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, SMMPackage.SMM_ELEMENT__ANNOTATIONS);
-        }
-        return annotations;
-    }
+		if (annotations == null) {
+			annotations = new EObjectContainmentEList<Annotation>(Annotation.class, this, SMMPackage.SMM_ELEMENT__ANNOTATIONS);
+		}
+		return annotations;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
-                return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
-            case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
-                return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
+				return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
+			case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
+				return ((InternalEList<?>)getAnnotations()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.SMM_ELEMENT__DESCRIPTION:
-                return getDescription();
-            case SMMPackage.SMM_ELEMENT__NAME:
-                return getName();
-            case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
-                return getShortDescription();
-            case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
-                return getInRelationships();
-            case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
-                return getOutRelationships();
-            case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
-                return getAttributes();
-            case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
-                return getAnnotations();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_ELEMENT__DESCRIPTION:
+				return getDescription();
+			case SMMPackage.SMM_ELEMENT__NAME:
+				return getName();
+			case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
+				return getShortDescription();
+			case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
+				return getInRelationships();
+			case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
+				return getOutRelationships();
+			case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
+				return getAttributes();
+			case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
+				return getAnnotations();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.SMM_ELEMENT__DESCRIPTION:
-                setDescription((String)newValue);
-                return;
-            case SMMPackage.SMM_ELEMENT__NAME:
-                setName((String)newValue);
-                return;
-            case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
-                setShortDescription((String)newValue);
-                return;
-            case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
-                getInRelationships().clear();
-                getInRelationships().addAll((Collection<? extends SmmRelationship>)newValue);
-                return;
-            case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
-                getOutRelationships().clear();
-                getOutRelationships().addAll((Collection<? extends SmmRelationship>)newValue);
-                return;
-            case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
-                getAttributes().clear();
-                getAttributes().addAll((Collection<? extends Attribute>)newValue);
-                return;
-            case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
-                getAnnotations().clear();
-                getAnnotations().addAll((Collection<? extends Annotation>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_ELEMENT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
+			case SMMPackage.SMM_ELEMENT__NAME:
+				setName((String)newValue);
+				return;
+			case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
+				setShortDescription((String)newValue);
+				return;
+			case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
+				getInRelationships().clear();
+				getInRelationships().addAll((Collection<? extends SmmRelationship>)newValue);
+				return;
+			case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
+				getOutRelationships().clear();
+				getOutRelationships().addAll((Collection<? extends SmmRelationship>)newValue);
+				return;
+			case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
+				getAttributes().clear();
+				getAttributes().addAll((Collection<? extends Attribute>)newValue);
+				return;
+			case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
+				getAnnotations().clear();
+				getAnnotations().addAll((Collection<? extends Annotation>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.SMM_ELEMENT__DESCRIPTION:
-                setDescription(DESCRIPTION_EDEFAULT);
-                return;
-            case SMMPackage.SMM_ELEMENT__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
-                setShortDescription(SHORT_DESCRIPTION_EDEFAULT);
-                return;
-            case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
-                getInRelationships().clear();
-                return;
-            case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
-                getOutRelationships().clear();
-                return;
-            case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
-                getAttributes().clear();
-                return;
-            case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
-                getAnnotations().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_ELEMENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
+			case SMMPackage.SMM_ELEMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
+				setShortDescription(SHORT_DESCRIPTION_EDEFAULT);
+				return;
+			case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
+				getInRelationships().clear();
+				return;
+			case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
+				getOutRelationships().clear();
+				return;
+			case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
+				getAttributes().clear();
+				return;
+			case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
+				getAnnotations().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.SMM_ELEMENT__DESCRIPTION:
-                return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-            case SMMPackage.SMM_ELEMENT__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
-                return SHORT_DESCRIPTION_EDEFAULT == null ? shortDescription != null : !SHORT_DESCRIPTION_EDEFAULT.equals(shortDescription);
-            case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
-                return !getInRelationships().isEmpty();
-            case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
-                return !getOutRelationships().isEmpty();
-            case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
-                return attributes != null && !attributes.isEmpty();
-            case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
-                return annotations != null && !annotations.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_ELEMENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+			case SMMPackage.SMM_ELEMENT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case SMMPackage.SMM_ELEMENT__SHORT_DESCRIPTION:
+				return SHORT_DESCRIPTION_EDEFAULT == null ? shortDescription != null : !SHORT_DESCRIPTION_EDEFAULT.equals(shortDescription);
+			case SMMPackage.SMM_ELEMENT__IN_RELATIONSHIPS:
+				return !getInRelationships().isEmpty();
+			case SMMPackage.SMM_ELEMENT__OUT_RELATIONSHIPS:
+				return !getOutRelationships().isEmpty();
+			case SMMPackage.SMM_ELEMENT__ATTRIBUTES:
+				return attributes != null && !attributes.isEmpty();
+			case SMMPackage.SMM_ELEMENT__ANNOTATIONS:
+				return annotations != null && !annotations.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (description: ");
-        result.append(description);
-        result.append(", name: ");
-        result.append(name);
-        result.append(", shortDescription: ");
-        result.append(shortDescription);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (description: ");
+		result.append(description);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", shortDescription: ");
+		result.append(shortDescription);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SmmElementImpl

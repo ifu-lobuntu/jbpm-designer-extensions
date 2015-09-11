@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.omg.smm.*;
 import org.omg.smm.Accumulator;
 import org.omg.smm.Annotation;
 import org.omg.smm.Argument;
@@ -76,794 +77,805 @@ import org.omg.smm.UnitOfMeasure;
  */
 public class SMMFactoryImpl extends EFactoryImpl implements SMMFactory {
     /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static SMMFactory init() {
-        try {
-            SMMFactory theSMMFactory = (SMMFactory)EPackage.Registry.INSTANCE.getEFactory(SMMPackage.eNS_URI);
-            if (theSMMFactory != null) {
-                return theSMMFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new SMMFactoryImpl();
-    }
+		try {
+			SMMFactory theSMMFactory = (SMMFactory)EPackage.Registry.INSTANCE.getEFactory(SMMPackage.eNS_URI);
+			if (theSMMFactory != null) {
+				return theSMMFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SMMFactoryImpl();
+	}
 
     /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SMMFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case SMMPackage.ATTRIBUTE: return createAttribute();
-            case SMMPackage.ANNOTATION: return createAnnotation();
-            case SMMPackage.ARGUMENT: return createArgument();
-            case SMMPackage.OBSERVED_MEASURE: return createObservedMeasure();
-            case SMMPackage.EQUIVALENT_MEASUREMENT_RELATIONSHIP: return createEquivalentMeasurementRelationship();
-            case SMMPackage.REFINEMENT_MEASUREMENT_RELATIONSHIP: return createRefinementMeasurementRelationship();
-            case SMMPackage.REFINEMENT_MEASURE_RELATIONSHIP: return createRefinementMeasureRelationship();
-            case SMMPackage.OPERATION: return createOperation();
-            case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP: return createEquivalentMeasureRelationship();
-            case SMMPackage.MEASURE_CATEGORY: return createMeasureCategory();
-            case SMMPackage.SCOPE: return createScope();
-            case SMMPackage.CHARACTERISTIC: return createCharacteristic();
-            case SMMPackage.BASE1_MEASURE_RELATIONSHIP: return createBase1MeasureRelationship();
-            case SMMPackage.RESCALED_MEASURE: return createRescaledMeasure();
-            case SMMPackage.BASE_NMEASURE_RELATIONSHIP: return createBaseNMeasureRelationship();
-            case SMMPackage.COLLECTIVE_MEASURE: return createCollectiveMeasure();
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP: return createBase2MeasureRelationship();
-            case SMMPackage.BINARY_MEASURE: return createBinaryMeasure();
-            case SMMPackage.RANKING_MEASURE_RELATIONSHIP: return createRankingMeasureRelationship();
-            case SMMPackage.RANKING_MEASURE: return createRankingMeasure();
-            case SMMPackage.RANKING_INTERVAL: return createRankingInterval();
-            case SMMPackage.RESCALED_MEASURE_RELATIONSHIP: return createRescaledMeasureRelationship();
-            case SMMPackage.GRADE_MEASURE_RELATIONSHIP: return createGradeMeasureRelationship();
-            case SMMPackage.GRADE_MEASURE: return createGradeMeasure();
-            case SMMPackage.GRADE_INTERVAL: return createGradeInterval();
-            case SMMPackage.UNIT_OF_MEASURE: return createUnitOfMeasure();
-            case SMMPackage.BASE1_MEASUREMENT_RELATIONSHIP: return createBase1MeasurementRelationship();
-            case SMMPackage.BASE_NMEASUREMENT_RELATIONSHIP: return createBaseNMeasurementRelationship();
-            case SMMPackage.COLLECTIVE_MEASUREMENT: return createCollectiveMeasurement();
-            case SMMPackage.BASE2_MEASUREMENT_RELATIONSHIP: return createBase2MeasurementRelationship();
-            case SMMPackage.BINARY_MEASUREMENT: return createBinaryMeasurement();
-            case SMMPackage.GRADE_MEASUREMENT_RELATIONSHIP: return createGradeMeasurementRelationship();
-            case SMMPackage.GRADE_MEASUREMENT: return createGradeMeasurement();
-            case SMMPackage.RESCALED_MEASUREMENT_RELATIONSHIP: return createRescaledMeasurementRelationship();
-            case SMMPackage.RESCALED_MEASUREMENT: return createRescaledMeasurement();
-            case SMMPackage.RANKING_MEASUREMENT_RELATIONSHIP: return createRankingMeasurementRelationship();
-            case SMMPackage.RANKING_MEASUREMENT: return createRankingMeasurement();
-            case SMMPackage.CATEGORY_RELATIONSHIP: return createCategoryRelationship();
-            case SMMPackage.COUNTING_MEASUREMENT: return createCountingMeasurement();
-            case SMMPackage.DIRECT_MEASUREMENT: return createDirectMeasurement();
-            case SMMPackage.COUNTING_MEASURE: return createCountingMeasure();
-            case SMMPackage.DIRECT_MEASURE: return createDirectMeasure();
-            case SMMPackage.MEASURE_LIBRARY: return createMeasureLibrary();
-            case SMMPackage.NAMED_MEASURE: return createNamedMeasure();
-            case SMMPackage.NAMED_MEASUREMENT: return createNamedMeasurement();
-            case SMMPackage.OCL_OPERATION: return createOCLOperation();
-            case SMMPackage.OBSERVATION: return createObservation();
-            case SMMPackage.OBSERVATION_SCOPE: return createObservationScope();
-            case SMMPackage.RATIO_MEASURE: return createRatioMeasure();
-            case SMMPackage.RATIO_MEASUREMENT: return createRatioMeasurement();
-            case SMMPackage.SMM_MODEL: return createSmmModel();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case SMMPackage.ATTRIBUTE: return createAttribute();
+			case SMMPackage.ANNOTATION: return createAnnotation();
+			case SMMPackage.ARGUMENT: return createArgument();
+			case SMMPackage.OBSERVED_MEASURE: return createObservedMeasure();
+			case SMMPackage.EQUIVALENT_MEASUREMENT_RELATIONSHIP: return createEquivalentMeasurementRelationship();
+			case SMMPackage.REFINEMENT_MEASUREMENT_RELATIONSHIP: return createRefinementMeasurementRelationship();
+			case SMMPackage.REFINEMENT_MEASURE_RELATIONSHIP: return createRefinementMeasureRelationship();
+			case SMMPackage.OPERATION: return createOperation();
+			case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP: return createEquivalentMeasureRelationship();
+			case SMMPackage.MEASURE_CATEGORY: return createMeasureCategory();
+			case SMMPackage.SCOPE: return createScope();
+			case SMMPackage.CHARACTERISTIC: return createCharacteristic();
+			case SMMPackage.BASE1_MEASURE_RELATIONSHIP: return createBase1MeasureRelationship();
+			case SMMPackage.RESCALED_MEASURE: return createRescaledMeasure();
+			case SMMPackage.BASE_NMEASURE_RELATIONSHIP: return createBaseNMeasureRelationship();
+			case SMMPackage.COLLECTIVE_MEASURE: return createCollectiveMeasure();
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP: return createBase2MeasureRelationship();
+			case SMMPackage.BINARY_MEASURE: return createBinaryMeasure();
+			case SMMPackage.RANKING_MEASURE_RELATIONSHIP: return createRankingMeasureRelationship();
+			case SMMPackage.RANKING_MEASURE: return createRankingMeasure();
+			case SMMPackage.RANKING_INTERVAL: return createRankingInterval();
+			case SMMPackage.RESCALED_MEASURE_RELATIONSHIP: return createRescaledMeasureRelationship();
+			case SMMPackage.GRADE_MEASURE_RELATIONSHIP: return createGradeMeasureRelationship();
+			case SMMPackage.GRADE_MEASURE: return createGradeMeasure();
+			case SMMPackage.GRADE_INTERVAL: return createGradeInterval();
+			case SMMPackage.UNIT_OF_MEASURE: return createUnitOfMeasure();
+			case SMMPackage.BASE1_MEASUREMENT_RELATIONSHIP: return createBase1MeasurementRelationship();
+			case SMMPackage.BASE_NMEASUREMENT_RELATIONSHIP: return createBaseNMeasurementRelationship();
+			case SMMPackage.COLLECTIVE_MEASUREMENT: return createCollectiveMeasurement();
+			case SMMPackage.BASE2_MEASUREMENT_RELATIONSHIP: return createBase2MeasurementRelationship();
+			case SMMPackage.BINARY_MEASUREMENT: return createBinaryMeasurement();
+			case SMMPackage.GRADE_MEASUREMENT_RELATIONSHIP: return createGradeMeasurementRelationship();
+			case SMMPackage.GRADE_MEASUREMENT: return createGradeMeasurement();
+			case SMMPackage.RESCALED_MEASUREMENT_RELATIONSHIP: return createRescaledMeasurementRelationship();
+			case SMMPackage.RESCALED_MEASUREMENT: return createRescaledMeasurement();
+			case SMMPackage.RANKING_MEASUREMENT_RELATIONSHIP: return createRankingMeasurementRelationship();
+			case SMMPackage.RANKING_MEASUREMENT: return createRankingMeasurement();
+			case SMMPackage.CATEGORY_RELATIONSHIP: return createCategoryRelationship();
+			case SMMPackage.COUNTING_MEASUREMENT: return createCountingMeasurement();
+			case SMMPackage.DIRECT_MEASUREMENT: return createDirectMeasurement();
+			case SMMPackage.COUNTING_MEASURE: return createCountingMeasure();
+			case SMMPackage.DIRECT_MEASURE: return createDirectMeasure();
+			case SMMPackage.MEASURE_LIBRARY: return createMeasureLibrary();
+			case SMMPackage.NAMED_MEASURE: return createNamedMeasure();
+			case SMMPackage.NAMED_MEASUREMENT: return createNamedMeasurement();
+			case SMMPackage.OCL_OPERATION: return createOCLOperation();
+			case SMMPackage.OBSERVATION: return createObservation();
+			case SMMPackage.OBSERVATION_SCOPE: return createObservationScope();
+			case SMMPackage.RATIO_MEASURE: return createRatioMeasure();
+			case SMMPackage.RATIO_MEASUREMENT: return createRatioMeasurement();
+			case SMMPackage.SMM_MODEL: return createSmmModel();
+			case SMMPackage.COUNTING_MEASURE_RELATIONSHIP: return createCountingMeasureRelationship();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case SMMPackage.ACCUMULATOR:
-                return createAccumulatorFromString(eDataType, initialValue);
-            case SMMPackage.INFLUENCE:
-                return createInfluenceFromString(eDataType, initialValue);
-            case SMMPackage.SCALE_OF_MEASUREMENT:
-                return createScaleOfMeasurementFromString(eDataType, initialValue);
-            case SMMPackage.BINARY_FUNCTOR:
-                return createBinaryFunctorFromString(eDataType, initialValue);
-            case SMMPackage.MEASUREMENT_SCALE:
-                return createMeasurementScaleFromString(eDataType, initialValue);
-            case SMMPackage.TIME_STAMP:
-                return createTimeStampFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case SMMPackage.ACCUMULATOR:
+				return createAccumulatorFromString(eDataType, initialValue);
+			case SMMPackage.INFLUENCE:
+				return createInfluenceFromString(eDataType, initialValue);
+			case SMMPackage.SCALE_OF_MEASUREMENT:
+				return createScaleOfMeasurementFromString(eDataType, initialValue);
+			case SMMPackage.BINARY_FUNCTOR:
+				return createBinaryFunctorFromString(eDataType, initialValue);
+			case SMMPackage.MEASUREMENT_SCALE:
+				return createMeasurementScaleFromString(eDataType, initialValue);
+			case SMMPackage.TIME_STAMP:
+				return createTimeStampFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case SMMPackage.ACCUMULATOR:
-                return convertAccumulatorToString(eDataType, instanceValue);
-            case SMMPackage.INFLUENCE:
-                return convertInfluenceToString(eDataType, instanceValue);
-            case SMMPackage.SCALE_OF_MEASUREMENT:
-                return convertScaleOfMeasurementToString(eDataType, instanceValue);
-            case SMMPackage.BINARY_FUNCTOR:
-                return convertBinaryFunctorToString(eDataType, instanceValue);
-            case SMMPackage.MEASUREMENT_SCALE:
-                return convertMeasurementScaleToString(eDataType, instanceValue);
-            case SMMPackage.TIME_STAMP:
-                return convertTimeStampToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case SMMPackage.ACCUMULATOR:
+				return convertAccumulatorToString(eDataType, instanceValue);
+			case SMMPackage.INFLUENCE:
+				return convertInfluenceToString(eDataType, instanceValue);
+			case SMMPackage.SCALE_OF_MEASUREMENT:
+				return convertScaleOfMeasurementToString(eDataType, instanceValue);
+			case SMMPackage.BINARY_FUNCTOR:
+				return convertBinaryFunctorToString(eDataType, instanceValue);
+			case SMMPackage.MEASUREMENT_SCALE:
+				return convertMeasurementScaleToString(eDataType, instanceValue);
+			case SMMPackage.TIME_STAMP:
+				return convertTimeStampToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Attribute createAttribute() {
-        AttributeImpl attribute = new AttributeImpl();
-        return attribute;
-    }
+		AttributeImpl attribute = new AttributeImpl();
+		return attribute;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Annotation createAnnotation() {
-        AnnotationImpl annotation = new AnnotationImpl();
-        return annotation;
-    }
+		AnnotationImpl annotation = new AnnotationImpl();
+		return annotation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Argument createArgument() {
-        ArgumentImpl argument = new ArgumentImpl();
-        return argument;
-    }
+		ArgumentImpl argument = new ArgumentImpl();
+		return argument;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ObservedMeasure createObservedMeasure() {
-        ObservedMeasureImpl observedMeasure = new ObservedMeasureImpl();
-        return observedMeasure;
-    }
+		ObservedMeasureImpl observedMeasure = new ObservedMeasureImpl();
+		return observedMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EquivalentMeasurementRelationship createEquivalentMeasurementRelationship() {
-        EquivalentMeasurementRelationshipImpl equivalentMeasurementRelationship = new EquivalentMeasurementRelationshipImpl();
-        return equivalentMeasurementRelationship;
-    }
+		EquivalentMeasurementRelationshipImpl equivalentMeasurementRelationship = new EquivalentMeasurementRelationshipImpl();
+		return equivalentMeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RefinementMeasurementRelationship createRefinementMeasurementRelationship() {
-        RefinementMeasurementRelationshipImpl refinementMeasurementRelationship = new RefinementMeasurementRelationshipImpl();
-        return refinementMeasurementRelationship;
-    }
+		RefinementMeasurementRelationshipImpl refinementMeasurementRelationship = new RefinementMeasurementRelationshipImpl();
+		return refinementMeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RefinementMeasureRelationship createRefinementMeasureRelationship() {
-        RefinementMeasureRelationshipImpl refinementMeasureRelationship = new RefinementMeasureRelationshipImpl();
-        return refinementMeasureRelationship;
-    }
+		RefinementMeasureRelationshipImpl refinementMeasureRelationship = new RefinementMeasureRelationshipImpl();
+		return refinementMeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Operation createOperation() {
-        OperationImpl operation = new OperationImpl();
-        return operation;
-    }
+		OperationImpl operation = new OperationImpl();
+		return operation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EquivalentMeasureRelationship createEquivalentMeasureRelationship() {
-        EquivalentMeasureRelationshipImpl equivalentMeasureRelationship = new EquivalentMeasureRelationshipImpl();
-        return equivalentMeasureRelationship;
-    }
+		EquivalentMeasureRelationshipImpl equivalentMeasureRelationship = new EquivalentMeasureRelationshipImpl();
+		return equivalentMeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MeasureCategory createMeasureCategory() {
-        MeasureCategoryImpl measureCategory = new MeasureCategoryImpl();
-        return measureCategory;
-    }
+		MeasureCategoryImpl measureCategory = new MeasureCategoryImpl();
+		return measureCategory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Scope createScope() {
-        ScopeImpl scope = new ScopeImpl();
-        return scope;
-    }
+		ScopeImpl scope = new ScopeImpl();
+		return scope;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Characteristic createCharacteristic() {
-        CharacteristicImpl characteristic = new CharacteristicImpl();
-        return characteristic;
-    }
+		CharacteristicImpl characteristic = new CharacteristicImpl();
+		return characteristic;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Base1MeasureRelationship createBase1MeasureRelationship() {
-        Base1MeasureRelationshipImpl base1MeasureRelationship = new Base1MeasureRelationshipImpl();
-        return base1MeasureRelationship;
-    }
+		Base1MeasureRelationshipImpl base1MeasureRelationship = new Base1MeasureRelationshipImpl();
+		return base1MeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RescaledMeasure createRescaledMeasure() {
-        RescaledMeasureImpl rescaledMeasure = new RescaledMeasureImpl();
-        return rescaledMeasure;
-    }
+		RescaledMeasureImpl rescaledMeasure = new RescaledMeasureImpl();
+		return rescaledMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BaseNMeasureRelationship createBaseNMeasureRelationship() {
-        BaseNMeasureRelationshipImpl baseNMeasureRelationship = new BaseNMeasureRelationshipImpl();
-        return baseNMeasureRelationship;
-    }
+		BaseNMeasureRelationshipImpl baseNMeasureRelationship = new BaseNMeasureRelationshipImpl();
+		return baseNMeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CollectiveMeasure createCollectiveMeasure() {
-        CollectiveMeasureImpl collectiveMeasure = new CollectiveMeasureImpl();
-        return collectiveMeasure;
-    }
+		CollectiveMeasureImpl collectiveMeasure = new CollectiveMeasureImpl();
+		return collectiveMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Base2MeasureRelationship createBase2MeasureRelationship() {
-        Base2MeasureRelationshipImpl base2MeasureRelationship = new Base2MeasureRelationshipImpl();
-        return base2MeasureRelationship;
-    }
+		Base2MeasureRelationshipImpl base2MeasureRelationship = new Base2MeasureRelationshipImpl();
+		return base2MeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BinaryMeasure createBinaryMeasure() {
-        BinaryMeasureImpl binaryMeasure = new BinaryMeasureImpl();
-        return binaryMeasure;
-    }
+		BinaryMeasureImpl binaryMeasure = new BinaryMeasureImpl();
+		return binaryMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RankingMeasureRelationship createRankingMeasureRelationship() {
-        RankingMeasureRelationshipImpl rankingMeasureRelationship = new RankingMeasureRelationshipImpl();
-        return rankingMeasureRelationship;
-    }
+		RankingMeasureRelationshipImpl rankingMeasureRelationship = new RankingMeasureRelationshipImpl();
+		return rankingMeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RankingMeasure createRankingMeasure() {
-        RankingMeasureImpl rankingMeasure = new RankingMeasureImpl();
-        return rankingMeasure;
-    }
+		RankingMeasureImpl rankingMeasure = new RankingMeasureImpl();
+		return rankingMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RankingInterval createRankingInterval() {
-        RankingIntervalImpl rankingInterval = new RankingIntervalImpl();
-        return rankingInterval;
-    }
+		RankingIntervalImpl rankingInterval = new RankingIntervalImpl();
+		return rankingInterval;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RescaledMeasureRelationship createRescaledMeasureRelationship() {
-        RescaledMeasureRelationshipImpl rescaledMeasureRelationship = new RescaledMeasureRelationshipImpl();
-        return rescaledMeasureRelationship;
-    }
+		RescaledMeasureRelationshipImpl rescaledMeasureRelationship = new RescaledMeasureRelationshipImpl();
+		return rescaledMeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public GradeMeasureRelationship createGradeMeasureRelationship() {
-        GradeMeasureRelationshipImpl gradeMeasureRelationship = new GradeMeasureRelationshipImpl();
-        return gradeMeasureRelationship;
-    }
+		GradeMeasureRelationshipImpl gradeMeasureRelationship = new GradeMeasureRelationshipImpl();
+		return gradeMeasureRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public GradeMeasure createGradeMeasure() {
-        GradeMeasureImpl gradeMeasure = new GradeMeasureImpl();
-        return gradeMeasure;
-    }
+		GradeMeasureImpl gradeMeasure = new GradeMeasureImpl();
+		return gradeMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public GradeInterval createGradeInterval() {
-        GradeIntervalImpl gradeInterval = new GradeIntervalImpl();
-        return gradeInterval;
-    }
+		GradeIntervalImpl gradeInterval = new GradeIntervalImpl();
+		return gradeInterval;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public UnitOfMeasure createUnitOfMeasure() {
-        UnitOfMeasureImpl unitOfMeasure = new UnitOfMeasureImpl();
-        return unitOfMeasure;
-    }
+		UnitOfMeasureImpl unitOfMeasure = new UnitOfMeasureImpl();
+		return unitOfMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Base1MeasurementRelationship createBase1MeasurementRelationship() {
-        Base1MeasurementRelationshipImpl base1MeasurementRelationship = new Base1MeasurementRelationshipImpl();
-        return base1MeasurementRelationship;
-    }
+		Base1MeasurementRelationshipImpl base1MeasurementRelationship = new Base1MeasurementRelationshipImpl();
+		return base1MeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BaseNMeasurementRelationship createBaseNMeasurementRelationship() {
-        BaseNMeasurementRelationshipImpl baseNMeasurementRelationship = new BaseNMeasurementRelationshipImpl();
-        return baseNMeasurementRelationship;
-    }
+		BaseNMeasurementRelationshipImpl baseNMeasurementRelationship = new BaseNMeasurementRelationshipImpl();
+		return baseNMeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CollectiveMeasurement createCollectiveMeasurement() {
-        CollectiveMeasurementImpl collectiveMeasurement = new CollectiveMeasurementImpl();
-        return collectiveMeasurement;
-    }
+		CollectiveMeasurementImpl collectiveMeasurement = new CollectiveMeasurementImpl();
+		return collectiveMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Base2MeasurementRelationship createBase2MeasurementRelationship() {
-        Base2MeasurementRelationshipImpl base2MeasurementRelationship = new Base2MeasurementRelationshipImpl();
-        return base2MeasurementRelationship;
-    }
+		Base2MeasurementRelationshipImpl base2MeasurementRelationship = new Base2MeasurementRelationshipImpl();
+		return base2MeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BinaryMeasurement createBinaryMeasurement() {
-        BinaryMeasurementImpl binaryMeasurement = new BinaryMeasurementImpl();
-        return binaryMeasurement;
-    }
+		BinaryMeasurementImpl binaryMeasurement = new BinaryMeasurementImpl();
+		return binaryMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public GradeMeasurementRelationship createGradeMeasurementRelationship() {
-        GradeMeasurementRelationshipImpl gradeMeasurementRelationship = new GradeMeasurementRelationshipImpl();
-        return gradeMeasurementRelationship;
-    }
+		GradeMeasurementRelationshipImpl gradeMeasurementRelationship = new GradeMeasurementRelationshipImpl();
+		return gradeMeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public GradeMeasurement createGradeMeasurement() {
-        GradeMeasurementImpl gradeMeasurement = new GradeMeasurementImpl();
-        return gradeMeasurement;
-    }
+		GradeMeasurementImpl gradeMeasurement = new GradeMeasurementImpl();
+		return gradeMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RescaledMeasurementRelationship createRescaledMeasurementRelationship() {
-        RescaledMeasurementRelationshipImpl rescaledMeasurementRelationship = new RescaledMeasurementRelationshipImpl();
-        return rescaledMeasurementRelationship;
-    }
+		RescaledMeasurementRelationshipImpl rescaledMeasurementRelationship = new RescaledMeasurementRelationshipImpl();
+		return rescaledMeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RescaledMeasurement createRescaledMeasurement() {
-        RescaledMeasurementImpl rescaledMeasurement = new RescaledMeasurementImpl();
-        return rescaledMeasurement;
-    }
+		RescaledMeasurementImpl rescaledMeasurement = new RescaledMeasurementImpl();
+		return rescaledMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RankingMeasurementRelationship createRankingMeasurementRelationship() {
-        RankingMeasurementRelationshipImpl rankingMeasurementRelationship = new RankingMeasurementRelationshipImpl();
-        return rankingMeasurementRelationship;
-    }
+		RankingMeasurementRelationshipImpl rankingMeasurementRelationship = new RankingMeasurementRelationshipImpl();
+		return rankingMeasurementRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RankingMeasurement createRankingMeasurement() {
-        RankingMeasurementImpl rankingMeasurement = new RankingMeasurementImpl();
-        return rankingMeasurement;
-    }
+		RankingMeasurementImpl rankingMeasurement = new RankingMeasurementImpl();
+		return rankingMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CategoryRelationship createCategoryRelationship() {
-        CategoryRelationshipImpl categoryRelationship = new CategoryRelationshipImpl();
-        return categoryRelationship;
-    }
+		CategoryRelationshipImpl categoryRelationship = new CategoryRelationshipImpl();
+		return categoryRelationship;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CountingMeasurement createCountingMeasurement() {
-        CountingMeasurementImpl countingMeasurement = new CountingMeasurementImpl();
-        return countingMeasurement;
-    }
+		CountingMeasurementImpl countingMeasurement = new CountingMeasurementImpl();
+		return countingMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DirectMeasurement createDirectMeasurement() {
-        DirectMeasurementImpl directMeasurement = new DirectMeasurementImpl();
-        return directMeasurement;
-    }
+		DirectMeasurementImpl directMeasurement = new DirectMeasurementImpl();
+		return directMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CountingMeasure createCountingMeasure() {
-        CountingMeasureImpl countingMeasure = new CountingMeasureImpl();
-        return countingMeasure;
-    }
+		CountingMeasureImpl countingMeasure = new CountingMeasureImpl();
+		return countingMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DirectMeasure createDirectMeasure() {
-        DirectMeasureImpl directMeasure = new DirectMeasureImpl();
-        return directMeasure;
-    }
+		DirectMeasureImpl directMeasure = new DirectMeasureImpl();
+		return directMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MeasureLibrary createMeasureLibrary() {
-        MeasureLibraryImpl measureLibrary = new MeasureLibraryImpl();
-        return measureLibrary;
-    }
+		MeasureLibraryImpl measureLibrary = new MeasureLibraryImpl();
+		return measureLibrary;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NamedMeasure createNamedMeasure() {
-        NamedMeasureImpl namedMeasure = new NamedMeasureImpl();
-        return namedMeasure;
-    }
+		NamedMeasureImpl namedMeasure = new NamedMeasureImpl();
+		return namedMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NamedMeasurement createNamedMeasurement() {
-        NamedMeasurementImpl namedMeasurement = new NamedMeasurementImpl();
-        return namedMeasurement;
-    }
+		NamedMeasurementImpl namedMeasurement = new NamedMeasurementImpl();
+		return namedMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public OCLOperation createOCLOperation() {
-        OCLOperationImpl oclOperation = new OCLOperationImpl();
-        return oclOperation;
-    }
+		OCLOperationImpl oclOperation = new OCLOperationImpl();
+		return oclOperation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Observation createObservation() {
-        ObservationImpl observation = new ObservationImpl();
-        return observation;
-    }
+		ObservationImpl observation = new ObservationImpl();
+		return observation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ObservationScope createObservationScope() {
-        ObservationScopeImpl observationScope = new ObservationScopeImpl();
-        return observationScope;
-    }
+		ObservationScopeImpl observationScope = new ObservationScopeImpl();
+		return observationScope;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RatioMeasure createRatioMeasure() {
-        RatioMeasureImpl ratioMeasure = new RatioMeasureImpl();
-        return ratioMeasure;
-    }
+		RatioMeasureImpl ratioMeasure = new RatioMeasureImpl();
+		return ratioMeasure;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RatioMeasurement createRatioMeasurement() {
-        RatioMeasurementImpl ratioMeasurement = new RatioMeasurementImpl();
-        return ratioMeasurement;
-    }
+		RatioMeasurementImpl ratioMeasurement = new RatioMeasurementImpl();
+		return ratioMeasurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SmmModel createSmmModel() {
-        SmmModelImpl smmModel = new SmmModelImpl();
-        return smmModel;
-    }
+		SmmModelImpl smmModel = new SmmModelImpl();
+		return smmModel;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CountingMeasureRelationship createCountingMeasureRelationship() {
+		CountingMeasureRelationshipImpl countingMeasureRelationship = new CountingMeasureRelationshipImpl();
+		return countingMeasureRelationship;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Accumulator createAccumulatorFromString(EDataType eDataType, String initialValue) {
-        Accumulator result = Accumulator.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		Accumulator result = Accumulator.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertAccumulatorToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Influence createInfluenceFromString(EDataType eDataType, String initialValue) {
-        Influence result = Influence.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		Influence result = Influence.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertInfluenceToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ScaleOfMeasurement createScaleOfMeasurementFromString(EDataType eDataType, String initialValue) {
-        ScaleOfMeasurement result = ScaleOfMeasurement.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		ScaleOfMeasurement result = ScaleOfMeasurement.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertScaleOfMeasurementToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public BinaryFunctor createBinaryFunctorFromString(EDataType eDataType, String initialValue) {
-        BinaryFunctor result = BinaryFunctor.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		BinaryFunctor result = BinaryFunctor.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertBinaryFunctorToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MeasurementScale createMeasurementScaleFromString(EDataType eDataType, String initialValue) {
-        MeasurementScale result = MeasurementScale.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		MeasurementScale result = MeasurementScale.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertMeasurementScaleToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Date createTimeStampFromString(EDataType eDataType, String initialValue) {
-        return (Date)super.createFromString(eDataType, initialValue);
-    }
+		return (Date)super.createFromString(eDataType, initialValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertTimeStampToString(EDataType eDataType, Object instanceValue) {
-        return super.convertToString(eDataType, instanceValue);
-    }
+		return super.convertToString(eDataType, instanceValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SMMPackage getSMMPackage() {
-        return (SMMPackage)getEPackage();
-    }
+		return (SMMPackage)getEPackage();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
     @Deprecated
     public static SMMPackage getPackage() {
-        return SMMPackage.eINSTANCE;
-    }
+		return SMMPackage.eINSTANCE;
+	}
 
 } //SMMFactoryImpl

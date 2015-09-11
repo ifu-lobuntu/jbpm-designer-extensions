@@ -4,7 +4,6 @@ import org.jbpm.vdml.services.model.meta.Capability;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -26,7 +25,7 @@ public class CapabilityPerformance {
 
     public CapabilityPerformance(Participant participant, Capability capability) {
         this.participant = participant;
-        this.participant.getProvidedCapabilities().add(this);
+        this.participant.getCapabilityOffers().add(this);
         this.capability = capability;
     }
 

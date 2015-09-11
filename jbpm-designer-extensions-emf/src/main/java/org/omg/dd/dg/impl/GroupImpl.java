@@ -2,7 +2,6 @@
  */
 package org.omg.dd.dg.impl;
 
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -13,6 +12,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.dd.dg.DGPackage;
 import org.omg.dd.dg.GraphicalElement;
 import org.omg.dd.dg.Group;
+
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->

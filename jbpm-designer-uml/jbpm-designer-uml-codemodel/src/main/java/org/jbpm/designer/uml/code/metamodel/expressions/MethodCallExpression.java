@@ -1,10 +1,10 @@
 package org.jbpm.designer.uml.code.metamodel.expressions;
 
+import org.jbpm.designer.uml.code.metamodel.CodeExpression;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.jbpm.designer.uml.code.metamodel.CodeExpression;
 
 public class MethodCallExpression extends CodeExpression {
 	private String methodName;

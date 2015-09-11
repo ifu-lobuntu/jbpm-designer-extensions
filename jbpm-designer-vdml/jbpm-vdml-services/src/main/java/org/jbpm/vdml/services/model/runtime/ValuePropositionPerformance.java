@@ -5,9 +5,7 @@ import org.jbpm.vdml.services.model.meta.MetaEntity;
 import org.jbpm.vdml.services.model.meta.ValueProposition;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity

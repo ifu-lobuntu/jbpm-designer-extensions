@@ -60,7 +60,7 @@
 ##Role Collaboration
  - DeliverableFlow.fromActivity
  - DeliverableFlow.toActivity
- - DeliverableFlow.businessItem (select businessItemDefinition from BusinessItemLibrary)
+ - DeliverableFlow.businessItemDefinition (select businessItemDefinition from BusinessItemLibrary)
  - Role.assignedParticipants
  
 ##Value Proposition Exchange

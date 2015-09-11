@@ -20,142 +20,142 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.RoleCategoryImpl#getCategoryRole <em>Category Role</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class RoleCategoryImpl extends VdmlElementImpl implements RoleCategory {
     /**
-     * The cached value of the '{@link #getCategoryRole() <em>Category Role</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCategoryRole() <em>Category Role</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCategoryRole()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCategoryRole()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<RoleDefinition> categoryRole;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RoleCategoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.ROLE_CATEGORY;
-    }
+		return VDMLPackage.Literals.ROLE_CATEGORY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<RoleDefinition> getCategoryRole() {
-        if (categoryRole == null) {
-            categoryRole = new EObjectWithInverseResolvingEList.ManyInverse<RoleDefinition>(RoleDefinition.class, this, VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE, VDMLPackage.ROLE_DEFINITION__CATEGORY);
-        }
-        return categoryRole;
-    }
+		if (categoryRole == null) {
+			categoryRole = new EObjectWithInverseResolvingEList.ManyInverse<RoleDefinition>(RoleDefinition.class, this, VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE, VDMLPackage.ROLE_DEFINITION__CATEGORY);
+		}
+		return categoryRole;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategoryRole()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategoryRole()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
-                return ((InternalEList<?>)getCategoryRole()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
+				return ((InternalEList<?>)getCategoryRole()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
-                return getCategoryRole();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
+				return getCategoryRole();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
-                getCategoryRole().clear();
-                getCategoryRole().addAll((Collection<? extends RoleDefinition>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
+				getCategoryRole().clear();
+				getCategoryRole().addAll((Collection<? extends RoleDefinition>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
-                getCategoryRole().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
+				getCategoryRole().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
-                return categoryRole != null && !categoryRole.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.ROLE_CATEGORY__CATEGORY_ROLE:
+				return categoryRole != null && !categoryRole.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //RoleCategoryImpl

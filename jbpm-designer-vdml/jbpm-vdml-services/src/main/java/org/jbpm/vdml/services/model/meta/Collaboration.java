@@ -9,16 +9,16 @@ public class Collaboration implements  MetaEntity {
     @Id
     private String uri;
     private String name;
-    @ManyToOne
-    private Collaboration extendedCollaboration;
-    @OneToMany(mappedBy = "collaboration")
+    @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
     private Set<Role> roles=new HashSet<Role>();
-    @OneToMany(mappedBy = "collaboration")
+    @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
     private Set<Activity> activities=new HashSet<Activity>();
-    @OneToMany(mappedBy = "collaboration")
-    private Set<DeliverableFlow> deliverableFlows=new HashSet<DeliverableFlow>();
-    @OneToMany(mappedBy = "collaboration")
-    private Set<BusinessItem> businessItems=new HashSet<BusinessItem>();
+    @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
+    private Set<SuppliedStore> suppliedStores =new HashSet<SuppliedStore>();
+    @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
+    private Set<DeliverableFlow> flows =new HashSet<DeliverableFlow>();
+    @ManyToMany()
+    private Set<BusinessItemDefinition> businessItemDefinitions =new HashSet<BusinessItemDefinition>();
     public Collaboration() {
     }
 
@@ -30,8 +30,8 @@ public class Collaboration implements  MetaEntity {
         return activities;
     }
 
-    public Set<DeliverableFlow> getDeliverableFlows() {
-        return deliverableFlows;
+    public Set<DeliverableFlow> getFlows() {
+        return flows;
     }
 
     public Set<Role> getRoles() {
@@ -50,16 +50,12 @@ public class Collaboration implements  MetaEntity {
         this.name = name;
     }
 
-    public Collaboration getExtendedCollaboration() {
-        return extendedCollaboration;
+    public Set<SuppliedStore> getSuppliedStores() {
+        return suppliedStores;
     }
 
-    public void setExtendedCollaboration(Collaboration superCollaboration) {
-        this.extendedCollaboration = superCollaboration;
-    }
-
-    public Set<BusinessItem> getBusinessItems() {
-        return businessItems;
+    public Set<BusinessItemDefinition> getBusinessItemDefinitions() {
+        return businessItemDefinitions;
     }
 
 }

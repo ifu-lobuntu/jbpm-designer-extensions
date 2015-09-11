@@ -1,7 +1,5 @@
 package org.jbpm.vdml.services.model.meta;
 
-import org.jbpm.vdml.services.model.runtime.RolePerformance;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,15 +11,15 @@ public class Role implements MetaEntity {
     private String name;
     @ManyToOne
     private Collaboration collaboration;
-    @ManyToOne
-    private Role extendedRole;
 
-    @OneToMany(mappedBy = "owningRole", cascade = CascadeType.ALL)
-    private Set<RoleStore> ownedStores = new HashSet<RoleStore>();
+    @OneToMany(mappedBy = "supplyingRole", cascade = CascadeType.ALL)
+    private Set<SuppliedStore> suppliedStores = new HashSet<SuppliedStore>();
     @OneToMany(mappedBy = "fromRole", cascade = CascadeType.ALL)
     private Set<ValueProposition> providedValuePropositions = new HashSet<ValueProposition>();
     @OneToMany(mappedBy = "toRole")
     private Set<ValueProposition> receivedValuePropositions = new HashSet<ValueProposition>();
+    @OneToMany(mappedBy = "performingRole", cascade = CascadeType.ALL)
+    private Set<Activity> performedActitivities = new HashSet<Activity>();
 
     public Role(String uri, Collaboration collaboration) {
         this.uri = uri;
@@ -41,10 +39,6 @@ public class Role implements MetaEntity {
         return uri;
     }
 
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
     public String getName() {
         return name;
     }
@@ -61,15 +55,15 @@ public class Role implements MetaEntity {
         return receivedValuePropositions;
     }
 
-    public Set<RoleStore> getOwnedStores() {
-        return ownedStores;
+    public Set<SuppliedStore> getSuppliedStores() {
+        return suppliedStores;
     }
 
-    public Role getExtendedRole() {
-        return extendedRole;
+    public Set<Activity> getPerformedActitivities() {
+        return performedActitivities;
     }
 
-    public void setExtendedRole(Role extendedRole) {
-        this.extendedRole = extendedRole;
+    public void setPerformedActitivities(Set<Activity> performedActitivities) {
+        this.performedActitivities = performedActitivities;
     }
 }

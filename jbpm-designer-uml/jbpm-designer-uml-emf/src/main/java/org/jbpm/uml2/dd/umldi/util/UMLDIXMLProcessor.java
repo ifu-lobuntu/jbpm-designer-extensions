@@ -4,11 +4,27 @@ package org.jbpm.uml2.dd.umldi.util;
 
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.*;
+import org.eclipse.emf.ecore.resource.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.eclipse.emf.ecore.xmi.*;
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
-import org.jbpm.uml2.dd.umldi.UMLDIPackage;
+import org.eclipse.uml2.uml.*;
+import org.jbpm.designer.dd.jbpmdd.CollapsibleShape;
+import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
+import org.jbpm.designer.dd.jbpmdd.impl.*;
+import org.jbpm.designer.dd.util.Collections;
+import org.jbpm.uml2.dd.umldi.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.di.*;
 
+import java.util.HashMap;
+import java.util.Collection;
 /**
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->

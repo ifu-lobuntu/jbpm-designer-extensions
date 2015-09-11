@@ -23,6 +23,8 @@
         upperBound="-1" eType="#//RoleLibrary" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" upperBound="-1"
         eType="ecore:EClass VDMLDI.ecore#//VDMLDiagram" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeLibrary" ordered="false"
+        upperBound="-1" eType="#//StoreLibrary" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VdmlElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
@@ -204,6 +206,8 @@
         eType="#//RoleDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roleAssignment" ordered="false"
         upperBound="-1" eType="#//Assignment" eOpposite="#//Assignment/assignedRole"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suppliedStore" ordered="false"
+        upperBound="-1" eType="#//SuppliedStore" eOpposite="#//SuppliedStore/supplyingRole"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="#//PortContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityRequirement"
@@ -222,6 +226,8 @@
         eType="#//MeasuredCharacteristic" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="performingRole" ordered="false"
         eType="#//Role" eOpposite="#//Role/performedWork"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningCollaboration" eType="#//Collaboration"
+        eOpposite="#//Collaboration/activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PortContainer" abstract="true" eSuperTypes="#//MeasurableElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="containedPort" ordered="false"
@@ -374,7 +380,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="collaborationRole" ordered="false"
         upperBound="-1" eType="#//Role" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" ordered="false"
-        upperBound="-1" eType="#//Activity" containment="true"/>
+        upperBound="-1" eType="#//Activity" containment="true" eOpposite="#//Activity/owningCollaboration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="flow" ordered="false" upperBound="-1"
         eType="#//DeliverableFlow" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="businessItem" ordered="false"
@@ -387,6 +393,8 @@
         upperBound="-1" eType="#//Scenario" eOpposite="#//Scenario/contextCollaboration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAssignment" ordered="false"
         upperBound="-1" eType="#//Assignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="suppliedStore" upperBound="-1"
+        eType="#//SuppliedStore" containment="true" eOpposite="#//SuppliedStore/collaboration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DelegationContext" eSuperTypes="#//AnalysisContext">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentContext" ordered="false"
@@ -549,4 +557,37 @@
   <eClassifiers xsi:type="ecore:EClass" name="Member" eSuperTypes="#//Role"/>
   <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//Actor"/>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityCategory" eSuperTypes="#//Capability"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StoreLibrary" eSuperTypes="#//VdmlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeDefinitions" upperBound="-1"
+        eType="#//StoreDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="library" eType="#//StoreLibrary"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StoreDefinition" eSuperTypes="#//VdmlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" ordered="false"
+        upperBound="-1" eType="#//BusinessItemDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+        ordered="false" upperBound="-1" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuppliedStore" eSuperTypes="#//PortContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supplyingRole" ordered="false"
+        lowerBound="1" eType="#//Role" eOpposite="#//Role/suppliedStore"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="duration" ordered="false"
+        lowerBound="1" eType="#//MeasuredCharacteristic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inventoryLevel" ordered="false"
+        eType="#//MeasuredCharacteristic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" ordered="false"
+        lowerBound="1" eType="#//BusinessItem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeRequirement" eType="#//StoreDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="collaboration" eType="#//Collaboration"
+        eOpposite="#//Collaboration/suppliedStore"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PoolDefinition" eSuperTypes="#//StoreDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SuppliedPool" eSuperTypes="#//SuppliedStore">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="poolCalendar" ordered="false"
+        eType="#//CalendarService" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="poolSize" ordered="false"
+        eType="#//MeasuredCharacteristic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
+        upperBound="-1" eType="#//Position"/>
+  </eClassifiers>
 </ecore:EPackage>

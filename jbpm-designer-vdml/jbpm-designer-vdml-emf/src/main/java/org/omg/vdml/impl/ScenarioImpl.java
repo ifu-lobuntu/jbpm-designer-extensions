@@ -25,6 +25,7 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.ScenarioImpl#getHorizon <em>Horizon</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ScenarioImpl#getType <em>Type</em>}</li>
@@ -34,463 +35,462 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.ScenarioImpl#getContextActor <em>Context Actor</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ScenarioImpl#getContextCollaboration <em>Context Collaboration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ScenarioImpl extends AnalysisContextImpl implements Scenario {
     /**
-     * The cached value of the '{@link #getHorizon() <em>Horizon</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getHorizon() <em>Horizon</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getHorizon()
-     * @generated
-     * @ordered
-     */
+	 * @see #getHorizon()
+	 * @generated
+	 * @ordered
+	 */
     protected MeasuredCharacteristic horizon;
 
     /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String TYPE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
     protected String type = TYPE_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getReleaseControl() <em>Release Control</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getReleaseControl() <em>Release Control</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getReleaseControl()
-     * @generated
-     * @ordered
-     */
+	 * @see #getReleaseControl()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<ReleaseControl> releaseControl;
 
     /**
-     * The default value of the '{@link #getIsCommon() <em>Is Common</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getIsCommon() <em>Is Common</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIsCommon()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIsCommon()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Boolean IS_COMMON_EDEFAULT = Boolean.FALSE;
 
     /**
-     * The cached value of the '{@link #getIsCommon() <em>Is Common</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getIsCommon() <em>Is Common</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIsCommon()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIsCommon()
+	 * @generated
+	 * @ordered
+	 */
     protected Boolean isCommon = IS_COMMON_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getHeatThreshold() <em>Heat Threshold</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getHeatThreshold() <em>Heat Threshold</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getHeatThreshold()
-     * @generated
-     * @ordered
-     */
+	 * @see #getHeatThreshold()
+	 * @generated
+	 * @ordered
+	 */
     protected MeasuredCharacteristic heatThreshold;
 
     /**
-     * The cached value of the '{@link #getContextActor() <em>Context Actor</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContextActor() <em>Context Actor</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContextActor()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContextActor()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Actor> contextActor;
 
     /**
-     * The cached value of the '{@link #getContextCollaboration() <em>Context Collaboration</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContextCollaboration() <em>Context Collaboration</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContextCollaboration()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContextCollaboration()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Collaboration> contextCollaboration;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ScenarioImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.SCENARIO;
-    }
+		return VDMLPackage.Literals.SCENARIO;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MeasuredCharacteristic getHorizon() {
-        return horizon;
-    }
+		return horizon;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetHorizon(MeasuredCharacteristic newHorizon, NotificationChain msgs) {
-        MeasuredCharacteristic oldHorizon = horizon;
-        horizon = newHorizon;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HORIZON, oldHorizon, newHorizon);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		MeasuredCharacteristic oldHorizon = horizon;
+		horizon = newHorizon;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HORIZON, oldHorizon, newHorizon);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setHorizon(MeasuredCharacteristic newHorizon) {
-        if (newHorizon != horizon) {
-            NotificationChain msgs = null;
-            if (horizon != null)
-                msgs = ((InternalEObject)horizon).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HORIZON, null, msgs);
-            if (newHorizon != null)
-                msgs = ((InternalEObject)newHorizon).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HORIZON, null, msgs);
-            msgs = basicSetHorizon(newHorizon, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HORIZON, newHorizon, newHorizon));
-    }
+		if (newHorizon != horizon) {
+			NotificationChain msgs = null;
+			if (horizon != null)
+				msgs = ((InternalEObject)horizon).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HORIZON, null, msgs);
+			if (newHorizon != null)
+				msgs = ((InternalEObject)newHorizon).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HORIZON, null, msgs);
+			msgs = basicSetHorizon(newHorizon, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HORIZON, newHorizon, newHorizon));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getType() {
-        return type;
-    }
+		return type;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setType(String newType) {
-        String oldType = type;
-        type = newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__TYPE, oldType, type));
-    }
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__TYPE, oldType, type));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<ReleaseControl> getReleaseControl() {
-        if (releaseControl == null) {
-            releaseControl = new EObjectWithInverseResolvingEList.ManyInverse<ReleaseControl>(ReleaseControl.class, this, VDMLPackage.SCENARIO__RELEASE_CONTROL, VDMLPackage.RELEASE_CONTROL__SCENARIO);
-        }
-        return releaseControl;
-    }
+		if (releaseControl == null) {
+			releaseControl = new EObjectWithInverseResolvingEList.ManyInverse<ReleaseControl>(ReleaseControl.class, this, VDMLPackage.SCENARIO__RELEASE_CONTROL, VDMLPackage.RELEASE_CONTROL__SCENARIO);
+		}
+		return releaseControl;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Boolean getIsCommon() {
-        return isCommon;
-    }
+		return isCommon;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setIsCommon(Boolean newIsCommon) {
-        Boolean oldIsCommon = isCommon;
-        isCommon = newIsCommon;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__IS_COMMON, oldIsCommon, isCommon));
-    }
+		Boolean oldIsCommon = isCommon;
+		isCommon = newIsCommon;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__IS_COMMON, oldIsCommon, isCommon));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public MeasuredCharacteristic getHeatThreshold() {
-        return heatThreshold;
-    }
+		return heatThreshold;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetHeatThreshold(MeasuredCharacteristic newHeatThreshold, NotificationChain msgs) {
-        MeasuredCharacteristic oldHeatThreshold = heatThreshold;
-        heatThreshold = newHeatThreshold;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HEAT_THRESHOLD, oldHeatThreshold, newHeatThreshold);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		MeasuredCharacteristic oldHeatThreshold = heatThreshold;
+		heatThreshold = newHeatThreshold;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HEAT_THRESHOLD, oldHeatThreshold, newHeatThreshold);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setHeatThreshold(MeasuredCharacteristic newHeatThreshold) {
-        if (newHeatThreshold != heatThreshold) {
-            NotificationChain msgs = null;
-            if (heatThreshold != null)
-                msgs = ((InternalEObject)heatThreshold).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HEAT_THRESHOLD, null, msgs);
-            if (newHeatThreshold != null)
-                msgs = ((InternalEObject)newHeatThreshold).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HEAT_THRESHOLD, null, msgs);
-            msgs = basicSetHeatThreshold(newHeatThreshold, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HEAT_THRESHOLD, newHeatThreshold, newHeatThreshold));
-    }
+		if (newHeatThreshold != heatThreshold) {
+			NotificationChain msgs = null;
+			if (heatThreshold != null)
+				msgs = ((InternalEObject)heatThreshold).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HEAT_THRESHOLD, null, msgs);
+			if (newHeatThreshold != null)
+				msgs = ((InternalEObject)newHeatThreshold).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SCENARIO__HEAT_THRESHOLD, null, msgs);
+			msgs = basicSetHeatThreshold(newHeatThreshold, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SCENARIO__HEAT_THRESHOLD, newHeatThreshold, newHeatThreshold));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Actor> getContextActor() {
-        if (contextActor == null) {
-            contextActor = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this, VDMLPackage.SCENARIO__CONTEXT_ACTOR, VDMLPackage.ACTOR__SCENARIO);
-        }
-        return contextActor;
-    }
+		if (contextActor == null) {
+			contextActor = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this, VDMLPackage.SCENARIO__CONTEXT_ACTOR, VDMLPackage.ACTOR__SCENARIO);
+		}
+		return contextActor;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Collaboration> getContextCollaboration() {
-        if (contextCollaboration == null) {
-            contextCollaboration = new EObjectWithInverseResolvingEList.ManyInverse<Collaboration>(Collaboration.class, this, VDMLPackage.SCENARIO__CONTEXT_COLLABORATION, VDMLPackage.COLLABORATION__SCENARIO);
-        }
-        return contextCollaboration;
-    }
+		if (contextCollaboration == null) {
+			contextCollaboration = new EObjectWithInverseResolvingEList.ManyInverse<Collaboration>(Collaboration.class, this, VDMLPackage.SCENARIO__CONTEXT_COLLABORATION, VDMLPackage.COLLABORATION__SCENARIO);
+		}
+		return contextCollaboration;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.SCENARIO__RELEASE_CONTROL:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getReleaseControl()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextActor()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextCollaboration()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.SCENARIO__RELEASE_CONTROL:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReleaseControl()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextActor()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getContextCollaboration()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.SCENARIO__HORIZON:
-                return basicSetHorizon(null, msgs);
-            case VDMLPackage.SCENARIO__RELEASE_CONTROL:
-                return ((InternalEList<?>)getReleaseControl()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
-                return basicSetHeatThreshold(null, msgs);
-            case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
-                return ((InternalEList<?>)getContextActor()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
-                return ((InternalEList<?>)getContextCollaboration()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.SCENARIO__HORIZON:
+				return basicSetHorizon(null, msgs);
+			case VDMLPackage.SCENARIO__RELEASE_CONTROL:
+				return ((InternalEList<?>)getReleaseControl()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
+				return basicSetHeatThreshold(null, msgs);
+			case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
+				return ((InternalEList<?>)getContextActor()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
+				return ((InternalEList<?>)getContextCollaboration()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.SCENARIO__HORIZON:
-                return getHorizon();
-            case VDMLPackage.SCENARIO__TYPE:
-                return getType();
-            case VDMLPackage.SCENARIO__RELEASE_CONTROL:
-                return getReleaseControl();
-            case VDMLPackage.SCENARIO__IS_COMMON:
-                return getIsCommon();
-            case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
-                return getHeatThreshold();
-            case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
-                return getContextActor();
-            case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
-                return getContextCollaboration();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.SCENARIO__HORIZON:
+				return getHorizon();
+			case VDMLPackage.SCENARIO__TYPE:
+				return getType();
+			case VDMLPackage.SCENARIO__RELEASE_CONTROL:
+				return getReleaseControl();
+			case VDMLPackage.SCENARIO__IS_COMMON:
+				return getIsCommon();
+			case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
+				return getHeatThreshold();
+			case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
+				return getContextActor();
+			case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
+				return getContextCollaboration();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.SCENARIO__HORIZON:
-                setHorizon((MeasuredCharacteristic)newValue);
-                return;
-            case VDMLPackage.SCENARIO__TYPE:
-                setType((String)newValue);
-                return;
-            case VDMLPackage.SCENARIO__RELEASE_CONTROL:
-                getReleaseControl().clear();
-                getReleaseControl().addAll((Collection<? extends ReleaseControl>)newValue);
-                return;
-            case VDMLPackage.SCENARIO__IS_COMMON:
-                setIsCommon((Boolean)newValue);
-                return;
-            case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
-                setHeatThreshold((MeasuredCharacteristic)newValue);
-                return;
-            case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
-                getContextActor().clear();
-                getContextActor().addAll((Collection<? extends Actor>)newValue);
-                return;
-            case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
-                getContextCollaboration().clear();
-                getContextCollaboration().addAll((Collection<? extends Collaboration>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.SCENARIO__HORIZON:
+				setHorizon((MeasuredCharacteristic)newValue);
+				return;
+			case VDMLPackage.SCENARIO__TYPE:
+				setType((String)newValue);
+				return;
+			case VDMLPackage.SCENARIO__RELEASE_CONTROL:
+				getReleaseControl().clear();
+				getReleaseControl().addAll((Collection<? extends ReleaseControl>)newValue);
+				return;
+			case VDMLPackage.SCENARIO__IS_COMMON:
+				setIsCommon((Boolean)newValue);
+				return;
+			case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
+				setHeatThreshold((MeasuredCharacteristic)newValue);
+				return;
+			case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
+				getContextActor().clear();
+				getContextActor().addAll((Collection<? extends Actor>)newValue);
+				return;
+			case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
+				getContextCollaboration().clear();
+				getContextCollaboration().addAll((Collection<? extends Collaboration>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.SCENARIO__HORIZON:
-                setHorizon((MeasuredCharacteristic)null);
-                return;
-            case VDMLPackage.SCENARIO__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
-            case VDMLPackage.SCENARIO__RELEASE_CONTROL:
-                getReleaseControl().clear();
-                return;
-            case VDMLPackage.SCENARIO__IS_COMMON:
-                setIsCommon(IS_COMMON_EDEFAULT);
-                return;
-            case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
-                setHeatThreshold((MeasuredCharacteristic)null);
-                return;
-            case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
-                getContextActor().clear();
-                return;
-            case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
-                getContextCollaboration().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.SCENARIO__HORIZON:
+				setHorizon((MeasuredCharacteristic)null);
+				return;
+			case VDMLPackage.SCENARIO__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
+			case VDMLPackage.SCENARIO__RELEASE_CONTROL:
+				getReleaseControl().clear();
+				return;
+			case VDMLPackage.SCENARIO__IS_COMMON:
+				setIsCommon(IS_COMMON_EDEFAULT);
+				return;
+			case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
+				setHeatThreshold((MeasuredCharacteristic)null);
+				return;
+			case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
+				getContextActor().clear();
+				return;
+			case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
+				getContextCollaboration().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.SCENARIO__HORIZON:
-                return horizon != null;
-            case VDMLPackage.SCENARIO__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-            case VDMLPackage.SCENARIO__RELEASE_CONTROL:
-                return releaseControl != null && !releaseControl.isEmpty();
-            case VDMLPackage.SCENARIO__IS_COMMON:
-                return IS_COMMON_EDEFAULT == null ? isCommon != null : !IS_COMMON_EDEFAULT.equals(isCommon);
-            case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
-                return heatThreshold != null;
-            case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
-                return contextActor != null && !contextActor.isEmpty();
-            case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
-                return contextCollaboration != null && !contextCollaboration.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.SCENARIO__HORIZON:
+				return horizon != null;
+			case VDMLPackage.SCENARIO__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case VDMLPackage.SCENARIO__RELEASE_CONTROL:
+				return releaseControl != null && !releaseControl.isEmpty();
+			case VDMLPackage.SCENARIO__IS_COMMON:
+				return IS_COMMON_EDEFAULT == null ? isCommon != null : !IS_COMMON_EDEFAULT.equals(isCommon);
+			case VDMLPackage.SCENARIO__HEAT_THRESHOLD:
+				return heatThreshold != null;
+			case VDMLPackage.SCENARIO__CONTEXT_ACTOR:
+				return contextActor != null && !contextActor.isEmpty();
+			case VDMLPackage.SCENARIO__CONTEXT_COLLABORATION:
+				return contextCollaboration != null && !contextCollaboration.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (type: ");
-        result.append(type);
-        result.append(", isCommon: ");
-        result.append(isCommon);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (type: ");
+		result.append(type);
+		result.append(", isCommon: ");
+		result.append(isCommon);
+		result.append(')');
+		return result.toString();
+	}
 
 } //ScenarioImpl

@@ -14,6 +14,13 @@ import java.util.HashSet;
 public class MetaBuilder {
     EntityManager entityManager;
 
+    public MetaBuilder() {
+    }
+
+    public MetaBuilder(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     protected EmfReference buildReference(EObject a) {
         EmfReference er = new EmfReference(buildUri(a));
         return er;
@@ -21,14 +28,6 @@ public class MetaBuilder {
 
     protected String buildUri(EObject a) {
         return a.eResource().getURI().toPlatformString(true) + "#" + JBPMECoreHelper.getID(a);
-    }
-
-    protected <T extends MetaEntity> Collection<T> findOrCreate(Collection<? extends EObject> eos, Class<T> t, Object parent) {
-        Collection<T> result = new HashSet<T>();
-        for (EObject eo : eos) {
-            result.add(findOrCreate(eo, t, parent));
-        }
-        return result;
     }
 
     protected <T> T findOrCreate(EObject eo, Class<T> t, Object... parent) {
@@ -47,7 +46,7 @@ public class MetaBuilder {
                     Class<?>[] types = constructor.getParameterTypes();
                     if (types.length == args.length) {
                         for (int j = 0; j < types.length; j++) {
-                            if (!types[i].isInstance(args[i])) {
+                            if (!types[j].isInstance(args[j])) {
                                 continue outer;
                             }
                             constr = (Constructor<T>) constructor;
@@ -62,6 +61,7 @@ public class MetaBuilder {
                 throw new RuntimeException(e);
             }
             entityManager.persist(result);
+            entityManager.flush();
         }
         return result;
     }

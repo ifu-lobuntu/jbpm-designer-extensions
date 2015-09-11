@@ -16,219 +16,218 @@ import org.omg.smm.RankingInterval;
 import org.omg.smm.RankingMeasure;
 import org.omg.smm.RankingMeasureRelationship;
 import org.omg.smm.SMMPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ranking Measure</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.RankingMeasureImpl#getInterval <em>Interval</em>}</li>
  *   <li>{@link org.omg.smm.impl.RankingMeasureImpl#getRankingTo <em>Ranking To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class RankingMeasureImpl extends DimensionalMeasureImpl implements RankingMeasure {
     /**
-     * The cached value of the '{@link #getInterval() <em>Interval</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getInterval() <em>Interval</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInterval()
-     * @generated
-     * @ordered
-     */
+	 * @see #getInterval()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<RankingInterval> interval;
 
     /**
-     * The cached value of the '{@link #getRankingTo() <em>Ranking To</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRankingTo() <em>Ranking To</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRankingTo()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRankingTo()
+	 * @generated
+	 * @ordered
+	 */
     protected RankingMeasureRelationship rankingTo;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RankingMeasureImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.RANKING_MEASURE;
-    }
+		return SMMPackage.Literals.RANKING_MEASURE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<RankingInterval> getInterval() {
-        if (interval == null) {
-            interval = new EObjectContainmentWithInverseEList<RankingInterval>(RankingInterval.class, this, SMMPackage.RANKING_MEASURE__INTERVAL, SMMPackage.RANKING_INTERVAL__RANKING);
-        }
-        return interval;
-    }
+		if (interval == null) {
+			interval = new EObjectContainmentWithInverseEList<RankingInterval>(RankingInterval.class, this, SMMPackage.RANKING_MEASURE__INTERVAL, SMMPackage.RANKING_INTERVAL__RANKING);
+		}
+		return interval;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RankingMeasureRelationship getRankingTo() {
-        return rankingTo;
-    }
+		return rankingTo;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetRankingTo(RankingMeasureRelationship newRankingTo, NotificationChain msgs) {
-        RankingMeasureRelationship oldRankingTo = rankingTo;
-        rankingTo = newRankingTo;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SMMPackage.RANKING_MEASURE__RANKING_TO, oldRankingTo, newRankingTo);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		RankingMeasureRelationship oldRankingTo = rankingTo;
+		rankingTo = newRankingTo;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SMMPackage.RANKING_MEASURE__RANKING_TO, oldRankingTo, newRankingTo);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setRankingTo(RankingMeasureRelationship newRankingTo) {
-        if (newRankingTo != rankingTo) {
-            NotificationChain msgs = null;
-            if (rankingTo != null)
-                msgs = ((InternalEObject)rankingTo).eInverseRemove(this, SMMPackage.RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE, RankingMeasureRelationship.class, msgs);
-            if (newRankingTo != null)
-                msgs = ((InternalEObject)newRankingTo).eInverseAdd(this, SMMPackage.RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE, RankingMeasureRelationship.class, msgs);
-            msgs = basicSetRankingTo(newRankingTo, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RANKING_MEASURE__RANKING_TO, newRankingTo, newRankingTo));
-    }
+		if (newRankingTo != rankingTo) {
+			NotificationChain msgs = null;
+			if (rankingTo != null)
+				msgs = ((InternalEObject)rankingTo).eInverseRemove(this, SMMPackage.RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE, RankingMeasureRelationship.class, msgs);
+			if (newRankingTo != null)
+				msgs = ((InternalEObject)newRankingTo).eInverseAdd(this, SMMPackage.RANKING_MEASURE_RELATIONSHIP__FROM_RANKING_MEASURE, RankingMeasureRelationship.class, msgs);
+			msgs = basicSetRankingTo(newRankingTo, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.RANKING_MEASURE__RANKING_TO, newRankingTo, newRankingTo));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SMMPackage.RANKING_MEASURE__INTERVAL:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInterval()).basicAdd(otherEnd, msgs);
-            case SMMPackage.RANKING_MEASURE__RANKING_TO:
-                if (rankingTo != null)
-                    msgs = ((InternalEObject)rankingTo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SMMPackage.RANKING_MEASURE__RANKING_TO, null, msgs);
-                return basicSetRankingTo((RankingMeasureRelationship)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SMMPackage.RANKING_MEASURE__INTERVAL:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInterval()).basicAdd(otherEnd, msgs);
+			case SMMPackage.RANKING_MEASURE__RANKING_TO:
+				if (rankingTo != null)
+					msgs = ((InternalEObject)rankingTo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SMMPackage.RANKING_MEASURE__RANKING_TO, null, msgs);
+				return basicSetRankingTo((RankingMeasureRelationship)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case SMMPackage.RANKING_MEASURE__INTERVAL:
-                return ((InternalEList<?>)getInterval()).basicRemove(otherEnd, msgs);
-            case SMMPackage.RANKING_MEASURE__RANKING_TO:
-                return basicSetRankingTo(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case SMMPackage.RANKING_MEASURE__INTERVAL:
+				return ((InternalEList<?>)getInterval()).basicRemove(otherEnd, msgs);
+			case SMMPackage.RANKING_MEASURE__RANKING_TO:
+				return basicSetRankingTo(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.RANKING_MEASURE__INTERVAL:
-                return getInterval();
-            case SMMPackage.RANKING_MEASURE__RANKING_TO:
-                return getRankingTo();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.RANKING_MEASURE__INTERVAL:
+				return getInterval();
+			case SMMPackage.RANKING_MEASURE__RANKING_TO:
+				return getRankingTo();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.RANKING_MEASURE__INTERVAL:
-                getInterval().clear();
-                getInterval().addAll((Collection<? extends RankingInterval>)newValue);
-                return;
-            case SMMPackage.RANKING_MEASURE__RANKING_TO:
-                setRankingTo((RankingMeasureRelationship)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.RANKING_MEASURE__INTERVAL:
+				getInterval().clear();
+				getInterval().addAll((Collection<? extends RankingInterval>)newValue);
+				return;
+			case SMMPackage.RANKING_MEASURE__RANKING_TO:
+				setRankingTo((RankingMeasureRelationship)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.RANKING_MEASURE__INTERVAL:
-                getInterval().clear();
-                return;
-            case SMMPackage.RANKING_MEASURE__RANKING_TO:
-                setRankingTo((RankingMeasureRelationship)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.RANKING_MEASURE__INTERVAL:
+				getInterval().clear();
+				return;
+			case SMMPackage.RANKING_MEASURE__RANKING_TO:
+				setRankingTo((RankingMeasureRelationship)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.RANKING_MEASURE__INTERVAL:
-                return interval != null && !interval.isEmpty();
-            case SMMPackage.RANKING_MEASURE__RANKING_TO:
-                return rankingTo != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.RANKING_MEASURE__INTERVAL:
+				return interval != null && !interval.isEmpty();
+			case SMMPackage.RANKING_MEASURE__RANKING_TO:
+				return rankingTo != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //RankingMeasureImpl

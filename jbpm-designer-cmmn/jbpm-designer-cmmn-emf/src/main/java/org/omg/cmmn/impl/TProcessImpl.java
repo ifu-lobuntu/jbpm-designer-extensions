@@ -4,17 +4,29 @@ package org.omg.cmmn.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.cmmn.CMMNPackage;
-import org.omg.cmmn.TProcess;
-import org.omg.cmmn.TProcessParameter;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.*;
+import org.eclipse.emf.ecore.xmi.*;
+import org.eclipse.emf.ecore.xmi.impl.*;
+import org.jbpm.cmmn.dd.cmmndi.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.util.Collections;
+import org.omg.cmmn.*;
+import org.omg.dd.di.impl.*;
+import org.omg.dd.di.*;
+import org.xml.sax.helpers.DefaultHandler;
+
+import org.eclipse.emf.ecore.util.*;
+import org.omg.cmmn.*;
 
 /**
  * <!-- begin-user-doc -->

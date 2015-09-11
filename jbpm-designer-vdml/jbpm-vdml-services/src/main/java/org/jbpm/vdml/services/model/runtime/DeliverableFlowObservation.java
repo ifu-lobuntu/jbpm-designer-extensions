@@ -1,7 +1,6 @@
 package org.jbpm.vdml.services.model.runtime;
 
 
-import javafx.scene.layout.GridPane;
 import org.jbpm.vdml.services.model.meta.DeliverableFlow;
 import org.jbpm.vdml.services.model.meta.MetaEntity;
 
@@ -45,7 +44,7 @@ public class DeliverableFlowObservation implements RuntimeEntity{
         from.getObservedOutput().add(this);
         to.getObservedInput().add(this);
     }
-    public DeliverableFlowObservation(CollaborationObservation collaboration, DeliverableFlow deliverableFlow, RoleStorePerformance from, RoleStorePerformance to) {
+    public DeliverableFlowObservation(CollaborationObservation collaboration, DeliverableFlow deliverableFlow, SuppliedStoreObservation from, SuppliedStoreObservation to) {
         this(collaboration,deliverableFlow);
         this.fromPortContainer = from;
         this.toPortContainer = to;

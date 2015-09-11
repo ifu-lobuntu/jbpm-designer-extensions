@@ -10,29 +10,27 @@ import org.omg.vdml.ValueAdd;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Value Add</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class ValueAddImpl extends ValueElementImpl implements ValueAdd {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ValueAddImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.VALUE_ADD;
-    }
+		return VDMLPackage.Literals.VALUE_ADD;
+	}
 
 } //ValueAddImpl

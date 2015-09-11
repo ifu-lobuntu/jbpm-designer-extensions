@@ -1,16 +1,14 @@
 package org.jbpm.designer.vdlib;
 
-import java.io.IOException;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
@@ -25,6 +23,9 @@ import org.omg.smm.SMMFactory;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
+
+import java.io.IOException;
+
 
 public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
 

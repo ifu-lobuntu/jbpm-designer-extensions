@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Equivalent Measurement Relationship</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class EquivalentMeasurementRelationshipImpl extends MeasurementRelationshipImpl implements EquivalentMeasurementRelationship {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EquivalentMeasurementRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.EQUIVALENT_MEASUREMENT_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.EQUIVALENT_MEASUREMENT_RELATIONSHIP;
+	}
 
 } //EquivalentMeasurementRelationshipImpl

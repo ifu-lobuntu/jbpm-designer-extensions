@@ -20,218 +20,218 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.BusinessItemCategoryImpl#getParentCategory <em>Parent Category</em>}</li>
  *   <li>{@link org.omg.vdml.impl.BusinessItemCategoryImpl#getChildCategory <em>Child Category</em>}</li>
  *   <li>{@link org.omg.vdml.impl.BusinessItemCategoryImpl#getCategoryItem <em>Category Item</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class BusinessItemCategoryImpl extends BusinessItemLibraryElementImpl implements BusinessItemCategory {
     /**
-     * The cached value of the '{@link #getParentCategory() <em>Parent Category</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParentCategory() <em>Parent Category</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParentCategory()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParentCategory()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<BusinessItemCategory> parentCategory;
 
     /**
-     * The cached value of the '{@link #getChildCategory() <em>Child Category</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getChildCategory() <em>Child Category</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getChildCategory()
-     * @generated
-     * @ordered
-     */
+	 * @see #getChildCategory()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<BusinessItemCategory> childCategory;
 
     /**
-     * The cached value of the '{@link #getCategoryItem() <em>Category Item</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCategoryItem() <em>Category Item</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCategoryItem()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCategoryItem()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<BusinessItemDefinition> categoryItem;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected BusinessItemCategoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.BUSINESS_ITEM_CATEGORY;
-    }
+		return VDMLPackage.Literals.BUSINESS_ITEM_CATEGORY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<BusinessItemCategory> getParentCategory() {
-        if (parentCategory == null) {
-            parentCategory = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemCategory>(BusinessItemCategory.class, this, VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY, VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY);
-        }
-        return parentCategory;
-    }
+		if (parentCategory == null) {
+			parentCategory = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemCategory>(BusinessItemCategory.class, this, VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY, VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY);
+		}
+		return parentCategory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<BusinessItemCategory> getChildCategory() {
-        if (childCategory == null) {
-            childCategory = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemCategory>(BusinessItemCategory.class, this, VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY, VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY);
-        }
-        return childCategory;
-    }
+		if (childCategory == null) {
+			childCategory = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemCategory>(BusinessItemCategory.class, this, VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY, VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY);
+		}
+		return childCategory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<BusinessItemDefinition> getCategoryItem() {
-        if (categoryItem == null) {
-            categoryItem = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemDefinition>(BusinessItemDefinition.class, this, VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM, VDMLPackage.BUSINESS_ITEM_DEFINITION__CATEGORY);
-        }
-        return categoryItem;
-    }
+		if (categoryItem == null) {
+			categoryItem = new EObjectWithInverseResolvingEList.ManyInverse<BusinessItemDefinition>(BusinessItemDefinition.class, this, VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM, VDMLPackage.BUSINESS_ITEM_DEFINITION__CATEGORY);
+		}
+		return categoryItem;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getParentCategory()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildCategory()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategoryItem()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParentCategory()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildCategory()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategoryItem()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
-                return ((InternalEList<?>)getParentCategory()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
-                return ((InternalEList<?>)getChildCategory()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
-                return ((InternalEList<?>)getCategoryItem()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
+				return ((InternalEList<?>)getParentCategory()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
+				return ((InternalEList<?>)getChildCategory()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
+				return ((InternalEList<?>)getCategoryItem()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
-                return getParentCategory();
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
-                return getChildCategory();
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
-                return getCategoryItem();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
+				return getParentCategory();
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
+				return getChildCategory();
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
+				return getCategoryItem();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
-                getParentCategory().clear();
-                getParentCategory().addAll((Collection<? extends BusinessItemCategory>)newValue);
-                return;
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
-                getChildCategory().clear();
-                getChildCategory().addAll((Collection<? extends BusinessItemCategory>)newValue);
-                return;
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
-                getCategoryItem().clear();
-                getCategoryItem().addAll((Collection<? extends BusinessItemDefinition>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
+				getParentCategory().clear();
+				getParentCategory().addAll((Collection<? extends BusinessItemCategory>)newValue);
+				return;
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
+				getChildCategory().clear();
+				getChildCategory().addAll((Collection<? extends BusinessItemCategory>)newValue);
+				return;
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
+				getCategoryItem().clear();
+				getCategoryItem().addAll((Collection<? extends BusinessItemDefinition>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
-                getParentCategory().clear();
-                return;
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
-                getChildCategory().clear();
-                return;
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
-                getCategoryItem().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
+				getParentCategory().clear();
+				return;
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
+				getChildCategory().clear();
+				return;
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
+				getCategoryItem().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
-                return parentCategory != null && !parentCategory.isEmpty();
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
-                return childCategory != null && !childCategory.isEmpty();
-            case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
-                return categoryItem != null && !categoryItem.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__PARENT_CATEGORY:
+				return parentCategory != null && !parentCategory.isEmpty();
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CHILD_CATEGORY:
+				return childCategory != null && !childCategory.isEmpty();
+			case VDMLPackage.BUSINESS_ITEM_CATEGORY__CATEGORY_ITEM:
+				return categoryItem != null && !categoryItem.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //BusinessItemCategoryImpl

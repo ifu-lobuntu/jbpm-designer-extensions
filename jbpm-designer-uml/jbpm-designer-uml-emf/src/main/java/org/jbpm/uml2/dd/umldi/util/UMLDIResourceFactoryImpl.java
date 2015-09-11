@@ -2,18 +2,18 @@
  */
 package org.jbpm.uml2.dd.umldi.util;
 
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.resource.*;
+import org.eclipse.emf.ecore.resource.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.eclipse.emf.ecore.xmi.*;
+import org.eclipse.uml2.uml.*;
+import org.jbpm.uml2.dd.umldi.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.di.*;
 import java.util.HashMap;
+import java.util.Collection;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.jbpm.uml2.dd.umldi.UMLDIPackage;
-import org.omg.dd.dc.DCPackage;
-import org.omg.dd.di.DIPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public class UMLDIResourceFactoryImpl extends ResourceFactoryImpl {
         emd.setQualified(UMLPackage.eINSTANCE, true);
         emd.setQualified(UMLDIPackage.eINSTANCE, true);
         emd.setQualified(DIPackage.eINSTANCE, true);
-        emd.setQualified(DCPackage  .eINSTANCE, true);
+        emd.setQualified(DCPackage.eINSTANCE, true);
         options.put(XMLResource.OPTION_EXTENDED_META_DATA, emd);
         options.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, true);
         result.getDefaultLoadOptions().putAll(options);

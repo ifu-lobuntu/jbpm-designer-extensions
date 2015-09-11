@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ranking Measurement Relationship</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class RankingMeasurementRelationshipImpl extends MeasurementRelationshipImpl implements RankingMeasurementRelationship {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RankingMeasurementRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.RANKING_MEASUREMENT_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.RANKING_MEASUREMENT_RELATIONSHIP;
+	}
 
 } //RankingMeasurementRelationshipImpl

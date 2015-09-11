@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.VdmlElement#getName <em>Name</em>}</li>
  *   <li>{@link org.omg.vdml.VdmlElement#getDescription <em>Description</em>}</li>
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.omg.vdml.VdmlElement#getId <em>Id</em>}</li>
  *   <li>{@link org.omg.vdml.VdmlElement#getQualifiedName <em>Qualified Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.omg.vdml.VDMLPackage#getVdmlElement()
  * @model abstract="true"
@@ -29,165 +29,165 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface VdmlElement extends EObject {
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Name</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_Name()
-     * @model dataType="org.omg.dd.primitivetypes.String" required="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_Name()
+	 * @model dataType="org.omg.dd.primitivetypes.String" required="true" ordered="false"
+	 * @generated
+	 */
     String getName();
 
     /**
-     * Sets the value of the '{@link org.omg.vdml.VdmlElement#getName <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.omg.vdml.VdmlElement#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
     void setName(String value);
 
     /**
-     * Returns the value of the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Description</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Description</em>' attribute.
-     * @see #setDescription(String)
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_Description()
-     * @model dataType="org.omg.dd.primitivetypes.String" required="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_Description()
+	 * @model dataType="org.omg.dd.primitivetypes.String" required="true" ordered="false"
+	 * @generated
+	 */
     String getDescription();
 
     /**
-     * Sets the value of the '{@link org.omg.vdml.VdmlElement#getDescription <em>Description</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.omg.vdml.VdmlElement#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Description</em>' attribute.
-     * @see #getDescription()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
     void setDescription(String value);
 
     /**
-     * Returns the value of the '<em><b>Attribute</b></em>' containment reference list.
-     * The list contents are of type {@link org.omg.vdml.Attribute}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attribute</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.vdml.Attribute}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Attribute</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Attribute</em>' containment reference list.
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_Attribute()
-     * @model containment="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Attribute</em>' containment reference list.
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_Attribute()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
     EList<Attribute> getAttribute();
 
     /**
-     * Returns the value of the '<em><b>Represents</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Represents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Represents</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Represents</em>' attribute.
-     * @see #setRepresents(String)
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_Represents()
-     * @model dataType="org.omg.dd.primitivetypes.String" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Represents</em>' attribute.
+	 * @see #setRepresents(String)
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_Represents()
+	 * @model dataType="org.omg.dd.primitivetypes.String" ordered="false"
+	 * @generated
+	 */
     String getRepresents();
 
     /**
-     * Sets the value of the '{@link org.omg.vdml.VdmlElement#getRepresents <em>Represents</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.omg.vdml.VdmlElement#getRepresents <em>Represents</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Represents</em>' attribute.
-     * @see #getRepresents()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Represents</em>' attribute.
+	 * @see #getRepresents()
+	 * @generated
+	 */
     void setRepresents(String value);
 
     /**
-     * Returns the value of the '<em><b>Annotation</b></em>' containment reference list.
-     * The list contents are of type {@link org.omg.vdml.Annotation}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Annotation</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.vdml.Annotation}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Annotation</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Annotation</em>' containment reference list.
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_Annotation()
-     * @model containment="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Annotation</em>' containment reference list.
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_Annotation()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
     EList<Annotation> getAnnotation();
 
     /**
-     * Returns the value of the '<em><b>Id</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Id</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Id</em>' attribute.
-     * @see #setId(String)
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_Id()
-     * @model id="true" dataType="org.omg.dd.primitivetypes.String"
-     * @generated
-     */
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_Id()
+	 * @model id="true" dataType="org.omg.dd.primitivetypes.String"
+	 * @generated
+	 */
     String getId();
 
     /**
-     * Sets the value of the '{@link org.omg.vdml.VdmlElement#getId <em>Id</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.omg.vdml.VdmlElement#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Id</em>' attribute.
-     * @see #getId()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
     void setId(String value);
 
     /**
-     * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Qualified Name</em>' attribute.
-     * @see #setQualifiedName(String)
-     * @see org.omg.vdml.VDMLPackage#getVdmlElement_QualifiedName()
-     * @model dataType="org.omg.dd.primitivetypes.String" derived="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Qualified Name</em>' attribute.
+	 * @see #setQualifiedName(String)
+	 * @see org.omg.vdml.VDMLPackage#getVdmlElement_QualifiedName()
+	 * @model dataType="org.omg.dd.primitivetypes.String" derived="true"
+	 * @generated
+	 */
     String getQualifiedName();
 
     /**
-     * Sets the value of the '{@link org.omg.vdml.VdmlElement#getQualifiedName <em>Qualified Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.omg.vdml.VdmlElement#getQualifiedName <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Qualified Name</em>' attribute.
-     * @see #getQualifiedName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
+	 * @see #getQualifiedName()
+	 * @generated
+	 */
     void setQualifiedName(String value);
 
 } // VdmlElement

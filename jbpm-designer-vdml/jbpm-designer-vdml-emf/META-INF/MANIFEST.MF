@@ -1,50 +1,78 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1441771957845
+Bnd-LastModified: 1441940684136
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Wed, 9 Sep 2015 06:10:42 +0200
+Build-Timestamp: Fri,
+  11 Sep 2015 05:02:38 +0200
 Built-By: ampie
-Bundle-Description: The parent with dependencies imports the CMMN extens
- ions to the jBPM platform.    All the CMMN extension modules extend thi
- s parent, except for the user-facing BOMs (which are used here).
+Bundle-Description: The parent with dependencies imports the CMMN extensions to the jBPM platform.    All the CMMN extension modules extend this parent,
+  except for the user-facing BOMs (which are used here).
 Bundle-DocURL: http://www.jboss.org/
 Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
 Bundle-ManifestVersion: 2
-Bundle-Name: org.pavanecce.vdml.metamodel
-Bundle-SymbolicName: org.pavanecce.vdml.metamodel
-Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201509090410
+Bundle-Name: %pluginName
+Bundle-SymbolicName: jbpm-designer-vdml-emf;singleton:=true
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.jbpm.smm.dd.smmdi,
+ org.jbpm.smm.dd.smmdi.impl,
+ org.jbpm.smm.dd.smmdi.util,
+ org.omg.smm,
+ org.omg.smm.impl,
+ org.omg.smm.util,
+ org.jbpm.vdml.dd.vdmldi,
+ org.jbpm.vdml.dd.vdmldi.impl,
+ org.jbpm.vdml.dd.vdmldi.util,
+ org.omg.vdml,
+ org.omg.vdml.impl,
+ org.omg.vdml.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ jbpm-designer-extensions-emf;visibility:=reexport,
+ jbpm-designer-vdml-emf;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 6.4.0.201509110302
+Bundle-ClassPath: .
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer VDML Metamodel
-Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
- cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
- designer-extensions/jbpm-designer-vdml/jbpm-designer-vdml-emf
+Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependencies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdml/jbpm-designer-vdml-emf
 Implementation-Vendor: JBoss by Red Hat
 Implementation-Vendor-Id: org.jbpm
 Implementation-Version: 6.4.0-SNAPSHOT
-Import-Package: org.eclipse.emf.common.notify,org.eclipse.emf.common.not
- ify.impl,org.eclipse.emf.common.util,org.eclipse.emf.ecore,org.eclipse.
- emf.ecore.impl,org.eclipse.emf.ecore.plugin,org.eclipse.emf.ecore.resou
- rce,org.eclipse.emf.ecore.resource.impl,org.eclipse.emf.ecore.util,org.
- eclipse.emf.ecore.xmi,org.eclipse.emf.ecore.xmi.impl,org.jbpm.designer.
- dd.jbpmdd,org.jbpm.designer.dd.util,org.omg.dd.dc,org.omg.dd.dg,org.omg
- .dd.di,org.omg.dd.di.impl,org.omg.dd.primitivetypes
+Import-Package: org.eclipse.emf.common.notify,
+ org.eclipse.emf.common.notify.impl,
+ org.eclipse.emf.common.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.impl,
+ org.eclipse.emf.ecore.plugin,
+ org.eclipse.emf.ecore.resource,
+ org.eclipse.emf.ecore.resource.impl,
+ org.eclipse.emf.ecore.util,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.ecore.xmi.impl
 Java-Vendor: Oracle Corporation
 Java-Version: 1.7.0_79
 Os-Arch: amd64
 Os-Name: Linux
 Os-Version: 4.1.3-200.fc22.x86_64
-Private-Package: org.jbpm.smm.dd.smmdi,org.omg.smm,org.omg.vdml,org.jbpm
- .smm.dd.smmdi.util,org.omg.vdml.util,org.omg.smm.impl,org.jbpm.vdml.dd.
- vdmldi.impl,org.jbpm.vdml.dd.vdmldi,org.jbpm.vdml.dd.vdmldi.util,org.pa
- vanecce.vdml.metamodel.Data.util,org.omg.vdml.impl,org.jbpm.smm.dd.smmd
- i.impl,org.omg.smm.util
-Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
- trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
- pm-designer-vdml/jbpm-designer-vdml-emf
-Scm-Revision: 911e4e77b8e81f605a4a05e415afed6225d79d81
-Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
- mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdm
- l/jbpm-designer-vdml-emf
+Private-Package: org.jbpm.smm.dd.smmdi,
+ org.omg.smm,
+ org.omg.vdml,
+ org.jbpm.smm.dd.smmdi.util,
+ org.omg.vdml.util,
+ org.omg.smm.impl,
+ org.jbpm.vdml.dd.vdmldi.impl,
+ org.jbpm.vdml.dd.vdmldi,
+ org.jbpm.vdml.dd.vdmldi.util,
+ org.pavanecce.vdml.metamodel.Data.util,
+ org.jbpm.designer.vdml,
+ org.omg.vdml.impl,
+ org.jbpm.smm.dd.smmdi.impl,
+ org.omg.smm.util
+Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-bootstrap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdml/jbpm-designer-vdml-emf
+Scm-Revision: 9dd32d58a5c23f53c43c06e31a855a7e004b1b60
+Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdml/jbpm-designer-vdml-emf
 Specification-Title: jBPM Designer VDML Metamodel
 Specification-Vendor: JBoss by Red Hat
 Specification-Version: 6.4.0-SNAPSHOT

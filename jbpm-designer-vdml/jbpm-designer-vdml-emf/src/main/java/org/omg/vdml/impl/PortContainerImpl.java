@@ -1,7 +1,6 @@
 /**
  */
 package org.omg.vdml.impl;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,127 +19,127 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.PortContainerImpl#getContainedPort <em>Contained Port</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class PortContainerImpl extends MeasurableElementImpl implements PortContainer {
     /**
-     * The cached value of the '{@link #getContainedPort() <em>Contained Port</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContainedPort() <em>Contained Port</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContainedPort()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContainedPort()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Port> containedPort;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected PortContainerImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.PORT_CONTAINER;
-    }
+		return VDMLPackage.Literals.PORT_CONTAINER;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Port> getContainedPort() {
-        if (containedPort == null) {
-            containedPort = new EObjectContainmentEList<Port>(Port.class, this, VDMLPackage.PORT_CONTAINER__CONTAINED_PORT);
-        }
-        return containedPort;
-    }
+		if (containedPort == null) {
+			containedPort = new EObjectContainmentEList<Port>(Port.class, this, VDMLPackage.PORT_CONTAINER__CONTAINED_PORT);
+		}
+		return containedPort;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
-                return ((InternalEList<?>)getContainedPort()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
+				return ((InternalEList<?>)getContainedPort()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
-                return getContainedPort();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
+				return getContainedPort();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
-                getContainedPort().clear();
-                getContainedPort().addAll((Collection<? extends Port>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
+				getContainedPort().clear();
+				getContainedPort().addAll((Collection<? extends Port>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
-                getContainedPort().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
+				getContainedPort().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
-                return containedPort != null && !containedPort.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT:
+				return containedPort != null && !containedPort.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //PortContainerImpl

@@ -24,318 +24,318 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.AssignmentImpl#getAssignedRole <em>Assigned Role</em>}</li>
  *   <li>{@link org.omg.vdml.impl.AssignmentImpl#getRoleResource <em>Role Resource</em>}</li>
  *   <li>{@link org.omg.vdml.impl.AssignmentImpl#getParticipant <em>Participant</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class AssignmentImpl extends VdmlElementImpl implements Assignment {
     /**
-     * The cached value of the '{@link #getAssignedRole() <em>Assigned Role</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssignedRole() <em>Assigned Role</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAssignedRole()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAssignedRole()
+	 * @generated
+	 * @ordered
+	 */
     protected Role assignedRole;
 
     /**
-     * The cached value of the '{@link #getRoleResource() <em>Role Resource</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRoleResource() <em>Role Resource</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRoleResource()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRoleResource()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<InputPort> roleResource;
 
     /**
-     * The cached value of the '{@link #getParticipant() <em>Participant</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParticipant() <em>Participant</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParticipant()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParticipant()
+	 * @generated
+	 * @ordered
+	 */
     protected Participant participant;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected AssignmentImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.ASSIGNMENT;
-    }
+		return VDMLPackage.Literals.ASSIGNMENT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Role getAssignedRole() {
-        if (assignedRole != null && assignedRole.eIsProxy()) {
-            InternalEObject oldAssignedRole = (InternalEObject)assignedRole;
-            assignedRole = (Role)eResolveProxy(oldAssignedRole);
-            if (assignedRole != oldAssignedRole) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE, oldAssignedRole, assignedRole));
-            }
-        }
-        return assignedRole;
-    }
+		if (assignedRole != null && assignedRole.eIsProxy()) {
+			InternalEObject oldAssignedRole = (InternalEObject)assignedRole;
+			assignedRole = (Role)eResolveProxy(oldAssignedRole);
+			if (assignedRole != oldAssignedRole) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE, oldAssignedRole, assignedRole));
+			}
+		}
+		return assignedRole;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Role basicGetAssignedRole() {
-        return assignedRole;
-    }
+		return assignedRole;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetAssignedRole(Role newAssignedRole, NotificationChain msgs) {
-        Role oldAssignedRole = assignedRole;
-        assignedRole = newAssignedRole;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE, oldAssignedRole, newAssignedRole);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		Role oldAssignedRole = assignedRole;
+		assignedRole = newAssignedRole;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE, oldAssignedRole, newAssignedRole);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setAssignedRole(Role newAssignedRole) {
-        if (newAssignedRole != assignedRole) {
-            NotificationChain msgs = null;
-            if (assignedRole != null)
-                msgs = ((InternalEObject)assignedRole).eInverseRemove(this, VDMLPackage.ROLE__ROLE_ASSIGNMENT, Role.class, msgs);
-            if (newAssignedRole != null)
-                msgs = ((InternalEObject)newAssignedRole).eInverseAdd(this, VDMLPackage.ROLE__ROLE_ASSIGNMENT, Role.class, msgs);
-            msgs = basicSetAssignedRole(newAssignedRole, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE, newAssignedRole, newAssignedRole));
-    }
+		if (newAssignedRole != assignedRole) {
+			NotificationChain msgs = null;
+			if (assignedRole != null)
+				msgs = ((InternalEObject)assignedRole).eInverseRemove(this, VDMLPackage.ROLE__ROLE_ASSIGNMENT, Role.class, msgs);
+			if (newAssignedRole != null)
+				msgs = ((InternalEObject)newAssignedRole).eInverseAdd(this, VDMLPackage.ROLE__ROLE_ASSIGNMENT, Role.class, msgs);
+			msgs = basicSetAssignedRole(newAssignedRole, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE, newAssignedRole, newAssignedRole));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<InputPort> getRoleResource() {
-        if (roleResource == null) {
-            roleResource = new EObjectWithInverseResolvingEList.ManyInverse<InputPort>(InputPort.class, this, VDMLPackage.ASSIGNMENT__ROLE_RESOURCE, VDMLPackage.INPUT_PORT__ASSIGNMENT);
-        }
-        return roleResource;
-    }
+		if (roleResource == null) {
+			roleResource = new EObjectWithInverseResolvingEList.ManyInverse<InputPort>(InputPort.class, this, VDMLPackage.ASSIGNMENT__ROLE_RESOURCE, VDMLPackage.INPUT_PORT__ASSIGNMENT);
+		}
+		return roleResource;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Participant getParticipant() {
-        if (participant != null && participant.eIsProxy()) {
-            InternalEObject oldParticipant = (InternalEObject)participant;
-            participant = (Participant)eResolveProxy(oldParticipant);
-            if (participant != oldParticipant) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.ASSIGNMENT__PARTICIPANT, oldParticipant, participant));
-            }
-        }
-        return participant;
-    }
+		if (participant != null && participant.eIsProxy()) {
+			InternalEObject oldParticipant = (InternalEObject)participant;
+			participant = (Participant)eResolveProxy(oldParticipant);
+			if (participant != oldParticipant) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.ASSIGNMENT__PARTICIPANT, oldParticipant, participant));
+			}
+		}
+		return participant;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Participant basicGetParticipant() {
-        return participant;
-    }
+		return participant;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetParticipant(Participant newParticipant, NotificationChain msgs) {
-        Participant oldParticipant = participant;
-        participant = newParticipant;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__PARTICIPANT, oldParticipant, newParticipant);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		Participant oldParticipant = participant;
+		participant = newParticipant;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__PARTICIPANT, oldParticipant, newParticipant);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setParticipant(Participant newParticipant) {
-        if (newParticipant != participant) {
-            NotificationChain msgs = null;
-            if (participant != null)
-                msgs = ((InternalEObject)participant).eInverseRemove(this, VDMLPackage.PARTICIPANT__ASSIGNMENT, Participant.class, msgs);
-            if (newParticipant != null)
-                msgs = ((InternalEObject)newParticipant).eInverseAdd(this, VDMLPackage.PARTICIPANT__ASSIGNMENT, Participant.class, msgs);
-            msgs = basicSetParticipant(newParticipant, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__PARTICIPANT, newParticipant, newParticipant));
-    }
+		if (newParticipant != participant) {
+			NotificationChain msgs = null;
+			if (participant != null)
+				msgs = ((InternalEObject)participant).eInverseRemove(this, VDMLPackage.PARTICIPANT__ASSIGNMENT, Participant.class, msgs);
+			if (newParticipant != null)
+				msgs = ((InternalEObject)newParticipant).eInverseAdd(this, VDMLPackage.PARTICIPANT__ASSIGNMENT, Participant.class, msgs);
+			msgs = basicSetParticipant(newParticipant, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.ASSIGNMENT__PARTICIPANT, newParticipant, newParticipant));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
-                if (assignedRole != null)
-                    msgs = ((InternalEObject)assignedRole).eInverseRemove(this, VDMLPackage.ROLE__ROLE_ASSIGNMENT, Role.class, msgs);
-                return basicSetAssignedRole((Role)otherEnd, msgs);
-            case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getRoleResource()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.ASSIGNMENT__PARTICIPANT:
-                if (participant != null)
-                    msgs = ((InternalEObject)participant).eInverseRemove(this, VDMLPackage.PARTICIPANT__ASSIGNMENT, Participant.class, msgs);
-                return basicSetParticipant((Participant)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
+				if (assignedRole != null)
+					msgs = ((InternalEObject)assignedRole).eInverseRemove(this, VDMLPackage.ROLE__ROLE_ASSIGNMENT, Role.class, msgs);
+				return basicSetAssignedRole((Role)otherEnd, msgs);
+			case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRoleResource()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.ASSIGNMENT__PARTICIPANT:
+				if (participant != null)
+					msgs = ((InternalEObject)participant).eInverseRemove(this, VDMLPackage.PARTICIPANT__ASSIGNMENT, Participant.class, msgs);
+				return basicSetParticipant((Participant)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
-                return basicSetAssignedRole(null, msgs);
-            case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
-                return ((InternalEList<?>)getRoleResource()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.ASSIGNMENT__PARTICIPANT:
-                return basicSetParticipant(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
+				return basicSetAssignedRole(null, msgs);
+			case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
+				return ((InternalEList<?>)getRoleResource()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.ASSIGNMENT__PARTICIPANT:
+				return basicSetParticipant(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
-                if (resolve) return getAssignedRole();
-                return basicGetAssignedRole();
-            case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
-                return getRoleResource();
-            case VDMLPackage.ASSIGNMENT__PARTICIPANT:
-                if (resolve) return getParticipant();
-                return basicGetParticipant();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
+				if (resolve) return getAssignedRole();
+				return basicGetAssignedRole();
+			case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
+				return getRoleResource();
+			case VDMLPackage.ASSIGNMENT__PARTICIPANT:
+				if (resolve) return getParticipant();
+				return basicGetParticipant();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
-                setAssignedRole((Role)newValue);
-                return;
-            case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
-                getRoleResource().clear();
-                getRoleResource().addAll((Collection<? extends InputPort>)newValue);
-                return;
-            case VDMLPackage.ASSIGNMENT__PARTICIPANT:
-                setParticipant((Participant)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
+				setAssignedRole((Role)newValue);
+				return;
+			case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
+				getRoleResource().clear();
+				getRoleResource().addAll((Collection<? extends InputPort>)newValue);
+				return;
+			case VDMLPackage.ASSIGNMENT__PARTICIPANT:
+				setParticipant((Participant)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
-                setAssignedRole((Role)null);
-                return;
-            case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
-                getRoleResource().clear();
-                return;
-            case VDMLPackage.ASSIGNMENT__PARTICIPANT:
-                setParticipant((Participant)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
+				setAssignedRole((Role)null);
+				return;
+			case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
+				getRoleResource().clear();
+				return;
+			case VDMLPackage.ASSIGNMENT__PARTICIPANT:
+				setParticipant((Participant)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
-                return assignedRole != null;
-            case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
-                return roleResource != null && !roleResource.isEmpty();
-            case VDMLPackage.ASSIGNMENT__PARTICIPANT:
-                return participant != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.ASSIGNMENT__ASSIGNED_ROLE:
+				return assignedRole != null;
+			case VDMLPackage.ASSIGNMENT__ROLE_RESOURCE:
+				return roleResource != null && !roleResource.isEmpty();
+			case VDMLPackage.ASSIGNMENT__PARTICIPANT:
+				return participant != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //AssignmentImpl

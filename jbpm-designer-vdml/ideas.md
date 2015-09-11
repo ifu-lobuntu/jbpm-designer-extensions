@@ -5,14 +5,14 @@ Introduce the following concepts
    that cannot have activities, flows or valuePropositions 
 Support inheritance for
 1. Collaborations (Inherit Roles, BusinessItems)
-2. Roles (Inherit RoleStores. Inheritance of Capabilities is derived from PerformedActivities)
+2. Roles (Inheritance of Capabilities is derived from PerformedActivities. Inheritance of Stores is provided by their BusinessItems/Resource)
 3. BusinessItems
 4. Capabilities
-5. RoleStores
 Do not support inheritance for 
 1. Activities - that brings dependecies for flows in
 2. Flows - brings dependencies for ValueAdds in
 3. ValuePropositionComponents - their ValueAdds MUST come from the same or super Collaboration
+4. Stores
 
 For durations, make from/Todate selection an option, especially for bookings on Forms
 

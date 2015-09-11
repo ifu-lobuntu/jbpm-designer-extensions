@@ -9,6 +9,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.vdml.Activity;
@@ -22,6 +23,7 @@ import org.omg.vdml.PortContainer;
 import org.omg.vdml.PortDelegation;
 import org.omg.vdml.Role;
 import org.omg.vdml.Scenario;
+import org.omg.vdml.SuppliedStore;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -30,6 +32,7 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getContainedPort <em>Contained Port</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getCollaborationRole <em>Collaboration Role</em>}</li>
@@ -40,454 +43,493 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getDelegationContext <em>Delegation Context</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getScenario <em>Scenario</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getOwnedAssignment <em>Owned Assignment</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getSuppliedStore <em>Supplied Store</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class CollaborationImpl extends ParticipantImpl implements Collaboration {
     /**
-     * The cached value of the '{@link #getContainedPort() <em>Contained Port</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getContainedPort() <em>Contained Port</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getContainedPort()
-     * @generated
-     * @ordered
-     */
+	 * @see #getContainedPort()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Port> containedPort;
 
     /**
-     * The cached value of the '{@link #getCollaborationRole() <em>Collaboration Role</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCollaborationRole() <em>Collaboration Role</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getCollaborationRole()
-     * @generated
-     * @ordered
-     */
+	 * @see #getCollaborationRole()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Role> collaborationRole;
 
     /**
-     * The cached value of the '{@link #getActivity() <em>Activity</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getActivity()
-     * @generated
-     * @ordered
-     */
+	 * @see #getActivity()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Activity> activity;
 
     /**
-     * The cached value of the '{@link #getFlow() <em>Flow</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFlow() <em>Flow</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFlow()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFlow()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<DeliverableFlow> flow;
 
     /**
-     * The cached value of the '{@link #getBusinessItem() <em>Business Item</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getBusinessItem() <em>Business Item</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getBusinessItem()
-     * @generated
-     * @ordered
-     */
+	 * @see #getBusinessItem()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<BusinessItem> businessItem;
 
     /**
-     * The cached value of the '{@link #getInternalPortDelegation() <em>Internal Port Delegation</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getInternalPortDelegation() <em>Internal Port Delegation</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getInternalPortDelegation()
-     * @generated
-     * @ordered
-     */
+	 * @see #getInternalPortDelegation()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<PortDelegation> internalPortDelegation;
 
     /**
-     * The cached value of the '{@link #getDelegationContext() <em>Delegation Context</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDelegationContext() <em>Delegation Context</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getDelegationContext()
-     * @generated
-     * @ordered
-     */
+	 * @see #getDelegationContext()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<DelegationContext> delegationContext;
 
     /**
-     * The cached value of the '{@link #getScenario() <em>Scenario</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getScenario() <em>Scenario</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getScenario()
-     * @generated
-     * @ordered
-     */
+	 * @see #getScenario()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Scenario> scenario;
 
     /**
-     * The cached value of the '{@link #getOwnedAssignment() <em>Owned Assignment</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getOwnedAssignment() <em>Owned Assignment</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOwnedAssignment()
-     * @generated
-     * @ordered
-     */
+	 * @see #getOwnedAssignment()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Assignment> ownedAssignment;
 
     /**
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSuppliedStore() <em>Supplied Store</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuppliedStore()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SuppliedStore> suppliedStore;
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CollaborationImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.COLLABORATION;
-    }
+		return VDMLPackage.Literals.COLLABORATION;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Port> getContainedPort() {
-        if (containedPort == null) {
-            containedPort = new EObjectContainmentEList<Port>(Port.class, this, VDMLPackage.COLLABORATION__CONTAINED_PORT);
-        }
-        return containedPort;
-    }
+		if (containedPort == null) {
+			containedPort = new EObjectContainmentEList<Port>(Port.class, this, VDMLPackage.COLLABORATION__CONTAINED_PORT);
+		}
+		return containedPort;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Role> getCollaborationRole() {
-        if (collaborationRole == null) {
-            collaborationRole = new EObjectContainmentEList<Role>(Role.class, this, VDMLPackage.COLLABORATION__COLLABORATION_ROLE);
-        }
-        return collaborationRole;
-    }
+		if (collaborationRole == null) {
+			collaborationRole = new EObjectContainmentEList<Role>(Role.class, this, VDMLPackage.COLLABORATION__COLLABORATION_ROLE);
+		}
+		return collaborationRole;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Activity> getActivity() {
-        if (activity == null) {
-            activity = new EObjectContainmentEList<Activity>(Activity.class, this, VDMLPackage.COLLABORATION__ACTIVITY);
-        }
-        return activity;
-    }
+		if (activity == null) {
+			activity = new EObjectContainmentWithInverseEList<Activity>(Activity.class, this, VDMLPackage.COLLABORATION__ACTIVITY, VDMLPackage.ACTIVITY__OWNING_COLLABORATION);
+		}
+		return activity;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<DeliverableFlow> getFlow() {
-        if (flow == null) {
-            flow = new EObjectContainmentEList<DeliverableFlow>(DeliverableFlow.class, this, VDMLPackage.COLLABORATION__FLOW);
-        }
-        return flow;
-    }
+		if (flow == null) {
+			flow = new EObjectContainmentEList<DeliverableFlow>(DeliverableFlow.class, this, VDMLPackage.COLLABORATION__FLOW);
+		}
+		return flow;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<BusinessItem> getBusinessItem() {
-        if (businessItem == null) {
-            businessItem = new EObjectContainmentEList<BusinessItem>(BusinessItem.class, this, VDMLPackage.COLLABORATION__BUSINESS_ITEM);
-        }
-        return businessItem;
-    }
+		if (businessItem == null) {
+			businessItem = new EObjectContainmentEList<BusinessItem>(BusinessItem.class, this, VDMLPackage.COLLABORATION__BUSINESS_ITEM);
+		}
+		return businessItem;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<PortDelegation> getInternalPortDelegation() {
-        if (internalPortDelegation == null) {
-            internalPortDelegation = new EObjectContainmentEList<PortDelegation>(PortDelegation.class, this, VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION);
-        }
-        return internalPortDelegation;
-    }
+		if (internalPortDelegation == null) {
+			internalPortDelegation = new EObjectContainmentEList<PortDelegation>(PortDelegation.class, this, VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION);
+		}
+		return internalPortDelegation;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<DelegationContext> getDelegationContext() {
-        if (delegationContext == null) {
-            delegationContext = new EObjectWithInverseResolvingEList<DelegationContext>(DelegationContext.class, this, VDMLPackage.COLLABORATION__DELEGATION_CONTEXT, VDMLPackage.DELEGATION_CONTEXT__CONTEXT_COLLABORATION);
-        }
-        return delegationContext;
-    }
+		if (delegationContext == null) {
+			delegationContext = new EObjectWithInverseResolvingEList<DelegationContext>(DelegationContext.class, this, VDMLPackage.COLLABORATION__DELEGATION_CONTEXT, VDMLPackage.DELEGATION_CONTEXT__CONTEXT_COLLABORATION);
+		}
+		return delegationContext;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Scenario> getScenario() {
-        if (scenario == null) {
-            scenario = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, VDMLPackage.COLLABORATION__SCENARIO, VDMLPackage.SCENARIO__CONTEXT_COLLABORATION);
-        }
-        return scenario;
-    }
+		if (scenario == null) {
+			scenario = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, VDMLPackage.COLLABORATION__SCENARIO, VDMLPackage.SCENARIO__CONTEXT_COLLABORATION);
+		}
+		return scenario;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Assignment> getOwnedAssignment() {
-        if (ownedAssignment == null) {
-            ownedAssignment = new EObjectContainmentEList<Assignment>(Assignment.class, this, VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT);
-        }
-        return ownedAssignment;
-    }
+		if (ownedAssignment == null) {
+			ownedAssignment = new EObjectContainmentEList<Assignment>(Assignment.class, this, VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT);
+		}
+		return ownedAssignment;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SuppliedStore> getSuppliedStore() {
+		if (suppliedStore == null) {
+			suppliedStore = new EObjectContainmentWithInverseEList<SuppliedStore>(SuppliedStore.class, this, VDMLPackage.COLLABORATION__SUPPLIED_STORE, VDMLPackage.SUPPLIED_STORE__COLLABORATION);
+		}
+		return suppliedStore;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getDelegationContext()).basicAdd(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__SCENARIO:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.COLLABORATION__ACTIVITY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getActivity()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDelegationContext()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__SCENARIO:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSuppliedStore()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.COLLABORATION__CONTAINED_PORT:
-                return ((InternalEList<?>)getContainedPort()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
-                return ((InternalEList<?>)getCollaborationRole()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__ACTIVITY:
-                return ((InternalEList<?>)getActivity()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__FLOW:
-                return ((InternalEList<?>)getFlow()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
-                return ((InternalEList<?>)getBusinessItem()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
-                return ((InternalEList<?>)getInternalPortDelegation()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
-                return ((InternalEList<?>)getDelegationContext()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__SCENARIO:
-                return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
-                return ((InternalEList<?>)getOwnedAssignment()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.COLLABORATION__CONTAINED_PORT:
+				return ((InternalEList<?>)getContainedPort()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
+				return ((InternalEList<?>)getCollaborationRole()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__ACTIVITY:
+				return ((InternalEList<?>)getActivity()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__FLOW:
+				return ((InternalEList<?>)getFlow()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
+				return ((InternalEList<?>)getBusinessItem()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
+				return ((InternalEList<?>)getInternalPortDelegation()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
+				return ((InternalEList<?>)getDelegationContext()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__SCENARIO:
+				return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
+				return ((InternalEList<?>)getOwnedAssignment()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
+				return ((InternalEList<?>)getSuppliedStore()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.COLLABORATION__CONTAINED_PORT:
-                return getContainedPort();
-            case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
-                return getCollaborationRole();
-            case VDMLPackage.COLLABORATION__ACTIVITY:
-                return getActivity();
-            case VDMLPackage.COLLABORATION__FLOW:
-                return getFlow();
-            case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
-                return getBusinessItem();
-            case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
-                return getInternalPortDelegation();
-            case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
-                return getDelegationContext();
-            case VDMLPackage.COLLABORATION__SCENARIO:
-                return getScenario();
-            case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
-                return getOwnedAssignment();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.COLLABORATION__CONTAINED_PORT:
+				return getContainedPort();
+			case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
+				return getCollaborationRole();
+			case VDMLPackage.COLLABORATION__ACTIVITY:
+				return getActivity();
+			case VDMLPackage.COLLABORATION__FLOW:
+				return getFlow();
+			case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
+				return getBusinessItem();
+			case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
+				return getInternalPortDelegation();
+			case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
+				return getDelegationContext();
+			case VDMLPackage.COLLABORATION__SCENARIO:
+				return getScenario();
+			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
+				return getOwnedAssignment();
+			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
+				return getSuppliedStore();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.COLLABORATION__CONTAINED_PORT:
-                getContainedPort().clear();
-                getContainedPort().addAll((Collection<? extends Port>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
-                getCollaborationRole().clear();
-                getCollaborationRole().addAll((Collection<? extends Role>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__ACTIVITY:
-                getActivity().clear();
-                getActivity().addAll((Collection<? extends Activity>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__FLOW:
-                getFlow().clear();
-                getFlow().addAll((Collection<? extends DeliverableFlow>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
-                getBusinessItem().clear();
-                getBusinessItem().addAll((Collection<? extends BusinessItem>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
-                getInternalPortDelegation().clear();
-                getInternalPortDelegation().addAll((Collection<? extends PortDelegation>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
-                getDelegationContext().clear();
-                getDelegationContext().addAll((Collection<? extends DelegationContext>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__SCENARIO:
-                getScenario().clear();
-                getScenario().addAll((Collection<? extends Scenario>)newValue);
-                return;
-            case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
-                getOwnedAssignment().clear();
-                getOwnedAssignment().addAll((Collection<? extends Assignment>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.COLLABORATION__CONTAINED_PORT:
+				getContainedPort().clear();
+				getContainedPort().addAll((Collection<? extends Port>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
+				getCollaborationRole().clear();
+				getCollaborationRole().addAll((Collection<? extends Role>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__ACTIVITY:
+				getActivity().clear();
+				getActivity().addAll((Collection<? extends Activity>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__FLOW:
+				getFlow().clear();
+				getFlow().addAll((Collection<? extends DeliverableFlow>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
+				getBusinessItem().clear();
+				getBusinessItem().addAll((Collection<? extends BusinessItem>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
+				getInternalPortDelegation().clear();
+				getInternalPortDelegation().addAll((Collection<? extends PortDelegation>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
+				getDelegationContext().clear();
+				getDelegationContext().addAll((Collection<? extends DelegationContext>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__SCENARIO:
+				getScenario().clear();
+				getScenario().addAll((Collection<? extends Scenario>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
+				getOwnedAssignment().clear();
+				getOwnedAssignment().addAll((Collection<? extends Assignment>)newValue);
+				return;
+			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
+				getSuppliedStore().clear();
+				getSuppliedStore().addAll((Collection<? extends SuppliedStore>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.COLLABORATION__CONTAINED_PORT:
-                getContainedPort().clear();
-                return;
-            case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
-                getCollaborationRole().clear();
-                return;
-            case VDMLPackage.COLLABORATION__ACTIVITY:
-                getActivity().clear();
-                return;
-            case VDMLPackage.COLLABORATION__FLOW:
-                getFlow().clear();
-                return;
-            case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
-                getBusinessItem().clear();
-                return;
-            case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
-                getInternalPortDelegation().clear();
-                return;
-            case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
-                getDelegationContext().clear();
-                return;
-            case VDMLPackage.COLLABORATION__SCENARIO:
-                getScenario().clear();
-                return;
-            case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
-                getOwnedAssignment().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.COLLABORATION__CONTAINED_PORT:
+				getContainedPort().clear();
+				return;
+			case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
+				getCollaborationRole().clear();
+				return;
+			case VDMLPackage.COLLABORATION__ACTIVITY:
+				getActivity().clear();
+				return;
+			case VDMLPackage.COLLABORATION__FLOW:
+				getFlow().clear();
+				return;
+			case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
+				getBusinessItem().clear();
+				return;
+			case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
+				getInternalPortDelegation().clear();
+				return;
+			case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
+				getDelegationContext().clear();
+				return;
+			case VDMLPackage.COLLABORATION__SCENARIO:
+				getScenario().clear();
+				return;
+			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
+				getOwnedAssignment().clear();
+				return;
+			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
+				getSuppliedStore().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.COLLABORATION__CONTAINED_PORT:
-                return containedPort != null && !containedPort.isEmpty();
-            case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
-                return collaborationRole != null && !collaborationRole.isEmpty();
-            case VDMLPackage.COLLABORATION__ACTIVITY:
-                return activity != null && !activity.isEmpty();
-            case VDMLPackage.COLLABORATION__FLOW:
-                return flow != null && !flow.isEmpty();
-            case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
-                return businessItem != null && !businessItem.isEmpty();
-            case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
-                return internalPortDelegation != null && !internalPortDelegation.isEmpty();
-            case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
-                return delegationContext != null && !delegationContext.isEmpty();
-            case VDMLPackage.COLLABORATION__SCENARIO:
-                return scenario != null && !scenario.isEmpty();
-            case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
-                return ownedAssignment != null && !ownedAssignment.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.COLLABORATION__CONTAINED_PORT:
+				return containedPort != null && !containedPort.isEmpty();
+			case VDMLPackage.COLLABORATION__COLLABORATION_ROLE:
+				return collaborationRole != null && !collaborationRole.isEmpty();
+			case VDMLPackage.COLLABORATION__ACTIVITY:
+				return activity != null && !activity.isEmpty();
+			case VDMLPackage.COLLABORATION__FLOW:
+				return flow != null && !flow.isEmpty();
+			case VDMLPackage.COLLABORATION__BUSINESS_ITEM:
+				return businessItem != null && !businessItem.isEmpty();
+			case VDMLPackage.COLLABORATION__INTERNAL_PORT_DELEGATION:
+				return internalPortDelegation != null && !internalPortDelegation.isEmpty();
+			case VDMLPackage.COLLABORATION__DELEGATION_CONTEXT:
+				return delegationContext != null && !delegationContext.isEmpty();
+			case VDMLPackage.COLLABORATION__SCENARIO:
+				return scenario != null && !scenario.isEmpty();
+			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
+				return ownedAssignment != null && !ownedAssignment.isEmpty();
+			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
+				return suppliedStore != null && !suppliedStore.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == PortContainer.class) {
-            switch (derivedFeatureID) {
-                case VDMLPackage.COLLABORATION__CONTAINED_PORT: return VDMLPackage.PORT_CONTAINER__CONTAINED_PORT;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+		if (baseClass == PortContainer.class) {
+			switch (derivedFeatureID) {
+				case VDMLPackage.COLLABORATION__CONTAINED_PORT: return VDMLPackage.PORT_CONTAINER__CONTAINED_PORT;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == PortContainer.class) {
-            switch (baseFeatureID) {
-                case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT: return VDMLPackage.COLLABORATION__CONTAINED_PORT;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+		if (baseClass == PortContainer.class) {
+			switch (baseFeatureID) {
+				case VDMLPackage.PORT_CONTAINER__CONTAINED_PORT: return VDMLPackage.COLLABORATION__CONTAINED_PORT;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
 } //CollaborationImpl

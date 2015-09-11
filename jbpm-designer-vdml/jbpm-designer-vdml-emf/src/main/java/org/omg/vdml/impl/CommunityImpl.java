@@ -12,137 +12,148 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.vdml.Community;
 import org.omg.vdml.Member;
-import org.omg.vdml.Role;
 import org.omg.vdml.VDMLPackage;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
 
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.util.*;
+import org.jbpm.smm.dd.smmdi.*;
+import org.omg.dd.di.*;
+import org.omg.dd.di.impl.*;
+import org.omg.smm.*;
+import org.omg.vdml.*;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Community</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.CommunityImpl#getMember <em>Member</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class CommunityImpl extends CollaborationImpl implements Community {
     /**
-     * The cached value of the '{@link #getMember() <em>Member</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMember() <em>Member</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMember()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMember()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Member> member;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CommunityImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.COMMUNITY;
-    }
+		return VDMLPackage.Literals.COMMUNITY;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Member> getMember() {
-        if (member == null) {
-            member = new EObjectContainmentEList<Member>(Member.class, this, VDMLPackage.COMMUNITY__MEMBER);
-        }
-        return member;
-    }
+		if (member == null) {
+			member = new EObjectContainmentEList<Member>(Member.class, this, VDMLPackage.COMMUNITY__MEMBER);
+		}
+		return member;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.COMMUNITY__MEMBER:
-                return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.COMMUNITY__MEMBER:
+				return ((InternalEList<?>)getMember()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.COMMUNITY__MEMBER:
-                return getMember();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.COMMUNITY__MEMBER:
+				return getMember();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.COMMUNITY__MEMBER:
-                getMember().clear();
-                getMember().addAll((Collection<? extends Member>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.COMMUNITY__MEMBER:
+				getMember().clear();
+				getMember().addAll((Collection<? extends Member>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.COMMUNITY__MEMBER:
-                getMember().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.COMMUNITY__MEMBER:
+				getMember().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.COMMUNITY__MEMBER:
-                return member != null && !member.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.COMMUNITY__MEMBER:
+				return member != null && !member.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
     @Override
     public EList<Role> getCollaborationRole() {
         return (EList)getMember();

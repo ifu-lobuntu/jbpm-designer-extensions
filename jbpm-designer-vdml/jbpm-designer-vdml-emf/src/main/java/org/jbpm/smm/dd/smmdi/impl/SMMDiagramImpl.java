@@ -2,23 +2,18 @@
  */
 package org.jbpm.smm.dd.smmdi.impl;
 
-import java.util.Collection;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.jbpm.designer.dd.util.Collections;
-import org.jbpm.smm.dd.smmdi.SMMDIPackage;
-import org.jbpm.smm.dd.smmdi.SMMDiagram;
-import org.jbpm.smm.dd.smmdi.SMMDiagramElement;
-import org.omg.dd.di.impl.DiagramImpl;
-import org.omg.smm.SmmElement;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.jbpm.designer.dd.util.*;
+import org.jbpm.smm.dd.smmdi.*;
+import org.omg.dd.di.impl.*;
+import org.omg.smm.*;
+import java.util.*;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -242,7 +237,7 @@ public class SMMDiagramImpl extends DiagramImpl implements SMMDiagram {
     }
     @Override
     public EList<EObject> getModelElement() {
-        return Collections.asList(getSmmElement());
+        return org.jbpm.designer.dd.util.Collections.asList(getSmmElement());
     }
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override

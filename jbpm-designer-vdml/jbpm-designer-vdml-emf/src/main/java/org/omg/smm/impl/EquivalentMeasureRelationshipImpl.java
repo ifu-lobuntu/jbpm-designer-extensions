@@ -16,138 +16,138 @@ import org.omg.smm.SMMPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.EquivalentMeasureRelationshipImpl#getMapping <em>Mapping</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class EquivalentMeasureRelationshipImpl extends MeasureRelationshipImpl implements EquivalentMeasureRelationship {
     /**
-     * The cached value of the '{@link #getMapping() <em>Mapping</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMapping() <em>Mapping</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMapping()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMapping()
+	 * @generated
+	 * @ordered
+	 */
     protected Operation mapping;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected EquivalentMeasureRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.EQUIVALENT_MEASURE_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.EQUIVALENT_MEASURE_RELATIONSHIP;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Operation getMapping() {
-        if (mapping != null && mapping.eIsProxy()) {
-            InternalEObject oldMapping = (InternalEObject)mapping;
-            mapping = (Operation)eResolveProxy(oldMapping);
-            if (mapping != oldMapping) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING, oldMapping, mapping));
-            }
-        }
-        return mapping;
-    }
+		if (mapping != null && mapping.eIsProxy()) {
+			InternalEObject oldMapping = (InternalEObject)mapping;
+			mapping = (Operation)eResolveProxy(oldMapping);
+			if (mapping != oldMapping) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING, oldMapping, mapping));
+			}
+		}
+		return mapping;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Operation basicGetMapping() {
-        return mapping;
-    }
+		return mapping;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setMapping(Operation newMapping) {
-        Operation oldMapping = mapping;
-        mapping = newMapping;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING, oldMapping, mapping));
-    }
+		Operation oldMapping = mapping;
+		mapping = newMapping;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING, oldMapping, mapping));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
-                if (resolve) return getMapping();
-                return basicGetMapping();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
+				if (resolve) return getMapping();
+				return basicGetMapping();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
-                setMapping((Operation)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
+				setMapping((Operation)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
-                setMapping((Operation)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
+				setMapping((Operation)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
-                return mapping != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP__MAPPING:
+				return mapping != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //EquivalentMeasureRelationshipImpl

@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.omg.smm.*;
 import org.omg.smm.AbstractMeasureElement;
 import org.omg.smm.Accumulator;
 import org.omg.smm.Annotation;
@@ -87,873 +88,884 @@ import org.omg.smm.UnitOfMeasure;
  */
 public class SMMValidator extends EObjectValidator {
     /**
-     * The cached model package
-     * <!-- begin-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final SMMValidator INSTANCE = new SMMValidator();
 
     /**
-     * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
-     * <!-- begin-user-doc -->
+	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.Diagnostic#getSource()
-     * @see org.eclipse.emf.common.util.Diagnostic#getCode()
-     * @generated
-     */
+	 * @see org.eclipse.emf.common.util.Diagnostic#getSource()
+	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
+	 * @generated
+	 */
     public static final String DIAGNOSTIC_SOURCE = "org.omg.smm";
 
     /**
-     * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Specified' of 'Scope'.
-     * <!-- begin-user-doc -->
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Is Specified' of 'Scope'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final int SCOPE__IS_SPECIFIED = 1;
 
     /**
-     * A constant with a fixed name that can be used as the base value for additional hand written constants.
-     * <!-- begin-user-doc -->
+	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 1;
 
     /**
-     * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
-     * <!-- begin-user-doc -->
+	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
     /**
-     * Creates an instance of the switch.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SMMValidator() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * Returns the package of this validator switch.
-     * <!-- begin-user-doc -->
+	 * Returns the package of this validator switch.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EPackage getEPackage() {
-      return SMMPackage.eINSTANCE;
-    }
+	  return SMMPackage.eINSTANCE;
+	}
 
     /**
-     * Calls <code>validateXXX</code> for the corresponding classifier of the model.
-     * <!-- begin-user-doc -->
+	 * Calls <code>validateXXX</code> for the corresponding classifier of the model.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        switch (classifierID) {
-            case SMMPackage.ABSTRACT_MEASURE_ELEMENT:
-                return validateAbstractMeasureElement((AbstractMeasureElement)value, diagnostics, context);
-            case SMMPackage.SMM_ELEMENT:
-                return validateSmmElement((SmmElement)value, diagnostics, context);
-            case SMMPackage.SMM_RELATIONSHIP:
-                return validateSmmRelationship((SmmRelationship)value, diagnostics, context);
-            case SMMPackage.ATTRIBUTE:
-                return validateAttribute((Attribute)value, diagnostics, context);
-            case SMMPackage.ANNOTATION:
-                return validateAnnotation((Annotation)value, diagnostics, context);
-            case SMMPackage.ARGUMENT:
-                return validateArgument((Argument)value, diagnostics, context);
-            case SMMPackage.OBSERVED_MEASURE:
-                return validateObservedMeasure((ObservedMeasure)value, diagnostics, context);
-            case SMMPackage.MEASUREMENT:
-                return validateMeasurement((Measurement)value, diagnostics, context);
-            case SMMPackage.EQUIVALENT_MEASUREMENT_RELATIONSHIP:
-                return validateEquivalentMeasurementRelationship((EquivalentMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.MEASUREMENT_RELATIONSHIP:
-                return validateMeasurementRelationship((MeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.REFINEMENT_MEASUREMENT_RELATIONSHIP:
-                return validateRefinementMeasurementRelationship((RefinementMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.MEASURE:
-                return validateMeasure((Measure)value, diagnostics, context);
-            case SMMPackage.REFINEMENT_MEASURE_RELATIONSHIP:
-                return validateRefinementMeasureRelationship((RefinementMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.MEASURE_RELATIONSHIP:
-                return validateMeasureRelationship((MeasureRelationship)value, diagnostics, context);
-            case SMMPackage.OPERATION:
-                return validateOperation((Operation)value, diagnostics, context);
-            case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP:
-                return validateEquivalentMeasureRelationship((EquivalentMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.MEASURE_CATEGORY:
-                return validateMeasureCategory((MeasureCategory)value, diagnostics, context);
-            case SMMPackage.SCOPE:
-                return validateScope((Scope)value, diagnostics, context);
-            case SMMPackage.CHARACTERISTIC:
-                return validateCharacteristic((Characteristic)value, diagnostics, context);
-            case SMMPackage.BASE1_MEASURE_RELATIONSHIP:
-                return validateBase1MeasureRelationship((Base1MeasureRelationship)value, diagnostics, context);
-            case SMMPackage.BASE_MEASURE_RELATIONSHIP:
-                return validateBaseMeasureRelationship((BaseMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.RESCALED_MEASURE:
-                return validateRescaledMeasure((RescaledMeasure)value, diagnostics, context);
-            case SMMPackage.DIMENSIONAL_MEASURE:
-                return validateDimensionalMeasure((DimensionalMeasure)value, diagnostics, context);
-            case SMMPackage.BASE_NMEASURE_RELATIONSHIP:
-                return validateBaseNMeasureRelationship((BaseNMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.COLLECTIVE_MEASURE:
-                return validateCollectiveMeasure((CollectiveMeasure)value, diagnostics, context);
-            case SMMPackage.BASE2_MEASURE_RELATIONSHIP:
-                return validateBase2MeasureRelationship((Base2MeasureRelationship)value, diagnostics, context);
-            case SMMPackage.BINARY_MEASURE:
-                return validateBinaryMeasure((BinaryMeasure)value, diagnostics, context);
-            case SMMPackage.RANKING_MEASURE_RELATIONSHIP:
-                return validateRankingMeasureRelationship((RankingMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.RANKING_MEASURE:
-                return validateRankingMeasure((RankingMeasure)value, diagnostics, context);
-            case SMMPackage.RANKING_INTERVAL:
-                return validateRankingInterval((RankingInterval)value, diagnostics, context);
-            case SMMPackage.INTERVAL:
-                return validateInterval((Interval)value, diagnostics, context);
-            case SMMPackage.RESCALED_MEASURE_RELATIONSHIP:
-                return validateRescaledMeasureRelationship((RescaledMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.GRADE_MEASURE_RELATIONSHIP:
-                return validateGradeMeasureRelationship((GradeMeasureRelationship)value, diagnostics, context);
-            case SMMPackage.GRADE_MEASURE:
-                return validateGradeMeasure((GradeMeasure)value, diagnostics, context);
-            case SMMPackage.GRADE_INTERVAL:
-                return validateGradeInterval((GradeInterval)value, diagnostics, context);
-            case SMMPackage.UNIT_OF_MEASURE:
-                return validateUnitOfMeasure((UnitOfMeasure)value, diagnostics, context);
-            case SMMPackage.BASE1_MEASUREMENT_RELATIONSHIP:
-                return validateBase1MeasurementRelationship((Base1MeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.BASE_MEASUREMENT_RELATIONSHIP:
-                return validateBaseMeasurementRelationship((BaseMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.DIMENSIONAL_MEASUREMENT:
-                return validateDimensionalMeasurement((DimensionalMeasurement)value, diagnostics, context);
-            case SMMPackage.BASE_NMEASUREMENT_RELATIONSHIP:
-                return validateBaseNMeasurementRelationship((BaseNMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.COLLECTIVE_MEASUREMENT:
-                return validateCollectiveMeasurement((CollectiveMeasurement)value, diagnostics, context);
-            case SMMPackage.BASE2_MEASUREMENT_RELATIONSHIP:
-                return validateBase2MeasurementRelationship((Base2MeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.BINARY_MEASUREMENT:
-                return validateBinaryMeasurement((BinaryMeasurement)value, diagnostics, context);
-            case SMMPackage.GRADE_MEASUREMENT_RELATIONSHIP:
-                return validateGradeMeasurementRelationship((GradeMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.GRADE_MEASUREMENT:
-                return validateGradeMeasurement((GradeMeasurement)value, diagnostics, context);
-            case SMMPackage.RESCALED_MEASUREMENT_RELATIONSHIP:
-                return validateRescaledMeasurementRelationship((RescaledMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.RESCALED_MEASUREMENT:
-                return validateRescaledMeasurement((RescaledMeasurement)value, diagnostics, context);
-            case SMMPackage.RANKING_MEASUREMENT_RELATIONSHIP:
-                return validateRankingMeasurementRelationship((RankingMeasurementRelationship)value, diagnostics, context);
-            case SMMPackage.RANKING_MEASUREMENT:
-                return validateRankingMeasurement((RankingMeasurement)value, diagnostics, context);
-            case SMMPackage.CATEGORY_RELATIONSHIP:
-                return validateCategoryRelationship((CategoryRelationship)value, diagnostics, context);
-            case SMMPackage.COUNTING_MEASUREMENT:
-                return validateCountingMeasurement((CountingMeasurement)value, diagnostics, context);
-            case SMMPackage.DIRECT_MEASUREMENT:
-                return validateDirectMeasurement((DirectMeasurement)value, diagnostics, context);
-            case SMMPackage.COUNTING_MEASURE:
-                return validateCountingMeasure((CountingMeasure)value, diagnostics, context);
-            case SMMPackage.DIRECT_MEASURE:
-                return validateDirectMeasure((DirectMeasure)value, diagnostics, context);
-            case SMMPackage.MEASURE_LIBRARY:
-                return validateMeasureLibrary((MeasureLibrary)value, diagnostics, context);
-            case SMMPackage.NAMED_MEASURE:
-                return validateNamedMeasure((NamedMeasure)value, diagnostics, context);
-            case SMMPackage.NAMED_MEASUREMENT:
-                return validateNamedMeasurement((NamedMeasurement)value, diagnostics, context);
-            case SMMPackage.OCL_OPERATION:
-                return validateOCLOperation((OCLOperation)value, diagnostics, context);
-            case SMMPackage.OBSERVATION:
-                return validateObservation((Observation)value, diagnostics, context);
-            case SMMPackage.OBSERVATION_SCOPE:
-                return validateObservationScope((ObservationScope)value, diagnostics, context);
-            case SMMPackage.RATIO_MEASURE:
-                return validateRatioMeasure((RatioMeasure)value, diagnostics, context);
-            case SMMPackage.RATIO_MEASUREMENT:
-                return validateRatioMeasurement((RatioMeasurement)value, diagnostics, context);
-            case SMMPackage.SMM_MODEL:
-                return validateSmmModel((SmmModel)value, diagnostics, context);
-            case SMMPackage.ACCUMULATOR:
-                return validateAccumulator((Accumulator)value, diagnostics, context);
-            case SMMPackage.INFLUENCE:
-                return validateInfluence((Influence)value, diagnostics, context);
-            case SMMPackage.SCALE_OF_MEASUREMENT:
-                return validateScaleOfMeasurement((ScaleOfMeasurement)value, diagnostics, context);
-            case SMMPackage.BINARY_FUNCTOR:
-                return validateBinaryFunctor((BinaryFunctor)value, diagnostics, context);
-            case SMMPackage.MEASUREMENT_SCALE:
-                return validateMeasurementScale((MeasurementScale)value, diagnostics, context);
-            case SMMPackage.TIME_STAMP:
-                return validateTimeStamp((Date)value, diagnostics, context);
-            default:
-                return true;
-        }
-    }
+		switch (classifierID) {
+			case SMMPackage.ABSTRACT_MEASURE_ELEMENT:
+				return validateAbstractMeasureElement((AbstractMeasureElement)value, diagnostics, context);
+			case SMMPackage.SMM_ELEMENT:
+				return validateSmmElement((SmmElement)value, diagnostics, context);
+			case SMMPackage.SMM_RELATIONSHIP:
+				return validateSmmRelationship((SmmRelationship)value, diagnostics, context);
+			case SMMPackage.ATTRIBUTE:
+				return validateAttribute((Attribute)value, diagnostics, context);
+			case SMMPackage.ANNOTATION:
+				return validateAnnotation((Annotation)value, diagnostics, context);
+			case SMMPackage.ARGUMENT:
+				return validateArgument((Argument)value, diagnostics, context);
+			case SMMPackage.OBSERVED_MEASURE:
+				return validateObservedMeasure((ObservedMeasure)value, diagnostics, context);
+			case SMMPackage.MEASUREMENT:
+				return validateMeasurement((Measurement)value, diagnostics, context);
+			case SMMPackage.EQUIVALENT_MEASUREMENT_RELATIONSHIP:
+				return validateEquivalentMeasurementRelationship((EquivalentMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.MEASUREMENT_RELATIONSHIP:
+				return validateMeasurementRelationship((MeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.REFINEMENT_MEASUREMENT_RELATIONSHIP:
+				return validateRefinementMeasurementRelationship((RefinementMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.MEASURE:
+				return validateMeasure((Measure)value, diagnostics, context);
+			case SMMPackage.REFINEMENT_MEASURE_RELATIONSHIP:
+				return validateRefinementMeasureRelationship((RefinementMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.MEASURE_RELATIONSHIP:
+				return validateMeasureRelationship((MeasureRelationship)value, diagnostics, context);
+			case SMMPackage.OPERATION:
+				return validateOperation((Operation)value, diagnostics, context);
+			case SMMPackage.EQUIVALENT_MEASURE_RELATIONSHIP:
+				return validateEquivalentMeasureRelationship((EquivalentMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.MEASURE_CATEGORY:
+				return validateMeasureCategory((MeasureCategory)value, diagnostics, context);
+			case SMMPackage.SCOPE:
+				return validateScope((Scope)value, diagnostics, context);
+			case SMMPackage.CHARACTERISTIC:
+				return validateCharacteristic((Characteristic)value, diagnostics, context);
+			case SMMPackage.BASE1_MEASURE_RELATIONSHIP:
+				return validateBase1MeasureRelationship((Base1MeasureRelationship)value, diagnostics, context);
+			case SMMPackage.BASE_MEASURE_RELATIONSHIP:
+				return validateBaseMeasureRelationship((BaseMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.RESCALED_MEASURE:
+				return validateRescaledMeasure((RescaledMeasure)value, diagnostics, context);
+			case SMMPackage.DIMENSIONAL_MEASURE:
+				return validateDimensionalMeasure((DimensionalMeasure)value, diagnostics, context);
+			case SMMPackage.BASE_NMEASURE_RELATIONSHIP:
+				return validateBaseNMeasureRelationship((BaseNMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.COLLECTIVE_MEASURE:
+				return validateCollectiveMeasure((CollectiveMeasure)value, diagnostics, context);
+			case SMMPackage.BASE2_MEASURE_RELATIONSHIP:
+				return validateBase2MeasureRelationship((Base2MeasureRelationship)value, diagnostics, context);
+			case SMMPackage.BINARY_MEASURE:
+				return validateBinaryMeasure((BinaryMeasure)value, diagnostics, context);
+			case SMMPackage.RANKING_MEASURE_RELATIONSHIP:
+				return validateRankingMeasureRelationship((RankingMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.RANKING_MEASURE:
+				return validateRankingMeasure((RankingMeasure)value, diagnostics, context);
+			case SMMPackage.RANKING_INTERVAL:
+				return validateRankingInterval((RankingInterval)value, diagnostics, context);
+			case SMMPackage.INTERVAL:
+				return validateInterval((Interval)value, diagnostics, context);
+			case SMMPackage.RESCALED_MEASURE_RELATIONSHIP:
+				return validateRescaledMeasureRelationship((RescaledMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.GRADE_MEASURE_RELATIONSHIP:
+				return validateGradeMeasureRelationship((GradeMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.GRADE_MEASURE:
+				return validateGradeMeasure((GradeMeasure)value, diagnostics, context);
+			case SMMPackage.GRADE_INTERVAL:
+				return validateGradeInterval((GradeInterval)value, diagnostics, context);
+			case SMMPackage.UNIT_OF_MEASURE:
+				return validateUnitOfMeasure((UnitOfMeasure)value, diagnostics, context);
+			case SMMPackage.BASE1_MEASUREMENT_RELATIONSHIP:
+				return validateBase1MeasurementRelationship((Base1MeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.BASE_MEASUREMENT_RELATIONSHIP:
+				return validateBaseMeasurementRelationship((BaseMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.DIMENSIONAL_MEASUREMENT:
+				return validateDimensionalMeasurement((DimensionalMeasurement)value, diagnostics, context);
+			case SMMPackage.BASE_NMEASUREMENT_RELATIONSHIP:
+				return validateBaseNMeasurementRelationship((BaseNMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.COLLECTIVE_MEASUREMENT:
+				return validateCollectiveMeasurement((CollectiveMeasurement)value, diagnostics, context);
+			case SMMPackage.BASE2_MEASUREMENT_RELATIONSHIP:
+				return validateBase2MeasurementRelationship((Base2MeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.BINARY_MEASUREMENT:
+				return validateBinaryMeasurement((BinaryMeasurement)value, diagnostics, context);
+			case SMMPackage.GRADE_MEASUREMENT_RELATIONSHIP:
+				return validateGradeMeasurementRelationship((GradeMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.GRADE_MEASUREMENT:
+				return validateGradeMeasurement((GradeMeasurement)value, diagnostics, context);
+			case SMMPackage.RESCALED_MEASUREMENT_RELATIONSHIP:
+				return validateRescaledMeasurementRelationship((RescaledMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.RESCALED_MEASUREMENT:
+				return validateRescaledMeasurement((RescaledMeasurement)value, diagnostics, context);
+			case SMMPackage.RANKING_MEASUREMENT_RELATIONSHIP:
+				return validateRankingMeasurementRelationship((RankingMeasurementRelationship)value, diagnostics, context);
+			case SMMPackage.RANKING_MEASUREMENT:
+				return validateRankingMeasurement((RankingMeasurement)value, diagnostics, context);
+			case SMMPackage.CATEGORY_RELATIONSHIP:
+				return validateCategoryRelationship((CategoryRelationship)value, diagnostics, context);
+			case SMMPackage.COUNTING_MEASUREMENT:
+				return validateCountingMeasurement((CountingMeasurement)value, diagnostics, context);
+			case SMMPackage.DIRECT_MEASUREMENT:
+				return validateDirectMeasurement((DirectMeasurement)value, diagnostics, context);
+			case SMMPackage.COUNTING_MEASURE:
+				return validateCountingMeasure((CountingMeasure)value, diagnostics, context);
+			case SMMPackage.DIRECT_MEASURE:
+				return validateDirectMeasure((DirectMeasure)value, diagnostics, context);
+			case SMMPackage.MEASURE_LIBRARY:
+				return validateMeasureLibrary((MeasureLibrary)value, diagnostics, context);
+			case SMMPackage.NAMED_MEASURE:
+				return validateNamedMeasure((NamedMeasure)value, diagnostics, context);
+			case SMMPackage.NAMED_MEASUREMENT:
+				return validateNamedMeasurement((NamedMeasurement)value, diagnostics, context);
+			case SMMPackage.OCL_OPERATION:
+				return validateOCLOperation((OCLOperation)value, diagnostics, context);
+			case SMMPackage.OBSERVATION:
+				return validateObservation((Observation)value, diagnostics, context);
+			case SMMPackage.OBSERVATION_SCOPE:
+				return validateObservationScope((ObservationScope)value, diagnostics, context);
+			case SMMPackage.RATIO_MEASURE:
+				return validateRatioMeasure((RatioMeasure)value, diagnostics, context);
+			case SMMPackage.RATIO_MEASUREMENT:
+				return validateRatioMeasurement((RatioMeasurement)value, diagnostics, context);
+			case SMMPackage.SMM_MODEL:
+				return validateSmmModel((SmmModel)value, diagnostics, context);
+			case SMMPackage.COUNTING_MEASURE_RELATIONSHIP:
+				return validateCountingMeasureRelationship((CountingMeasureRelationship)value, diagnostics, context);
+			case SMMPackage.ACCUMULATOR:
+				return validateAccumulator((Accumulator)value, diagnostics, context);
+			case SMMPackage.INFLUENCE:
+				return validateInfluence((Influence)value, diagnostics, context);
+			case SMMPackage.SCALE_OF_MEASUREMENT:
+				return validateScaleOfMeasurement((ScaleOfMeasurement)value, diagnostics, context);
+			case SMMPackage.BINARY_FUNCTOR:
+				return validateBinaryFunctor((BinaryFunctor)value, diagnostics, context);
+			case SMMPackage.MEASUREMENT_SCALE:
+				return validateMeasurementScale((MeasurementScale)value, diagnostics, context);
+			case SMMPackage.TIME_STAMP:
+				return validateTimeStamp((Date)value, diagnostics, context);
+			default:
+				return true;
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateAbstractMeasureElement(AbstractMeasureElement abstractMeasureElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(abstractMeasureElement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(abstractMeasureElement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateSmmElement(SmmElement smmElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(smmElement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(smmElement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateSmmRelationship(SmmRelationship smmRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(smmRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(smmRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateAttribute(Attribute attribute, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(attribute, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(attribute, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateAnnotation(Annotation annotation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(annotation, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(annotation, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateArgument(Argument argument, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(argument, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(argument, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateObservedMeasure(ObservedMeasure observedMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(observedMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(observedMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasurement(Measurement measurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(measurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(measurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateEquivalentMeasurementRelationship(EquivalentMeasurementRelationship equivalentMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(equivalentMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(equivalentMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasurementRelationship(MeasurementRelationship measurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(measurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(measurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRefinementMeasurementRelationship(RefinementMeasurementRelationship refinementMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(refinementMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(refinementMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasure(Measure measure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(measure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(measure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRefinementMeasureRelationship(RefinementMeasureRelationship refinementMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(refinementMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(refinementMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasureRelationship(MeasureRelationship measureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(measureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(measureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateOperation(Operation operation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(operation, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(operation, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateEquivalentMeasureRelationship(EquivalentMeasureRelationship equivalentMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(equivalentMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(equivalentMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasureCategory(MeasureCategory measureCategory, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(measureCategory, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(measureCategory, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateScope(Scope scope, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (!validate_NoCircularContainment(scope, diagnostics, context)) return false;
-        boolean result = validate_EveryMultiplicityConforms(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_EveryDataValueConforms(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_EveryProxyResolves(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_UniqueID(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_EveryKeyUnique(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(scope, diagnostics, context);
-        if (result || diagnostics != null) result &= validateScope_IsSpecified(scope, diagnostics, context);
-        return result;
-    }
+		if (!validate_NoCircularContainment(scope, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(scope, diagnostics, context);
+		if (result || diagnostics != null) result &= validateScope_IsSpecified(scope, diagnostics, context);
+		return result;
+	}
 
     /**
-     * Validates the IsSpecified constraint of '<em>Scope</em>'.
-     * <!-- begin-user-doc -->
+	 * Validates the IsSpecified constraint of '<em>Scope</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateScope_IsSpecified(Scope scope, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return scope.IsSpecified(diagnostics, context);
-    }
+		return scope.IsSpecified(diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateCharacteristic(Characteristic characteristic, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(characteristic, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(characteristic, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBase1MeasureRelationship(Base1MeasureRelationship base1MeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(base1MeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(base1MeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBaseMeasureRelationship(BaseMeasureRelationship baseMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(baseMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(baseMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRescaledMeasure(RescaledMeasure rescaledMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rescaledMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rescaledMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateDimensionalMeasure(DimensionalMeasure dimensionalMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(dimensionalMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(dimensionalMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBaseNMeasureRelationship(BaseNMeasureRelationship baseNMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(baseNMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(baseNMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateCollectiveMeasure(CollectiveMeasure collectiveMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(collectiveMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(collectiveMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBase2MeasureRelationship(Base2MeasureRelationship base2MeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(base2MeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(base2MeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBinaryMeasure(BinaryMeasure binaryMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(binaryMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(binaryMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRankingMeasureRelationship(RankingMeasureRelationship rankingMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rankingMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rankingMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRankingMeasure(RankingMeasure rankingMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rankingMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rankingMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRankingInterval(RankingInterval rankingInterval, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rankingInterval, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rankingInterval, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateInterval(Interval interval, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(interval, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(interval, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRescaledMeasureRelationship(RescaledMeasureRelationship rescaledMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rescaledMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rescaledMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateGradeMeasureRelationship(GradeMeasureRelationship gradeMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(gradeMeasureRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(gradeMeasureRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateGradeMeasure(GradeMeasure gradeMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(gradeMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(gradeMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateGradeInterval(GradeInterval gradeInterval, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(gradeInterval, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(gradeInterval, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateUnitOfMeasure(UnitOfMeasure unitOfMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(unitOfMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(unitOfMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBase1MeasurementRelationship(Base1MeasurementRelationship base1MeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(base1MeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(base1MeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBaseMeasurementRelationship(BaseMeasurementRelationship baseMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(baseMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(baseMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateDimensionalMeasurement(DimensionalMeasurement dimensionalMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(dimensionalMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(dimensionalMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBaseNMeasurementRelationship(BaseNMeasurementRelationship baseNMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(baseNMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(baseNMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateCollectiveMeasurement(CollectiveMeasurement collectiveMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(collectiveMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(collectiveMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBase2MeasurementRelationship(Base2MeasurementRelationship base2MeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(base2MeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(base2MeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBinaryMeasurement(BinaryMeasurement binaryMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(binaryMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(binaryMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateGradeMeasurementRelationship(GradeMeasurementRelationship gradeMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(gradeMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(gradeMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateGradeMeasurement(GradeMeasurement gradeMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(gradeMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(gradeMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRescaledMeasurementRelationship(RescaledMeasurementRelationship rescaledMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rescaledMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rescaledMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRescaledMeasurement(RescaledMeasurement rescaledMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rescaledMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rescaledMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRankingMeasurementRelationship(RankingMeasurementRelationship rankingMeasurementRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rankingMeasurementRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rankingMeasurementRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRankingMeasurement(RankingMeasurement rankingMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(rankingMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(rankingMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateCategoryRelationship(CategoryRelationship categoryRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(categoryRelationship, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(categoryRelationship, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateCountingMeasurement(CountingMeasurement countingMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(countingMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(countingMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateDirectMeasurement(DirectMeasurement directMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(directMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(directMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateCountingMeasure(CountingMeasure countingMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(countingMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(countingMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateDirectMeasure(DirectMeasure directMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(directMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(directMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasureLibrary(MeasureLibrary measureLibrary, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(measureLibrary, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(measureLibrary, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateNamedMeasure(NamedMeasure namedMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(namedMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(namedMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateNamedMeasurement(NamedMeasurement namedMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(namedMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(namedMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateOCLOperation(OCLOperation oclOperation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(oclOperation, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(oclOperation, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateObservation(Observation observation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(observation, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(observation, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateObservationScope(ObservationScope observationScope, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(observationScope, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(observationScope, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRatioMeasure(RatioMeasure ratioMeasure, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(ratioMeasure, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(ratioMeasure, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateRatioMeasurement(RatioMeasurement ratioMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(ratioMeasurement, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(ratioMeasurement, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateSmmModel(SmmModel smmModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return validate_EveryDefaultConstraint(smmModel, diagnostics, context);
-    }
+		return validate_EveryDefaultConstraint(smmModel, diagnostics, context);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCountingMeasureRelationship(CountingMeasureRelationship countingMeasureRelationship, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(countingMeasureRelationship, diagnostics, context);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateAccumulator(Accumulator accumulator, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
+		return true;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateInfluence(Influence influence, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
+		return true;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateScaleOfMeasurement(ScaleOfMeasurement scaleOfMeasurement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
+		return true;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateBinaryFunctor(BinaryFunctor binaryFunctor, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
+		return true;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateMeasurementScale(MeasurementScale measurementScale, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
+		return true;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public boolean validateTimeStamp(Date timeStamp, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
+		return true;
+	}
 
     /**
-     * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
-     * <!-- begin-user-doc -->
+	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public ResourceLocator getResourceLocator() {
-        // TODO
-        // Specialize this to return a resource locator for messages specific to this validator.
-        // Ensure that you remove @generated or mark it @generated NOT
-        return super.getResourceLocator();
-    }
+		// TODO
+		// Specialize this to return a resource locator for messages specific to this validator.
+		// Ensure that you remove @generated or mark it @generated NOT
+		return super.getResourceLocator();
+	}
 
 } //SMMValidator

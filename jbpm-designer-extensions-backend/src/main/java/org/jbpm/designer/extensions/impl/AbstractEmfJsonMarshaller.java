@@ -1,8 +1,5 @@
 package org.jbpm.designer.extensions.impl;
 
-import java.io.IOException;
-import java.io.StringWriter;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -18,6 +15,9 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.omg.dd.di.DiagramElement;
+
+import java.io.IOException;
+import java.io.StringWriter;
 
 public class AbstractEmfJsonMarshaller {
     protected IEmfDiagramProfile profile;

@@ -22,210 +22,210 @@ import org.omg.vdml.VDMLPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.ReleaseControlImpl#getStrategy <em>Strategy</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ReleaseControlImpl#getScenario <em>Scenario</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ReleaseControlImpl extends VdmlElementImpl implements ReleaseControl {
     /**
-     * The default value of the '{@link #getStrategy() <em>Strategy</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStrategy() <em>Strategy</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStrategy()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStrategy()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String STRATEGY_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getStrategy() <em>Strategy</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStrategy() <em>Strategy</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStrategy()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStrategy()
+	 * @generated
+	 * @ordered
+	 */
     protected String strategy = STRATEGY_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getScenario() <em>Scenario</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getScenario() <em>Scenario</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getScenario()
-     * @generated
-     * @ordered
-     */
+	 * @see #getScenario()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Scenario> scenario;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ReleaseControlImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.RELEASE_CONTROL;
-    }
+		return VDMLPackage.Literals.RELEASE_CONTROL;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getStrategy() {
-        return strategy;
-    }
+		return strategy;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setStrategy(String newStrategy) {
-        String oldStrategy = strategy;
-        strategy = newStrategy;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.RELEASE_CONTROL__STRATEGY, oldStrategy, strategy));
-    }
+		String oldStrategy = strategy;
+		strategy = newStrategy;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.RELEASE_CONTROL__STRATEGY, oldStrategy, strategy));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Scenario> getScenario() {
-        if (scenario == null) {
-            scenario = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, VDMLPackage.RELEASE_CONTROL__SCENARIO, VDMLPackage.SCENARIO__RELEASE_CONTROL);
-        }
-        return scenario;
-    }
+		if (scenario == null) {
+			scenario = new EObjectWithInverseResolvingEList.ManyInverse<Scenario>(Scenario.class, this, VDMLPackage.RELEASE_CONTROL__SCENARIO, VDMLPackage.SCENARIO__RELEASE_CONTROL);
+		}
+		return scenario;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.RELEASE_CONTROL__SCENARIO:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.RELEASE_CONTROL__SCENARIO:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.RELEASE_CONTROL__SCENARIO:
-                return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.RELEASE_CONTROL__SCENARIO:
+				return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.RELEASE_CONTROL__STRATEGY:
-                return getStrategy();
-            case VDMLPackage.RELEASE_CONTROL__SCENARIO:
-                return getScenario();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.RELEASE_CONTROL__STRATEGY:
+				return getStrategy();
+			case VDMLPackage.RELEASE_CONTROL__SCENARIO:
+				return getScenario();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.RELEASE_CONTROL__STRATEGY:
-                setStrategy((String)newValue);
-                return;
-            case VDMLPackage.RELEASE_CONTROL__SCENARIO:
-                getScenario().clear();
-                getScenario().addAll((Collection<? extends Scenario>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.RELEASE_CONTROL__STRATEGY:
+				setStrategy((String)newValue);
+				return;
+			case VDMLPackage.RELEASE_CONTROL__SCENARIO:
+				getScenario().clear();
+				getScenario().addAll((Collection<? extends Scenario>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.RELEASE_CONTROL__STRATEGY:
-                setStrategy(STRATEGY_EDEFAULT);
-                return;
-            case VDMLPackage.RELEASE_CONTROL__SCENARIO:
-                getScenario().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.RELEASE_CONTROL__STRATEGY:
+				setStrategy(STRATEGY_EDEFAULT);
+				return;
+			case VDMLPackage.RELEASE_CONTROL__SCENARIO:
+				getScenario().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.RELEASE_CONTROL__STRATEGY:
-                return STRATEGY_EDEFAULT == null ? strategy != null : !STRATEGY_EDEFAULT.equals(strategy);
-            case VDMLPackage.RELEASE_CONTROL__SCENARIO:
-                return scenario != null && !scenario.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.RELEASE_CONTROL__STRATEGY:
+				return STRATEGY_EDEFAULT == null ? strategy != null : !STRATEGY_EDEFAULT.equals(strategy);
+			case VDMLPackage.RELEASE_CONTROL__SCENARIO:
+				return scenario != null && !scenario.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (strategy: ");
-        result.append(strategy);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (strategy: ");
+		result.append(strategy);
+		result.append(')');
+		return result.toString();
+	}
 
 } //ReleaseControlImpl

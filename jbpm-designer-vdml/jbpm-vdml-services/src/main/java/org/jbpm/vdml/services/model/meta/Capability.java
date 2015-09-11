@@ -44,4 +44,8 @@ public class Capability implements  MetaEntity{
     public void setExtendedCapability(Capability superCapability) {
         this.extendedCapability = superCapability;
     }
+
+    public Set<Measure> getMeasures() {
+        return measures;
+    }
 }

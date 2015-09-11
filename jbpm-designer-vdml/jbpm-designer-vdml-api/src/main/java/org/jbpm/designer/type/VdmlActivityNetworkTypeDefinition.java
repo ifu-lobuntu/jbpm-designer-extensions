@@ -1,9 +1,9 @@
 package org.jbpm.designer.type;
 
-import javax.enterprise.context.ApplicationScoped;
-
 import org.uberfire.backend.vfs.Path;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
+
+import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class VdmlActivityNetworkTypeDefinition implements ResourceTypeDefinition {

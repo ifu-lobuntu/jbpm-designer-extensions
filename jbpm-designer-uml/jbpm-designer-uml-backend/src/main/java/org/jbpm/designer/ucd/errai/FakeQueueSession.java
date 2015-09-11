@@ -1,9 +1,10 @@
 package org.jbpm.designer.ucd.errai;
 
-import java.util.Collection;
-
 import org.jboss.errai.bus.client.api.QueueSession;
 import org.jboss.errai.bus.client.api.SessionEndListener;
+
+import java.util.Collection;
+
 
 public final class FakeQueueSession implements QueueSession {
     @Override

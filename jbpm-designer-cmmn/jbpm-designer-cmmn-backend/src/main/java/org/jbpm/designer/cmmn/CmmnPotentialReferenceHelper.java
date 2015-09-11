@@ -1,6 +1,5 @@
 package org.jbpm.designer.cmmn;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -10,6 +9,8 @@ import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.omg.cmmn.TCase;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class CmmnPotentialReferenceHelper extends DefaultPotentialReferenceHelper {
 

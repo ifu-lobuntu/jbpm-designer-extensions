@@ -4,17 +4,27 @@ package org.jbpm.vdml.dd.vdmldi.util;
 
 import java.util.HashMap;
 
-import org.eclipse.emf.common.util.URI;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-import org.eclipse.emf.ecore.util.BasicExtendedMetaData;
-import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.util.*;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.util.*;
+import org.jbpm.smm.dd.smmdi.*;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.omg.dd.dc.DCPackage;
 import org.omg.dd.dg.DGPackage;
-import org.omg.dd.di.DIPackage;
-import org.omg.vdml.VDMLPackage;
+import org.omg.dd.di.*;
+import org.omg.dd.di.impl.*;
+import org.omg.smm.*;
+import org.omg.vdml.*;
 import org.omg.vdml.util.VDMLResourceImpl;
 
 /**

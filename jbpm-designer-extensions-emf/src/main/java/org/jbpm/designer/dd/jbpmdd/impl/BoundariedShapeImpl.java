@@ -2,15 +2,23 @@
  */
 package org.jbpm.designer.dd.jbpmdd.impl;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
-import org.jbpm.designer.dd.jbpmdd.JBPMDDPackage;
-import org.omg.dd.di.Shape;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.plugin.*;
+import org.eclipse.emf.ecore.util.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.omg.dd.dc.*;
+import org.omg.dd.dg.*;
+import org.omg.dd.dg.util.*;
 import org.omg.dd.di.impl.ShapeImpl;
+import org.omg.dd.di.util.*;
+import org.omg.dd.dc.util.*;
+import org.omg.dd.di.*;
+
+import java.lang.reflect.*;
+import java.util.*;
 
 /**
  * <!-- begin-user-doc -->

@@ -1,10 +1,10 @@
 package org.jbpm.designer.extensions.impl;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ArchiveURIHandlerImpl;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public final class VfsArchiveURIHandler extends ArchiveURIHandlerImpl {
     public boolean canHandle(URI uri) {

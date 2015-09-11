@@ -10,29 +10,27 @@ import org.omg.smm.SMMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Refinement Measurement Relationship</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
 public class RefinementMeasurementRelationshipImpl extends MeasurementRelationshipImpl implements RefinementMeasurementRelationship {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RefinementMeasurementRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.REFINEMENT_MEASUREMENT_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.REFINEMENT_MEASUREMENT_RELATIONSHIP;
+	}
 
 } //RefinementMeasurementRelationshipImpl

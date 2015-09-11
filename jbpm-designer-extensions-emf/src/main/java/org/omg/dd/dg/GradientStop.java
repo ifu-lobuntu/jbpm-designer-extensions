@@ -2,11 +2,11 @@
  */
 package org.omg.dd.dg;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.omg.dd.dc.Color;
+
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->

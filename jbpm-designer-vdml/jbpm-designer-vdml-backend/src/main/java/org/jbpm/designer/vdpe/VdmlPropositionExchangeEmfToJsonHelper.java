@@ -1,7 +1,5 @@
 package org.jbpm.designer.vdpe;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.api.StencilInfo;
 import org.jbpm.designer.extensions.diagram.Shape;
@@ -14,6 +12,9 @@ import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.Collaboration;
 import org.omg.vdml.ValuePropositionComponent;
 import org.omg.vdml.VdmlElement;
+
+import java.util.Map;
+
 
 public class VdmlPropositionExchangeEmfToJsonHelper extends AbstractVdmlEmfToJsonHelper {
 

@@ -47,7 +47,8 @@ public abstract class EmfBasedDataHolderBuilder<T extends EObject, X extends Dat
         return (T) rst.getEObject(URI.createPlatformResourceURI(value, true), true);
     }
     public boolean supportsPropertyType(String className, String path) {
-        throw new NotImplementedException();//TO costly. Only used by BPMNFOrmBuilderService
+        //TODO embed something in the string itself to see if this implementation can support it
+        throw new RuntimeException();//Too costly. Only used by BPMNFOrmBuilderService
     }
 
     @Override

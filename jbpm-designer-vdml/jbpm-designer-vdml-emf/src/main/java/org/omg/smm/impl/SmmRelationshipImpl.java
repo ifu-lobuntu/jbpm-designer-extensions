@@ -14,168 +14,168 @@ import org.omg.smm.SmmRelationship;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.SmmRelationshipImpl#getFrom <em>From</em>}</li>
  *   <li>{@link org.omg.smm.impl.SmmRelationshipImpl#getTo <em>To</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class SmmRelationshipImpl extends SmmElementImpl implements SmmRelationship {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected SmmRelationshipImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.SMM_RELATIONSHIP;
-    }
+		return SMMPackage.Literals.SMM_RELATIONSHIP;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SmmElement getFrom() {
-        SmmElement from = basicGetFrom();
-        return from != null && from.eIsProxy() ? (SmmElement)eResolveProxy((InternalEObject)from) : from;
-    }
+		SmmElement from = basicGetFrom();
+		return from != null && from.eIsProxy() ? (SmmElement)eResolveProxy((InternalEObject)from) : from;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SmmElement basicGetFrom() {
-        // TODO: implement this method to return the 'From' reference
-        // -> do not perform proxy resolution
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
+		// TODO: implement this method to return the 'From' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setFrom(SmmElement newFrom) {
-        // TODO: implement this method to set the 'From' reference
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
+		// TODO: implement this method to set the 'From' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SmmElement getTo() {
-        SmmElement to = basicGetTo();
-        return to != null && to.eIsProxy() ? (SmmElement)eResolveProxy((InternalEObject)to) : to;
-    }
+		SmmElement to = basicGetTo();
+		return to != null && to.eIsProxy() ? (SmmElement)eResolveProxy((InternalEObject)to) : to;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SmmElement basicGetTo() {
-        // TODO: implement this method to return the 'To' reference
-        // -> do not perform proxy resolution
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
+		// TODO: implement this method to return the 'To' reference
+		// -> do not perform proxy resolution
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setTo(SmmElement newTo) {
-        // TODO: implement this method to set the 'To' reference
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
-    }
+		// TODO: implement this method to set the 'To' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.SMM_RELATIONSHIP__FROM:
-                if (resolve) return getFrom();
-                return basicGetFrom();
-            case SMMPackage.SMM_RELATIONSHIP__TO:
-                if (resolve) return getTo();
-                return basicGetTo();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_RELATIONSHIP__FROM:
+				if (resolve) return getFrom();
+				return basicGetFrom();
+			case SMMPackage.SMM_RELATIONSHIP__TO:
+				if (resolve) return getTo();
+				return basicGetTo();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.SMM_RELATIONSHIP__FROM:
-                setFrom((SmmElement)newValue);
-                return;
-            case SMMPackage.SMM_RELATIONSHIP__TO:
-                setTo((SmmElement)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_RELATIONSHIP__FROM:
+				setFrom((SmmElement)newValue);
+				return;
+			case SMMPackage.SMM_RELATIONSHIP__TO:
+				setTo((SmmElement)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.SMM_RELATIONSHIP__FROM:
-                setFrom((SmmElement)null);
-                return;
-            case SMMPackage.SMM_RELATIONSHIP__TO:
-                setTo((SmmElement)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_RELATIONSHIP__FROM:
+				setFrom((SmmElement)null);
+				return;
+			case SMMPackage.SMM_RELATIONSHIP__TO:
+				setTo((SmmElement)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.SMM_RELATIONSHIP__FROM:
-                return basicGetFrom() != null;
-            case SMMPackage.SMM_RELATIONSHIP__TO:
-                return basicGetTo() != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.SMM_RELATIONSHIP__FROM:
+				return basicGetFrom() != null;
+			case SMMPackage.SMM_RELATIONSHIP__TO:
+				return basicGetTo() != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //SmmRelationshipImpl

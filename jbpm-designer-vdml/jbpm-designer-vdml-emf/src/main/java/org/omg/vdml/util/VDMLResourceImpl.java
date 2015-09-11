@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -27,7 +26,6 @@ import org.omg.vdml.VDMLPackage;
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.omg.vdml.util.VDMLResourceFactoryImpl
  * @generated
  */
@@ -77,16 +75,15 @@ public class VDMLResourceImpl extends XMIResourceImpl {
     }
 
     /**
-     * Creates an instance of the resource. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
-     * @param uri
-     *            the URI of the new resource.
-     * @generated
-     */
+	 * @param uri the URI of the new resource.
+	 * @generated
+	 */
     public VDMLResourceImpl(URI uri) {
-        super(uri);
-    }
+		super(uri);
+	}
 
     protected XMLSave createXMLSave() {
         prepareSave();

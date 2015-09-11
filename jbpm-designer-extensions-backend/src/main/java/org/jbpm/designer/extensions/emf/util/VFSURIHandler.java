@@ -1,5 +1,10 @@
 package org.jbpm.designer.extensions.emf.util;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl;
+import org.jbpm.designer.repository.Asset;
+import org.jbpm.designer.repository.Repository;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,10 +14,6 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.impl.PlatformResourceURIHandlerImpl;
-import org.jbpm.designer.repository.Asset;
-import org.jbpm.designer.repository.Repository;
 
 public class VFSURIHandler extends PlatformResourceURIHandlerImpl {
 

@@ -1,12 +1,14 @@
 package org.jbpm.designer.extensions.api;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.jbpm.designer.repository.Repository;
+
+import java.util.Map;
+
+
 
 public interface IEmfProfile {
     Resource.Factory getResourceFactory();

@@ -7,20 +7,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-
-public abstract class PortContainer implements MetaEntity{
+public abstract class RoleBasedPortContainer implements MetaEntity {
     @Id
     private String uri;
     private String name;
-    @OneToMany(mappedBy = "fromPortContainer")
-    private Set<DeliverableFlow> output=new HashSet<DeliverableFlow>();
-    @OneToMany(mappedBy = "toPortContainer")
-    private Set<DeliverableFlow> input=new HashSet<DeliverableFlow>();
-    public PortContainer() {
+
+    @OneToMany(mappedBy = "providingPortContainer")
+    private Set<DeliverableFlow> output = new HashSet<DeliverableFlow>();
+    @OneToMany(mappedBy = "receivingPortContainer")
+    private Set<DeliverableFlow> input = new HashSet<DeliverableFlow>();
+
+
+    public RoleBasedPortContainer(String uri) {
+        this.uri = uri;
     }
 
-    public PortContainer(String uri) {
-        this.uri = uri;
+
+    protected RoleBasedPortContainer() {
     }
 
     @Override

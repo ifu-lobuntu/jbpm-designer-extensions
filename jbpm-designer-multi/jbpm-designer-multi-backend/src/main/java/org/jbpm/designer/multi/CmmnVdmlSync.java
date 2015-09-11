@@ -38,7 +38,7 @@ public class CmmnVdmlSync {
                 //TODO
                 //For each business item coming from another activity, create
                 //1. An Entry Sentry
-                //2. Create A CaseFileItem for the BusinessItem
+                //2. Create A CaseFileItem for the BusinessItemDefinition
                 //3. Create a TaskParameter
                 //4. Create an PlanItemOnPart on complete
                 //For each business item coming from another store, create

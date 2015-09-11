@@ -1,9 +1,12 @@
 package org.jbpm.designer.uml.code.metamodel.expressions;
 
+import org.jbpm.designer.uml.code.metamodel.CodeExpression;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jbpm.designer.uml.code.metamodel.CodeExpression;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MappedExpression extends CodeExpression {
     private Map<String,String> languageExpressionMap=new HashMap<String, String>();

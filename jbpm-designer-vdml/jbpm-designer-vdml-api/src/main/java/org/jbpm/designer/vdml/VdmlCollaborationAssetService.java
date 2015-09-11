@@ -1,10 +1,10 @@
 package org.jbpm.designer.vdml;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.jboss.errai.bus.server.annotations.Remote;
 import org.uberfire.backend.vfs.Path;
+
+import java.util.Collection;
+import java.util.List;
 
 @Remote
 public interface VdmlCollaborationAssetService {

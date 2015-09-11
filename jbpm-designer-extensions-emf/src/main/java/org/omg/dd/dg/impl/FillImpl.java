@@ -14,10 +14,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.omg.dd.dg.Canvas;
-import org.omg.dd.dg.DGPackage;
-import org.omg.dd.dg.Fill;
-import org.omg.dd.dg.Transform;
+import org.omg.dd.dg.*;
 
 /**
  * <!-- begin-user-doc -->

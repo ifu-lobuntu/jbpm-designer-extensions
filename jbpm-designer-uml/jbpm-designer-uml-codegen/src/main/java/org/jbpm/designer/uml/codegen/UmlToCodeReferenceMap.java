@@ -1,24 +1,23 @@
 package org.jbpm.designer.uml.codegen;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Properties;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PrimitiveType;
-import org.jbpm.designer.extensions.util.NameConverter;
 import org.jbpm.designer.uml.code.metamodel.CodeMappedType;
 import org.jbpm.designer.uml.code.metamodel.CodePackageReference;
 import org.jbpm.designer.uml.code.metamodel.CodeTypeReference;
 import org.jbpm.designer.uml.codegen.util.EmfClassifierUtil;
+import org.jbpm.designer.uml.codegen.util.NameConverter;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 public class UmlToCodeReferenceMap {
 
@@ -46,8 +45,8 @@ public class UmlToCodeReferenceMap {
                         if (inStream != null) {
                             Properties props = new Properties();
                             props.load(inStream);
-                            Set<Entry<Object, Object>> entrySet = props.entrySet();
-                            for (Entry<Object, Object> entry : entrySet) {
+                            Set<Map.Entry<Object, Object>> entrySet = props.entrySet();
+                            for (Map.Entry<Object, Object> entry : entrySet) {
                                 String umlClassName = (String) entry.getKey();
                                 CodeMappedType cmt = map.get(umlClassName);
                                 if (cmt == null) {

@@ -2,10 +2,10 @@
  */
 package org.omg.dd.dg;
 
-import java.util.Map;
-
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.omg.dd.dc.Point;
+
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->

@@ -14,308 +14,308 @@ import org.omg.smm.SMMPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.smm.impl.IntervalImpl#getMaximumEndpoint <em>Maximum Endpoint</em>}</li>
  *   <li>{@link org.omg.smm.impl.IntervalImpl#getMaximumOpen <em>Maximum Open</em>}</li>
  *   <li>{@link org.omg.smm.impl.IntervalImpl#getMinimumEndpoint <em>Minimum Endpoint</em>}</li>
  *   <li>{@link org.omg.smm.impl.IntervalImpl#getMinimumOpen <em>Minimum Open</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class IntervalImpl extends SmmElementImpl implements Interval {
     /**
-     * The default value of the '{@link #getMaximumEndpoint() <em>Maximum Endpoint</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMaximumEndpoint() <em>Maximum Endpoint</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMaximumEndpoint()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMaximumEndpoint()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Double MAXIMUM_ENDPOINT_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getMaximumEndpoint() <em>Maximum Endpoint</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMaximumEndpoint() <em>Maximum Endpoint</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMaximumEndpoint()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMaximumEndpoint()
+	 * @generated
+	 * @ordered
+	 */
     protected Double maximumEndpoint = MAXIMUM_ENDPOINT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getMaximumOpen() <em>Maximum Open</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMaximumOpen() <em>Maximum Open</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMaximumOpen()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMaximumOpen()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Boolean MAXIMUM_OPEN_EDEFAULT = Boolean.FALSE;
 
     /**
-     * The cached value of the '{@link #getMaximumOpen() <em>Maximum Open</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMaximumOpen() <em>Maximum Open</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMaximumOpen()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMaximumOpen()
+	 * @generated
+	 * @ordered
+	 */
     protected Boolean maximumOpen = MAXIMUM_OPEN_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getMinimumEndpoint() <em>Minimum Endpoint</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMinimumEndpoint() <em>Minimum Endpoint</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMinimumEndpoint()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMinimumEndpoint()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Double MINIMUM_ENDPOINT_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getMinimumEndpoint() <em>Minimum Endpoint</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMinimumEndpoint() <em>Minimum Endpoint</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMinimumEndpoint()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMinimumEndpoint()
+	 * @generated
+	 * @ordered
+	 */
     protected Double minimumEndpoint = MINIMUM_ENDPOINT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getMinimumOpen() <em>Minimum Open</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getMinimumOpen() <em>Minimum Open</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMinimumOpen()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMinimumOpen()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Boolean MINIMUM_OPEN_EDEFAULT = Boolean.FALSE;
 
     /**
-     * The cached value of the '{@link #getMinimumOpen() <em>Minimum Open</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMinimumOpen() <em>Minimum Open</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMinimumOpen()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMinimumOpen()
+	 * @generated
+	 * @ordered
+	 */
     protected Boolean minimumOpen = MINIMUM_OPEN_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected IntervalImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return SMMPackage.Literals.INTERVAL;
-    }
+		return SMMPackage.Literals.INTERVAL;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Double getMaximumEndpoint() {
-        return maximumEndpoint;
-    }
+		return maximumEndpoint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setMaximumEndpoint(Double newMaximumEndpoint) {
-        Double oldMaximumEndpoint = maximumEndpoint;
-        maximumEndpoint = newMaximumEndpoint;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MAXIMUM_ENDPOINT, oldMaximumEndpoint, maximumEndpoint));
-    }
+		Double oldMaximumEndpoint = maximumEndpoint;
+		maximumEndpoint = newMaximumEndpoint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MAXIMUM_ENDPOINT, oldMaximumEndpoint, maximumEndpoint));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Boolean getMaximumOpen() {
-        return maximumOpen;
-    }
+		return maximumOpen;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setMaximumOpen(Boolean newMaximumOpen) {
-        Boolean oldMaximumOpen = maximumOpen;
-        maximumOpen = newMaximumOpen;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MAXIMUM_OPEN, oldMaximumOpen, maximumOpen));
-    }
+		Boolean oldMaximumOpen = maximumOpen;
+		maximumOpen = newMaximumOpen;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MAXIMUM_OPEN, oldMaximumOpen, maximumOpen));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Double getMinimumEndpoint() {
-        return minimumEndpoint;
-    }
+		return minimumEndpoint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setMinimumEndpoint(Double newMinimumEndpoint) {
-        Double oldMinimumEndpoint = minimumEndpoint;
-        minimumEndpoint = newMinimumEndpoint;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MINIMUM_ENDPOINT, oldMinimumEndpoint, minimumEndpoint));
-    }
+		Double oldMinimumEndpoint = minimumEndpoint;
+		minimumEndpoint = newMinimumEndpoint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MINIMUM_ENDPOINT, oldMinimumEndpoint, minimumEndpoint));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Boolean getMinimumOpen() {
-        return minimumOpen;
-    }
+		return minimumOpen;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setMinimumOpen(Boolean newMinimumOpen) {
-        Boolean oldMinimumOpen = minimumOpen;
-        minimumOpen = newMinimumOpen;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MINIMUM_OPEN, oldMinimumOpen, minimumOpen));
-    }
+		Boolean oldMinimumOpen = minimumOpen;
+		minimumOpen = newMinimumOpen;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SMMPackage.INTERVAL__MINIMUM_OPEN, oldMinimumOpen, minimumOpen));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
-                return getMaximumEndpoint();
-            case SMMPackage.INTERVAL__MAXIMUM_OPEN:
-                return getMaximumOpen();
-            case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
-                return getMinimumEndpoint();
-            case SMMPackage.INTERVAL__MINIMUM_OPEN:
-                return getMinimumOpen();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
+				return getMaximumEndpoint();
+			case SMMPackage.INTERVAL__MAXIMUM_OPEN:
+				return getMaximumOpen();
+			case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
+				return getMinimumEndpoint();
+			case SMMPackage.INTERVAL__MINIMUM_OPEN:
+				return getMinimumOpen();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
-                setMaximumEndpoint((Double)newValue);
-                return;
-            case SMMPackage.INTERVAL__MAXIMUM_OPEN:
-                setMaximumOpen((Boolean)newValue);
-                return;
-            case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
-                setMinimumEndpoint((Double)newValue);
-                return;
-            case SMMPackage.INTERVAL__MINIMUM_OPEN:
-                setMinimumOpen((Boolean)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
+				setMaximumEndpoint((Double)newValue);
+				return;
+			case SMMPackage.INTERVAL__MAXIMUM_OPEN:
+				setMaximumOpen((Boolean)newValue);
+				return;
+			case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
+				setMinimumEndpoint((Double)newValue);
+				return;
+			case SMMPackage.INTERVAL__MINIMUM_OPEN:
+				setMinimumOpen((Boolean)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
-                setMaximumEndpoint(MAXIMUM_ENDPOINT_EDEFAULT);
-                return;
-            case SMMPackage.INTERVAL__MAXIMUM_OPEN:
-                setMaximumOpen(MAXIMUM_OPEN_EDEFAULT);
-                return;
-            case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
-                setMinimumEndpoint(MINIMUM_ENDPOINT_EDEFAULT);
-                return;
-            case SMMPackage.INTERVAL__MINIMUM_OPEN:
-                setMinimumOpen(MINIMUM_OPEN_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
+				setMaximumEndpoint(MAXIMUM_ENDPOINT_EDEFAULT);
+				return;
+			case SMMPackage.INTERVAL__MAXIMUM_OPEN:
+				setMaximumOpen(MAXIMUM_OPEN_EDEFAULT);
+				return;
+			case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
+				setMinimumEndpoint(MINIMUM_ENDPOINT_EDEFAULT);
+				return;
+			case SMMPackage.INTERVAL__MINIMUM_OPEN:
+				setMinimumOpen(MINIMUM_OPEN_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
-                return MAXIMUM_ENDPOINT_EDEFAULT == null ? maximumEndpoint != null : !MAXIMUM_ENDPOINT_EDEFAULT.equals(maximumEndpoint);
-            case SMMPackage.INTERVAL__MAXIMUM_OPEN:
-                return MAXIMUM_OPEN_EDEFAULT == null ? maximumOpen != null : !MAXIMUM_OPEN_EDEFAULT.equals(maximumOpen);
-            case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
-                return MINIMUM_ENDPOINT_EDEFAULT == null ? minimumEndpoint != null : !MINIMUM_ENDPOINT_EDEFAULT.equals(minimumEndpoint);
-            case SMMPackage.INTERVAL__MINIMUM_OPEN:
-                return MINIMUM_OPEN_EDEFAULT == null ? minimumOpen != null : !MINIMUM_OPEN_EDEFAULT.equals(minimumOpen);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case SMMPackage.INTERVAL__MAXIMUM_ENDPOINT:
+				return MAXIMUM_ENDPOINT_EDEFAULT == null ? maximumEndpoint != null : !MAXIMUM_ENDPOINT_EDEFAULT.equals(maximumEndpoint);
+			case SMMPackage.INTERVAL__MAXIMUM_OPEN:
+				return MAXIMUM_OPEN_EDEFAULT == null ? maximumOpen != null : !MAXIMUM_OPEN_EDEFAULT.equals(maximumOpen);
+			case SMMPackage.INTERVAL__MINIMUM_ENDPOINT:
+				return MINIMUM_ENDPOINT_EDEFAULT == null ? minimumEndpoint != null : !MINIMUM_ENDPOINT_EDEFAULT.equals(minimumEndpoint);
+			case SMMPackage.INTERVAL__MINIMUM_OPEN:
+				return MINIMUM_OPEN_EDEFAULT == null ? minimumOpen != null : !MINIMUM_OPEN_EDEFAULT.equals(minimumOpen);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (maximumEndpoint: ");
-        result.append(maximumEndpoint);
-        result.append(", maximumOpen: ");
-        result.append(maximumOpen);
-        result.append(", minimumEndpoint: ");
-        result.append(minimumEndpoint);
-        result.append(", minimumOpen: ");
-        result.append(minimumOpen);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (maximumEndpoint: ");
+		result.append(maximumEndpoint);
+		result.append(", maximumOpen: ");
+		result.append(maximumOpen);
+		result.append(", minimumEndpoint: ");
+		result.append(minimumEndpoint);
+		result.append(", minimumOpen: ");
+		result.append(minimumOpen);
+		result.append(')');
+		return result.toString();
+	}
 
 } //IntervalImpl

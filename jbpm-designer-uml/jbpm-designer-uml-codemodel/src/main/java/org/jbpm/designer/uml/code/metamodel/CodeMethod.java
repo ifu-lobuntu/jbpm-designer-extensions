@@ -1,8 +1,10 @@
 package org.jbpm.designer.uml.code.metamodel;
 
+import org.jbpm.designer.uml.code.metamodel.expressions.PortableExpression;
+
 import java.util.List;
 
-import org.jbpm.designer.uml.code.metamodel.expressions.PortableExpression;
+
 
 public class CodeMethod extends CodeBehaviour {
 

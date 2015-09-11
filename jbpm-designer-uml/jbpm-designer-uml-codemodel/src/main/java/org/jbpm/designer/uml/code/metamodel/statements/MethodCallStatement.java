@@ -1,11 +1,12 @@
 package org.jbpm.designer.uml.code.metamodel.statements;
 
+import org.jbpm.designer.uml.code.metamodel.CodeBlock;
+import org.jbpm.designer.uml.code.metamodel.CodeExpression;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jbpm.designer.uml.code.metamodel.CodeBlock;
-import org.jbpm.designer.uml.code.metamodel.CodeExpression;
 
 public class MethodCallStatement extends CodeSimpleStatement {
 	private String methodName;

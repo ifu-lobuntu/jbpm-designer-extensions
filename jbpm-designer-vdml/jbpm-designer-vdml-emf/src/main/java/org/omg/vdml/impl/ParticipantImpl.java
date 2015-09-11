@@ -16,215 +16,214 @@ import org.omg.vdml.Assignment;
 import org.omg.vdml.CalendarService;
 import org.omg.vdml.Participant;
 import org.omg.vdml.VDMLPackage;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Participant</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.ParticipantImpl#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ParticipantImpl#getParticipantCalendar <em>Participant Calendar</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public abstract class ParticipantImpl extends MeasurableElementImpl implements Participant {
     /**
-     * The cached value of the '{@link #getAssignment() <em>Assignment</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssignment() <em>Assignment</em>}' reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAssignment()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAssignment()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Assignment> assignment;
 
     /**
-     * The cached value of the '{@link #getParticipantCalendar() <em>Participant Calendar</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParticipantCalendar() <em>Participant Calendar</em>}' containment reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParticipantCalendar()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParticipantCalendar()
+	 * @generated
+	 * @ordered
+	 */
     protected CalendarService participantCalendar;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ParticipantImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return VDMLPackage.Literals.PARTICIPANT;
-    }
+		return VDMLPackage.Literals.PARTICIPANT;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Assignment> getAssignment() {
-        if (assignment == null) {
-            assignment = new EObjectWithInverseResolvingEList<Assignment>(Assignment.class, this, VDMLPackage.PARTICIPANT__ASSIGNMENT, VDMLPackage.ASSIGNMENT__PARTICIPANT);
-        }
-        return assignment;
-    }
+		if (assignment == null) {
+			assignment = new EObjectWithInverseResolvingEList<Assignment>(Assignment.class, this, VDMLPackage.PARTICIPANT__ASSIGNMENT, VDMLPackage.ASSIGNMENT__PARTICIPANT);
+		}
+		return assignment;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public CalendarService getParticipantCalendar() {
-        return participantCalendar;
-    }
+		return participantCalendar;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public NotificationChain basicSetParticipantCalendar(CalendarService newParticipantCalendar, NotificationChain msgs) {
-        CalendarService oldParticipantCalendar = participantCalendar;
-        participantCalendar = newParticipantCalendar;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, oldParticipantCalendar, newParticipantCalendar);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
-        return msgs;
-    }
+		CalendarService oldParticipantCalendar = participantCalendar;
+		participantCalendar = newParticipantCalendar;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, oldParticipantCalendar, newParticipantCalendar);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setParticipantCalendar(CalendarService newParticipantCalendar) {
-        if (newParticipantCalendar != participantCalendar) {
-            NotificationChain msgs = null;
-            if (participantCalendar != null)
-                msgs = ((InternalEObject)participantCalendar).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, null, msgs);
-            if (newParticipantCalendar != null)
-                msgs = ((InternalEObject)newParticipantCalendar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, null, msgs);
-            msgs = basicSetParticipantCalendar(newParticipantCalendar, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, newParticipantCalendar, newParticipantCalendar));
-    }
+		if (newParticipantCalendar != participantCalendar) {
+			NotificationChain msgs = null;
+			if (participantCalendar != null)
+				msgs = ((InternalEObject)participantCalendar).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, null, msgs);
+			if (newParticipantCalendar != null)
+				msgs = ((InternalEObject)newParticipantCalendar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, null, msgs);
+			msgs = basicSetParticipantCalendar(newParticipantCalendar, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR, newParticipantCalendar, newParticipantCalendar));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.PARTICIPANT__ASSIGNMENT:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssignment()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.PARTICIPANT__ASSIGNMENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssignment()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case VDMLPackage.PARTICIPANT__ASSIGNMENT:
-                return ((InternalEList<?>)getAssignment()).basicRemove(otherEnd, msgs);
-            case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
-                return basicSetParticipantCalendar(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case VDMLPackage.PARTICIPANT__ASSIGNMENT:
+				return ((InternalEList<?>)getAssignment()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
+				return basicSetParticipantCalendar(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case VDMLPackage.PARTICIPANT__ASSIGNMENT:
-                return getAssignment();
-            case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
-                return getParticipantCalendar();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case VDMLPackage.PARTICIPANT__ASSIGNMENT:
+				return getAssignment();
+			case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
+				return getParticipantCalendar();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case VDMLPackage.PARTICIPANT__ASSIGNMENT:
-                getAssignment().clear();
-                getAssignment().addAll((Collection<? extends Assignment>)newValue);
-                return;
-            case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
-                setParticipantCalendar((CalendarService)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case VDMLPackage.PARTICIPANT__ASSIGNMENT:
+				getAssignment().clear();
+				getAssignment().addAll((Collection<? extends Assignment>)newValue);
+				return;
+			case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
+				setParticipantCalendar((CalendarService)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.PARTICIPANT__ASSIGNMENT:
-                getAssignment().clear();
-                return;
-            case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
-                setParticipantCalendar((CalendarService)null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.PARTICIPANT__ASSIGNMENT:
+				getAssignment().clear();
+				return;
+			case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
+				setParticipantCalendar((CalendarService)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case VDMLPackage.PARTICIPANT__ASSIGNMENT:
-                return assignment != null && !assignment.isEmpty();
-            case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
-                return participantCalendar != null;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case VDMLPackage.PARTICIPANT__ASSIGNMENT:
+				return assignment != null && !assignment.isEmpty();
+			case VDMLPackage.PARTICIPANT__PARTICIPANT_CALENDAR:
+				return participantCalendar != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //ParticipantImpl

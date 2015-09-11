@@ -1,11 +1,14 @@
 package org.jbpm.designer.uml.code.metamodel.expressions;
 
+import org.jbpm.designer.uml.code.metamodel.CodeExpression;
+import org.jbpm.designer.uml.code.metamodel.CodeTypeReference;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.jbpm.designer.uml.code.metamodel.CodeExpression;
-import org.jbpm.designer.uml.code.metamodel.CodeTypeReference;
 
 public class StaticMethodCallExpression extends CodeExpression {
 	private String methodName;

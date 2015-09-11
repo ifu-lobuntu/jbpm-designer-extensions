@@ -1,7 +1,5 @@
 package org.jbpm.designer.vdan;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.api.EmfToJsonHelper;
@@ -13,6 +11,9 @@ import org.jbpm.designer.type.VdmlActivityNetworkTypeDefinition;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramProfile;
 import org.jbpm.designer.vdml.CollaborationType;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 
 /**
  * The implementation of the VDML Activity Network profile for Process Designer.

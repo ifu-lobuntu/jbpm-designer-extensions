@@ -1,6 +1,6 @@
 package org.jbpm.vdml.services.model.runtime;
 
-import org.jbpm.vdml.services.model.meta.BusinessItem;
+import org.jbpm.vdml.services.model.meta.BusinessItemDefinition;
 import org.jbpm.vdml.services.model.meta.MetaEntity;
 
 import javax.persistence.*;
@@ -13,7 +13,7 @@ public class BusinessItemObservation implements RuntimeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    private BusinessItem businessItem;
+    private BusinessItemDefinition businessItemDefinition;
     @ManyToOne
     private CollaborationObservation collaboration;
     @OneToMany(cascade = CascadeType.ALL)
@@ -22,8 +22,8 @@ public class BusinessItemObservation implements RuntimeEntity {
     public BusinessItemObservation() {
     }
 
-    public BusinessItemObservation(BusinessItem businessItem, CollaborationObservation collaboration) {
-        this.businessItem = businessItem;
+    public BusinessItemObservation(BusinessItemDefinition businessItemDefinition, CollaborationObservation collaboration) {
+        this.businessItemDefinition = businessItemDefinition;
         this.collaboration = collaboration;
         this.collaboration.getBusinessItemObservations().add(this);
     }
@@ -34,11 +34,11 @@ public class BusinessItemObservation implements RuntimeEntity {
 
     @Override
     public MetaEntity getMetaEntity() {
-        return getBusinessItem();
+        return getBusinessItemDefinition();
     }
 
-    public BusinessItem getBusinessItem() {
-        return businessItem;
+    public BusinessItemDefinition getBusinessItemDefinition() {
+        return businessItemDefinition;
     }
 
     public CollaborationObservation getCollaboration() {

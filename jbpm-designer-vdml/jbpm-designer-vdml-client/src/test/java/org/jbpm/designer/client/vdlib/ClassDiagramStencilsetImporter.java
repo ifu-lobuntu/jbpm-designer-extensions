@@ -1,12 +1,13 @@
 package org.jbpm.designer.client.vdlib;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.Test;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-import org.apache.commons.io.FileUtils;
-import org.junit.Test;
 
 public class ClassDiagramStencilsetImporter {
     @Test

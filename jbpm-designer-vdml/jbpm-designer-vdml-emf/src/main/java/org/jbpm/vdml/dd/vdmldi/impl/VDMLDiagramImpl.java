@@ -3,23 +3,24 @@
 package org.jbpm.vdml.dd.vdmldi.impl;
 
 import java.util.Collection;
+import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.jbpm.designer.dd.util.Collections;
+import org.eclipse.emf.common.notify.*;
+import org.eclipse.emf.common.util.*;
+
+import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.impl.*;
+import org.eclipse.emf.ecore.util.*;
+import org.jbpm.designer.dd.jbpmdd.*;
+import org.jbpm.designer.dd.util.*;
+import org.jbpm.smm.dd.smmdi.*;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIPackage;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
-import org.omg.dd.di.impl.DiagramImpl;
-import org.omg.vdml.VdmlElement;
-
+import org.omg.dd.di.*;
+import org.omg.dd.di.impl.*;
+import org.omg.smm.*;
+import org.omg.vdml.*;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>VDML Diagram</b></em>'.
