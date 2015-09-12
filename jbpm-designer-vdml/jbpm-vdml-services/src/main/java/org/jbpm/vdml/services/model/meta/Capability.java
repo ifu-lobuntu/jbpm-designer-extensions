@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Capability implements  MetaEntity{
+public class Capability implements  MetaEntity,MeasurableElement{
     @Id
     private String uri;
     private String name;

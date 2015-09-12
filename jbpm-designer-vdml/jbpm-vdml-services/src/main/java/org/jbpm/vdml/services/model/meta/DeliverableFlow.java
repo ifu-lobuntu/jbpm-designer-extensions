@@ -4,11 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class DeliverableFlow implements  MetaEntity{
+public class DeliverableFlow implements  MetaEntity,MeasurableElement{
     @Id
     private String uri;
     private String name;
@@ -112,6 +113,11 @@ public class DeliverableFlow implements  MetaEntity{
 
     public String getProviderName() {
         return providerName;
+    }
+
+    @Override
+    public Collection<Measure> getMeasures() {
+        return getValueAdds();
     }
 
     public void setProviderName(String outputName) {

@@ -517,13 +517,13 @@ public interface VDMLFactory extends EFactory {
 	StoreDefinition createStoreDefinition();
 
 				/**
-	 * Returns a new object of class '<em>Supplied Store</em>'.
+	 * Returns a new object of class '<em>Supplying Store</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Supplied Store</em>'.
+	 * @return a new object of class '<em>Supplying Store</em>'.
 	 * @generated
 	 */
-	SuppliedStore createSuppliedStore();
+	SupplyingStore createSupplyingStore();
 
 				/**
 	 * Returns a new object of class '<em>Pool Definition</em>'.
@@ -535,13 +535,13 @@ public interface VDMLFactory extends EFactory {
 	PoolDefinition createPoolDefinition();
 
 				/**
-	 * Returns a new object of class '<em>Supplied Pool</em>'.
+	 * Returns a new object of class '<em>Supplying Pool</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Supplied Pool</em>'.
+	 * @return a new object of class '<em>Supplying Pool</em>'.
 	 * @generated
 	 */
-	SuppliedPool createSuppliedPool();
+	SupplyingPool createSupplyingPool();
 
 				/**
 	 * Returns the package supported by this factory.

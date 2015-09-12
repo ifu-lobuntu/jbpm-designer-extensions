@@ -2861,13 +2861,13 @@ public interface VDMLPackage extends EPackage {
     int ROLE__ROLE_ASSIGNMENT = PARTICIPANT_FEATURE_COUNT + 6;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE__SUPPLIED_STORE = PARTICIPANT_FEATURE_COUNT + 7;
+	int ROLE__SUPPLYING_STORE = PARTICIPANT_FEATURE_COUNT + 7;
 
 				/**
 	 * The number of structural features of the '<em>Role</em>' class.
@@ -5017,13 +5017,13 @@ public interface VDMLPackage extends EPackage {
     int COLLABORATION__OWNED_ASSIGNMENT = PARTICIPANT_FEATURE_COUNT + 8;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLLABORATION__SUPPLIED_STORE = PARTICIPANT_FEATURE_COUNT + 9;
+	int COLLABORATION__SUPPLYING_STORE = PARTICIPANT_FEATURE_COUNT + 9;
 
 				/**
 	 * The number of structural features of the '<em>Collaboration</em>' class.
@@ -5225,13 +5225,13 @@ public interface VDMLPackage extends EPackage {
     int ORG_UNIT__OWNED_ASSIGNMENT = COLLABORATION__OWNED_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__SUPPLIED_STORE = COLLABORATION__SUPPLIED_STORE;
+	int ORG_UNIT__SUPPLYING_STORE = COLLABORATION__SUPPLYING_STORE;
 
 				/**
 	 * The feature id for the '<em><b>Capability Offer</b></em>' containment reference list.
@@ -6239,13 +6239,13 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_METHOD__OWNED_ASSIGNMENT = COLLABORATION__OWNED_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CAPABILITY_METHOD__SUPPLIED_STORE = COLLABORATION__SUPPLIED_STORE;
+	int CAPABILITY_METHOD__SUPPLYING_STORE = COLLABORATION__SUPPLYING_STORE;
 
 				/**
 	 * The feature id for the '<em><b>Performer</b></em>' containment reference list.
@@ -6483,13 +6483,13 @@ public interface VDMLPackage extends EPackage {
     int PERFORMER__ROLE_ASSIGNMENT = ROLE__ROLE_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERFORMER__SUPPLIED_STORE = ROLE__SUPPLIED_STORE;
+	int PERFORMER__SUPPLYING_STORE = ROLE__SUPPLYING_STORE;
 
 				/**
 	 * The number of structural features of the '<em>Performer</em>' class.
@@ -6673,13 +6673,13 @@ public interface VDMLPackage extends EPackage {
     int POSITION__ROLE_ASSIGNMENT = ROLE__ROLE_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POSITION__SUPPLIED_STORE = ROLE__SUPPLIED_STORE;
+	int POSITION__SUPPLYING_STORE = ROLE__SUPPLYING_STORE;
 
 				/**
 	 * The feature id for the '<em><b>Actor Pool</b></em>' reference list.
@@ -8323,13 +8323,13 @@ public interface VDMLPackage extends EPackage {
     int BUSINESS_NETWORK__OWNED_ASSIGNMENT = COLLABORATION__OWNED_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BUSINESS_NETWORK__SUPPLIED_STORE = COLLABORATION__SUPPLIED_STORE;
+	int BUSINESS_NETWORK__SUPPLYING_STORE = COLLABORATION__SUPPLYING_STORE;
 
 				/**
 	 * The feature id for the '<em><b>Party</b></em>' containment reference list.
@@ -8522,13 +8522,13 @@ public interface VDMLPackage extends EPackage {
     int PARTY__ROLE_ASSIGNMENT = ROLE__ROLE_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARTY__SUPPLIED_STORE = ROLE__SUPPLIED_STORE;
+	int PARTY__SUPPLYING_STORE = ROLE__SUPPLYING_STORE;
 
 				/**
 	 * The number of structural features of the '<em>Party</em>' class.
@@ -8730,13 +8730,13 @@ public interface VDMLPackage extends EPackage {
     int COMMUNITY__OWNED_ASSIGNMENT = COLLABORATION__OWNED_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMUNITY__SUPPLIED_STORE = COLLABORATION__SUPPLIED_STORE;
+	int COMMUNITY__SUPPLYING_STORE = COLLABORATION__SUPPLYING_STORE;
 
 				/**
 	 * The feature id for the '<em><b>Member</b></em>' containment reference list.
@@ -8929,13 +8929,13 @@ public interface VDMLPackage extends EPackage {
     int MEMBER__ROLE_ASSIGNMENT = ROLE__ROLE_ASSIGNMENT;
 
     /**
-	 * The feature id for the '<em><b>Supplied Store</b></em>' reference list.
+	 * The feature id for the '<em><b>Supplying Store</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER__SUPPLIED_STORE = ROLE__SUPPLIED_STORE;
+	int MEMBER__SUPPLYING_STORE = ROLE__SUPPLYING_STORE;
 
 				/**
 	 * The number of structural features of the '<em>Member</em>' class.
@@ -9212,13 +9212,76 @@ public interface VDMLPackage extends EPackage {
 	int STORE_LIBRARY = 63;
 
 				/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__NAME = VDML_ELEMENT__NAME;
+
+				/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__DESCRIPTION = VDML_ELEMENT__DESCRIPTION;
+
+				/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__ATTRIBUTE = VDML_ELEMENT__ATTRIBUTE;
+
+				/**
+	 * The feature id for the '<em><b>Represents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__REPRESENTS = VDML_ELEMENT__REPRESENTS;
+
+				/**
+	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__ANNOTATION = VDML_ELEMENT__ANNOTATION;
+
+				/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__ID = VDML_ELEMENT__ID;
+
+				/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+				/**
 	 * The feature id for the '<em><b>Store Definitions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_LIBRARY__STORE_DEFINITIONS = 0;
+	int STORE_LIBRARY__STORE_DEFINITIONS = VDML_ELEMENT_FEATURE_COUNT + 0;
 
 				/**
 	 * The feature id for the '<em><b>Library</b></em>' reference.
@@ -9227,7 +9290,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_LIBRARY__LIBRARY = 1;
+	int STORE_LIBRARY__LIBRARY = VDML_ELEMENT_FEATURE_COUNT + 1;
 
 				/**
 	 * The number of structural features of the '<em>Store Library</em>' class.
@@ -9236,7 +9299,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_LIBRARY_FEATURE_COUNT = 2;
+	int STORE_LIBRARY_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 2;
 
 				/**
 	 * The number of operations of the '<em>Store Library</em>' class.
@@ -9245,7 +9308,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_LIBRARY_OPERATION_COUNT = 0;
+	int STORE_LIBRARY_OPERATION_COUNT = VDML_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
 	 * The meta object id for the '{@link org.omg.vdml.impl.StoreDefinitionImpl <em>Store Definition</em>}' class.
@@ -9357,14 +9420,14 @@ public interface VDMLPackage extends EPackage {
 	int STORE_DEFINITION_OPERATION_COUNT = VDML_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
-	 * The meta object id for the '{@link org.omg.vdml.impl.SuppliedStoreImpl <em>Supplied Store</em>}' class.
+	 * The meta object id for the '{@link org.omg.vdml.impl.SupplyingStoreImpl <em>Supplying Store</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.vdml.impl.SuppliedStoreImpl
-	 * @see org.omg.vdml.impl.VDMLPackageImpl#getSuppliedStore()
+	 * @see org.omg.vdml.impl.SupplyingStoreImpl
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getSupplyingStore()
 	 * @generated
 	 */
-	int SUPPLIED_STORE = 65;
+	int SUPPLYING_STORE = 65;
 
 				/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9373,7 +9436,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__NAME = PORT_CONTAINER__NAME;
+	int SUPPLYING_STORE__NAME = PORT_CONTAINER__NAME;
 
 				/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -9382,7 +9445,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__DESCRIPTION = PORT_CONTAINER__DESCRIPTION;
+	int SUPPLYING_STORE__DESCRIPTION = PORT_CONTAINER__DESCRIPTION;
 
 				/**
 	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
@@ -9391,7 +9454,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__ATTRIBUTE = PORT_CONTAINER__ATTRIBUTE;
+	int SUPPLYING_STORE__ATTRIBUTE = PORT_CONTAINER__ATTRIBUTE;
 
 				/**
 	 * The feature id for the '<em><b>Represents</b></em>' attribute.
@@ -9400,7 +9463,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__REPRESENTS = PORT_CONTAINER__REPRESENTS;
+	int SUPPLYING_STORE__REPRESENTS = PORT_CONTAINER__REPRESENTS;
 
 				/**
 	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
@@ -9409,7 +9472,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__ANNOTATION = PORT_CONTAINER__ANNOTATION;
+	int SUPPLYING_STORE__ANNOTATION = PORT_CONTAINER__ANNOTATION;
 
 				/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -9418,7 +9481,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__ID = PORT_CONTAINER__ID;
+	int SUPPLYING_STORE__ID = PORT_CONTAINER__ID;
 
 				/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -9427,7 +9490,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__QUALIFIED_NAME = PORT_CONTAINER__QUALIFIED_NAME;
+	int SUPPLYING_STORE__QUALIFIED_NAME = PORT_CONTAINER__QUALIFIED_NAME;
 
 				/**
 	 * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -9436,7 +9499,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__MEASURED_CHARACTERISTIC = PORT_CONTAINER__MEASURED_CHARACTERISTIC;
+	int SUPPLYING_STORE__MEASURED_CHARACTERISTIC = PORT_CONTAINER__MEASURED_CHARACTERISTIC;
 
 				/**
 	 * The feature id for the '<em><b>Contained Port</b></em>' containment reference list.
@@ -9445,7 +9508,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__CONTAINED_PORT = PORT_CONTAINER__CONTAINED_PORT;
+	int SUPPLYING_STORE__CONTAINED_PORT = PORT_CONTAINER__CONTAINED_PORT;
 
 				/**
 	 * The feature id for the '<em><b>Supplying Role</b></em>' reference.
@@ -9454,7 +9517,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__SUPPLYING_ROLE = PORT_CONTAINER_FEATURE_COUNT + 0;
+	int SUPPLYING_STORE__SUPPLYING_ROLE = PORT_CONTAINER_FEATURE_COUNT + 0;
 
 				/**
 	 * The feature id for the '<em><b>Duration</b></em>' containment reference.
@@ -9463,7 +9526,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__DURATION = PORT_CONTAINER_FEATURE_COUNT + 1;
+	int SUPPLYING_STORE__DURATION = PORT_CONTAINER_FEATURE_COUNT + 1;
 
 				/**
 	 * The feature id for the '<em><b>Inventory Level</b></em>' containment reference.
@@ -9472,7 +9535,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__INVENTORY_LEVEL = PORT_CONTAINER_FEATURE_COUNT + 2;
+	int SUPPLYING_STORE__INVENTORY_LEVEL = PORT_CONTAINER_FEATURE_COUNT + 2;
 
 				/**
 	 * The feature id for the '<em><b>Resource</b></em>' reference.
@@ -9481,7 +9544,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__RESOURCE = PORT_CONTAINER_FEATURE_COUNT + 3;
+	int SUPPLYING_STORE__RESOURCE = PORT_CONTAINER_FEATURE_COUNT + 3;
 
 				/**
 	 * The feature id for the '<em><b>Store Requirement</b></em>' reference.
@@ -9490,7 +9553,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__STORE_REQUIREMENT = PORT_CONTAINER_FEATURE_COUNT + 4;
+	int SUPPLYING_STORE__STORE_REQUIREMENT = PORT_CONTAINER_FEATURE_COUNT + 4;
 
 				/**
 	 * The feature id for the '<em><b>Collaboration</b></em>' container reference.
@@ -9499,25 +9562,25 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE__COLLABORATION = PORT_CONTAINER_FEATURE_COUNT + 5;
+	int SUPPLYING_STORE__COLLABORATION = PORT_CONTAINER_FEATURE_COUNT + 5;
 
 				/**
-	 * The number of structural features of the '<em>Supplied Store</em>' class.
+	 * The number of structural features of the '<em>Supplying Store</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE_FEATURE_COUNT = PORT_CONTAINER_FEATURE_COUNT + 6;
+	int SUPPLYING_STORE_FEATURE_COUNT = PORT_CONTAINER_FEATURE_COUNT + 6;
 
 				/**
-	 * The number of operations of the '<em>Supplied Store</em>' class.
+	 * The number of operations of the '<em>Supplying Store</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_STORE_OPERATION_COUNT = PORT_CONTAINER_OPERATION_COUNT + 0;
+	int SUPPLYING_STORE_OPERATION_COUNT = PORT_CONTAINER_OPERATION_COUNT + 0;
 
 				/**
 	 * The meta object id for the '{@link org.omg.vdml.impl.PoolDefinitionImpl <em>Pool Definition</em>}' class.
@@ -9629,14 +9692,14 @@ public interface VDMLPackage extends EPackage {
 	int POOL_DEFINITION_OPERATION_COUNT = STORE_DEFINITION_OPERATION_COUNT + 0;
 
 				/**
-	 * The meta object id for the '{@link org.omg.vdml.impl.SuppliedPoolImpl <em>Supplied Pool</em>}' class.
+	 * The meta object id for the '{@link org.omg.vdml.impl.SupplyingPoolImpl <em>Supplying Pool</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.omg.vdml.impl.SuppliedPoolImpl
-	 * @see org.omg.vdml.impl.VDMLPackageImpl#getSuppliedPool()
+	 * @see org.omg.vdml.impl.SupplyingPoolImpl
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getSupplyingPool()
 	 * @generated
 	 */
-	int SUPPLIED_POOL = 67;
+	int SUPPLYING_POOL = 67;
 
 				/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -9645,7 +9708,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__NAME = SUPPLIED_STORE__NAME;
+	int SUPPLYING_POOL__NAME = SUPPLYING_STORE__NAME;
 
 				/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -9654,7 +9717,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__DESCRIPTION = SUPPLIED_STORE__DESCRIPTION;
+	int SUPPLYING_POOL__DESCRIPTION = SUPPLYING_STORE__DESCRIPTION;
 
 				/**
 	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
@@ -9663,7 +9726,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__ATTRIBUTE = SUPPLIED_STORE__ATTRIBUTE;
+	int SUPPLYING_POOL__ATTRIBUTE = SUPPLYING_STORE__ATTRIBUTE;
 
 				/**
 	 * The feature id for the '<em><b>Represents</b></em>' attribute.
@@ -9672,7 +9735,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__REPRESENTS = SUPPLIED_STORE__REPRESENTS;
+	int SUPPLYING_POOL__REPRESENTS = SUPPLYING_STORE__REPRESENTS;
 
 				/**
 	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
@@ -9681,7 +9744,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__ANNOTATION = SUPPLIED_STORE__ANNOTATION;
+	int SUPPLYING_POOL__ANNOTATION = SUPPLYING_STORE__ANNOTATION;
 
 				/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -9690,7 +9753,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__ID = SUPPLIED_STORE__ID;
+	int SUPPLYING_POOL__ID = SUPPLYING_STORE__ID;
 
 				/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -9699,7 +9762,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__QUALIFIED_NAME = SUPPLIED_STORE__QUALIFIED_NAME;
+	int SUPPLYING_POOL__QUALIFIED_NAME = SUPPLYING_STORE__QUALIFIED_NAME;
 
 				/**
 	 * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
@@ -9708,7 +9771,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__MEASURED_CHARACTERISTIC = SUPPLIED_STORE__MEASURED_CHARACTERISTIC;
+	int SUPPLYING_POOL__MEASURED_CHARACTERISTIC = SUPPLYING_STORE__MEASURED_CHARACTERISTIC;
 
 				/**
 	 * The feature id for the '<em><b>Contained Port</b></em>' containment reference list.
@@ -9717,7 +9780,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__CONTAINED_PORT = SUPPLIED_STORE__CONTAINED_PORT;
+	int SUPPLYING_POOL__CONTAINED_PORT = SUPPLYING_STORE__CONTAINED_PORT;
 
 				/**
 	 * The feature id for the '<em><b>Supplying Role</b></em>' reference.
@@ -9726,7 +9789,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__SUPPLYING_ROLE = SUPPLIED_STORE__SUPPLYING_ROLE;
+	int SUPPLYING_POOL__SUPPLYING_ROLE = SUPPLYING_STORE__SUPPLYING_ROLE;
 
 				/**
 	 * The feature id for the '<em><b>Duration</b></em>' containment reference.
@@ -9735,7 +9798,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__DURATION = SUPPLIED_STORE__DURATION;
+	int SUPPLYING_POOL__DURATION = SUPPLYING_STORE__DURATION;
 
 				/**
 	 * The feature id for the '<em><b>Inventory Level</b></em>' containment reference.
@@ -9744,7 +9807,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__INVENTORY_LEVEL = SUPPLIED_STORE__INVENTORY_LEVEL;
+	int SUPPLYING_POOL__INVENTORY_LEVEL = SUPPLYING_STORE__INVENTORY_LEVEL;
 
 				/**
 	 * The feature id for the '<em><b>Resource</b></em>' reference.
@@ -9753,7 +9816,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__RESOURCE = SUPPLIED_STORE__RESOURCE;
+	int SUPPLYING_POOL__RESOURCE = SUPPLYING_STORE__RESOURCE;
 
 				/**
 	 * The feature id for the '<em><b>Store Requirement</b></em>' reference.
@@ -9762,7 +9825,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__STORE_REQUIREMENT = SUPPLIED_STORE__STORE_REQUIREMENT;
+	int SUPPLYING_POOL__STORE_REQUIREMENT = SUPPLYING_STORE__STORE_REQUIREMENT;
 
 				/**
 	 * The feature id for the '<em><b>Collaboration</b></em>' container reference.
@@ -9771,7 +9834,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__COLLABORATION = SUPPLIED_STORE__COLLABORATION;
+	int SUPPLYING_POOL__COLLABORATION = SUPPLYING_STORE__COLLABORATION;
 
 				/**
 	 * The feature id for the '<em><b>Pool Calendar</b></em>' containment reference.
@@ -9780,7 +9843,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__POOL_CALENDAR = SUPPLIED_STORE_FEATURE_COUNT + 0;
+	int SUPPLYING_POOL__POOL_CALENDAR = SUPPLYING_STORE_FEATURE_COUNT + 0;
 
 				/**
 	 * The feature id for the '<em><b>Pool Size</b></em>' containment reference.
@@ -9789,7 +9852,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__POOL_SIZE = SUPPLIED_STORE_FEATURE_COUNT + 1;
+	int SUPPLYING_POOL__POOL_SIZE = SUPPLYING_STORE_FEATURE_COUNT + 1;
 
 				/**
 	 * The feature id for the '<em><b>Position</b></em>' reference list.
@@ -9798,26 +9861,25 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL__POSITION = SUPPLIED_STORE_FEATURE_COUNT + 2;
+	int SUPPLYING_POOL__POSITION = SUPPLYING_STORE_FEATURE_COUNT + 2;
 
 				/**
-	 * The number of structural features of the '<em>Supplied Pool</em>' class.
+	 * The number of structural features of the '<em>Supplying Pool</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL_FEATURE_COUNT = SUPPLIED_STORE_FEATURE_COUNT + 3;
+	int SUPPLYING_POOL_FEATURE_COUNT = SUPPLYING_STORE_FEATURE_COUNT + 3;
 
 				/**
-	 * The number of operations of the '<em>Supplied Pool</em>' class.
+	 * The number of operations of the '<em>Supplying Pool</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUPPLIED_POOL_OPERATION_COUNT = SUPPLIED_STORE_OPERATION_COUNT + 0;
-
+	int SUPPLYING_POOL_OPERATION_COUNT = SUPPLYING_STORE_OPERATION_COUNT + 0;
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.ValueDeliveryModel <em>Value Delivery Model</em>}'.
@@ -10886,15 +10948,15 @@ public interface VDMLPackage extends EPackage {
     EReference getRole_RoleAssignment();
 
     /**
-	 * Returns the meta object for the reference list '{@link org.omg.vdml.Role#getSuppliedStore <em>Supplied Store</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.Role#getSupplyingStore <em>Supplying Store</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Supplied Store</em>'.
-	 * @see org.omg.vdml.Role#getSuppliedStore()
+	 * @return the meta object for the reference list '<em>Supplying Store</em>'.
+	 * @see org.omg.vdml.Role#getSupplyingStore()
 	 * @see #getRole()
 	 * @generated
 	 */
-	EReference getRole_SuppliedStore();
+	EReference getRole_SupplyingStore();
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.Activity <em>Activity</em>}'.
@@ -11872,15 +11934,15 @@ public interface VDMLPackage extends EPackage {
     EReference getCollaboration_OwnedAssignment();
 
     /**
-	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.Collaboration#getSuppliedStore <em>Supplied Store</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.Collaboration#getSupplyingStore <em>Supplying Store</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Supplied Store</em>'.
-	 * @see org.omg.vdml.Collaboration#getSuppliedStore()
+	 * @return the meta object for the containment reference list '<em>Supplying Store</em>'.
+	 * @see org.omg.vdml.Collaboration#getSupplyingStore()
 	 * @see #getCollaboration()
 	 * @generated
 	 */
-	EReference getCollaboration_SuppliedStore();
+	EReference getCollaboration_SupplyingStore();
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.DelegationContext <em>Delegation Context</em>}'.
@@ -12835,80 +12897,80 @@ public interface VDMLPackage extends EPackage {
 	EReference getStoreDefinition_CharacteristicDefinition();
 
 				/**
-	 * Returns the meta object for class '{@link org.omg.vdml.SuppliedStore <em>Supplied Store</em>}'.
+	 * Returns the meta object for class '{@link org.omg.vdml.SupplyingStore <em>Supplying Store</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Supplied Store</em>'.
-	 * @see org.omg.vdml.SuppliedStore
+	 * @return the meta object for class '<em>Supplying Store</em>'.
+	 * @see org.omg.vdml.SupplyingStore
 	 * @generated
 	 */
-	EClass getSuppliedStore();
+	EClass getSupplyingStore();
 
 				/**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.SuppliedStore#getSupplyingRole <em>Supplying Role</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.SupplyingStore#getSupplyingRole <em>Supplying Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Supplying Role</em>'.
-	 * @see org.omg.vdml.SuppliedStore#getSupplyingRole()
-	 * @see #getSuppliedStore()
+	 * @see org.omg.vdml.SupplyingStore#getSupplyingRole()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 */
-	EReference getSuppliedStore_SupplyingRole();
+	EReference getSupplyingStore_SupplyingRole();
 
 				/**
-	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SuppliedStore#getDuration <em>Duration</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SupplyingStore#getDuration <em>Duration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Duration</em>'.
-	 * @see org.omg.vdml.SuppliedStore#getDuration()
-	 * @see #getSuppliedStore()
+	 * @see org.omg.vdml.SupplyingStore#getDuration()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 */
-	EReference getSuppliedStore_Duration();
+	EReference getSupplyingStore_Duration();
 
 				/**
-	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SuppliedStore#getInventoryLevel <em>Inventory Level</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SupplyingStore#getInventoryLevel <em>Inventory Level</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Inventory Level</em>'.
-	 * @see org.omg.vdml.SuppliedStore#getInventoryLevel()
-	 * @see #getSuppliedStore()
+	 * @see org.omg.vdml.SupplyingStore#getInventoryLevel()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 */
-	EReference getSuppliedStore_InventoryLevel();
+	EReference getSupplyingStore_InventoryLevel();
 
 				/**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.SuppliedStore#getResource <em>Resource</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.SupplyingStore#getResource <em>Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Resource</em>'.
-	 * @see org.omg.vdml.SuppliedStore#getResource()
-	 * @see #getSuppliedStore()
+	 * @see org.omg.vdml.SupplyingStore#getResource()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 */
-	EReference getSuppliedStore_Resource();
+	EReference getSupplyingStore_Resource();
 
 				/**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.SuppliedStore#getStoreRequirement <em>Store Requirement</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.SupplyingStore#getStoreRequirement <em>Store Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Store Requirement</em>'.
-	 * @see org.omg.vdml.SuppliedStore#getStoreRequirement()
-	 * @see #getSuppliedStore()
+	 * @see org.omg.vdml.SupplyingStore#getStoreRequirement()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 */
-	EReference getSuppliedStore_StoreRequirement();
+	EReference getSupplyingStore_StoreRequirement();
 
 				/**
-	 * Returns the meta object for the container reference '{@link org.omg.vdml.SuppliedStore#getCollaboration <em>Collaboration</em>}'.
+	 * Returns the meta object for the container reference '{@link org.omg.vdml.SupplyingStore#getCollaboration <em>Collaboration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Collaboration</em>'.
-	 * @see org.omg.vdml.SuppliedStore#getCollaboration()
-	 * @see #getSuppliedStore()
+	 * @see org.omg.vdml.SupplyingStore#getCollaboration()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 */
-	EReference getSuppliedStore_Collaboration();
+	EReference getSupplyingStore_Collaboration();
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.PoolDefinition <em>Pool Definition</em>}'.
@@ -12921,47 +12983,47 @@ public interface VDMLPackage extends EPackage {
 	EClass getPoolDefinition();
 
 				/**
-	 * Returns the meta object for class '{@link org.omg.vdml.SuppliedPool <em>Supplied Pool</em>}'.
+	 * Returns the meta object for class '{@link org.omg.vdml.SupplyingPool <em>Supplying Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Supplied Pool</em>'.
-	 * @see org.omg.vdml.SuppliedPool
+	 * @return the meta object for class '<em>Supplying Pool</em>'.
+	 * @see org.omg.vdml.SupplyingPool
 	 * @generated
 	 */
-	EClass getSuppliedPool();
+	EClass getSupplyingPool();
 
 				/**
-	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SuppliedPool#getPoolCalendar <em>Pool Calendar</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SupplyingPool#getPoolCalendar <em>Pool Calendar</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Pool Calendar</em>'.
-	 * @see org.omg.vdml.SuppliedPool#getPoolCalendar()
-	 * @see #getSuppliedPool()
+	 * @see org.omg.vdml.SupplyingPool#getPoolCalendar()
+	 * @see #getSupplyingPool()
 	 * @generated
 	 */
-	EReference getSuppliedPool_PoolCalendar();
+	EReference getSupplyingPool_PoolCalendar();
 
 				/**
-	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SuppliedPool#getPoolSize <em>Pool Size</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.omg.vdml.SupplyingPool#getPoolSize <em>Pool Size</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Pool Size</em>'.
-	 * @see org.omg.vdml.SuppliedPool#getPoolSize()
-	 * @see #getSuppliedPool()
+	 * @see org.omg.vdml.SupplyingPool#getPoolSize()
+	 * @see #getSupplyingPool()
 	 * @generated
 	 */
-	EReference getSuppliedPool_PoolSize();
+	EReference getSupplyingPool_PoolSize();
 
 				/**
-	 * Returns the meta object for the reference list '{@link org.omg.vdml.SuppliedPool#getPosition <em>Position</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.SupplyingPool#getPosition <em>Position</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Position</em>'.
-	 * @see org.omg.vdml.SuppliedPool#getPosition()
-	 * @see #getSuppliedPool()
+	 * @see org.omg.vdml.SupplyingPool#getPosition()
+	 * @see #getSupplyingPool()
 	 * @generated
 	 */
-	EReference getSuppliedPool_Position();
+	EReference getSupplyingPool_Position();
 
 				/**
 	 * Returns the factory that creates the instances of the model.
@@ -13825,12 +13887,12 @@ public interface VDMLPackage extends EPackage {
         EReference ROLE__ROLE_ASSIGNMENT = eINSTANCE.getRole_RoleAssignment();
 
         /**
-		 * The meta object literal for the '<em><b>Supplied Store</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Supplying Store</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ROLE__SUPPLIED_STORE = eINSTANCE.getRole_SuppliedStore();
+		EReference ROLE__SUPPLYING_STORE = eINSTANCE.getRole_SupplyingStore();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.ActivityImpl <em>Activity</em>}' class.
@@ -14583,12 +14645,12 @@ public interface VDMLPackage extends EPackage {
         EReference COLLABORATION__OWNED_ASSIGNMENT = eINSTANCE.getCollaboration_OwnedAssignment();
 
         /**
-		 * The meta object literal for the '<em><b>Supplied Store</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Supplying Store</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COLLABORATION__SUPPLIED_STORE = eINSTANCE.getCollaboration_SuppliedStore();
+		EReference COLLABORATION__SUPPLYING_STORE = eINSTANCE.getCollaboration_SupplyingStore();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.DelegationContextImpl <em>Delegation Context</em>}' class.
@@ -15357,14 +15419,14 @@ public interface VDMLPackage extends EPackage {
 		EReference STORE_DEFINITION__CHARACTERISTIC_DEFINITION = eINSTANCE.getStoreDefinition_CharacteristicDefinition();
 
 								/**
-		 * The meta object literal for the '{@link org.omg.vdml.impl.SuppliedStoreImpl <em>Supplied Store</em>}' class.
+		 * The meta object literal for the '{@link org.omg.vdml.impl.SupplyingStoreImpl <em>Supplying Store</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.vdml.impl.SuppliedStoreImpl
-		 * @see org.omg.vdml.impl.VDMLPackageImpl#getSuppliedStore()
+		 * @see org.omg.vdml.impl.SupplyingStoreImpl
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getSupplyingStore()
 		 * @generated
 		 */
-		EClass SUPPLIED_STORE = eINSTANCE.getSuppliedStore();
+		EClass SUPPLYING_STORE = eINSTANCE.getSupplyingStore();
 
 								/**
 		 * The meta object literal for the '<em><b>Supplying Role</b></em>' reference feature.
@@ -15372,7 +15434,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_STORE__SUPPLYING_ROLE = eINSTANCE.getSuppliedStore_SupplyingRole();
+		EReference SUPPLYING_STORE__SUPPLYING_ROLE = eINSTANCE.getSupplyingStore_SupplyingRole();
 
 								/**
 		 * The meta object literal for the '<em><b>Duration</b></em>' containment reference feature.
@@ -15380,7 +15442,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_STORE__DURATION = eINSTANCE.getSuppliedStore_Duration();
+		EReference SUPPLYING_STORE__DURATION = eINSTANCE.getSupplyingStore_Duration();
 
 								/**
 		 * The meta object literal for the '<em><b>Inventory Level</b></em>' containment reference feature.
@@ -15388,7 +15450,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_STORE__INVENTORY_LEVEL = eINSTANCE.getSuppliedStore_InventoryLevel();
+		EReference SUPPLYING_STORE__INVENTORY_LEVEL = eINSTANCE.getSupplyingStore_InventoryLevel();
 
 								/**
 		 * The meta object literal for the '<em><b>Resource</b></em>' reference feature.
@@ -15396,7 +15458,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_STORE__RESOURCE = eINSTANCE.getSuppliedStore_Resource();
+		EReference SUPPLYING_STORE__RESOURCE = eINSTANCE.getSupplyingStore_Resource();
 
 								/**
 		 * The meta object literal for the '<em><b>Store Requirement</b></em>' reference feature.
@@ -15404,7 +15466,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_STORE__STORE_REQUIREMENT = eINSTANCE.getSuppliedStore_StoreRequirement();
+		EReference SUPPLYING_STORE__STORE_REQUIREMENT = eINSTANCE.getSupplyingStore_StoreRequirement();
 
 								/**
 		 * The meta object literal for the '<em><b>Collaboration</b></em>' container reference feature.
@@ -15412,7 +15474,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_STORE__COLLABORATION = eINSTANCE.getSuppliedStore_Collaboration();
+		EReference SUPPLYING_STORE__COLLABORATION = eINSTANCE.getSupplyingStore_Collaboration();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.PoolDefinitionImpl <em>Pool Definition</em>}' class.
@@ -15425,14 +15487,14 @@ public interface VDMLPackage extends EPackage {
 		EClass POOL_DEFINITION = eINSTANCE.getPoolDefinition();
 
 								/**
-		 * The meta object literal for the '{@link org.omg.vdml.impl.SuppliedPoolImpl <em>Supplied Pool</em>}' class.
+		 * The meta object literal for the '{@link org.omg.vdml.impl.SupplyingPoolImpl <em>Supplying Pool</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.omg.vdml.impl.SuppliedPoolImpl
-		 * @see org.omg.vdml.impl.VDMLPackageImpl#getSuppliedPool()
+		 * @see org.omg.vdml.impl.SupplyingPoolImpl
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getSupplyingPool()
 		 * @generated
 		 */
-		EClass SUPPLIED_POOL = eINSTANCE.getSuppliedPool();
+		EClass SUPPLYING_POOL = eINSTANCE.getSupplyingPool();
 
 								/**
 		 * The meta object literal for the '<em><b>Pool Calendar</b></em>' containment reference feature.
@@ -15440,7 +15502,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_POOL__POOL_CALENDAR = eINSTANCE.getSuppliedPool_PoolCalendar();
+		EReference SUPPLYING_POOL__POOL_CALENDAR = eINSTANCE.getSupplyingPool_PoolCalendar();
 
 								/**
 		 * The meta object literal for the '<em><b>Pool Size</b></em>' containment reference feature.
@@ -15448,7 +15510,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_POOL__POOL_SIZE = eINSTANCE.getSuppliedPool_PoolSize();
+		EReference SUPPLYING_POOL__POOL_SIZE = eINSTANCE.getSupplyingPool_PoolSize();
 
 								/**
 		 * The meta object literal for the '<em><b>Position</b></em>' reference list feature.
@@ -15456,7 +15518,7 @@ public interface VDMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUPPLIED_POOL__POSITION = eINSTANCE.getSuppliedPool_Position();
+		EReference SUPPLYING_POOL__POSITION = eINSTANCE.getSupplyingPool_Position();
 
     }
 

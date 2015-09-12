@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -36,7 +34,7 @@ import org.omg.vdml.VDMLPackage;
  *
  * @generated
  */
-public class StoreLibraryImpl extends MinimalEObjectImpl.Container implements StoreLibrary {
+public class StoreLibraryImpl extends VdmlElementImpl implements StoreLibrary {
 	/**
 	 * The cached value of the '{@link #getStoreDefinitions() <em>Store Definitions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

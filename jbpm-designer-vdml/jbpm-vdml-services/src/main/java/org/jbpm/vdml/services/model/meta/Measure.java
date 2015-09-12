@@ -34,6 +34,7 @@ public abstract class Measure implements  MetaEntity{
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(baos);
             writeInformation(objectOutputStream);
+            objectOutputStream.flush();
             this.information=baos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);

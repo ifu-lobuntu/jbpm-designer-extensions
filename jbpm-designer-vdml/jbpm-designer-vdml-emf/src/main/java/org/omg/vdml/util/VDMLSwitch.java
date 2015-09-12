@@ -641,6 +641,7 @@ public class VDMLSwitch<T> extends Switch<T> {
 			case VDMLPackage.STORE_LIBRARY: {
 				StoreLibrary storeLibrary = (StoreLibrary)theEObject;
 				T result = caseStoreLibrary(storeLibrary);
+				if (result == null) result = caseVdmlElement(storeLibrary);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -651,12 +652,12 @@ public class VDMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VDMLPackage.SUPPLIED_STORE: {
-				SuppliedStore suppliedStore = (SuppliedStore)theEObject;
-				T result = caseSuppliedStore(suppliedStore);
-				if (result == null) result = casePortContainer(suppliedStore);
-				if (result == null) result = caseMeasurableElement(suppliedStore);
-				if (result == null) result = caseVdmlElement(suppliedStore);
+			case VDMLPackage.SUPPLYING_STORE: {
+				SupplyingStore supplyingStore = (SupplyingStore)theEObject;
+				T result = caseSupplyingStore(supplyingStore);
+				if (result == null) result = casePortContainer(supplyingStore);
+				if (result == null) result = caseMeasurableElement(supplyingStore);
+				if (result == null) result = caseVdmlElement(supplyingStore);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -668,13 +669,13 @@ public class VDMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case VDMLPackage.SUPPLIED_POOL: {
-				SuppliedPool suppliedPool = (SuppliedPool)theEObject;
-				T result = caseSuppliedPool(suppliedPool);
-				if (result == null) result = caseSuppliedStore(suppliedPool);
-				if (result == null) result = casePortContainer(suppliedPool);
-				if (result == null) result = caseMeasurableElement(suppliedPool);
-				if (result == null) result = caseVdmlElement(suppliedPool);
+			case VDMLPackage.SUPPLYING_POOL: {
+				SupplyingPool supplyingPool = (SupplyingPool)theEObject;
+				T result = caseSupplyingPool(supplyingPool);
+				if (result == null) result = caseSupplyingStore(supplyingPool);
+				if (result == null) result = casePortContainer(supplyingPool);
+				if (result == null) result = caseMeasurableElement(supplyingPool);
+				if (result == null) result = caseVdmlElement(supplyingPool);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1658,17 +1659,17 @@ public class VDMLSwitch<T> extends Switch<T> {
 	}
 
 				/**
-	 * Returns the result of interpreting the object as an instance of '<em>Supplied Store</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Supplying Store</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Supplied Store</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Supplying Store</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSuppliedStore(SuppliedStore object) {
+	public T caseSupplyingStore(SupplyingStore object) {
 		return null;
 	}
 
@@ -1688,17 +1689,17 @@ public class VDMLSwitch<T> extends Switch<T> {
 	}
 
 				/**
-	 * Returns the result of interpreting the object as an instance of '<em>Supplied Pool</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Supplying Pool</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Supplied Pool</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Supplying Pool</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSuppliedPool(SuppliedPool object) {
+	public T caseSupplyingPool(SupplyingPool object) {
 		return null;
 	}
 

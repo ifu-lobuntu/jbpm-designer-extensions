@@ -18,7 +18,7 @@ import org.omg.vdml.Assignment;
 import org.omg.vdml.Port;
 import org.omg.vdml.Role;
 import org.omg.vdml.RoleDefinition;
-import org.omg.vdml.SuppliedStore;
+import org.omg.vdml.SupplyingStore;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueProposition;
 
@@ -37,7 +37,7 @@ import org.omg.vdml.ValueProposition;
  *   <li>{@link org.omg.vdml.impl.RoleImpl#getIsLead <em>Is Lead</em>}</li>
  *   <li>{@link org.omg.vdml.impl.RoleImpl#getRoleDefinition <em>Role Definition</em>}</li>
  *   <li>{@link org.omg.vdml.impl.RoleImpl#getRoleAssignment <em>Role Assignment</em>}</li>
- *   <li>{@link org.omg.vdml.impl.RoleImpl#getSuppliedStore <em>Supplied Store</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.RoleImpl#getSupplyingStore <em>Supplying Store</em>}</li>
  * </ul>
  *
  * @generated
@@ -124,14 +124,14 @@ public class RoleImpl extends ParticipantImpl implements Role {
     protected EList<Assignment> roleAssignment;
 
     /**
-	 * The cached value of the '{@link #getSuppliedStore() <em>Supplied Store</em>}' reference list.
+	 * The cached value of the '{@link #getSupplyingStore() <em>Supplying Store</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSuppliedStore()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SuppliedStore> suppliedStore;
+	protected EList<SupplyingStore> supplyingStore;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -276,11 +276,11 @@ public class RoleImpl extends ParticipantImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SuppliedStore> getSuppliedStore() {
-		if (suppliedStore == null) {
-			suppliedStore = new EObjectWithInverseResolvingEList<SuppliedStore>(SuppliedStore.class, this, VDMLPackage.ROLE__SUPPLIED_STORE, VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE);
+	public EList<SupplyingStore> getSupplyingStore() {
+		if (supplyingStore == null) {
+			supplyingStore = new EObjectWithInverseResolvingEList<SupplyingStore>(SupplyingStore.class, this, VDMLPackage.ROLE__SUPPLYING_STORE, VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE);
 		}
-		return suppliedStore;
+		return supplyingStore;
 	}
 
 				/**
@@ -302,8 +302,8 @@ public class RoleImpl extends ParticipantImpl implements Role {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getReceivedProposition()).basicAdd(otherEnd, msgs);
 			case VDMLPackage.ROLE__ROLE_ASSIGNMENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getRoleAssignment()).basicAdd(otherEnd, msgs);
-			case VDMLPackage.ROLE__SUPPLIED_STORE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSuppliedStore()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.ROLE__SUPPLYING_STORE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupplyingStore()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -326,8 +326,8 @@ public class RoleImpl extends ParticipantImpl implements Role {
 				return ((InternalEList<?>)getReceivedProposition()).basicRemove(otherEnd, msgs);
 			case VDMLPackage.ROLE__ROLE_ASSIGNMENT:
 				return ((InternalEList<?>)getRoleAssignment()).basicRemove(otherEnd, msgs);
-			case VDMLPackage.ROLE__SUPPLIED_STORE:
-				return ((InternalEList<?>)getSuppliedStore()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.ROLE__SUPPLYING_STORE:
+				return ((InternalEList<?>)getSupplyingStore()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -355,8 +355,8 @@ public class RoleImpl extends ParticipantImpl implements Role {
 				return basicGetRoleDefinition();
 			case VDMLPackage.ROLE__ROLE_ASSIGNMENT:
 				return getRoleAssignment();
-			case VDMLPackage.ROLE__SUPPLIED_STORE:
-				return getSuppliedStore();
+			case VDMLPackage.ROLE__SUPPLYING_STORE:
+				return getSupplyingStore();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -396,9 +396,9 @@ public class RoleImpl extends ParticipantImpl implements Role {
 				getRoleAssignment().clear();
 				getRoleAssignment().addAll((Collection<? extends Assignment>)newValue);
 				return;
-			case VDMLPackage.ROLE__SUPPLIED_STORE:
-				getSuppliedStore().clear();
-				getSuppliedStore().addAll((Collection<? extends SuppliedStore>)newValue);
+			case VDMLPackage.ROLE__SUPPLYING_STORE:
+				getSupplyingStore().clear();
+				getSupplyingStore().addAll((Collection<? extends SupplyingStore>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -433,8 +433,8 @@ public class RoleImpl extends ParticipantImpl implements Role {
 			case VDMLPackage.ROLE__ROLE_ASSIGNMENT:
 				getRoleAssignment().clear();
 				return;
-			case VDMLPackage.ROLE__SUPPLIED_STORE:
-				getSuppliedStore().clear();
+			case VDMLPackage.ROLE__SUPPLYING_STORE:
+				getSupplyingStore().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -462,8 +462,8 @@ public class RoleImpl extends ParticipantImpl implements Role {
 				return roleDefinition != null;
 			case VDMLPackage.ROLE__ROLE_ASSIGNMENT:
 				return roleAssignment != null && !roleAssignment.isEmpty();
-			case VDMLPackage.ROLE__SUPPLIED_STORE:
-				return suppliedStore != null && !suppliedStore.isEmpty();
+			case VDMLPackage.ROLE__SUPPLYING_STORE:
+				return supplyingStore != null && !supplyingStore.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

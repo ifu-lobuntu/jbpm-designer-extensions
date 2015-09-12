@@ -27,7 +27,7 @@
         <class>org.jbpm.vdml.services.model.meta.RoleBasedPortContainer</class>
         <class>org.jbpm.vdml.services.model.meta.Role</class>
         <class>org.jbpm.vdml.services.model.meta.StoreDefinition</class>
-        <class>org.jbpm.vdml.services.model.meta.SuppliedStore</class>
+        <class>org.jbpm.vdml.services.model.meta.SupplyingStore</class>
         <class>org.jbpm.vdml.services.model.meta.ValueProposition</class>
         <class>org.jbpm.vdml.services.model.meta.ValuePropositionComponent</class>
         <class>org.jbpm.vdml.services.model.runtime.ActivityMeasurement</class>
@@ -51,8 +51,8 @@
         <class>org.jbpm.vdml.services.model.runtime.RolePerformance</class>
         <class>org.jbpm.vdml.services.model.runtime.StoreMeasurement</class>
         <class>org.jbpm.vdml.services.model.runtime.StorePerformance</class>
-        <class>org.jbpm.vdml.services.model.runtime.SuppliedStoreMeasurement</class>
-        <class>org.jbpm.vdml.services.model.runtime.SuppliedStoreObservation</class>
+        <class>org.jbpm.vdml.services.model.runtime.SupplyingStoreMeasurement</class>
+        <class>org.jbpm.vdml.services.model.runtime.SupplyingStoreObservation</class>
         <class>org.jbpm.vdml.services.model.runtime.ValueAddMeasurement</class>
         <class>org.jbpm.vdml.services.model.runtime.ValuePropositionComponentMeasurement</class>
         <class>org.jbpm.vdml.services.model.runtime.ValuePropositionComponentPerformance</class>

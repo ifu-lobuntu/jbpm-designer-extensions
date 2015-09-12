@@ -26,7 +26,7 @@ public class MetaBuilder {
         return er;
     }
 
-    protected String buildUri(EObject a) {
+    public static  String buildUri(EObject a) {
         return a.eResource().getURI().toPlatformString(true) + "#" + JBPMECoreHelper.getID(a);
     }
 

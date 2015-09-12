@@ -2,7 +2,7 @@ package org.jbpm.vdml.services.model.runtime;
 
 
 import org.jbpm.vdml.services.model.meta.MetaEntity;
-import org.jbpm.vdml.services.model.meta.SuppliedStore;
+import org.jbpm.vdml.services.model.meta.SupplyingStore;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,9 +12,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class SuppliedStoreObservation extends RuntimePortContainer{
+public class SupplyingStoreObservation extends RuntimePortContainer{
     @ManyToOne
-    private SuppliedStoreObservation extendedSuppliedStoreObservation;
+    private SupplyingStoreObservation extendedSupplyingStoreObservation;
     @ManyToOne
     private StorePerformance store;
     @ManyToOne
@@ -22,16 +22,16 @@ public class SuppliedStoreObservation extends RuntimePortContainer{
     @ManyToOne
     private CollaborationObservation collaboration;
     @ManyToOne
-    private SuppliedStore suppliedStore;
+    private SupplyingStore supplyingStore;
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private Set<SuppliedStoreMeasurement> measurements = new HashSet<SuppliedStoreMeasurement>();//Aggregated from BusinessItemObservation
+    private Set<SupplyingStoreMeasurement> measurements = new HashSet<SupplyingStoreMeasurement>();//Aggregated from BusinessItemObservation
 
-    public SuppliedStoreObservation() {
+    public SupplyingStoreObservation() {
     }
 
-    public SuppliedStoreObservation(SuppliedStore suppliedStore, CollaborationObservation collaboration, RolePerformance supplyingRole,StorePerformance store) {
+    public SupplyingStoreObservation(SupplyingStore supplyingStore, CollaborationObservation collaboration, RolePerformance supplyingRole, StorePerformance store) {
         super();
-        this.suppliedStore = suppliedStore;
+        this.supplyingStore = supplyingStore;
         this.collaboration=collaboration;
         this.supplyingRole=supplyingRole;
         this.getCollaboration().getSuppliedStores().add(this);
@@ -46,20 +46,20 @@ public class SuppliedStoreObservation extends RuntimePortContainer{
         return collaboration;
     }
 
-    public SuppliedStore getSuppliedStore() {
-        return suppliedStore;
+    public SupplyingStore getSupplyingStore() {
+        return supplyingStore;
     }
 
-    public Set<SuppliedStoreMeasurement> getMeasurements() {
+    public Set<SupplyingStoreMeasurement> getMeasurements() {
         return measurements;
     }
 
-    public SuppliedStoreObservation getExtendedSuppliedStoreObservation() {
-        return extendedSuppliedStoreObservation;
+    public SupplyingStoreObservation getExtendedSupplyingStoreObservation() {
+        return extendedSupplyingStoreObservation;
     }
 
-    public void setExtendedSuppliedStoreObservation(SuppliedStoreObservation extendedSuppliedStoreObservation) {
-        this.extendedSuppliedStoreObservation = extendedSuppliedStoreObservation;
+    public void setExtendedSupplyingStoreObservation(SupplyingStoreObservation extendedSupplyingStoreObservation) {
+        this.extendedSupplyingStoreObservation = extendedSupplyingStoreObservation;
     }
 
     public StorePerformance getStore() {
@@ -68,7 +68,7 @@ public class SuppliedStoreObservation extends RuntimePortContainer{
 
     @Override
     public MetaEntity getMetaEntity() {
-        return suppliedStore;
+        return supplyingStore;
     }
 }
 

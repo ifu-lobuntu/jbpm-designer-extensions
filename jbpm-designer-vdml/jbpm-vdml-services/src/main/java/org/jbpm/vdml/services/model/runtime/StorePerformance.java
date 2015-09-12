@@ -22,7 +22,7 @@ public class StorePerformance implements RuntimeEntity {
     @ManyToOne
     private StoreDefinition storeDefinition;
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private Set<StoreMeasurement> measurements = new HashSet<StoreMeasurement>();//Aggregated from BusinessItemObservation
+    private Set<StoreMeasurement> measurements = new HashSet<StoreMeasurement>();//Aggregated from SupplyingStoreObservation
 
     public StorePerformance() {
     }

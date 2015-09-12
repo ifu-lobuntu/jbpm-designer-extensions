@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class SuppliedStore extends RoleBasedPortContainer {
+public class SupplyingStore extends RoleBasedPortContainer {
 
     @ManyToOne
     private StoreDefinition storeRequirement;
@@ -16,15 +16,15 @@ public class SuppliedStore extends RoleBasedPortContainer {
     @ManyToMany
     private Set<Measure> measures = new HashSet<Measure>();//Aggregated from resource.measures
 
-    public SuppliedStore(String uri, Role supplyingRole) {
+    public SupplyingStore(String uri, Role supplyingRole) {
         super(uri);
         this.supplyingRole = supplyingRole;
-        this.supplyingRole.getSuppliedStores().add(this);
+        this.supplyingRole.getSupplyingStores().add(this);
         this.collaboration=this.getSupplyingRole().getCollaboration();
-        this.getCollaboration().getSuppliedStores().add(this);
+        this.getCollaboration().getSupplyingStores().add(this);
     }
 
-    public SuppliedStore() {
+    public SupplyingStore() {
     }
 
     public Role getSupplyingRole() {

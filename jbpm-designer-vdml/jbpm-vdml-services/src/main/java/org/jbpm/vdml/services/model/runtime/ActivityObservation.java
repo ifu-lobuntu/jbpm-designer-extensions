@@ -12,6 +12,8 @@ import java.util.Set;
 @Entity
 public class ActivityObservation extends RuntimePortContainer {
     @ManyToOne
+    private CapabilityPerformance capabilityOffer;
+    @ManyToOne
     private Activity activity;
     @ManyToOne
     private RolePerformance performingRole;
@@ -25,23 +27,30 @@ public class ActivityObservation extends RuntimePortContainer {
     public ActivityObservation() {
     }
 
-    public ActivityObservation(Activity activity, CollaborationObservation collaboration, RolePerformance performingRole) {
+    public ActivityObservation(Activity activity, CollaborationObservation collaboration, RolePerformance performingRole,CapabilityPerformance capabilityOffer) {
         super();
         this.activity = activity;
         this.collaboration = collaboration;
         this.performingRole=performingRole;
         this.collaboration.getActivities().add(this);
+        this.capabilityOffer=capabilityOffer;
     }
 
     public Set<ResourceUseObservation> getResourceUseObservation() {
         return resourceUseObservation;
     }
 
+    public RolePerformance getPerformingRole() {
+        return performingRole;
+    }
 
     public Set<ActivityMeasurement> getMeasurements() {
         return measurements;
     }
 
+    public CapabilityPerformance getCapabilityOffer() {
+        return capabilityOffer;
+    }
 
     @Override
     public MetaEntity getMetaEntity() {

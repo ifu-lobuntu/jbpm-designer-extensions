@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public abstract class RoleBasedPortContainer implements MetaEntity {
+public abstract class RoleBasedPortContainer implements MetaEntity,MeasurableElement {
     @Id
     private String uri;
     private String name;

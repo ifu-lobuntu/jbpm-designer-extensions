@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.vdml.Role#getIsLead <em>Is Lead</em>}</li>
  *   <li>{@link org.omg.vdml.Role#getRoleDefinition <em>Role Definition</em>}</li>
  *   <li>{@link org.omg.vdml.Role#getRoleAssignment <em>Role Assignment</em>}</li>
- *   <li>{@link org.omg.vdml.Role#getSuppliedStore <em>Supplied Store</em>}</li>
+ *   <li>{@link org.omg.vdml.Role#getSupplyingStore <em>Supplying Store</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getRole()
@@ -172,21 +172,21 @@ public interface Role extends Participant {
     EList<Assignment> getRoleAssignment();
 
 				/**
-	 * Returns the value of the '<em><b>Supplied Store</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.vdml.SuppliedStore}.
-	 * It is bidirectional and its opposite is '{@link org.omg.vdml.SuppliedStore#getSupplyingRole <em>Supplying Role</em>}'.
+	 * Returns the value of the '<em><b>Supplying Store</b></em>' reference list.
+	 * The list contents are of type {@link org.omg.vdml.SupplyingStore}.
+	 * It is bidirectional and its opposite is '{@link org.omg.vdml.SupplyingStore#getSupplyingRole <em>Supplying Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Supplied Store</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Supplying Store</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supplied Store</em>' reference list.
-	 * @see org.omg.vdml.VDMLPackage#getRole_SuppliedStore()
-	 * @see org.omg.vdml.SuppliedStore#getSupplyingRole
+	 * @return the value of the '<em>Supplying Store</em>' reference list.
+	 * @see org.omg.vdml.VDMLPackage#getRole_SupplyingStore()
+	 * @see org.omg.vdml.SupplyingStore#getSupplyingRole
 	 * @model opposite="supplyingRole" ordered="false"
 	 * @generated
 	 */
-	EList<SuppliedStore> getSuppliedStore();
+	EList<SupplyingStore> getSupplyingStore();
 
 } // Role

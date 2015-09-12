@@ -28,7 +28,7 @@ public class CountingMeasure extends Measure {
     @Override
     protected void writeInformation(ObjectOutputStream oos) throws IOException {
         oos.writeUTF(measureToCount.getUri());
-        oos.writeObject(valuesToCount);
+        oos.writeUTF(valuesToCount);
     }
 
     public EmfReference getMeasureToCount() {

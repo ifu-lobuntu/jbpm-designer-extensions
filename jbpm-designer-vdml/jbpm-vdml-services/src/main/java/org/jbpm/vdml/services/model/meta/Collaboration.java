@@ -14,7 +14,7 @@ public class Collaboration implements  MetaEntity {
     @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
     private Set<Activity> activities=new HashSet<Activity>();
     @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
-    private Set<SuppliedStore> suppliedStores =new HashSet<SuppliedStore>();
+    private Set<SupplyingStore> supplyingStores =new HashSet<SupplyingStore>();
     @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
     private Set<DeliverableFlow> flows =new HashSet<DeliverableFlow>();
     @ManyToMany()
@@ -50,8 +50,8 @@ public class Collaboration implements  MetaEntity {
         this.name = name;
     }
 
-    public Set<SuppliedStore> getSuppliedStores() {
-        return suppliedStores;
+    public Set<SupplyingStore> getSupplyingStores() {
+        return supplyingStores;
     }
 
     public Set<BusinessItemDefinition> getBusinessItemDefinitions() {

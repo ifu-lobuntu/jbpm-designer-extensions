@@ -69,8 +69,8 @@ import org.omg.vdml.Scenario;
 import org.omg.vdml.Store;
 import org.omg.vdml.StoreDefinition;
 import org.omg.vdml.StoreLibrary;
-import org.omg.vdml.SuppliedPool;
-import org.omg.vdml.SuppliedStore;
+import org.omg.vdml.SupplyingPool;
+import org.omg.vdml.SupplyingStore;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.VDMLPackage;
 import org.omg.vdml.ValueAdd;
@@ -550,7 +550,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass suppliedStoreEClass = null;
+	private EClass supplyingStoreEClass = null;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -564,7 +564,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass suppliedPoolEClass = null;
+	private EClass supplyingPoolEClass = null;
 
 				/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1532,7 +1532,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getRole_SuppliedStore() {
+	public EReference getRole_SupplyingStore() {
 		return (EReference)roleEClass.getEStructuralFeatures().get(7);
 	}
 
@@ -2351,7 +2351,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCollaboration_SuppliedStore() {
+	public EReference getCollaboration_SupplyingStore() {
 		return (EReference)collaborationEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -3161,8 +3161,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSuppliedStore() {
-		return suppliedStoreEClass;
+	public EClass getSupplyingStore() {
+		return supplyingStoreEClass;
 	}
 
 				/**
@@ -3170,8 +3170,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedStore_SupplyingRole() {
-		return (EReference)suppliedStoreEClass.getEStructuralFeatures().get(0);
+	public EReference getSupplyingStore_SupplyingRole() {
+		return (EReference)supplyingStoreEClass.getEStructuralFeatures().get(0);
 	}
 
 				/**
@@ -3179,8 +3179,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedStore_Duration() {
-		return (EReference)suppliedStoreEClass.getEStructuralFeatures().get(1);
+	public EReference getSupplyingStore_Duration() {
+		return (EReference)supplyingStoreEClass.getEStructuralFeatures().get(1);
 	}
 
 				/**
@@ -3188,8 +3188,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedStore_InventoryLevel() {
-		return (EReference)suppliedStoreEClass.getEStructuralFeatures().get(2);
+	public EReference getSupplyingStore_InventoryLevel() {
+		return (EReference)supplyingStoreEClass.getEStructuralFeatures().get(2);
 	}
 
 				/**
@@ -3197,8 +3197,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedStore_Resource() {
-		return (EReference)suppliedStoreEClass.getEStructuralFeatures().get(3);
+	public EReference getSupplyingStore_Resource() {
+		return (EReference)supplyingStoreEClass.getEStructuralFeatures().get(3);
 	}
 
 				/**
@@ -3206,8 +3206,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedStore_StoreRequirement() {
-		return (EReference)suppliedStoreEClass.getEStructuralFeatures().get(4);
+	public EReference getSupplyingStore_StoreRequirement() {
+		return (EReference)supplyingStoreEClass.getEStructuralFeatures().get(4);
 	}
 
 				/**
@@ -3215,8 +3215,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedStore_Collaboration() {
-		return (EReference)suppliedStoreEClass.getEStructuralFeatures().get(5);
+	public EReference getSupplyingStore_Collaboration() {
+		return (EReference)supplyingStoreEClass.getEStructuralFeatures().get(5);
 	}
 
 				/**
@@ -3233,8 +3233,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSuppliedPool() {
-		return suppliedPoolEClass;
+	public EClass getSupplyingPool() {
+		return supplyingPoolEClass;
 	}
 
 				/**
@@ -3242,8 +3242,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedPool_PoolCalendar() {
-		return (EReference)suppliedPoolEClass.getEStructuralFeatures().get(0);
+	public EReference getSupplyingPool_PoolCalendar() {
+		return (EReference)supplyingPoolEClass.getEStructuralFeatures().get(0);
 	}
 
 				/**
@@ -3251,8 +3251,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedPool_PoolSize() {
-		return (EReference)suppliedPoolEClass.getEStructuralFeatures().get(1);
+	public EReference getSupplyingPool_PoolSize() {
+		return (EReference)supplyingPoolEClass.getEStructuralFeatures().get(1);
 	}
 
 				/**
@@ -3260,8 +3260,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSuppliedPool_Position() {
-		return (EReference)suppliedPoolEClass.getEStructuralFeatures().get(2);
+	public EReference getSupplyingPool_Position() {
+		return (EReference)supplyingPoolEClass.getEStructuralFeatures().get(2);
 	}
 
 				/**
@@ -3413,7 +3413,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEAttribute(roleEClass, ROLE__IS_LEAD);
 		createEReference(roleEClass, ROLE__ROLE_DEFINITION);
 		createEReference(roleEClass, ROLE__ROLE_ASSIGNMENT);
-		createEReference(roleEClass, ROLE__SUPPLIED_STORE);
+		createEReference(roleEClass, ROLE__SUPPLYING_STORE);
 
 		activityEClass = createEClass(ACTIVITY);
 		createEReference(activityEClass, ACTIVITY__CAPABILITY_REQUIREMENT);
@@ -3519,7 +3519,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(collaborationEClass, COLLABORATION__DELEGATION_CONTEXT);
 		createEReference(collaborationEClass, COLLABORATION__SCENARIO);
 		createEReference(collaborationEClass, COLLABORATION__OWNED_ASSIGNMENT);
-		createEReference(collaborationEClass, COLLABORATION__SUPPLIED_STORE);
+		createEReference(collaborationEClass, COLLABORATION__SUPPLYING_STORE);
 
 		delegationContextEClass = createEClass(DELEGATION_CONTEXT);
 		createEReference(delegationContextEClass, DELEGATION_CONTEXT__PARENT_CONTEXT);
@@ -3637,20 +3637,20 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__RESOURCE);
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__CHARACTERISTIC_DEFINITION);
 
-		suppliedStoreEClass = createEClass(SUPPLIED_STORE);
-		createEReference(suppliedStoreEClass, SUPPLIED_STORE__SUPPLYING_ROLE);
-		createEReference(suppliedStoreEClass, SUPPLIED_STORE__DURATION);
-		createEReference(suppliedStoreEClass, SUPPLIED_STORE__INVENTORY_LEVEL);
-		createEReference(suppliedStoreEClass, SUPPLIED_STORE__RESOURCE);
-		createEReference(suppliedStoreEClass, SUPPLIED_STORE__STORE_REQUIREMENT);
-		createEReference(suppliedStoreEClass, SUPPLIED_STORE__COLLABORATION);
+		supplyingStoreEClass = createEClass(SUPPLYING_STORE);
+		createEReference(supplyingStoreEClass, SUPPLYING_STORE__SUPPLYING_ROLE);
+		createEReference(supplyingStoreEClass, SUPPLYING_STORE__DURATION);
+		createEReference(supplyingStoreEClass, SUPPLYING_STORE__INVENTORY_LEVEL);
+		createEReference(supplyingStoreEClass, SUPPLYING_STORE__RESOURCE);
+		createEReference(supplyingStoreEClass, SUPPLYING_STORE__STORE_REQUIREMENT);
+		createEReference(supplyingStoreEClass, SUPPLYING_STORE__COLLABORATION);
 
 		poolDefinitionEClass = createEClass(POOL_DEFINITION);
 
-		suppliedPoolEClass = createEClass(SUPPLIED_POOL);
-		createEReference(suppliedPoolEClass, SUPPLIED_POOL__POOL_CALENDAR);
-		createEReference(suppliedPoolEClass, SUPPLIED_POOL__POOL_SIZE);
-		createEReference(suppliedPoolEClass, SUPPLIED_POOL__POSITION);
+		supplyingPoolEClass = createEClass(SUPPLYING_POOL);
+		createEReference(supplyingPoolEClass, SUPPLYING_POOL__POOL_CALENDAR);
+		createEReference(supplyingPoolEClass, SUPPLYING_POOL__POOL_SIZE);
+		createEReference(supplyingPoolEClass, SUPPLYING_POOL__POSITION);
 	}
 
     /**
@@ -3749,10 +3749,11 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		memberEClass.getESuperTypes().add(this.getRole());
 		personEClass.getESuperTypes().add(this.getActor());
 		capabilityCategoryEClass.getESuperTypes().add(this.getCapability());
+		storeLibraryEClass.getESuperTypes().add(this.getVdmlElement());
 		storeDefinitionEClass.getESuperTypes().add(this.getVdmlElement());
-		suppliedStoreEClass.getESuperTypes().add(this.getPortContainer());
+		supplyingStoreEClass.getESuperTypes().add(this.getPortContainer());
 		poolDefinitionEClass.getESuperTypes().add(this.getStoreDefinition());
-		suppliedPoolEClass.getESuperTypes().add(this.getSuppliedStore());
+		supplyingPoolEClass.getESuperTypes().add(this.getSupplyingStore());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueDeliveryModelEClass, ValueDeliveryModel.class, "ValueDeliveryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3876,7 +3877,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEAttribute(getRole_IsLead(), thePrimitiveTypesPackage.getBoolean(), "isLead", "false", 1, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRole_RoleDefinition(), this.getRoleDefinition(), null, "roleDefinition", null, 0, 1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getRole_RoleAssignment(), this.getAssignment(), this.getAssignment_AssignedRole(), "roleAssignment", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getRole_SuppliedStore(), this.getSuppliedStore(), this.getSuppliedStore_SupplyingRole(), "suppliedStore", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getRole_SupplyingStore(), this.getSupplyingStore(), this.getSupplyingStore_SupplyingRole(), "supplyingStore", null, 0, -1, Role.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActivity_CapabilityRequirement(), this.getCapability(), null, "capabilityRequirement", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3982,7 +3983,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getCollaboration_DelegationContext(), this.getDelegationContext(), this.getDelegationContext_ContextCollaboration(), "delegationContext", null, 0, -1, Collaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCollaboration_Scenario(), this.getScenario(), this.getScenario_ContextCollaboration(), "scenario", null, 0, -1, Collaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCollaboration_OwnedAssignment(), this.getAssignment(), null, "ownedAssignment", null, 0, -1, Collaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getCollaboration_SuppliedStore(), this.getSuppliedStore(), this.getSuppliedStore_Collaboration(), "suppliedStore", null, 0, -1, Collaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCollaboration_SupplyingStore(), this.getSupplyingStore(), this.getSupplyingStore_Collaboration(), "supplyingStore", null, 0, -1, Collaboration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(delegationContextEClass, DelegationContext.class, "DelegationContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDelegationContext_ParentContext(), this.getAnalysisContext(), this.getAnalysisContext_DelegationtContext(), "parentContext", null, 1, 1, DelegationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4100,20 +4101,20 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getStoreDefinition_Resource(), this.getBusinessItemDefinition(), null, "resource", null, 0, -1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getStoreDefinition_CharacteristicDefinition(), theSMMPackage.getCharacteristic(), null, "characteristicDefinition", null, 0, -1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(suppliedStoreEClass, SuppliedStore.class, "SuppliedStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSuppliedStore_SupplyingRole(), this.getRole(), this.getRole_SuppliedStore(), "supplyingRole", null, 1, 1, SuppliedStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSuppliedStore_Duration(), this.getMeasuredCharacteristic(), null, "duration", null, 1, 1, SuppliedStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSuppliedStore_InventoryLevel(), this.getMeasuredCharacteristic(), null, "inventoryLevel", null, 0, 1, SuppliedStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSuppliedStore_Resource(), this.getBusinessItem(), null, "resource", null, 1, 1, SuppliedStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSuppliedStore_StoreRequirement(), this.getStoreDefinition(), null, "storeRequirement", null, 0, 1, SuppliedStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSuppliedStore_Collaboration(), this.getCollaboration(), this.getCollaboration_SuppliedStore(), "collaboration", null, 0, 1, SuppliedStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(supplyingStoreEClass, SupplyingStore.class, "SupplyingStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSupplyingStore_SupplyingRole(), this.getRole(), this.getRole_SupplyingStore(), "supplyingRole", null, 1, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSupplyingStore_Duration(), this.getMeasuredCharacteristic(), null, "duration", null, 1, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSupplyingStore_InventoryLevel(), this.getMeasuredCharacteristic(), null, "inventoryLevel", null, 0, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSupplyingStore_Resource(), this.getBusinessItem(), null, "resource", null, 1, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSupplyingStore_StoreRequirement(), this.getStoreDefinition(), null, "storeRequirement", null, 0, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSupplyingStore_Collaboration(), this.getCollaboration(), this.getCollaboration_SupplyingStore(), "collaboration", null, 0, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(poolDefinitionEClass, PoolDefinition.class, "PoolDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(suppliedPoolEClass, SuppliedPool.class, "SuppliedPool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSuppliedPool_PoolCalendar(), this.getCalendarService(), null, "poolCalendar", null, 0, 1, SuppliedPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSuppliedPool_PoolSize(), this.getMeasuredCharacteristic(), null, "poolSize", null, 0, 1, SuppliedPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSuppliedPool_Position(), this.getPosition(), null, "position", null, 0, -1, SuppliedPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(supplyingPoolEClass, SupplyingPool.class, "SupplyingPool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSupplyingPool_PoolCalendar(), this.getCalendarService(), null, "poolCalendar", null, 0, 1, SupplyingPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSupplyingPool_PoolSize(), this.getMeasuredCharacteristic(), null, "poolSize", null, 0, 1, SupplyingPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getSupplyingPool_Position(), this.getPosition(), null, "position", null, 0, -1, SupplyingPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

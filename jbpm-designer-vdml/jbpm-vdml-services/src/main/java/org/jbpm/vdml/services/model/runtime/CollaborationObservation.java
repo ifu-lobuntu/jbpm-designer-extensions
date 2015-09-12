@@ -18,7 +18,7 @@ public class CollaborationObservation extends Participant{
     @OneToMany(mappedBy = "collaboration")
     private Set<ActivityObservation> activities = new HashSet<ActivityObservation>();
     @OneToMany(mappedBy = "collaboration")
-    private Set<SuppliedStoreObservation> suppliedStores = new HashSet<SuppliedStoreObservation>();
+    private Set<SupplyingStoreObservation> suppliedStores = new HashSet<SupplyingStoreObservation>();
     @ManyToMany()
     private Set<RolePerformance> rolePerformances = new HashSet<RolePerformance>();
 
@@ -54,7 +54,7 @@ public class CollaborationObservation extends Participant{
         return deliverableFlowObservations;
     }
 
-    public Set<SuppliedStoreObservation> getSuppliedStores() {
+    public Set<SupplyingStoreObservation> getSuppliedStores() {
         return suppliedStores;
     }
 }

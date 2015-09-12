@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1441940684136
+Bnd-LastModified: 1442029041435
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Fri,
-  11 Sep 2015 05:02:38 +0200
+Build-Timestamp: Sat,
+  12 Sep 2015 05:36:16 +0200
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extensions to the jBPM platform.    All the CMMN extension modules extend this parent,
   except for the user-facing BOMs (which are used here).
@@ -14,13 +14,7 @@ Bundle-SymbolicName: jbpm-designer-vdml-emf;singleton:=true
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.jbpm.smm.dd.smmdi,
- org.jbpm.smm.dd.smmdi.impl,
- org.jbpm.smm.dd.smmdi.util,
- org.omg.smm,
- org.omg.smm.impl,
- org.omg.smm.util,
- org.jbpm.vdml.dd.vdmldi,
+Export-Package: org.jbpm.vdml.dd.vdmldi,
  org.jbpm.vdml.dd.vdmldi.impl,
  org.jbpm.vdml.dd.vdmldi.util,
  org.omg.vdml,
@@ -32,7 +26,7 @@ Require-Bundle: org.eclipse.core.runtime,
  jbpm-designer-extensions-emf;visibility:=reexport,
  jbpm-designer-vdml-emf;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 6.4.0.201509110302
+Bundle-Version: 6.4.0.201509120336
 Bundle-ClassPath: .
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer VDML Metamodel
@@ -71,7 +65,7 @@ Private-Package: org.jbpm.smm.dd.smmdi,
  org.jbpm.smm.dd.smmdi.impl,
  org.omg.smm.util
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-bootstrap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdml/jbpm-designer-vdml-emf
-Scm-Revision: 9dd32d58a5c23f53c43c06e31a855a7e004b1b60
+Scm-Revision: 014569b1aee1176a9a83c13a1f413f0eb58363d5
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdml/jbpm-designer-vdml-emf
 Specification-Title: jBPM Designer VDML Metamodel
 Specification-Vendor: JBoss by Red Hat

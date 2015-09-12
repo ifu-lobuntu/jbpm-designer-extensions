@@ -6,23 +6,23 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Supplied Pool</b></em>'.
+ * A representation of the model object '<em><b>Supplying Pool</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.vdml.SuppliedPool#getPoolCalendar <em>Pool Calendar</em>}</li>
- *   <li>{@link org.omg.vdml.SuppliedPool#getPoolSize <em>Pool Size</em>}</li>
- *   <li>{@link org.omg.vdml.SuppliedPool#getPosition <em>Position</em>}</li>
+ *   <li>{@link org.omg.vdml.SupplyingPool#getPoolCalendar <em>Pool Calendar</em>}</li>
+ *   <li>{@link org.omg.vdml.SupplyingPool#getPoolSize <em>Pool Size</em>}</li>
+ *   <li>{@link org.omg.vdml.SupplyingPool#getPosition <em>Position</em>}</li>
  * </ul>
  *
- * @see org.omg.vdml.VDMLPackage#getSuppliedPool()
+ * @see org.omg.vdml.VDMLPackage#getSupplyingPool()
  * @model
  * @generated
  */
-public interface SuppliedPool extends SuppliedStore {
+public interface SupplyingPool extends SupplyingStore {
 	/**
 	 * Returns the value of the '<em><b>Pool Calendar</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -33,14 +33,14 @@ public interface SuppliedPool extends SuppliedStore {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pool Calendar</em>' containment reference.
 	 * @see #setPoolCalendar(CalendarService)
-	 * @see org.omg.vdml.VDMLPackage#getSuppliedPool_PoolCalendar()
+	 * @see org.omg.vdml.VDMLPackage#getSupplyingPool_PoolCalendar()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	CalendarService getPoolCalendar();
 
 	/**
-	 * Sets the value of the '{@link org.omg.vdml.SuppliedPool#getPoolCalendar <em>Pool Calendar</em>}' containment reference.
+	 * Sets the value of the '{@link org.omg.vdml.SupplyingPool#getPoolCalendar <em>Pool Calendar</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pool Calendar</em>' containment reference.
@@ -59,14 +59,14 @@ public interface SuppliedPool extends SuppliedStore {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pool Size</em>' containment reference.
 	 * @see #setPoolSize(MeasuredCharacteristic)
-	 * @see org.omg.vdml.VDMLPackage#getSuppliedPool_PoolSize()
+	 * @see org.omg.vdml.VDMLPackage#getSupplyingPool_PoolSize()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	MeasuredCharacteristic getPoolSize();
 
 	/**
-	 * Sets the value of the '{@link org.omg.vdml.SuppliedPool#getPoolSize <em>Pool Size</em>}' containment reference.
+	 * Sets the value of the '{@link org.omg.vdml.SupplyingPool#getPoolSize <em>Pool Size</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Pool Size</em>' containment reference.
@@ -85,10 +85,10 @@ public interface SuppliedPool extends SuppliedStore {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Position</em>' reference list.
-	 * @see org.omg.vdml.VDMLPackage#getSuppliedPool_Position()
+	 * @see org.omg.vdml.VDMLPackage#getSupplyingPool_Position()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<Position> getPosition();
 
-} // SuppliedPool
+} // SupplyingPool

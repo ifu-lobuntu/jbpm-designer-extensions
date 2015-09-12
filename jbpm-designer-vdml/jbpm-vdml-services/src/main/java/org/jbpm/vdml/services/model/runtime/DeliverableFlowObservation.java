@@ -44,7 +44,7 @@ public class DeliverableFlowObservation implements RuntimeEntity{
         from.getObservedOutput().add(this);
         to.getObservedInput().add(this);
     }
-    public DeliverableFlowObservation(CollaborationObservation collaboration, DeliverableFlow deliverableFlow, SuppliedStoreObservation from, SuppliedStoreObservation to) {
+    public DeliverableFlowObservation(CollaborationObservation collaboration, DeliverableFlow deliverableFlow, SupplyingStoreObservation from, SupplyingStoreObservation to) {
         this(collaboration,deliverableFlow);
         this.fromPortContainer = from;
         this.toPortContainer = to;

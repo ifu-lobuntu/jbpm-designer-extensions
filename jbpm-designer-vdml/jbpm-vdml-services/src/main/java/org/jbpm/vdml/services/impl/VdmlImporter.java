@@ -9,7 +9,7 @@ import org.jbpm.vdml.services.model.meta.Collaboration;
 import org.jbpm.vdml.services.model.meta.DeliverableFlow;
 import org.jbpm.vdml.services.model.meta.Role;
 import org.jbpm.vdml.services.model.meta.StoreDefinition;
-import org.jbpm.vdml.services.model.meta.SuppliedStore;
+import org.jbpm.vdml.services.model.meta.SupplyingStore;
 import org.jbpm.vdml.services.model.meta.ResourceUse;
 import org.jbpm.vdml.services.model.meta.BusinessItemDefinition;
 import org.omg.vdml.BusinessItem;
@@ -19,13 +19,13 @@ import org.omg.vdml.StoreLibrary;
 
 import javax.persistence.EntityManager;
 
-public class CollaborationBuilder extends MetaBuilder {
+public class VdmlImporter extends MetaBuilder {
     public MeasureBuilder measureBuilder;
 
-    public CollaborationBuilder() {
+    public VdmlImporter() {
     }
 
-    public CollaborationBuilder(EntityManager entityManager) {
+    public VdmlImporter(EntityManager entityManager) {
         super(entityManager);
         this.measureBuilder = new MeasureBuilder(entityManager);
     }
@@ -51,17 +51,18 @@ public class CollaborationBuilder extends MetaBuilder {
                 measureBuilder.fromCharacteristics(to.getMeasures(), from.getCharacteristicDefinition());
             }
         }
+        entityManager.flush();
     }
 
     public Collaboration buildCollaboration(org.omg.vdml.Collaboration c) {
         Collaboration result = findOrCreate(c, Collaboration.class);
         result.setName(c.getName());
         for (BusinessItem from: c.getBusinessItem()) {
-            BusinessItemDefinition to=findOrCreate(from,BusinessItemDefinition.class,c);
+            BusinessItemDefinition to=findOrCreate(from,BusinessItemDefinition.class,result);
             if(from.getDefinition()!=null){
-                to=findOrCreate(from.getDefinition(), BusinessItemDefinition.class, c);
+                to=findOrCreate(from.getDefinition(), BusinessItemDefinition.class, result);
             }else{
-                to=findOrCreate(from,BusinessItemDefinition.class,c);
+                to=findOrCreate(from,BusinessItemDefinition.class,result);
             }
             measureBuilder.fromMeasuredCharacteristics(to.getMeasures(), from.getMeasuredCharacteristic());
         }
@@ -76,8 +77,8 @@ public class CollaborationBuilder extends MetaBuilder {
             measureBuilder.fromMeasuredCharacteristics(to.getMeasures(), from.getMeasuredCharacteristic());
             to.setCapabilityRequirement(findOrCreate(from.getCapabilityRequirement(),Capability.class));
         }
-        for (org.omg.vdml.SuppliedStore from : c.getSuppliedStore()) {
-            SuppliedStore to = findOrCreate(from, SuppliedStore.class, findOrCreate(from.getSupplyingRole(), Role.class, result));
+        for (org.omg.vdml.SupplyingStore from : c.getSupplyingStore()) {
+            SupplyingStore to = findOrCreate(from, SupplyingStore.class, findOrCreate(from.getSupplyingRole(), Role.class, result));
             to.setName(from.getName());
             to.setStoreRequirement(findOrCreate(from.getStoreRequirement(), StoreDefinition.class));
             measureBuilder.fromMeasuredCharacteristics(to.getMeasures(), from.getMeasuredCharacteristic());
@@ -102,12 +103,12 @@ public class CollaborationBuilder extends MetaBuilder {
             for (org.omg.vdml.ResourceUse from : fromActivity.getResourceUse()) {
                 ResourceUse to = findOrCreate(from, ResourceUse.class);
                 to.setName(from.getName());
-                to.setDuration(measureBuilder.buildMeasure(from.getDuration()));
-                to.setQuantity(measureBuilder.buildMeasure(from.getQuantity()));
+                to.setDuration(measureBuilder.findOrCreateMeasure(from.getDuration()));
+                to.setQuantity(measureBuilder.findOrCreateMeasure(from.getQuantity()));
                 if(from.getResource().size()==1) {
                     to.setInput(find(from.getResource().get(0), DeliverableFlow.class));
                 }
-                to.setOutput(find(from.getDeliverable(),DeliverableFlow.class));
+                to.setOutput(find(from.getDeliverable(), DeliverableFlow.class));
             }
         }
         return result;
@@ -115,5 +116,17 @@ public class CollaborationBuilder extends MetaBuilder {
 
     private <T extends MetaEntity> T find(EObject eObject, Class<T> rt) {
         return entityManager.find(rt, buildUri(eObject));
+    }
+
+    public BusinessItemDefinition findBusinessItemDefinition(String s) {
+        return entityManager.find(BusinessItemDefinition.class,s);
+    }
+
+    public StoreDefinition findStoreDefinition(String s) {
+        return entityManager.find(StoreDefinition.class,s);
+    }
+
+    public Capability findCapabilityDefinition(String s) {
+        return entityManager.find(Capability.class,s);
     }
 }

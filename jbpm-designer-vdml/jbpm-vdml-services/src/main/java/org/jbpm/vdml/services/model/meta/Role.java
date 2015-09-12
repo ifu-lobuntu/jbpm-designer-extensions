@@ -13,7 +13,7 @@ public class Role implements MetaEntity {
     private Collaboration collaboration;
 
     @OneToMany(mappedBy = "supplyingRole", cascade = CascadeType.ALL)
-    private Set<SuppliedStore> suppliedStores = new HashSet<SuppliedStore>();
+    private Set<SupplyingStore> supplyingStores = new HashSet<SupplyingStore>();
     @OneToMany(mappedBy = "fromRole", cascade = CascadeType.ALL)
     private Set<ValueProposition> providedValuePropositions = new HashSet<ValueProposition>();
     @OneToMany(mappedBy = "toRole")
@@ -55,8 +55,8 @@ public class Role implements MetaEntity {
         return receivedValuePropositions;
     }
 
-    public Set<SuppliedStore> getSuppliedStores() {
-        return suppliedStores;
+    public Set<SupplyingStore> getSupplyingStores() {
+        return supplyingStores;
     }
 
     public Set<Activity> getPerformedActitivities() {

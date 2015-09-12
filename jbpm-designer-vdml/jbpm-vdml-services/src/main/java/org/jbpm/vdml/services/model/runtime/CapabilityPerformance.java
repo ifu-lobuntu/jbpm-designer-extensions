@@ -23,7 +23,7 @@ public class CapabilityPerformance {
     public CapabilityPerformance() {
     }
 
-    public CapabilityPerformance(Participant participant, Capability capability) {
+    public CapabilityPerformance(Capability capability,Participant participant) {
         this.participant = participant;
         this.participant.getCapabilityOffers().add(this);
         this.capability = capability;

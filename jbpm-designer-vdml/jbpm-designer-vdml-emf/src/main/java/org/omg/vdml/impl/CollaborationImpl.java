@@ -23,7 +23,7 @@ import org.omg.vdml.PortContainer;
 import org.omg.vdml.PortDelegation;
 import org.omg.vdml.Role;
 import org.omg.vdml.Scenario;
-import org.omg.vdml.SuppliedStore;
+import org.omg.vdml.SupplyingStore;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -43,7 +43,7 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getDelegationContext <em>Delegation Context</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getScenario <em>Scenario</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getOwnedAssignment <em>Owned Assignment</em>}</li>
- *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getSuppliedStore <em>Supplied Store</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CollaborationImpl#getSupplyingStore <em>Supplying Store</em>}</li>
  * </ul>
  *
  * @generated
@@ -140,14 +140,14 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
     protected EList<Assignment> ownedAssignment;
 
     /**
-	 * The cached value of the '{@link #getSuppliedStore() <em>Supplied Store</em>}' containment reference list.
+	 * The cached value of the '{@link #getSupplyingStore() <em>Supplying Store</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSuppliedStore()
+	 * @see #getSupplyingStore()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SuppliedStore> suppliedStore;
+	protected EList<SupplyingStore> supplyingStore;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -281,11 +281,11 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SuppliedStore> getSuppliedStore() {
-		if (suppliedStore == null) {
-			suppliedStore = new EObjectContainmentWithInverseEList<SuppliedStore>(SuppliedStore.class, this, VDMLPackage.COLLABORATION__SUPPLIED_STORE, VDMLPackage.SUPPLIED_STORE__COLLABORATION);
+	public EList<SupplyingStore> getSupplyingStore() {
+		if (supplyingStore == null) {
+			supplyingStore = new EObjectContainmentWithInverseEList<SupplyingStore>(SupplyingStore.class, this, VDMLPackage.COLLABORATION__SUPPLYING_STORE, VDMLPackage.SUPPLYING_STORE__COLLABORATION);
 		}
-		return suppliedStore;
+		return supplyingStore;
 	}
 
 				/**
@@ -303,8 +303,8 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDelegationContext()).basicAdd(otherEnd, msgs);
 			case VDMLPackage.COLLABORATION__SCENARIO:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getScenario()).basicAdd(otherEnd, msgs);
-			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSuppliedStore()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__SUPPLYING_STORE:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSupplyingStore()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -335,8 +335,8 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 				return ((InternalEList<?>)getScenario()).basicRemove(otherEnd, msgs);
 			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
 				return ((InternalEList<?>)getOwnedAssignment()).basicRemove(otherEnd, msgs);
-			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
-				return ((InternalEList<?>)getSuppliedStore()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.COLLABORATION__SUPPLYING_STORE:
+				return ((InternalEList<?>)getSupplyingStore()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -367,8 +367,8 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 				return getScenario();
 			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
 				return getOwnedAssignment();
-			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
-				return getSuppliedStore();
+			case VDMLPackage.COLLABORATION__SUPPLYING_STORE:
+				return getSupplyingStore();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -418,9 +418,9 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 				getOwnedAssignment().clear();
 				getOwnedAssignment().addAll((Collection<? extends Assignment>)newValue);
 				return;
-			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
-				getSuppliedStore().clear();
-				getSuppliedStore().addAll((Collection<? extends SuppliedStore>)newValue);
+			case VDMLPackage.COLLABORATION__SUPPLYING_STORE:
+				getSupplyingStore().clear();
+				getSupplyingStore().addAll((Collection<? extends SupplyingStore>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -461,8 +461,8 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
 				getOwnedAssignment().clear();
 				return;
-			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
-				getSuppliedStore().clear();
+			case VDMLPackage.COLLABORATION__SUPPLYING_STORE:
+				getSupplyingStore().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -494,8 +494,8 @@ public class CollaborationImpl extends ParticipantImpl implements Collaboration 
 				return scenario != null && !scenario.isEmpty();
 			case VDMLPackage.COLLABORATION__OWNED_ASSIGNMENT:
 				return ownedAssignment != null && !ownedAssignment.isEmpty();
-			case VDMLPackage.COLLABORATION__SUPPLIED_STORE:
-				return suppliedStore != null && !suppliedStore.isEmpty();
+			case VDMLPackage.COLLABORATION__SUPPLYING_STORE:
+				return supplyingStore != null && !supplyingStore.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

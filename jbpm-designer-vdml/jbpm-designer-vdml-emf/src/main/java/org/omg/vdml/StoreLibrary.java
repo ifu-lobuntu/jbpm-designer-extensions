@@ -4,8 +4,6 @@ package org.omg.vdml;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Store Library</b></em>'.
@@ -23,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface StoreLibrary extends EObject {
+public interface StoreLibrary extends VdmlElement {
 	/**
 	 * Returns the value of the '<em><b>Store Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.omg.vdml.StoreDefinition}.

@@ -163,9 +163,9 @@ public class VDMLFactoryImpl extends EFactoryImpl implements VDMLFactory {
 			case VDMLPackage.CAPABILITY_CATEGORY: return createCapabilityCategory();
 			case VDMLPackage.STORE_LIBRARY: return createStoreLibrary();
 			case VDMLPackage.STORE_DEFINITION: return createStoreDefinition();
-			case VDMLPackage.SUPPLIED_STORE: return createSuppliedStore();
+			case VDMLPackage.SUPPLYING_STORE: return createSupplyingStore();
 			case VDMLPackage.POOL_DEFINITION: return createPoolDefinition();
-			case VDMLPackage.SUPPLIED_POOL: return createSuppliedPool();
+			case VDMLPackage.SUPPLYING_POOL: return createSupplyingPool();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -726,9 +726,9 @@ public class VDMLFactoryImpl extends EFactoryImpl implements VDMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SuppliedStore createSuppliedStore() {
-		SuppliedStoreImpl suppliedStore = new SuppliedStoreImpl();
-		return suppliedStore;
+	public SupplyingStore createSupplyingStore() {
+		SupplyingStoreImpl supplyingStore = new SupplyingStoreImpl();
+		return supplyingStore;
 	}
 
 				/**
@@ -746,9 +746,9 @@ public class VDMLFactoryImpl extends EFactoryImpl implements VDMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SuppliedPool createSuppliedPool() {
-		SuppliedPoolImpl suppliedPool = new SuppliedPoolImpl();
-		return suppliedPool;
+	public SupplyingPool createSupplyingPool() {
+		SupplyingPoolImpl supplyingPool = new SupplyingPoolImpl();
+		return supplyingPool;
 	}
 
 				/**

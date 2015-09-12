@@ -17,28 +17,28 @@ import org.omg.vdml.Collaboration;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.Role;
 import org.omg.vdml.StoreDefinition;
-import org.omg.vdml.SuppliedStore;
+import org.omg.vdml.SupplyingStore;
 import org.omg.vdml.VDMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Supplied Store</b></em>'.
+ * An implementation of the model object '<em><b>Supplying Store</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.vdml.impl.SuppliedStoreImpl#getSupplyingRole <em>Supplying Role</em>}</li>
- *   <li>{@link org.omg.vdml.impl.SuppliedStoreImpl#getDuration <em>Duration</em>}</li>
- *   <li>{@link org.omg.vdml.impl.SuppliedStoreImpl#getInventoryLevel <em>Inventory Level</em>}</li>
- *   <li>{@link org.omg.vdml.impl.SuppliedStoreImpl#getResource <em>Resource</em>}</li>
- *   <li>{@link org.omg.vdml.impl.SuppliedStoreImpl#getStoreRequirement <em>Store Requirement</em>}</li>
- *   <li>{@link org.omg.vdml.impl.SuppliedStoreImpl#getCollaboration <em>Collaboration</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.SupplyingStoreImpl#getSupplyingRole <em>Supplying Role</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.SupplyingStoreImpl#getDuration <em>Duration</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.SupplyingStoreImpl#getInventoryLevel <em>Inventory Level</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.SupplyingStoreImpl#getResource <em>Resource</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.SupplyingStoreImpl#getStoreRequirement <em>Store Requirement</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.SupplyingStoreImpl#getCollaboration <em>Collaboration</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStore {
+public class SupplyingStoreImpl extends PortContainerImpl implements SupplyingStore {
 	/**
 	 * The cached value of the '{@link #getSupplyingRole() <em>Supplying Role</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -94,7 +94,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SuppliedStoreImpl() {
+	protected SupplyingStoreImpl() {
 		super();
 	}
 
@@ -105,7 +105,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return VDMLPackage.Literals.SUPPLIED_STORE;
+		return VDMLPackage.Literals.SUPPLYING_STORE;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 			supplyingRole = (Role)eResolveProxy(oldSupplyingRole);
 			if (supplyingRole != oldSupplyingRole) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE, oldSupplyingRole, supplyingRole));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE, oldSupplyingRole, supplyingRole));
 			}
 		}
 		return supplyingRole;
@@ -143,7 +143,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		Role oldSupplyingRole = supplyingRole;
 		supplyingRole = newSupplyingRole;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE, oldSupplyingRole, newSupplyingRole);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE, oldSupplyingRole, newSupplyingRole);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -158,14 +158,14 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		if (newSupplyingRole != supplyingRole) {
 			NotificationChain msgs = null;
 			if (supplyingRole != null)
-				msgs = ((InternalEObject)supplyingRole).eInverseRemove(this, VDMLPackage.ROLE__SUPPLIED_STORE, Role.class, msgs);
+				msgs = ((InternalEObject)supplyingRole).eInverseRemove(this, VDMLPackage.ROLE__SUPPLYING_STORE, Role.class, msgs);
 			if (newSupplyingRole != null)
-				msgs = ((InternalEObject)newSupplyingRole).eInverseAdd(this, VDMLPackage.ROLE__SUPPLIED_STORE, Role.class, msgs);
+				msgs = ((InternalEObject)newSupplyingRole).eInverseAdd(this, VDMLPackage.ROLE__SUPPLYING_STORE, Role.class, msgs);
 			msgs = basicSetSupplyingRole(newSupplyingRole, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE, newSupplyingRole, newSupplyingRole));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE, newSupplyingRole, newSupplyingRole));
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		MeasuredCharacteristic oldDuration = duration;
 		duration = newDuration;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__DURATION, oldDuration, newDuration);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__DURATION, oldDuration, newDuration);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -201,14 +201,14 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		if (newDuration != duration) {
 			NotificationChain msgs = null;
 			if (duration != null)
-				msgs = ((InternalEObject)duration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLIED_STORE__DURATION, null, msgs);
+				msgs = ((InternalEObject)duration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLYING_STORE__DURATION, null, msgs);
 			if (newDuration != null)
-				msgs = ((InternalEObject)newDuration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLIED_STORE__DURATION, null, msgs);
+				msgs = ((InternalEObject)newDuration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLYING_STORE__DURATION, null, msgs);
 			msgs = basicSetDuration(newDuration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__DURATION, newDuration, newDuration));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__DURATION, newDuration, newDuration));
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		MeasuredCharacteristic oldInventoryLevel = inventoryLevel;
 		inventoryLevel = newInventoryLevel;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL, oldInventoryLevel, newInventoryLevel);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL, oldInventoryLevel, newInventoryLevel);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -244,14 +244,14 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		if (newInventoryLevel != inventoryLevel) {
 			NotificationChain msgs = null;
 			if (inventoryLevel != null)
-				msgs = ((InternalEObject)inventoryLevel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL, null, msgs);
+				msgs = ((InternalEObject)inventoryLevel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL, null, msgs);
 			if (newInventoryLevel != null)
-				msgs = ((InternalEObject)newInventoryLevel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL, null, msgs);
+				msgs = ((InternalEObject)newInventoryLevel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL, null, msgs);
 			msgs = basicSetInventoryLevel(newInventoryLevel, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL, newInventoryLevel, newInventoryLevel));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL, newInventoryLevel, newInventoryLevel));
 	}
 
 	/**
@@ -265,7 +265,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 			resource = (BusinessItem)eResolveProxy(oldResource);
 			if (resource != oldResource) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.SUPPLIED_STORE__RESOURCE, oldResource, resource));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.SUPPLYING_STORE__RESOURCE, oldResource, resource));
 			}
 		}
 		return resource;
@@ -289,7 +289,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		BusinessItem oldResource = resource;
 		resource = newResource;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__RESOURCE, oldResource, resource));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__RESOURCE, oldResource, resource));
 	}
 
 	/**
@@ -303,7 +303,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 			storeRequirement = (StoreDefinition)eResolveProxy(oldStoreRequirement);
 			if (storeRequirement != oldStoreRequirement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.SUPPLIED_STORE__STORE_REQUIREMENT, oldStoreRequirement, storeRequirement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.SUPPLYING_STORE__STORE_REQUIREMENT, oldStoreRequirement, storeRequirement));
 			}
 		}
 		return storeRequirement;
@@ -327,7 +327,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 		StoreDefinition oldStoreRequirement = storeRequirement;
 		storeRequirement = newStoreRequirement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__STORE_REQUIREMENT, oldStoreRequirement, storeRequirement));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__STORE_REQUIREMENT, oldStoreRequirement, storeRequirement));
 	}
 
 	/**
@@ -336,7 +336,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	 * @generated
 	 */
 	public Collaboration getCollaboration() {
-		if (eContainerFeatureID() != VDMLPackage.SUPPLIED_STORE__COLLABORATION) return null;
+		if (eContainerFeatureID() != VDMLPackage.SUPPLYING_STORE__COLLABORATION) return null;
 		return (Collaboration)eInternalContainer();
 	}
 
@@ -346,7 +346,7 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	 * @generated
 	 */
 	public NotificationChain basicSetCollaboration(Collaboration newCollaboration, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newCollaboration, VDMLPackage.SUPPLIED_STORE__COLLABORATION, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newCollaboration, VDMLPackage.SUPPLYING_STORE__COLLABORATION, msgs);
 		return msgs;
 	}
 
@@ -356,19 +356,19 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	 * @generated
 	 */
 	public void setCollaboration(Collaboration newCollaboration) {
-		if (newCollaboration != eInternalContainer() || (eContainerFeatureID() != VDMLPackage.SUPPLIED_STORE__COLLABORATION && newCollaboration != null)) {
+		if (newCollaboration != eInternalContainer() || (eContainerFeatureID() != VDMLPackage.SUPPLYING_STORE__COLLABORATION && newCollaboration != null)) {
 			if (EcoreUtil.isAncestor(this, newCollaboration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCollaboration != null)
-				msgs = ((InternalEObject)newCollaboration).eInverseAdd(this, VDMLPackage.COLLABORATION__SUPPLIED_STORE, Collaboration.class, msgs);
+				msgs = ((InternalEObject)newCollaboration).eInverseAdd(this, VDMLPackage.COLLABORATION__SUPPLYING_STORE, Collaboration.class, msgs);
 			msgs = basicSetCollaboration(newCollaboration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLIED_STORE__COLLABORATION, newCollaboration, newCollaboration));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.SUPPLYING_STORE__COLLABORATION, newCollaboration, newCollaboration));
 	}
 
 	/**
@@ -379,11 +379,11 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE:
+			case VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE:
 				if (supplyingRole != null)
-					msgs = ((InternalEObject)supplyingRole).eInverseRemove(this, VDMLPackage.ROLE__SUPPLIED_STORE, Role.class, msgs);
+					msgs = ((InternalEObject)supplyingRole).eInverseRemove(this, VDMLPackage.ROLE__SUPPLYING_STORE, Role.class, msgs);
 				return basicSetSupplyingRole((Role)otherEnd, msgs);
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetCollaboration((Collaboration)otherEnd, msgs);
@@ -399,13 +399,13 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE:
+			case VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE:
 				return basicSetSupplyingRole(null, msgs);
-			case VDMLPackage.SUPPLIED_STORE__DURATION:
+			case VDMLPackage.SUPPLYING_STORE__DURATION:
 				return basicSetDuration(null, msgs);
-			case VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL:
+			case VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL:
 				return basicSetInventoryLevel(null, msgs);
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
 				return basicSetCollaboration(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -419,8 +419,8 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
-				return eInternalContainer().eInverseRemove(this, VDMLPackage.COLLABORATION__SUPPLIED_STORE, Collaboration.class, msgs);
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
+				return eInternalContainer().eInverseRemove(this, VDMLPackage.COLLABORATION__SUPPLYING_STORE, Collaboration.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -433,20 +433,20 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE:
+			case VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE:
 				if (resolve) return getSupplyingRole();
 				return basicGetSupplyingRole();
-			case VDMLPackage.SUPPLIED_STORE__DURATION:
+			case VDMLPackage.SUPPLYING_STORE__DURATION:
 				return getDuration();
-			case VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL:
+			case VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL:
 				return getInventoryLevel();
-			case VDMLPackage.SUPPLIED_STORE__RESOURCE:
+			case VDMLPackage.SUPPLYING_STORE__RESOURCE:
 				if (resolve) return getResource();
 				return basicGetResource();
-			case VDMLPackage.SUPPLIED_STORE__STORE_REQUIREMENT:
+			case VDMLPackage.SUPPLYING_STORE__STORE_REQUIREMENT:
 				if (resolve) return getStoreRequirement();
 				return basicGetStoreRequirement();
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
 				return getCollaboration();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -460,22 +460,22 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE:
+			case VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE:
 				setSupplyingRole((Role)newValue);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__DURATION:
+			case VDMLPackage.SUPPLYING_STORE__DURATION:
 				setDuration((MeasuredCharacteristic)newValue);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL:
+			case VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL:
 				setInventoryLevel((MeasuredCharacteristic)newValue);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__RESOURCE:
+			case VDMLPackage.SUPPLYING_STORE__RESOURCE:
 				setResource((BusinessItem)newValue);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__STORE_REQUIREMENT:
+			case VDMLPackage.SUPPLYING_STORE__STORE_REQUIREMENT:
 				setStoreRequirement((StoreDefinition)newValue);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
 				setCollaboration((Collaboration)newValue);
 				return;
 		}
@@ -490,22 +490,22 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE:
+			case VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE:
 				setSupplyingRole((Role)null);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__DURATION:
+			case VDMLPackage.SUPPLYING_STORE__DURATION:
 				setDuration((MeasuredCharacteristic)null);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL:
+			case VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL:
 				setInventoryLevel((MeasuredCharacteristic)null);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__RESOURCE:
+			case VDMLPackage.SUPPLYING_STORE__RESOURCE:
 				setResource((BusinessItem)null);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__STORE_REQUIREMENT:
+			case VDMLPackage.SUPPLYING_STORE__STORE_REQUIREMENT:
 				setStoreRequirement((StoreDefinition)null);
 				return;
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
 				setCollaboration((Collaboration)null);
 				return;
 		}
@@ -520,20 +520,20 @@ public class SuppliedStoreImpl extends PortContainerImpl implements SuppliedStor
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.SUPPLIED_STORE__SUPPLYING_ROLE:
+			case VDMLPackage.SUPPLYING_STORE__SUPPLYING_ROLE:
 				return supplyingRole != null;
-			case VDMLPackage.SUPPLIED_STORE__DURATION:
+			case VDMLPackage.SUPPLYING_STORE__DURATION:
 				return duration != null;
-			case VDMLPackage.SUPPLIED_STORE__INVENTORY_LEVEL:
+			case VDMLPackage.SUPPLYING_STORE__INVENTORY_LEVEL:
 				return inventoryLevel != null;
-			case VDMLPackage.SUPPLIED_STORE__RESOURCE:
+			case VDMLPackage.SUPPLYING_STORE__RESOURCE:
 				return resource != null;
-			case VDMLPackage.SUPPLIED_STORE__STORE_REQUIREMENT:
+			case VDMLPackage.SUPPLYING_STORE__STORE_REQUIREMENT:
 				return storeRequirement != null;
-			case VDMLPackage.SUPPLIED_STORE__COLLABORATION:
+			case VDMLPackage.SUPPLYING_STORE__COLLABORATION:
 				return getCollaboration() != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //SuppliedStoreImpl
+} //SupplyingStoreImpl

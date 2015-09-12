@@ -389,16 +389,16 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 				return createStoreDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseSuppliedStore(SuppliedStore object) {
-				return createSuppliedStoreAdapter();
+			public Adapter caseSupplyingStore(SupplyingStore object) {
+				return createSupplyingStoreAdapter();
 			}
 			@Override
 			public Adapter casePoolDefinition(PoolDefinition object) {
 				return createPoolDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseSuppliedPool(SuppliedPool object) {
-				return createSuppliedPoolAdapter();
+			public Adapter caseSupplyingPool(SupplyingPool object) {
+				return createSupplyingPoolAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1331,16 +1331,16 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 				/**
-	 * Creates a new adapter for an object of class '{@link org.omg.vdml.SuppliedStore <em>Supplied Store</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.vdml.SupplyingStore <em>Supplying Store</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.vdml.SuppliedStore
+	 * @see org.omg.vdml.SupplyingStore
 	 * @generated
 	 */
-	public Adapter createSuppliedStoreAdapter() {
+	public Adapter createSupplyingStoreAdapter() {
 		return null;
 	}
 
@@ -1359,16 +1359,16 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 				/**
-	 * Creates a new adapter for an object of class '{@link org.omg.vdml.SuppliedPool <em>Supplied Pool</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.omg.vdml.SupplyingPool <em>Supplying Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.omg.vdml.SuppliedPool
+	 * @see org.omg.vdml.SupplyingPool
 	 * @generated
 	 */
-	public Adapter createSuppliedPoolAdapter() {
+	public Adapter createSupplyingPoolAdapter() {
 		return null;
 	}
 

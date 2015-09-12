@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.vdml.Collaboration#getDelegationContext <em>Delegation Context</em>}</li>
  *   <li>{@link org.omg.vdml.Collaboration#getScenario <em>Scenario</em>}</li>
  *   <li>{@link org.omg.vdml.Collaboration#getOwnedAssignment <em>Owned Assignment</em>}</li>
- *   <li>{@link org.omg.vdml.Collaboration#getSuppliedStore <em>Supplied Store</em>}</li>
+ *   <li>{@link org.omg.vdml.Collaboration#getSupplyingStore <em>Supplying Store</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getCollaboration()
@@ -164,21 +164,21 @@ public interface Collaboration extends Participant, PortContainer {
     EList<Assignment> getOwnedAssignment();
 
 				/**
-	 * Returns the value of the '<em><b>Supplied Store</b></em>' containment reference list.
-	 * The list contents are of type {@link org.omg.vdml.SuppliedStore}.
-	 * It is bidirectional and its opposite is '{@link org.omg.vdml.SuppliedStore#getCollaboration <em>Collaboration</em>}'.
+	 * Returns the value of the '<em><b>Supplying Store</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.vdml.SupplyingStore}.
+	 * It is bidirectional and its opposite is '{@link org.omg.vdml.SupplyingStore#getCollaboration <em>Collaboration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Supplied Store</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Supplying Store</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Supplied Store</em>' containment reference list.
-	 * @see org.omg.vdml.VDMLPackage#getCollaboration_SuppliedStore()
-	 * @see org.omg.vdml.SuppliedStore#getCollaboration
+	 * @return the value of the '<em>Supplying Store</em>' containment reference list.
+	 * @see org.omg.vdml.VDMLPackage#getCollaboration_SupplyingStore()
+	 * @see org.omg.vdml.SupplyingStore#getCollaboration
 	 * @model opposite="collaboration" containment="true"
 	 * @generated
 	 */
-	EList<SuppliedStore> getSuppliedStore();
+	EList<SupplyingStore> getSupplyingStore();
 
 } // Collaboration

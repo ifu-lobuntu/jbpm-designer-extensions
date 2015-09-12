@@ -90,10 +90,10 @@ public class ValueCalculationService {
         }
         resolveDerivedMeasures(otherMeasurements, measurements);
     }
-    public void calculateStorePerformance(SuppliedStoreObservation rsp) {
+    public void calculateStorePerformance(SupplyingStoreObservation rsp) {
         Map<String, Measurement> measurements = new HashMap<String, Measurement>();
         Set<Measurement> otherMeasurements = new HashSet<Measurement>();
-        for (SuppliedStoreMeasurement measurement : rsp.getMeasurements()) {
+        for (SupplyingStoreMeasurement measurement : rsp.getMeasurements()) {
             measurements.put(measurement.getMeasure().getUri(), measurement);
             String additionalCriteria = "and m.activity.responsibleRole.participant= :owner and m.deliverableFlow.toActivity.performer= :receiver";
             if (measurement.getMeasure() instanceof CollectiveMeasure) {
