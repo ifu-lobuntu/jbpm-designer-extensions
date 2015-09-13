@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class SupplyingStore extends RoleBasedPortContainer {
+public class SupplyingStore extends PortContainer {
 
     @ManyToOne
     private StoreDefinition storeRequirement;

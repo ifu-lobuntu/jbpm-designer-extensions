@@ -1,0 +1,161 @@
+package org.jbpm.vdml.services;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.jbpm.vdml.services.model.meta.Measure;
+import org.omg.smm.*;
+import org.omg.vdml.MeasuredCharacteristic;
+import org.omg.vdml.VDMLFactory;
+import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.util.VDMLResourceFactoryImpl;
+import org.omg.vdml.util.VDMLResourceImpl;
+import test.TestGradeMeasure;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+/**
+ * Created by ampie on 2015/09/13.
+ */
+public class MetaEntityImportTest extends AbstractVdmlServiceTest {
+    protected void assertMeasures(Set<Measure> foundSdMeasures) {
+        assertEquals(6, foundSdMeasures.size());
+        for (Measure measure : foundSdMeasures) {
+            if (measure instanceof org.jbpm.vdml.services.model.meta.DirectMeasure) {
+                assertEquals("DirectMeasure", measure.getName());
+            } else if (measure instanceof org.jbpm.vdml.services.model.meta.CountingMeasure) {
+                assertEquals("CountingMeasure", measure.getName());
+                org.jbpm.vdml.services.model.meta.CountingMeasure found = (org.jbpm.vdml.services.model.meta.CountingMeasure) measure;
+                assertEquals("value > 1000", found.getValuesToCount());
+                assertNotNull(found.getMeasureToCount());
+            } else if (measure instanceof org.jbpm.vdml.services.model.meta.BinaryMeasure) {
+                assertEquals("BinaryMeasure", measure.getName());
+                org.jbpm.vdml.services.model.meta.BinaryMeasure found = (org.jbpm.vdml.services.model.meta.BinaryMeasure) measure;
+                assertNotNull(found.getMeasureA());
+                assertNotNull(found.getMeasureB());
+                assertEquals(org.jbpm.vdml.services.model.meta.BinaryFunctor.DIVIDE, found.getFunctor());
+            } else if (measure instanceof org.jbpm.vdml.services.model.meta.CollectiveMeasure) {
+                assertEquals("CollectiveMeasure", measure.getName());
+                org.jbpm.vdml.services.model.meta.CollectiveMeasure found = (org.jbpm.vdml.services.model.meta.CollectiveMeasure) measure;
+                assertNotNull(found.getAggregatedMeasures());
+                assertEquals(org.jbpm.vdml.services.model.meta.Accumulator.PRODUCT, found.getAccumulator());
+            } else if (measure instanceof org.jbpm.vdml.services.model.meta.EnumeratedMeasure) {
+                assertEquals("TestGradeMeasure", measure.getName());
+                org.jbpm.vdml.services.model.meta.EnumeratedMeasure found = (org.jbpm.vdml.services.model.meta.EnumeratedMeasure) measure;
+                assertEquals(TestGradeMeasure.class, found.getEnumClass());
+            } else if (measure instanceof org.jbpm.vdml.services.model.meta.RescaledMeasure) {
+                assertEquals("RescaledMeasure", measure.getName());
+                org.jbpm.vdml.services.model.meta.RescaledMeasure found = (org.jbpm.vdml.services.model.meta.RescaledMeasure) measure;
+                assertNotNull(found.getRescaledMeasure());
+                assertEquals(2d, found.getMultiplier().doubleValue(), 0.0001);
+                assertEquals(100d, found.getOffset().doubleValue(),0.0001);
+            } else {
+                fail("Unexpected Measure Type: " + measure.getClass().getSimpleName());
+            }
+        }
+
+    }
+
+    protected void addMeasuredCharacteristics(MeasureLibrary l, List<MeasuredCharacteristic> measuredCharacteristics) {
+        ArrayList<Characteristic> characteristics = new ArrayList<Characteristic>();
+        addCharacteristics(l, characteristics);
+        for (Characteristic characteristic : characteristics) {
+            MeasuredCharacteristic mc = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+            mc.setName(characteristic.getName());
+            mc.setCharacteristicDefinition(characteristic);
+            measuredCharacteristics.add(mc);
+        }
+    }
+
+    protected void addCharacteristics(MeasureLibrary l, List<Characteristic> characteristicDefinition) {
+        Characteristic e = buildDirectMeasure(l);
+        characteristicDefinition.add(e);
+
+        CountingMeasure countingMeasure = SMMFactory.eINSTANCE.createCountingMeasure();
+        countingMeasure.setName("CountingMeasure");
+        countingMeasure.setOperation(SMMFactory.eINSTANCE.createOperation());
+        countingMeasure.getOperation().setBody("value > 1000");
+        CountingMeasureRelationship countingMeasureRelationship = SMMFactory.eINSTANCE.createCountingMeasureRelationship();
+        countingMeasure.setCountedMeasureTo(countingMeasureRelationship);
+        countingMeasure.getCountedMeasureTo().setToCountedMeasure(countingMeasure);
+        l.getMeasureElements().add(countingMeasure.getOperation());
+        characteristicDefinition.add(addToLibrary(l, countingMeasure));
+
+
+        BinaryMeasure binaryMeasure = SMMFactory.eINSTANCE.createBinaryMeasure();
+        binaryMeasure.setName("BinaryMeasure");
+        Base1MeasureRelationship base1 = SMMFactory.eINSTANCE.createBase1MeasureRelationship();
+        Base2MeasureRelationship base2 = SMMFactory.eINSTANCE.createBase2MeasureRelationship();
+        binaryMeasure.setBaseMeasure1To(base1);
+        binaryMeasure.setBaseMeasure2To(base2);
+        binaryMeasure.setFunctor(BinaryFunctor.DIVIDE);
+        base1.setToDimensionalMeasure((DirectMeasure) e.getMeasure().get(0));
+        base2.setToDimensionalMeasure(countingMeasure);
+        characteristicDefinition.add(addToLibrary(l, binaryMeasure));
+
+        Characteristic e1 = buildCollectiveMeasure(l, e);
+        characteristicDefinition.add(e1);
+
+        GradeMeasure gradeMeasure = SMMFactory.eINSTANCE.createGradeMeasure();
+        gradeMeasure.setName("TestGradeMeasure");
+        characteristicDefinition.add(addToLibrary(l, gradeMeasure));
+
+        RescaledMeasure rescaledMeasure = SMMFactory.eINSTANCE.createRescaledMeasure();
+        RescaledMeasureRelationship rescaledMeasureRelationship = SMMFactory.eINSTANCE.createRescaledMeasureRelationship();
+        rescaledMeasureRelationship.setFromDimensionalMeasure((DirectMeasure) e.getMeasure().get(0));
+        rescaledMeasure.getRescalesFrom().add(rescaledMeasureRelationship);
+        rescaledMeasure.setName("RescaledMeasure");
+        rescaledMeasure.setMultiplier(2d);
+        rescaledMeasure.setOffset(100d);
+        characteristicDefinition.add(addToLibrary(l, rescaledMeasure));
+    }
+
+    protected Characteristic buildCollectiveMeasure(MeasureLibrary l, Characteristic e) {
+        CollectiveMeasure collectiveMeasure = SMMFactory.eINSTANCE.createCollectiveMeasure();
+        collectiveMeasure.setName("CollectiveMeasure");
+        BaseNMeasureRelationship baseN = SMMFactory.eINSTANCE.createBaseNMeasureRelationship();
+        collectiveMeasure.getBaseMeasureTo().add(baseN);
+        baseN.setToDimensionalMeasure((DirectMeasure) e.getMeasure().get(0));
+        collectiveMeasure.setAccumulator(Accumulator.PRODUCT);
+        return addToLibrary(l, collectiveMeasure);
+    }
+
+    Characteristic buildDirectMeasure(MeasureLibrary l) {
+        DirectMeasure directMeasure1 = SMMFactory.eINSTANCE.createDirectMeasure();
+        directMeasure1.setName("DirectMeasure");
+        return addToLibrary(l, directMeasure1);
+    }
+
+    private Characteristic addToLibrary(MeasureLibrary l, org.omg.smm.Measure m) {
+        Characteristic characteristic = SMMFactory.eINSTANCE.createCharacteristic();
+        characteristic.setName(m.getName());
+        characteristic.getMeasure().add(m);
+        l.getMeasureElements().add(characteristic);
+        l.getMeasureElements().add(m);
+        ((VDMLResourceImpl)m.eResource()).setID(m, EcoreUtil.generateUUID());
+        return characteristic;
+    }
+
+    protected ValueDeliveryModel buildModel() {
+        ResourceSet rst = new ResourceSetImpl();
+        rst.getResourceFactoryRegistry().getExtensionToFactoryMap().put("vdml", new VDMLResourceFactoryImpl());
+        VDMLResourceImpl resource = (VDMLResourceImpl) rst.createResource(URI.createPlatformResourceURI("test/test/test.vdml", true));
+        ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        resource.getContents().add(vdm);
+        MeasureLibrary ml = SMMFactory.eINSTANCE.createMeasureLibrary();
+        SmmModel smm = SMMFactory.eINSTANCE.createSmmModel();
+        vdm.getMetricsModel().add(smm);
+        smm.getLibraries().add(ml);
+        vdm.getBusinessItemLibrary().add(VDMLFactory.eINSTANCE.createBusinessItemLibrary());
+        vdm.getScenario().add(VDMLFactory.eINSTANCE.createScenario());
+        vdm.getScenario().get(0).setIsCommon(true);
+        return vdm;
+    }
+}

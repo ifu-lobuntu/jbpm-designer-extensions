@@ -31,6 +31,9 @@ public class MetaBuilder {
     }
 
     protected <T> T findOrCreate(EObject eo, Class<T> t, Object... parent) {
+        if(eo==null){
+            return null;
+        }
         T result = entityManager.find(t, buildUri(eo));
         if (result == null) {
             try {
@@ -38,7 +41,7 @@ public class MetaBuilder {
                 args[0] = buildUri(eo);
                 int i = 1;
                 for (Object o : parent) {
-                    args[i] = o;
+                    args[i++] = o;
                 }
                 Constructor<T> constr = null;
                 outer:

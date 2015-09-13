@@ -20,10 +20,7 @@ import javax.transaction.UserTransaction;
 import java.util.Collection;
 import java.util.Set;
 
-/**
- * Created by ampie on 2015/09/12.
- */
-public class AbstractVdmlServiceTest {
+public abstract class AbstractVdmlServiceTest {
     protected static EntityManagerFactory emf;
     private static Logger logger = LoggerFactory.getLogger(CollaborationImportTest.class);
 

@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Activity extends RoleBasedPortContainer {
+public class Activity extends PortContainer {
 
 
     @OneToMany(mappedBy = "activity")
@@ -19,6 +19,8 @@ public class Activity extends RoleBasedPortContainer {
     private Role performingRole;
     @ManyToOne
     private Collaboration collaboration;
+    @ManyToOne
+    private Collaboration delegatingCollaboration;
     @ManyToMany
     private Set<Measure> measures=new HashSet<Measure>();
 
@@ -46,6 +48,14 @@ public class Activity extends RoleBasedPortContainer {
 
     public void setCapabilityRequirement(Capability capabilityRequirement) {
         this.capabilityRequirement = capabilityRequirement;
+    }
+
+    public Collaboration getDelegatingCollaboration() {
+        return delegatingCollaboration;
+    }
+
+    public void setDelegatingCollaboration(Collaboration delegatingCollaboration) {
+        this.delegatingCollaboration = delegatingCollaboration;
     }
 
     public Set<Measure> getMeasures() {

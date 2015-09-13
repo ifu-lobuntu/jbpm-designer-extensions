@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class CollaborationObservation extends RuntimePortContainer{
+public class CollaborationPerformance extends Participant implements RuntimeEntity{
 
     @ManyToOne
     private Collaboration collaboration;
@@ -33,11 +33,11 @@ public class CollaborationObservation extends RuntimePortContainer{
     private Set<DeliverableFlowObservation> observedOutput = new HashSet<DeliverableFlowObservation>();
 
 
-    public CollaborationObservation(Collaboration collaboration) {
+    public CollaborationPerformance(Collaboration collaboration) {
         this.collaboration = collaboration;
     }
 
-    public CollaborationObservation() {
+    public CollaborationPerformance() {
     }
 
     public Set<DeliverableFlowObservation> getObservedInput() {
