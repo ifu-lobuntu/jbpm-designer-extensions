@@ -3,9 +3,9 @@ package org.jbpm.formModeler.vdml.model;
 
 import org.jbpm.formModeler.api.client.FormRenderContext;
 import org.jbpm.formModeler.emf.EmfBasedDataHolder;
-import org.jbpm.vdml.services.model.meta.EnumeratedMeasure;
-import org.jbpm.vdml.services.model.runtime.Measurement;
-import org.jbpm.vdml.services.model.runtime.RuntimeEntity;
+import org.jbpm.vdml.services.impl.model.meta.EnumeratedMeasure;
+import org.jbpm.vdml.services.impl.model.runtime.Measurement;
+import org.jbpm.vdml.services.impl.model.runtime.RuntimeEntity;
 import org.omg.vdml.VdmlElement;
 
 import java.util.Collection;

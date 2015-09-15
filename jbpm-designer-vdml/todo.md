@@ -53,7 +53,7 @@
 
 ##Capability Management
  - *Pool.position
- - CapabilityOffer.capability
+ - CapabilityOffer.definition
  - OrgUnit.referencedOrgUnit
  - ExternalStore.storeRef
  - ExternalPool.poolRef
@@ -106,7 +106,7 @@
 
 #6. Form generation
 ##ActivityNetworks
- - ActivityValueHolder - one per activity, decompose to ResourceUses, duration, MeasuredCharacteristics of Activity.capability
+ - ActivityValueHolder - one per activity, decompose to ResourceUses, duration, MeasuredCharacteristics of Activity.definition
  
 ##Library Modeling
 

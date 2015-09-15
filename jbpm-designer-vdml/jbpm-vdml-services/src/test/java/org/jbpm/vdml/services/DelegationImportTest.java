@@ -3,7 +3,7 @@ package org.jbpm.vdml.services;
 
 import org.jbpm.vdml.services.impl.MetaBuilder;
 import org.jbpm.vdml.services.impl.VdmlImporter;
-import org.jbpm.vdml.services.model.meta.Collaboration;
+import org.jbpm.vdml.services.impl.model.meta.Collaboration;
 import org.junit.Test;
 import org.omg.vdml.*;
 
@@ -57,7 +57,7 @@ public class DelegationImportTest extends MetaEntityImportTest {
         activityOutput.getValueAdd().add(activityValueAdd);
         activityValueAdd.setName("activityValueAdd");
         activityValueAdd.setValueMeasurement(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        activityValueAdd.getValueMeasurement().setCharacteristicDefinition(buildDirectMeasure(vdm.getMetricsModel().get(0).getLibraries().get(0)));
+        activityValueAdd.getValueMeasurement().setCharacteristicDefinition(buildDirectMeasure(vdm));
 
         BusinessItem bi = VDMLFactory.eINSTANCE.createBusinessItem();
         bi.setName("Stuff");
@@ -83,15 +83,15 @@ public class DelegationImportTest extends MetaEntityImportTest {
 
         //THEN
         assertEquals(cp.getName(), collaboration.getName());
-        assertEquals(1, collaboration.getRoles().size());
-        assertEquals("MyRole", collaboration.getRoles().iterator().next().getName());
-        assertSame(collaboration, collaboration.getRoles().iterator().next().getCollaboration());
+        assertEquals(1, collaboration.getCollaborationRoles().size());
+        assertEquals("MyRole", collaboration.getCollaborationRoles().iterator().next().getName());
+        assertSame(collaboration, collaboration.getCollaborationRoles().iterator().next().getCollaboration());
 
         assertEquals(1, collaboration.getActivities().size());
         assertEquals("DoStuff", collaboration.getActivities().iterator().next().getName());
         assertSame(collaboration, collaboration.getActivities().iterator().next().getCollaboration());
         assertEquals("MyRole", collaboration.getActivities().iterator().next().getPerformingRole().getName());
-        assertSame(collaboration.getRoles().iterator().next(), collaboration.getActivities().iterator().next().getPerformingRole());
+        assertSame(collaboration.getCollaborationRoles().iterator().next(), collaboration.getActivities().iterator().next().getPerformingRole());
 
         assertEquals(2, collaboration.getFlows().size());
         assertEquals(1, collaboration.getCommencedFlows().size());
@@ -164,7 +164,7 @@ public class DelegationImportTest extends MetaEntityImportTest {
         capabilityMethodOutput.getValueAdd().add(capabilityMethodValueAdd);
         capabilityMethodValueAdd.setName("capabilityMethodValueAdd");
         capabilityMethodValueAdd.setValueMeasurement(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        capabilityMethodValueAdd.getValueMeasurement().setCharacteristicDefinition(buildDirectMeasure(vdm.getMetricsModel().get(0).getLibraries().get(0)));
+        capabilityMethodValueAdd.getValueMeasurement().setCharacteristicDefinition(buildDirectMeasure(vdm));
 
         InputDelegation activityInputToCapabilityMethodInput=VDMLFactory.eINSTANCE.createInputDelegation();
         dc.getContextBasedPortDelegation().add(activityInputToCapabilityMethodInput);
@@ -184,15 +184,15 @@ public class DelegationImportTest extends MetaEntityImportTest {
         Collaboration owningCollaboration = new VdmlImporter(emf.createEntityManager()).buildCollaboration(cm);
         //THEN
         assertEquals(cm.getName(), owningCollaboration.getName());
-        assertEquals(1, owningCollaboration.getRoles().size());
-        assertEquals("MyRole", owningCollaboration.getRoles().iterator().next().getName());
-        assertSame(owningCollaboration, owningCollaboration.getRoles().iterator().next().getCollaboration());
+        assertEquals(1, owningCollaboration.getCollaborationRoles().size());
+        assertEquals("MyRole", owningCollaboration.getCollaborationRoles().iterator().next().getName());
+        assertSame(owningCollaboration, owningCollaboration.getCollaborationRoles().iterator().next().getCollaboration());
 
         assertEquals(1, owningCollaboration.getActivities().size());
         assertEquals("DoStuff", owningCollaboration.getActivities().iterator().next().getName());
         assertSame(owningCollaboration, owningCollaboration.getActivities().iterator().next().getCollaboration());
         assertEquals("MyRole", owningCollaboration.getActivities().iterator().next().getPerformingRole().getName());
-        assertSame(owningCollaboration.getRoles().iterator().next(), owningCollaboration.getActivities().iterator().next().getPerformingRole());
+        assertSame(owningCollaboration.getCollaborationRoles().iterator().next(), owningCollaboration.getActivities().iterator().next().getPerformingRole());
 
         assertEquals(2, owningCollaboration.getFlows().size());
 

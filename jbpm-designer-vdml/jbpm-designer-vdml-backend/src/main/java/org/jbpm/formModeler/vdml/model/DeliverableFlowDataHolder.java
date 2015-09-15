@@ -1,15 +1,11 @@
 package org.jbpm.formModeler.vdml.model;
 
-import org.eclipse.emf.common.util.EList;
 import org.jbpm.designer.vdml.VdmlHelper;
-import org.jbpm.formModeler.api.client.FormRenderContext;
 import org.jbpm.formModeler.api.model.DataFieldHolder;
-import org.jbpm.vdml.services.model.meta.EnumeratedMeasure;
-import org.jbpm.vdml.services.model.runtime.DeliverableFlowObservation;
+import org.jbpm.vdml.services.impl.model.meta.EnumeratedMeasure;
+import org.jbpm.vdml.services.impl.model.runtime.DirectedFlowObservation;
 import org.omg.smm.Measure;
 import org.omg.vdml.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -24,13 +20,13 @@ public class DeliverableFlowDataHolder extends ObservationDataHolder<Deliverable
 
     @Override
     public void writeValue(Object destination, String propName, Object value) throws Exception {
-        DeliverableFlowObservation dfo = (DeliverableFlowObservation) destination;
+        DirectedFlowObservation dfo = (DirectedFlowObservation) destination;
         super.setMeasurement(propName, value, dfo.getMeasurements(), dfo.getValueAddMeasurements());
     }
 
     @Override
     public Object readValue(Object source, String propName) throws Exception {
-        DeliverableFlowObservation dfo = (DeliverableFlowObservation) source;
+        DirectedFlowObservation dfo = (DirectedFlowObservation) source;
         return super.getMeasurement(propName, dfo.getMeasurements(), dfo.getValueAddMeasurements());
     }
 
@@ -41,7 +37,7 @@ public class DeliverableFlowDataHolder extends ObservationDataHolder<Deliverable
 
     @Override
     public boolean isAssignableValue(Object value) {
-        return value instanceof DeliverableFlowObservation;
+        return value instanceof DirectedFlowObservation;
     }
 
 

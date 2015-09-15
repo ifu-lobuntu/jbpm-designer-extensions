@@ -3,13 +3,10 @@ package org.jbpm.vdml.services.impl;
 
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.emf.util.JBPMECoreHelper;
-import org.jbpm.vdml.services.model.meta.EmfReference;
-import org.jbpm.vdml.services.model.meta.MetaEntity;
+import org.jbpm.vdml.services.impl.model.meta.*;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.Constructor;
-import java.util.Collection;
-import java.util.HashSet;
 
 public class MetaBuilder {
     EntityManager entityManager;
@@ -26,12 +23,13 @@ public class MetaBuilder {
         return er;
     }
 
-    public static  String buildUri(EObject a) {
+    public static String buildUri(EObject a) {
         return a.eResource().getURI().toPlatformString(true) + "#" + JBPMECoreHelper.getID(a);
     }
 
+
     protected <T> T findOrCreate(EObject eo, Class<T> t, Object... parent) {
-        if(eo==null){
+        if (eo == null) {
             return null;
         }
         T result = entityManager.find(t, buildUri(eo));

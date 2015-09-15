@@ -4,7 +4,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.jbpm.vdml.services.model.meta.Measure;
+import org.jbpm.vdml.services.impl.model.meta.Measure;
+import org.jbpm.vdml.services.impl.model.runtime.Measurement;
 import org.omg.smm.*;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.VDMLFactory;
@@ -14,6 +15,7 @@ import org.omg.vdml.util.VDMLResourceImpl;
 import test.TestGradeMeasure;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,34 +27,41 @@ import static org.junit.Assert.fail;
  * Created by ampie on 2015/09/13.
  */
 public class MetaEntityImportTest extends AbstractVdmlServiceTest {
+    protected void assertMeasurements(Set<? extends Measurement> foundSdMeasures) {
+        Set<Measure> measures = new HashSet<Measure>();
+        for (Measurement foundSdMeasure : foundSdMeasures) {
+            measures.add(foundSdMeasure.getMeasure());
+        }
+        assertMeasures(measures);
+    }
     protected void assertMeasures(Set<Measure> foundSdMeasures) {
         assertEquals(6, foundSdMeasures.size());
         for (Measure measure : foundSdMeasures) {
-            if (measure instanceof org.jbpm.vdml.services.model.meta.DirectMeasure) {
+            if (measure instanceof org.jbpm.vdml.services.impl.model.meta.DirectMeasure) {
                 assertEquals("DirectMeasure", measure.getName());
-            } else if (measure instanceof org.jbpm.vdml.services.model.meta.CountingMeasure) {
+            } else if (measure instanceof org.jbpm.vdml.services.impl.model.meta.CountingMeasure) {
                 assertEquals("CountingMeasure", measure.getName());
-                org.jbpm.vdml.services.model.meta.CountingMeasure found = (org.jbpm.vdml.services.model.meta.CountingMeasure) measure;
+                org.jbpm.vdml.services.impl.model.meta.CountingMeasure found = (org.jbpm.vdml.services.impl.model.meta.CountingMeasure) measure;
                 assertEquals("value > 1000", found.getValuesToCount());
                 assertNotNull(found.getMeasureToCount());
-            } else if (measure instanceof org.jbpm.vdml.services.model.meta.BinaryMeasure) {
+            } else if (measure instanceof org.jbpm.vdml.services.impl.model.meta.BinaryMeasure) {
                 assertEquals("BinaryMeasure", measure.getName());
-                org.jbpm.vdml.services.model.meta.BinaryMeasure found = (org.jbpm.vdml.services.model.meta.BinaryMeasure) measure;
+                org.jbpm.vdml.services.impl.model.meta.BinaryMeasure found = (org.jbpm.vdml.services.impl.model.meta.BinaryMeasure) measure;
                 assertNotNull(found.getMeasureA());
                 assertNotNull(found.getMeasureB());
-                assertEquals(org.jbpm.vdml.services.model.meta.BinaryFunctor.DIVIDE, found.getFunctor());
-            } else if (measure instanceof org.jbpm.vdml.services.model.meta.CollectiveMeasure) {
+                assertEquals(org.jbpm.vdml.services.impl.model.meta.BinaryFunctor.DIVIDE, found.getFunctor());
+            } else if (measure instanceof org.jbpm.vdml.services.impl.model.meta.CollectiveMeasure) {
                 assertEquals("CollectiveMeasure", measure.getName());
-                org.jbpm.vdml.services.model.meta.CollectiveMeasure found = (org.jbpm.vdml.services.model.meta.CollectiveMeasure) measure;
+                org.jbpm.vdml.services.impl.model.meta.CollectiveMeasure found = (org.jbpm.vdml.services.impl.model.meta.CollectiveMeasure) measure;
                 assertNotNull(found.getAggregatedMeasures());
-                assertEquals(org.jbpm.vdml.services.model.meta.Accumulator.PRODUCT, found.getAccumulator());
-            } else if (measure instanceof org.jbpm.vdml.services.model.meta.EnumeratedMeasure) {
+                assertEquals(org.jbpm.vdml.services.impl.model.meta.Accumulator.PRODUCT, found.getAccumulator());
+            } else if (measure instanceof org.jbpm.vdml.services.impl.model.meta.EnumeratedMeasure) {
                 assertEquals("TestGradeMeasure", measure.getName());
-                org.jbpm.vdml.services.model.meta.EnumeratedMeasure found = (org.jbpm.vdml.services.model.meta.EnumeratedMeasure) measure;
+                org.jbpm.vdml.services.impl.model.meta.EnumeratedMeasure found = (org.jbpm.vdml.services.impl.model.meta.EnumeratedMeasure) measure;
                 assertEquals(TestGradeMeasure.class, found.getEnumClass());
-            } else if (measure instanceof org.jbpm.vdml.services.model.meta.RescaledMeasure) {
+            } else if (measure instanceof org.jbpm.vdml.services.impl.model.meta.RescaledMeasure) {
                 assertEquals("RescaledMeasure", measure.getName());
-                org.jbpm.vdml.services.model.meta.RescaledMeasure found = (org.jbpm.vdml.services.model.meta.RescaledMeasure) measure;
+                org.jbpm.vdml.services.impl.model.meta.RescaledMeasure found = (org.jbpm.vdml.services.impl.model.meta.RescaledMeasure) measure;
                 assertNotNull(found.getRescaledMeasure());
                 assertEquals(2d, found.getMultiplier().doubleValue(), 0.0001);
                 assertEquals(100d, found.getOffset().doubleValue(),0.0001);
@@ -63,7 +72,7 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
 
     }
 
-    protected void addMeasuredCharacteristics(MeasureLibrary l, List<MeasuredCharacteristic> measuredCharacteristics) {
+    protected void addMeasuredCharacteristics(ValueDeliveryModel l, List<MeasuredCharacteristic> measuredCharacteristics) {
         ArrayList<Characteristic> characteristics = new ArrayList<Characteristic>();
         addCharacteristics(l, characteristics);
         for (Characteristic characteristic : characteristics) {
@@ -74,7 +83,7 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
         }
     }
 
-    protected void addCharacteristics(MeasureLibrary l, List<Characteristic> characteristicDefinition) {
+    protected void addCharacteristics(ValueDeliveryModel l, List<Characteristic> characteristicDefinition) {
         Characteristic e = buildDirectMeasure(l);
         characteristicDefinition.add(e);
 
@@ -85,7 +94,7 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
         CountingMeasureRelationship countingMeasureRelationship = SMMFactory.eINSTANCE.createCountingMeasureRelationship();
         countingMeasure.setCountedMeasureTo(countingMeasureRelationship);
         countingMeasure.getCountedMeasureTo().setToCountedMeasure(countingMeasure);
-        l.getMeasureElements().add(countingMeasure.getOperation());
+        l.getMetricsModel().get(0).getLibraries().get(0).getMeasureElements().add(countingMeasure.getOperation());
         characteristicDefinition.add(addToLibrary(l, countingMeasure));
 
 
@@ -117,7 +126,7 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
         characteristicDefinition.add(addToLibrary(l, rescaledMeasure));
     }
 
-    protected Characteristic buildCollectiveMeasure(MeasureLibrary l, Characteristic e) {
+    protected Characteristic buildCollectiveMeasure(ValueDeliveryModel l, Characteristic e) {
         CollectiveMeasure collectiveMeasure = SMMFactory.eINSTANCE.createCollectiveMeasure();
         collectiveMeasure.setName("CollectiveMeasure");
         BaseNMeasureRelationship baseN = SMMFactory.eINSTANCE.createBaseNMeasureRelationship();
@@ -127,18 +136,18 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
         return addToLibrary(l, collectiveMeasure);
     }
 
-    Characteristic buildDirectMeasure(MeasureLibrary l) {
+    Characteristic buildDirectMeasure(ValueDeliveryModel l) {
         DirectMeasure directMeasure1 = SMMFactory.eINSTANCE.createDirectMeasure();
         directMeasure1.setName("DirectMeasure");
         return addToLibrary(l, directMeasure1);
     }
 
-    private Characteristic addToLibrary(MeasureLibrary l, org.omg.smm.Measure m) {
+    private Characteristic addToLibrary(ValueDeliveryModel l, org.omg.smm.Measure m) {
         Characteristic characteristic = SMMFactory.eINSTANCE.createCharacteristic();
         characteristic.setName(m.getName());
         characteristic.getMeasure().add(m);
-        l.getMeasureElements().add(characteristic);
-        l.getMeasureElements().add(m);
+        l.getMetricsModel().get(0).getLibraries().get(0).getMeasureElements().add(characteristic);
+        l.getMetricsModel().get(0).getLibraries().get(0).getMeasureElements().add(m);
         ((VDMLResourceImpl)m.eResource()).setID(m, EcoreUtil.generateUUID());
         return characteristic;
     }
@@ -154,6 +163,8 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
         vdm.getMetricsModel().add(smm);
         smm.getLibraries().add(ml);
         vdm.getBusinessItemLibrary().add(VDMLFactory.eINSTANCE.createBusinessItemLibrary());
+        vdm.getCapabilitylibrary().add(VDMLFactory.eINSTANCE.createCapabilityLibrary());
+        vdm.getStoreLibrary().add(VDMLFactory.eINSTANCE.createStoreLibrary());
         vdm.getScenario().add(VDMLFactory.eINSTANCE.createScenario());
         vdm.getScenario().get(0).setIsCommon(true);
         return vdm;

@@ -73,7 +73,7 @@
         upperBound="-1" eType="#//ValueDefinition" eOpposite="#//ValueDefinition/category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityLibrary" eSuperTypes="#//VdmlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         upperBound="-1" eType="#//Capability" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityDependency" ordered="false"
         upperBound="-1" eType="#//CapabilityDependency" containment="true"/>
@@ -127,7 +127,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PracticeDefinition" eSuperTypes="#//VdmlElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="category" ordered="false"
         upperBound="-1" eType="#//PracticeCategory" eOpposite="#//PracticeCategory/categoryPractice"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         upperBound="-1" eType="#//CapabilityDefinition" eOpposite="#//CapabilityDefinition/practiceDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceDefinition" ordered="false"
         upperBound="-1" eType="#//BusinessItemDefinition" eOpposite="#//BusinessItemDefinition/practiceDefinition"/>
@@ -148,7 +148,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityResourceDefinition"
         ordered="false" upperBound="-1" eType="#//BusinessItemDefinition" eOpposite="#//BusinessItemDefinition/supportedCapability"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="practiceDefinition" ordered="false"
-        upperBound="-1" eType="#//PracticeDefinition" eOpposite="#//PracticeDefinition/capability"/>
+        upperBound="-1" eType="#//PracticeDefinition" eOpposite="#//PracticeDefinition/definition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BusinessItemCategory" eSuperTypes="#//BusinessItemLibraryElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentCategory" ordered="false"
@@ -440,7 +440,7 @@
         upperBound="-1" eType="#//Scenario" eOpposite="#//Scenario/releaseControl"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityOffer" eSuperTypes="#//MeasurableElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         eType="#//Capability"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityResource" ordered="false"
         upperBound="-1" eType="#//Store" eOpposite="#//Store/supportedCapability"/>
@@ -466,7 +466,7 @@
         upperBound="-1" eType="#//PracticeDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methodResource" ordered="false"
         upperBound="-1" eType="#//BusinessItem" eOpposite="#//BusinessItem/method"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         eType="#//Capability"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedCapability" ordered="false"
         upperBound="-1" eType="#//CapabilityOffer" eOpposite="#//CapabilityOffer/method"/>

@@ -1,8 +1,8 @@
 package org.jbpm.vdml.services.impl;
 
 
-import org.jbpm.vdml.services.model.meta.*;
-import org.jbpm.vdml.services.model.runtime.*;
+import org.jbpm.vdml.services.impl.model.meta.*;
+import org.jbpm.vdml.services.impl.model.runtime.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -16,7 +16,7 @@ public class ValueCalculationService {
     }
     public void doCollaborationObservations(CollaborationObservation collaboration) {
         //First business items
-        for (BusinessItemObservation businessItem: collaboration.getBusinessItemObservations()) {
+        for (BusinessItemObservation businessItem: collaboration.getBusinessItems()) {
             Set<? extends Measurement> measurements = businessItem.getMeasurements();
             Map<String,Measurement> context=new HashMap<String, Measurement>();
             addToContext(context, measurements);
@@ -24,7 +24,7 @@ public class ValueCalculationService {
 
         }
         //Then the flows
-        for (DeliverableFlowObservation flow : collaboration.getDeliverableFlowObservations()) {
+        for (DirectedFlowObservation flow : collaboration.getOwnedDirectedFlows()) {
             Map<String,Measurement> context=new HashMap<String, Measurement>();
             addFlowToContext(flow, context);
             resolveMeasurements(context, flow.getValueAddMeasurements());
@@ -33,17 +33,17 @@ public class ValueCalculationService {
         for (ActivityObservation a : collaboration.getActivities()) {
             Map<String,Measurement> context=new HashMap<String, Measurement>();
             addToContext(context, a.getMeasurements());
-            for (DeliverableFlowObservation flow : a.getObservedInput()) {
+            for (DirectedFlowObservation flow : a.getConcludedFlow()) {
                 addFlowToContext(flow, context);
             }
-            for (DeliverableFlowObservation flow : a.getObservedOutput()) {
+            for (DirectedFlowObservation flow : a.getCommencedFlow()) {
                 addFlowToContext(flow, context);
             }
             resolveMeasurements(context, a.getMeasurements());
         }
     }
 
-    private void addFlowToContext(DeliverableFlowObservation flow, Map<String, Measurement> context) {
+    private void addFlowToContext(DirectedFlowObservation flow, Map<String, Measurement> context) {
         addToContext(context, flow.getDeliverable().getMeasurements());
         addToContext(context, flow.getMeasurements());
         addToContext(context, flow.getValueAddMeasurements());
@@ -99,7 +99,7 @@ public class ValueCalculationService {
             if (measurement.getMeasure() instanceof CollectiveMeasure) {
                 CollectiveMeasure cm = (CollectiveMeasure) measurement.getMeasure();
                 Accumulator accumulator = cm.getAccumulator();
-                Query q = entityManager.createQuery("select " + accumulator.name() + "(m.value) from DeliverableFlowObservation d inner join d.deliverable.businessItem m where d.fromPortContainer = :store and m.measure.uri in :measureUri " + additionalCriteria);
+                Query q = entityManager.createQuery("select " + accumulator.name() + "(m.value) from DirectedFlowObservation d inner join d.deliverable.businessItem m where d.sourcePortContainer = :store and m.measure.uri in :measureUri " + additionalCriteria);
                 Set<String> uris = new HashSet<String>();
                 for (EmfReference emfReference : cm.getAggregatedMeasures()) {
                     uris.add(emfReference.getUri());
@@ -109,7 +109,7 @@ public class ValueCalculationService {
                 measurement.setValue(extractDouble(q));
             } else if (measurement.getMeasure() instanceof CountingMeasure) {
                 CountingMeasure cm = (CountingMeasure) measurement.getMeasure();
-                Query q = entityManager.createQuery("select count(m) from DeliverableFlowObservation d inner join d.deliverable.businessItem where d.fromPortContainer = :store and m.measure.uri in :measureUri and m.value is not null " + additionalCriteria + " and " + cm.getValuesToCount());
+                Query q = entityManager.createQuery("select count(m) from DirectedFlowObservation d inner join d.deliverable.businessItem where d.sourcePortContainer = :store and m.measure.uri in :measureUri and m.value is not null " + additionalCriteria + " and " + cm.getValuesToCount());
                 q.setParameter("measureUri", cm.getMeasureToCount().getUri());
                 q.setParameter("store", rsp);
                 measurement.setValue(extractDouble(q));

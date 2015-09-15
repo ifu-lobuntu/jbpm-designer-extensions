@@ -3,22 +3,24 @@ package org.jbpm.vdml.services.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.jbpm.vdml.services.model.meta.*;
-import org.jbpm.vdml.services.model.meta.Activity;
-import org.jbpm.vdml.services.model.meta.Capability;
-import org.jbpm.vdml.services.model.meta.Collaboration;
-import org.jbpm.vdml.services.model.meta.DeliverableFlow;
-import org.jbpm.vdml.services.model.meta.OutputDelegation;
-import org.jbpm.vdml.services.model.meta.PortContainer;
-import org.jbpm.vdml.services.model.meta.Role;
-import org.jbpm.vdml.services.model.meta.StoreDefinition;
-import org.jbpm.vdml.services.model.meta.SupplyingStore;
-import org.jbpm.vdml.services.model.meta.ResourceUse;
-import org.jbpm.vdml.services.model.meta.BusinessItemDefinition;
-import org.jbpm.vdml.services.model.meta.ValueProposition;
-import org.jbpm.vdml.services.model.meta.ValuePropositionComponent;
-import org.jbpm.vdml.services.model.meta.InputDelegation;
+import org.jbpm.vdml.services.impl.model.meta.*;
+import org.jbpm.vdml.services.impl.model.meta.Activity;
+import org.jbpm.vdml.services.impl.model.meta.Capability;
+import org.jbpm.vdml.services.impl.model.meta.Collaboration;
+import org.jbpm.vdml.services.impl.model.meta.DeliverableFlow;
+import org.jbpm.vdml.services.impl.model.meta.OutputDelegation;
+import org.jbpm.vdml.services.impl.model.meta.PoolDefinition;
+import org.jbpm.vdml.services.impl.model.meta.PortContainer;
+import org.jbpm.vdml.services.impl.model.meta.Role;
+import org.jbpm.vdml.services.impl.model.meta.StoreDefinition;
+import org.jbpm.vdml.services.impl.model.meta.SupplyingStore;
+import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
+import org.jbpm.vdml.services.impl.model.meta.BusinessItemDefinition;
+import org.jbpm.vdml.services.impl.model.meta.ValueProposition;
+import org.jbpm.vdml.services.impl.model.meta.ValuePropositionComponent;
+import org.jbpm.vdml.services.impl.model.meta.InputDelegation;
 import org.omg.vdml.*;
+
 
 import javax.persistence.EntityManager;
 
@@ -36,6 +38,9 @@ public class VdmlImporter extends MetaBuilder {
         importCapabilities(vdm);
         importStoreDefinitions(vdm);
         importBusinessItemDefinitions(vdm);
+        for (org.omg.vdml.Collaboration collaboration : vdm.getCollaboration()) {
+            buildCollaboration(collaboration);
+        }
         entityManager.flush();
     }
 
@@ -44,6 +49,11 @@ public class VdmlImporter extends MetaBuilder {
             for (BusinessItemLibraryElement from : library.getBusinessItemLibraryElement()) {
                 BusinessItemDefinition to = findOrCreate(from, BusinessItemDefinition.class);
                 to.setName(from.getName());
+                if(from instanceof org.omg.vdml.BusinessItemDefinition) {
+                    org.omg.vdml.BusinessItemDefinition fromDef = (org.omg.vdml.BusinessItemDefinition) from;
+                    to.setFungible(fromDef.getIsFungible());
+                    to.setShareable(fromDef.getIsShareable());
+                }
                 measureBuilder.fromCharacteristics(to.getMeasures(), from.getCharacteristicDefinition());
             }
         }
@@ -52,7 +62,7 @@ public class VdmlImporter extends MetaBuilder {
     private void importStoreDefinitions(ValueDeliveryModel vdm) {
         for (StoreLibrary library : vdm.getStoreLibrary()) {
             for (org.omg.vdml.StoreDefinition from : library.getStoreDefinitions()) {
-                StoreDefinition to = findOrCreate(from, StoreDefinition.class);
+                StoreDefinition to = findOrCreate(from, from instanceof org.omg.vdml.PoolDefinition ? PoolDefinition.class: StoreDefinition.class);
                 to.setName(from.getName());
                 measureBuilder.fromCharacteristics(to.getMeasures(), from.getCharacteristicDefinition());
             }

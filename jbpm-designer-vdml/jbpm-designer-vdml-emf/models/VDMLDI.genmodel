@@ -67,7 +67,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//ValueCategory/categoryValue"/>
     </genClasses>
     <genClasses ecoreClass="VDML.ecore#//CapabilityLibrary">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityLibrary/capability"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityLibrary/definition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityLibrary/capabilityDependency"/>
     </genClasses>
     <genClasses image="false" ecoreClass="VDML.ecore#//Capability">
@@ -96,7 +96,7 @@
     </genClasses>
     <genClasses ecoreClass="VDML.ecore#//PracticeDefinition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//PracticeDefinition/category"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//PracticeDefinition/capability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//PracticeDefinition/definition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//PracticeDefinition/resourceDefinition"/>
     </genClasses>
     <genClasses ecoreClass="VDML.ecore#//PracticeCategory">
@@ -275,7 +275,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//ReleaseControl/scenario"/>
     </genClasses>
     <genClasses ecoreClass="VDML.ecore#//CapabilityOffer">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityOffer/capability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityOffer/definition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityOffer/capabilityResource"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityOffer/method"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityOffer/releaseControl"/>
@@ -289,7 +289,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityMethod/methodOwner"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityMethod/implementedPractice"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityMethod/methodResource"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityMethod/capability"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityMethod/definition"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference VDML.ecore#//CapabilityMethod/supportedCapability"/>
     </genClasses>
     <genClasses ecoreClass="VDML.ecore#//Performer"/>

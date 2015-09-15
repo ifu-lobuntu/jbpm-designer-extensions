@@ -14,9 +14,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.sql.DataSource;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.Collection;
 import java.util.Set;
 
@@ -70,7 +73,7 @@ public abstract class AbstractVdmlServiceTest {
     }
 
     @Before
-    public void beginTx() throws Exception{
+    public void beginTx() throws Exception {
         UserTransaction ut = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
         ut.begin();
     }
@@ -79,9 +82,30 @@ public abstract class AbstractVdmlServiceTest {
     public void afterTx() {
         try {
             UserTransaction ut = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
+            DataSource ds = (DataSource) new InitialContext().lookup("jdbc/jbpm-ds");
+            Connection c = ds.getConnection();
+            try {
+                c.createStatement().execute("SET REFERENTIAL_INTEGRITY FALSE");
+                ResultSet rst = c.createStatement().executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = SCHEMA()");
+                while (rst.next()) {
+                    c.createStatement().execute("TRUNCATE TABLE " + rst.getString(1));
+                }
+                c.createStatement().execute("SET REFERENTIAL_INTEGRITY TRUE");
+            } catch (Exception e) {
+
+            } finally {
+                close(c);
+            }
             ut.commit();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void close(Object o) {
+        try {
+            o.getClass().getMethod("close").invoke(o);
+        } catch (Exception e) {
         }
     }
 }

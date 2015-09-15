@@ -1,8 +1,8 @@
 package org.jbpm.formModeler.vdml.model;
 
 import org.jbpm.formModeler.api.model.DataFieldHolder;
-import org.jbpm.vdml.services.model.runtime.ActivityObservation;
-import org.jbpm.vdml.services.model.runtime.ResourceUseObservation;
+import org.jbpm.vdml.services.impl.model.runtime.ActivityObservation;
+import org.jbpm.vdml.services.impl.model.runtime.ResourceUseObservation;
 import org.omg.vdml.Activity;
 import org.omg.vdml.ResourceUse;
 

@@ -1,28 +1,17 @@
 package org.jbpm.vdml.services;
 
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.jbpm.vdml.services.impl.MetaBuilder;
 import org.jbpm.vdml.services.impl.VdmlImporter;
-import org.jbpm.vdml.services.model.meta.*;
-import org.jbpm.vdml.services.model.meta.Collaboration;
+import org.jbpm.vdml.services.impl.model.meta.Collaboration;
 import org.junit.Test;
-import org.omg.smm.MeasureLibrary;
 import org.omg.vdml.*;
 import org.omg.vdml.Activity;
-import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.ResourceUse;
 import org.omg.vdml.Role;
 import org.omg.vdml.StoreDefinition;
 import org.omg.vdml.SupplyingStore;
-import org.omg.vdml.ValueProposition;
-import org.omg.vdml.ValuePropositionComponent;
-import org.omg.vdml.util.VDMLResourceFactoryImpl;
-import org.omg.vdml.util.VDMLResourceImpl;
 
 import java.io.ByteArrayOutputStream;
 
@@ -85,18 +74,18 @@ public class CollaborationImportTest extends MetaEntityImportTest {
         Collaboration collaboration = new VdmlImporter(emf.createEntityManager()).buildCollaboration(cp);
         //THEN
         assertEquals(cp.getName(), collaboration.getName());
-        assertEquals(1, collaboration.getRoles().size());
-        assertEquals("MyRole", collaboration.getRoles().iterator().next().getName());
-        assertSame(collaboration, collaboration.getRoles().iterator().next().getCollaboration());
+        assertEquals(1, collaboration.getCollaborationRoles().size());
+        assertEquals("MyRole", collaboration.getCollaborationRoles().iterator().next().getName());
+        assertSame(collaboration, collaboration.getCollaborationRoles().iterator().next().getCollaboration());
 
         assertEquals(1, collaboration.getActivities().size());
         assertEquals("DoStuff", collaboration.getActivities().iterator().next().getName());
         assertSame(collaboration, collaboration.getActivities().iterator().next().getCollaboration());
         assertEquals("MyRole", collaboration.getActivities().iterator().next().getPerformingRole().getName());
-        assertSame(collaboration.getRoles().iterator().next(), collaboration.getActivities().iterator().next().getPerformingRole());
+        assertSame(collaboration.getCollaborationRoles().iterator().next(), collaboration.getActivities().iterator().next().getPerformingRole());
 
         assertEquals(1, collaboration.getSupplyingStores().size());
-        assertSame(collaboration.getRoles().iterator().next(), collaboration.getSupplyingStores().iterator().next().getSupplyingRole());
+        assertSame(collaboration.getCollaborationRoles().iterator().next(), collaboration.getSupplyingStores().iterator().next().getSupplyingRole());
         assertEquals("SupplyStuff", collaboration.getSupplyingStores().iterator().next().getName());
         assertSame(collaboration, collaboration.getSupplyingStores().iterator().next().getCollaboration());
         assertEquals("MyRole", collaboration.getSupplyingStores().iterator().next().getSupplyingRole().getName());
@@ -148,9 +137,9 @@ public class CollaborationImportTest extends MetaEntityImportTest {
         ResourceUse  resourceUse=VDMLFactory.eINSTANCE.createResourceUse();
         resourceUse.setName("resourceUse");
         resourceUse.setDuration(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        resourceUse.getDuration().setCharacteristicDefinition(buildDirectMeasure(vdm.getMetricsModel().get(0).getLibraries().get(0)));
+        resourceUse.getDuration().setCharacteristicDefinition(buildDirectMeasure(vdm));
         resourceUse.setQuantity(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        resourceUse.getQuantity().setCharacteristicDefinition(buildDirectMeasure(vdm.getMetricsModel().get(0).getLibraries().get(0)));
+        resourceUse.getQuantity().setCharacteristicDefinition(buildDirectMeasure(vdm));
         activity.getResourceUse().add(resourceUse);
 
 

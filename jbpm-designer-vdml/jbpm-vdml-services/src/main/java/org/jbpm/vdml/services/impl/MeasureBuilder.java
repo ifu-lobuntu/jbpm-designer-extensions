@@ -2,15 +2,15 @@ package org.jbpm.vdml.services.impl;
 
 import org.eclipse.emf.common.util.EList;
 import org.jbpm.designer.vdml.VdmlHelper;
-import org.jbpm.vdml.services.model.meta.*;
-import org.jbpm.vdml.services.model.meta.Accumulator;
-import org.jbpm.vdml.services.model.meta.BinaryFunctor;
-import org.jbpm.vdml.services.model.meta.BinaryMeasure;
-import org.jbpm.vdml.services.model.meta.CollectiveMeasure;
-import org.jbpm.vdml.services.model.meta.CountingMeasure;
-import org.jbpm.vdml.services.model.meta.DirectMeasure;
-import org.jbpm.vdml.services.model.meta.Measure;
-import org.jbpm.vdml.services.model.meta.RescaledMeasure;
+import org.jbpm.vdml.services.impl.model.meta.*;
+import org.jbpm.vdml.services.impl.model.meta.Accumulator;
+import org.jbpm.vdml.services.impl.model.meta.BinaryFunctor;
+import org.jbpm.vdml.services.impl.model.meta.BinaryMeasure;
+import org.jbpm.vdml.services.impl.model.meta.CollectiveMeasure;
+import org.jbpm.vdml.services.impl.model.meta.CountingMeasure;
+import org.jbpm.vdml.services.impl.model.meta.DirectMeasure;
+import org.jbpm.vdml.services.impl.model.meta.Measure;
+import org.jbpm.vdml.services.impl.model.meta.RescaledMeasure;
 import org.omg.smm.*;
 import org.omg.vdml.MeasuredCharacteristic;
 

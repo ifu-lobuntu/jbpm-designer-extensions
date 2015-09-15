@@ -6,5 +6,5 @@ public class RuntimeDelegationTest {
     //Test value adds aggregating from activity to collaboration
     //Test accounting resource flow delegating to collaboration
     //Test accounting resource flow from activity to collaboration
-    //Ensure that the DeliverableFlowObservation is connected to the exact correct ActivityObservation and CollaborationObservation
+    //Ensure that the DirectedFlowObservation is connected to the exact correct ActivityObservation and CollaborationObservation
 }
