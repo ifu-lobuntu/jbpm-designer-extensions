@@ -23,7 +23,7 @@ public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity
     private PoolPerformance hostingPool;
 
     @ManyToOne
-    @Column(nullable = true)
+    @JoinColumn(nullable = true)
     private Participant represents;
 
     @Embedded

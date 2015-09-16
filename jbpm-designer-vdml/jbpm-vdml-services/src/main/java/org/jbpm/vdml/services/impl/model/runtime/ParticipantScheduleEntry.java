@@ -15,8 +15,11 @@ public class ParticipantScheduleEntry {
     @Enumerated
     private TimeCycle cycle;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="`from`")
+
     private Date from;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="`to`")
     private Date to;
     private double poolSize;
 

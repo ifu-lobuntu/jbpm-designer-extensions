@@ -40,10 +40,10 @@ public class LibraryImportTest extends MetaEntityImportTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         //WHEN
-        VdmlImporter importer = new VdmlImporter(emf.createEntityManager());
+        VdmlImporter importer = new VdmlImporter(getEntityManager());
         importer.buildModel(vdm);
         //THEN
-        VdmlImporter importer2 = new VdmlImporter(emf.createEntityManager());
+        VdmlImporter importer2 = new VdmlImporter(getEntityManager());
         org.jbpm.vdml.services.impl.model.meta.StoreDefinition foundSd = importer2.findStoreDefinition(MetaBuilder.buildUri(sd));
         assertEquals("SupplyStuffDef", foundSd.getName());
         assertMeasures(foundSd.getMeasures());

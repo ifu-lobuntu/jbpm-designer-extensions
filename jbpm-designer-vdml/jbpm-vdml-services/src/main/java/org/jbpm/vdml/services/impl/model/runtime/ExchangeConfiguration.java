@@ -1,6 +1,7 @@
 package org.jbpm.vdml.services.impl.model.runtime;
 
 import org.jbpm.vdml.services.impl.model.meta.Collaboration;
+import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
 import org.jbpm.vdml.services.impl.model.meta.Role;
 
 import javax.persistence.*;
@@ -13,9 +14,9 @@ public class ExchangeConfiguration {
     @ManyToOne
     private Collaboration collaborationToUse;
     @ManyToOne
-    private Role requestorRole;
-    @ManyToOne
     private Role supplierRole;
+    @ManyToOne
+    private ResourceUse poolBooking;
 
     public Long getId() {
         return id;
@@ -29,12 +30,12 @@ public class ExchangeConfiguration {
         this.collaborationToUse = collaborationToUse;
     }
 
-    public Role getRequestorRole() {
-        return requestorRole;
+    public ResourceUse getPoolBooking() {
+        return poolBooking;
     }
 
-    public void setRequestorRole(Role requestorRole) {
-        this.requestorRole = requestorRole;
+    public void setPoolBooking(ResourceUse poolBooking) {
+        this.poolBooking = poolBooking;
     }
 
     public Role getSupplierRole() {

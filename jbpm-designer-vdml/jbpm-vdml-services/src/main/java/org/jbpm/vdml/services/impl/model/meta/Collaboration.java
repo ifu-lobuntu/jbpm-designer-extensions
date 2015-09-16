@@ -18,6 +18,11 @@ public class Collaboration extends PortContainer {
     private Set<BusinessItemDefinition> businessItemDefinitions =new HashSet<BusinessItemDefinition>();
     @OneToMany(mappedBy = "owningCollaboration", cascade = CascadeType.ALL)
     private Set<DirectedFlow> ownedDirectedFlows =new HashSet<DirectedFlow>();
+    @ManyToOne
+    private Role initiatorRole;
+    @ManyToOne
+    private Role plannerRole;
+
     public Collaboration() {
     }
 
@@ -43,6 +48,22 @@ public class Collaboration extends PortContainer {
 
     public Set<BusinessItemDefinition> getBusinessItemDefinitions() {
         return businessItemDefinitions;
+    }
+
+    public Role getInitiatorRole() {
+        return initiatorRole;
+    }
+
+    public void setInitiatorRole(Role initiatorRole) {
+        this.initiatorRole = initiatorRole;
+    }
+
+    public Role getPlannerRole() {
+        return plannerRole;
+    }
+
+    public void setPlannerRole(Role plannerRole) {
+        this.plannerRole = plannerRole;
     }
 
     @Override

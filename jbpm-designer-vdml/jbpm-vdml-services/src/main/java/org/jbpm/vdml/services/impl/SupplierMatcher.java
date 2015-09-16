@@ -1,5 +1,6 @@
 package org.jbpm.vdml.services.impl;
 
+import org.jbpm.vdml.services.api.model.ResourceAvailability;
 import org.jbpm.vdml.services.api.model.LocationCriterion;
 import org.jbpm.vdml.services.api.model.MeasurementCriterion;
 import org.jbpm.vdml.services.impl.model.runtime.*;

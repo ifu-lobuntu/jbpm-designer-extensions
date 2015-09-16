@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
-
+import static org.jbpm.vdml.services.impl.model.runtime.RuntimeEntityUtil.findMatchingRuntimeEntity;
 @Entity
 public class CollaborationObservation extends PortContainerObservation {
 
@@ -44,30 +44,15 @@ public class CollaborationObservation extends PortContainerObservation {
     }
 
     public ActivityObservation findActivity(Activity pc) {
-        for (ActivityObservation activity : this.getActivities()) {
-            if (activity.getActivity().getUri().equals(pc.getUri())) {
-                return activity;
-            }
-        }
-        throw new IllegalArgumentException(pc.getName() + " not found");
+        return findMatchingRuntimeEntity(this.getActivities(), pc);
     }
 
     public SupplyingStoreObservation findSupplyingStore(SupplyingStore pc) {
-        for (SupplyingStoreObservation suppliedStore : this.getSupplyingStores()) {
-            if (suppliedStore.getSupplyingStore().getUri().equals(pc.getUri())) {
-                return suppliedStore;
-            }
-        }
-        throw new IllegalArgumentException(pc.getName() + " not found");
+        return findMatchingRuntimeEntity(this.getSupplyingStores(), pc);
     }
 
     public BusinessItemObservation findBusinessItem(BusinessItemDefinition deliverable) {
-        for (BusinessItemObservation businessItem : businessItems) {
-            if (businessItem.getBusinessItemDefinition().equals(deliverable)) {
-                return businessItem;
-            }
-        }
-        throw new IllegalArgumentException(deliverable.getName() + " not found");
+        return findMatchingRuntimeEntity(this.getBusinessItems(), deliverable);
     }
 
 

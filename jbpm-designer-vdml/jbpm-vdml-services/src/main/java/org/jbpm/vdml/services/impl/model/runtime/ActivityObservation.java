@@ -2,11 +2,14 @@ package org.jbpm.vdml.services.impl.model.runtime;
 
 import org.jbpm.vdml.services.impl.model.meta.Activity;
 import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
+import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.jbpm.vdml.services.impl.model.runtime.RuntimeEntityUtil.findMatchingRuntimeEntity;
 
 @Entity
 public class ActivityObservation extends PortContainerObservation {
@@ -40,7 +43,10 @@ public class ActivityObservation extends PortContainerObservation {
         this.collaboration = collaboration;
         this.collaboration.getActivities().add(this);
     }
+    public ResourceUseObservation findResourceUse(ResourceUse ru){
+        return findMatchingRuntimeEntity(this.getResourceUseObservation(), ru);
 
+    }
     public void setCapabilityOffer(CapabilityPerformance capabilityOffer) {
         this.capabilityOffer = capabilityOffer;
     }

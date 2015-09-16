@@ -92,9 +92,9 @@ public class ValueCalculateTest extends MetaEntityImportTest {
         internalUsableFeatureDelegation.setTarget(usableFeatureOutOfMethod);
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
-        new VdmlImporter(emf.createEntityManager()).buildCollaboration(implementUserStoryMethod);
-        org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration=new VdmlImporter(emf.createEntityManager()).findCollaboration(MetaBuilder.buildUri(implementUserStoryMethod));
-        ParticipantService participantService = new ParticipantService(emf.createEntityManager());
+        new VdmlImporter(getEntityManager()).buildCollaboration(implementUserStoryMethod);
+        org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration=new VdmlImporter(getEntityManager()).findCollaboration(MetaBuilder.buildUri(implementUserStoryMethod));
+        ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         participantService.setCapabilities(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(capability)));
         //WHEN

@@ -1,13 +1,14 @@
 package org.jbpm.vdml.services.impl.model.runtime;
 
 
+import org.hibernate.annotations.Type;
 import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
 import org.jbpm.vdml.services.impl.model.meta.StoreDefinition;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+import com.vividsolutions.jts.geom.Point;
 @Entity
 public class StorePerformance implements ActivatableRuntimeEntity {
     @Id
@@ -16,7 +17,8 @@ public class StorePerformance implements ActivatableRuntimeEntity {
     @ManyToOne
     private Participant owner;
     private boolean active;
-    private Location location=new Location();
+    @Type(type="org.hibernate.spatial.GeometryType")
+    private Point location;
     @ManyToOne
     private StorePerformance extendedPresentedStoreMeasurement;
     private double inventoryLevel;
@@ -82,11 +84,11 @@ public class StorePerformance implements ActivatableRuntimeEntity {
         return id;
     }
 
-    public Location getLocation() {
+    public Point getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Point location) {
         this.location = location;
     }
 

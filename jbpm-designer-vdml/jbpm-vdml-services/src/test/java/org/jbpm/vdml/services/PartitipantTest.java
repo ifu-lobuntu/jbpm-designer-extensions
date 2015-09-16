@@ -10,6 +10,7 @@ import org.jbpm.vdml.services.impl.model.runtime.StorePerformance;
 import org.junit.Test;
 import org.omg.vdml.*;
 
+import javax.persistence.EntityManager;
 import java.io.ByteArrayOutputStream;
 import java.util.Collections;
 
@@ -26,19 +27,21 @@ public class PartitipantTest extends MetaEntityImportTest {
         vdm.getCapabilitylibrary().get(0).getCapability().add(capability);
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
-        new VdmlImporter(emf.createEntityManager()).buildModel(vdm);
-        ParticipantService participantService = new ParticipantService(emf.createEntityManager());
+        new VdmlImporter(getEntityManager()).buildModel(vdm);
+        ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         //When
         participantService.setCapabilities(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(capability)));
         //And it is idempotent
         participantService.setCapabilities(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(capability)));
         //Then
-        CapabilityPerformance capabilityPerformance=new ParticipantService(emf.createEntityManager()).findIndividualParticipant("ekke").getCapabilityOffers().iterator().next();
+        CapabilityPerformance capabilityPerformance=new ParticipantService(getEntityManager()).findIndividualParticipant("ekke").getCapabilityOffers().iterator().next();
         super.assertMeasurements(capabilityPerformance.getMeasurements());
         assertEquals(ekke.getId(), capabilityPerformance.getParticipant().getId());
 
     }
+
+
     @Test
     public void testStore() throws Exception{
         //Given
@@ -49,15 +52,15 @@ public class PartitipantTest extends MetaEntityImportTest {
         vdm.getStoreLibrary().get(0).getStoreDefinitions().add(storeDef);
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
-        new VdmlImporter(emf.createEntityManager()).buildModel(vdm);
-        ParticipantService participantService = new ParticipantService(emf.createEntityManager());
+        new VdmlImporter(getEntityManager()).buildModel(vdm);
+        ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         //When
         participantService.setStores(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(storeDef)));
         //And it is idempotent
         participantService.setStores(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(storeDef)));
         //Then
-        StorePerformance storePerformance=new ParticipantService(emf.createEntityManager()).findIndividualParticipant("ekke").getOfferedStores().iterator().next();
+        StorePerformance storePerformance=new ParticipantService(getEntityManager()).findIndividualParticipant("ekke").getOfferedStores().iterator().next();
         super.assertMeasurements(storePerformance.getMeasurements());
         assertEquals(ekke.getId(), storePerformance.getOwner().getId());
 
@@ -84,15 +87,15 @@ public class PartitipantTest extends MetaEntityImportTest {
         vp.getComponent().add(vpc);
         vpc.setName("MyVPCToYou");
         super.addMeasuredCharacteristics(vdm, vpc.getMeasuredCharacteristic());
-        new VdmlImporter(emf.createEntityManager()).buildModel(vdm);
-        ParticipantService participantService = new ParticipantService(emf.createEntityManager());
+        new VdmlImporter(getEntityManager()).buildModel(vdm);
+        ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         //When
         participantService.setRoles(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(performer)));
         //And it is idempotent
         participantService.setRoles(ekke.getId(), Collections.singleton(MetaBuilder.buildUri(performer)));
         //Then
-        RolePerformance rolePerformance=new ParticipantService(emf.createEntityManager()).findIndividualParticipant("ekke").getRolePerformances().iterator().next();
+        RolePerformance rolePerformance=new ParticipantService(getEntityManager()).findIndividualParticipant("ekke").getRolePerformances().iterator().next();
         assertEquals(ekke.getId(), rolePerformance.getParticipant().getId());
         assertEquals("MyRole", rolePerformance.getRole().getName());
         assertEquals(1, rolePerformance.getOverallProvidedValuePropositions().size());

@@ -1,4 +1,4 @@
-package org.jbpm.vdml.services.impl;
+package org.jbpm.vdml.services.api.model;
 
 import java.io.Serializable;
 import java.util.Date;

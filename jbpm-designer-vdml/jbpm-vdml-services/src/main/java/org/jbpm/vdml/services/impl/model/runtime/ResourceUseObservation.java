@@ -1,5 +1,7 @@
 package org.jbpm.vdml.services.impl.model.runtime;
 
+import com.vividsolutions.jts.geom.Point;
+import org.hibernate.annotations.Type;
 import org.jbpm.vdml.services.impl.model.meta.Measure;
 import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
 import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
@@ -26,11 +28,17 @@ public class ResourceUseObservation implements RuntimeEntity {
     @ManyToOne
     private PoolPerformance pool;
 
+    @Type(type="org.hibernate.spatial.GeometryType")
+    private Point location;
     @ManyToOne
     private ReusableBusinessItemPerformance nonFungibleResource;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "`from`")
+
     private Date from;
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "`to`")
+
     private Date to;
 
     private double quantity;
@@ -59,6 +67,7 @@ public class ResourceUseObservation implements RuntimeEntity {
     public ResourceUseMeasurement getQuantity() {
         return getMeasurement(this.resourceUse.getQuantity());
     }
+
     public ResourceUseMeasurement getDuration() {
         return getMeasurement(this.resourceUse.getDuration());
     }
@@ -136,5 +145,13 @@ public class ResourceUseObservation implements RuntimeEntity {
 
     public void setInput(DirectedFlowObservation input) {
         this.input = input;
+    }
+
+    public Point getLocation() {
+        return location;
+    }
+
+    public void setLocation(Point location) {
+        this.location = location;
     }
 }

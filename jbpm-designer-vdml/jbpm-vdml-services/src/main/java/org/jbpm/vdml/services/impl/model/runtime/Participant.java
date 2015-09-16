@@ -4,6 +4,8 @@ package org.jbpm.vdml.services.impl.model.runtime;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import com.vividsolutions.jts.geom.Point;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -11,8 +13,8 @@ public abstract class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Embedded
-    private Location location=new Location();
+    @Type(type="org.hibernate.spatial.GeometryType")
+    private Point location;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "participant")
     private Set<RolePerformance> rolePerformances =new HashSet<RolePerformance>();
@@ -47,11 +49,11 @@ public abstract class Participant {
         return capabilityOffers;
     }
 
-    public Location getLocation() {
+    public Point getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(Point location) {
         this.location = location;
     }
 }

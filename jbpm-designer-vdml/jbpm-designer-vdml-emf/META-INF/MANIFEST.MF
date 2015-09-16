@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1442287058517
+Bnd-LastModified: 1442373661845
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Tue, 15 Sep 2015 05:16:36 +0200
+Build-Timestamp: Wed, 16 Sep 2015 05:19:44 +0200
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,7 +12,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.pavanecce.vdml.metamodel
 Bundle-SymbolicName: org.pavanecce.vdml.metamodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201509150316
+Bundle-Version: 6.4.0.201509160319
 Created-By: Apache Maven Bundle Plugin
 Implementation-Title: jBPM Designer VDML Metamodel
 Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
@@ -41,7 +41,7 @@ Private-Package: org.jbpm.smm.dd.smmdi,org.omg.smm,org.omg.vdml,org.jbpm
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-vdml/jbpm-designer-vdml-emf
-Scm-Revision: 30d31834d5ffbd97a47335e52dd2f5b1168b3870
+Scm-Revision: 12b2a87d774f07b9b248e18d56cbfb3c43e4ac00
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-vdm
  l/jbpm-designer-vdml-emf

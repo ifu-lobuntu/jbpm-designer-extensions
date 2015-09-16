@@ -62,6 +62,7 @@
         <class>org.jbpm.vdml.services.impl.model.runtime.StorePerformance</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.SupplyingStoreMeasurement</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.SupplyingStoreObservation</class>
+        <class>org.jbpm.vdml.services.impl.model.runtime.TestLocation</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.ValueAddMeasurement</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.ValuePropositionComponentMeasurement</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.ValuePropositionComponentPerformance</class>
@@ -73,7 +74,7 @@
             <property name="hibernate.hbm2ddl.auto" value="create-drop" />
             <property name="hibernate.show_sql" value="false" />
 
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.spatial.dialect.postgis.PostgisDialect"/>
 
             <!-- BZ 841786: AS7/EAP 6/Hib 4 uses new (sequence) generators which seem to cause problems -->
             <property name="hibernate.id.new_generator_mappings" value="false" />

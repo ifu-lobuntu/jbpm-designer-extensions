@@ -1,15 +1,14 @@
 # jBPM NRP
 
 #1 Overview
-The purpose of this project is to provide a modeling facility combined with a runtime execution engine that can facilitate networked economic collaboration. As a type of resource planning system, jBPM NRP may, on the surface at least, appear to have goals similar to traditional ERP systems. However, on closer inspection, it in fact represents a massive paradigm shift from traditional ERP. The best introduction to this paradigm shift is to explore the ways in which it differs from existing ERP systems. 
+The purpose of this jBPM NRP is to provide a modeling facility combined with a runtime execution engine that can facilitate networked economic collaboration. As a type of resource planning system, jBPM NRP may, on the surface at least, appear to have goals similar to traditional ERP systems. However, on closer inspection, it in fact represents a massive paradigm shift from traditional ERP. The best introduction to this paradigm shift is to explore the ways in which it differs from existing ERP systems. 
 
-## jBPM NRP is network oriented
+## The scop of jBPM NRP is the network, not the enterprise
 In ERP, the Enterprise is central to the offering. Existing ERP solutions work hard to fortify the borders of the Enterprise. Auditability, accountability, cross-checking, double verification, balancing the books are implemented to make sure that nobody outside the Enterprise can possibly cheat it out of a penny. The processes it implements have been use for decades, some for centuries and have been proven to maximise the safety of the Enterprise.
 For an NRP system, the Network is primary. Borders amongst Enterprises are secondary, and all Enterprises in the Network are treated equally. This does not mean that participants are expected to blindly trust each other, it is just that the technology built into the NRP solution itself obsoletes old accounting processes that were required to establish trust before the advent of the highly technologically connected world of the 21st century. Entirely new processes are possible whilst cross-boundary exchanges can be facilitated with much greater ease and improved techonological security.
 
-
 ## jBPM NRP does not implement set of practices, but provides the vocabulary to define and facilitate practices.
-As stated above, the accounting practices implemented by existing ERP systems have become unnecessarily cumbersome for today's interconnected world. jBPM NRP could have chosen to address this by implementing new revolutionary accounting practices. However, given that the rate of technological change is ever increasing, such an effort would produce software that will be relevant for an even shorter period than the age of ERP's. jBPM NRP can therefore not adopt such an approach. Instead it aims to provide the building blocks to allow business modelers and users to explore and define, and continue to evolve entirely new and innovative accounting practices. It is up to the modeler, developer and user in a value network to continuously reinvent it's own economic practices and deal up with the pressures of technological advancement that they face.
+As stated above, the accounting practices implemented by existing ERP systems have become unnecessarily cumbersome for today's interconnected world. jBPM NRP could have chosen to address this by implementing a new set of revolutionary accounting practices. However, given that the rate of technological change is ever increasing, such an effort would produce software that will be relevant for an even shorter period than the age of ERP's. It is impossible to predict which accounting practices would be best even just 5 years from now. It would therefore be short sighted of jBPM NRP to adopt such an approach. Instead it aims to provide the building blocks, the vocabulary to allow business modelers and users to explore and define, and continue to evolve entirely new and innovative accounting practices. It is up to the modeler, developer and user in a value network to continuously reinvent it's own economic practices and deal up with the pressures of technological advancement that they face.
 
 ## In jBPM NRP, gain or loss is a matter of perspective.
 In implementing jBPM NRP, this concept challenged our thinking over and over. Because there is no single Enterprise in NRP, there is no inflow contrasted with ouflow. There is only flow from one participant to another. A lot of the "balancing" work that is required in traditional accounting have become more of a distraction than an aid. Yes, jBPM NRP still keeps track of all flow of resources, it is just that it keeps track of increases and decreases on both sides of the equation, both the recipient and the provider, and it needs to do so without prejudice. It needs to have an entirely decentralized yet consistent general ledger. Any participant could be a supplier, any could be a consumer. It is always a matter of context and perspective.
@@ -20,19 +19,26 @@ In a networked collaboration, business partners are ephemeral things. Traditiona
 ## Business Relationship management rather than Customer Relationship Managenement
 At the risk of repeatin the previous paragraph, everything that was said there can be said w.r.t. how jBPM NRP handles customers. All business relationships are handled uniformly, whether it is with a supplier or a customer. In a networked collaboration, it is often difficult to predict the multiplicity of suppliers as compared to the multiplicity of customers, and often customers can also become suppliers. There is therefore no point in giving structuring the B2C and B2B relationships any differently. Ultimately, any relationship is really just between two participants, and exactly the same negotiation process is supported in all relationships. The focus on relationships in jBPM NRP also allows it to leverage existing social platforms to harvest relationship information, but then to enrich this information with more useful contextual information as it emerges from a history of exchanges.
 
+## Business Relationship management rather than Human Resource Managenement
+Ditto. The employee-employer relationship is just another business relationship. And it is up to each business and their employees to uniquely define the relationship that they have.
+
 In exploring how jBPM NRP differs from ERP solutions, we have alluded to a new style of economic activity we called "networked economic collaboration". Given how important this style of economic activity is for the paradigm shift jBPM NRP represents, a deeper exploration of this style of economic activity is warranted.
 
 #2 The Networked Economy.
-There are currently many different economic initiatives that claim to leverage the highly interconnected world of the 21st century. Examples are the Circular Economy, Commons-based Peer production, Peer to Peer business, the Sharing Economy, Open Enterprise, Open Manufacturing, Open Value Networks, Collaborative Consumption, Collaborative Economy. Some of these put forward perhaps more extreme viewpoints than others, but generally there is no need to become overly apocalyptic for readers to understand that a fundamental shift is underway in how we think about doing business. 
+There are currently many different economic initiatives that claim to provide an alternative to today's problematic world economy whilst leveraging the highly interconnected world of the 21st century. Examples are the Circular Economy, Commons-based Peer production, Peer to Peer business, the Sharing Economy, Open Enterprises, Open Manufacturing, Open Value Networks, Collaborative Consumption, Collaborative Economy. Some of these put forward more extreme viewpoints than others, but generally there is no need to become overly apocalyptic for readers to understand that a fundamental shift is underway in how we think about doing business. jBPM NRP aims to support the entire spectrum of potential business models that could emerge from these different approaches.
 
-jBPM NRP does not necessarily adhere to any specific school of thought, but we view the proliferation of so many similar approaches to economic activity as evidence of a convergence, an inevitable conclusion of today's increasingly technologically interconnected world. In this project, we have not given preference to any single one of these approaches, but we would consider it a failure if jBPM NRP does not at least support all of these schools of thought. We will use the intentionally vague and hopefully slightly more neutral  term "Networked Economy" to refer to this set of economic initiatives and styles that are emerging with today's increasingly technologically interconnected world. 
+jBPM NRP does not necessarily adhere to any specific school of thought, but we view the proliferation of so many similar approaches to economic activity as evidence of a convergence, an inevitable conclusion of today's increasingly technologically interconnected world. We would consider it a failure if jBPM NRP does not at least support all of these schools of thought. We will use the intentionally vague and hopefully slightly more neutral  term "Networked Economy" to refer to this set of economic initiatives and styles that are emerging with today's increasingly technologically interconnected world. 
 
 ## From chain to stream to network
 
 ## Blurred organizational boundaries and increased horizontal integration.
 
 ## Collaboration and competition
-Traditionally it was easy to determine when to collaborate and when to compete in the economy. Generally competing with an economic agent as if it was our mortal enemy was the safest bet, unless the Enterprise under discussion owned said economic agent. However, in the connected world collaboration often has a benefit, and not just a long term benefit. Previously unlikely bedfellows now come together to develop shared infrastructure. Open Source software clearly illustrates this principle, but world wide mobile network operators are starting to sell their network infrastructures to common third parties shared with competitors. It is a crazy world, but the reality is that the rapid advances in technology leaves business leaders with little choice: adapt and collaborate or die. The pressure to collaborate forces potential competitors to better refine their offerings, often in such a way that they do not compete anymore. Competition is part of human nature and is likely to disappear any time soon. However, a much more sophisticated language is required today to clearly distinguish when another participant is a competitor, and when it is actually a business partner. Another very important aspect of competition that is enjoing prominence today is where competition is not free and fair. In a previous era, every Enterprise aimed to establish a monopoly, but in today's age of social media, an Enterprises perceived to leveraging its monopoly risk loosing out very badly. Most individuals today understand that increased transparency is likely to result in reduced chances at unfair competition, collusion and discrimination, but what we have in social media and the free and open internet is the possibility of systemic catastrophe, not only for Enterprises but even governments when incriminating information is leaked.
+Traditionally it was easy to determine when to collaborate and when to compete in the business world. Generally the safest bet was to compete with another business as if it was our mortal enemy, unless it could be proven that the Enterprise under discussion owned both businesses. However, in the connected world collaboration often has a benefit, and not just a long term benefit but an immediate benefit. Collaboration can, paradoxically, give a business the competitive edge. Previously unlikely bedfellows now come together to develop shared infrastructure. Open Source software clearly illustrates this principle, but world wide mobile network operators are starting to sell their network infrastructures to common third parties shared with competitors. For outsiters such a move may seem drastic, but the reality is that the rapid advances in technology leaves business leaders with little choice: adapt and collaborate or die. 
+
+This is not to say that competition will disappear. Competition is part of human nature, or even nature itself, some would argue, and is unlikely to disappear any time soon. However, the pressure to collaborate forces potential competitors to better refine their offerings, often in such a way that they do not compete anymore, or at least that the domain within which they compete is very clearly defined, and that the differences in their offering are well understood.  A much more sophisticated language is required today to clearly distinguish when another participant is a competitor, and when it is actually a business partner. The reality is that each and every relationship in the networked economy is best understood in terms of give and take, even those with competitors.
+
+Another very important aspect of competition that is enjoing prominence today is where competition is not free and fair. In a previous era, every Enterprise aimed to establish a monopoly, but in today's age of social media, an Enterprises perceived to leveraging its monopoly risks loosing out very badly. Most individuals today understand that increased transparency is likely to result in reduced chances at unfair competition, collusion and discrimination, but what we have in social media and the free and open internet is the possibility of systemic catastrophe, not only for Enterprises but even governments when incriminating information is leaked.
 
 ## New models of ownership, especially w.r.t. software, data and knowledge.
 
@@ -158,41 +164,49 @@ Display a list of store definitions, capabilities and pool definitions that are 
 3. As a consumer, I would like to find suppliers offering stores/pools/capabilities based on the immediate requirements of the exchange (time, place, quantity and quality requirements) so that we can exchange value with each other.
 First let the user select the store definition, capability and/or pool definition they can select from. Then display a search screen providing inputs for date range, quantity and then quality ranges for each of the measures that are used to measure the performance of the selected store definition, capability and/or pool definition.
 
-4. As a consumer/supplier, I would like to exchange value with another in order to gain a benefit from the network
-There are two different contexts within which this could happen:
-* within the context of a project. This context will be discussed in more details in other user stories, but the same lifecycle will be followed.
-* in an entirely isolated exchange based entirely on the Store/Pool/Capability selected. In these cases, the commodity is primary, but there will still be a Collaboration followed that, at the very least, involves the Supplier and the Consumer, but very possibly also a transport provider. Either way, it does seem more feasible that some collaboration is associated with every Store/Pool/Capability offering which is the only way that service can be utilized. Strictly speakin this Collaboration is a CapabilityMethod of the Owner of the Store/CapabilityOffer but in order to maximise CapabilityMethod reuse, we can configure the CapabilityMethod on the Definition object itself, and leverage inheritance to allow any Participant to offer it.  Use the basic task form as a template. At the very least, this form needs to be associated with the Activity representing the exchange. Let the initiating user indicate which fields are non-negotiable, and potentially change this at any point. On persistence of the form, store the current state of the form as a persistent step in the process.
+4. As a Consumer, I would like to exchange value with a Supplier based on a very specific Store, Pool or Capability that it offers so that we can both gain value from the network.
 
-Exchange Lifecycle:
-The following represents a set of user stories from the CFA approach. The entire lifecycle is supported, but it is conceivable that in many different context, some of the steps need to be ommitted. As an example, a store could offer products at a certain price, and it is possible to determine the projected inventory level from available data up front. In such a scenario, when an isolated exchanged is started, the store could choose to skip straight to the "Accept Promise" step. The steps required can be configured at the Activity level.
+5. As a Consumer, I would like to initiate a project, possibly involving multiple Suppliers, so that we all can gain value from a network.
 
-4.1. Request to Supplier(s)
+6. As a Consumer, when initiating a project, I would like to fulfill the role of Project Custodian on the project, so that I can commence with planning activities.
+
+7. As a Consumer, when initiating a project, I would like to nominate a Project Custodian on the project, so that he/she can commence with planning activities.
+
+8. As a Participant, when participating in an isolated exchange or project, I would like my own activities and deliverables as well as the activities and deliverables of my collaborators to be measured so that such performance statistics can be used to find potential collaborators in future.
+
+
+4. As a participant, I would like to exchange value with another following an exchange process that maximizes the chances of success for both parties, yet offers the necessary flexibility to allow participants to withdraw gracefully.
+There are two different contexts within which participants would exchange value with each other:
+* In an isolated exchange
+* In a project.
+In both cases, the same Exchange Lifecycle will be followed, following the Conversation For Action approach which has is expected to maximise chances of success. The entire lifecycle is supported, but it is conceivable that in many different context, some of the steps need to be ommitted. As an example, a store could offer products at a certain price, and it is possible to determine the projected inventory level from available data up front. In such a scenario, when an isolated exchanged is started, the store could choose to skip straight to the "Accept Promise" step. The steps required can be configured at the Activity level.
+
+4.1. As a Consumer, I would like to submit a Request to (a) Supplier(s)
 The Consumer sends a request to one or more potential Suppliers, detailing the time, location, cost, quantity and quality requirements of the request, along with additional data pertaining to the request.
-4.2. Promise to Consumer
+4.2. As a Supplier, I would like to promise to the Consumer that I will fulfill a request meeting the requested criteria
 The Supplier promises that he/she would be able to fulfil the request within time requirements, at the specificied location, meeting the cost, quantity and quality requirements.
-4.3. Counter to Consumer.
+4.3. As a Supplier, I would like to offer an alternative set of requirements to the Consumer.
 The Supplier indicates that the request would not be possible, but suggests alternative time requirements, location, cost, quantity and quality requirements.
-4.4. Counter to Supplier.
+4.4. As a Consumer, I would like to offer yet another alternative set of requirements to to Supplier.
 The Consumer indicates that the suggested counter would not suffice, but suggests alternative time requirements, location, cost, quantity and quality requirements.
-4.5. Withdraw from negotiation
+4.5. As a Participant, I would like to withdraw from the negotiation process
 Either the Consumer or the Supplier can withdraw from the negotiation process
-4.5. Accept Promise/Commit
+4.5. As a Consumer, I would like to accept the promise made by the supplier and commit to fulfill my part of the exchange.
 The Consumer accepts the Supplier's promise, and commits to fulfill her/his part of the promise, which entails covering the cost (exchange value).
-4.6. Start
+4.6. As a Supplier, I would like to indicate that work has started on the fulfillment of a request.
 The supplier starts the process of fulfilling the request.
-4.7. Assert completion
+4.7. As a Supplier, I would like assert that I have fulfilled the request.
 The Supplier claims that the request has been fulfilled (work done, resource provided), specifying the time,location, cost,quantity and quality of the deliverable.
-4.8. Declare inadequate (Express dissatisfaction)
+4.8. As a consumer, I would like to declare that the request has been fulfilled inadequately and needs rework.
 The Consumer rejects the claim that the request has been fulfilled, specifying the deviations in the time,location, cost,quantity and quality of the deliverable from what was agreed to.
-4.9. Renege/Declare Dispute
-Either party can declare a Dispute, which would involve the risk of loosing deposits, non-payment etc.
-4.10. Suggest new terms
+4.9. As a Participant, I would like to suggest new terms for the contract
 Either party can suggest new terms for the contract, specifying the suggested deviations in the time,location, cost,quantity and quality of the deliverable from what was agreed to. The other party can respond by specifying a different set of deviations
-4.11. Reject new terms
+4.10. As a Participant, I would like to reject new terms offered by the other party.
 Either party can reject the new terms suggested.
-4.12. Declare adequate (Express satisfaction)
+4.11. As a Participant, I would like to declare a dispute and invoke the dispute resolution procedure with a arbitrator.
+Either party can declare a Dispute, which would involve the risk of loosing deposits, non-payment etc.
+4.12. As a Consumer I would like to declare that a request has been fulfilled adequately (Express satisfaction)
 The Consumer declares that the deliverable met the criteria. At this point, some additional information may be requested to contribute to the Supplier's reputation profile. All of this information is now stored, potentially in the BlockChain storage to make it available externally.
-
 
 5. As a project custodian, I would like to find suppliers for a single activity/pool/store on a project to maximise chances of success of the activity on the project.
 During planning, the user will start off from a specific Activity/SupplyingStore/SupplyingPool in the project which will therefore inform the Capability/StoreDefinition/PoolDefinition required in this context. There may also be additional requirements that will be available from the project context such as the date range within which it is required, as well as the location, and optionally the required performance limits on the Measures that are used to measure the specific Supplier's performance against the Capability/StoreDefinition/PoolDefinition.
