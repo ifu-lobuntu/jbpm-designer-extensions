@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class CapabilityPerformance implements ActivatableRuntimeEntity {
+public class CapabilityPerformance implements ActivatableRuntimeEntity,DirectlyExchangable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,8 +21,6 @@ public class CapabilityPerformance implements ActivatableRuntimeEntity {
     private Capability capability;
     @OneToMany()
     private Set<CapabilityMeasurement> measurements=new HashSet<CapabilityMeasurement>();//Aggregated from ActivityObservation.measurements
-    @ManyToOne
-    private ExchangeConfiguration exchangeConfiguration;
 
     public CapabilityPerformance() {
     }
@@ -33,14 +31,6 @@ public class CapabilityPerformance implements ActivatableRuntimeEntity {
         this.capability = capability;
     }
 
-    public ExchangeConfiguration getExchangeConfiguration() {
-
-        return exchangeConfiguration;
-    }
-
-    public void setExchangeConfiguration(ExchangeConfiguration exchangeConfiguration) {
-        this.exchangeConfiguration = exchangeConfiguration;
-    }
 
     public boolean isActive() {
         return active;
@@ -77,5 +67,14 @@ public class CapabilityPerformance implements ActivatableRuntimeEntity {
 
     public void setExtendedCapabilityPerformance(CapabilityPerformance extendedCapabilityPerformance) {
         this.extendedCapabilityPerformance = extendedCapabilityPerformance;
+    }
+    @Override
+    public Participant getSupplier() {
+        return getParticipant();
+    }
+
+    @Override
+    public ExchangeConfiguration getExchangeConfiguration() {
+        return capability.getExchangeConfiguration();
     }
 }

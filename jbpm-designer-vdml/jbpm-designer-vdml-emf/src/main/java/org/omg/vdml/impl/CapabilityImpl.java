@@ -4,15 +4,18 @@ package org.omg.vdml.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.smm.Characteristic;
 import org.omg.vdml.Capability;
+import org.omg.vdml.ExchangeConfiguration;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -26,6 +29,7 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getParentCabability <em>Parent Cabability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getChildCapability <em>Child Capability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getCharacteristicDefinition <em>Characteristic Definition</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CapabilityImpl#getExchangeConfiguration <em>Exchange Configuration</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,6 +66,16 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
     protected EList<Characteristic> characteristicDefinition;
 
     /**
+	 * The cached value of the '{@link #getExchangeConfiguration() <em>Exchange Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExchangeConfiguration()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExchangeConfiguration exchangeConfiguration;
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -118,6 +132,49 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExchangeConfiguration getExchangeConfiguration() {
+		return exchangeConfiguration;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExchangeConfiguration(ExchangeConfiguration newExchangeConfiguration, NotificationChain msgs) {
+		ExchangeConfiguration oldExchangeConfiguration = exchangeConfiguration;
+		exchangeConfiguration = newExchangeConfiguration;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION, oldExchangeConfiguration, newExchangeConfiguration);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExchangeConfiguration(ExchangeConfiguration newExchangeConfiguration) {
+		if (newExchangeConfiguration != exchangeConfiguration) {
+			NotificationChain msgs = null;
+			if (exchangeConfiguration != null)
+				msgs = ((InternalEObject)exchangeConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION, null, msgs);
+			if (newExchangeConfiguration != null)
+				msgs = ((InternalEObject)newExchangeConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION, null, msgs);
+			msgs = basicSetExchangeConfiguration(newExchangeConfiguration, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION, newExchangeConfiguration, newExchangeConfiguration));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -145,6 +202,8 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
 				return ((InternalEList<?>)getParentCabability()).basicRemove(otherEnd, msgs);
 			case VDMLPackage.CAPABILITY__CHILD_CAPABILITY:
 				return ((InternalEList<?>)getChildCapability()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION:
+				return basicSetExchangeConfiguration(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -163,6 +222,8 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
 				return getChildCapability();
 			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
 				return getCharacteristicDefinition();
+			case VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION:
+				return getExchangeConfiguration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -188,6 +249,9 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
 				getCharacteristicDefinition().clear();
 				getCharacteristicDefinition().addAll((Collection<? extends Characteristic>)newValue);
 				return;
+			case VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION:
+				setExchangeConfiguration((ExchangeConfiguration)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -209,6 +273,9 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
 			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
 				getCharacteristicDefinition().clear();
 				return;
+			case VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION:
+				setExchangeConfiguration((ExchangeConfiguration)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -227,6 +294,8 @@ public abstract class CapabilityImpl extends VdmlElementImpl implements Capabili
 				return childCapability != null && !childCapability.isEmpty();
 			case VDMLPackage.CAPABILITY__CHARACTERISTIC_DEFINITION:
 				return characteristicDefinition != null && !characteristicDefinition.isEmpty();
+			case VDMLPackage.CAPABILITY__EXCHANGE_CONFIGURATION:
+				return exchangeConfiguration != null;
 		}
 		return super.eIsSet(featureID);
 	}

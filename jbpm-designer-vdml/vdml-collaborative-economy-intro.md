@@ -161,7 +161,7 @@ Use OAuth providers, request permission to access e-mail address and optionally 
 2. As a supplier, I would like to register the Stores/Pools/Capabilities that I offer so that other participants can use it.
 Display a list of store definitions, capabilities and pool definitions that are available on the network.
 
-3. As a consumer, I would like to find suppliers offering stores/pools/capabilities based on the immediate requirements of the exchange (time, place, quantity and quality requirements) so that we can exchange value with each other.
+3. As a consumer, I would like to find suppliers' offering stores/pools/capabilities based on the immediate requirements of the exchange (time, place, quantity and quality requirements) so that we can exchange value with each other.
 First let the user select the store definition, capability and/or pool definition they can select from. Then display a search screen providing inputs for date range, quantity and then quality ranges for each of the measures that are used to measure the performance of the selected store definition, capability and/or pool definition.
 
 4. As a Consumer, I would like to exchange value with a Supplier based on a very specific Store, Pool or Capability that it offers so that we can both gain value from the network.

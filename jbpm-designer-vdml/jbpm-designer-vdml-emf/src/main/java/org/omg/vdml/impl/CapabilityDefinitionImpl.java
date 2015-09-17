@@ -135,7 +135,7 @@ public class CapabilityDefinitionImpl extends CapabilityImpl implements Capabili
 	 */
     public EList<PracticeDefinition> getPracticeDefinition() {
 		if (practiceDefinition == null) {
-			practiceDefinition = new EObjectWithInverseResolvingEList.ManyInverse<PracticeDefinition>(PracticeDefinition.class, this, VDMLPackage.CAPABILITY_DEFINITION__PRACTICE_DEFINITION, VDMLPackage.PRACTICE_DEFINITION__CAPABILITY);
+			practiceDefinition = new EObjectWithInverseResolvingEList.ManyInverse<PracticeDefinition>(PracticeDefinition.class, this, VDMLPackage.CAPABILITY_DEFINITION__PRACTICE_DEFINITION, VDMLPackage.PRACTICE_DEFINITION__DEFINITION);
 		}
 		return practiceDefinition;
 	}

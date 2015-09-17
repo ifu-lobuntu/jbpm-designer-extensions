@@ -18,7 +18,7 @@ import java.util.Collection;
 public class RuntimeEntityUtil {
     public static <T extends RuntimeEntity> T findMatchingRuntimeEntity(Collection<? extends T > source, MetaEntity metaEntity){
         for (T t : source) {
-            if(t.getMetaEntity().equals(metaEntity)){
+            if(t.getMetaEntity().getUri().equals(metaEntity.getUri())){
                 return t;
             }
         }

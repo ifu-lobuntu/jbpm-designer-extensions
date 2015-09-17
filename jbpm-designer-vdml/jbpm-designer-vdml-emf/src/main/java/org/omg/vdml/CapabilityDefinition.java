@@ -81,7 +81,7 @@ public interface CapabilityDefinition extends Capability {
     /**
 	 * Returns the value of the '<em><b>Practice Definition</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.vdml.PracticeDefinition}.
-	 * It is bidirectional and its opposite is '{@link org.omg.vdml.PracticeDefinition#getCapability <em>Capability</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.omg.vdml.PracticeDefinition#getDefinition <em>Definition</em>}'.
 	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Practice Definition</em>' reference list isn't clear,
@@ -90,8 +90,8 @@ public interface CapabilityDefinition extends Capability {
      * <!-- end-user-doc -->
 	 * @return the value of the '<em>Practice Definition</em>' reference list.
 	 * @see org.omg.vdml.VDMLPackage#getCapabilityDefinition_PracticeDefinition()
-	 * @see org.omg.vdml.PracticeDefinition#getCapability
-	 * @model opposite="capability" ordered="false"
+	 * @see org.omg.vdml.PracticeDefinition#getDefinition
+	 * @model opposite="definition" ordered="false"
 	 * @generated
 	 */
     EList<PracticeDefinition> getPracticeDefinition();

@@ -13,18 +13,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.vdml.Community;
 import org.omg.vdml.Member;
 import org.omg.vdml.VDMLPackage;
-import org.eclipse.emf.common.notify.*;
-import org.eclipse.emf.common.util.*;
-
-import org.eclipse.emf.ecore.*;
-import org.eclipse.emf.ecore.impl.*;
-import org.eclipse.emf.ecore.util.*;
-import org.jbpm.designer.dd.jbpmdd.*;
-import org.jbpm.designer.dd.util.*;
-import org.jbpm.smm.dd.smmdi.*;
-import org.omg.dd.di.*;
-import org.omg.dd.di.impl.*;
-import org.omg.smm.*;
 import org.omg.vdml.*;
 /**
  * <!-- begin-user-doc -->

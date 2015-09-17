@@ -15,10 +15,12 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.omg.vdml.Activity;
 import org.omg.vdml.BusinessItem;
 import org.omg.vdml.Capability;
 import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.CapabilityOffer;
+import org.omg.vdml.Milestone;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.Performer;
 import org.omg.vdml.PracticeDefinition;
@@ -37,8 +39,10 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getMethodOwner <em>Method Owner</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getImplementedPractice <em>Implemented Practice</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getMethodResource <em>Method Resource</em>}</li>
- *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getCapability <em>Capability</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getDefinition <em>Definition</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getSupportedCapability <em>Supported Capability</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getInitialActivity <em>Initial Activity</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getMilestone <em>Milestone</em>}</li>
  * </ul>
  *
  * @generated
@@ -75,16 +79,16 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
     protected EList<BusinessItem> methodResource;
 
     /**
-	 * The cached value of the '{@link #getCapability() <em>Capability</em>}' reference.
+	 * The cached value of the '{@link #getDefinition() <em>Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @see #getCapability()
+	 * <!-- end-user-doc -->
+	 * @see #getDefinition()
 	 * @generated
 	 * @ordered
 	 */
-    protected Capability capability;
+	protected Capability definition;
 
-    /**
+				/**
 	 * The cached value of the '{@link #getSupportedCapability() <em>Supported Capability</em>}' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -95,6 +99,26 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
     protected EList<CapabilityOffer> supportedCapability;
 
     /**
+	 * The cached value of the '{@link #getInitialActivity() <em>Initial Activity</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitialActivity()
+	 * @generated
+	 * @ordered
+	 */
+	protected Activity initialActivity;
+
+				/**
+	 * The cached value of the '{@link #getMilestone() <em>Milestone</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMilestone()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Milestone> milestone;
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -192,43 +216,43 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Capability getCapability() {
-		if (capability != null && capability.eIsProxy()) {
-			InternalEObject oldCapability = (InternalEObject)capability;
-			capability = (Capability)eResolveProxy(oldCapability);
-			if (capability != oldCapability) {
+	public Capability getDefinition() {
+		if (definition != null && definition.eIsProxy()) {
+			InternalEObject oldDefinition = (InternalEObject)definition;
+			definition = (Capability)eResolveProxy(oldDefinition);
+			if (definition != oldDefinition) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.CAPABILITY_METHOD__CAPABILITY, oldCapability, capability));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.CAPABILITY_METHOD__DEFINITION, oldDefinition, definition));
 			}
 		}
-		return capability;
+		return definition;
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public Capability basicGetCapability() {
-		return capability;
+	public Capability basicGetDefinition() {
+		return definition;
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public void setCapability(Capability newCapability) {
-		Capability oldCapability = capability;
-		capability = newCapability;
+	public void setDefinition(Capability newDefinition) {
+		Capability oldDefinition = definition;
+		definition = newDefinition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY_METHOD__CAPABILITY, oldCapability, capability));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY_METHOD__DEFINITION, oldDefinition, definition));
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -241,6 +265,56 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 	}
 
     /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Activity getInitialActivity() {
+		if (initialActivity != null && initialActivity.eIsProxy()) {
+			InternalEObject oldInitialActivity = (InternalEObject)initialActivity;
+			initialActivity = (Activity)eResolveProxy(oldInitialActivity);
+			if (initialActivity != oldInitialActivity) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.CAPABILITY_METHOD__INITIAL_ACTIVITY, oldInitialActivity, initialActivity));
+			}
+		}
+		return initialActivity;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Activity basicGetInitialActivity() {
+		return initialActivity;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInitialActivity(Activity newInitialActivity) {
+		Activity oldInitialActivity = initialActivity;
+		initialActivity = newInitialActivity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY_METHOD__INITIAL_ACTIVITY, oldInitialActivity, initialActivity));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Milestone> getMilestone() {
+		if (milestone == null) {
+			milestone = new EObjectContainmentEList<Milestone>(Milestone.class, this, VDMLPackage.CAPABILITY_METHOD__MILESTONE);
+		}
+		return milestone;
+	}
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -277,6 +351,8 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				return ((InternalEList<?>)getMethodResource()).basicRemove(otherEnd, msgs);
 			case VDMLPackage.CAPABILITY_METHOD__SUPPORTED_CAPABILITY:
 				return ((InternalEList<?>)getSupportedCapability()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
+				return ((InternalEList<?>)getMilestone()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -311,11 +387,16 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				return getImplementedPractice();
 			case VDMLPackage.CAPABILITY_METHOD__METHOD_RESOURCE:
 				return getMethodResource();
-			case VDMLPackage.CAPABILITY_METHOD__CAPABILITY:
-				if (resolve) return getCapability();
-				return basicGetCapability();
+			case VDMLPackage.CAPABILITY_METHOD__DEFINITION:
+				if (resolve) return getDefinition();
+				return basicGetDefinition();
 			case VDMLPackage.CAPABILITY_METHOD__SUPPORTED_CAPABILITY:
 				return getSupportedCapability();
+			case VDMLPackage.CAPABILITY_METHOD__INITIAL_ACTIVITY:
+				if (resolve) return getInitialActivity();
+				return basicGetInitialActivity();
+			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
+				return getMilestone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,12 +425,19 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				getMethodResource().clear();
 				getMethodResource().addAll((Collection<? extends BusinessItem>)newValue);
 				return;
-			case VDMLPackage.CAPABILITY_METHOD__CAPABILITY:
-				setCapability((Capability)newValue);
+			case VDMLPackage.CAPABILITY_METHOD__DEFINITION:
+				setDefinition((Capability)newValue);
 				return;
 			case VDMLPackage.CAPABILITY_METHOD__SUPPORTED_CAPABILITY:
 				getSupportedCapability().clear();
 				getSupportedCapability().addAll((Collection<? extends CapabilityOffer>)newValue);
+				return;
+			case VDMLPackage.CAPABILITY_METHOD__INITIAL_ACTIVITY:
+				setInitialActivity((Activity)newValue);
+				return;
+			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
+				getMilestone().clear();
+				getMilestone().addAll((Collection<? extends Milestone>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -375,11 +463,17 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 			case VDMLPackage.CAPABILITY_METHOD__METHOD_RESOURCE:
 				getMethodResource().clear();
 				return;
-			case VDMLPackage.CAPABILITY_METHOD__CAPABILITY:
-				setCapability((Capability)null);
+			case VDMLPackage.CAPABILITY_METHOD__DEFINITION:
+				setDefinition((Capability)null);
 				return;
 			case VDMLPackage.CAPABILITY_METHOD__SUPPORTED_CAPABILITY:
 				getSupportedCapability().clear();
+				return;
+			case VDMLPackage.CAPABILITY_METHOD__INITIAL_ACTIVITY:
+				setInitialActivity((Activity)null);
+				return;
+			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
+				getMilestone().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -401,10 +495,14 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				return implementedPractice != null && !implementedPractice.isEmpty();
 			case VDMLPackage.CAPABILITY_METHOD__METHOD_RESOURCE:
 				return methodResource != null && !methodResource.isEmpty();
-			case VDMLPackage.CAPABILITY_METHOD__CAPABILITY:
-				return capability != null;
+			case VDMLPackage.CAPABILITY_METHOD__DEFINITION:
+				return definition != null;
 			case VDMLPackage.CAPABILITY_METHOD__SUPPORTED_CAPABILITY:
 				return supportedCapability != null && !supportedCapability.isEmpty();
+			case VDMLPackage.CAPABILITY_METHOD__INITIAL_ACTIVITY:
+				return initialActivity != null;
+			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
+				return milestone != null && !milestone.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

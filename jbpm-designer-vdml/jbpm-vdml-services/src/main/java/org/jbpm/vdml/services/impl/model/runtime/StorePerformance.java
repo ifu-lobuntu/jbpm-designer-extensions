@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import com.vividsolutions.jts.geom.Point;
 @Entity
-public class StorePerformance implements ActivatableRuntimeEntity {
+public class StorePerformance implements ActivatableRuntimeEntity, DirectlyExchangable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,8 +23,6 @@ public class StorePerformance implements ActivatableRuntimeEntity {
     private StorePerformance extendedPresentedStoreMeasurement;
     private double inventoryLevel;
     private double projectedInventoryLevel;
-    @ManyToOne
-    private ExchangeConfiguration exchangeConfiguration;
     @ManyToOne
     private StoreDefinition storeDefinition;
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
@@ -39,13 +37,6 @@ public class StorePerformance implements ActivatableRuntimeEntity {
         owner.getOfferedStores().add(this);
     }
 
-    public ExchangeConfiguration getExchangeConfiguration() {
-        return exchangeConfiguration;
-    }
-
-    public void setExchangeConfiguration(ExchangeConfiguration exchangeConfiguration) {
-        this.exchangeConfiguration = exchangeConfiguration;
-    }
 
     public double getInventoryLevel() {
         return inventoryLevel;
@@ -108,6 +99,16 @@ public class StorePerformance implements ActivatableRuntimeEntity {
 
     public Participant getOwner() {
         return owner;
+    }
+
+    @Override
+    public Participant getSupplier() {
+        return getOwner();
+    }
+
+    @Override
+    public ExchangeConfiguration getExchangeConfiguration() {
+        return storeDefinition.getExchangeConfiguration();
     }
 }
 

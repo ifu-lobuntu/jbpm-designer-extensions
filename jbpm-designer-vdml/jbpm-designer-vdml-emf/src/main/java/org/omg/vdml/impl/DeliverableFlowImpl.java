@@ -11,6 +11,7 @@ import org.omg.vdml.BusinessItem;
 import org.omg.vdml.DeliverableFlow;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.MeasuredCharacteristic;
+import org.omg.vdml.Milestone;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.VDMLPackage;
 
@@ -28,6 +29,7 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.DeliverableFlowImpl#getDuration <em>Duration</em>}</li>
  *   <li>{@link org.omg.vdml.impl.DeliverableFlowImpl#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.omg.vdml.impl.DeliverableFlowImpl#getProvider <em>Provider</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.DeliverableFlowImpl#getMilestone <em>Milestone</em>}</li>
  * </ul>
  *
  * @generated
@@ -114,6 +116,16 @@ public class DeliverableFlowImpl extends MeasurableElementImpl implements Delive
     protected OutputPort provider;
 
     /**
+	 * The cached value of the '{@link #getMilestone() <em>Milestone</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMilestone()
+	 * @generated
+	 * @ordered
+	 */
+	protected Milestone milestone;
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -399,6 +411,44 @@ public class DeliverableFlowImpl extends MeasurableElementImpl implements Delive
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Milestone getMilestone() {
+		if (milestone != null && milestone.eIsProxy()) {
+			InternalEObject oldMilestone = (InternalEObject)milestone;
+			milestone = (Milestone)eResolveProxy(oldMilestone);
+			if (milestone != oldMilestone) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.DELIVERABLE_FLOW__MILESTONE, oldMilestone, milestone));
+			}
+		}
+		return milestone;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Milestone basicGetMilestone() {
+		return milestone;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMilestone(Milestone newMilestone) {
+		Milestone oldMilestone = milestone;
+		milestone = newMilestone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.DELIVERABLE_FLOW__MILESTONE, oldMilestone, milestone));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -464,6 +514,9 @@ public class DeliverableFlowImpl extends MeasurableElementImpl implements Delive
 			case VDMLPackage.DELIVERABLE_FLOW__PROVIDER:
 				if (resolve) return getProvider();
 				return basicGetProvider();
+			case VDMLPackage.DELIVERABLE_FLOW__MILESTONE:
+				if (resolve) return getMilestone();
+				return basicGetMilestone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -493,6 +546,9 @@ public class DeliverableFlowImpl extends MeasurableElementImpl implements Delive
 				return;
 			case VDMLPackage.DELIVERABLE_FLOW__PROVIDER:
 				setProvider((OutputPort)newValue);
+				return;
+			case VDMLPackage.DELIVERABLE_FLOW__MILESTONE:
+				setMilestone((Milestone)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -524,6 +580,9 @@ public class DeliverableFlowImpl extends MeasurableElementImpl implements Delive
 			case VDMLPackage.DELIVERABLE_FLOW__PROVIDER:
 				setProvider((OutputPort)null);
 				return;
+			case VDMLPackage.DELIVERABLE_FLOW__MILESTONE:
+				setMilestone((Milestone)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -548,6 +607,8 @@ public class DeliverableFlowImpl extends MeasurableElementImpl implements Delive
 				return CHANNEL_EDEFAULT == null ? channel != null : !CHANNEL_EDEFAULT.equals(channel);
 			case VDMLPackage.DELIVERABLE_FLOW__PROVIDER:
 				return provider != null;
+			case VDMLPackage.DELIVERABLE_FLOW__MILESTONE:
+				return milestone != null;
 		}
 		return super.eIsSet(featureID);
 	}

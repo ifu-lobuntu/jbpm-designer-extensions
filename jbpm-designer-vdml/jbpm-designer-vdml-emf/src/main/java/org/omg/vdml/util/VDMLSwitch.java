@@ -679,6 +679,20 @@ public class VDMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VDMLPackage.EXCHANGE_CONFIGURATION: {
+				ExchangeConfiguration exchangeConfiguration = (ExchangeConfiguration)theEObject;
+				T result = caseExchangeConfiguration(exchangeConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VDMLPackage.MILESTONE: {
+				Milestone milestone = (Milestone)theEObject;
+				T result = caseMilestone(milestone);
+				if (result == null) result = caseMeasurableElement(milestone);
+				if (result == null) result = caseVdmlElement(milestone);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1700,6 +1714,36 @@ public class VDMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSupplyingPool(SupplyingPool object) {
+		return null;
+	}
+
+				/**
+	 * Returns the result of interpreting the object as an instance of '<em>Exchange Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Exchange Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExchangeConfiguration(ExchangeConfiguration object) {
+		return null;
+	}
+
+				/**
+	 * Returns the result of interpreting the object as an instance of '<em>Milestone</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Milestone</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMilestone(Milestone object) {
 		return null;
 	}
 

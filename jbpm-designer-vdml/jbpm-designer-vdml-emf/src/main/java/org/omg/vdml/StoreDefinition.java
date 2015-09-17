@@ -17,6 +17,9 @@ import org.omg.smm.Characteristic;
  * <ul>
  *   <li>{@link org.omg.vdml.StoreDefinition#getResource <em>Resource</em>}</li>
  *   <li>{@link org.omg.vdml.StoreDefinition#getCharacteristicDefinition <em>Characteristic Definition</em>}</li>
+ *   <li>{@link org.omg.vdml.StoreDefinition#getInventoryLevel <em>Inventory Level</em>}</li>
+ *   <li>{@link org.omg.vdml.StoreDefinition#getDuration <em>Duration</em>}</li>
+ *   <li>{@link org.omg.vdml.StoreDefinition#getExchangeConfiguration <em>Exchange Configuration</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getStoreDefinition()
@@ -25,20 +28,30 @@ import org.omg.smm.Characteristic;
  */
 public interface StoreDefinition extends VdmlElement {
 	/**
-	 * Returns the value of the '<em><b>Resource</b></em>' reference list.
-	 * The list contents are of type {@link org.omg.vdml.BusinessItemDefinition}.
+	 * Returns the value of the '<em><b>Resource</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Resource</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Resource</em>' reference list.
+	 * @return the value of the '<em>Resource</em>' reference.
+	 * @see #setResource(BusinessItemDefinition)
 	 * @see org.omg.vdml.VDMLPackage#getStoreDefinition_Resource()
 	 * @model ordered="false"
 	 * @generated
 	 */
-	EList<BusinessItemDefinition> getResource();
+	BusinessItemDefinition getResource();
+
+	/**
+	 * Sets the value of the '{@link org.omg.vdml.StoreDefinition#getResource <em>Resource</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Resource</em>' reference.
+	 * @see #getResource()
+	 * @generated
+	 */
+	void setResource(BusinessItemDefinition value);
 
 	/**
 	 * Returns the value of the '<em><b>Characteristic Definition</b></em>' reference list.
@@ -55,5 +68,83 @@ public interface StoreDefinition extends VdmlElement {
 	 * @generated
 	 */
 	EList<Characteristic> getCharacteristicDefinition();
+
+	/**
+	 * Returns the value of the '<em><b>Inventory Level</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Inventory Level</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inventory Level</em>' reference.
+	 * @see #setInventoryLevel(Characteristic)
+	 * @see org.omg.vdml.VDMLPackage#getStoreDefinition_InventoryLevel()
+	 * @model
+	 * @generated
+	 */
+	Characteristic getInventoryLevel();
+
+	/**
+	 * Sets the value of the '{@link org.omg.vdml.StoreDefinition#getInventoryLevel <em>Inventory Level</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inventory Level</em>' reference.
+	 * @see #getInventoryLevel()
+	 * @generated
+	 */
+	void setInventoryLevel(Characteristic value);
+
+	/**
+	 * Returns the value of the '<em><b>Duration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Duration</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Duration</em>' reference.
+	 * @see #setDuration(Characteristic)
+	 * @see org.omg.vdml.VDMLPackage#getStoreDefinition_Duration()
+	 * @model
+	 * @generated
+	 */
+	Characteristic getDuration();
+
+	/**
+	 * Sets the value of the '{@link org.omg.vdml.StoreDefinition#getDuration <em>Duration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Duration</em>' reference.
+	 * @see #getDuration()
+	 * @generated
+	 */
+	void setDuration(Characteristic value);
+
+	/**
+	 * Returns the value of the '<em><b>Exchange Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Exchange Configuration</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Exchange Configuration</em>' containment reference.
+	 * @see #setExchangeConfiguration(ExchangeConfiguration)
+	 * @see org.omg.vdml.VDMLPackage#getStoreDefinition_ExchangeConfiguration()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ExchangeConfiguration getExchangeConfiguration();
+
+	/**
+	 * Sets the value of the '{@link org.omg.vdml.StoreDefinition#getExchangeConfiguration <em>Exchange Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exchange Configuration</em>' containment reference.
+	 * @see #getExchangeConfiguration()
+	 * @generated
+	 */
+	void setExchangeConfiguration(ExchangeConfiguration value);
 
 } // StoreDefinition

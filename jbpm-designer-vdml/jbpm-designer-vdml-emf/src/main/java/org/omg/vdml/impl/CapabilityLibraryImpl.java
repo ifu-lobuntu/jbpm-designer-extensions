@@ -32,14 +32,14 @@ public class CapabilityLibraryImpl extends VdmlElementImpl implements Capability
     /**
 	 * The cached value of the '{@link #getCapability() <em>Capability</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see #getCapability()
 	 * @generated
 	 * @ordered
 	 */
-    protected EList<Capability> capability;
+	protected EList<Capability> capability;
 
-    /**
+				/**
 	 * The cached value of the '{@link #getCapabilityDependency() <em>Capability Dependency</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -70,17 +70,17 @@ public class CapabilityLibraryImpl extends VdmlElementImpl implements Capability
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EList<Capability> getCapability() {
+	public EList<Capability> getCapability() {
 		if (capability == null) {
 			capability = new EObjectContainmentEList<Capability>(Capability.class, this, VDMLPackage.CAPABILITY_LIBRARY__CAPABILITY);
 		}
 		return capability;
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated

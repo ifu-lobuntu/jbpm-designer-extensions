@@ -24,14 +24,12 @@ public class CollaborationImportTest extends MetaEntityImportTest {
     public void testActivityNetwork() throws Exception {
         ValueDeliveryModel vdm = buildModel();
 
-        StoreLibrary sl = VDMLFactory.eINSTANCE.createStoreLibrary();
-        vdm.getStoreLibrary().add(sl);
+        StoreLibrary sl = vdm.getStoreLibrary().get(0);
         StoreDefinition sd = VDMLFactory.eINSTANCE.createStoreDefinition();
         sl.getStoreDefinitions().add(sd);
         sd.setName("SupplyStuffDef");
 
-        CapabilityLibrary cl = VDMLFactory.eINSTANCE.createCapabilityLibrary();
-        vdm.getCapabilitylibrary().add(cl);
+        CapabilityLibrary cl = vdm.getCapabilitylibrary().get(0);
         CapabilityDefinition cd = VDMLFactory.eINSTANCE.createCapabilityDefinition();
         cl.getCapability().add(cd);
         cd.setName("DoStuffDef");

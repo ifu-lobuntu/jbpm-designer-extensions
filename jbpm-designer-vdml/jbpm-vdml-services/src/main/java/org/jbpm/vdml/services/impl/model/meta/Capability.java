@@ -1,21 +1,23 @@
 package org.jbpm.vdml.services.impl.model.meta;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import org.jbpm.vdml.services.impl.model.runtime.ExchangeConfiguration;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Capability implements  MetaEntity,MeasurableElement{
+public class Capability implements MetaEntity, MeasurableElement {
     @Id
     private String uri;
     private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private ExchangeConfiguration exchangeConfiguration;
+
     @ManyToOne
     private Capability extendedCapability;
     @ManyToMany
-    private Set<Measure> measures=new HashSet<Measure>();
+    private Set<Measure> measures = new HashSet<Measure>();
 
     public Capability() {
 
@@ -23,6 +25,13 @@ public class Capability implements  MetaEntity,MeasurableElement{
 
     public Capability(String uri) {
         this.uri = uri;
+    }
+    public ExchangeConfiguration getExchangeConfiguration() {
+        return exchangeConfiguration;
+    }
+
+    public void setExchangeConfiguration(ExchangeConfiguration exchangeConfiguration) {
+        this.exchangeConfiguration = exchangeConfiguration;
     }
 
     public String getUri() {

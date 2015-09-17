@@ -73,7 +73,7 @@
         upperBound="-1" eType="#//ValueDefinition" eOpposite="#//ValueDefinition/category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityLibrary" eSuperTypes="#//VdmlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
         upperBound="-1" eType="#//Capability" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityDependency" ordered="false"
         upperBound="-1" eType="#//CapabilityDependency" containment="true"/>
@@ -85,6 +85,8 @@
         upperBound="-1" eType="#//Capability" eOpposite="#//Capability/parentCabability"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
         ordered="false" upperBound="-1" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exchangeConfiguration"
+        eType="#//ExchangeConfiguration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityDependency" eSuperTypes="#//VdmlElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTangible" ordered="false"
@@ -310,6 +312,7 @@
         eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="provider" ordered="false"
         lowerBound="1" eType="#//OutputPort" eOpposite="#//OutputPort/output"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="milestone" eType="#//Milestone"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputPort" eSuperTypes="#//Port">
     <eStructuralFeatures xsi:type="ecore:EReference" name="resourceUse" ordered="false"
@@ -470,6 +473,9 @@
         eType="#//Capability"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="supportedCapability" ordered="false"
         upperBound="-1" eType="#//CapabilityOffer" eOpposite="#//CapabilityOffer/method"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialActivity" eType="#//Activity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="milestone" upperBound="-1"
+        eType="#//Milestone" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Performer" eSuperTypes="#//Role"/>
   <eClassifiers xsi:type="ecore:EClass" name="Position" eSuperTypes="#//Role">
@@ -564,9 +570,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StoreDefinition" eSuperTypes="#//VdmlElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="resource" ordered="false"
-        upperBound="-1" eType="#//BusinessItemDefinition"/>
+        eType="#//BusinessItemDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
         ordered="false" upperBound="-1" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inventoryLevel" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="duration" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exchangeConfiguration"
+        eType="#//ExchangeConfiguration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupplyingStore" eSuperTypes="#//PortContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supplyingRole" ordered="false"
@@ -581,7 +591,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="collaboration" eType="#//Collaboration"
         eOpposite="#//Collaboration/supplyingStore"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PoolDefinition" eSuperTypes="#//StoreDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PoolDefinition" eSuperTypes="#//StoreDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="poolSize" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupplyingPool" eSuperTypes="#//SupplyingStore">
     <eStructuralFeatures xsi:type="ecore:EReference" name="poolCalendar" ordered="false"
         eType="#//CalendarService" containment="true"/>
@@ -589,5 +601,14 @@
         eType="#//MeasuredCharacteristic" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
         upperBound="-1" eType="#//Position"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExchangeConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exchangeMethod" eType="#//CapabilityMethod"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supplierRole" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resourceUseFromPool" eType="#//ResourceUse"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exchangeMilestone" eType="#//Milestone"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//MeasurableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="#//MeasuredCharacteristic"/>
   </eClassifiers>
 </ecore:EPackage>

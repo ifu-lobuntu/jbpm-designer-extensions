@@ -17,8 +17,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.vdml.CapabilityMethod#getMethodOwner <em>Method Owner</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityMethod#getImplementedPractice <em>Implemented Practice</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityMethod#getMethodResource <em>Method Resource</em>}</li>
- *   <li>{@link org.omg.vdml.CapabilityMethod#getCapability <em>Capability</em>}</li>
+ *   <li>{@link org.omg.vdml.CapabilityMethod#getDefinition <em>Definition</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityMethod#getSupportedCapability <em>Supported Capability</em>}</li>
+ *   <li>{@link org.omg.vdml.CapabilityMethod#getInitialActivity <em>Initial Activity</em>}</li>
+ *   <li>{@link org.omg.vdml.CapabilityMethod#getMilestone <em>Milestone</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getCapabilityMethod()
@@ -105,32 +107,32 @@ public interface CapabilityMethod extends Collaboration {
     EList<BusinessItem> getMethodResource();
 
     /**
-	 * Returns the value of the '<em><b>Capability</b></em>' reference.
+	 * Returns the value of the '<em><b>Definition</b></em>' reference.
 	 * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Capability</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-	 * @return the value of the '<em>Capability</em>' reference.
-	 * @see #setCapability(Capability)
-	 * @see org.omg.vdml.VDMLPackage#getCapabilityMethod_Capability()
+	 * <p>
+	 * If the meaning of the '<em>Definition</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Definition</em>' reference.
+	 * @see #setDefinition(Capability)
+	 * @see org.omg.vdml.VDMLPackage#getCapabilityMethod_Definition()
 	 * @model ordered="false"
 	 * @generated
 	 */
-    Capability getCapability();
+	Capability getDefinition();
 
-    /**
-	 * Sets the value of the '{@link org.omg.vdml.CapabilityMethod#getCapability <em>Capability</em>}' reference.
+				/**
+	 * Sets the value of the '{@link org.omg.vdml.CapabilityMethod#getDefinition <em>Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Capability</em>' reference.
-	 * @see #getCapability()
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Definition</em>' reference.
+	 * @see #getDefinition()
 	 * @generated
 	 */
-    void setCapability(Capability value);
+	void setDefinition(Capability value);
 
-    /**
+				/**
 	 * Returns the value of the '<em><b>Supported Capability</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.vdml.CapabilityOffer}.
 	 * It is bidirectional and its opposite is '{@link org.omg.vdml.CapabilityOffer#getMethod <em>Method</em>}'.
@@ -147,5 +149,47 @@ public interface CapabilityMethod extends Collaboration {
 	 * @generated
 	 */
     EList<CapabilityOffer> getSupportedCapability();
+
+				/**
+	 * Returns the value of the '<em><b>Initial Activity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Initial Activity</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initial Activity</em>' reference.
+	 * @see #setInitialActivity(Activity)
+	 * @see org.omg.vdml.VDMLPackage#getCapabilityMethod_InitialActivity()
+	 * @model
+	 * @generated
+	 */
+	Activity getInitialActivity();
+
+				/**
+	 * Sets the value of the '{@link org.omg.vdml.CapabilityMethod#getInitialActivity <em>Initial Activity</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Initial Activity</em>' reference.
+	 * @see #getInitialActivity()
+	 * @generated
+	 */
+	void setInitialActivity(Activity value);
+
+				/**
+	 * Returns the value of the '<em><b>Milestone</b></em>' containment reference list.
+	 * The list contents are of type {@link org.omg.vdml.Milestone}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Milestone</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Milestone</em>' containment reference list.
+	 * @see org.omg.vdml.VDMLPackage#getCapabilityMethod_Milestone()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Milestone> getMilestone();
 
 } // CapabilityMethod

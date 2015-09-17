@@ -1,13 +1,13 @@
 package org.jbpm.vdml.services.impl.model.meta;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import org.jbpm.vdml.services.impl.model.runtime.ExchangeConfiguration;
+
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class StoreDefinition implements MetaEntity,MeasurableElement {
     @Id
     private String uri;
@@ -18,6 +18,8 @@ public class StoreDefinition implements MetaEntity,MeasurableElement {
     private BusinessItemDefinition resource;
     @ManyToMany
     private Set<Measure> measures = new HashSet<Measure>();
+    @ManyToOne
+    private ExchangeConfiguration exchangeConfiguration;
 
     public StoreDefinition() {
 
@@ -57,5 +59,13 @@ public class StoreDefinition implements MetaEntity,MeasurableElement {
 
     public Set<Measure> getMeasures() {
         return measures;
+    }
+
+    public ExchangeConfiguration getExchangeConfiguration() {
+        return exchangeConfiguration;
+    }
+
+    public void setExchangeConfiguration(ExchangeConfiguration exchangeConfiguration) {
+        this.exchangeConfiguration = exchangeConfiguration;
     }
 }

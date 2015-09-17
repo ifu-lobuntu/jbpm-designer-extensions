@@ -958,13 +958,13 @@ public interface VDMLPackage extends EPackage {
     /**
 	 * The feature id for the '<em><b>Capability</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int CAPABILITY_LIBRARY__CAPABILITY = VDML_ELEMENT_FEATURE_COUNT + 0;
+	int CAPABILITY_LIBRARY__CAPABILITY = VDML_ELEMENT_FEATURE_COUNT + 0;
 
-    /**
+				/**
 	 * The feature id for the '<em><b>Capability Dependency</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1092,13 +1092,22 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY__CHARACTERISTIC_DEFINITION = VDML_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+	 * The feature id for the '<em><b>Exchange Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPABILITY__EXCHANGE_CONFIGURATION = VDML_ELEMENT_FEATURE_COUNT + 3;
+
+				/**
 	 * The number of structural features of the '<em>Capability</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int CAPABILITY_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 3;
+    int CAPABILITY_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 4;
 
     /**
 	 * The number of operations of the '<em>Capability</em>' class.
@@ -1591,15 +1600,15 @@ public interface VDMLPackage extends EPackage {
     int PRACTICE_DEFINITION__CATEGORY = VDML_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-	 * The feature id for the '<em><b>Capability</b></em>' reference list.
+	 * The feature id for the '<em><b>Definition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int PRACTICE_DEFINITION__CAPABILITY = VDML_ELEMENT_FEATURE_COUNT + 1;
+	int PRACTICE_DEFINITION__DEFINITION = VDML_ELEMENT_FEATURE_COUNT + 1;
 
-    /**
+				/**
 	 * The feature id for the '<em><b>Resource Definition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1845,6 +1854,15 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_DEFINITION__CHARACTERISTIC_DEFINITION = CAPABILITY__CHARACTERISTIC_DEFINITION;
 
     /**
+	 * The feature id for the '<em><b>Exchange Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPABILITY_DEFINITION__EXCHANGE_CONFIGURATION = CAPABILITY__EXCHANGE_CONFIGURATION;
+
+				/**
 	 * The feature id for the '<em><b>Output</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4084,13 +4102,22 @@ public interface VDMLPackage extends EPackage {
     int DELIVERABLE_FLOW__PROVIDER = MEASURABLE_ELEMENT_FEATURE_COUNT + 5;
 
     /**
+	 * The feature id for the '<em><b>Milestone</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DELIVERABLE_FLOW__MILESTONE = MEASURABLE_ELEMENT_FEATURE_COUNT + 6;
+
+				/**
 	 * The number of structural features of the '<em>Deliverable Flow</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int DELIVERABLE_FLOW_FEATURE_COUNT = MEASURABLE_ELEMENT_FEATURE_COUNT + 6;
+    int DELIVERABLE_FLOW_FEATURE_COUNT = MEASURABLE_ELEMENT_FEATURE_COUNT + 7;
 
     /**
 	 * The number of operations of the '<em>Deliverable Flow</em>' class.
@@ -5968,15 +5995,15 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_OFFER__MEASURED_CHARACTERISTIC = MEASURABLE_ELEMENT__MEASURED_CHARACTERISTIC;
 
     /**
-	 * The feature id for the '<em><b>Capability</b></em>' reference.
+	 * The feature id for the '<em><b>Definition</b></em>' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int CAPABILITY_OFFER__CAPABILITY = MEASURABLE_ELEMENT_FEATURE_COUNT + 0;
+	int CAPABILITY_OFFER__DEFINITION = MEASURABLE_ELEMENT_FEATURE_COUNT + 0;
 
-    /**
+				/**
 	 * The feature id for the '<em><b>Capability Resource</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6284,15 +6311,15 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_METHOD__METHOD_RESOURCE = COLLABORATION_FEATURE_COUNT + 3;
 
     /**
-	 * The feature id for the '<em><b>Capability</b></em>' reference.
+	 * The feature id for the '<em><b>Definition</b></em>' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int CAPABILITY_METHOD__CAPABILITY = COLLABORATION_FEATURE_COUNT + 4;
+	int CAPABILITY_METHOD__DEFINITION = COLLABORATION_FEATURE_COUNT + 4;
 
-    /**
+				/**
 	 * The feature id for the '<em><b>Supported Capability</b></em>' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6302,13 +6329,31 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_METHOD__SUPPORTED_CAPABILITY = COLLABORATION_FEATURE_COUNT + 5;
 
     /**
+	 * The feature id for the '<em><b>Initial Activity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPABILITY_METHOD__INITIAL_ACTIVITY = COLLABORATION_FEATURE_COUNT + 6;
+
+				/**
+	 * The feature id for the '<em><b>Milestone</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPABILITY_METHOD__MILESTONE = COLLABORATION_FEATURE_COUNT + 7;
+
+				/**
 	 * The number of structural features of the '<em>Capability Method</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int CAPABILITY_METHOD_FEATURE_COUNT = COLLABORATION_FEATURE_COUNT + 6;
+    int CAPABILITY_METHOD_FEATURE_COUNT = COLLABORATION_FEATURE_COUNT + 8;
 
     /**
 	 * The number of operations of the '<em>Capability Method</em>' class.
@@ -9183,6 +9228,15 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_CATEGORY__CHARACTERISTIC_DEFINITION = CAPABILITY__CHARACTERISTIC_DEFINITION;
 
     /**
+	 * The feature id for the '<em><b>Exchange Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPABILITY_CATEGORY__EXCHANGE_CONFIGURATION = CAPABILITY__EXCHANGE_CONFIGURATION;
+
+				/**
 	 * The number of structural features of the '<em>Capability Category</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9384,7 +9438,7 @@ public interface VDMLPackage extends EPackage {
 	int STORE_DEFINITION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
 				/**
-	 * The feature id for the '<em><b>Resource</b></em>' reference list.
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9402,13 +9456,40 @@ public interface VDMLPackage extends EPackage {
 	int STORE_DEFINITION__CHARACTERISTIC_DEFINITION = VDML_ELEMENT_FEATURE_COUNT + 1;
 
 				/**
+	 * The feature id for the '<em><b>Inventory Level</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_DEFINITION__INVENTORY_LEVEL = VDML_ELEMENT_FEATURE_COUNT + 2;
+
+				/**
+	 * The feature id for the '<em><b>Duration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_DEFINITION__DURATION = VDML_ELEMENT_FEATURE_COUNT + 3;
+
+				/**
+	 * The feature id for the '<em><b>Exchange Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_DEFINITION__EXCHANGE_CONFIGURATION = VDML_ELEMENT_FEATURE_COUNT + 4;
+
+				/**
 	 * The number of structural features of the '<em>Store Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 2;
+	int STORE_DEFINITION_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 5;
 
 				/**
 	 * The number of operations of the '<em>Store Definition</em>' class.
@@ -9656,7 +9737,7 @@ public interface VDMLPackage extends EPackage {
 	int POOL_DEFINITION__QUALIFIED_NAME = STORE_DEFINITION__QUALIFIED_NAME;
 
 				/**
-	 * The feature id for the '<em><b>Resource</b></em>' reference list.
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -9674,13 +9755,49 @@ public interface VDMLPackage extends EPackage {
 	int POOL_DEFINITION__CHARACTERISTIC_DEFINITION = STORE_DEFINITION__CHARACTERISTIC_DEFINITION;
 
 				/**
+	 * The feature id for the '<em><b>Inventory Level</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL_DEFINITION__INVENTORY_LEVEL = STORE_DEFINITION__INVENTORY_LEVEL;
+
+				/**
+	 * The feature id for the '<em><b>Duration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL_DEFINITION__DURATION = STORE_DEFINITION__DURATION;
+
+				/**
+	 * The feature id for the '<em><b>Exchange Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL_DEFINITION__EXCHANGE_CONFIGURATION = STORE_DEFINITION__EXCHANGE_CONFIGURATION;
+
+				/**
+	 * The feature id for the '<em><b>Pool Size</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL_DEFINITION__POOL_SIZE = STORE_DEFINITION_FEATURE_COUNT + 0;
+
+				/**
 	 * The number of structural features of the '<em>Pool Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POOL_DEFINITION_FEATURE_COUNT = STORE_DEFINITION_FEATURE_COUNT + 0;
+	int POOL_DEFINITION_FEATURE_COUNT = STORE_DEFINITION_FEATURE_COUNT + 1;
 
 				/**
 	 * The number of operations of the '<em>Pool Definition</em>' class.
@@ -9880,6 +9997,179 @@ public interface VDMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUPPLYING_POOL_OPERATION_COUNT = SUPPLYING_STORE_OPERATION_COUNT + 0;
+
+				/**
+	 * The meta object id for the '{@link org.omg.vdml.impl.ExchangeConfigurationImpl <em>Exchange Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.vdml.impl.ExchangeConfigurationImpl
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getExchangeConfiguration()
+	 * @generated
+	 */
+	int EXCHANGE_CONFIGURATION = 68;
+
+				/**
+	 * The feature id for the '<em><b>Exchange Method</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCHANGE_CONFIGURATION__EXCHANGE_METHOD = 0;
+
+				/**
+	 * The feature id for the '<em><b>Supplier Role</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCHANGE_CONFIGURATION__SUPPLIER_ROLE = 1;
+
+				/**
+	 * The feature id for the '<em><b>Resource Use From Pool</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCHANGE_CONFIGURATION__RESOURCE_USE_FROM_POOL = 2;
+
+				/**
+	 * The feature id for the '<em><b>Exchange Milestone</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCHANGE_CONFIGURATION__EXCHANGE_MILESTONE = 3;
+
+				/**
+	 * The number of structural features of the '<em>Exchange Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCHANGE_CONFIGURATION_FEATURE_COUNT = 4;
+
+				/**
+	 * The number of operations of the '<em>Exchange Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCHANGE_CONFIGURATION_OPERATION_COUNT = 0;
+
+				/**
+	 * The meta object id for the '{@link org.omg.vdml.impl.MilestoneImpl <em>Milestone</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.vdml.impl.MilestoneImpl
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getMilestone()
+	 * @generated
+	 */
+	int MILESTONE = 69;
+
+				/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__NAME = MEASURABLE_ELEMENT__NAME;
+
+				/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__DESCRIPTION = MEASURABLE_ELEMENT__DESCRIPTION;
+
+				/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ATTRIBUTE = MEASURABLE_ELEMENT__ATTRIBUTE;
+
+				/**
+	 * The feature id for the '<em><b>Represents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__REPRESENTS = MEASURABLE_ELEMENT__REPRESENTS;
+
+				/**
+	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ANNOTATION = MEASURABLE_ELEMENT__ANNOTATION;
+
+				/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__ID = MEASURABLE_ELEMENT__ID;
+
+				/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__QUALIFIED_NAME = MEASURABLE_ELEMENT__QUALIFIED_NAME;
+
+				/**
+	 * The feature id for the '<em><b>Measured Characteristic</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__MEASURED_CHARACTERISTIC = MEASURABLE_ELEMENT__MEASURED_CHARACTERISTIC;
+
+				/**
+	 * The feature id for the '<em><b>Offset</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__OFFSET = MEASURABLE_ELEMENT_FEATURE_COUNT + 0;
+
+				/**
+	 * The number of structural features of the '<em>Milestone</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE_FEATURE_COUNT = MEASURABLE_ELEMENT_FEATURE_COUNT + 1;
+
+				/**
+	 * The number of operations of the '<em>Milestone</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE_OPERATION_COUNT = MEASURABLE_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.ValueDeliveryModel <em>Value Delivery Model</em>}'.
@@ -10272,15 +10562,15 @@ public interface VDMLPackage extends EPackage {
     /**
 	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.CapabilityLibrary#getCapability <em>Capability</em>}'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Capability</em>'.
 	 * @see org.omg.vdml.CapabilityLibrary#getCapability()
 	 * @see #getCapabilityLibrary()
 	 * @generated
 	 */
-    EReference getCapabilityLibrary_Capability();
+	EReference getCapabilityLibrary_Capability();
 
-    /**
+				/**
 	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.CapabilityLibrary#getCapabilityDependency <em>Capability Dependency</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10335,6 +10625,17 @@ public interface VDMLPackage extends EPackage {
     EReference getCapability_CharacteristicDefinition();
 
     /**
+	 * Returns the meta object for the containment reference '{@link org.omg.vdml.Capability#getExchangeConfiguration <em>Exchange Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Exchange Configuration</em>'.
+	 * @see org.omg.vdml.Capability#getExchangeConfiguration()
+	 * @see #getCapability()
+	 * @generated
+	 */
+	EReference getCapability_ExchangeConfiguration();
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.CapabilityDependency <em>Capability Dependency</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10529,17 +10830,17 @@ public interface VDMLPackage extends EPackage {
     EReference getPracticeDefinition_Category();
 
     /**
-	 * Returns the meta object for the reference list '{@link org.omg.vdml.PracticeDefinition#getCapability <em>Capability</em>}'.
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.PracticeDefinition#getDefinition <em>Definition</em>}'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Capability</em>'.
-	 * @see org.omg.vdml.PracticeDefinition#getCapability()
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Definition</em>'.
+	 * @see org.omg.vdml.PracticeDefinition#getDefinition()
 	 * @see #getPracticeDefinition()
 	 * @generated
 	 */
-    EReference getPracticeDefinition_Capability();
+	EReference getPracticeDefinition_Definition();
 
-    /**
+				/**
 	 * Returns the meta object for the reference list '{@link org.omg.vdml.PracticeDefinition#getResourceDefinition <em>Resource Definition</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11490,6 +11791,17 @@ public interface VDMLPackage extends EPackage {
     EReference getDeliverableFlow_Provider();
 
     /**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.DeliverableFlow#getMilestone <em>Milestone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Milestone</em>'.
+	 * @see org.omg.vdml.DeliverableFlow#getMilestone()
+	 * @see #getDeliverableFlow()
+	 * @generated
+	 */
+	EReference getDeliverableFlow_Milestone();
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.InputPort <em>Input Port</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12182,17 +12494,17 @@ public interface VDMLPackage extends EPackage {
     EClass getCapabilityOffer();
 
     /**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityOffer#getCapability <em>Capability</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityOffer#getDefinition <em>Definition</em>}'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Capability</em>'.
-	 * @see org.omg.vdml.CapabilityOffer#getCapability()
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Definition</em>'.
+	 * @see org.omg.vdml.CapabilityOffer#getDefinition()
 	 * @see #getCapabilityOffer()
 	 * @generated
 	 */
-    EReference getCapabilityOffer_Capability();
+	EReference getCapabilityOffer_Definition();
 
-    /**
+				/**
 	 * Returns the meta object for the reference list '{@link org.omg.vdml.CapabilityOffer#getCapabilityResource <em>Capability Resource</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12324,17 +12636,17 @@ public interface VDMLPackage extends EPackage {
     EReference getCapabilityMethod_MethodResource();
 
     /**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityMethod#getCapability <em>Capability</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityMethod#getDefinition <em>Definition</em>}'.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Capability</em>'.
-	 * @see org.omg.vdml.CapabilityMethod#getCapability()
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Definition</em>'.
+	 * @see org.omg.vdml.CapabilityMethod#getDefinition()
 	 * @see #getCapabilityMethod()
 	 * @generated
 	 */
-    EReference getCapabilityMethod_Capability();
+	EReference getCapabilityMethod_Definition();
 
-    /**
+				/**
 	 * Returns the meta object for the reference list '{@link org.omg.vdml.CapabilityMethod#getSupportedCapability <em>Supported Capability</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12346,6 +12658,28 @@ public interface VDMLPackage extends EPackage {
     EReference getCapabilityMethod_SupportedCapability();
 
     /**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityMethod#getInitialActivity <em>Initial Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Initial Activity</em>'.
+	 * @see org.omg.vdml.CapabilityMethod#getInitialActivity()
+	 * @see #getCapabilityMethod()
+	 * @generated
+	 */
+	EReference getCapabilityMethod_InitialActivity();
+
+				/**
+	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.CapabilityMethod#getMilestone <em>Milestone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Milestone</em>'.
+	 * @see org.omg.vdml.CapabilityMethod#getMilestone()
+	 * @see #getCapabilityMethod()
+	 * @generated
+	 */
+	EReference getCapabilityMethod_Milestone();
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.Performer <em>Performer</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12875,10 +13209,10 @@ public interface VDMLPackage extends EPackage {
 	EClass getStoreDefinition();
 
 				/**
-	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreDefinition#getResource <em>Resource</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreDefinition#getResource <em>Resource</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Resource</em>'.
+	 * @return the meta object for the reference '<em>Resource</em>'.
 	 * @see org.omg.vdml.StoreDefinition#getResource()
 	 * @see #getStoreDefinition()
 	 * @generated
@@ -12895,6 +13229,39 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStoreDefinition_CharacteristicDefinition();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreDefinition#getInventoryLevel <em>Inventory Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Inventory Level</em>'.
+	 * @see org.omg.vdml.StoreDefinition#getInventoryLevel()
+	 * @see #getStoreDefinition()
+	 * @generated
+	 */
+	EReference getStoreDefinition_InventoryLevel();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreDefinition#getDuration <em>Duration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Duration</em>'.
+	 * @see org.omg.vdml.StoreDefinition#getDuration()
+	 * @see #getStoreDefinition()
+	 * @generated
+	 */
+	EReference getStoreDefinition_Duration();
+
+				/**
+	 * Returns the meta object for the containment reference '{@link org.omg.vdml.StoreDefinition#getExchangeConfiguration <em>Exchange Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Exchange Configuration</em>'.
+	 * @see org.omg.vdml.StoreDefinition#getExchangeConfiguration()
+	 * @see #getStoreDefinition()
+	 * @generated
+	 */
+	EReference getStoreDefinition_ExchangeConfiguration();
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.SupplyingStore <em>Supplying Store</em>}'.
@@ -12983,6 +13350,17 @@ public interface VDMLPackage extends EPackage {
 	EClass getPoolDefinition();
 
 				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.PoolDefinition#getPoolSize <em>Pool Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Pool Size</em>'.
+	 * @see org.omg.vdml.PoolDefinition#getPoolSize()
+	 * @see #getPoolDefinition()
+	 * @generated
+	 */
+	EReference getPoolDefinition_PoolSize();
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.SupplyingPool <em>Supplying Pool</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13024,6 +13402,81 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSupplyingPool_Position();
+
+				/**
+	 * Returns the meta object for class '{@link org.omg.vdml.ExchangeConfiguration <em>Exchange Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Exchange Configuration</em>'.
+	 * @see org.omg.vdml.ExchangeConfiguration
+	 * @generated
+	 */
+	EClass getExchangeConfiguration();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.ExchangeConfiguration#getExchangeMethod <em>Exchange Method</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Exchange Method</em>'.
+	 * @see org.omg.vdml.ExchangeConfiguration#getExchangeMethod()
+	 * @see #getExchangeConfiguration()
+	 * @generated
+	 */
+	EReference getExchangeConfiguration_ExchangeMethod();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.ExchangeConfiguration#getSupplierRole <em>Supplier Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Supplier Role</em>'.
+	 * @see org.omg.vdml.ExchangeConfiguration#getSupplierRole()
+	 * @see #getExchangeConfiguration()
+	 * @generated
+	 */
+	EReference getExchangeConfiguration_SupplierRole();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.ExchangeConfiguration#getResourceUseFromPool <em>Resource Use From Pool</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Resource Use From Pool</em>'.
+	 * @see org.omg.vdml.ExchangeConfiguration#getResourceUseFromPool()
+	 * @see #getExchangeConfiguration()
+	 * @generated
+	 */
+	EReference getExchangeConfiguration_ResourceUseFromPool();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.ExchangeConfiguration#getExchangeMilestone <em>Exchange Milestone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Exchange Milestone</em>'.
+	 * @see org.omg.vdml.ExchangeConfiguration#getExchangeMilestone()
+	 * @see #getExchangeConfiguration()
+	 * @generated
+	 */
+	EReference getExchangeConfiguration_ExchangeMilestone();
+
+				/**
+	 * Returns the meta object for class '{@link org.omg.vdml.Milestone <em>Milestone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Milestone</em>'.
+	 * @see org.omg.vdml.Milestone
+	 * @generated
+	 */
+	EClass getMilestone();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.Milestone#getOffset <em>Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Offset</em>'.
+	 * @see org.omg.vdml.Milestone#getOffset()
+	 * @see #getMilestone()
+	 * @generated
+	 */
+	EReference getMilestone_Offset();
 
 				/**
 	 * Returns the factory that creates the instances of the model.
@@ -13355,12 +13808,12 @@ public interface VDMLPackage extends EPackage {
         /**
 		 * The meta object literal for the '<em><b>Capability</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-        EReference CAPABILITY_LIBRARY__CAPABILITY = eINSTANCE.getCapabilityLibrary_Capability();
+		EReference CAPABILITY_LIBRARY__CAPABILITY = eINSTANCE.getCapabilityLibrary_Capability();
 
-        /**
+								/**
 		 * The meta object literal for the '<em><b>Capability Dependency</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -13403,6 +13856,14 @@ public interface VDMLPackage extends EPackage {
         EReference CAPABILITY__CHARACTERISTIC_DEFINITION = eINSTANCE.getCapability_CharacteristicDefinition();
 
         /**
+		 * The meta object literal for the '<em><b>Exchange Configuration</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAPABILITY__EXCHANGE_CONFIGURATION = eINSTANCE.getCapability_ExchangeConfiguration();
+
+								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.CapabilityDependencyImpl <em>Capability Dependency</em>}' class.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -13555,14 +14016,14 @@ public interface VDMLPackage extends EPackage {
         EReference PRACTICE_DEFINITION__CATEGORY = eINSTANCE.getPracticeDefinition_Category();
 
         /**
-		 * The meta object literal for the '<em><b>Capability</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Definition</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-        EReference PRACTICE_DEFINITION__CAPABILITY = eINSTANCE.getPracticeDefinition_Capability();
+		EReference PRACTICE_DEFINITION__DEFINITION = eINSTANCE.getPracticeDefinition_Definition();
 
-        /**
+								/**
 		 * The meta object literal for the '<em><b>Resource Definition</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -14303,6 +14764,14 @@ public interface VDMLPackage extends EPackage {
         EReference DELIVERABLE_FLOW__PROVIDER = eINSTANCE.getDeliverableFlow_Provider();
 
         /**
+		 * The meta object literal for the '<em><b>Milestone</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DELIVERABLE_FLOW__MILESTONE = eINSTANCE.getDeliverableFlow_Milestone();
+
+								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.InputPortImpl <em>Input Port</em>}' class.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -14839,14 +15308,14 @@ public interface VDMLPackage extends EPackage {
         EClass CAPABILITY_OFFER = eINSTANCE.getCapabilityOffer();
 
         /**
-		 * The meta object literal for the '<em><b>Capability</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Definition</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-        EReference CAPABILITY_OFFER__CAPABILITY = eINSTANCE.getCapabilityOffer_Capability();
+		EReference CAPABILITY_OFFER__DEFINITION = eINSTANCE.getCapabilityOffer_Definition();
 
-        /**
+								/**
 		 * The meta object literal for the '<em><b>Capability Resource</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -14945,14 +15414,14 @@ public interface VDMLPackage extends EPackage {
         EReference CAPABILITY_METHOD__METHOD_RESOURCE = eINSTANCE.getCapabilityMethod_MethodResource();
 
         /**
-		 * The meta object literal for the '<em><b>Capability</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Definition</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-        EReference CAPABILITY_METHOD__CAPABILITY = eINSTANCE.getCapabilityMethod_Capability();
+		EReference CAPABILITY_METHOD__DEFINITION = eINSTANCE.getCapabilityMethod_Definition();
 
-        /**
+								/**
 		 * The meta object literal for the '<em><b>Supported Capability</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -14961,6 +15430,22 @@ public interface VDMLPackage extends EPackage {
         EReference CAPABILITY_METHOD__SUPPORTED_CAPABILITY = eINSTANCE.getCapabilityMethod_SupportedCapability();
 
         /**
+		 * The meta object literal for the '<em><b>Initial Activity</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAPABILITY_METHOD__INITIAL_ACTIVITY = eINSTANCE.getCapabilityMethod_InitialActivity();
+
+								/**
+		 * The meta object literal for the '<em><b>Milestone</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAPABILITY_METHOD__MILESTONE = eINSTANCE.getCapabilityMethod_Milestone();
+
+								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.PerformerImpl <em>Performer</em>}' class.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -15403,7 +15888,7 @@ public interface VDMLPackage extends EPackage {
 		EClass STORE_DEFINITION = eINSTANCE.getStoreDefinition();
 
 								/**
-		 * The meta object literal for the '<em><b>Resource</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Resource</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -15417,6 +15902,30 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STORE_DEFINITION__CHARACTERISTIC_DEFINITION = eINSTANCE.getStoreDefinition_CharacteristicDefinition();
+
+								/**
+		 * The meta object literal for the '<em><b>Inventory Level</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_DEFINITION__INVENTORY_LEVEL = eINSTANCE.getStoreDefinition_InventoryLevel();
+
+								/**
+		 * The meta object literal for the '<em><b>Duration</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_DEFINITION__DURATION = eINSTANCE.getStoreDefinition_Duration();
+
+								/**
+		 * The meta object literal for the '<em><b>Exchange Configuration</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_DEFINITION__EXCHANGE_CONFIGURATION = eINSTANCE.getStoreDefinition_ExchangeConfiguration();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.SupplyingStoreImpl <em>Supplying Store</em>}' class.
@@ -15487,6 +15996,14 @@ public interface VDMLPackage extends EPackage {
 		EClass POOL_DEFINITION = eINSTANCE.getPoolDefinition();
 
 								/**
+		 * The meta object literal for the '<em><b>Pool Size</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference POOL_DEFINITION__POOL_SIZE = eINSTANCE.getPoolDefinition_PoolSize();
+
+								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.SupplyingPoolImpl <em>Supplying Pool</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -15519,6 +16036,66 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SUPPLYING_POOL__POSITION = eINSTANCE.getSupplyingPool_Position();
+
+								/**
+		 * The meta object literal for the '{@link org.omg.vdml.impl.ExchangeConfigurationImpl <em>Exchange Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.vdml.impl.ExchangeConfigurationImpl
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getExchangeConfiguration()
+		 * @generated
+		 */
+		EClass EXCHANGE_CONFIGURATION = eINSTANCE.getExchangeConfiguration();
+
+								/**
+		 * The meta object literal for the '<em><b>Exchange Method</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXCHANGE_CONFIGURATION__EXCHANGE_METHOD = eINSTANCE.getExchangeConfiguration_ExchangeMethod();
+
+								/**
+		 * The meta object literal for the '<em><b>Supplier Role</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXCHANGE_CONFIGURATION__SUPPLIER_ROLE = eINSTANCE.getExchangeConfiguration_SupplierRole();
+
+								/**
+		 * The meta object literal for the '<em><b>Resource Use From Pool</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXCHANGE_CONFIGURATION__RESOURCE_USE_FROM_POOL = eINSTANCE.getExchangeConfiguration_ResourceUseFromPool();
+
+								/**
+		 * The meta object literal for the '<em><b>Exchange Milestone</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXCHANGE_CONFIGURATION__EXCHANGE_MILESTONE = eINSTANCE.getExchangeConfiguration_ExchangeMilestone();
+
+								/**
+		 * The meta object literal for the '{@link org.omg.vdml.impl.MilestoneImpl <em>Milestone</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.vdml.impl.MilestoneImpl
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getMilestone()
+		 * @generated
+		 */
+		EClass MILESTONE = eINSTANCE.getMilestone();
+
+								/**
+		 * The meta object literal for the '<em><b>Offset</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MILESTONE__OFFSET = eINSTANCE.getMilestone_Offset();
 
     }
 

@@ -7,40 +7,40 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.omg.smm.Characteristic;
-import org.omg.vdml.PoolDefinition;
+import org.omg.vdml.MeasuredCharacteristic;
+import org.omg.vdml.Milestone;
 import org.omg.vdml.VDMLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Pool Definition</b></em>'.
+ * An implementation of the model object '<em><b>Milestone</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.vdml.impl.PoolDefinitionImpl#getPoolSize <em>Pool Size</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.MilestoneImpl#getOffset <em>Offset</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefinition {
+public class MilestoneImpl extends MeasurableElementImpl implements Milestone {
 	/**
-	 * The cached value of the '{@link #getPoolSize() <em>Pool Size</em>}' reference.
+	 * The cached value of the '{@link #getOffset() <em>Offset</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPoolSize()
+	 * @see #getOffset()
 	 * @generated
 	 * @ordered
 	 */
-	protected Characteristic poolSize;
+	protected MeasuredCharacteristic offset;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PoolDefinitionImpl() {
+	protected MilestoneImpl() {
 		super();
 	}
 
@@ -51,7 +51,7 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return VDMLPackage.Literals.POOL_DEFINITION;
+		return VDMLPackage.Literals.MILESTONE;
 	}
 
 	/**
@@ -59,16 +59,16 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Characteristic getPoolSize() {
-		if (poolSize != null && poolSize.eIsProxy()) {
-			InternalEObject oldPoolSize = (InternalEObject)poolSize;
-			poolSize = (Characteristic)eResolveProxy(oldPoolSize);
-			if (poolSize != oldPoolSize) {
+	public MeasuredCharacteristic getOffset() {
+		if (offset != null && offset.eIsProxy()) {
+			InternalEObject oldOffset = (InternalEObject)offset;
+			offset = (MeasuredCharacteristic)eResolveProxy(oldOffset);
+			if (offset != oldOffset) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.POOL_DEFINITION__POOL_SIZE, oldPoolSize, poolSize));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.MILESTONE__OFFSET, oldOffset, offset));
 			}
 		}
-		return poolSize;
+		return offset;
 	}
 
 	/**
@@ -76,8 +76,8 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Characteristic basicGetPoolSize() {
-		return poolSize;
+	public MeasuredCharacteristic basicGetOffset() {
+		return offset;
 	}
 
 	/**
@@ -85,11 +85,11 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPoolSize(Characteristic newPoolSize) {
-		Characteristic oldPoolSize = poolSize;
-		poolSize = newPoolSize;
+	public void setOffset(MeasuredCharacteristic newOffset) {
+		MeasuredCharacteristic oldOffset = offset;
+		offset = newOffset;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.POOL_DEFINITION__POOL_SIZE, oldPoolSize, poolSize));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.MILESTONE__OFFSET, oldOffset, offset));
 	}
 
 	/**
@@ -100,9 +100,9 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VDMLPackage.POOL_DEFINITION__POOL_SIZE:
-				if (resolve) return getPoolSize();
-				return basicGetPoolSize();
+			case VDMLPackage.MILESTONE__OFFSET:
+				if (resolve) return getOffset();
+				return basicGetOffset();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,8 +115,8 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VDMLPackage.POOL_DEFINITION__POOL_SIZE:
-				setPoolSize((Characteristic)newValue);
+			case VDMLPackage.MILESTONE__OFFSET:
+				setOffset((MeasuredCharacteristic)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -130,8 +130,8 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.POOL_DEFINITION__POOL_SIZE:
-				setPoolSize((Characteristic)null);
+			case VDMLPackage.MILESTONE__OFFSET:
+				setOffset((MeasuredCharacteristic)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -145,10 +145,10 @@ public class PoolDefinitionImpl extends StoreDefinitionImpl implements PoolDefin
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.POOL_DEFINITION__POOL_SIZE:
-				return poolSize != null;
+			case VDMLPackage.MILESTONE__OFFSET:
+				return offset != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //PoolDefinitionImpl
+} //MilestoneImpl

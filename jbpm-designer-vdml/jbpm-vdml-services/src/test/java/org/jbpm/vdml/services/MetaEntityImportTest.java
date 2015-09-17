@@ -5,34 +5,37 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.jbpm.vdml.services.impl.model.meta.Measure;
+import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
 import org.jbpm.vdml.services.impl.model.runtime.Measurement;
 import org.omg.smm.*;
-import org.omg.vdml.MeasuredCharacteristic;
-import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.*;
 import org.omg.vdml.util.VDMLResourceFactoryImpl;
 import org.omg.vdml.util.VDMLResourceImpl;
 import test.TestGradeMeasure;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
-/**
- * Created by ampie on 2015/09/13.
- */
-public class MetaEntityImportTest extends AbstractVdmlServiceTest {
+
+public abstract class MetaEntityImportTest extends AbstractVdmlServiceTest {
     protected void assertMeasurements(Set<? extends Measurement> foundSdMeasures) {
         Set<Measure> measures = new HashSet<Measure>();
         for (Measurement foundSdMeasure : foundSdMeasures) {
             measures.add(foundSdMeasure.getMeasure());
         }
         assertMeasures(measures);
+    }
+    protected <T extends VdmlElement> T findByName(Collection<? extends T> from, String name){
+        for (T t : from) {
+            if(t.getName().equals(name))
+            {
+                return t;
+            }
+        }
+        return null;
     }
     protected void assertMeasures(Set<Measure> foundSdMeasures) {
         assertEquals(6, foundSdMeasures.size());
@@ -169,4 +172,31 @@ public class MetaEntityImportTest extends AbstractVdmlServiceTest {
         vdm.getScenario().get(0).setIsCommon(true);
         return vdm;
     }
-}
+
+    protected DeliverableFlow addDeliverableFlow(Collaboration cp, BusinessItem businessItem, PortContainer from, PortContainer to, String fromPortName, String toPortName, Characteristic characteristic) {
+        DeliverableFlow flow = VDMLFactory.eINSTANCE.createDeliverableFlow();
+        cp.getFlow().add(flow);
+        flow.setDeliverable(businessItem);
+        flow.setName("From" + to.getName() + "To" + from.getName());
+        flow.setProvider(VDMLFactory.eINSTANCE.createOutputPort());
+        flow.getProvider().setName(fromPortName);
+        from.getContainedPort().add(flow.getProvider());
+        flow.setRecipient(VDMLFactory.eINSTANCE.createInputPort());
+        flow.getRecipient().setName(toPortName);
+        to.getContainedPort().add(flow.getRecipient());
+        if(characteristic!=null){
+            flow.getProvider().setBatchSize(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
+            flow.getProvider().getBatchSize().setCharacteristicDefinition(characteristic);
+            flow.getRecipient().setBatchSize(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
+            flow.getRecipient().getBatchSize().setCharacteristicDefinition(characteristic);
+        }
+        return flow;
+    }
+
+    protected BusinessItem addBusinessItem(BusinessItemDefinition workDefinition, CapabilityMethod cp) {
+        BusinessItem workBusinessItem = VDMLFactory.eINSTANCE.createBusinessItem();
+        cp.getBusinessItem().add(workBusinessItem);
+        workBusinessItem.setDefinition(workDefinition);
+        workBusinessItem.setName(workDefinition.getName());
+        return workBusinessItem;
+    }}

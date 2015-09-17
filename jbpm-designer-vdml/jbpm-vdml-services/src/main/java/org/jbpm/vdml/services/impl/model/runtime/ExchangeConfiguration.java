@@ -1,6 +1,7 @@
 package org.jbpm.vdml.services.impl.model.runtime;
 
 import org.jbpm.vdml.services.impl.model.meta.Collaboration;
+import org.jbpm.vdml.services.impl.model.meta.Milestone;
 import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
 import org.jbpm.vdml.services.impl.model.meta.Role;
 
@@ -16,6 +17,8 @@ public class ExchangeConfiguration {
     @ManyToOne
     private Role supplierRole;
     @ManyToOne
+    private Milestone exchangeMilestone;
+    @ManyToOne
     private ResourceUse poolBooking;
 
     public Long getId() {
@@ -28,6 +31,14 @@ public class ExchangeConfiguration {
 
     public void setCollaborationToUse(Collaboration collaborationToUse) {
         this.collaborationToUse = collaborationToUse;
+    }
+
+    public Milestone getExchangeMilestone() {
+        return exchangeMilestone;
+    }
+
+    public void setExchangeMilestone(Milestone exchangeMilestone) {
+        this.exchangeMilestone = exchangeMilestone;
     }
 
     public ResourceUse getPoolBooking() {

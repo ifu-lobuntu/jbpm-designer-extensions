@@ -36,12 +36,14 @@ import org.omg.vdml.Collaboration;
 import org.omg.vdml.Community;
 import org.omg.vdml.DelegationContext;
 import org.omg.vdml.DeliverableFlow;
+import org.omg.vdml.ExchangeConfiguration;
 import org.omg.vdml.Expression;
 import org.omg.vdml.InputDelegation;
 import org.omg.vdml.InputPort;
 import org.omg.vdml.MeasurableElement;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.Member;
+import org.omg.vdml.Milestone;
 import org.omg.vdml.Operand;
 import org.omg.vdml.OrgUnit;
 import org.omg.vdml.OutputDelegation;
@@ -567,6 +569,20 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	private EClass supplyingPoolEClass = null;
 
 				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass exchangeConfigurationEClass = null;
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass milestoneEClass = null;
+
+				/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -962,14 +978,14 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getCapabilityLibrary_Capability() {
+	public EReference getCapabilityLibrary_Capability() {
 		return (EReference)capabilityLibraryEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1015,6 +1031,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	}
 
     /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCapability_ExchangeConfiguration() {
+		return (EReference)capabilityEClass.getEStructuralFeatures().get(3);
+	}
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1178,14 +1203,14 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getPracticeDefinition_Capability() {
+	public EReference getPracticeDefinition_Definition() {
 		return (EReference)practiceDefinitionEClass.getEStructuralFeatures().get(1);
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -1979,6 +2004,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDeliverableFlow_Milestone() {
+		return (EReference)deliverableFlowEClass.getEStructuralFeatures().get(6);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -2555,14 +2589,14 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getCapabilityOffer_Capability() {
+	public EReference getCapabilityOffer_Definition() {
 		return (EReference)capabilityOfferEClass.getEStructuralFeatures().get(0);
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -2672,14 +2706,14 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EReference getCapabilityMethod_Capability() {
+	public EReference getCapabilityMethod_Definition() {
 		return (EReference)capabilityMethodEClass.getEStructuralFeatures().get(4);
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -2689,6 +2723,24 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	}
 
     /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCapabilityMethod_InitialActivity() {
+		return (EReference)capabilityMethodEClass.getEStructuralFeatures().get(6);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCapabilityMethod_Milestone() {
+		return (EReference)capabilityMethodEClass.getEStructuralFeatures().get(7);
+	}
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -3161,6 +3213,33 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getStoreDefinition_InventoryLevel() {
+		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(2);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreDefinition_Duration() {
+		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(3);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreDefinition_ExchangeConfiguration() {
+		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(4);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSupplyingStore() {
 		return supplyingStoreEClass;
 	}
@@ -3233,6 +3312,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPoolDefinition_PoolSize() {
+		return (EReference)poolDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSupplyingPool() {
 		return supplyingPoolEClass;
 	}
@@ -3262,6 +3350,69 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 */
 	public EReference getSupplyingPool_Position() {
 		return (EReference)supplyingPoolEClass.getEStructuralFeatures().get(2);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExchangeConfiguration() {
+		return exchangeConfigurationEClass;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExchangeConfiguration_ExchangeMethod() {
+		return (EReference)exchangeConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExchangeConfiguration_SupplierRole() {
+		return (EReference)exchangeConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExchangeConfiguration_ResourceUseFromPool() {
+		return (EReference)exchangeConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExchangeConfiguration_ExchangeMilestone() {
+		return (EReference)exchangeConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMilestone() {
+		return milestoneEClass;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMilestone_Offset() {
+		return (EReference)milestoneEClass.getEStructuralFeatures().get(0);
 	}
 
 				/**
@@ -3342,6 +3493,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(capabilityEClass, CAPABILITY__PARENT_CABABILITY);
 		createEReference(capabilityEClass, CAPABILITY__CHILD_CAPABILITY);
 		createEReference(capabilityEClass, CAPABILITY__CHARACTERISTIC_DEFINITION);
+		createEReference(capabilityEClass, CAPABILITY__EXCHANGE_CONFIGURATION);
 
 		capabilityDependencyEClass = createEClass(CAPABILITY_DEPENDENCY);
 		createEAttribute(capabilityDependencyEClass, CAPABILITY_DEPENDENCY__IS_TANGIBLE);
@@ -3364,7 +3516,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 		practiceDefinitionEClass = createEClass(PRACTICE_DEFINITION);
 		createEReference(practiceDefinitionEClass, PRACTICE_DEFINITION__CATEGORY);
-		createEReference(practiceDefinitionEClass, PRACTICE_DEFINITION__CAPABILITY);
+		createEReference(practiceDefinitionEClass, PRACTICE_DEFINITION__DEFINITION);
 		createEReference(practiceDefinitionEClass, PRACTICE_DEFINITION__RESOURCE_DEFINITION);
 
 		practiceCategoryEClass = createEClass(PRACTICE_CATEGORY);
@@ -3471,6 +3623,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(deliverableFlowEClass, DELIVERABLE_FLOW__DURATION);
 		createEAttribute(deliverableFlowEClass, DELIVERABLE_FLOW__CHANNEL);
 		createEReference(deliverableFlowEClass, DELIVERABLE_FLOW__PROVIDER);
+		createEReference(deliverableFlowEClass, DELIVERABLE_FLOW__MILESTONE);
 
 		inputPortEClass = createEClass(INPUT_PORT);
 		createEReference(inputPortEClass, INPUT_PORT__RESOURCE_USE);
@@ -3547,7 +3700,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(releaseControlEClass, RELEASE_CONTROL__SCENARIO);
 
 		capabilityOfferEClass = createEClass(CAPABILITY_OFFER);
-		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__CAPABILITY);
+		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__DEFINITION);
 		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__CAPABILITY_RESOURCE);
 		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__METHOD);
 		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__RELEASE_CONTROL);
@@ -3561,8 +3714,10 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__METHOD_OWNER);
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__IMPLEMENTED_PRACTICE);
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__METHOD_RESOURCE);
-		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__CAPABILITY);
+		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__DEFINITION);
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__SUPPORTED_CAPABILITY);
+		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__INITIAL_ACTIVITY);
+		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__MILESTONE);
 
 		performerEClass = createEClass(PERFORMER);
 
@@ -3636,6 +3791,9 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		storeDefinitionEClass = createEClass(STORE_DEFINITION);
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__RESOURCE);
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__CHARACTERISTIC_DEFINITION);
+		createEReference(storeDefinitionEClass, STORE_DEFINITION__INVENTORY_LEVEL);
+		createEReference(storeDefinitionEClass, STORE_DEFINITION__DURATION);
+		createEReference(storeDefinitionEClass, STORE_DEFINITION__EXCHANGE_CONFIGURATION);
 
 		supplyingStoreEClass = createEClass(SUPPLYING_STORE);
 		createEReference(supplyingStoreEClass, SUPPLYING_STORE__SUPPLYING_ROLE);
@@ -3646,11 +3804,21 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(supplyingStoreEClass, SUPPLYING_STORE__COLLABORATION);
 
 		poolDefinitionEClass = createEClass(POOL_DEFINITION);
+		createEReference(poolDefinitionEClass, POOL_DEFINITION__POOL_SIZE);
 
 		supplyingPoolEClass = createEClass(SUPPLYING_POOL);
 		createEReference(supplyingPoolEClass, SUPPLYING_POOL__POOL_CALENDAR);
 		createEReference(supplyingPoolEClass, SUPPLYING_POOL__POOL_SIZE);
 		createEReference(supplyingPoolEClass, SUPPLYING_POOL__POSITION);
+
+		exchangeConfigurationEClass = createEClass(EXCHANGE_CONFIGURATION);
+		createEReference(exchangeConfigurationEClass, EXCHANGE_CONFIGURATION__EXCHANGE_METHOD);
+		createEReference(exchangeConfigurationEClass, EXCHANGE_CONFIGURATION__SUPPLIER_ROLE);
+		createEReference(exchangeConfigurationEClass, EXCHANGE_CONFIGURATION__RESOURCE_USE_FROM_POOL);
+		createEReference(exchangeConfigurationEClass, EXCHANGE_CONFIGURATION__EXCHANGE_MILESTONE);
+
+		milestoneEClass = createEClass(MILESTONE);
+		createEReference(milestoneEClass, MILESTONE__OFFSET);
 	}
 
     /**
@@ -3754,6 +3922,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		supplyingStoreEClass.getESuperTypes().add(this.getPortContainer());
 		poolDefinitionEClass.getESuperTypes().add(this.getStoreDefinition());
 		supplyingPoolEClass.getESuperTypes().add(this.getSupplyingStore());
+		milestoneEClass.getESuperTypes().add(this.getMeasurableElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueDeliveryModelEClass, ValueDeliveryModel.class, "ValueDeliveryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3806,6 +3975,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getCapability_ParentCabability(), this.getCapability(), this.getCapability_ChildCapability(), "parentCabability", null, 0, -1, Capability.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapability_ChildCapability(), this.getCapability(), this.getCapability_ParentCabability(), "childCapability", null, 0, -1, Capability.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapability_CharacteristicDefinition(), theSMMPackage.getCharacteristic(), null, "characteristicDefinition", null, 0, -1, Capability.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCapability_ExchangeConfiguration(), this.getExchangeConfiguration(), null, "exchangeConfiguration", null, 0, 1, Capability.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(capabilityDependencyEClass, CapabilityDependency.class, "CapabilityDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCapabilityDependency_IsTangible(), thePrimitiveTypesPackage.getBoolean(), "isTangible", "true", 1, 1, CapabilityDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3828,7 +3998,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 		initEClass(practiceDefinitionEClass, PracticeDefinition.class, "PracticeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPracticeDefinition_Category(), this.getPracticeCategory(), this.getPracticeCategory_CategoryPractice(), "category", null, 0, -1, PracticeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPracticeDefinition_Capability(), this.getCapabilityDefinition(), this.getCapabilityDefinition_PracticeDefinition(), "capability", null, 0, -1, PracticeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getPracticeDefinition_Definition(), this.getCapabilityDefinition(), this.getCapabilityDefinition_PracticeDefinition(), "definition", null, 0, -1, PracticeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPracticeDefinition_ResourceDefinition(), this.getBusinessItemDefinition(), this.getBusinessItemDefinition_PracticeDefinition(), "resourceDefinition", null, 0, -1, PracticeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(practiceCategoryEClass, PracticeCategory.class, "PracticeCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3840,7 +4010,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getCapabilityDefinition_Output(), this.getCapabilityDependency(), this.getCapabilityDependency_Source(), "output", null, 0, -1, CapabilityDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityDefinition_Input(), this.getCapabilityDependency(), this.getCapabilityDependency_Target(), "input", null, 0, -1, CapabilityDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityDefinition_CapabilityResourceDefinition(), this.getBusinessItemDefinition(), this.getBusinessItemDefinition_SupportedCapability(), "capabilityResourceDefinition", null, 0, -1, CapabilityDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getCapabilityDefinition_PracticeDefinition(), this.getPracticeDefinition(), this.getPracticeDefinition_Capability(), "practiceDefinition", null, 0, -1, CapabilityDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCapabilityDefinition_PracticeDefinition(), this.getPracticeDefinition(), this.getPracticeDefinition_Definition(), "practiceDefinition", null, 0, -1, CapabilityDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(businessItemCategoryEClass, BusinessItemCategory.class, "BusinessItemCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBusinessItemCategory_ParentCategory(), this.getBusinessItemCategory(), this.getBusinessItemCategory_ChildCategory(), "parentCategory", null, 0, -1, BusinessItemCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3935,6 +4105,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getDeliverableFlow_Duration(), this.getMeasuredCharacteristic(), null, "duration", null, 0, 1, DeliverableFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getDeliverableFlow_Channel(), thePrimitiveTypesPackage.getString(), "channel", null, 0, 1, DeliverableFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDeliverableFlow_Provider(), this.getOutputPort(), this.getOutputPort_Output(), "provider", null, 1, 1, DeliverableFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDeliverableFlow_Milestone(), this.getMilestone(), null, "milestone", null, 0, 1, DeliverableFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputPortEClass, InputPort.class, "InputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInputPort_ResourceUse(), this.getResourceUse(), this.getResourceUse_Resource(), "resourceUse", null, 0, -1, InputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4011,7 +4182,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getReleaseControl_Scenario(), this.getScenario(), this.getScenario_ReleaseControl(), "scenario", null, 0, -1, ReleaseControl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(capabilityOfferEClass, CapabilityOffer.class, "CapabilityOffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCapabilityOffer_Capability(), this.getCapability(), null, "capability", null, 0, 1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCapabilityOffer_Definition(), this.getCapability(), null, "definition", null, 0, 1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityOffer_CapabilityResource(), this.getStore(), this.getStore_SupportedCapability(), "capabilityResource", null, 0, -1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityOffer_Method(), this.getCapabilityMethod(), this.getCapabilityMethod_SupportedCapability(), "method", null, 0, -1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityOffer_ReleaseControl(), this.getReleaseControl(), null, "releaseControl", null, 0, -1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4025,8 +4196,10 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getCapabilityMethod_MethodOwner(), this.getOrgUnit(), this.getOrgUnit_OwnedMethod(), "methodOwner", null, 1, 1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityMethod_ImplementedPractice(), this.getPracticeDefinition(), null, "implementedPractice", null, 0, -1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityMethod_MethodResource(), this.getBusinessItem(), this.getBusinessItem_Method(), "methodResource", null, 0, -1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getCapabilityMethod_Capability(), this.getCapability(), null, "capability", null, 0, 1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCapabilityMethod_Definition(), this.getCapability(), null, "definition", null, 0, 1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityMethod_SupportedCapability(), this.getCapabilityOffer(), this.getCapabilityOffer_Method(), "supportedCapability", null, 0, -1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCapabilityMethod_InitialActivity(), this.getActivity(), null, "initialActivity", null, 0, 1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCapabilityMethod_Milestone(), this.getMilestone(), null, "milestone", null, 0, -1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(performerEClass, Performer.class, "Performer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4098,8 +4271,11 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getStoreLibrary_Library(), this.getStoreLibrary(), null, "library", null, 0, 1, StoreLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(storeDefinitionEClass, StoreDefinition.class, "StoreDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStoreDefinition_Resource(), this.getBusinessItemDefinition(), null, "resource", null, 0, -1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getStoreDefinition_Resource(), this.getBusinessItemDefinition(), null, "resource", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getStoreDefinition_CharacteristicDefinition(), theSMMPackage.getCharacteristic(), null, "characteristicDefinition", null, 0, -1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getStoreDefinition_InventoryLevel(), theSMMPackage.getCharacteristic(), null, "inventoryLevel", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStoreDefinition_Duration(), theSMMPackage.getCharacteristic(), null, "duration", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStoreDefinition_ExchangeConfiguration(), this.getExchangeConfiguration(), null, "exchangeConfiguration", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(supplyingStoreEClass, SupplyingStore.class, "SupplyingStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSupplyingStore_SupplyingRole(), this.getRole(), this.getRole_SupplyingStore(), "supplyingRole", null, 1, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4110,11 +4286,21 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getSupplyingStore_Collaboration(), this.getCollaboration(), this.getCollaboration_SupplyingStore(), "collaboration", null, 0, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(poolDefinitionEClass, PoolDefinition.class, "PoolDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPoolDefinition_PoolSize(), theSMMPackage.getCharacteristic(), null, "poolSize", null, 0, 1, PoolDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(supplyingPoolEClass, SupplyingPool.class, "SupplyingPool", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSupplyingPool_PoolCalendar(), this.getCalendarService(), null, "poolCalendar", null, 0, 1, SupplyingPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSupplyingPool_PoolSize(), this.getMeasuredCharacteristic(), null, "poolSize", null, 0, 1, SupplyingPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSupplyingPool_Position(), this.getPosition(), null, "position", null, 0, -1, SupplyingPool.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(exchangeConfigurationEClass, ExchangeConfiguration.class, "ExchangeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getExchangeConfiguration_ExchangeMethod(), this.getCapabilityMethod(), null, "exchangeMethod", null, 0, 1, ExchangeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExchangeConfiguration_SupplierRole(), this.getRole(), null, "supplierRole", null, 0, 1, ExchangeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExchangeConfiguration_ResourceUseFromPool(), this.getResourceUse(), null, "resourceUseFromPool", null, 0, 1, ExchangeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExchangeConfiguration_ExchangeMilestone(), this.getMilestone(), null, "exchangeMilestone", null, 0, 1, ExchangeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMilestone_Offset(), this.getMeasuredCharacteristic(), null, "offset", null, 0, 1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

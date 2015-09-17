@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.omg.vdml.CapabilityOffer#getCapability <em>Capability</em>}</li>
+ *   <li>{@link org.omg.vdml.CapabilityOffer#getDefinition <em>Definition</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityOffer#getCapabilityResource <em>Capability Resource</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityOffer#getMethod <em>Method</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityOffer#getReleaseControl <em>Release Control</em>}</li>
@@ -29,32 +29,32 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CapabilityOffer extends MeasurableElement {
     /**
-	 * Returns the value of the '<em><b>Capability</b></em>' reference.
+	 * Returns the value of the '<em><b>Definition</b></em>' reference.
 	 * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Capability</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-	 * @return the value of the '<em>Capability</em>' reference.
-	 * @see #setCapability(Capability)
-	 * @see org.omg.vdml.VDMLPackage#getCapabilityOffer_Capability()
+	 * <p>
+	 * If the meaning of the '<em>Definition</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Definition</em>' reference.
+	 * @see #setDefinition(Capability)
+	 * @see org.omg.vdml.VDMLPackage#getCapabilityOffer_Definition()
 	 * @model ordered="false"
 	 * @generated
 	 */
-    Capability getCapability();
+	Capability getDefinition();
 
-    /**
-	 * Sets the value of the '{@link org.omg.vdml.CapabilityOffer#getCapability <em>Capability</em>}' reference.
+	/**
+	 * Sets the value of the '{@link org.omg.vdml.CapabilityOffer#getDefinition <em>Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Capability</em>' reference.
-	 * @see #getCapability()
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Definition</em>' reference.
+	 * @see #getDefinition()
 	 * @generated
 	 */
-    void setCapability(Capability value);
+	void setDefinition(Capability value);
 
-    /**
+				/**
 	 * Returns the value of the '<em><b>Capability Resource</b></em>' reference list.
 	 * The list contents are of type {@link org.omg.vdml.Store}.
 	 * It is bidirectional and its opposite is '{@link org.omg.vdml.Store#getSupportedCapability <em>Supported Capability</em>}'.

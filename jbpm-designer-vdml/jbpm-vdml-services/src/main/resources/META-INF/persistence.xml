@@ -24,6 +24,7 @@
         <class>org.jbpm.vdml.services.impl.model.meta.EnumeratedMeasure</class>
         <class>org.jbpm.vdml.services.impl.model.meta.InputDelegation</class>
         <class>org.jbpm.vdml.services.impl.model.meta.Measure</class>
+        <class>org.jbpm.vdml.services.impl.model.meta.Milestone</class>
         <class>org.jbpm.vdml.services.impl.model.meta.OutputDelegation</class>
         <class>org.jbpm.vdml.services.impl.model.meta.RescaledMeasure</class>
         <class>org.jbpm.vdml.services.impl.model.meta.ResourceUse</class>
@@ -47,6 +48,7 @@
         <class>org.jbpm.vdml.services.impl.model.runtime.ExchangeConfiguration</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.IndividualParticipant</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.Measurement</class>
+        <class>org.jbpm.vdml.services.impl.model.runtime.MilestoneObservation</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.Participant</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.ParticipantScheduleEntry</class>
         <class>org.jbpm.vdml.services.impl.model.runtime.PoolPerformance</class>

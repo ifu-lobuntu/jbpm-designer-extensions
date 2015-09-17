@@ -25,7 +25,7 @@ import org.omg.vdml.VDMLPackage;
  * </p>
  * <ul>
  *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getCategory <em>Category</em>}</li>
- *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getCapability <em>Capability</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getDefinition <em>Definition</em>}</li>
  *   <li>{@link org.omg.vdml.impl.PracticeDefinitionImpl#getResourceDefinition <em>Resource Definition</em>}</li>
  * </ul>
  *
@@ -43,16 +43,16 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
     protected EList<PracticeCategory> category;
 
     /**
-	 * The cached value of the '{@link #getCapability() <em>Capability</em>}' reference list.
+	 * The cached value of the '{@link #getDefinition() <em>Definition</em>}' reference list.
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-	 * @see #getCapability()
+	 * <!-- end-user-doc -->
+	 * @see #getDefinition()
 	 * @generated
 	 * @ordered
 	 */
-    protected EList<CapabilityDefinition> capability;
+	protected EList<CapabilityDefinition> definition;
 
-    /**
+				/**
 	 * The cached value of the '{@link #getResourceDefinition() <em>Resource Definition</em>}' reference list.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -95,17 +95,17 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 
     /**
 	 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-    public EList<CapabilityDefinition> getCapability() {
-		if (capability == null) {
-			capability = new EObjectWithInverseResolvingEList.ManyInverse<CapabilityDefinition>(CapabilityDefinition.class, this, VDMLPackage.PRACTICE_DEFINITION__CAPABILITY, VDMLPackage.CAPABILITY_DEFINITION__PRACTICE_DEFINITION);
+	public EList<CapabilityDefinition> getDefinition() {
+		if (definition == null) {
+			definition = new EObjectWithInverseResolvingEList.ManyInverse<CapabilityDefinition>(CapabilityDefinition.class, this, VDMLPackage.PRACTICE_DEFINITION__DEFINITION, VDMLPackage.CAPABILITY_DEFINITION__PRACTICE_DEFINITION);
 		}
-		return capability;
+		return definition;
 	}
 
-    /**
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -128,8 +128,8 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 		switch (featureID) {
 			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategory()).basicAdd(otherEnd, msgs);
-			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCapability()).basicAdd(otherEnd, msgs);
+			case VDMLPackage.PRACTICE_DEFINITION__DEFINITION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDefinition()).basicAdd(otherEnd, msgs);
 			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getResourceDefinition()).basicAdd(otherEnd, msgs);
 		}
@@ -146,8 +146,8 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 		switch (featureID) {
 			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
 				return ((InternalEList<?>)getCategory()).basicRemove(otherEnd, msgs);
-			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-				return ((InternalEList<?>)getCapability()).basicRemove(otherEnd, msgs);
+			case VDMLPackage.PRACTICE_DEFINITION__DEFINITION:
+				return ((InternalEList<?>)getDefinition()).basicRemove(otherEnd, msgs);
 			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
 				return ((InternalEList<?>)getResourceDefinition()).basicRemove(otherEnd, msgs);
 		}
@@ -164,8 +164,8 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 		switch (featureID) {
 			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
 				return getCategory();
-			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-				return getCapability();
+			case VDMLPackage.PRACTICE_DEFINITION__DEFINITION:
+				return getDefinition();
 			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
 				return getResourceDefinition();
 		}
@@ -185,9 +185,9 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 				getCategory().clear();
 				getCategory().addAll((Collection<? extends PracticeCategory>)newValue);
 				return;
-			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-				getCapability().clear();
-				getCapability().addAll((Collection<? extends CapabilityDefinition>)newValue);
+			case VDMLPackage.PRACTICE_DEFINITION__DEFINITION:
+				getDefinition().clear();
+				getDefinition().addAll((Collection<? extends CapabilityDefinition>)newValue);
 				return;
 			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
 				getResourceDefinition().clear();
@@ -208,8 +208,8 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
 				getCategory().clear();
 				return;
-			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-				getCapability().clear();
+			case VDMLPackage.PRACTICE_DEFINITION__DEFINITION:
+				getDefinition().clear();
 				return;
 			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
 				getResourceDefinition().clear();
@@ -228,8 +228,8 @@ public class PracticeDefinitionImpl extends VdmlElementImpl implements PracticeD
 		switch (featureID) {
 			case VDMLPackage.PRACTICE_DEFINITION__CATEGORY:
 				return category != null && !category.isEmpty();
-			case VDMLPackage.PRACTICE_DEFINITION__CAPABILITY:
-				return capability != null && !capability.isEmpty();
+			case VDMLPackage.PRACTICE_DEFINITION__DEFINITION:
+				return definition != null && !definition.isEmpty();
 			case VDMLPackage.PRACTICE_DEFINITION__RESOURCE_DEFINITION:
 				return resourceDefinition != null && !resourceDefinition.isEmpty();
 		}

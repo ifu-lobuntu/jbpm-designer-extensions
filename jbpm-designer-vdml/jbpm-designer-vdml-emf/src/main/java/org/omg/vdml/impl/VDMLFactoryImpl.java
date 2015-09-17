@@ -166,6 +166,8 @@ public class VDMLFactoryImpl extends EFactoryImpl implements VDMLFactory {
 			case VDMLPackage.SUPPLYING_STORE: return createSupplyingStore();
 			case VDMLPackage.POOL_DEFINITION: return createPoolDefinition();
 			case VDMLPackage.SUPPLYING_POOL: return createSupplyingPool();
+			case VDMLPackage.EXCHANGE_CONFIGURATION: return createExchangeConfiguration();
+			case VDMLPackage.MILESTONE: return createMilestone();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -749,6 +751,26 @@ public class VDMLFactoryImpl extends EFactoryImpl implements VDMLFactory {
 	public SupplyingPool createSupplyingPool() {
 		SupplyingPoolImpl supplyingPool = new SupplyingPoolImpl();
 		return supplyingPool;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExchangeConfiguration createExchangeConfiguration() {
+		ExchangeConfigurationImpl exchangeConfiguration = new ExchangeConfigurationImpl();
+		return exchangeConfiguration;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Milestone createMilestone() {
+		MilestoneImpl milestone = new MilestoneImpl();
+		return milestone;
 	}
 
 				/**

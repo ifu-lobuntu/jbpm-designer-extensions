@@ -2,10 +2,7 @@ package org.jbpm.vdml.services.impl;
 
 
 import org.jbpm.vdml.services.impl.model.meta.Collaboration;
-import org.jbpm.vdml.services.impl.model.runtime.CapabilityPerformance;
-import org.jbpm.vdml.services.impl.model.runtime.CollaborationObservation;
-import org.jbpm.vdml.services.impl.model.runtime.Participant;
-import org.jbpm.vdml.services.impl.model.runtime.RolePerformance;
+import org.jbpm.vdml.services.impl.model.runtime.*;
 
 import javax.persistence.EntityManager;
 import java.util.Arrays;
@@ -22,6 +19,20 @@ public class ProjectService extends AbstractRuntimeService{
         this.collaborationService=new CollaborationService(em);
         this.assignmentService=new AssignmentService(em);
     }
+    public void commitToMilestone(Long collaborationId, String milestoneName) {
+        //TODO reevaluate use of directedFlows rather than deliverableFlows
+        CollaborationObservation collaborationObservation = entityManager.find(CollaborationObservation.class, collaborationId);
+        MilestoneObservation mo = collaborationObservation.findMilestone(collaborationObservation.getCollaboration().findMilestone(milestoneName));
+        collaborationService.commitToMilestone(mo);
+    }
+
+    public void fulfillMilestone(Long collaborationId, String milestoneName) {
+        //TODO reevaluate use of directedFlows rather than deliverableFlows
+        CollaborationObservation collaborationObservation = entityManager.find(CollaborationObservation.class, collaborationId);
+        MilestoneObservation mo = collaborationObservation.findMilestone(collaborationObservation.getCollaboration().findMilestone(milestoneName));
+        collaborationService.fulfillMilestone(mo);
+    }
+
 
     public CollaborationObservation initiateProject(Long requestorId, String collaborationUri) {
         Collaboration collaboration=entityManager.find(Collaboration.class, collaborationUri);

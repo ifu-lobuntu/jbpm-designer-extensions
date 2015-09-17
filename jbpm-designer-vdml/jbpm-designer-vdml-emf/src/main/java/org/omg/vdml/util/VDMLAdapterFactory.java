@@ -401,6 +401,14 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 				return createSupplyingPoolAdapter();
 			}
 			@Override
+			public Adapter caseExchangeConfiguration(ExchangeConfiguration object) {
+				return createExchangeConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseMilestone(Milestone object) {
+				return createMilestoneAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1369,6 +1377,34 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSupplyingPoolAdapter() {
+		return null;
+	}
+
+				/**
+	 * Creates a new adapter for an object of class '{@link org.omg.vdml.ExchangeConfiguration <em>Exchange Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.vdml.ExchangeConfiguration
+	 * @generated
+	 */
+	public Adapter createExchangeConfigurationAdapter() {
+		return null;
+	}
+
+				/**
+	 * Creates a new adapter for an object of class '{@link org.omg.vdml.Milestone <em>Milestone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.vdml.Milestone
+	 * @generated
+	 */
+	public Adapter createMilestoneAdapter() {
 		return null;
 	}
 

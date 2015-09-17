@@ -18,6 +18,7 @@ package org.omg.vdml;
  *   <li>{@link org.omg.vdml.DeliverableFlow#getDuration <em>Duration</em>}</li>
  *   <li>{@link org.omg.vdml.DeliverableFlow#getChannel <em>Channel</em>}</li>
  *   <li>{@link org.omg.vdml.DeliverableFlow#getProvider <em>Provider</em>}</li>
+ *   <li>{@link org.omg.vdml.DeliverableFlow#getMilestone <em>Milestone</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getDeliverableFlow()
@@ -187,5 +188,31 @@ public interface DeliverableFlow extends MeasurableElement {
 	 * @generated
 	 */
     void setProvider(OutputPort value);
+
+				/**
+	 * Returns the value of the '<em><b>Milestone</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Milestone</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Milestone</em>' reference.
+	 * @see #setMilestone(Milestone)
+	 * @see org.omg.vdml.VDMLPackage#getDeliverableFlow_Milestone()
+	 * @model
+	 * @generated
+	 */
+	Milestone getMilestone();
+
+				/**
+	 * Sets the value of the '{@link org.omg.vdml.DeliverableFlow#getMilestone <em>Milestone</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Milestone</em>' reference.
+	 * @see #getMilestone()
+	 * @generated
+	 */
+	void setMilestone(Milestone value);
 
 } // DeliverableFlow

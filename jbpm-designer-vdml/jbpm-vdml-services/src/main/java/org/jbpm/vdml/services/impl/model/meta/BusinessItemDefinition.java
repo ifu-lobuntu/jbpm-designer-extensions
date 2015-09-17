@@ -127,4 +127,8 @@ public class BusinessItemDefinition implements MetaEntity{
     public Boolean getShareable() {
         return shareable;
     }
+
+    public Set<Collaboration> getCollaborations() {
+        return collaborations;
+    }
 }

@@ -1,6 +1,8 @@
 package org.jbpm.vdml.services.impl.model.runtime;
 
 
+import org.jbpm.vdml.services.impl.model.meta.Measure;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -12,7 +14,8 @@ public class DirectedFlowMeasurement extends Measurement{
     public DirectedFlowMeasurement() {
     }
 
-    public DirectedFlowMeasurement(DirectedFlowObservation directedFlow) {
+    public DirectedFlowMeasurement(Measure measure, DirectedFlowObservation directedFlow) {
+        super(measure);
         this.directedFlow = directedFlow;
         this.directedFlow.getMeasurements().add(this);
     }

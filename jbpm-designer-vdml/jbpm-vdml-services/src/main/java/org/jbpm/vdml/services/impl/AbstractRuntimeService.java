@@ -58,6 +58,10 @@ public class AbstractRuntimeService extends MetaBuilder {
         return result;
 
     }
+    //!!!! FOr tests only
+    public void flush(){
+        entityManager.flush();
+    }
 
     protected RolePerformance findOrCreateRole(Participant participant, Role requestorRole) {
         Query q = entityManager.createQuery("select rp from RolePerformance rp where rp.participant=:participant and rp.role=:role");

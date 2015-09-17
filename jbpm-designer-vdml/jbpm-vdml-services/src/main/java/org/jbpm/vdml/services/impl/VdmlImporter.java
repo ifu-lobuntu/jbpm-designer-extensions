@@ -8,6 +8,7 @@ import org.jbpm.vdml.services.impl.model.meta.Activity;
 import org.jbpm.vdml.services.impl.model.meta.Capability;
 import org.jbpm.vdml.services.impl.model.meta.Collaboration;
 import org.jbpm.vdml.services.impl.model.meta.DeliverableFlow;
+import org.jbpm.vdml.services.impl.model.meta.Milestone;
 import org.jbpm.vdml.services.impl.model.meta.OutputDelegation;
 import org.jbpm.vdml.services.impl.model.meta.PoolDefinition;
 import org.jbpm.vdml.services.impl.model.meta.PortContainer;
@@ -19,10 +20,13 @@ import org.jbpm.vdml.services.impl.model.meta.BusinessItemDefinition;
 import org.jbpm.vdml.services.impl.model.meta.ValueProposition;
 import org.jbpm.vdml.services.impl.model.meta.ValuePropositionComponent;
 import org.jbpm.vdml.services.impl.model.meta.InputDelegation;
+import org.jbpm.vdml.services.impl.model.runtime.ExchangeConfiguration;
 import org.omg.vdml.*;
 
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VdmlImporter extends MetaBuilder {
     public MeasureBuilder measureBuilder;
@@ -35,30 +39,50 @@ public class VdmlImporter extends MetaBuilder {
         this.measureBuilder = new MeasureBuilder(entityManager);
     }
     public void buildModel(org.omg.vdml.ValueDeliveryModel vdm) {
+
         importCapabilities(vdm);
         importStoreDefinitions(vdm);
         importBusinessItemDefinitions(vdm);
         for (org.omg.vdml.Collaboration collaboration : vdm.getCollaboration()) {
             buildCollaboration(collaboration);
         }
+        configureCapabilities(vdm);
+        configureStoreDefinitions(vdm);
         entityManager.flush();
     }
 
-    private void importBusinessItemDefinitions(ValueDeliveryModel vdm) {
-        for (BusinessItemLibrary library : vdm.getBusinessItemLibrary()) {
-            for (BusinessItemLibraryElement from : library.getBusinessItemLibraryElement()) {
-                BusinessItemDefinition to = findOrCreate(from, BusinessItemDefinition.class);
-                to.setName(from.getName());
-                if(from instanceof org.omg.vdml.BusinessItemDefinition) {
-                    org.omg.vdml.BusinessItemDefinition fromDef = (org.omg.vdml.BusinessItemDefinition) from;
-                    to.setFungible(fromDef.getIsFungible());
-                    to.setShareable(fromDef.getIsShareable());
-                }
-                measureBuilder.fromCharacteristics(to.getMeasures(), from.getCharacteristicDefinition());
+    private void configureStoreDefinitions(ValueDeliveryModel vdm) {
+        for (StoreLibrary library : vdm.getStoreLibrary()) {
+            for (org.omg.vdml.StoreDefinition from : library.getStoreDefinitions()) {
+                StoreDefinition to = find(from, StoreDefinition.class);
+                org.omg.vdml.ExchangeConfiguration fromEc = from.getExchangeConfiguration();
+                to.setExchangeConfiguration(buildExchangeConfiguration(fromEc));
             }
         }
     }
 
+    private ExchangeConfiguration buildExchangeConfiguration(org.omg.vdml.ExchangeConfiguration fromEc) {
+        ExchangeConfiguration ec = null;
+        if(fromEc !=null) {
+            ec = new ExchangeConfiguration();
+            ec.setCollaborationToUse(find(fromEc.getExchangeMethod(), Collaboration.class));
+            ec.setSupplierRole(find(fromEc.getSupplierRole(), Role.class));
+            ec.setExchangeMilestone(find(fromEc.getExchangeMilestone(), Milestone.class));
+            entityManager.persist(ec);
+            entityManager.flush();
+        }
+        return ec;
+    }
+
+    private void configureCapabilities(ValueDeliveryModel vdm) {
+        for (CapabilityLibrary l: vdm.getCapabilitylibrary()) {
+            for (org.omg.vdml.Capability from : l.getCapability()) {
+                Capability to = find(from, Capability.class);
+                org.omg.vdml.ExchangeConfiguration fromEc = from.getExchangeConfiguration();
+                to.setExchangeConfiguration(buildExchangeConfiguration(fromEc));
+            }
+        }
+    }
     private void importStoreDefinitions(ValueDeliveryModel vdm) {
         for (StoreLibrary library : vdm.getStoreLibrary()) {
             for (org.omg.vdml.StoreDefinition from : library.getStoreDefinitions()) {
@@ -78,7 +102,29 @@ public class VdmlImporter extends MetaBuilder {
             }
         }
     }
+    private void importBusinessItemDefinitions(ValueDeliveryModel vdm) {
+        for (BusinessItemLibrary library : vdm.getBusinessItemLibrary()) {
+            for (BusinessItemLibraryElement from : library.getBusinessItemLibraryElement()) {
+                BusinessItemDefinition to = findOrCreate(from, BusinessItemDefinition.class);
+                to.setName(from.getName());
+                if(from instanceof org.omg.vdml.BusinessItemDefinition) {
+                    org.omg.vdml.BusinessItemDefinition fromDef = (org.omg.vdml.BusinessItemDefinition) from;
+                    to.setFungible(fromDef.getIsFungible());
+                    to.setShareable(fromDef.getIsShareable());
+                }
+                measureBuilder.fromCharacteristics(to.getMeasures(), from.getCharacteristicDefinition());
+            }
+        }
+    }
 
+    public void setExchangeConfiguration(Capability capability, ExchangeConfiguration configuration){
+        if(capability.getExchangeConfiguration()!=null){
+            entityManager.remove(capability.getExchangeConfiguration());
+        }
+        entityManager.persist(configuration);
+        capability.setExchangeConfiguration(configuration);
+        entityManager.flush();
+    }
     public Collaboration buildCollaboration(org.omg.vdml.Collaboration c) {
         Collaboration result = findOrCreate(c, Collaboration.class);
         result.setName(c.getName());
@@ -86,13 +132,34 @@ public class VdmlImporter extends MetaBuilder {
         importRoles(c, result);
         importActivities(c, result);
         importSupplyingStores(c, result);
+        if(c instanceof CapabilityMethod){
+            EList<org.omg.vdml.Milestone> milestone = ((CapabilityMethod) c).getMilestone();
+            for (org.omg.vdml.Milestone from : milestone) {
+                Milestone to=findOrCreate(from, Milestone.class, result);
+                to.setName(from.getName());
+            }
+        }
+
         importDeliverableFlows(c, result);
         importValuePropositions(c);
         importPortDelegations(result, c.getInternalPortDelegation());
         importContextBasedPortDelegations(c, result);
         importResourceUses(c);
+        setInitiatingRole(result);
         entityManager.flush();
         return result;
+    }
+
+    protected void setInitiatingRole(Collaboration result) {
+        List<Activity> initiatingActivity=new ArrayList<Activity>();
+        for (Activity activity : result.getActivities()) {
+            if(activity.getInputDeliverableFlows().isEmpty() && !activity.getOutputDeliverableFlows().isEmpty()){
+                initiatingActivity.add(activity);
+            }
+        }
+        if(initiatingActivity.size()==1){
+            result.setInitiatorRole(initiatingActivity.get(0).getPerformingRole());
+        }
     }
 
     private void importContextBasedPortDelegations(org.omg.vdml.Collaboration c, Collaboration result) {
@@ -167,6 +234,15 @@ public class VdmlImporter extends MetaBuilder {
                 to.setDeliverable(find(d.getDefinition(), BusinessItemDefinition.class));
             }
             addValueAdds(to, from.getProvider().getValueAdd());
+            measureBuilder.fromMeasuredCharacteristics(to.getMeasures(),from.getMeasuredCharacteristic());
+            if(from.getProvider().getBatchSize()!=null){
+                to.setQuantity(measureBuilder.findOrCreateMeasure(from.getProvider().getBatchSize()));
+            }else if(from.getRecipient().getBatchSize()!=null){
+                to.setQuantity(measureBuilder.findOrCreateMeasure(from.getRecipient().getBatchSize()));
+            }
+            if (from.getMilestone()!=null){
+                to.setMilestone(find(from.getMilestone(),Milestone.class));
+            }
         }
     }
 
@@ -232,7 +308,7 @@ public class VdmlImporter extends MetaBuilder {
             to.setName(from.getName());
             to.setCapabilityRequirement(findOrCreate(from.getCapabilityRequirement(), Capability.class));
             measureBuilder.fromMeasuredCharacteristics(to.getMeasures(), from.getMeasuredCharacteristic());
-            to.setCapabilityRequirement(findOrCreate(from.getCapabilityRequirement(),Capability.class));
+            to.setCapabilityRequirement(findOrCreate(from.getCapabilityRequirement(), Capability.class));
         }
     }
 
@@ -245,11 +321,21 @@ public class VdmlImporter extends MetaBuilder {
 
     private void importBusinessItems(org.omg.vdml.Collaboration c, Collaboration result) {
         for (BusinessItem from: c.getBusinessItem()) {
-            BusinessItemDefinition to=findOrCreate(from,BusinessItemDefinition.class,result);
+            BusinessItemDefinition to=null;
             if(from.getDefinition()!=null){
                 to=findOrCreate(from.getDefinition(), BusinessItemDefinition.class, result);
+                to.setName(from.getDefinition().getName());
+                to.setFungible(from.getDefinition().getIsFungible());
+                to.setShareable(from.getDefinition().getIsShareable());
             }else{
                 to=findOrCreate(from,BusinessItemDefinition.class,result);
+                to.setName(from.getName());
+                to.setFungible(from.getIsFungible());
+                to.setShareable(from.getIsShareable());
+            }
+            if(!result.getBusinessItemDefinitions().contains(to)){
+                result.getBusinessItemDefinitions().add(to);
+                to.getCollaborations().add(result);
             }
             measureBuilder.fromMeasuredCharacteristics(to.getMeasures(), from.getMeasuredCharacteristic());
         }

@@ -28,7 +28,7 @@ public class AssignmentService extends AbstractRuntimeService {
             observation.getCollaborationRoles().add(rp);
             for (Activity activity : rp.getRole().getPerformedActitivities()) {
                 ActivityObservation ao = observation.findActivity(activity);
-                Query q = entityManager.createQuery("select cp from CapabilityPerformance cp where cp.participant=: participant and cp.capability=:capability");
+                Query q = entityManager.createQuery("select cp from CapabilityPerformance cp where cp.participant= :participant and cp.capability=:capability");
                 q.setParameter("participant", rp.getParticipant());
                 q.setParameter("capability", activity.getCapabilityRequirement());
                 List<CapabilityPerformance> result = q.getResultList();
@@ -47,7 +47,7 @@ public class AssignmentService extends AbstractRuntimeService {
             }
             for (SupplyingStore ss : rp.getRole().getSupplyingStores()) {
                 SupplyingStoreObservation sso = observation.findSupplyingStore(ss);
-                Query q = entityManager.createQuery("select sp from StorePerformance sp where sp.owner=: participant and sp.storeDefinition=:storeDefinition");
+                Query q = entityManager.createQuery("select sp from StorePerformance sp where sp.owner= :participant and sp.storeDefinition=:storeDefinition");
                 q.setParameter("participant", rp.getParticipant());
                 q.setParameter("storeDefinition", ss.getStoreRequirement());
                 List<StorePerformance> result = q.getResultList();
