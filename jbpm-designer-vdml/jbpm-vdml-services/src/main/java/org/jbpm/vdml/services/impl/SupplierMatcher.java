@@ -1,6 +1,6 @@
 package org.jbpm.vdml.services.impl;
 
-import org.jbpm.vdml.services.api.model.ResourceAvailability;
+import org.jbpm.vdml.services.api.model.ReusableBusinessItemRequirement;
 import org.jbpm.vdml.services.api.model.LocationCriterion;
 import org.jbpm.vdml.services.api.model.MeasurementCriterion;
 import org.jbpm.vdml.services.impl.model.runtime.*;
@@ -25,15 +25,15 @@ public class SupplierMatcher extends AbstractRuntimeService {
         super(entityManager);
     }
 
-    public List<StorePerformance> findMatchingStore(String storeDef, LocationCriterion location, ResourceAvailability a, Collection<MeasurementCriterion> criteria) {
+    public List<StorePerformance> findMatchingStore(String storeDef, LocationCriterion location, ReusableBusinessItemRequirement a, Collection<MeasurementCriterion> criteria) {
         return null;
     }
 
-    public List<PoolPerformance> findMatchingPool(String poolDef, LocationCriterion location, ResourceAvailability a, Collection<MeasurementCriterion> criteria) {
+    public List<PoolPerformance> findMatchingPool(String poolDef, LocationCriterion location, ReusableBusinessItemRequirement a, Collection<MeasurementCriterion> criteria) {
         return null;
     }
 
-    public List<CapabilityPerformance> findMatchingCapabilityOffer(String capabilityDef, LocationCriterion location, ResourceAvailability a, Collection<MeasurementCriterion> criteria) {
+    public List<CapabilityPerformance> findMatchingCapabilityOffer(String capabilityDef, LocationCriterion location, ReusableBusinessItemRequirement a, Collection<MeasurementCriterion> criteria) {
         return null;
     }
     public List<ProvidedValuePropositionPerformance> findMatchingValueProposition(String capabilityDef, LocationCriterion location, Date from, Date to, Collection<MeasurementCriterion> criteria){

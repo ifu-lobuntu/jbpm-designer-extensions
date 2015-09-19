@@ -173,7 +173,7 @@ public abstract class MetaEntityImportTest extends AbstractVdmlServiceTest {
         return vdm;
     }
 
-    protected DeliverableFlow addDeliverableFlow(Collaboration cp, BusinessItem businessItem, PortContainer from, PortContainer to, String fromPortName, String toPortName, Characteristic characteristic) {
+    protected DeliverableFlow addDeliverableFlow(Collaboration cp, BusinessItem businessItem, PortContainer from, PortContainer to, String fromPortName, String toPortName) {
         DeliverableFlow flow = VDMLFactory.eINSTANCE.createDeliverableFlow();
         cp.getFlow().add(flow);
         flow.setDeliverable(businessItem);
@@ -184,8 +184,14 @@ public abstract class MetaEntityImportTest extends AbstractVdmlServiceTest {
         flow.setRecipient(VDMLFactory.eINSTANCE.createInputPort());
         flow.getRecipient().setName(toPortName);
         to.getContainedPort().add(flow.getRecipient());
+        Characteristic characteristic=null;
+        if(to instanceof SupplyingStore){
+            characteristic=((SupplyingStore)to).getInventoryLevel().getCharacteristicDefinition();
+        }else if(from instanceof  SupplyingStore){
+            characteristic=((SupplyingStore)from).getInventoryLevel().getCharacteristicDefinition();
+        }
         if(characteristic!=null){
-            flow.getProvider().setBatchSize(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
+             flow.getProvider().setBatchSize(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
             flow.getProvider().getBatchSize().setCharacteristicDefinition(characteristic);
             flow.getRecipient().setBatchSize(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
             flow.getRecipient().getBatchSize().setCharacteristicDefinition(characteristic);

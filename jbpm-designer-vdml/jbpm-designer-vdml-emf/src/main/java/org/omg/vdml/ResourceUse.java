@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.vdml.ResourceUse#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.omg.vdml.ResourceUse#getIsExclusive <em>Is Exclusive</em>}</li>
  *   <li>{@link org.omg.vdml.ResourceUse#getResourceIsConsumed <em>Resource Is Consumed</em>}</li>
+ *   <li>{@link org.omg.vdml.ResourceUse#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getResourceUse()
@@ -259,5 +260,34 @@ public interface ResourceUse extends MeasurableElement {
 	 * @generated
 	 */
     void setResourceIsConsumed(Boolean value);
+
+				/**
+	 * Returns the value of the '<em><b>Location</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.omg.vdml.ResourceUseLocation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Location</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Location</em>' attribute.
+	 * @see org.omg.vdml.ResourceUseLocation
+	 * @see #setLocation(ResourceUseLocation)
+	 * @see org.omg.vdml.VDMLPackage#getResourceUse_Location()
+	 * @model
+	 * @generated
+	 */
+	ResourceUseLocation getLocation();
+
+				/**
+	 * Sets the value of the '{@link org.omg.vdml.ResourceUse#getLocation <em>Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Location</em>' attribute.
+	 * @see org.omg.vdml.ResourceUseLocation
+	 * @see #getLocation()
+	 * @generated
+	 */
+	void setLocation(ResourceUseLocation value);
 
 } // ResourceUse

@@ -17,6 +17,7 @@ import org.omg.vdml.InputPort;
 import org.omg.vdml.MeasuredCharacteristic;
 import org.omg.vdml.OutputPort;
 import org.omg.vdml.ResourceUse;
+import org.omg.vdml.ResourceUseLocation;
 import org.omg.vdml.VDMLPackage;
 
 /**
@@ -36,6 +37,7 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.ResourceUseImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ResourceUseImpl#getIsExclusive <em>Is Exclusive</em>}</li>
  *   <li>{@link org.omg.vdml.impl.ResourceUseImpl#getResourceIsConsumed <em>Resource Is Consumed</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.ResourceUseImpl#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @generated
@@ -162,6 +164,26 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
     protected Boolean resourceIsConsumed = RESOURCE_IS_CONSUMED_EDEFAULT;
 
     /**
+	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ResourceUseLocation LOCATION_EDEFAULT = ResourceUseLocation.ROLE_PARTICIPANT;
+
+				/**
+	 * The cached value of the '{@link #getLocation() <em>Location</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLocation()
+	 * @generated
+	 * @ordered
+	 */
+	protected ResourceUseLocation location = LOCATION_EDEFAULT;
+
+				/**
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
@@ -489,6 +511,27 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResourceUseLocation getLocation() {
+		return location;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLocation(ResourceUseLocation newLocation) {
+		ResourceUseLocation oldLocation = location;
+		location = newLocation == null ? LOCATION_EDEFAULT : newLocation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.RESOURCE_USE__LOCATION, oldLocation, location));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -557,6 +600,8 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
 				return getIsExclusive();
 			case VDMLPackage.RESOURCE_USE__RESOURCE_IS_CONSUMED:
 				return getResourceIsConsumed();
+			case VDMLPackage.RESOURCE_USE__LOCATION:
+				return getLocation();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -598,6 +643,9 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
 			case VDMLPackage.RESOURCE_USE__RESOURCE_IS_CONSUMED:
 				setResourceIsConsumed((Boolean)newValue);
 				return;
+			case VDMLPackage.RESOURCE_USE__LOCATION:
+				setLocation((ResourceUseLocation)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -637,6 +685,9 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
 			case VDMLPackage.RESOURCE_USE__RESOURCE_IS_CONSUMED:
 				setResourceIsConsumed(RESOURCE_IS_CONSUMED_EDEFAULT);
 				return;
+			case VDMLPackage.RESOURCE_USE__LOCATION:
+				setLocation(LOCATION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -667,6 +718,8 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
 				return IS_EXCLUSIVE_EDEFAULT == null ? isExclusive != null : !IS_EXCLUSIVE_EDEFAULT.equals(isExclusive);
 			case VDMLPackage.RESOURCE_USE__RESOURCE_IS_CONSUMED:
 				return RESOURCE_IS_CONSUMED_EDEFAULT == null ? resourceIsConsumed != null : !RESOURCE_IS_CONSUMED_EDEFAULT.equals(resourceIsConsumed);
+			case VDMLPackage.RESOURCE_USE__LOCATION:
+				return location != LOCATION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -687,6 +740,8 @@ public class ResourceUseImpl extends MeasurableElementImpl implements ResourceUs
 		result.append(isExclusive);
 		result.append(", resourceIsConsumed: ");
 		result.append(resourceIsConsumed);
+		result.append(", location: ");
+		result.append(location);
 		result.append(')');
 		return result.toString();
 	}

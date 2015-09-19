@@ -76,6 +76,11 @@
                 <artifactId>gt-main</artifactId>
                 <version>13.2</version>
             </dependency>
+            <dependency>
+                <groupId>org.jadira.usertype</groupId>
+                <artifactId>usertype.jodatime</artifactId>
+                <version>2.0.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <name>jBPM VDML Services</name>
@@ -105,7 +110,10 @@
             <groupId>org.geotools</groupId>
             <artifactId>gt-api</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.jodatime</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.jbpm</groupId>
             <artifactId>jbpm-designer-vdml-emf</artifactId>
@@ -174,6 +182,14 @@
         <dependency>
             <groupId>org.codehaus.btm</groupId>
             <artifactId>btm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.optaplanner</groupId>
+            <artifactId>optaplanner-core</artifactId>
         </dependency>
     </dependencies>
 

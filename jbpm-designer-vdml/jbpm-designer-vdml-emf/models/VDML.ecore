@@ -283,6 +283,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceIsConsumed" ordered="false"
         lowerBound="1" eType="ecore:EDataType ../../jbpm-designer-extensions-emf/models/PrimitiveTypes.ecore#//Boolean"
         defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//ResourceUseLocation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputPort" eSuperTypes="#//Port">
     <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
@@ -443,7 +444,7 @@
         upperBound="-1" eType="#//Scenario" eOpposite="#//Scenario/releaseControl"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityOffer" eSuperTypes="#//MeasurableElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="capability" ordered="false"
         eType="#//Capability"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="capabilityResource" ordered="false"
         upperBound="-1" eType="#//Store" eOpposite="#//Store/supportedCapability"/>
@@ -610,5 +611,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Milestone" eSuperTypes="#//MeasurableElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="#//MeasuredCharacteristic"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ResourceUseLocation">
+    <eLiterals name="roleParticipant"/>
+    <eLiterals name="providingStore" value="1"/>
+    <eLiterals name="receivingStore" value="2"/>
+    <eLiterals name="resource" value="3"/>
+    <eLiterals name="collaboration" value="4"/>
   </eClassifiers>
 </ecore:EPackage>

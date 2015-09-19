@@ -1,6 +1,7 @@
 package org.jbpm.vdml.services.impl.model.meta;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -18,6 +19,8 @@ public class ResourceUse implements MetaEntity{
     private Measure quantity;
     @ManyToOne
     private Measure duration;
+    @Enumerated
+    private ResourceUseLocation resourceUseLocation;
 
     private String name;
 
@@ -69,6 +72,14 @@ public class ResourceUse implements MetaEntity{
 
     public void setDuration(Measure duration) {
         this.duration = duration;
+    }
+
+    public ResourceUseLocation getResourceUseLocation() {
+        return resourceUseLocation;
+    }
+
+    public void setResourceUseLocation(ResourceUseLocation resourceUseLocation) {
+        this.resourceUseLocation = resourceUseLocation;
     }
 
     @Override

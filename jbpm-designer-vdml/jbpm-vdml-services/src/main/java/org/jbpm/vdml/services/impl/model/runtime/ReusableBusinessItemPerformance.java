@@ -3,6 +3,7 @@ package org.jbpm.vdml.services.impl.model.runtime;
 
 import org.jbpm.vdml.services.impl.model.meta.BusinessItemDefinition;
 import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
+import org.jbpm.vdml.services.impl.model.scheduling.Schedule;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -25,6 +26,10 @@ public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity
     @ManyToOne
     @JoinColumn(nullable = true)
     private Participant represents;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Schedule schedule;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     @Embedded
     private ExternalObjectReference instanceReference=new ExternalObjectReference();
@@ -38,7 +43,6 @@ public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity
     public ReusableBusinessItemPerformance(BusinessItemDefinition definition, ExternalObjectReference instance) {
         this.definition = definition;
         this.instanceReference=instance;
-
     }
 
     public Participant getRepresents() {
@@ -89,4 +93,35 @@ public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity
     public void setExtendedReusableBusinessItemPerformance(ReusableBusinessItemPerformance extendedReusableBusinessItemPerformance) {
         this.extendedReusableBusinessItemPerformance = extendedReusableBusinessItemPerformance;
     }
+
+    public PoolPerformance getHostingPool() {
+        return hostingPool;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setHostingPool(PoolPerformance hostingPool) {
+        if(this.hostingPool!=null) {
+            this.hostingPool.getPooledResources().remove(this);
+        }
+        this.hostingPool = hostingPool;
+        if(this.hostingPool!=null) {
+            this.hostingPool.getPooledResources().add(this);
+        }
+    }
 }
+

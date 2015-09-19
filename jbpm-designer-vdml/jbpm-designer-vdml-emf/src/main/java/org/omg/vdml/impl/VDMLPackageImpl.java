@@ -4,6 +4,7 @@ package org.omg.vdml.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -63,6 +64,7 @@ import org.omg.vdml.PracticeDefinition;
 import org.omg.vdml.PracticeLibrary;
 import org.omg.vdml.ReleaseControl;
 import org.omg.vdml.ResourceUse;
+import org.omg.vdml.ResourceUseLocation;
 import org.omg.vdml.Role;
 import org.omg.vdml.RoleCategory;
 import org.omg.vdml.RoleDefinition;
@@ -581,6 +583,13 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * @generated
 	 */
 	private EClass milestoneEClass = null;
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum resourceUseLocationEEnum = null;
 
 				/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1878,6 +1887,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
     /**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getResourceUse_Location() {
+		return (EAttribute)resourceUseEClass.getEStructuralFeatures().get(9);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -2592,7 +2610,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCapabilityOffer_Definition() {
+	public EReference getCapabilityOffer_Capability() {
 		return (EReference)capabilityOfferEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3417,6 +3435,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getResourceUseLocation() {
+		return resourceUseLocationEEnum;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -3607,6 +3634,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(resourceUseEClass, RESOURCE_USE__CONDITION);
 		createEAttribute(resourceUseEClass, RESOURCE_USE__IS_EXCLUSIVE);
 		createEAttribute(resourceUseEClass, RESOURCE_USE__RESOURCE_IS_CONSUMED);
+		createEAttribute(resourceUseEClass, RESOURCE_USE__LOCATION);
 
 		outputPortEClass = createEClass(OUTPUT_PORT);
 		createEReference(outputPortEClass, OUTPUT_PORT__OUTPUT);
@@ -3700,7 +3728,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(releaseControlEClass, RELEASE_CONTROL__SCENARIO);
 
 		capabilityOfferEClass = createEClass(CAPABILITY_OFFER);
-		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__DEFINITION);
+		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__CAPABILITY);
 		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__CAPABILITY_RESOURCE);
 		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__METHOD);
 		createEReference(capabilityOfferEClass, CAPABILITY_OFFER__RELEASE_CONTROL);
@@ -3819,6 +3847,9 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 		milestoneEClass = createEClass(MILESTONE);
 		createEReference(milestoneEClass, MILESTONE__OFFSET);
+
+		// Create enums
+		resourceUseLocationEEnum = createEEnum(RESOURCE_USE_LOCATION);
 	}
 
     /**
@@ -4089,6 +4120,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getResourceUse_Condition(), this.getExpression(), null, "condition", null, 0, 1, ResourceUse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getResourceUse_IsExclusive(), thePrimitiveTypesPackage.getBoolean(), "isExclusive", "false", 1, 1, ResourceUse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getResourceUse_ResourceIsConsumed(), thePrimitiveTypesPackage.getBoolean(), "resourceIsConsumed", "true", 1, 1, ResourceUse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getResourceUse_Location(), this.getResourceUseLocation(), "location", null, 0, 1, ResourceUse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(outputPortEClass, OutputPort.class, "OutputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOutputPort_Output(), this.getDeliverableFlow(), this.getDeliverableFlow_Provider(), "output", null, 0, 1, OutputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4182,7 +4214,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getReleaseControl_Scenario(), this.getScenario(), this.getScenario_ReleaseControl(), "scenario", null, 0, -1, ReleaseControl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(capabilityOfferEClass, CapabilityOffer.class, "CapabilityOffer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCapabilityOffer_Definition(), this.getCapability(), null, "definition", null, 0, 1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getCapabilityOffer_Capability(), this.getCapability(), null, "capability", null, 0, 1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityOffer_CapabilityResource(), this.getStore(), this.getStore_SupportedCapability(), "capabilityResource", null, 0, -1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityOffer_Method(), this.getCapabilityMethod(), this.getCapabilityMethod_SupportedCapability(), "method", null, 0, -1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityOffer_ReleaseControl(), this.getReleaseControl(), null, "releaseControl", null, 0, -1, CapabilityOffer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4301,6 +4333,14 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMilestone_Offset(), this.getMeasuredCharacteristic(), null, "offset", null, 0, 1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(resourceUseLocationEEnum, ResourceUseLocation.class, "ResourceUseLocation");
+		addEEnumLiteral(resourceUseLocationEEnum, ResourceUseLocation.ROLE_PARTICIPANT);
+		addEEnumLiteral(resourceUseLocationEEnum, ResourceUseLocation.PROVIDING_STORE);
+		addEEnumLiteral(resourceUseLocationEEnum, ResourceUseLocation.RECEIVING_STORE);
+		addEEnumLiteral(resourceUseLocationEEnum, ResourceUseLocation.RESOURCE);
+		addEEnumLiteral(resourceUseLocationEEnum, ResourceUseLocation.COLLABORATION);
 
 		// Create resource
 		createResource(eNS_URI);

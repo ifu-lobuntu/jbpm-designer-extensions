@@ -5,34 +5,24 @@ import org.jbpm.vdml.services.impl.ExchangeService;
 import org.jbpm.vdml.services.impl.MetaBuilder;
 import org.jbpm.vdml.services.impl.ParticipantService;
 import org.jbpm.vdml.services.impl.VdmlImporter;
-import org.jbpm.vdml.services.impl.model.meta.*;
-import org.jbpm.vdml.services.impl.model.runtime.*;
-import org.jbpm.vdml.services.impl.model.runtime.ExchangeConfiguration;
+import org.jbpm.vdml.services.impl.model.runtime.CollaborationObservation;
+import org.jbpm.vdml.services.impl.model.runtime.DirectedFlowObservation;
+import org.jbpm.vdml.services.impl.model.runtime.IndividualParticipant;
+import org.jbpm.vdml.services.impl.model.runtime.StorePerformance;
 import org.junit.Test;
 import org.omg.smm.Characteristic;
 import org.omg.vdml.*;
-import org.omg.vdml.Activity;
-import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.Capability;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.Milestone;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.Role;
-import org.omg.vdml.StoreDefinition;
-import org.omg.vdml.SupplyingStore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-public class ExchangeTest extends MetaEntityImportTest {
+public class CapabilityExchangeTest extends AbstractExchangeTest {
     @Test
-    public void testCapabilityExchange() throws Exception{
+    public void testCapabilityExchange() throws Exception {
         ValueDeliveryModel vdm = buildModel();
         org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration = buildDefaultCapabilityExchange(vdm);
         ParticipantService participantService = new ParticipantService(getEntityManager());
@@ -40,7 +30,7 @@ public class ExchangeTest extends MetaEntityImportTest {
         IndividualParticipant supplierParticipant = participantService.createIndividualParticipant("CapabilityProvider");
         EList<Capability> capabilities = vdm.getCapabilitylibrary().get(0).getCapability();
 
-        participantService.setCapabilities(supplierParticipant.getId(),Arrays.asList(MetaBuilder.buildUri(findByName(capabilities, "DoWork"))));
+        participantService.setCapabilities(supplierParticipant.getId(), Arrays.asList(MetaBuilder.buildUri(findByName(capabilities, "DoWork"))));
         ExchangeService exchangeService = new ExchangeService(getEntityManager());
 
         //WHEN
@@ -62,38 +52,45 @@ public class ExchangeTest extends MetaEntityImportTest {
         assertEquals(consumerParticipant.getId(), exchange.findActivity(collaboration.findActivity("DefineWork")).getCapabilityOffer().getParticipant().getId());
         assertEquals(supplierParticipant.getId(), exchange.findActivity(collaboration.findActivity("DoWork")).getCapabilityOffer().getParticipant().getId());
     }
+
     @Test
-    public void testCommit() throws Exception{
-        CollaborationObservation exchange = startExchangeAndProvideQuantities();
-        ParticipantService participantService;
-        new ExchangeService(getEntityManager()).commitToExchange(exchange.getId());
-        //THEN
-        participantService=new ParticipantService(getEntityManager());
-        StorePerformance fromAccount = participantService.findIndividualParticipant("Consumer").getOfferedStores().iterator().next();
-        StorePerformance toAccount = participantService.findIndividualParticipant("CapabilityProvider").getOfferedStores().iterator().next();
-        assertEquals(1000d, fromAccount.getInventoryLevel(),0.01);
-        assertEquals(2000d, toAccount.getInventoryLevel(),0.01);
-        assertEquals(900d, fromAccount.getProjectedInventoryLevel(),0.01);
-        assertEquals(2100d, toAccount.getProjectedInventoryLevel(),0.01);
-    }
-    @Test
-    public void testFulfill() throws Exception{
-        CollaborationObservation exchange = startExchangeAndProvideQuantities();
+    public void testCommit() throws Exception {
+        //GIVEN
+        Long exchangeId = startExchangeAndProvideQuantities();
         ParticipantService participantService;
         ExchangeService exchangeService = new ExchangeService(getEntityManager());
-        exchangeService.commitToExchange(exchange.getId());
-        exchangeService.fulfillExchange(exchange.getId());
+        //WHEN
+        exchangeService.commitToExchange(exchangeId);
         //THEN
-        participantService=new ParticipantService(getEntityManager());
-        StorePerformance fromAccount = participantService.findIndividualParticipant("Consumer").getOfferedStores().iterator().next();
-        StorePerformance toAccount = participantService.findIndividualParticipant("CapabilityProvider").getOfferedStores().iterator().next();
-        assertEquals(900d, fromAccount.getInventoryLevel(),0.01);
-        assertEquals(2100d, toAccount.getInventoryLevel(),0.01);
-        assertEquals(900d, fromAccount.getProjectedInventoryLevel(),0.01);
-        assertEquals(2100d, toAccount.getProjectedInventoryLevel(),0.01);
+        CollaborationObservation exchange = new ExchangeService(getEntityManager()).findExchange(exchangeId);
+        StorePerformance fromAccount = exchange.findSupplyingStore(exchange.getCollaboration().findSupplyingStore("FromAccount")).getStore();
+        StorePerformance toAccount = exchange.findSupplyingStore(exchange.getCollaboration().findSupplyingStore("ToAccount")).getStore();
+        assertEquals(1000d, fromAccount.getInventoryLevel(), 0.01);
+        assertEquals(900d, fromAccount.getProjectedInventoryLevel(), 0.01);
+        assertEquals(2000d, toAccount.getInventoryLevel(), 0.01);
+        assertEquals(2100d, toAccount.getProjectedInventoryLevel(), 0.01);
     }
 
-    protected CollaborationObservation startExchangeAndProvideQuantities() throws IOException {
+    @Test
+    public void testFulfill() throws Exception {
+        //GIVEN
+        Long exchangeId = startExchangeAndProvideQuantities();
+        ParticipantService participantService;
+        ExchangeService exchangeService = new ExchangeService(getEntityManager());
+        exchangeService.commitToExchange(exchangeId);
+        //WHEN
+        exchangeService.fulfillExchange(exchangeId);
+        //THEN
+        CollaborationObservation exchange = new ExchangeService(getEntityManager()).findExchange(exchangeId);
+        StorePerformance fromAccount = exchange.findSupplyingStore(exchange.getCollaboration().findSupplyingStore("FromAccount")).getStore();
+        StorePerformance toAccount = exchange.findSupplyingStore(exchange.getCollaboration().findSupplyingStore("ToAccount")).getStore();
+        assertEquals(900d, fromAccount.getInventoryLevel(), 0.01);
+        assertEquals(900d, fromAccount.getProjectedInventoryLevel(), 0.01);
+        assertEquals(2100d, toAccount.getInventoryLevel(), 0.01);
+        assertEquals(2100d, toAccount.getProjectedInventoryLevel(), 0.01);
+    }
+
+    protected Long startExchangeAndProvideQuantities() throws IOException {
         ValueDeliveryModel vdm = buildModel();
         org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration = buildDefaultCapabilityExchange(vdm);
         ParticipantService participantService = new ParticipantService(getEntityManager());
@@ -110,40 +107,27 @@ public class ExchangeTest extends MetaEntityImportTest {
         exchange.findSupplyingStore(collaboration.findSupplyingStore("ToAccount")).getStore().setInventoryLevel(2000d);
         //WHEN
         for (DirectedFlowObservation flow : exchange.getOwnedDirectedFlows()) {
-            if(flow.getDeliverable().getBusinessItemDefinition().getName().equals("Money")){
+            if (flow.getDeliverable().getBusinessItemDefinition().getName().equals("Money")) {
                 flow.getQuantity().setValue(100d);
             }
         }
         exchangeService.flush();
-        return exchange;
+        return exchange.getId();
     }
 
     protected org.jbpm.vdml.services.impl.model.meta.Collaboration buildDefaultCapabilityExchange(ValueDeliveryModel vdm) throws IOException {
-        BusinessItemLibrary bl = vdm.getBusinessItemLibrary().get(0);
-        BusinessItemDefinition money = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
-        bl.getBusinessItemLibraryElement().add(money);
-        money.setName("Money");
-        BusinessItemDefinition workDefinition = VDMLFactory.eINSTANCE.createBusinessItemDefinition();
-        bl.getBusinessItemLibraryElement().add(workDefinition);
-        workDefinition.setName("WorkDefinition");
+        BusinessItemDefinition money = createMoney(vdm);
 
 
-        StoreLibrary sl = vdm.getStoreLibrary().get(0);
-        StoreDefinition account = VDMLFactory.eINSTANCE.createStoreDefinition();
-        sl.getStoreDefinitions().add(account);
-        account.setName("Account");
-        account.setResource(money);
-        Characteristic amount = super.buildDirectMeasure(vdm);
+        StoreDefinition account = createAccount(vdm, money);
+        Characteristic amount = createAmount(vdm);
         account.setInventoryLevel(amount);
 
-        CapabilityLibrary cl = vdm.getCapabilitylibrary().get(0);
-        CapabilityDefinition doWorkDef = VDMLFactory.eINSTANCE.createCapabilityDefinition();
-        cl.getCapability().add(doWorkDef);
-        doWorkDef.setName("DoWork");
+        BusinessItemDefinition workDefinition = createBusinessItemDefinition(vdm, "WorkDefinition");
 
-        CapabilityDefinition defineWorkDef = VDMLFactory.eINSTANCE.createCapabilityDefinition();
-        cl.getCapability().add(defineWorkDef);
-        defineWorkDef.setName("DefineWork");
+        CapabilityDefinition doWorkDef = createCapabilityDefinition(vdm, "DoWork");
+
+        CapabilityDefinition defineWorkDef = createCapabilityDefinition(vdm,"DefineWork");
 
         CapabilityMethod cp = VDMLFactory.eINSTANCE.createCapabilityMethod();
         vdm.getCollaboration().add(cp);
@@ -152,44 +136,18 @@ public class ExchangeTest extends MetaEntityImportTest {
         BusinessItem moneyBusinessItem = addBusinessItem(money, cp);
 
 
-        Role capabilityProvider= VDMLFactory.eINSTANCE.createPerformer();
-        cp.getCollaborationRole().add(capabilityProvider);
-        capabilityProvider.setName("Provider");
+        Role capabilityProvider = createRole(cp,"Provider");
 
-        Role consumer= VDMLFactory.eINSTANCE.createPerformer();
-        cp.getCollaborationRole().add(consumer);
-        consumer.setName("Consumer");
+        Role consumer = createRole(cp, "Consumer");
 
-        SupplyingStore fromAccount = VDMLFactory.eINSTANCE.createSupplyingStore();
-        cp.getSupplyingStore().add(fromAccount);
-        fromAccount.setName("FromAccount");
-        fromAccount.setStoreRequirement(account);
-        fromAccount.setSupplyingRole(consumer);
-        fromAccount.setInventoryLevel(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        fromAccount.getInventoryLevel().setName("amount");
-        fromAccount.getInventoryLevel().setCharacteristicDefinition(amount);
+        SupplyingStore fromAccount = createFromAccount(account, cp, consumer);
 
-        SupplyingStore toAccount = VDMLFactory.eINSTANCE.createSupplyingStore();
-        cp.getSupplyingStore().add(toAccount);
-        toAccount.setName("ToAccount");
-        toAccount.setStoreRequirement(account);
-        toAccount.setSupplyingRole(capabilityProvider);
-        toAccount.setInventoryLevel(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        toAccount.getInventoryLevel().setName("amount");
-        toAccount.getInventoryLevel().setCharacteristicDefinition(amount);
+        SupplyingStore toAccount = createToAccount(account, cp, capabilityProvider);
 
-        Activity defineWork = VDMLFactory.eINSTANCE.createActivity();
-        defineWork.setName("DefineWork");
-        defineWork.setCapabilityRequirement(defineWorkDef);
-        cp.getActivity().add(defineWork);
-        defineWork.setPerformingRole(consumer);
+        Activity defineWork = addActivity(defineWorkDef,cp,consumer,"DefineWork");
 
 
-        Activity doWork = VDMLFactory.eINSTANCE.createActivity();
-        doWork.setName("DoWork");
-        doWork.setCapabilityRequirement(doWorkDef);
-        cp.getActivity().add(doWork);
-        doWork.setPerformingRole(capabilityProvider);
+        Activity doWork = addActivity(doWorkDef,cp, capabilityProvider, "DoWork");
 
 
         Milestone workComplete = VDMLFactory.eINSTANCE.createMilestone();
@@ -202,9 +160,9 @@ public class ExchangeTest extends MetaEntityImportTest {
         doWorkDef.getExchangeConfiguration().setSupplierRole(capabilityProvider);
 
 
-        addDeliverableFlow(cp, workBusinessItem, defineWork, doWork, "providedWorkDefinition", "receivedWorkDefinition", null);
-        addDeliverableFlow(cp, moneyBusinessItem, fromAccount, doWork, "paidMoney", "receivedMoney", amount).setMilestone(workComplete);
-        addDeliverableFlow(cp, moneyBusinessItem, doWork, toAccount, "receivedMoney", "savedMoney", amount).setMilestone(workComplete);
+        addDeliverableFlow(cp, workBusinessItem, defineWork, doWork, "providedWorkDefinition", "receivedWorkDefinition");
+        addDeliverableFlow(cp, moneyBusinessItem, fromAccount, doWork, "paidMoney", "receivedMoney").setMilestone(workComplete);
+        addDeliverableFlow(cp, moneyBusinessItem, doWork, toAccount, "receivedMoney", "savedMoney").setMilestone(workComplete);
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         VdmlImporter vi = new VdmlImporter(getEntityManager());

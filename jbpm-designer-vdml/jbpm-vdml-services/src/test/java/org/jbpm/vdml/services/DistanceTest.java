@@ -6,19 +6,14 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.JTSFactoryFinder;
-import org.geotools.referencing.GeodeticCalculator;
 import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.jbpm.vdml.services.impl.MetaBuilder;
-import org.jbpm.vdml.services.impl.VdmlImporter;
+import org.jbpm.vdml.services.impl.LocationUtil;
 import org.jbpm.vdml.services.impl.model.runtime.TestLocation;
 import org.junit.Test;
-import org.omg.smm.MeasureLibrary;
-import org.omg.vdml.*;
 import org.opengis.geometry.DirectPosition;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -37,10 +32,10 @@ public class DistanceTest extends MetaEntityImportTest {
         entityManager.flush();
         Query q = entityManager.createQuery(" select distance(tl.location, :to) from TestLocation  tl where distance(tl.location,:to) < :distance");
         q.setParameter("to", geometryFactory.createPoint(new Coordinate(-25.978230, 27.690044)));
-        q.setParameter("distance", meterToEstimatedDegrees(19000));
+        q.setParameter("distance", LocationUtil.meterToEstimatedDegrees(19000));
         List<Number> resultList = q.getResultList();
         for (Number number : resultList) {
-            System.out.println(degreesToEstimatedMeters(number.doubleValue()));
+            System.out.println(LocationUtil.degreesToEstimatedMeters(number.doubleValue()));
         }
         DirectPosition fromPosition = JTS.toDirectPosition(new Coordinate(-25.978230, 27.690044), DefaultGeographicCRS.WGS84);
         DirectPosition toPosition = JTS.toDirectPosition(new Coordinate(-25.958408, 27.534896), DefaultGeographicCRS.WGS84);
@@ -60,14 +55,6 @@ public class DistanceTest extends MetaEntityImportTest {
 //        System.out.println(distanceInDegrees);
 //        System.out.println(meterToEstimatedDegrees(distanceInMeter));
 //
-    }
-
-    protected double meterToEstimatedDegrees(double distanceInMeter) {
-        return (360* distanceInMeter)/ (2*Math.PI*6371000);
-    }
-
-    protected double degreesToEstimatedMeters(double distanceInDegrees) {
-        return (distanceInDegrees / 360) * 2 * Math.PI * 6371000;
     }
 
 }

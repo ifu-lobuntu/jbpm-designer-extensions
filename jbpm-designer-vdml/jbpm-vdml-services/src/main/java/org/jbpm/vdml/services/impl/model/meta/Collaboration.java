@@ -1,5 +1,7 @@
 package org.jbpm.vdml.services.impl.model.meta;
 
+import com.vividsolutions.jts.geom.Point;
+import org.jbpm.vdml.services.impl.model.runtime.Address;
 import org.jbpm.vdml.services.impl.model.runtime.MilestoneObservation;
 
 import javax.persistence.*;
@@ -28,6 +30,9 @@ public class Collaboration extends PortContainer {
     private Role initiatorRole;
     @ManyToOne
     private Role plannerRole;
+    @ManyToOne
+
+    private Address address;
 
     public Collaboration() {
     }
@@ -96,4 +101,11 @@ public class Collaboration extends PortContainer {
         return findByName(getMilestones(),milestoneName);
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

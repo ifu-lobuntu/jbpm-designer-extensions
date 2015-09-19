@@ -4,6 +4,7 @@ package org.omg.vdml;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -3740,13 +3741,22 @@ public interface VDMLPackage extends EPackage {
     int RESOURCE_USE__RESOURCE_IS_CONSUMED = MEASURABLE_ELEMENT_FEATURE_COUNT + 8;
 
     /**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESOURCE_USE__LOCATION = MEASURABLE_ELEMENT_FEATURE_COUNT + 9;
+
+				/**
 	 * The number of structural features of the '<em>Resource Use</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int RESOURCE_USE_FEATURE_COUNT = MEASURABLE_ELEMENT_FEATURE_COUNT + 9;
+    int RESOURCE_USE_FEATURE_COUNT = MEASURABLE_ELEMENT_FEATURE_COUNT + 10;
 
     /**
 	 * The number of operations of the '<em>Resource Use</em>' class.
@@ -5995,13 +6005,13 @@ public interface VDMLPackage extends EPackage {
     int CAPABILITY_OFFER__MEASURED_CHARACTERISTIC = MEASURABLE_ELEMENT__MEASURED_CHARACTERISTIC;
 
     /**
-	 * The feature id for the '<em><b>Definition</b></em>' reference.
+	 * The feature id for the '<em><b>Capability</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CAPABILITY_OFFER__DEFINITION = MEASURABLE_ELEMENT_FEATURE_COUNT + 0;
+	int CAPABILITY_OFFER__CAPABILITY = MEASURABLE_ELEMENT_FEATURE_COUNT + 0;
 
 				/**
 	 * The feature id for the '<em><b>Capability Resource</b></em>' reference list.
@@ -10172,6 +10182,16 @@ public interface VDMLPackage extends EPackage {
 	int MILESTONE_OPERATION_COUNT = MEASURABLE_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
+	 * The meta object id for the '{@link org.omg.vdml.ResourceUseLocation <em>Resource Use Location</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.vdml.ResourceUseLocation
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getResourceUseLocation()
+	 * @generated
+	 */
+	int RESOURCE_USE_LOCATION = 70;
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.ValueDeliveryModel <em>Value Delivery Model</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11639,6 +11659,17 @@ public interface VDMLPackage extends EPackage {
     EAttribute getResourceUse_ResourceIsConsumed();
 
     /**
+	 * Returns the meta object for the attribute '{@link org.omg.vdml.ResourceUse#getLocation <em>Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Location</em>'.
+	 * @see org.omg.vdml.ResourceUse#getLocation()
+	 * @see #getResourceUse()
+	 * @generated
+	 */
+	EAttribute getResourceUse_Location();
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.OutputPort <em>Output Port</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12494,15 +12525,15 @@ public interface VDMLPackage extends EPackage {
     EClass getCapabilityOffer();
 
     /**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityOffer#getDefinition <em>Definition</em>}'.
+	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityOffer#getCapability <em>Capability</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Definition</em>'.
-	 * @see org.omg.vdml.CapabilityOffer#getDefinition()
+	 * @return the meta object for the reference '<em>Capability</em>'.
+	 * @see org.omg.vdml.CapabilityOffer#getCapability()
 	 * @see #getCapabilityOffer()
 	 * @generated
 	 */
-	EReference getCapabilityOffer_Definition();
+	EReference getCapabilityOffer_Capability();
 
 				/**
 	 * Returns the meta object for the reference list '{@link org.omg.vdml.CapabilityOffer#getCapabilityResource <em>Capability Resource</em>}'.
@@ -13477,6 +13508,16 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMilestone_Offset();
+
+				/**
+	 * Returns the meta object for enum '{@link org.omg.vdml.ResourceUseLocation <em>Resource Use Location</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Resource Use Location</em>'.
+	 * @see org.omg.vdml.ResourceUseLocation
+	 * @generated
+	 */
+	EEnum getResourceUseLocation();
 
 				/**
 	 * Returns the factory that creates the instances of the model.
@@ -14648,6 +14689,14 @@ public interface VDMLPackage extends EPackage {
         EAttribute RESOURCE_USE__RESOURCE_IS_CONSUMED = eINSTANCE.getResourceUse_ResourceIsConsumed();
 
         /**
+		 * The meta object literal for the '<em><b>Location</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESOURCE_USE__LOCATION = eINSTANCE.getResourceUse_Location();
+
+								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.OutputPortImpl <em>Output Port</em>}' class.
 		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -15308,12 +15357,12 @@ public interface VDMLPackage extends EPackage {
         EClass CAPABILITY_OFFER = eINSTANCE.getCapabilityOffer();
 
         /**
-		 * The meta object literal for the '<em><b>Definition</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Capability</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CAPABILITY_OFFER__DEFINITION = eINSTANCE.getCapabilityOffer_Definition();
+		EReference CAPABILITY_OFFER__CAPABILITY = eINSTANCE.getCapabilityOffer_Capability();
 
 								/**
 		 * The meta object literal for the '<em><b>Capability Resource</b></em>' reference list feature.
@@ -16096,6 +16145,16 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MILESTONE__OFFSET = eINSTANCE.getMilestone_Offset();
+
+								/**
+		 * The meta object literal for the '{@link org.omg.vdml.ResourceUseLocation <em>Resource Use Location</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.vdml.ResourceUseLocation
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getResourceUseLocation()
+		 * @generated
+		 */
+		EEnum RESOURCE_USE_LOCATION = eINSTANCE.getResourceUseLocation();
 
     }
 

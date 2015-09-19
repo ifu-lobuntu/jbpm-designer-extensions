@@ -32,7 +32,7 @@ import org.omg.vdml.VDMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.vdml.impl.CapabilityOfferImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CapabilityOfferImpl#getCapability <em>Capability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityOfferImpl#getCapabilityResource <em>Capability Resource</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityOfferImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityOfferImpl#getReleaseControl <em>Release Control</em>}</li>
@@ -46,14 +46,14 @@ import org.omg.vdml.VDMLPackage;
  */
 public class CapabilityOfferImpl extends MeasurableElementImpl implements CapabilityOffer {
     /**
-	 * The cached value of the '{@link #getDefinition() <em>Definition</em>}' reference.
+	 * The cached value of the '{@link #getCapability() <em>Capability</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefinition()
+	 * @see #getCapability()
 	 * @generated
 	 * @ordered
 	 */
-	protected Capability definition;
+	protected Capability capability;
 
 				/**
 	 * The cached value of the '{@link #getCapabilityResource() <em>Capability Resource</em>}' reference list.
@@ -149,16 +149,16 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Capability getDefinition() {
-		if (definition != null && definition.eIsProxy()) {
-			InternalEObject oldDefinition = (InternalEObject)definition;
-			definition = (Capability)eResolveProxy(oldDefinition);
-			if (definition != oldDefinition) {
+	public Capability getCapability() {
+		if (capability != null && capability.eIsProxy()) {
+			InternalEObject oldCapability = (InternalEObject)capability;
+			capability = (Capability)eResolveProxy(oldCapability);
+			if (capability != oldCapability) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.CAPABILITY_OFFER__DEFINITION, oldDefinition, definition));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.CAPABILITY_OFFER__CAPABILITY, oldCapability, capability));
 			}
 		}
-		return definition;
+		return capability;
 	}
 
 				/**
@@ -166,8 +166,8 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Capability basicGetDefinition() {
-		return definition;
+	public Capability basicGetCapability() {
+		return capability;
 	}
 
 				/**
@@ -175,11 +175,11 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefinition(Capability newDefinition) {
-		Capability oldDefinition = definition;
-		definition = newDefinition;
+	public void setCapability(Capability newCapability) {
+		Capability oldCapability = capability;
+		capability = newCapability;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY_OFFER__DEFINITION, oldDefinition, definition));
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY_OFFER__CAPABILITY, oldCapability, capability));
 	}
 
 				/**
@@ -404,9 +404,9 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VDMLPackage.CAPABILITY_OFFER__DEFINITION:
-				if (resolve) return getDefinition();
-				return basicGetDefinition();
+			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY:
+				if (resolve) return getCapability();
+				return basicGetCapability();
 			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY_RESOURCE:
 				return getCapabilityResource();
 			case VDMLPackage.CAPABILITY_OFFER__METHOD:
@@ -434,8 +434,8 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
     @Override
     public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VDMLPackage.CAPABILITY_OFFER__DEFINITION:
-				setDefinition((Capability)newValue);
+			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY:
+				setCapability((Capability)newValue);
 				return;
 			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY_RESOURCE:
 				getCapabilityResource().clear();
@@ -474,8 +474,8 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
     @Override
     public void eUnset(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.CAPABILITY_OFFER__DEFINITION:
-				setDefinition((Capability)null);
+			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY:
+				setCapability((Capability)null);
 				return;
 			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY_RESOURCE:
 				getCapabilityResource().clear();
@@ -510,8 +510,8 @@ public class CapabilityOfferImpl extends MeasurableElementImpl implements Capabi
     @Override
     public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.CAPABILITY_OFFER__DEFINITION:
-				return definition != null;
+			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY:
+				return capability != null;
 			case VDMLPackage.CAPABILITY_OFFER__CAPABILITY_RESOURCE:
 				return capabilityResource != null && !capabilityResource.isEmpty();
 			case VDMLPackage.CAPABILITY_OFFER__METHOD:

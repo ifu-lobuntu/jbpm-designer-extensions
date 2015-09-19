@@ -17,8 +17,6 @@ public class StorePerformance implements ActivatableRuntimeEntity, DirectlyExcha
     @ManyToOne
     private Participant owner;
     private boolean active;
-    @Type(type="org.hibernate.spatial.GeometryType")
-    private Point location;
     @ManyToOne
     private StorePerformance extendedPresentedStoreMeasurement;
     private double inventoryLevel;
@@ -27,6 +25,8 @@ public class StorePerformance implements ActivatableRuntimeEntity, DirectlyExcha
     private StoreDefinition storeDefinition;
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private Set<StoreMeasurement> measurements = new HashSet<StoreMeasurement>();//Aggregated from SupplyingStoreObservation
+    @ManyToOne
+    private Address address;
 
     public StorePerformance() {
     }
@@ -75,14 +75,6 @@ public class StorePerformance implements ActivatableRuntimeEntity, DirectlyExcha
         return id;
     }
 
-    public Point getLocation() {
-        return location;
-    }
-
-    public void setLocation(Point location) {
-        this.location = location;
-    }
-
     @Override
     public MetaEntity getMetaEntity() {
         return storeDefinition;
@@ -109,6 +101,14 @@ public class StorePerformance implements ActivatableRuntimeEntity, DirectlyExcha
     @Override
     public ExchangeConfiguration getExchangeConfiguration() {
         return storeDefinition.getExchangeConfiguration();
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
 

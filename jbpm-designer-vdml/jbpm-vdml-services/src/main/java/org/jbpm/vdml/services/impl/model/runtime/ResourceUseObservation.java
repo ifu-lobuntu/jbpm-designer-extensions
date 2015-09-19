@@ -5,6 +5,9 @@ import org.hibernate.annotations.Type;
 import org.jbpm.vdml.services.impl.model.meta.Measure;
 import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
 import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
+import org.jbpm.vdml.services.impl.model.scheduling.PlannedUnavailability;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,22 +27,23 @@ public class ResourceUseObservation implements RuntimeEntity {
     private DirectedFlowObservation input;
     @ManyToOne
     private DirectedFlowObservation output;
+    @ManyToOne
+    private Address address;
 
     @ManyToOne
     private PoolPerformance pool;
-
-    @Type(type="org.hibernate.spatial.GeometryType")
-    private Point location;
     @ManyToOne
-    private ReusableBusinessItemPerformance nonFungibleResource;
-    @Temporal(TemporalType.TIMESTAMP)
+    private ReusableBusinessItemPerformance reusableResource;
+
     @Column(name = "`from`")
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime from;
 
-    private Date from;
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`to`")
-
-    private Date to;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime to;
+    @ManyToOne
+    private PlannedUnavailability plannedUnavailability;
 
     private double quantity;
 
@@ -50,12 +54,28 @@ public class ResourceUseObservation implements RuntimeEntity {
     public ResourceUseObservation() {
     }
 
-    public ReusableBusinessItemPerformance getNonFungibleResource() {
-        return nonFungibleResource;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setNonFungibleResource(ReusableBusinessItemPerformance nonFungibleResource) {
-        this.nonFungibleResource = nonFungibleResource;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public PlannedUnavailability getPlannedUnavailability() {
+        return plannedUnavailability;
+    }
+
+    public void setPlannedUnavailability(PlannedUnavailability plannedUnavailability) {
+        this.plannedUnavailability = plannedUnavailability;
+    }
+
+    public ReusableBusinessItemPerformance getReusableResource() {
+        return reusableResource;
+    }
+
+    public void setReusableResource(ReusableBusinessItemPerformance nonFungibleResource) {
+        this.reusableResource = nonFungibleResource;
     }
 
     public ResourceUseObservation(ResourceUse resourceUse, ActivityObservation activity) {
@@ -81,19 +101,19 @@ public class ResourceUseObservation implements RuntimeEntity {
         return null;
     }
 
-    public Date getFrom() {
+    public DateTime getFrom() {
         return from;
     }
 
-    public void setFrom(Date from) {
+    public void setFrom(DateTime from) {
         this.from = from;
     }
 
-    public Date getTo() {
+    public DateTime getTo() {
         return to;
     }
 
-    public void setTo(Date to) {
+    public void setTo(DateTime to) {
         this.to = to;
     }
 
@@ -147,11 +167,4 @@ public class ResourceUseObservation implements RuntimeEntity {
         this.input = input;
     }
 
-    public Point getLocation() {
-        return location;
-    }
-
-    public void setLocation(Point location) {
-        this.location = location;
-    }
 }

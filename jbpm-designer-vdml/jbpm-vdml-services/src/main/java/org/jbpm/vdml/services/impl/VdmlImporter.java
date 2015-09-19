@@ -38,6 +38,7 @@ public class VdmlImporter extends MetaBuilder {
         super(entityManager);
         this.measureBuilder = new MeasureBuilder(entityManager);
     }
+
     public void buildModel(org.omg.vdml.ValueDeliveryModel vdm) {
 
         importCapabilities(vdm);
@@ -63,7 +64,7 @@ public class VdmlImporter extends MetaBuilder {
 
     private ExchangeConfiguration buildExchangeConfiguration(org.omg.vdml.ExchangeConfiguration fromEc) {
         ExchangeConfiguration ec = null;
-        if(fromEc !=null) {
+        if (fromEc != null) {
             ec = new ExchangeConfiguration();
             ec.setCollaborationToUse(find(fromEc.getExchangeMethod(), Collaboration.class));
             ec.setSupplierRole(find(fromEc.getSupplierRole(), Role.class));
@@ -75,7 +76,7 @@ public class VdmlImporter extends MetaBuilder {
     }
 
     private void configureCapabilities(ValueDeliveryModel vdm) {
-        for (CapabilityLibrary l: vdm.getCapabilitylibrary()) {
+        for (CapabilityLibrary l : vdm.getCapabilitylibrary()) {
             for (org.omg.vdml.Capability from : l.getCapability()) {
                 Capability to = find(from, Capability.class);
                 org.omg.vdml.ExchangeConfiguration fromEc = from.getExchangeConfiguration();
@@ -83,10 +84,11 @@ public class VdmlImporter extends MetaBuilder {
             }
         }
     }
+
     private void importStoreDefinitions(ValueDeliveryModel vdm) {
         for (StoreLibrary library : vdm.getStoreLibrary()) {
             for (org.omg.vdml.StoreDefinition from : library.getStoreDefinitions()) {
-                StoreDefinition to = findOrCreate(from, from instanceof org.omg.vdml.PoolDefinition ? PoolDefinition.class: StoreDefinition.class);
+                StoreDefinition to = findOrCreate(from, from instanceof org.omg.vdml.PoolDefinition ? PoolDefinition.class : StoreDefinition.class);
                 to.setName(from.getName());
                 measureBuilder.fromCharacteristics(to.getMeasures(), from.getCharacteristicDefinition());
             }
@@ -94,7 +96,7 @@ public class VdmlImporter extends MetaBuilder {
     }
 
     private void importCapabilities(ValueDeliveryModel vdm) {
-        for (CapabilityLibrary l: vdm.getCapabilitylibrary()) {
+        for (CapabilityLibrary l : vdm.getCapabilitylibrary()) {
             for (org.omg.vdml.Capability from : l.getCapability()) {
                 Capability to = findOrCreate(from, Capability.class);
                 to.setName(from.getName());
@@ -102,12 +104,13 @@ public class VdmlImporter extends MetaBuilder {
             }
         }
     }
+
     private void importBusinessItemDefinitions(ValueDeliveryModel vdm) {
         for (BusinessItemLibrary library : vdm.getBusinessItemLibrary()) {
             for (BusinessItemLibraryElement from : library.getBusinessItemLibraryElement()) {
                 BusinessItemDefinition to = findOrCreate(from, BusinessItemDefinition.class);
                 to.setName(from.getName());
-                if(from instanceof org.omg.vdml.BusinessItemDefinition) {
+                if (from instanceof org.omg.vdml.BusinessItemDefinition) {
                     org.omg.vdml.BusinessItemDefinition fromDef = (org.omg.vdml.BusinessItemDefinition) from;
                     to.setFungible(fromDef.getIsFungible());
                     to.setShareable(fromDef.getIsShareable());
@@ -117,14 +120,6 @@ public class VdmlImporter extends MetaBuilder {
         }
     }
 
-    public void setExchangeConfiguration(Capability capability, ExchangeConfiguration configuration){
-        if(capability.getExchangeConfiguration()!=null){
-            entityManager.remove(capability.getExchangeConfiguration());
-        }
-        entityManager.persist(configuration);
-        capability.setExchangeConfiguration(configuration);
-        entityManager.flush();
-    }
     public Collaboration buildCollaboration(org.omg.vdml.Collaboration c) {
         Collaboration result = findOrCreate(c, Collaboration.class);
         result.setName(c.getName());
@@ -132,10 +127,10 @@ public class VdmlImporter extends MetaBuilder {
         importRoles(c, result);
         importActivities(c, result);
         importSupplyingStores(c, result);
-        if(c instanceof CapabilityMethod){
+        if (c instanceof CapabilityMethod) {
             EList<org.omg.vdml.Milestone> milestone = ((CapabilityMethod) c).getMilestone();
             for (org.omg.vdml.Milestone from : milestone) {
-                Milestone to=findOrCreate(from, Milestone.class, result);
+                Milestone to = findOrCreate(from, Milestone.class, result);
                 to.setName(from.getName());
             }
         }
@@ -151,13 +146,13 @@ public class VdmlImporter extends MetaBuilder {
     }
 
     protected void setInitiatingRole(Collaboration result) {
-        List<Activity> initiatingActivity=new ArrayList<Activity>();
+        List<Activity> initiatingActivity = new ArrayList<Activity>();
         for (Activity activity : result.getActivities()) {
-            if(activity.getInputDeliverableFlows().isEmpty() && !activity.getOutputDeliverableFlows().isEmpty()){
+            if (activity.getInputDeliverableFlows().isEmpty() && !activity.getOutputDeliverableFlows().isEmpty()) {
                 initiatingActivity.add(activity);
             }
         }
-        if(initiatingActivity.size()==1){
+        if (initiatingActivity.size() == 1) {
             result.setInitiatorRole(initiatingActivity.get(0).getPerformingRole());
         }
     }
@@ -165,8 +160,8 @@ public class VdmlImporter extends MetaBuilder {
     private void importContextBasedPortDelegations(org.omg.vdml.Collaboration c, Collaboration result) {
         for (org.omg.vdml.Activity activity : c.getActivity()) {
             for (DelegationContext delegationContext : activity.getDelegationContext()) {
-                Collaboration contextCollaboration =findCollaboration(buildUri(delegationContext.getContextCollaboration()));
-                if(contextCollaboration==null){
+                Collaboration contextCollaboration = findCollaboration(buildUri(delegationContext.getContextCollaboration()));
+                if (contextCollaboration == null) {
                     buildCollaboration(delegationContext.getContextCollaboration());
                 }
                 importPortDelegations(result, delegationContext.getContextBasedPortDelegation());
@@ -176,14 +171,14 @@ public class VdmlImporter extends MetaBuilder {
 
     private void importValuePropositions(org.omg.vdml.Collaboration c) {
         for (org.omg.vdml.Role fromRole : c.getCollaborationRole()) {
-            Role role=findRole(buildUri(fromRole));
+            Role role = findRole(buildUri(fromRole));
             for (org.omg.vdml.ValueProposition fromVp : fromRole.getProvidedProposition()) {
-                ValueProposition toVp=findOrCreate(fromVp, ValueProposition.class, role, findRole(buildUri(fromVp.getRecipient())));
+                ValueProposition toVp = findOrCreate(fromVp, ValueProposition.class, role, findRole(buildUri(fromVp.getRecipient())));
                 toVp.setName(fromVp.getName());
                 for (org.omg.vdml.ValuePropositionComponent fromVpc : fromVp.getComponent()) {
-                    ValuePropositionComponent toVpc=findOrCreate(fromVp,ValuePropositionComponent.class,toVp);
+                    ValuePropositionComponent toVpc = findOrCreate(fromVp, ValuePropositionComponent.class, toVp);
                     toVpc.setName(fromVpc.getName());
-                    measureBuilder.fromMeasuredCharacteristics(toVpc.getMeasures(),fromVpc.getMeasuredCharacteristic());
+                    measureBuilder.fromMeasuredCharacteristics(toVpc.getMeasures(), fromVpc.getMeasuredCharacteristic());
                 }
             }
         }
@@ -193,27 +188,29 @@ public class VdmlImporter extends MetaBuilder {
         for (org.omg.vdml.Activity fromActivity : c.getActivity()) {
             Activity toActivity = find(fromActivity, Activity.class);
             for (org.omg.vdml.ResourceUse from : fromActivity.getResourceUse()) {
-                ResourceUse to = findOrCreate(from, ResourceUse.class,toActivity);
+                ResourceUse to = findOrCreate(from, ResourceUse.class, toActivity);
                 to.setName(from.getName());
                 to.setDuration(measureBuilder.findOrCreateMeasure(from.getDuration()));
                 to.setQuantity(measureBuilder.findOrCreateMeasure(from.getQuantity()));
-                if(from.getResource().size()==1) {
+                if (from.getResource().size() == 1) {
                     InputPort inputPort = from.getResource().get(0);
-                    if(inputPort.getInput()==null){
-                        if(inputPort.getDelegatedInput().size()==1){
+                    if (inputPort.getInput() == null) {
+                        if (inputPort.getDelegatedInput().size() == 1) {
                             to.setInput(find(inputPort.getDelegatedInput().get(0), InputDelegation.class));
                         }
-                    }else {
+                    } else {
                         to.setInput(find(inputPort.getInput(), DeliverableFlow.class));
                     }
                 }
                 OutputPort outputPort = from.getDeliverable();
-                if(outputPort.getOutput()==null){
-                    if(outputPort.getOutputDelegation().size()==1){
-                        to.setInput(find(outputPort.getOutputDelegation().get(0), OutputDelegation.class));
+                if (outputPort != null) {
+                    if (outputPort.getOutput() == null) {
+                        if (outputPort.getOutputDelegation().size() == 1) {
+                            to.setInput(find(outputPort.getOutputDelegation().get(0), OutputDelegation.class));
+                        }
+                    } else {
+                        to.setOutput(find(outputPort.getOutput(), DeliverableFlow.class));
                     }
-                }else{
-                    to.setOutput(find(outputPort.getOutput(), DeliverableFlow.class));
                 }
             }
         }
@@ -228,28 +225,28 @@ public class VdmlImporter extends MetaBuilder {
             to.setSourcePortContainer(find(from.getProvider().eContainer(), PortContainer.class));
             to.setTargetPortContainer(find(from.getRecipient().eContainer(), PortContainer.class));
             BusinessItem d = from.getDeliverable();
-            if(d.getDefinition()==null){
+            if (d.getDefinition() == null) {
                 to.setDeliverable(find(d, BusinessItemDefinition.class));
-            }else {
+            } else {
                 to.setDeliverable(find(d.getDefinition(), BusinessItemDefinition.class));
             }
             addValueAdds(to, from.getProvider().getValueAdd());
-            measureBuilder.fromMeasuredCharacteristics(to.getMeasures(),from.getMeasuredCharacteristic());
-            if(from.getProvider().getBatchSize()!=null){
+            measureBuilder.fromMeasuredCharacteristics(to.getMeasures(), from.getMeasuredCharacteristic());
+            if (from.getProvider().getBatchSize() != null) {
                 to.setQuantity(measureBuilder.findOrCreateMeasure(from.getProvider().getBatchSize()));
-            }else if(from.getRecipient().getBatchSize()!=null){
+            } else if (from.getRecipient().getBatchSize() != null) {
                 to.setQuantity(measureBuilder.findOrCreateMeasure(from.getRecipient().getBatchSize()));
             }
-            if (from.getMilestone()!=null){
-                to.setMilestone(find(from.getMilestone(),Milestone.class));
+            if (from.getMilestone() != null) {
+                to.setMilestone(find(from.getMilestone(), Milestone.class));
             }
         }
     }
 
     private void addValueAdds(DirectedFlow to, EList<ValueAdd> valueAdd) {
         for (ValueAdd fromValueAdd : valueAdd) {
-            Measure toValueAdd=measureBuilder.findOrCreateMeasure(fromValueAdd.getValueMeasurement());
-            if(toValueAdd!=null) {
+            Measure toValueAdd = measureBuilder.findOrCreateMeasure(fromValueAdd.getValueMeasurement());
+            if (toValueAdd != null) {
                 to.getValueAdds().add(toValueAdd);
             }
         }
@@ -257,7 +254,7 @@ public class VdmlImporter extends MetaBuilder {
 
     private void importPortDelegations(Collaboration result, EList<org.omg.vdml.PortDelegation> delegations) {
         for (org.omg.vdml.PortDelegation d : delegations) {
-            if(d instanceof org.omg.vdml.InputDelegation) {
+            if (d instanceof org.omg.vdml.InputDelegation) {
                 org.omg.vdml.InputDelegation from = (org.omg.vdml.InputDelegation) d;
                 InputDelegation to = findOrCreate(from, InputDelegation.class, result);
                 to.setName(from.getName());
@@ -272,7 +269,7 @@ public class VdmlImporter extends MetaBuilder {
                 if (bid != null) {
                     to.setDeliverable(find(bid, BusinessItemDefinition.class));
                 }
-            }else {
+            } else {
                 org.omg.vdml.OutputDelegation from = (org.omg.vdml.OutputDelegation) d;
                 OutputDelegation to = findOrCreate(from, OutputDelegation.class, result);
                 to.setName(from.getName());
@@ -281,10 +278,10 @@ public class VdmlImporter extends MetaBuilder {
                 to.setSourcePortContainer(find(from.getSource().eContainer(), PortContainer.class));
                 to.setTargetPortContainer(find(from.getTarget().eContainer(), PortContainer.class));
                 BusinessItemLibraryElement bid = from.getSource().getOutputDefinition();
-                if(bid==null){
-                    bid=from.getTarget().getOutputDefinition();
+                if (bid == null) {
+                    bid = from.getTarget().getOutputDefinition();
                 }
-                if(bid!=null){
+                if (bid != null) {
                     to.setDeliverable(find(bid, BusinessItemDefinition.class));
                 }
                 addValueAdds(to, from.getSource().getValueAdd());
@@ -320,20 +317,20 @@ public class VdmlImporter extends MetaBuilder {
     }
 
     private void importBusinessItems(org.omg.vdml.Collaboration c, Collaboration result) {
-        for (BusinessItem from: c.getBusinessItem()) {
-            BusinessItemDefinition to=null;
-            if(from.getDefinition()!=null){
-                to=findOrCreate(from.getDefinition(), BusinessItemDefinition.class, result);
+        for (BusinessItem from : c.getBusinessItem()) {
+            BusinessItemDefinition to = null;
+            if (from.getDefinition() != null) {
+                to = findOrCreate(from.getDefinition(), BusinessItemDefinition.class, result);
                 to.setName(from.getDefinition().getName());
                 to.setFungible(from.getDefinition().getIsFungible());
                 to.setShareable(from.getDefinition().getIsShareable());
-            }else{
-                to=findOrCreate(from,BusinessItemDefinition.class,result);
+            } else {
+                to = findOrCreate(from, BusinessItemDefinition.class, result);
                 to.setName(from.getName());
                 to.setFungible(from.getIsFungible());
                 to.setShareable(from.getIsShareable());
             }
-            if(!result.getBusinessItemDefinitions().contains(to)){
+            if (!result.getBusinessItemDefinitions().contains(to)) {
                 result.getBusinessItemDefinitions().add(to);
                 to.getCollaborations().add(result);
             }
@@ -346,22 +343,22 @@ public class VdmlImporter extends MetaBuilder {
     }
 
     public BusinessItemDefinition findBusinessItemDefinition(String s) {
-        return entityManager.find(BusinessItemDefinition.class,s);
+        return entityManager.find(BusinessItemDefinition.class, s);
     }
 
     public StoreDefinition findStoreDefinition(String s) {
-        return entityManager.find(StoreDefinition.class,s);
+        return entityManager.find(StoreDefinition.class, s);
     }
 
     public Capability findCapabilityDefinition(String s) {
-        return entityManager.find(Capability.class,s);
+        return entityManager.find(Capability.class, s);
     }
 
     public Collaboration findCollaboration(String s) {
-        return entityManager.find(Collaboration.class,s);
+        return entityManager.find(Collaboration.class, s);
     }
 
     public Role findRole(String s) {
-        return entityManager.find(Role.class,s);
+        return entityManager.find(Role.class, s);
     }
 }

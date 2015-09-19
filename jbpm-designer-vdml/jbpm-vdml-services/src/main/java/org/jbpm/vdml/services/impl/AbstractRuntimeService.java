@@ -27,15 +27,7 @@ public class AbstractRuntimeService extends MetaBuilder {
 
     protected <T extends RuntimeEntity> Collection<T> syncRuntimeEntities(Collection<? extends T> existingRuntimeEntities, Collection<? extends MetaEntity> equivalentMetaEntities, Class<? extends T> cls, Object parent) {
         Set<T> result = new HashSet<T>();
-        Set<MetaEntity> activeMeasures = new HashSet<MetaEntity>();
-        for (T runtimeEntity : existingRuntimeEntities) {
-            if (equivalentMetaEntities.contains(runtimeEntity.getMetaEntity())) {
-                result.add(runtimeEntity);
-                activeMeasures.add(runtimeEntity.getMetaEntity());
-            } else if (runtimeEntity instanceof ActivatableRuntimeEntity) {
-                ((ActivatableRuntimeEntity) runtimeEntity).setActive(false);
-            }
-        }
+        Set<MetaEntity> activeMeasures = addExistingRuntimeEntitiesTo(existingRuntimeEntities, equivalentMetaEntities, result);
         for (MetaEntity metaEntity : equivalentMetaEntities) {
             if (!activeMeasures.contains(metaEntity)) {
                 Constructor<?> c = null;
@@ -58,6 +50,20 @@ public class AbstractRuntimeService extends MetaBuilder {
         return result;
 
     }
+
+    protected <T extends RuntimeEntity> Set<MetaEntity> addExistingRuntimeEntitiesTo(Collection<? extends T> existingRuntimeEntities, Collection<? extends MetaEntity> equivalentMetaEntities, Set<T> result) {
+        Set<MetaEntity> activeMeasures = new HashSet<MetaEntity>();
+        for (T runtimeEntity : existingRuntimeEntities) {
+            if (equivalentMetaEntities.contains(runtimeEntity.getMetaEntity())) {
+                result.add(runtimeEntity);
+                activeMeasures.add(runtimeEntity.getMetaEntity());
+            } else if (runtimeEntity instanceof ActivatableRuntimeEntity) {
+                ((ActivatableRuntimeEntity) runtimeEntity).setActive(false);
+            }
+        }
+        return activeMeasures;
+    }
+
     //!!!! FOr tests only
     public void flush(){
         entityManager.flush();
