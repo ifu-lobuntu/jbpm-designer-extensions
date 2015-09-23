@@ -50,9 +50,17 @@ public class ResourceUseObservation implements RuntimeEntity {
 
     @OneToMany(mappedBy = "resourceUse")
     private Set<ResourceUseMeasurement> measurements = new HashSet<ResourceUseMeasurement>();
+    @Enumerated
+    private ValueFlowStatus status;
 
     public ResourceUseObservation() {
     }
+    public ResourceUseObservation(ResourceUse resourceUse, ActivityObservation activity) {
+        this.resourceUse = resourceUse;
+        this.activity = activity;
+        this.activity.getResourceUseObservation().add(this);
+    }
+
 
     public Address getAddress() {
         return address;
@@ -78,11 +86,6 @@ public class ResourceUseObservation implements RuntimeEntity {
         this.reusableResource = nonFungibleResource;
     }
 
-    public ResourceUseObservation(ResourceUse resourceUse, ActivityObservation activity) {
-        this.resourceUse = resourceUse;
-        this.activity = activity;
-        this.activity.getResourceUseObservation().add(this);
-    }
 
     public ResourceUseMeasurement getQuantity() {
         return getMeasurement(this.resourceUse.getQuantity());
@@ -167,4 +170,11 @@ public class ResourceUseObservation implements RuntimeEntity {
         this.input = input;
     }
 
+    public void setStatus(ValueFlowStatus status) {
+        this.status = status;
+    }
+
+    public ValueFlowStatus getStatus() {
+        return status;
+    }
 }

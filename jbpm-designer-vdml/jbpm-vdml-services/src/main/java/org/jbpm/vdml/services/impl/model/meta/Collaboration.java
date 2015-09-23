@@ -14,6 +14,7 @@ import static org.jbpm.vdml.services.impl.model.meta.MetaEntityUtil.findByName;
 
 @Entity
 public class Collaboration extends PortContainer {
+    private String deploymentId;
     @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
     private Set<Role> collaborationRoles =new HashSet<Role>();
     @OneToMany(mappedBy = "collaboration",cascade = CascadeType.ALL)
@@ -107,5 +108,13 @@ public class Collaboration extends PortContainer {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getDeploymentId() {
+        return deploymentId;
+    }
+
+    public void setDeploymentId(String deploymentId) {
+        this.deploymentId = deploymentId;
     }
 }

@@ -12,6 +12,7 @@ public class StoreDefinition implements MetaEntity,MeasurableElement {
     @Id
     private String uri;
     private String name;
+
     @ManyToOne
     private StoreDefinition extendedStoreDefinition;
     @ManyToOne

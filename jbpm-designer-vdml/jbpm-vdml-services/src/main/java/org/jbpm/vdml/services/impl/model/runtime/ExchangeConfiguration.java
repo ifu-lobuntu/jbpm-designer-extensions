@@ -6,6 +6,7 @@ import org.jbpm.vdml.services.impl.model.meta.ResourceUse;
 import org.jbpm.vdml.services.impl.model.meta.Role;
 
 import javax.persistence.*;
+import java.util.concurrent.TimeUnit;
 
 @Entity
 public class ExchangeConfiguration {
@@ -20,6 +21,11 @@ public class ExchangeConfiguration {
     private Milestone exchangeMilestone;
     @ManyToOne
     private ResourceUse poolBooking;
+
+    @Enumerated
+    private TimeUnit commitPeriodTimeUnit=TimeUnit.DAYS;
+
+    private int commitPeriod=1;
 
     public Long getId() {
         return id;
@@ -55,5 +61,21 @@ public class ExchangeConfiguration {
 
     public void setSupplierRole(Role supplierRole) {
         this.supplierRole = supplierRole;
+    }
+
+    public TimeUnit getCommitPeriodTimeUnit() {
+        return commitPeriodTimeUnit;
+    }
+
+    public void setCommitPeriodTimeUnit(TimeUnit commitPeriodTimeUnit) {
+        this.commitPeriodTimeUnit = commitPeriodTimeUnit;
+    }
+
+    public int getCommitPeriod() {
+        return commitPeriod;
+    }
+
+    public void setCommitPeriod(int commitPeriod) {
+        this.commitPeriod = commitPeriod;
     }
 }

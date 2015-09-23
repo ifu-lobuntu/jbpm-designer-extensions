@@ -12,6 +12,7 @@ import org.jbpm.vdml.services.impl.model.meta.Milestone;
 import org.jbpm.vdml.services.impl.model.meta.OutputDelegation;
 import org.jbpm.vdml.services.impl.model.meta.PoolDefinition;
 import org.jbpm.vdml.services.impl.model.meta.PortContainer;
+import org.jbpm.vdml.services.impl.model.meta.ResourceUseLocation;
 import org.jbpm.vdml.services.impl.model.meta.Role;
 import org.jbpm.vdml.services.impl.model.meta.StoreDefinition;
 import org.jbpm.vdml.services.impl.model.meta.SupplyingStore;
@@ -39,13 +40,13 @@ public class VdmlImporter extends MetaBuilder {
         this.measureBuilder = new MeasureBuilder(entityManager);
     }
 
-    public void buildModel(org.omg.vdml.ValueDeliveryModel vdm) {
+    public void buildModel(String deploymentId, org.omg.vdml.ValueDeliveryModel vdm) {
 
         importCapabilities(vdm);
         importStoreDefinitions(vdm);
         importBusinessItemDefinitions(vdm);
         for (org.omg.vdml.Collaboration collaboration : vdm.getCollaboration()) {
-            buildCollaboration(collaboration);
+            buildCollaboration(deploymentId, collaboration);
         }
         configureCapabilities(vdm);
         configureStoreDefinitions(vdm);
@@ -69,6 +70,7 @@ public class VdmlImporter extends MetaBuilder {
             ec.setCollaborationToUse(find(fromEc.getExchangeMethod(), Collaboration.class));
             ec.setSupplierRole(find(fromEc.getSupplierRole(), Role.class));
             ec.setExchangeMilestone(find(fromEc.getExchangeMilestone(), Milestone.class));
+            ec.setPoolBooking(find(fromEc.getResourceUseFromPool(),ResourceUse.class));
             entityManager.persist(ec);
             entityManager.flush();
         }
@@ -120,9 +122,10 @@ public class VdmlImporter extends MetaBuilder {
         }
     }
 
-    public Collaboration buildCollaboration(org.omg.vdml.Collaboration c) {
+    public Collaboration buildCollaboration(String deploymentId, org.omg.vdml.Collaboration c) {
         Collaboration result = findOrCreate(c, Collaboration.class);
         result.setName(c.getName());
+        result.setDeploymentId(deploymentId);
         importBusinessItems(c, result);
         importRoles(c, result);
         importActivities(c, result);
@@ -138,7 +141,7 @@ public class VdmlImporter extends MetaBuilder {
         importDeliverableFlows(c, result);
         importValuePropositions(c);
         importPortDelegations(result, c.getInternalPortDelegation());
-        importContextBasedPortDelegations(c, result);
+        importContextBasedPortDelegations(deploymentId, c, result);
         importResourceUses(c);
         setInitiatingRole(result);
         entityManager.flush();
@@ -157,12 +160,12 @@ public class VdmlImporter extends MetaBuilder {
         }
     }
 
-    private void importContextBasedPortDelegations(org.omg.vdml.Collaboration c, Collaboration result) {
+    private void importContextBasedPortDelegations(String deploymentId, org.omg.vdml.Collaboration c, Collaboration result) {
         for (org.omg.vdml.Activity activity : c.getActivity()) {
             for (DelegationContext delegationContext : activity.getDelegationContext()) {
                 Collaboration contextCollaboration = findCollaboration(buildUri(delegationContext.getContextCollaboration()));
                 if (contextCollaboration == null) {
-                    buildCollaboration(delegationContext.getContextCollaboration());
+                    buildCollaboration(deploymentId, delegationContext.getContextCollaboration());
                 }
                 importPortDelegations(result, delegationContext.getContextBasedPortDelegation());
             }
@@ -192,6 +195,7 @@ public class VdmlImporter extends MetaBuilder {
                 to.setName(from.getName());
                 to.setDuration(measureBuilder.findOrCreateMeasure(from.getDuration()));
                 to.setQuantity(measureBuilder.findOrCreateMeasure(from.getQuantity()));
+                to.setResourceUseLocation(ResourceUseLocation.valueOf(from.getLocation().name()));
                 if (from.getResource().size() == 1) {
                     InputPort inputPort = from.getResource().get(0);
                     if (inputPort.getInput() == null) {
@@ -339,6 +343,9 @@ public class VdmlImporter extends MetaBuilder {
     }
 
     private <T extends MetaEntity> T find(EObject eObject, Class<T> rt) {
+        if(eObject==null){
+            return null;
+        }
         return entityManager.find(rt, buildUri(eObject));
     }
 

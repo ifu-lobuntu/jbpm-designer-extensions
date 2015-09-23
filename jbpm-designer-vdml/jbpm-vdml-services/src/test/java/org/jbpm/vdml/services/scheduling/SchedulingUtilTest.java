@@ -1,6 +1,7 @@
 package org.jbpm.vdml.services.scheduling;
 
 
+import com.vividsolutions.jts.geom.Point;
 import org.jbpm.vdml.services.impl.model.scheduling.*;
 import org.jbpm.vdml.services.impl.scheduling.*;
 import org.joda.time.DateTime;
@@ -26,8 +27,18 @@ public class SchedulingUtilTest {
     }
 
     private static List<ScheduleSlot> generate16(BaseDateTime from, BaseDateTime to) {
-        Schedule schedule = buildSchedule();
-        return new SchedulingUtil().calculate(null, schedule, from, to);
+        final Schedule schedule = buildSchedule();
+        return new SchedulingUtil().calculate(new SchedulableObject() {
+            @Override
+            public Schedule getSchedule() {
+                return schedule;
+            }
+
+            @Override
+            public Point getLocation() {
+                return null;
+            }
+        }, schedule, from, to);
     }
 
     public static Schedule buildSchedule() {
@@ -63,9 +74,10 @@ public class SchedulingUtilTest {
         // Solve the problem
         solver.solve(booking);
         BookingSolution solvedCloudBalance = (BookingSolution) solver.getBestSolution();
-        assertEquals(1,solvedCloudBalance.getBookings().get(0).getStartScheduleSlot().getFrom().getDayOfMonth());
-        assertEquals(13,solvedCloudBalance.getBookings().get(0).getStartScheduleSlot().getFrom().getHourOfDay());
-        System.out.println();
+        DateTime dateTime = solvedCloudBalance.getBookings().get(0).getStartScheduleSlot().getFrom();
+        System.out.println(new BookingSolutionCalculator().calculateScore(solvedCloudBalance));
+        assertEquals(1, dateTime.getDayOfMonth());
+        assertEquals(13, dateTime.getHourOfDay());
 
     }
     protected static DailySchedule dailySchedule(Schedule schedule, DayOfWeek sunday, String ... periods) {

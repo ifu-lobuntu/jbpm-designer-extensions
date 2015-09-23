@@ -78,7 +78,7 @@ public class DelegationImportTest extends MetaEntityImportTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         //WHEN
-        new VdmlImporter(getEntityManager()).buildCollaboration(cp);
+        new VdmlImporter(getEntityManager()).buildCollaboration(DEFAULT_DEPLOYMENT_ID, cp);
         Collaboration collaboration=new VdmlImporter(getEntityManager()).findCollaboration(MetaBuilder.buildUri(cp));
 
         //THEN
@@ -181,7 +181,7 @@ public class DelegationImportTest extends MetaEntityImportTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         //WHEN
-        Collaboration owningCollaboration = new VdmlImporter(getEntityManager()).buildCollaboration(cm);
+        Collaboration owningCollaboration = new VdmlImporter(getEntityManager()).buildCollaboration(DEFAULT_DEPLOYMENT_ID, cm);
         //THEN
         assertEquals(cm.getName(), owningCollaboration.getName());
         assertEquals(1, owningCollaboration.getCollaborationRoles().size());

@@ -16,7 +16,7 @@
 
     <termination>
         <termination>
-            <unimprovedMillisecondsSpentLimit>1500</unimprovedMillisecondsSpentLimit>
+            <unimprovedMillisecondsSpentLimit>500</unimprovedMillisecondsSpentLimit>
         </termination>
     </termination>
     <constructionHeuristic>

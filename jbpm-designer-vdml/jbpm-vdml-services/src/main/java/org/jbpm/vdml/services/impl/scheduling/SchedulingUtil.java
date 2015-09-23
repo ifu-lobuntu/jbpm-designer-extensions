@@ -10,27 +10,33 @@ import java.util.concurrent.TimeUnit;
 
 public class SchedulingUtil {
 
-    public static List<ScheduleSlot> calculate(Object scheduledObject, Schedule workingHours, BaseDateTime from, BaseDateTime to) {
+    public static List<ScheduleSlot> calculate(SchedulableObject scheduledObject, Schedule workingHours, BaseDateTime from, BaseDateTime to) {
         List<PlannedUnavailability> plannedUnavailability = workingHours.getSortedPlannedUnavailability();
         List<ScheduleSlot> result = new ArrayList<ScheduleSlot>();
         MutableDateTime curCal = new MutableDateTime(from);
         int slotInMillis = durationToMillis(workingHours.getScheduleSlotSize(), workingHours.getScheduleSlotTimeUnit());
         ScheduleSlot previous = null;
-        while (curCal.getMillis() < to.getMillis()) {
+        while (curCal.getMillis() <= to.getMillis()) {
             DailySchedule dailySchedule = getScheduleFor(workingHours, curCal);
             for (PeriodInDay p : dailySchedule.getActiveHours()) {
                 curCal.setMillisOfDay(p.startMillis());
                 while (curCal.getMillisOfDay() < p.endMillis()) {
                     int endMillis = Math.min(curCal.getMillisOfDay() + slotInMillis, p.endMillis());
-                    if (curCal.getMillis() > from.getMillis() && curCal.getMillis() < to.getMillis()) {
+                    if (curCal.getMillis() >= from.getMillis() && curCal.getMillis() <= to.getMillis()) {
                         PlannedUnavailability closestPrecedingUnavailability = getClosestPrecedingUnavailability(curCal, plannedUnavailability);
                         if (closestPrecedingUnavailability==null || closestPrecedingUnavailability.getTo().isBefore(curCal)) {
                             DateTime periodFrom = new DateTime(curCal);
-                            ScheduleSlot newSlot = new ScheduleSlot(scheduledObject, periodFrom, periodFrom.plusMillis(endMillis), closestPrecedingUnavailability==null?null:closestPrecedingUnavailability.getLocation());
+                            ScheduleSlot newSlot = new ScheduleSlot(scheduledObject, periodFrom, periodFrom.withMillisOfDay(endMillis), closestPrecedingUnavailability==null?null:closestPrecedingUnavailability.getLocation());
+                            if(closestPrecedingUnavailability!=null && closestPrecedingUnavailability.getLocation()!=null){
+                                newSlot.setLastLocation(closestPrecedingUnavailability.getLocation());
+                            }else{
+                                newSlot.setLastLocation(scheduledObject.getLocation());
+                            }
                             if (previous != null) {
                                 previous.setNext(newSlot);
                             }
                             result.add(newSlot);
+//                            System.out.println(newSlot.getFrom() +" to " + newSlot.getTo());
                             previous = newSlot;
                         }
                     }

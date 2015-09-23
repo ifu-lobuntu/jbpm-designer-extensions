@@ -27,7 +27,7 @@ public class PartitipantTest extends MetaEntityImportTest {
         vdm.getCapabilitylibrary().get(0).getCapability().add(capability);
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
-        new VdmlImporter(getEntityManager()).buildModel(vdm);
+        new VdmlImporter(getEntityManager()).buildModel(DEFAULT_DEPLOYMENT_ID, vdm);
         ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         //When
@@ -52,7 +52,7 @@ public class PartitipantTest extends MetaEntityImportTest {
         vdm.getStoreLibrary().get(0).getStoreDefinitions().add(storeDef);
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
-        new VdmlImporter(getEntityManager()).buildModel(vdm);
+        new VdmlImporter(getEntityManager()).buildModel(DEFAULT_DEPLOYMENT_ID, vdm);
         ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         //When
@@ -87,7 +87,7 @@ public class PartitipantTest extends MetaEntityImportTest {
         vp.getComponent().add(vpc);
         vpc.setName("MyVPCToYou");
         super.addMeasuredCharacteristics(vdm, vpc.getMeasuredCharacteristic());
-        new VdmlImporter(getEntityManager()).buildModel(vdm);
+        new VdmlImporter(getEntityManager()).buildModel(DEFAULT_DEPLOYMENT_ID, vdm);
         ParticipantService participantService = new ParticipantService(getEntityManager());
         IndividualParticipant ekke = participantService.createIndividualParticipant("ekke");
         //When

@@ -1,8 +1,10 @@
 package org.jbpm.vdml.services.impl.model.runtime;
 
 
+import com.vividsolutions.jts.geom.Point;
 import org.jbpm.vdml.services.impl.model.meta.BusinessItemDefinition;
 import org.jbpm.vdml.services.impl.model.meta.MetaEntity;
+import org.jbpm.vdml.services.impl.model.scheduling.SchedulableObject;
 import org.jbpm.vdml.services.impl.model.scheduling.Schedule;
 
 import javax.persistence.*;
@@ -10,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity {
+public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity,SchedulableObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -100,6 +102,11 @@ public class ReusableBusinessItemPerformance implements ActivatableRuntimeEntity
 
     public Schedule getSchedule() {
         return schedule;
+    }
+
+    @Override
+    public Point getLocation() {
+        return getAddress()==null?null:getAddress().getLocation();
     }
 
     public void setSchedule(Schedule schedule) {

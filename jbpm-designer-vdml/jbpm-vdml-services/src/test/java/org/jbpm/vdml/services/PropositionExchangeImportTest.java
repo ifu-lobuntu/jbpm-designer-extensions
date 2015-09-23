@@ -98,7 +98,7 @@ public class PropositionExchangeImportTest extends MetaEntityImportTest {
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         //When
         VdmlImporter importer = new VdmlImporter(getEntityManager());
-        importer.buildCollaboration(cp);
+        importer.buildCollaboration(DEFAULT_DEPLOYMENT_ID, cp);
         Collaboration collaboration= importer.findCollaboration(MetaBuilder.buildUri(cp));
 
         //Then

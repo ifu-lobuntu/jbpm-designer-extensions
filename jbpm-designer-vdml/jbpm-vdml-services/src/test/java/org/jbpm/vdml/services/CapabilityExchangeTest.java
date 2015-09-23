@@ -166,8 +166,8 @@ public class CapabilityExchangeTest extends AbstractExchangeTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         VdmlImporter vi = new VdmlImporter(getEntityManager());
-        vi.buildModel(vdm);
-        org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration = vi.buildCollaboration(cp);
+        vi.buildModel(DEFAULT_DEPLOYMENT_ID, vdm);
+        org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration = vi.buildCollaboration(DEFAULT_DEPLOYMENT_ID, cp);
         return collaboration;
     }
 

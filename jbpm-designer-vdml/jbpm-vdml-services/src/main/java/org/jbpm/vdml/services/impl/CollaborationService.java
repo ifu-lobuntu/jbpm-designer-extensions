@@ -5,10 +5,7 @@ import org.jbpm.vdml.services.impl.model.runtime.*;
 
 
 import javax.persistence.EntityManager;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 9. As a project custodian, when planning on a project has been completed, I want all collaborating participants, including myself, to commit to the times, locations and quantitiesm so that subsequent planning can be based on accurate data.
@@ -53,8 +50,24 @@ public class CollaborationService extends AbstractRuntimeService {
                 }
             }
         }
+        for (ActivityObservation ao : observation.getActivities()) {
+            Collection<ResourceUseObservation> ruos = syncRuntimeEntities(ao.getResourceUseObservation(), ao.getActivity().getResourceUses(), ResourceUseObservation.class, ao);
+            for (ResourceUseObservation ruo : ruos) {
+                syncRuntimeEntities(ruo.getMeasurements(), asCollection(ruo.getResourceUse().getDuration(), ruo.getResourceUse().getQuantity()),ResourceUseMeasurement.class, ruo);
+            }
+        }
         assignmentService.assignToRoles(observation, rolePerformances);
         return observation;
+    }
+    public static <T> Collection <? extends T> asCollection(T ...o){
+        Set<T> result = new HashSet<T>();
+        for (T t : o) {
+            if(t!=null){
+                result.add(t);
+            }
+        }
+
+        return result;
     }
 
     public ActivityObservation newActivity(String activityId, Long collaborationObservationId, Long capabilityPerformance) {

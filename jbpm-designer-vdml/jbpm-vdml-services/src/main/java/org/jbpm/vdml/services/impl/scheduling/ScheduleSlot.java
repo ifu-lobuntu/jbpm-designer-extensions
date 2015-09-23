@@ -53,11 +53,12 @@ public class ScheduleSlot {
 
     public ScheduleSlot getEndSlot(long remainingDuration) {
         long myDuration = getDurationInMillis();
-        if(myDuration >remainingDuration){
+        if(myDuration >=remainingDuration) {
             return this;
-        }else if(getNext()!=null){
+        }else if(getNext()==null){
+            return null;//out of range
+        }else{
            return getNext().getEndSlot(remainingDuration- myDuration);
         }
-        return this;
     }
 }

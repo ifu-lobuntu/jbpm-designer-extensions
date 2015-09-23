@@ -69,7 +69,7 @@ public class CollaborationImportTest extends MetaEntityImportTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         //WHEN
-        Collaboration collaboration = new VdmlImporter(getEntityManager()).buildCollaboration(cp);
+        Collaboration collaboration = new VdmlImporter(getEntityManager()).buildCollaboration(DEFAULT_DEPLOYMENT_ID, cp);
         //THEN
         assertEquals(cp.getName(), collaboration.getName());
         assertEquals(1, collaboration.getCollaborationRoles().size());
@@ -170,7 +170,7 @@ public class CollaborationImportTest extends MetaEntityImportTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         //WHEN
-        Collaboration collaboration = new VdmlImporter(getEntityManager()).buildCollaboration(cp);
+        Collaboration collaboration = new VdmlImporter(getEntityManager()).buildCollaboration(DEFAULT_DEPLOYMENT_ID, cp);
         //THEN
         assertEquals(cp.getName(), collaboration.getName());
 

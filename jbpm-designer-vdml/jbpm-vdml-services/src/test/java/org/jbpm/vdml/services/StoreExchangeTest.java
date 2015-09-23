@@ -111,7 +111,6 @@ public class StoreExchangeTest extends AbstractExchangeTest {
         exchange.findSupplyingStore(collaboration.findSupplyingStore("ToAccount")).getStore().setInventoryLevel(2000d);
         exchange.findSupplyingStore(collaboration.findSupplyingStore("ProductStore")).getStore().setProjectedInventoryLevel(100d);
         exchange.findSupplyingStore(collaboration.findSupplyingStore("ProductStore")).getStore().setInventoryLevel(100d);
-        //WHEN
         for (DirectedFlowObservation flow : exchange.getOwnedDirectedFlows()) {
             if(flow.getDeliverable().getBusinessItemDefinition().getName().equals("Money")){
                 flow.getQuantity().setValue(100d);
@@ -185,8 +184,8 @@ public class StoreExchangeTest extends AbstractExchangeTest {
 
         vdm.eResource().save(new ByteArrayOutputStream(), null);
         VdmlImporter vi = new VdmlImporter(getEntityManager());
-        vi.buildModel(vdm);
-        org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration = vi.buildCollaboration(cp);
+        vi.buildModel(DEFAULT_DEPLOYMENT_ID, vdm);
+        org.jbpm.vdml.services.impl.model.meta.Collaboration collaboration = vi.buildCollaboration(DEFAULT_DEPLOYMENT_ID, cp);
         return collaboration;
     }
 

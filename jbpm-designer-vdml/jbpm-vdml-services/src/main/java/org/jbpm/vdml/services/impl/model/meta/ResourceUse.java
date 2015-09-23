@@ -33,6 +33,7 @@ public class ResourceUse implements MetaEntity{
         this.activity.getResourceUses().add(this);
     }
 
+
     @Override
     public String getUri() {
         return uri;

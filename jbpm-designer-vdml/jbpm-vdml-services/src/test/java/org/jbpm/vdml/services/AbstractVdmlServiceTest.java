@@ -3,6 +3,7 @@ package org.jbpm.vdml.services;
 import bitronix.tm.resource.ResourceRegistrar;
 import bitronix.tm.resource.common.XAResourceProducer;
 import bitronix.tm.resource.jdbc.PoolingDataSource;
+import org.jbpm.runtime.manager.impl.jpa.EntityManagerFactoryManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -31,7 +32,7 @@ public abstract class AbstractVdmlServiceTest {
     private static boolean usePostgres = true;
     private static PoolingDataSource ds;
     private Collection<EntityManager> entityManagers = new HashSet<EntityManager>();
-
+    protected  static final String DEFAULT_DEPLOYMENT_ID="test-deployment";
 
     protected EntityManager getEntityManager() {
         clearEntityManagers();
@@ -56,6 +57,7 @@ public abstract class AbstractVdmlServiceTest {
                 ds = setupDatasource("org.postgresql.Driver", "jdbc:postgresql://localhost:5432:itest", "itest", "itest");
                 emf = Persistence.createEntityManagerFactory("org.jbpm.vdml.jpa");
                 ds.reset();
+                EntityManagerFactoryManager.get().addEntityManagerFactory("org.jbpm.vdml.jpa",emf);
                 c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "itest", "itest");
                 execute(c, "CREATE DATABASE itest_template TEMPLATE itest;");
                 close(c);

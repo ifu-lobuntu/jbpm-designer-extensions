@@ -47,6 +47,11 @@ public class ActivityObservation extends PortContainerObservation {
         return findMatchingRuntimeEntity(this.getResourceUseObservation(), ru);
 
     }
+
+    public CollaborationObservation getCollaboration() {
+        return collaboration;
+    }
+
     public void setCapabilityOffer(CapabilityPerformance capabilityOffer) {
         this.capabilityOffer = capabilityOffer;
     }
