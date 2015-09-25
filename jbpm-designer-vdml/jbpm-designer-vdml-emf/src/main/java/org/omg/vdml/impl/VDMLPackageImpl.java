@@ -2760,6 +2760,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCapabilityMethod_PlanningRole() {
+		return (EReference)capabilityMethodEClass.getEStructuralFeatures().get(8);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -3746,6 +3755,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__SUPPORTED_CAPABILITY);
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__INITIAL_ACTIVITY);
 		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__MILESTONE);
+		createEReference(capabilityMethodEClass, CAPABILITY_METHOD__PLANNING_ROLE);
 
 		performerEClass = createEClass(PERFORMER);
 
@@ -4232,6 +4242,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEReference(getCapabilityMethod_SupportedCapability(), this.getCapabilityOffer(), this.getCapabilityOffer_Method(), "supportedCapability", null, 0, -1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getCapabilityMethod_InitialActivity(), this.getActivity(), null, "initialActivity", null, 0, 1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCapabilityMethod_Milestone(), this.getMilestone(), null, "milestone", null, 0, -1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCapabilityMethod_PlanningRole(), this.getRole(), null, "planningRole", null, 0, 1, CapabilityMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(performerEClass, Performer.class, "Performer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

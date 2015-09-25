@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1442985033414
+Bnd-LastModified: 1443153776025
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Wed, 23 Sep 2015 07:09:22 +0200
+Build-Timestamp: Fri, 25 Sep 2015 06:00:57 +0200
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,15 +12,15 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codegen
 Bundle-SymbolicName: org.jbpm.uml.codegen
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201509230508
+Bundle-Version: 6.4.0.201509250400
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.jbpm.designer.uml.codegen;version="6.4.0.20150923050
- 8",org.jbpm.designer.uml.codegen.codemodel;version="6.4.0.201509230508"
- ,org.jbpm.designer.uml.codegen.java;version="6.4.0.201509230508",org.jb
- pm.designer.uml.codegen.jpa;version="6.4.0.201509230508",org.jbpm.desig
- ner.uml.codegen.util;version="6.4.0.201509230508",org.jbpm.designer.uml
- .codegen.util.emulated;version="6.4.0.201509230508",org.pavanecce.commo
- n.test.util;version="6.4.0.201509230508"
+Export-Package: org.jbpm.designer.uml.codegen;version="6.4.0.20150925040
+ 0",org.jbpm.designer.uml.codegen.codemodel;version="6.4.0.201509250400"
+ ,org.jbpm.designer.uml.codegen.java;version="6.4.0.201509250400",org.jb
+ pm.designer.uml.codegen.jpa;version="6.4.0.201509250400",org.jbpm.desig
+ ner.uml.codegen.util;version="6.4.0.201509250400",org.jbpm.designer.uml
+ .codegen.util.emulated;version="6.4.0.201509250400",org.pavanecce.commo
+ n.test.util;version="6.4.0.201509250400"
 Implementation-Title: jBPM Designer UML Class Diagram Code Generation
 Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
  cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
@@ -52,7 +52,7 @@ Private-Package: .
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-uml/jbpm-designer-uml-codegen
-Scm-Revision: c5329032261d33373688943e210cd8a31b07d2aa
+Scm-Revision: 732941795d52d71294282acfb3c4975332cec52a
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-uml
  /jbpm-designer-uml-codegen

@@ -6357,13 +6357,22 @@ public interface VDMLPackage extends EPackage {
 	int CAPABILITY_METHOD__MILESTONE = COLLABORATION_FEATURE_COUNT + 7;
 
 				/**
+	 * The feature id for the '<em><b>Planning Role</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAPABILITY_METHOD__PLANNING_ROLE = COLLABORATION_FEATURE_COUNT + 8;
+
+				/**
 	 * The number of structural features of the '<em>Capability Method</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int CAPABILITY_METHOD_FEATURE_COUNT = COLLABORATION_FEATURE_COUNT + 8;
+    int CAPABILITY_METHOD_FEATURE_COUNT = COLLABORATION_FEATURE_COUNT + 9;
 
     /**
 	 * The number of operations of the '<em>Capability Method</em>' class.
@@ -12711,6 +12720,17 @@ public interface VDMLPackage extends EPackage {
 	EReference getCapabilityMethod_Milestone();
 
 				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.CapabilityMethod#getPlanningRole <em>Planning Role</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Planning Role</em>'.
+	 * @see org.omg.vdml.CapabilityMethod#getPlanningRole()
+	 * @see #getCapabilityMethod()
+	 * @generated
+	 */
+	EReference getCapabilityMethod_PlanningRole();
+
+				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.Performer <em>Performer</em>}'.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -15493,6 +15513,14 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CAPABILITY_METHOD__MILESTONE = eINSTANCE.getCapabilityMethod_Milestone();
+
+								/**
+		 * The meta object literal for the '<em><b>Planning Role</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CAPABILITY_METHOD__PLANNING_ROLE = eINSTANCE.getCapabilityMethod_PlanningRole();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.PerformerImpl <em>Performer</em>}' class.

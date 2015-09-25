@@ -477,6 +477,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialActivity" eType="#//Activity"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="milestone" upperBound="-1"
         eType="#//Milestone" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="planningRole" eType="#//Role"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Performer" eSuperTypes="#//Role"/>
   <eClassifiers xsi:type="ecore:EClass" name="Position" eSuperTypes="#//Role">

@@ -43,6 +43,7 @@ import org.omg.vdml.VDMLPackage;
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getSupportedCapability <em>Supported Capability</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getInitialActivity <em>Initial Activity</em>}</li>
  *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getMilestone <em>Milestone</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.CapabilityMethodImpl#getPlanningRole <em>Planning Role</em>}</li>
  * </ul>
  *
  * @generated
@@ -117,6 +118,16 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 	 * @ordered
 	 */
 	protected EList<Milestone> milestone;
+
+				/**
+	 * The cached value of the '{@link #getPlanningRole() <em>Planning Role</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPlanningRole()
+	 * @generated
+	 * @ordered
+	 */
+	protected Role planningRole;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -316,6 +327,44 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Role getPlanningRole() {
+		if (planningRole != null && planningRole.eIsProxy()) {
+			InternalEObject oldPlanningRole = (InternalEObject)planningRole;
+			planningRole = (Role)eResolveProxy(oldPlanningRole);
+			if (planningRole != oldPlanningRole) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.CAPABILITY_METHOD__PLANNING_ROLE, oldPlanningRole, planningRole));
+			}
+		}
+		return planningRole;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Role basicGetPlanningRole() {
+		return planningRole;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPlanningRole(Role newPlanningRole) {
+		Role oldPlanningRole = planningRole;
+		planningRole = newPlanningRole;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.CAPABILITY_METHOD__PLANNING_ROLE, oldPlanningRole, planningRole));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -397,6 +446,9 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				return basicGetInitialActivity();
 			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
 				return getMilestone();
+			case VDMLPackage.CAPABILITY_METHOD__PLANNING_ROLE:
+				if (resolve) return getPlanningRole();
+				return basicGetPlanningRole();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -439,6 +491,9 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				getMilestone().clear();
 				getMilestone().addAll((Collection<? extends Milestone>)newValue);
 				return;
+			case VDMLPackage.CAPABILITY_METHOD__PLANNING_ROLE:
+				setPlanningRole((Role)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -475,6 +530,9 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
 				getMilestone().clear();
 				return;
+			case VDMLPackage.CAPABILITY_METHOD__PLANNING_ROLE:
+				setPlanningRole((Role)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -503,6 +561,8 @@ public class CapabilityMethodImpl extends CollaborationImpl implements Capabilit
 				return initialActivity != null;
 			case VDMLPackage.CAPABILITY_METHOD__MILESTONE:
 				return milestone != null && !milestone.isEmpty();
+			case VDMLPackage.CAPABILITY_METHOD__PLANNING_ROLE:
+				return planningRole != null;
 		}
 		return super.eIsSet(featureID);
 	}

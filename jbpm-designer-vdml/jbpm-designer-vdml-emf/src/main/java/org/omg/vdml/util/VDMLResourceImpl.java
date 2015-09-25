@@ -33,6 +33,7 @@ public class VDMLResourceImpl extends XMIResourceImpl {
     private static Set<String> externalPackages = new HashSet<String>();
     static{
         externalPackages.add("uml");
+        externalPackages.add("smm");
     }
     private static Set<EClass> referrables = new HashSet<EClass>();
     static {

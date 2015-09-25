@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.omg.vdml.CapabilityMethod#getSupportedCapability <em>Supported Capability</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityMethod#getInitialActivity <em>Initial Activity</em>}</li>
  *   <li>{@link org.omg.vdml.CapabilityMethod#getMilestone <em>Milestone</em>}</li>
+ *   <li>{@link org.omg.vdml.CapabilityMethod#getPlanningRole <em>Planning Role</em>}</li>
  * </ul>
  *
  * @see org.omg.vdml.VDMLPackage#getCapabilityMethod()
@@ -191,5 +192,31 @@ public interface CapabilityMethod extends Collaboration {
 	 * @generated
 	 */
 	EList<Milestone> getMilestone();
+
+				/**
+	 * Returns the value of the '<em><b>Planning Role</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Planning Role</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Planning Role</em>' reference.
+	 * @see #setPlanningRole(Role)
+	 * @see org.omg.vdml.VDMLPackage#getCapabilityMethod_PlanningRole()
+	 * @model
+	 * @generated
+	 */
+	Role getPlanningRole();
+
+				/**
+	 * Sets the value of the '{@link org.omg.vdml.CapabilityMethod#getPlanningRole <em>Planning Role</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Planning Role</em>' reference.
+	 * @see #getPlanningRole()
+	 * @generated
+	 */
+	void setPlanningRole(Role value);
 
 } // CapabilityMethod

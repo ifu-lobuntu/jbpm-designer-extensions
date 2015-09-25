@@ -30,6 +30,5 @@
 		<module>jbpm-designer-vdml-api</module>
 		<module>jbpm-designer-vdml-client</module>
 		<module>jbpm-designer-vdml-backend</module>
-		<module>jbpm-vdml-services</module>
 	</modules>
 </project>
