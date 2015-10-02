@@ -1,10 +1,12 @@
 package org.jbpm.designer.vdml;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
+import org.omg.smm.Characteristic;
 import org.omg.smm.Measure;
 import org.omg.vdml.Activity;
 import org.omg.vdml.BusinessItem;
@@ -103,7 +105,7 @@ public class VdmlHelper {
     }
 
     public static boolean hasMeasure(MeasuredCharacteristic vm) {
-        return vm != null && vm.getCharacteristicDefinition() != null && vm.getCharacteristicDefinition().getMeasure().size() > 0;
+        return vm != null && hasMeasure(vm.getCharacteristicDefinition());
     }
 
     public static EList<ValueAdd> getValueAdds(Port p) {
@@ -140,5 +142,16 @@ public class VdmlHelper {
             } 
         }
         return null;
+    }
+
+    public static String getClassName(Measure m) {
+        URI packageUri = m.eResource().getURI().trimSegments(1);
+        String ps = packageUri.toPlatformString(true);
+        ps=ps.substring(ps.indexOf("src/main/resources/") + "src/main/resources/".length());
+        return ps.replace('/','.')+m.getName();
+    }
+
+    public static boolean hasMeasure(Characteristic c) {
+        return c!=null && c.getMeasure().size()>0;
     }
 }

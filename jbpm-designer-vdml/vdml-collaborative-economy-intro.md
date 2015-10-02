@@ -1,9 +1,12 @@
 # jBPM NRP
 
 #1 Overview
-The purpose of this jBPM NRP is to provide a modeling facility combined with a runtime execution engine that can facilitate networked economic collaboration. As a type of resource planning system, jBPM NRP may, on the surface at least, appear to have goals similar to traditional ERP systems. However, on closer inspection, it in fact represents a massive paradigm shift from traditional ERP. The best introduction to this paradigm shift is to explore the ways in which it differs from existing ERP systems. 
+The purpose of this jBPM NRP is to provide a modeling facility combined with a runtime execution engine that can facilitate networked economic collaboration.
+As a type of resource planning system, jBPM NRP may, on the surface at least, appear to have goals similar to traditional ERP systems. However, on closer inspection, 
+it in fact represents a massive paradigm shift from traditional ERP. The best introduction to this paradigm shift is to explore the ways in which it differs from 
+traditional ERP systems. 
 
-## The scop of jBPM NRP is the network, not the enterprise
+## The scope of jBPM NRP is the network, not the enterprise
 In ERP, the Enterprise is central to the offering. Existing ERP solutions work hard to fortify the borders of the Enterprise. Auditability, accountability, cross-checking, double verification, balancing the books are implemented to make sure that nobody outside the Enterprise can possibly cheat it out of a penny. The processes it implements have been use for decades, some for centuries and have been proven to maximise the safety of the Enterprise.
 For an NRP system, the Network is primary. Borders amongst Enterprises are secondary, and all Enterprises in the Network are treated equally. This does not mean that participants are expected to blindly trust each other, it is just that the technology built into the NRP solution itself obsoletes old accounting processes that were required to establish trust before the advent of the highly technologically connected world of the 21st century. Entirely new processes are possible whilst cross-boundary exchanges can be facilitated with much greater ease and improved techonological security.
 
@@ -60,192 +63,12 @@ After several consecutive system economic failures, today's person on the street
 
 #3 VDML.
 
-Even though most of todays business management theory and methods find their origins in the industrial economic age, it is inevitable that even this field is progressing inexorably towards the networked economy. Some of todays business management approaches stand out as being particularly well equipped to make sense of the networked economy. Of particular interest are Value Network Analysis and Lean Value Stream Mapping both originating from the systems thinking school of thought. At the same time, Resources Events and Agents offer a vastly simplified accounting approach compared to traditional accounting. In its own way, each of these approaches has proven itself to be significantly more adept at making sense of the networked economy. It is therefore particularly significant that representatives from these different schools got together under the Object Management Group to define a very interesting new modeling language called Value Delivery Modeling Language. For this reason, it was decided that jBPM NRP would take VDML as its point of departure, rather than reinventing this particularly complex wheel and trying to synthesize all these approaches and try to reconcile them with the sometimes radical thoughts forwarded by proponents of the networked economy. 
 
-VDML is a modeling language designed to help business leaders describe and improve their businesses. It offers a high level of abstraction with just enough detail to contextualize arious statistics that could be read and correllated from different sources to make sense of the current performance of the business within its ecosystem. However, for a system such as this to be "computationally complete" it was required to bring VDML down to a level of abstraction that it was not intended for. Also, because the networked economy brings in economies of scales for certain concepts, it would make no use trying to model them individually. Imaging trying to visually model the organizational structure of every single AirBNB participant. Yet clearly each of them brings in something unique, yet retains enough similarity to allow for thousands if not millions of them to advertise their services uniformly.
-
-##Collaboration
-"A Collaboration represents the interaction of multiple Participants for a shared purpose. Each Participant is in a Role that represents that Participant’s relationship to the rest of the Participants and the shared purpose." VDML defines four different types of Collaboration: Business Network, Community, OrgUnit and Capability Method. This project focuses only on two of these: Business Networks, which we also sometimes call Value Networks, and Capability Methods, that are basically a formal term for templates for collaborations such as projects, case or business processes that repeat similar activities over multiple executions. We generally use the term project for Capability Methods. Since the goal of this project has always been to provide innovative new business models for large amounts of participants, the way VDML defines OrgUnits as individual colloboration instances and not as templates made it of limited use to us and also introduces a level of rigidity of boundaries and centralized thinking that could distract from the networked nature of the platform. Implementing support for OrgUnits is therefore a low priority, although it may be an option later on.
-
-There are certain implications for this lack of support for OrgUnits. VDML introduces a couple of constraints such as the Capability Methods must be owned by OrgUnits, and that OrgUnits are required to declare actual stores of resources and specific definition offerings. We therefore needed to deviate from these restrictions a bit, and allow for CapabilityMethods to be more "free floating". But we also need to extend the idea of a Participant to allow for stores of resources and definition offerings to be represented.
-
-##Participant
-A participant is an economic agent that can perform certain activities in a collaboration, thus allowing it to fill a certain role in a collaboration. In VDML, roles can be filled by individuals, by other collaborations (e.g. OrgUnits) or by reference to another role in another collaboration. The latter case is more useful in defining complex algorithism for assigning roles at runtime which we provided interesting alternatives for. This platform therefore does not support Roles as Participants, which leaves only Collaborations and Individuals as Participants. Some deviation from VDML was however required to achieve this, such as that the location of a participant is now carried on the participant him/herself, not the OrgUnit he/she works for. Further deviations deserve to be explored, specifically related to how Capabilities and Stores of resources are conceptualised.
-
-##Capability
-In order to perform a specific activity, a Participant needs to directly or indirectly offer a certain Capability. Strictly speaking in VDML, only OrgUnits can offer capabilities, as Capabilities imply access to both skills and resources, and resources are always assumed to be owned by OrgUnits. In order to free this project from this more traditional, slightly dated view of economic activity, Participants (that also exclude Roles) are allowed to offer Capabilities. However, in the networked economy ownership is reconceptualised, and it definitely conceivable that for instance an participant on AirBNB actually owns his/her own house, and therefore supports the BNB Capability? It would also not make sense to model the individual CapabilityOffer, but VDML does provide substantial visual modeling for complex taxonomies of Capabilities. On registration, a Participant would therefore indicate which Capabilities he/she offers from a rich taxonomy of Capabilities, making it easy for potential consumers of that Capability to search for many providers of that Capability.
-
-##Store
-Resources are held in stores, and they represent the assets that a participant owns. A store is a much more abstract concept than a physical warehouse or shop, although it includes both. A bank acount is store, where the resource is money. A garden is a store with a yield pontential, but so is your fridge where you keep the fresh produce you bought. Resources flow, usually in measurable quantities from stores, and a basic assumption of linearity, i.e. addition and subtraction on store inventory levels can be made, although stores of intangible assets may try to quantify non-linear resources such as social reputation.  Stores are primarily characterised by the (single) type of resource they store. But stores also carry much more information than just inventory levels pertaining to their overall performance in collaborations. For this reason, and also to increase the usefulness of stores in searches, this project decided to support a taxonomy of stores. For instance, a fruit & veg shop can specialized as an organic fruit & veg Shop, and potentially bring in aspects of consumers' value system to help them refine their choices. This is another deviation from VDML. On registration, a Participant would therefore register his/her stores, and indicate how they fit into the taxonomy of existing store definitions. Such a registered store is exactly what VDML had in mind for its concept of a store, but again it would not make sense to visually model every single house involved in the entire AirBNB business network. 
-
-##Pool
-A pool is a type of store that holds reusable resources that can be returned back to the pool after use. It brings in the dimension of time and availability to a store. An AirBNB house could have 4 rooms, but they can only be allocated if they are available for the required period of time. As with stores, pools can be owned by Participants, and as with stores we have introduced a taxonomy of pools to allow for easy searching of pools.
-
-##BusinessItemDefition
-BusinessItems are defined as taxonomies and can be used across multiple collaborations.
-
-Now that we have explored the infrastructure that supports Collaborations in more detail, we can look at what a Collaboration is made up of. 
-
-##Role
-"A Collaboration represents the
-interaction of multiple Participants for a shared purpose. Each Participant is in a Role that
-represents that Participant’s relationship to the rest of the Participants and the shared purpose."
-A Role in a Collaboration is responsible for a set of Activities 
-"A Role will be filled by a Participant that has the Capability required to perform the associated
-Activity(s). ... The definition taxonomy (CapabilityLibrary) provides a link to a CapabilityOffer(s) for identification of an OrgUnit(s) that can provide the needed Capability."
-
-##Activity
-"Activities define work to be done by Participants in Roles within a Collaboration.
-Each Activity is performed by one Role of one or more Participant Roles within the
-Collaboration. Within a Collaboration, the same Role may perform multiple Activities
-and may provide multiple Capabilities used by the Collaboration. The Collaboration
-itself may perform a Role in Activities of another Collaboration. The Activity identifies
-the type of Capability required to perform the Activity by reference to a
-CapabilityDefinition, and the Role to be filled by a Participant that provides that
-Capability. In some cases the Participant will be an Actor (human or automaton), in other
-cases it will be filled by a Collaboration (usually an OrgUnit using a CapabilityMethod).
-Note that if a Role performs multiple Activities, and the Activities require different
-Capabilities, then the selected Participant must be capable of providing each of the
-Capabilities required."
-
-##DeliverableFlows
-An Activity can have DeliverableFlows from one Activity or Store and to another
-Activity or Store (but not from a Store to a Store). In the figure, the BusinessItem is on
-both the input and output DeliverableFlows, indicating that the input and output are essentially the
-same except the output has some added value. This could be a part going through progressive stages of
-production. The ValueAdded to the BusinessItem is associated with the same OutputPort as
-the DeliverableFlow of the BusinessItem. The ResourceUse, internal to the Activity,
-connects to InputPorts and OutputPorts of the Activity to indicate the resources used by a
-particular output (there could be additional InputPorts and OutputPorts). This use of graphical
-elements is for illustration only and is not normative.
-
-Deliverable flows represent the contracts between an activity and its environment in the Collaboration.
-ResourceUse
-
-##*SupplyingStores
-The same CapabilityMethod/Project Type could use different Stores each time it is instantiated. VDML does not support this, as individual Stores are always offered by the org structure that owns the CapabilityMEthod. So to book a tour, we would use different Participants' houses (store of rooms) every time. VDML assumes the rooms will always come from the same store, which would make sense if the store was a Hotel with 1000 rooms, but then that is not the economic model we have prioritised. In order to create a placeholder for the use of a certain type of store, we have introduced the concept of a SupplyingStore which represents the use of a store of a certain type within the context of a Collaboration. In this type of model, the assumption is made that a Store of a certain type (StoreDefinition) from the store taxonomy will be brought in, but the exact instance of a store would only be determined at runtime. Again, there could be thousands of Store instances so it would make no sense to try to model them.
-
-##*SupplyingPools
-Similar to SupplyingStores, but only brings in Pools.
-
-##Value Adds
-
-##Value Propositions
 
 ##4 Blockchain technology
 Essential for inventory levels that could have meaning in other context, such as Account Balance.
 Also useful for reputation ratings that could have meaning in other contexts.
 Provides an excellent infrastructure for auditable decision making processes, which would allow collaborations to become self-governing yet have full accountability and transparancy.
 It is also entirely conceivable that certain Collaborations could be instantiated on geographically separated nodes. Blockchain ensures that, irrespective of where that Collaboration is running from, the changes in real inventory levels are reflected everywhere.
-
-
-##5 Functional Requirements
-Users
-1. Participant
-2. Consumer
-A specialization of Participant in contexts where the Participant is specifically looking to make use of other participants' stores, pools or capabilities.
-3. Supplier
-A specialization of Participant in contexts where the Participant is intends to offer stores, pools or capabilities to other participants.
-4. Project Custodian
-A specialization of Consumer within the context of a Project, where the Consumer has assumed a position of making decisions regarding who will be helping him/her out in achieving the goals of the project. This can either be the requesting Consumer him/herself, or someone that was appointed/selected to take on this responsibility on behalf of the requesting Consumer. This User perform planning activities on a project
-
-Notes:
-These user definitions simply clarify the mindset of the user within the context of the user story. Any Participant at a given point in time could fulfill any of these User definitions. However, within the context of a given project, there are certain implied limitations such as that only Project Custodians can do assignment.
-
-
-User stories:
-
-1. As a participant, I would like to register with the platform so that I can transact on it.
-Use OAuth providers, request permission to access e-mail address and optionally connections.
-
-2. As a supplier, I would like to register the Stores/Pools/Capabilities that I offer so that other participants can use it.
-Display a list of store definitions, capabilities and pool definitions that are available on the network.
-
-3. As a consumer, I would like to find suppliers' offering stores/pools/capabilities based on the immediate requirements of the exchange (time, place, quantity and quality requirements) so that we can exchange value with each other.
-First let the user select the store definition, capability and/or pool definition they can select from. Then display a search screen providing inputs for date range, quantity and then quality ranges for each of the measures that are used to measure the performance of the selected store definition, capability and/or pool definition.
-
-4. As a Consumer, I would like to exchange value with a Supplier based on a very specific Store, Pool or Capability that it offers so that we can both gain value from the network.
-
-5. As a Consumer, I would like to initiate a project, possibly involving multiple Suppliers, so that we all can gain value from a network.
-
-6. As a Consumer, when initiating a project, I would like to fulfill the role of Project Custodian on the project, so that I can commence with planning activities.
-
-7. As a Consumer, when initiating a project, I would like to nominate a Project Custodian on the project, so that he/she can commence with planning activities.
-
-8. As a Participant, when participating in an isolated exchange or project, I would like my own activities and deliverables as well as the activities and deliverables of my collaborators to be measured so that such performance statistics can be used to find potential collaborators in future.
-
-
-4. As a participant, I would like to exchange value with another following an exchange process that maximizes the chances of success for both parties, yet offers the necessary flexibility to allow participants to withdraw gracefully.
-There are two different contexts within which participants would exchange value with each other:
-* In an isolated exchange
-* In a project.
-In both cases, the same Exchange Lifecycle will be followed, following the Conversation For Action approach which has is expected to maximise chances of success. The entire lifecycle is supported, but it is conceivable that in many different context, some of the steps need to be ommitted. As an example, a store could offer products at a certain price, and it is possible to determine the projected inventory level from available data up front. In such a scenario, when an isolated exchanged is started, the store could choose to skip straight to the "Accept Promise" step. The steps required can be configured at the Activity level.
-
-4.1. As a Consumer, I would like to submit a Request to (a) Supplier(s)
-The Consumer sends a request to one or more potential Suppliers, detailing the time, location, cost, quantity and quality requirements of the request, along with additional data pertaining to the request.
-4.2. As a Supplier, I would like to promise to the Consumer that I will fulfill a request meeting the requested criteria
-The Supplier promises that he/she would be able to fulfil the request within time requirements, at the specificied location, meeting the cost, quantity and quality requirements.
-4.3. As a Supplier, I would like to offer an alternative set of requirements to the Consumer.
-The Supplier indicates that the request would not be possible, but suggests alternative time requirements, location, cost, quantity and quality requirements.
-4.4. As a Consumer, I would like to offer yet another alternative set of requirements to to Supplier.
-The Consumer indicates that the suggested counter would not suffice, but suggests alternative time requirements, location, cost, quantity and quality requirements.
-4.5. As a Participant, I would like to withdraw from the negotiation process
-Either the Consumer or the Supplier can withdraw from the negotiation process
-4.5. As a Consumer, I would like to accept the promise made by the supplier and commit to fulfill my part of the exchange.
-The Consumer accepts the Supplier's promise, and commits to fulfill her/his part of the promise, which entails covering the cost (exchange value).
-4.6. As a Supplier, I would like to indicate that work has started on the fulfillment of a request.
-The supplier starts the process of fulfilling the request.
-4.7. As a Supplier, I would like assert that I have fulfilled the request.
-The Supplier claims that the request has been fulfilled (work done, resource provided), specifying the time,location, cost,quantity and quality of the deliverable.
-4.8. As a consumer, I would like to declare that the request has been fulfilled inadequately and needs rework.
-The Consumer rejects the claim that the request has been fulfilled, specifying the deviations in the time,location, cost,quantity and quality of the deliverable from what was agreed to.
-4.9. As a Participant, I would like to suggest new terms for the contract
-Either party can suggest new terms for the contract, specifying the suggested deviations in the time,location, cost,quantity and quality of the deliverable from what was agreed to. The other party can respond by specifying a different set of deviations
-4.10. As a Participant, I would like to reject new terms offered by the other party.
-Either party can reject the new terms suggested.
-4.11. As a Participant, I would like to declare a dispute and invoke the dispute resolution procedure with a arbitrator.
-Either party can declare a Dispute, which would involve the risk of loosing deposits, non-payment etc.
-4.12. As a Consumer I would like to declare that a request has been fulfilled adequately (Express satisfaction)
-The Consumer declares that the deliverable met the criteria. At this point, some additional information may be requested to contribute to the Supplier's reputation profile. All of this information is now stored, potentially in the BlockChain storage to make it available externally.
-
-5. As a project custodian, I would like to find suppliers for a single activity/pool/store on a project to maximise chances of success of the activity on the project.
-During planning, the user will start off from a specific Activity/SupplyingStore/SupplyingPool in the project which will therefore inform the Capability/StoreDefinition/PoolDefinition required in this context. There may also be additional requirements that will be available from the project context such as the date range within which it is required, as well as the location, and optionally the required performance limits on the Measures that are used to measure the specific Supplier's performance against the Capability/StoreDefinition/PoolDefinition.
-
-6. As a project custodian, I would like assign supplier to an activity/suppliedStore/suppliedPool in project so that the project members can start exchanging value with them.
-During planning, once a given Supplier is selected, the normal steps of the exchange process for negotiating the terms will be followed. This particular user story marks the first step: request. If the exchange progresses to a Promise from from the Supplier, the Project Custodian would be in a position to commit, however, if the negotiation fails at this point, the Project Custodian would have to start the process of looking for a Participant to fill this slot again.
-
-7. As a project custodian, I would like to find suppliers  that can take responsibilities for all activities/pools/stores associated with a certain role on the project to maximise chances of success of the entire project.
-Here the Project Custodian's interest is at the ValueProposition level. It is assumed that the role is too involved to find a Participant based on a single Capability / Store /Pool. ValuePropositions provide an abstraction of the Participants performance when fulfilling a certain role. The Project Custodian would be interested in the potential Participants' overall performance in the Role, irrespective of who the recipient of the ValueProposition was. Resource availability does not yet play a role at this level of planning, just general availability of the Participant providing the ValueProposition. When using advanced planning infrastructure such as OptaPlanner, one could indeed check for resource availability.
-
-8. As a project custodian, I would like assign supplier to a specific role in project so that the project members can start exchanging value with them.
-On assignment, all the associated Activities/SupplyingStores/SupplyingPools are filled by their equivalent elements from the Supplier. A multiplicity of one-to-one is assumed for all of these. The exchange negotiation process is started, but ideally for all of the elements as a whole, not for each activity individually. (We would need a new Form construct for this that aggregates all the Activity forms into one)
-
-9. As a project custodian, when planning on a project has been completed, I want all collaborating participants, including myself, to commit to the times, locations and quantitiesm so that subsequent planning can be based on accurate data.
-The prerequisite for this is that all exchanges being negotiated are in a state where the Supplier has made a promise. After this user story, the implied resource flows can be used in subsequent planning activities. It may be a good idea to persist these changes to the BlockChain as a type of "freezing" of funds. It is conceivable that other parties may want to know if their potential collaborator is indeed  in the position to fulfil certain requests.
-
-10. As a project custodian, when a given milestone has been reached, I want relevant flow of value to be effected so that the inventory levels on the stores and pools used reflect the current state of affairs accurately.
-Each resource flow in a Collaboration would be effected on a given milestone. This may not always be at the end of a Collaboration, thus we need some flexibility to ensure that Suppliers get paid as early as possible. All the affected flows should at this point write to the BlockChain.
-
-11. As a participant, I would like to find and evaluate potential suppliers in order to establish a long term trust relationships with them.
-The focus is once again on ValuePropositions here. However, the type of Collaboration we are looking at here is more of a ValueNetwork than a specific project. We are looking at more generic, long term patterns of exchange. From this perspective, a ValueNetwork becomes an abstraction for the type of Projects that can be performed, and the Roles provided by the ValueNetwork become potential populations from which participants can choose future collaborators. The thing to look out for however is that the multiplicity of potential Roles and ValueProposition runs away with us. The normal criteria (Location, Scores on ValueProposition measures) come into play here, excluding time. The user will have to select the specific ValueProposition  under discussion, which means he/she would have to first select his own role in the ValueNetwork, and then the Role the participant that is being searched for.
-
-12. As a participant, I would like to establish a trust relationships with a potential supplier to make it easier for me to involve them in future projects.
-The user selects the provided ValueProposition instance and the system records that for that type of ValueProposition, the User is the receiver and the other party is the provider. Potential providers can be retrieved from the user's Facebook/Google+/LinkedIn profile. In such a case, no additional verification is required. In cases where this trust relationship is not yet manifested in existing social media, the user can request that we create such a connection, in which case we would have to delegate that part to the social platform selected. In the NRP platform, multiple trust relationships can be created against a single social media trust relationship, as these relationships are more fine grained.
-
-13. As a project custodian, when I start a new project I would like a request to go out to my list of matching trusted suppliers so that I can give them an opportunity to respond first.
-Again, the system simply starts the exchange process for each Activity in the project.
-
-14. As a project custodian, when I assign a supplier to an activity/supplyingStore/supplyingPool I would like the list of matching trusted suppliers to be directly available so that I can easily select them, bypassing a potentially cumbersome search process.
-Just a dropdown of some sort to make sure the trusted participants are more readily available. The level of accuracy of the matchin algorithm would depend on whether we use OptaPlanner here or no.
-
-15. As a project custodian, when I assign a supplier to a role on a project, I would like the list of matching trusted suppliers to be immediately available so that I can easily select them, bypassing a potentially cumbersome search process.
-Same as above, but at the Role level.
-
-16. As a participant, I would like to regularly review my current trust relationships to ensure that they are indeed my optimal choices for future projects.
-Here we are interested in scoped ValuePropositions - only those where both parties of the ValueProposition are specified. Sometimes a supplier has a good performance overall, but could perform worse when exchanging with a particular participant. Both parties may want to end such a trust relationship.
-
-17. As a participant, I would like to end a trust relationship so that I don't accidentally exchange value with a participant I do not have an optimal relationship with.
-
-
 
 

@@ -128,5 +128,4 @@
 ##Library Modeling
  - Generate Code for all the VDML Elements
  - Associate one library of each type with a single collaboration and store it in the vdcol file
- - Only remove characteristics from elements associated with the current collaboration
- - 
+ - Only remove characteristics from elements associated with the current collaboration 

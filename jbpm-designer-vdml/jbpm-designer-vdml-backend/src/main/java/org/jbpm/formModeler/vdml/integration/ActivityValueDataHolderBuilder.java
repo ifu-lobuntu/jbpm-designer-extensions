@@ -5,7 +5,7 @@ import org.jbpm.formModeler.core.config.builders.dataHolder.DataHolderBuildConfi
 import org.jbpm.formModeler.core.config.builders.dataHolder.RangedDataHolderBuilder;
 import org.jbpm.formModeler.emf.EmfBasedDataHolderBuilder;
 import org.jbpm.formModeler.vdml.model.ActivityValueDataHolder;
-import org.omg.vdml.Activity;
+import org.omg.vdml.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Locale;
@@ -32,6 +32,20 @@ public class ActivityValueDataHolderBuilder extends EmfBasedDataHolderBuilder<Ac
     protected void loadEObject(Activity a) {
         super.loadEObject(a);
         EcoreUtil.resolveAll(a);
+        for (Port eObject : a.getContainedPort()) {
+            if (eObject instanceof InputPort) {
+                InputPort ip = (InputPort) eObject;
+                EcoreUtil.resolveAll(ip.getInput().getProvider());
+                EcoreUtil.resolveAll(ip.getInput());
+            } else {
+                OutputPort ip = (OutputPort) eObject;
+                EcoreUtil.resolveAll(ip.getOutput().getRecipient());
+                EcoreUtil.resolveAll(ip.getOutput());
+            }
+        }
+        for (ResourceUse eObject : a.getResourceUse()) {
+            EcoreUtil.resolveAll(eObject.getDeliverable());
+        }
     }
 
 

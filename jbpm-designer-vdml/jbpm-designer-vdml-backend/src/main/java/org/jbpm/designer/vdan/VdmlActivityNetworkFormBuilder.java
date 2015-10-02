@@ -15,12 +15,15 @@ import org.jbpm.designer.extensions.impl.AbstractFormBuilderImpl;
 import org.jbpm.designer.extensions.util.NameConverter;
 import org.jbpm.designer.taskforms.TaskFormInfo;
 import org.jbpm.designer.vdml.VdmlHelper;
+import org.jbpm.formModeler.api.model.DataFieldHolder;
 import org.jbpm.formModeler.api.model.DataHolder;
 import org.jbpm.formModeler.api.model.Field;
 import org.jbpm.formModeler.api.model.Form;
 import org.jbpm.formModeler.api.model.wrappers.I18nSet;
 import org.jbpm.formModeler.fieldTypes.lookup.EnumLookupFieldType;
-import org.jbpm.formModeler.vdml.model.DeliverableFlowDataHolder;
+import org.jbpm.formModeler.fieldTypes.lookup.TimeIntervalFieldType;
+import org.jbpm.formModeler.vdml.model.ActivityValueDataHolder;
+import org.jbpm.formModeler.vdml.model.VdmlFieldWrapper;
 import org.omg.smm.BinaryMeasure;
 import org.omg.smm.CollectiveMeasure;
 import org.omg.smm.DimensionalMeasure;
@@ -58,99 +61,66 @@ public class VdmlActivityNetworkFormBuilder extends AbstractFormBuilderImpl {
     @Override
     public Map<String, TaskFormInfo> addFields(String repositoryInfo, Form form, EObject eobject, String formType) throws Exception {
         Map<String, TaskFormInfo> results = new HashMap<String, TaskFormInfo>();
-        if (eobject instanceof Port) {
-            Port port = (Port) eobject;
-            if (port.getName() == null) {
-                port.setName("anonymous");
-            }
-            EList<ValueAdd> vas = VdmlHelper.getValueAdds(port);
-            String portName = NameConverter.decapitalize(port.getName());
-            form.setDataHolder(buildDataHolderFor(portName, port));
-            for (ValueAdd parameter : vas) {
-                if (VdmlHelper.hasValueMeasure(parameter)) {
-                    Measure measure = VdmlHelper.getValueMeasure(parameter);
-                    String fieldName = parameter.getName();
-                    addField(form, portName, measure, fieldName);
-                }
-            }
-            if (SmmHelper.hasMeasure(port.getBatchSize())) {
-                addField(form, portName, SmmHelper.getMeasure(port.getBatchSize()), "Quantity");
-            }
-            // TODO resourceUse
-            // TODO field.setParam1(whoGetsToUpdate- receiver or provider or
-            // both), or maybe use formType
-        } else if (eobject instanceof Activity) {
+        if (eobject instanceof Activity) {
             Activity a = (Activity) eobject;
-            for (Port port : a.getContainedPort()) {
-                Field field = form.getField(port.getName());
-                if (field == null) {
-                    field = formManager.addFieldToForm(form, port.getName(), fieldTypeManager.getTypeByCode("Subform"), null);
+            ActivityValueDataHolder dh = new ActivityValueDataHolder(a, a.getName());
+            for (VdmlFieldWrapper dfh : dh.getFieldWrappers()) {
+                Field field = form.getField(dfh.getField().getId());
+                String typeCode = null;
+                if (dfh.getField().getClassName().equals("java.lang.Double")) {
+                    typeCode = "InputTextDouble";
+                } else if (dfh.getField().getClassName().equals("org.joda.time.Interval")) {
+                    typeCode = TimeIntervalFieldType.CODE;
+                } else {
+                    typeCode = EnumLookupFieldType.CODE;
                 }
-                field.setInputBinding(port.getName());
-                field.setOutputBinding(port.getName());
-                results.putAll(prepareSubform(repositoryInfo, field, port,true));
+                if (field == null) {
+                    field = formManager.addFieldToForm(form, dfh.getField().getId(), fieldTypeManager.getTypeByCode(typeCode), null);
+                }
+                field.setInputBinding(dh.getInputId() +"/" + dfh.getField().getId());
+                field.setOutputBinding(dh.getOuputId() +"/" + dfh.getField().getId());
                 I18nSet set = new I18nSet();
-                set.setValue(Locale.getDefault().getLanguage(), NameConverter.capitalize(port.getName()));
+                String name = dfh.getField().getId();
+                if (dfh.getMeasure() instanceof DimensionalMeasure && ((DimensionalMeasure) dfh.getMeasure()).getUnit() != null) {
+                    UnitOfMeasure u = ((DimensionalMeasure) dfh.getMeasure()).getUnit();
+                    name= name + "(" + u.getName() + ")";
+                }
+                set.setValue(Locale.getDefault().getLanguage(), NameConverter.separateWords(NameConverter.capitalize(name)));
+                if (dfh.getMeasure() instanceof GradeMeasure || dfh.getMeasure() instanceof RankingMeasure) {
+                    List<? extends Interval> intervals;
+                    if (dfh.getMeasure() instanceof GradeMeasure) {
+                        intervals = ((GradeMeasure) dfh.getMeasure()).getInterval();
+                    } else {
+                        intervals = ((RankingMeasure) dfh.getMeasure()).getInterval();
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    for (Interval l : intervals) {
+                        sb.append(l.getName());
+                        sb.append(",");
+                    }
+                    field.setParam5(VdmlHelper.getClassName(dfh.getMeasure()));
+                    field.setParam4(sb.toString());
+                    field.setReadonly(false);
+                }else if(dfh.getMeasure() instanceof  DirectMeasure){
+                    field.setReadonly(false);
+                }else{
+                    field.setReadonly(true);
+                }
                 field.setLabel(set);
-                // field.setFieldRequired(?);
+
+
             }
         }
         return results;
     }
 
-    public void addField(Form form, String portName, Measure measure, String fieldName) throws Exception {
-        Field field = form.getField(fieldName);
-        if (field == null) {
-            field = formManager.addFieldToForm(form, fieldName, fieldTypeManager.getTypeByCode(getTypeCode(measure)), null);
-        }
-        field.setInputBinding(portName + "/" + fieldName);
-        field.setOutputBinding(portName + "/" + fieldName);
-        I18nSet labelSet = new I18nSet();
-        if (measure instanceof DimensionalMeasure && ((DimensionalMeasure) measure).getUnit() != null) {
-            UnitOfMeasure u = ((DimensionalMeasure) measure).getUnit();
-            labelSet.setValue(Locale.getDefault().getLanguage(), fieldName + "(" + u.getName() + ")");
-        } else {
-            labelSet.setValue(Locale.getDefault().getLanguage(), fieldName);
-        }
-        if (measure instanceof BinaryMeasure) {
-            // TODO set formula if other measures present in
-            // ValueAdd or in BusinessItemDefinition
-        } else if (measure instanceof CollectiveMeasure) {
-            // TODO set formula if other measures present in
-            // ValueAdd or in BusinessItemDefinition
-        } else if (measure instanceof GradeMeasure || measure instanceof RankingMeasure) {
-            List<? extends Interval> intervals;
-            if (measure instanceof GradeMeasure) {
-                intervals = ((GradeMeasure) measure).getInterval();
-            } else {
-                intervals = ((RankingMeasure) measure).getInterval();
-            }
-            StringBuilder sb = new StringBuilder();
-            for (Interval l : intervals) {
-                sb.append(l.getName());
-                sb.append(",");
-            }
-            field.setParam5(measure.getName());//TODO calculate class
-            field.setParam4(sb.toString());
-        }
-        field.setLabel(labelSet);
-    }
-
-    private String getTypeCode(Measure valueMeasure) {
-        if (valueMeasure instanceof DirectMeasure) {
-            return "InputTextDouble";
-        } else if (valueMeasure instanceof GradeMeasure || valueMeasure instanceof RankingMeasure) {
-            return EnumLookupFieldType.CODE;
-        }
-        return "InputTextDouble";
-    }
 
     @Override
     public DataHolder buildDataHolderFor(String name, EObject eobject) {
-        if (eobject instanceof DeliverableFlow) {
+        if (eobject instanceof Activity) {
             // Because we are detached from the origin request from here on
             EcoreUtil.resolveAll(eobject);
-            return new DeliverableFlowDataHolder((DeliverableFlow) eobject,name);
+            return new ActivityValueDataHolder((Activity) eobject, name);
         } else {
             return null;
         }
