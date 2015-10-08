@@ -1,12 +1,8 @@
 package org.jbpm.designer.client.vdml;
 
-import java.util.List;
-
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-
+import com.google.gwt.user.client.ui.IsWidget;
 import org.guvnor.common.services.project.model.Package;
+import org.gwtbootstrap3.client.ui.ListBox;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jbpm.designer.type.VdmlCollaborationTypeDefinition;
@@ -25,8 +21,10 @@ import org.uberfire.mvp.PlaceRequest;
 import org.uberfire.mvp.impl.PathPlaceRequest;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
-import com.github.gwtbootstrap.client.ui.ListBox;
-import com.google.gwt.user.client.ui.IsWidget;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import java.util.List;
 
 @ApplicationScoped
 public class NewVdmlCollaborationHandler extends DefaultNewResourceHandler {
@@ -40,8 +38,8 @@ public class NewVdmlCollaborationHandler extends DefaultNewResourceHandler {
     @Inject
     private VdmlCollaborationTypeDefinition resourceType;
 
-    private ListBox collaborationTypeListBox = new ListBox(false);
-    private ListBox collaborationDiagramTypeListBox = new ListBox(false);
+    private ListBox collaborationTypeListBox = new ListBox();
+    private ListBox collaborationDiagramTypeListBox = new ListBox();
     private List<CollaborationDiagramType> collaborationDiagramTypes;
 
     @Override
@@ -61,10 +59,10 @@ public class NewVdmlCollaborationHandler extends DefaultNewResourceHandler {
     }
     @Override
     public void validate(String baseFileName, ValidatorWithReasonCallback callback) {
-        CollaborationType type = CollaborationType.valueOf(collaborationTypeListBox.getValue());
+        CollaborationType type = CollaborationType.valueOf(collaborationTypeListBox.getSelectedValue());
         CollaborationDiagramType diagramType = this.collaborationDiagramTypes.get(collaborationDiagramTypeListBox.getSelectedIndex());
         if(diagramType.getProfileName().equals("vdcm") && type!=CollaborationType.ORG_UNIT){
-            ErrorPopup.showMessage( "Capability Management Diagrams are supported for Organization Collaborations only");
+            ErrorPopup.showMessage("Capability Management Diagrams are supported for Organization Collaborations only");
             callback.onFailure();
             return;
         }
@@ -100,7 +98,7 @@ public class NewVdmlCollaborationHandler extends DefaultNewResourceHandler {
 
     @Override
     public void create(final Package pkg, final String baseFileName, final NewResourcePresenter presenter) {
-        CollaborationType type = CollaborationType.valueOf(collaborationTypeListBox.getValue());
+        CollaborationType type = CollaborationType.valueOf(collaborationTypeListBox.getSelectedValue());
         CollaborationDiagramType diagramType = this.collaborationDiagramTypes.get(collaborationDiagramTypeListBox.getSelectedIndex());
         designerAssetService.call(new RemoteCallback<Path>() {
             @Override

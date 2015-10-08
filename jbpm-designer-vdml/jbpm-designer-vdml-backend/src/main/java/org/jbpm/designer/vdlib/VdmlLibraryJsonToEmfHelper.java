@@ -174,14 +174,12 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
         if (de instanceof UMLCompartment) {
             ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(shape.getStencilId()));
         } else {
-            Element modelElement = (Element) shapeMap.findEObjectById(shape.getResourceId());
+            Element modelElement = shapeMap.findEObjectById(shape.getResourceId());
             if (modelElement == null) {
                 modelElement = ClassDiagramStencil.createElement(umlStencilId);
             }
-            if (de instanceof UMLShape) {
-                ((UMLShape) de).setUmlElement(modelElement);
-            } else if (de instanceof UMLEdge) {
-                ((UMLEdge) de).setUmlElement(modelElement);
+            if (de instanceof UMLShape ||  de instanceof UMLEdge) {
+                de.setUmlElement(modelElement);
             }
         }
         return de;
@@ -267,7 +265,6 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
                         }
                         deleteProperty(property);
                     }
-
                 }
             }
         }

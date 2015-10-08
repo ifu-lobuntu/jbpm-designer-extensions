@@ -47,11 +47,11 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
 
     @Override
     public Object caseClass(Class object) {
-        doAssocatiations(object);
+        doAssociations(object);
         return super.caseClass(object);
     }
 
-    private void doAssocatiations(Classifier object) {
+    private void doAssociations(Classifier object) {
         for (ShapeReference shapeReference : sourceShape.getOutgoing()) {
             Shape shape = shapeMap.get(shapeReference);
             ClassDiagramStencil stencil = ClassDiagramStencil.findStencilById(shape.getStencilId());
@@ -80,13 +80,13 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
 
     @Override
     public Object caseInterface(Interface object) {
-        doAssocatiations(object);
+        doAssociations(object);
         return super.caseInterface(object);
     }
 
     @Override
     public Object caseEnumeration(Enumeration object) {
-        doAssocatiations(object);
+        doAssociations(object);
         return super.caseEnumeration(object);
     }
 

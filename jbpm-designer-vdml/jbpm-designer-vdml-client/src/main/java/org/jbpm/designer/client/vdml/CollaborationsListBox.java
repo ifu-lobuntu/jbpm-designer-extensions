@@ -1,14 +1,12 @@
 package org.jbpm.designer.client.vdml;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import javax.inject.Inject;
-
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.logical.shared.AttachEvent;
+import com.google.gwt.user.client.ui.ComplexPanel;
+import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.common.services.project.context.ProjectContext;
+import org.gwtbootstrap3.client.ui.ListBox;
+import org.gwtbootstrap3.client.ui.TextBox;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.jbpm.designer.vdml.VdmlCollaborationAssetService;
@@ -16,8 +14,9 @@ import org.kie.workbench.common.widgets.client.handlers.NewResourceView;
 import org.kie.workbench.common.widgets.client.resources.i18n.CommonConstants;
 import org.uberfire.backend.vfs.Path;
 
-import com.github.gwtbootstrap.client.ui.ListBox;
-import com.github.gwtbootstrap.client.ui.TextBox;
+import javax.inject.Inject;
+import java.util.*;
+
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.KeyPressEvent;
@@ -47,7 +46,7 @@ public class CollaborationsListBox extends ListBox {
                 if (selectedCollaboration == null) {
                     nameField.setText("");
                 } else {
-                    nameField.setText(selectedCollaboration.getFileName().replace(".vdcol", "." + extension));
+                    nameField.setText(selectedCollaboration.getFileName().replace(".vdcol", ""));
                 }
             }
         }
@@ -133,7 +132,7 @@ public class CollaborationsListBox extends ListBox {
             parent = parent.getParent();
         }
         if (parent instanceof NewResourceView) {
-            return findNameField((ComplexPanel) parent);
+            return findNameField((NewResourceView) parent);
         }
         return null;
     }
@@ -141,7 +140,7 @@ public class CollaborationsListBox extends ListBox {
     private TextBox findNameField(ComplexPanel nrv) {
         for (int i = 0; i < nrv.getWidgetCount(); i++) {
             Widget widget = nrv.getWidget(i);
-            if (widget instanceof com.github.gwtbootstrap.client.ui.TextBox) {
+            if (widget instanceof TextBox) {
                 // There is only one field
                 return (TextBox) widget;
             } else if (widget instanceof ComplexPanel) {
