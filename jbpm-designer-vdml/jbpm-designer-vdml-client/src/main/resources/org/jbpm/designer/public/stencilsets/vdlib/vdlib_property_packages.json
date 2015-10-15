@@ -74,14 +74,27 @@
 	                                "value":"Pool",
 	                                "refToView":"pool"
 	                            },
-	                            {
-	                                "id":"c6",
+								{
+								  "id":"c6",
+								  "title":"StoreDefinition",
+								  "value":"StoreDefinition",
+								  "refToView":"store_definition"
+								},
+								{
+								  "id":"c7",
+								  "title":"PoolDefinition",
+								  "value":"PoolDefinition",
+								  "refToView":"pool_definition"
+								},
+
+								{
+	                                "id":"c7",
 	                                "title":"OrgUnit",
 	                                "value":"OrgUnit",
 	                                "refToView":"org_unit"
 	                            },
 	                            {
-	                                "id":"c6",
+	                                "id":"c8",
 	                                "title":"CapabilityOffer",
 	                                "value":"CapabilityOffer",
 	                                "refToView":"capability_offer"

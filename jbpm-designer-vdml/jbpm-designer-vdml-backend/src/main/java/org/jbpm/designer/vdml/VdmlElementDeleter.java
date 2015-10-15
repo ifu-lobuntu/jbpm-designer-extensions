@@ -4,27 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
-import org.omg.vdml.Activity;
-import org.omg.vdml.Assignment;
-import org.omg.vdml.CapabilityOffer;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputDelegation;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OutputDelegation;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.Pool;
-import org.omg.vdml.Port;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.PortDelegation;
-import org.omg.vdml.Position;
-import org.omg.vdml.ResourceUse;
-import org.omg.vdml.Role;
-import org.omg.vdml.Store;
-import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.ValueProposition;
-import org.omg.vdml.ValuePropositionComponent;
+import org.omg.vdml.*;
 import org.omg.vdml.util.VDMLSwitch;
 
 public class VdmlElementDeleter extends VDMLSwitch<Object> {
@@ -103,6 +83,23 @@ public class VdmlElementDeleter extends VDMLSwitch<Object> {
         object.setStoreOwner(null);
         object.getSupportedCapability().clear();
         return super.caseStore(object);
+    }
+
+    @Override
+    public Object caseSupplyingPool(SupplyingPool object) {
+        return super.caseSupplyingPool(object);
+    }
+
+    @Override
+    public Object caseSupplyingStore(SupplyingStore object) {
+        for (Port port : new ArrayList<Port>(object.getContainedPort())) {
+            doSwitch(port);
+        }
+        collaboration.getSupplyingStore().remove(object);
+        object.setSupplyingRole(null);
+        object.setDuration(null);
+        object.setResource(null);
+        return super.caseSupplyingStore(object);
     }
 
     @Override

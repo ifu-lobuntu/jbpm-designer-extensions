@@ -7,21 +7,7 @@ import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.junit.Test;
-import org.omg.vdml.Activity;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputDelegation;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OrgUnit;
-import org.omg.vdml.OutputDelegation;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.ResourceUse;
-import org.omg.vdml.Role;
-import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.VdmlElement;
+import org.omg.vdml.*;
 
 public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDiagramMarshallingTest {
     @Test
@@ -72,7 +58,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         resourceUse.setDeliverable(op);
         resourceUse.getResource().add(ip);
         activity1.getResourceUse().add(resourceUse);
-        addEdge(resourceUse,ip,op);
+        addEdge(resourceUse, ip, op);
         saveCollaborationResource();
         saveDiagramResource();//to generate ids
 
@@ -158,7 +144,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         store.setDescription("My store description");
         OrgUnit orgUnit=VDMLFactory.eINSTANCE.createOrgUnit();
         valueDeliveryModel.getCollaboration().add(orgUnit);
-        orgUnit.setName(collaboration.getName()+"OrgUnit");
+        orgUnit.setName(collaboration.getName() + "OrgUnit");
         orgUnit.getOwnedStore().add(store);
         addShapeFor(role, store);
         addPorts("MyStore", role, store);
@@ -169,7 +155,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         addShapeFor(role, activity1);
         addPorts("MyActivity1", role, activity1);
         role.getPerformedWork().add(activity1);
-        addPorts("MyCollaboration",role,  collaboration);
+        addPorts("MyCollaboration", role, collaboration);
         DeliverableFlow deliverableFlow1 = VDMLFactory.eINSTANCE.createDeliverableFlow();
         deliverableFlow1.setName("Safd");
         deliverableFlow1.setProvider((OutputPort) store.getContainedPort().get(1));
@@ -193,6 +179,56 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         assertNotNull(c.eResource().getEObject(deliverableFlow2.getId()));
         assertNotNull(c.eResource().getEObject(((OutputPort) store.getContainedPort().get(1)).getId()));
         assertNotNull(c.eResource().getEObject(((InputPort) activity1.getContainedPort().get(0)).getId()));
+    }
+    @Test
+    public void testSupplyingStores() throws Exception{
+        Role role = VDMLFactory.eINSTANCE.createPerformer();
+        role.setName("myRole");
+        role.setDescription("My Role's Description");
+        collaboration.getCollaborationRole().add(role);
+        addShapeFor(collaboration, role);
+        SupplyingPool store = VDMLFactory.eINSTANCE.createSupplyingPool();
+        store.setName("MyPool");
+        store.setDescription("My store description");
+        OrgUnit orgUnit=VDMLFactory.eINSTANCE.createOrgUnit();
+        valueDeliveryModel.getCollaboration().add(orgUnit);
+        orgUnit.setName(collaboration.getName() + "OrgUnit");
+        collaboration.getSupplyingStore().add(store);
+        role.getSupplyingStore().add(store);
+        addShapeFor(role, store);
+        addPorts("MyStore", role, store);
+        Activity activity1 = VDMLFactory.eINSTANCE.createActivity();
+        activity1.setName("MyActivity1");
+        activity1.setDescription("My Activity's description");
+        collaboration.getActivity().add(activity1);
+        addShapeFor(role, activity1);
+        addPorts("MyActivity1", role, activity1);
+        role.getPerformedWork().add(activity1);
+        addPorts("MyCollaboration", role, collaboration);
+        DeliverableFlow deliverableFlow1 = VDMLFactory.eINSTANCE.createDeliverableFlow();
+        deliverableFlow1.setName("Safd");
+        deliverableFlow1.setProvider((OutputPort) store.getContainedPort().get(1));
+        deliverableFlow1.setRecipient((InputPort) activity1.getContainedPort().get(0));
+        collaboration.getFlow().add(deliverableFlow1);
+        addEdge(deliverableFlow1, store.getContainedPort().get(1), activity1.getContainedPort().get(0));
+        DeliverableFlow deliverableFlow2 = VDMLFactory.eINSTANCE.createDeliverableFlow();
+        deliverableFlow2.setName("Safd");
+        deliverableFlow2.setProvider((OutputPort) activity1.getContainedPort().get(1));
+        deliverableFlow2.setRecipient((InputPort) store.getContainedPort().get(0));
+        collaboration.getFlow().add(deliverableFlow2);
+        addEdge(deliverableFlow2, activity1.getContainedPort().get(1), store.getContainedPort().get(0));
+        saveCollaborationResource();
+        saveDiagramResource();//to generate ids
+
+        Diagram json = unmarshaller.convert(diagramResource);
+        json.deleteShape(json.findChildShapeById(store.getId()));
+        XMLResource xml = marshaller.convert(json);
+        Collaboration c = VdmlHelper.getCollaboration(xml);
+        assertNull(c.eResource().getEObject(store.getId()));
+        assertNull(c.eResource().getEObject(deliverableFlow1.getId()));
+        assertNull(c.eResource().getEObject(deliverableFlow2.getId()));
+        assertNull(c.eResource().getEObject(((OutputPort) store.getContainedPort().get(1)).getId()));
+        assertNull(c.eResource().getEObject(((InputPort) store.getContainedPort().get(0)).getId()));
     }
     @Test
     public void testDelegations() throws Exception{

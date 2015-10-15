@@ -67,7 +67,7 @@ public abstract class AbstractVdmlJsonEmfHelper extends VDMLSwitch<Object> {
         OrphanFilter orphanFilter = getOrphanFilter();
         TreeIterator<EObject> eAllContents = diagram.getVdmlElement().eAllContents();
         while (eAllContents.hasNext()) {
-            EObject eObject = (EObject) eAllContents.next();
+            EObject eObject = eAllContents.next();
             if (eObject instanceof VdmlElement && classes.contains(eObject.eClass())) {
                 VdmlElement ve = (VdmlElement) eObject;
                 if (!map.containsKey(eObject) && orphanFilter.shouldHaveDiagramElement(ve)) {
@@ -107,11 +107,6 @@ public abstract class AbstractVdmlJsonEmfHelper extends VDMLSwitch<Object> {
 
     protected void setDiagram(VDMLDiagram diagram2) {
         this.diagram = diagram2;
-    }
-
-    protected void buildMap(VDMLDiagram diagram, Map<VdmlElement, VDMLDiagramElement> map, EClass... cls) {
-        Set<EClass> classes = new HashSet<EClass>(Arrays.asList(cls));
-        populateDiagramElementMap(diagram, map, classes);
     }
 
     protected void populateDiagramElementMap(VDMLDiagram diagram, Map<VdmlElement, VDMLDiagramElement> map, Set<EClass> classes) {

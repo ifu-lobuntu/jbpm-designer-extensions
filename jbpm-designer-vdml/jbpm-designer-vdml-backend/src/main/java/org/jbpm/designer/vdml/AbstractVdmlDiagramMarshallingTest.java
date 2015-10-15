@@ -361,7 +361,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         String xmlString = buildXmlString(drscasdf);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
-        // print(outputResource);
+         print(outputResource);
         new GenericEcoreComparator(drscasdf, outputResource).validate();
         return outputResource;
     }

@@ -1,8 +1,5 @@
 package org.jbpm.designer.vdlib;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.jbpm.designer.extensions.api.StencilInfo;
@@ -12,22 +9,28 @@ import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.SMMPackage;
 import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.VdmlElement;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public enum VdmlLibraryStencil implements VdmlStencilInfo {
     BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "BusinessItemDefinition", false),
     BUSINESS_ITEM_CATEGORY(VDMLPackage.eINSTANCE.getBusinessItemCategory(), ClassDiagramStencil.CLASS, "BusinessItemCategory", false),
     CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "CapabilityCategory", false),
     CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "CapabilityDefinition", false),
+    POOL_DEFINITION(VDMLPackage.eINSTANCE.getPoolDefinition(), ClassDiagramStencil.CLASS, "PoolDefinition", false),
+    STORE_DEFINITION(VDMLPackage.eINSTANCE.getStoreDefinition(), ClassDiagramStencil.CLASS, "StoreDefinition", false),
+    IMPORTED_BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "ImportedBusinessItemDefinition", true),
+    IMPORTED_BUSINESS_ITEM_CATEGORY(VDMLPackage.eINSTANCE.getBusinessItemCategory(), ClassDiagramStencil.CLASS, "ImportedBusinessItemCategory", true),
+    IMPORTED_CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "ImportedCapabilityCategory", true),
+    IMPORTED_CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "ImportedCapabilityDefinition", true),
+    IMPORTED_STORE_DEFINITION(VDMLPackage.eINSTANCE.getStoreDefinition(), ClassDiagramStencil.CLASS, "ImportedStoreDefinition", true),
+    IMPORTED_POOL_DEFINITION(VDMLPackage.eINSTANCE.getPoolDefinition(), ClassDiagramStencil.CLASS, "ImportedPoolDefinition", true),
     ROLE_DEFINITION(VDMLPackage.eINSTANCE.getRoleDefinition(), ClassDiagramStencil.CLASS, "RoleDefinition", false),
     ROLE_CATEGORY(VDMLPackage.eINSTANCE.getRoleCategory(), ClassDiagramStencil.CLASS, "RoleCategory", false),
     VALUE_DEFINITION(VDMLPackage.eINSTANCE.getValueDefinition(), ClassDiagramStencil.CLASS, "ValueDefinition", false),
     VALUE_CATEGORY(VDMLPackage.eINSTANCE.getValueCategory(), ClassDiagramStencil.CLASS, "ValueCategory", false),
     ACTOR(VDMLPackage.eINSTANCE.getActor(), ClassDiagramStencil.CLASS, "Actor", false),
-    IMPORTED_BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "ImportedBusinessItemDefinition", true),
-    IMPORTED_BUSINESS_ITEM_CATEGORY(VDMLPackage.eINSTANCE.getBusinessItemCategory(), ClassDiagramStencil.CLASS, "ImportedBusinessItemCategory", true),
-    IMPORTED_CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "ImportedCapabilityCategory", true),
-    IMPORTED_CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "ImportedCapabilityDefinition", true),
     IMPORTED_ACTOR(VDMLPackage.eINSTANCE.getActor(), ClassDiagramStencil.CLASS, "Actor", true),
     IMPORTED_ROLE_DEFINITION(VDMLPackage.eINSTANCE.getRoleDefinition(), ClassDiagramStencil.CLASS, "ImportedRoleDefinition", true),
     IMPORTED_ROLE_CATEGORY(VDMLPackage.eINSTANCE.getRoleCategory(), ClassDiagramStencil.CLASS, "ImportedRoleCategory", true),

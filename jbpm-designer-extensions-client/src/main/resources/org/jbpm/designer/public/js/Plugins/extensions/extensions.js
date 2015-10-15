@@ -41,12 +41,16 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
     },
     handlePropertyChanged: function (event){
         try{
-            var d=this.decoratorUpdaters[event.elements[0].getStencil().idWithoutNs()];
-            if(d){
-                d(event.elements[0]);
+            var element = event.elements[0];
+            if(typeof element ==="undefined"){
+                element=event.elements;
             }
-            if(event.elements[0] instanceof ORYX.Core.Shape){
-                var shape=event.elements[0];
+            var d=this.decoratorUpdaters[element.getStencil().idWithoutNs()];
+            if(d){
+                d(element);
+            }
+            if(element instanceof ORYX.Core.Shape){
+                var shape=element;
                 var refProp=shape.getStencil()._jsonStencil.referenceProperty;
                 console.log(refProp);
                 if(refProp && event.key == "oryx-" + refProp.toLowerCase()){

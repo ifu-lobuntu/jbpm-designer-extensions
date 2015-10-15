@@ -5,21 +5,7 @@ import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.vdml.Activity;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputDelegation;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OutputDelegation;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.Pool;
-import org.omg.vdml.Port;
-import org.omg.vdml.ResourceUse;
-import org.omg.vdml.Role;
-import org.omg.vdml.Store;
-import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.VdmlElement;
+import org.omg.vdml.*;
 
 public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
     public VdmlActivityNetworkJsonToEmfHelper(ShapeMap resource) {
@@ -34,6 +20,7 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     @Override
     public Object caseRole(Role object) {
         owningCollaboration.getActivity().addAll(object.getPerformedWork());
+        owningCollaboration.getSupplyingStore().addAll(object.getSupplyingStore());
         return super.caseRole(object);
     }
     
@@ -46,8 +33,15 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
 
     @Override
     public Object casePool(Pool object) {
-        
         return super.casePool(object);
+    }
+    @Override
+    public Object caseSupplyingPool(SupplyingPool object) {
+        return super.caseSupplyingPool(object);
+    }
+    @Override
+    public Object caseSupplyingStore(SupplyingStore object) {
+        return super.caseSupplyingStore(object);
     }
 
     @Override
@@ -113,12 +107,6 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     @Override
     public Object caseOutputPort(OutputPort object) {
         return super.caseOutputPort(object);
-    }
-
-    protected EClass[] getManagedClasses() {
-        VDMLPackage vp = VDMLPackage.eINSTANCE;
-        return new EClass[] { vp.getRole(), vp.getActivity(), vp.getOutputPort(), vp.getInputPort(), vp.getDeliverableFlow(), vp.getResourceUse(),
-                vp.getInputDelegation(), vp.getOutputDelegation(), vp.getValueAdd() };
     }
 
     @Override

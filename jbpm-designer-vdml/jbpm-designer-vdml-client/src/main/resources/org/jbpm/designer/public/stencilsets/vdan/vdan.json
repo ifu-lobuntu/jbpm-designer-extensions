@@ -423,7 +423,7 @@
 				"roles" : [
 					"activity"
 				],
-				"description" : "Acitivity",
+				"description" : "Activity",
 				"view" : "activity.svg",
 				"icon" : "activity.png",
 				"layout" : [
@@ -661,6 +661,84 @@
 						"length" : ""
 	                }
 				]
+			},
+			{
+			  "type" : "node",
+			  "id" : "SupplyingStore",
+			  "title" : "SupplyingStore",
+			  "childBinding" : "supplyingStore",
+			  "position" : 4,
+			  "groups" : [
+				"Store"
+			  ],
+			  "roles" : [
+				"store"
+			  ],
+			  "description" : "SupplyingStore",
+			  "view" : "store.svg",
+			  "icon" : "store.png",
+			  "layout" : [
+			  ],
+			  "propertyPackages" : [
+				"vdmlElement","localStyle"
+			  ],
+			  "properties" : [
+				{
+				  "id" : "storeDefinition",
+				  "type" : "eobjectref",
+				  "title" : "StoreDefinition",
+				  "value" : "",
+				  "binding":"storeRequirement",
+				  "description" : "The Store Definition",
+				  "readonly" : false,
+				  "optional" : true,
+				  "reference" : {
+					"targetProfile":"vdcol",
+					"allowedElementTypes":"StoreDefinition",
+					"nameFeature" : "name"
+				  },
+				  "length" : ""
+				}
+			  ]
+			},
+			{
+			  "type" : "node",
+			  "id" : "SupplyingPool",
+			  "title" : "SupplyingPool",
+			  "childBinding" : "supplyingStore",
+			  "position" : 4,
+			  "groups" : [
+				"Store"
+			  ],
+			  "roles" : [
+				"store"
+			  ],
+			  "description" : "SupplyingPool",
+			  "view" : "pool.svg",
+			  "icon" : "pool.png",
+			  "layout" : [
+			  ],
+			  "propertyPackages" : [
+				"vdmlElement","localStyle"
+			  ],
+			  "properties" : [
+				{
+				  "id" : "poolDefinition",
+				  "type" : "eobjectref",
+				  "title" : "PoolDefinition",
+				  "value" : "",
+				  "binding":"storeRequirement",
+				  "description" : "The Pool Definition",
+				  "readonly" : false,
+				  "optional" : true,
+				  "reference" : {
+					"targetProfile":"vdcol",
+					"allowedElementTypes":"PoolDefinition",
+					"nameFeature" : "name"
+				  },
+				  "length" : ""
+				}
+			  ]
 			},
 			{
 				"type" : "node",

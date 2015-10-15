@@ -136,8 +136,8 @@
                 "description" : "A Capability Category",
                 "view" : "vdml_classifier.svg",
                 "icon" : "capability_category.png",
-                "layout" : [ 
-                            
+                "layout" : [
+
                             {
                                 "type" : "layout.compartments"
                             }
@@ -209,7 +209,7 @@
                 "description" : "An imported Capability Category",
                 "view" : "vdml_classifier.svg",
                 "icon" : "capability_definition.png",
-                "layout" : [ 
+                "layout" : [
                 ],
                 "propertyPackages" : [
                         "elementBase","name","localStyle","vdmlElementType"
@@ -237,8 +237,8 @@
             },
             {
                 "type" : "node",
-                "id" : "Store",
-                "title" : "Store",
+                "id" : "StoreDefinition",
+                "title" : "StoreDefinition",
                 "hide" : true,
                 "position" : 1,
                 "groups" : [
@@ -247,16 +247,16 @@
                 "roles" : [
                     "store","associationSource","associationTarget"
                 ],
-                "description" : "An Owned Store",
+                "description" : "A Store Definition",
                 "view" : "vdml_classifier.svg",
                 "icon" : "store.png",
-                "layout" : [ 
+                "layout" : [
                     {
                         "type" : "layout.compartments"
                     }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle","vdmlElementType","name"
+                    "elementBase","localStyle","vdmlElementType","name"
                 ],
                 "properties" : [
                     {
@@ -266,7 +266,73 @@
                         "readonly" : true,
                         "hidden" : true
                     }
-               ]
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "PoolDefinition",
+                "title" : "PoolDefinition",
+                "hide" : true,
+                "position" : 1,
+                "groups" : [
+                    "OrgStructures"
+                ],
+                "roles" : [
+                    "pool","associationSource","associationTarget"
+                ],
+                "description" : "A Pool Definition",
+                "view" : "vdml_classifier.svg",
+                "icon" : "pool.png",
+                "layout" : [
+                    {
+                        "type" : "layout.compartments"
+                    }
+                ],
+                "propertyPackages" : [
+                    "elementBase","localStyle","vdmlElementType","name"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "Store",
+                "title" : "Store",
+                "hide" : true,
+                "position" : 1,
+                "groups" : [
+                "OrgStructures"
+                ],
+                "roles" : [
+                    "store","associationSource","associationTarget"
+                ],
+                "description" : "An Owned Store",
+                "view" : "vdml_classifier.svg",
+                "icon" : "store.png",
+                "layout" : [
+                {
+                    "type" : "layout.compartments"
+                }
+                ],
+                "propertyPackages" : [
+                    "elementBase","localStyle","vdmlElementType","name"
+                ],
+                "properties" : [
+                    {
+                        "id" : "hasForm",
+                        "type" : "Boolean",
+                        "value" : true,
+                        "readonly" : true,
+                        "hidden" : true
+                    }
+                ]
             },
             {
                 "type" : "node",
@@ -283,13 +349,13 @@
                 "description" : "An Owned Pool",
                 "view" : "vdml_classifier.svg",
                 "icon" : "pool.png",
-                "layout" : [ 
-                    {
-                        "type" : "layout.compartments"
-                    }
+                "layout" : [
+                {
+                    "type" : "layout.compartments"
+                }
                 ],
                 "propertyPackages" : [
-                        "elementBase","localStyle","vdmlElementType","name"
+                    "elementBase","localStyle","vdmlElementType","name"
                 ],
                 "properties" : [
                     {
@@ -299,7 +365,7 @@
                         "readonly" : true,
                         "hidden" : true
                     }
-               ]
+                ]
             },
             {
                 "type" : "node",
@@ -316,7 +382,7 @@
                 "description" : "An Offered Capability",
                 "view" : "vdml_classifier.svg",
                 "icon" : "capability_offer.png",
-                "layout" : [ 
+                "layout" : [
                     {
                         "type" : "layout.compartments"
                     }
@@ -349,7 +415,7 @@
                 "description" : "This OrgUnit",
                 "view" : "vdml_classifier.svg",
                 "icon" : "org_unit.png",
-                "layout" : [ 
+                "layout" : [
                     {
                         "type" : "layout.compartments"
                     }
@@ -446,6 +512,86 @@
                         "length" : ""
                     }
                ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedStoreDefinition",
+                "title" : "Imported Store Definition",
+                "position" : 1,
+                "groups" : [
+                    "OrgStructures"
+                ],
+                "roles" : [
+                    "externalStore","associationTarget"
+                ],
+                "description" : "An external Store",
+                "view" : "vdml_classifier.svg",
+                "icon" : "external_store.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                    "elementBase","name","localStyle","vdmlElementType"
+                ],
+                "properties" : [
+                    {
+                        "id" : "importedStore",
+                        "type" : "eobjectref",
+                        "viewBinding" : "umlElement",
+                        "title" : "Store",
+                        "value" : "",
+                        "description" : "",
+                        "readonly" : false,
+                        "optional" : false,
+                        "bindLate" : true,
+                        "reference" : {
+                            "targetProfile":"vdcol",
+                            "allowedElementTypes":"Store",
+                            "nameFeature" : "qualifiedName",
+                            "matchFirstReference" : true
+                        },
+                        "length" : ""
+                    }
+                ]
+            },
+            {
+                "type" : "node",
+                "id" : "ImportedPoolDefinition",
+                "title" : "Imported Pool Definition",
+                "position" : 1,
+                "groups" : [
+                    "OrgStructures"
+                ],
+                "roles" : [
+                    "externalPool","associationTarget"
+                ],
+                "description" : "An external Pool",
+                "view" : "vdml_classifier.svg",
+                "icon" : "external_pool.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                    "elementBase","name","localStyle","vdmlElementType"
+                ],
+                "properties" : [
+                    {
+                    "id" : "importedPool",
+                    "type" : "eobjectref",
+                    "viewBinding" : "umlElement",
+                    "title" : "Pool",
+                    "value" : "",
+                    "description" : "",
+                    "readonly" : false,
+                    "optional" : false,
+                    "bindLate" : true,
+                    "reference" : {
+                        "targetProfile":"vdcol",
+                        "allowedElementTypes":"Pool",
+                        "nameFeature" : "qualifiedName",
+                        "matchFirstReference" : true
+                    },
+                    "length" : ""
+                    }
+                ]
             },
             {
                 "type" : "node",
