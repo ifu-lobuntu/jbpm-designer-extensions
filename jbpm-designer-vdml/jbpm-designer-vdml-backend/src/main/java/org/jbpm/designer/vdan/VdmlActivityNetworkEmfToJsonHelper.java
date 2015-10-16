@@ -1,7 +1,9 @@
 package org.jbpm.designer.vdan;
 
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -10,27 +12,15 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.util.BoundaryShapePosition;
 import org.jbpm.designer.vdml.AbstractVdmlEmfToJsonHelper;
+import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.DCFactory;
-import org.omg.vdml.Activity;
-import org.omg.vdml.CapabilityMethod;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputDelegation;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OutputDelegation;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.Port;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.ResourceUse;
-import org.omg.vdml.Role;
-import org.omg.vdml.Store;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.VdmlElement;
+import org.omg.smm.Measure;
+import org.omg.vdml.*;
 
 public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHelper {
 
@@ -58,8 +48,12 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     public Object caseActivity(Activity object) {
         putMeasuredCharacteristic("durationMeasure", object.getDuration());
         putMeasuredCharacteristic("recurrenceIntervalMeasure", object.getRecurrenceInterval());
+        String measures = "measures";
+        EList<MeasuredCharacteristic> measuredCharacteristic = object.getMeasuredCharacteristic();
+        putMeasuredCharacteristics(measures, measuredCharacteristic);
         return super.caseActivity(object);
     }
+
 
     @Override
     public Object caseValueAdd(ValueAdd object) {

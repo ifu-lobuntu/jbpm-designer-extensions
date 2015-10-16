@@ -22,6 +22,7 @@ public enum MeasureLibraryStencil implements StencilInfo {
     UNIT_OF_MEASURE(SMMPackage.eINSTANCE.getUnitOfMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "UnitOfMeasure"),
     DIRECT_MEASURE(SMMPackage.eINSTANCE.getDirectMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "DirectMeasure"),
     COUNTING_MEASURE(SMMPackage.eINSTANCE.getCountingMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "CountingMeasure"),
+    COUNTING_MEASURE_RELATIONSHIP(SMMPackage.eINSTANCE.getCountingMeasureRelationship(), SMMDIPackage.eINSTANCE.getSMMEdge(), "CountingMeasureRelationship"),
     NAMED_MEASURE(SMMPackage.eINSTANCE.getNamedMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "NamedMeasure"),
     BINARY_MEASURE(SMMPackage.eINSTANCE.getBinaryMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "BinaryMeasure"),
     COLLECTIVE_MEASURE(SMMPackage.eINSTANCE.getCollectiveMeasure(), SMMDIPackage.eINSTANCE.getSMMShape(), "CollectiveMeasure"),
@@ -100,7 +101,7 @@ public enum MeasureLibraryStencil implements StencilInfo {
         MeasureLibraryStencil[] possibilities = values();
         if (possibilities != null) {
             for (MeasureLibraryStencil cmmnStencil : possibilities) {
-                if (cmmnStencil.type!=null && cmmnStencil.type.isSuperTypeOf(me.eClass())) {
+                if (cmmnStencil.type!=null && cmmnStencil.type.equals(me.eClass())) {
                     return cmmnStencil;
                 }
             }

@@ -56,7 +56,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         return null;
     }
 
-    private Collection<EObject> findPotentialReferencesIn(HttpServletRequest req, ResourceSet rst) {
+    protected Collection<EObject> findPotentialReferencesIn(HttpServletRequest req, ResourceSet rst) {
 
         Collection<EObject> results = new ArrayList<EObject>();
         String[] elementTypes = req.getParameter("elementTypes").split("\\|");
@@ -122,7 +122,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         return targetProfileName == null || targetProfileName.trim().isEmpty();
     }
 
-    private void loadApplicableResourcesInto(ResourceSet rst, List<String> allPackageNames) {
+    protected void loadApplicableResourcesInto(ResourceSet rst, List<String> allPackageNames) {
         for (String packageName : allPackageNames) {
             @SuppressWarnings("rawtypes")
             Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName,
@@ -135,7 +135,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         }
     }
 
-    private List<String> getPackagesInScope(HttpServletRequest req) {
+    protected List<String> getPackagesInScope(HttpServletRequest req) {
         List<String> packageNames = new ArrayList<String>();
         Repository repository = profile.getRepository();
         String assetId = Utils.getEncodedParam(req, "assetid");
@@ -151,7 +151,7 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         return packageNames;
     }
 
-    private ResourceSet buildResourceSet(HttpServletRequest req) {
+    protected ResourceSet buildResourceSet(HttpServletRequest req) {
         XMLResource rs = getSourceResource(req);
         ResourceSet rst;
         if (rs == null) {

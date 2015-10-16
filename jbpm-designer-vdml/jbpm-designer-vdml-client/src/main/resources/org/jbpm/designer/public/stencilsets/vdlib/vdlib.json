@@ -711,7 +711,7 @@
                 "type" : "node",
                 "id" : "StoreDefinition",
                 "title" : "StoreDefinition",
-                "hide" : true,
+                "childBinding" : "ownedType",
                 "position" : 1,
                 "groups" : [
                     "OrgStructures"
@@ -744,7 +744,7 @@
                 "type" : "node",
                 "id" : "PoolDefinition",
                 "title" : "PoolDefinition",
-                "hide" : true,
+                "childBinding" : "ownedType",
                 "position" : 1,
                 "groups" : [
                     "OrgStructures"

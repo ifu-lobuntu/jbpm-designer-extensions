@@ -132,7 +132,11 @@ ORYX.Plugins.CMMN = ORYX.Plugins.AbstractExtensionsPlugin.extend(
 		//TODO : clean this up as above
 		if (event["key"] == "oryx-autocomplete" || event["key"] == "oryx-manualactivationrulebody" || event["key"] == "oryx-repetitionrulebody"
 			|| event["key"] == "oryx-requiredrulebody" || event["key"] == "oryx-propertytype" || event["key"] == "oryx-name" || event["key"] == "oryx-standardevent") {
-			this.updateDecorations(event.elements[0]);
+			var element = event.elements[0];
+			if(typeof element ==="undefined"){
+				element=event.elements;
+			}
+			this.updateDecorations(element);
 		}
 	},
 	updateDecorationsOnLoad : function(event) {

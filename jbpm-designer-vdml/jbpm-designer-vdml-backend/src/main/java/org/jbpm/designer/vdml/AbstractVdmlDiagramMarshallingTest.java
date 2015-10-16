@@ -46,18 +46,7 @@ import org.omg.smm.Characteristic;
 import org.omg.smm.DirectMeasure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
-import org.omg.vdml.Activity;
-import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.BusinessItemLibrary;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.Role;
-import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueDeliveryModel;
-import org.omg.vdml.VdmlElement;
+import org.omg.vdml.*;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -185,6 +174,13 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         this.businessItemDefinition2 = (BusinessItemDefinition) VdmlLibHelper.findOrCreateBusinessItemDefinitionClass("Payment", valueDeliveryModel)
                 .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
     }
+    protected void addMeasuredCharacteristic(Characteristic characteristic1, EList<MeasuredCharacteristic> measuredCharacteristic) {
+        MeasuredCharacteristic mc = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+        mc.setCharacteristicDefinition(characteristic1);
+        mc.setName(characteristic1.getName());
+        measuredCharacteristic.add(mc);
+    }
+
 
     protected Collaboration createCollaboration() {
         return VDMLFactory.eINSTANCE.createCapabilityMethod();
@@ -324,6 +320,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         if (boundariedShape instanceof BoundariedShape) {
             ((BoundariedShape) boundariedShape).getBoundaryShapes().add(portShape);
         }
+        if(parent instanceof Role){
+            activityOutputPort.setHandler((Role) parent);
+        }
     }
 
     protected OutputPort addOutputPort(PortContainer pc, String outputPortName) {
@@ -341,6 +340,9 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         VDMLShape portShape = addShapeFor(parent, activityInputPort);
         if (boundariedShape instanceof BoundariedShape) {
             ((BoundariedShape) boundariedShape).getBoundaryShapes().add(portShape);
+        }
+        if(parent instanceof Role){
+            activityInputPort.setHandler((Role) parent);
         }
     }
 
@@ -361,7 +363,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         String xmlString = buildXmlString(drscasdf);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
-         print(outputResource);
+//         print(outputResource);
         new GenericEcoreComparator(drscasdf, outputResource).validate();
         return outputResource;
     }
@@ -372,4 +374,10 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         diagramResource.save(os, emptyOptions);
     }
 
+    protected MeasuredCharacteristic buildMeasuredCharacteristic(Characteristic characteristic) {
+        MeasuredCharacteristic measuredCharacteristic = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+        measuredCharacteristic.setCharacteristicDefinition(characteristic);
+        measuredCharacteristic.setName(characteristic.getName());
+        return measuredCharacteristic;
+    }
 }

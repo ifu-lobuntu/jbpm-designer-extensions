@@ -2,6 +2,8 @@ package org.jbpm.designer.vdlib;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -9,13 +11,17 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.ucd.AbstractUmlDiagramTest;
 import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
+import org.jbpm.uml2.dd.umldi.UMLDIPackage;
 import org.junit.Before;
+import org.omg.dd.dc.DCPackage;
 import org.omg.smm.Characteristic;
 import org.omg.smm.DirectMeasure;
 import org.omg.smm.MeasureLibrary;
@@ -25,6 +31,8 @@ import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
@@ -88,6 +96,7 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         vdm.getCollaboration().add(cm);
         VdmlLibraryJsonToEmfHelper.findOrCreateBusinessItemLibrary(jbpmPackage, vdm);
         VdmlLibraryJsonToEmfHelper.findOrCreateCapabilityLibrary(jbpmPackage, vdm);
+        VdmlLibraryJsonToEmfHelper.findOrCreateStoreLibrary(jbpmPackage, vdm);
         saveCollaborationResource();
         measureResource.save(tuh.createOutputStream(measureUri, profile.buildDefaultResourceOptions()), profile.buildDefaultResourceOptions());
     }
@@ -99,7 +108,24 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
     protected void saveCollaborationResource() throws IOException {
         collaborationResource.save(tuh.createOutputStream(getCollaborationUri(), profile.buildDefaultResourceOptions()), profile.buildDefaultResourceOptions());
     }
-
+    protected XMLResource assertOutputValid() throws IOException, Exception {
+        XMLResource outputResource = super.assertOutputValid();
+        Set<EClassifier> idsToIgnore=new HashSet<EClassifier>();
+        idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLDiagram());
+        idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLStyle());
+        idsToIgnore.add(DCPackage.eINSTANCE.getColor());
+        idsToIgnore.add(UMLPackage.eINSTANCE.getProperty());//for associations
+        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
+        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralInteger());
+        idsToIgnore.add(EcorePackage.eINSTANCE.getEAnnotation());
+        XMLResource outputCollaborationResource = (XMLResource) outputResource.getResourceSet().getResource(getCollaborationUri(), true);
+//        collaborationResource.save(System.out,null);
+//        outputCollaborationResource.save(System.out,null);
+        GenericEcoreComparator v = new GenericEcoreComparator(collaborationResource, outputCollaborationResource,idsToIgnore);
+        v.setDebugInfo("",profile);
+        v.validate();
+        return outputResource;
+    }
     public Class addCarrierClass(String value) {
         Class clss = UMLFactory.eINSTANCE.createClass();
         clss.setName(value);

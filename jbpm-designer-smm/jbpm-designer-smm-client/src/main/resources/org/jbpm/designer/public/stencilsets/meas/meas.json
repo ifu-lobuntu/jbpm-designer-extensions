@@ -395,7 +395,7 @@
                     "Basic"
                 ],
                 "roles" : [
-                    "directMeasure", "measure","dimensionalMeasure"
+                    "countingMeasure", "measure","dimensionalMeasure"
                 ],
                 "description" : "Counting Measure",
                 "view" : "counting_measure.svg",
@@ -406,6 +406,19 @@
                         "smmElement","localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
+                    {
+                        "id" : "operation",
+                        "type" : "Text",
+                        "title" : "Operation",
+                        "binding" :"operation.body",
+                        "value" : "",
+                        "description" : "A boolean operation that determines which measurements will be selected for inclusion in the total number counted",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    }
                 ]
             },
             {
@@ -426,9 +439,69 @@
                 "layout" : [
                 ],
                 "propertyPackages" : [
-                        "smmElement","localStyle","scaleOfMeasurement"
+                        "localStyle","scaleOfMeasurement"
                 ],
                 "properties" : [
+                    {
+                        "id" : "name",
+                        "type" : "Choice",
+                        "title" : "Name",
+                        "value" : "",
+                        "description" : "The descriptive name of the SMM element.",
+                        "readonly" : false,
+                        "optional" : false,
+                        "length" : "",
+                        "wrapLines" : false,
+                        "refToView" : [
+                            "text_name"
+                        ],
+                        "items" : [
+                            {
+                                "id" : "Duration",
+                                "title" : "Duration",
+                                "value" : "Duration"
+                            },
+                            {
+                                "id" : "StartDelay",
+                                "title" : "StartDelay",
+                                "value" : "StartDelay"
+                            },
+                            {
+                                "id" : "DurationOverrun",
+                                "title" : "DurationOverrun",
+                                "value" : "DurationOverrun"
+                            },
+                            {
+                                "id" : "CompletionLateness",
+                                "title" : "CompletionLateness",
+                                "value" : "CompletionLateness"
+                            }
+                        ]
+                    },
+                    {
+                        "id" : "description",
+                        "type" : "Text",
+                        "title" : "Description",
+                        "value" : "",
+                        "description" : "This attribute is used to annotate the SMM element, such as descriptions and other documentation.",
+                        "readonly" : false,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "popular" : true
+                    },
+                    {
+                        "id" : "diagramElementId",
+                        "type" : "String",
+                        "title" : "DiagramElementId",
+                        "value" : "",
+                        "description" : "This is the unique id of the diagram element used to display the SMM Element.",
+                        "readonly" : true,
+                        "optional" : true,
+                        "length" : "",
+                        "wrapLines" : true,
+                        "hidden" : true
+                    }
                 ]
             },
             {
@@ -675,6 +748,30 @@
                 ],
                 "propertyPackages" : [
                         "smmElement","localStyle","measureRelationship"
+                ],
+                "properties" : [
+                ]
+            },
+            {
+                "type" : "edge",
+                "id" : "CountingMeasureRelationship",
+                "title" : "Counting Measure Relationship",
+                "targetBinding" : "toCountedMeasure",
+                "sourceBinding" : "fromCountingMeasure",
+                "position" : 7,
+                "groups" : [
+                    "Collective"
+                ],
+                "roles" : [
+                    "countingMeasureRelationship"
+                ],
+                "description" : "Counting Measure Relationship",
+                "view" : "counting_mesure_relationship.svg",
+                "icon" : "basen_measure_relationship.png",
+                "layout" : [
+                ],
+                "propertyPackages" : [
+                    "smmElement","localStyle","measureRelationship"
                 ],
                 "properties" : [
                 ]
@@ -965,6 +1062,15 @@
                     ]
                 },
                 {
+                    "role" : "countingMeasure",
+                    "outgoingEdges" : [
+                        {
+                            "role" : "countingMeasureRelationship",
+                            "maximum" : 1
+                        }
+                    ]
+                },
+                {
                     "role" : "rankingMeasure",
                     "outgoingEdges" : [
                         {
@@ -1063,6 +1169,18 @@
                                 "dimensionalMeasure"
                             ]
                         }
+
+                ]
+            },
+            {
+                "role" : "countingMeasureRelationship",
+                "connects" : [
+                    {
+                        "from" : "countingMeasure",
+                        "to" : [
+                            "measure"
+                        ]
+                    }
 
                 ]
             },

@@ -22,6 +22,8 @@ import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.dc.DCFactory;
 import org.omg.dd.di.Diagram;
 import org.omg.dd.di.DiagramElement;
+import org.omg.smm.Characteristic;
+import org.omg.smm.Measure;
 import org.omg.smm.SmmElement;
 import org.omg.smm.util.SmmHelper;
 import org.omg.vdml.Assignment;
@@ -57,6 +59,38 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
         if (SmmHelper.hasMeasure(vm )) {
             targetShape.putProperty(key, toString(vm.getCharacteristicDefinition().getMeasure().get(0)));
         }
+    }
+    protected void putMeasuredCharacteristics(String measures, EList<MeasuredCharacteristic> measuredCharacteristic) {
+        StringBuilder sb = new StringBuilder();
+        for (MeasuredCharacteristic valueMeasure : measuredCharacteristic) {
+            if(VdmlHelper.hasMeasure(valueMeasure)){
+                Measure m = valueMeasure.getCharacteristicDefinition().getMeasure().get(0);
+                sb.append(m.getName());
+                sb.append("|");
+                sb.append(m.eResource().getURI().toPlatformString(true));
+                sb.append(",");
+            }
+        }
+        if(sb.length()>0) {
+            sb.delete(sb.length() - 1, sb.length());
+        }
+        targetShape.putProperty(measures, sb.toString());
+    }
+    protected void putCharacteristicDefinitions(String measures, EList<Characteristic> measuredCharacteristic) {
+        StringBuilder sb = new StringBuilder();
+        for (Characteristic valueMeasure : measuredCharacteristic) {
+            if(VdmlHelper.hasMeasure(valueMeasure)){
+                Measure m = valueMeasure.getMeasure().get(0);
+                sb.append(m.getName());
+                sb.append("|");
+                sb.append(m.eResource().getURI().toPlatformString(true));
+                sb.append(",");
+            }
+        }
+        if(sb.length()>0) {
+            sb.delete(sb.length() - 1, sb.length());
+        }
+        targetShape.putProperty(measures, sb.toString());
     }
 
     private String toString(VdmlElement s) {

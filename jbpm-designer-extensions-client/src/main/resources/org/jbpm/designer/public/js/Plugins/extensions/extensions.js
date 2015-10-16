@@ -28,7 +28,7 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
     /**
      * Creates a new instance of the Collapsible plugin and registers it on the
      * layout events listed in the Collapsible stencil set.
-     * 
+     *
      * @constructor
      * @param {Object}
      *            facade The facade of the editor
@@ -70,9 +70,9 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
     },
     handleShapeAdded: function (event){
         try{
-            if(event.shape instanceof ORYX.Core.Shape){
-                var d=this.decoratorUpdaters[event.shape.getStencil().idWithoutNs()];
-                if(d){
+            if(event.shape instanceof ORYX.Core.Shape) {
+                var d = this.decoratorUpdaters[event.shape.getStencil().idWithoutNs()];
+                if (d) {
                     d(event.shape);
                 }
             }
@@ -99,11 +99,11 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
         }.bind(this));
     }
 });
-        
+
 /**
  * The Collapsible plugin provides layout methods referring to the Collapsible
  * stencilset.
- * 
+ *
  * @class ORYX.Plugins.Extensions
  * @extends Clazz
  * @param {Object}
@@ -115,7 +115,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 	/**
 	 * Creates a new instance of the Collapsible plugin and registers it on the
 	 * layout events listed in the Collapsible stencil set.
-	 * 
+	 *
 	 * @constructor
 	 * @param {Object}
 	 *            facade The facade of the editor
@@ -291,7 +291,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
             return expanded?"none":"inherit";
         }else {
             return svgElement.getAttributeNS(null,"display");
-        }  
+        }
     },
 	updateExpanded : function(collapsibleShape) {
 		if (ORYX.Plugins.Extensions.isExpanded(collapsibleShape)) {
@@ -379,7 +379,7 @@ ORYX.Plugins.Extensions = ORYX.Plugins.AbstractPlugin.extend(
 });
 ORYX.Plugins.Extensions.isExpanded = function(shape) {
 	return shape.properties["oryx-isexpanded"] == true || shape.properties["oryx-isexpanded"] == "true";
-}; 
+};
 ORYX.Plugins.Extensions.isCollapsible = function(shape) {
     if("properties" in shape){
         return typeof (shape.properties["oryx-isexpanded"]) == "string" || typeof (shape.properties["oryx-isexpanded"]) == "boolean";
@@ -387,8 +387,8 @@ ORYX.Plugins.Extensions.isCollapsible = function(shape) {
         console.log(shape);
         return false;
     }
-        
-}; 
+
+};
 ORYX.Plugins.Extensions.extractName = function(reference) {
     if(reference){
         var split=reference.slice(0, reference.indexOf("|")).split(/[\:\.]{1,2}/);
@@ -494,8 +494,7 @@ ORYX.Plugins.Extensions.EObjectRefEditorFactory = Clazz.extend({
 		}
 	}
 });
-ORYX.Plugins.Extensions.EObjectRefField = Ext
-		.extend(
+ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(
 				Ext.form.TriggerField,
 				{
 					editable : true,
@@ -508,13 +507,17 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 						var CallElementDef = Ext.data.Record.create([
 								{
 									name : 'name'
-								}, 
+								},
                                 {
                                     name : 'type'
-                                }, 
+                                },
                                 {
-                                    name : 'pkgname'
-                                }, 
+                                    name : 'fileName'
+                                },
+
+                                {
+                                    name : 'filePath'
+                                },
 								{
 									name : 'imgsrc'
 								}
@@ -524,7 +527,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 							root : []
 						});
 
-						var calldefs = new Ext.data.Store({
+						var potentialReferenceStore = new Ext.data.Store({
 							autoDestroy : true,
 							reader : new Ext.data.JsonReader({
 								root : "root"
@@ -537,7 +540,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 								}
 							]
 						});
-						calldefs.load();
+						potentialReferenceStore.load();
 
 						var processJSON = ORYX.EDITOR.getSerializedJSON();
 						var processPackage = jsonPath(processJSON.evalJSON(), "$.properties.package");
@@ -575,92 +578,142 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 											if (response.responseText.length > 0 && response.responseText != "false") {
 												var responseJson = Ext.decode(response.responseText);
 												for ( var key in responseJson) {
-													var keyParts = key.split("|");
-													
-													calldefs.add(new CallElementDef({
+													var keyParts = key.split(/\|/);
+													var filePath = keyParts[1].split(/\//);
+													potentialReferenceStore.add(new CallElementDef({
 														name : keyParts[0],
-														pkgname : keyParts[1],
-														type : keyParts[2],
-														imgsrc : responseJson[key]
+                                                        filePath : keyParts[1],
+                                                        fileName : filePath[filePath.length-1],
+														type : keyParts[2]
 													}));
 												}
-												calldefs.commitChanges();
-												var gridId = Ext.id();
-												var grid = new Ext.grid.EditorGridPanel(
-														{
-															autoScroll : true,
-															autoHeight : true,
-															selModel:new Ext.grid.RowSelectionModel(),
-															store : calldefs,
-															id : gridId,
-															stripeRows : true,
-															cm : new Ext.grid.ColumnModel(
-																	[
-																			new Ext.grid.RowNumberer(),
-																			{
-																				id : 'pid',
-																				header : ORYX.I18N.extensions.eobjectName,
-																				width : 300,
-																				dataIndex : 'name',
-																				sortable : true,
-																				editor : new Ext.form.TextField({
-																					allowBlank : true,
-																					disabled : true
-																				})
-                                                                            },
-                                                                            {
-                                                                                id : 'pkgn',
-                                                                                header : ORYX.I18N.extensions.eobjectAsset,
-                                                                                width : 300,
-                                                                                sortable : true,
-                                                                                dataIndex : 'pkgname',
-                                                                                editor : new Ext.form.TextField({
-                                                                                    allowBlank : true,
-                                                                                    disabled : true
-                                                                                })
-                                                                            },
-                                                                            {
-                                                                                id : 'type',
-                                                                                header : "Type",
-                                                                                width : 200,
-                                                                                sortable : true,
-                                                                                dataIndex : 'type',
-                                                                                editor : new Ext.form.TextField({
-                                                                                    allowBlank : true,
-                                                                                    disabled : true
-                                                                                })
-																			},
-																			{
-																				id : 'pim',
-																				header : ORYX.I18N.extensions.eobjectImage,
-																				width : 250,
-																				dataIndex : 'imgsrc',
-																				renderer : function(val) {
-																					if (val && val.length > 0) {
-																						return '<center><img src="'
-																								+ ORYX.PATH
-																								+ 'images/page_white_picture.png" onclick="new ImageViewer({title: \'Process Image\', width: \'650\', height: \'450\', autoScroll: true, fixedcenter: true, src: \''
-																								+ val
-																								+ '\',hideAction: \'close\'}).show();" alt="Click to view Process Image"/></center>';
-																					} else {
-																						return ORYX.I18N.LocalHistory.headertxt.ProcessImage.NoAvailable;
-																					}
-																				}
-																			}
-																	]),
-															autoHeight : true
-														});
+												potentialReferenceStore.commitChanges();
+                                                var theColumnModel= new Ext.grid.ColumnModel(
+                                                    [
+                                                        new Ext.grid.RowNumberer(),
+                                                        {
+                                                            id : 'pid',
+                                                            header : ORYX.I18N.extensions.eobjectName,
+                                                            width : 200,
+                                                            dataIndex : 'name',
+                                                            sortable : true,
+                                                            editor : new Ext.form.TextField({
+                                                                allowBlank : true,
+                                                                disabled : true
+                                                            })
+                                                        },
+                                                        {
+                                                            id : 'fileName',
+                                                            header : ORYX.I18N.extensions.eobjectAsset,
+                                                            width : 200,
+                                                            sortable : true,
+                                                            dataIndex : 'fileName',
+                                                            editor : new Ext.form.TextField({
+                                                                allowBlank : true,
+                                                                disabled : true
+                                                            })
+                                                        },
+                                                        {
+                                                            id : 'type',
+                                                            header : "Type",
+                                                            width : 200,
+                                                            sortable : true,
+                                                            dataIndex : 'type',
+                                                            editor : new Ext.form.TextField({
+                                                                allowBlank : true,
+                                                                disabled : true
+                                                            })
+                                                        }
+                                                    ]);
+                                                var gridId = Ext.id();
+                                                var grid = new Ext.grid.EditorGridPanel(
+                                                    {
+                                                        autoScroll : true,
+                                                        autoHeight : true,
+                                                        selModel:new Ext.grid.RowSelectionModel(),
+                                                        store : potentialReferenceStore,
+                                                        id : gridId,
+                                                        stripeRows : true,
+                                                        cm:theColumnModel,
+                                                        allowDragDrop:true,
+                                                        autoHeight : true,
+                                                        title: 'Potential Items'
+                                                    });
+                                                var selectedStore = new Ext.data.Store({
+                                                    autoDestroy : true,
+                                                    reader : new Ext.data.JsonReader({
+                                                        root : "root"
+                                                    }, CallElementDef),
+                                                    proxy : calldefsProxy,
+                                                    sorters : [
+                                                        {
+                                                            property : 'name',
+                                                            direction : 'ASC'
+                                                        }
+                                                    ]
+                                                });
+                                                selectedStore.load();
+
+                                                var selectedGrid = new Ext.grid.EditorGridPanel(
+                                                    {
+                                                        autoScroll : true,
+                                                        autoHeight : true,
+                                                        selModel:new Ext.grid.RowSelectionModel(),
+                                                        store : selectedStore,
+                                                        id : gridId+'1',
+                                                        stripeRows : true,
+                                                        allowDragDrop:true,
+                                                        cm:theColumnModel,
+                                                        autoHeight : true,
+                                                        title: 'Selected Items'
+                                                    });
+                                                var addRemoveButtonPanel = new Ext.Panel({
+                                                        layout:'column',
+                                                        layoutConfig : {
+                                                            columns : 1
+                                                        },
+                                                        defaults : {
+                                                            columnWidth : 1.0
+                                                        },
+                                                        items : [
+                                                            new ORYX.Plugins.Extensions.Button({
+                                                                text:'Add',
+                                                                handler:function(){
+                                                                    grid.getSelections().each(function(record) {
+                                                                        selectedStore.add(record);
+                                                                        selectedStore.sort('name', 'ASC');
+                                                                        potentialReferenceStore.remove(record);
+                                                                    });
+                                                                }
+                                                            }),
+                                                            new ORYX.Plugins.Extensions.Button({
+                                                                text:'Remove',
+                                                                handler:function(){
+                                                                    selectedGrid.getSelections().each(function(record) {
+                                                                        potentialReferenceStore.add(record);
+                                                                        potentialReferenceStore.sort('name', 'ASC');
+                                                                        selectedStore.remove(record);
+                                                                    });
+                                                                }
+                                                            })
+                                                        ]
+                                                    }
+
+                                                );
 												grid.on('afterrender', function(e) {
+                                                    console.log(this.value);
 													if (this.value.length > 0) {
 														var index = 0;
 														var val = this.value.split(",");
 														var mygrid = grid;
-														calldefs.data.each(function() {
-															var refName=this.data['name'];
+														potentialReferenceStore.data.each(function(record) {
+															var refName=record.data['name'];
 															val.each(function(valRow){
 																if (valRow.indexOf(refName)>=0) {
-																	mygrid.getSelectionModel().selectRow(index, true);
-																}
+                                                                    selectedStore.add(record);
+                                                                    selectedStore.sort('name', 'ASC');
+                                                                    potentialReferenceStore.remove(record);
+                                                                }
 															});
 															index++;
 														});
@@ -670,25 +723,33 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 
 												var calledElementsPanel = new Ext.Panel({
 													id : 'calledElementsPanel',
-													title : '<center>' + ORYX.I18N.PropertyWindow.selectProcessId + '</center>',
-													layout : 'column',
+													title : '<center>' + "Select items" + '</center>',
+                                                    layout : 'column',
+                                                    layoutConfig : {
+                                                        columns : 1
+                                                    },
 													items : [
-														grid
-													],
-													layoutConfig : {
-														columns : 1
-													},
-													defaults : {
-														columnWidth : 1.0
-													}
+                                                        {
+                                                            columnWidth:0.47,
+                                                            items : [grid]
+                                                        },
+                                                        {
+                                                            columnWidth:0.06,
+                                                            items : [addRemoveButtonPanel]
+                                                        },
+                                                        {
+                                                            columnWidth:0.47,
+                                                            items : [selectedGrid]
+                                                        }
+													]
 												});
 
 												var dialog = new Ext.Window({
 													layout : 'anchor',
 													autoCreate : true,
 													title : ORYX.I18N.PropertyWindow.editorForCalledEvents,
-													height : 350,
-													width : 680,
+													height : 600,
+													width : 1200,
 													modal : true,
 													collapsible : false,
 													fixedcenter : true,
@@ -718,20 +779,17 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 																text : ORYX.I18N.Save.save,
 																handler : function() {
 																    try{
-    																	var selections=grid.getSelectionModel().getSelections();
-    																	var outValue ="";
-    																	for(var k=0;k<selections.length;k++){
-    																		var row = selections[k];
-    																		outValue += row.data['name'] + '|'
-    																				+ row.data['pkgname'];
-    																		if(k<selections.length-1){
-    																			outValue+=",";
-    																		}
-    																	}
+                                                                        var outValue ="";
+    																	selectedStore.data.each(function (row){
+                                                                            outValue += row.data['name'] + '|'
+                                                                                + row.data['filePath'];
+                                                                            outValue+=",";
+                                                                        });
+                                                                        outValue= outValue.substr(0,outValue.length-1);
     																	grid.stopEditing();
     																	grid.getView().refresh();
     																	this.setValue(outValue);
-    																	this.dataSource.getAt(this.row).set('value', outValue);
+    																	this.dataSource.getAt(this.row).set('value',outValue);
     																	this.dataSource.commitChanges();
     																	dialog.hide();
 																    }catch(e){
@@ -773,7 +831,7 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext
 										}
 									}.bind(this),
 									failure : function(e) {
-									    
+
 										alert('Error');
 										for ( var key in e) {
 											alert(key + "=" + e[key]);
@@ -901,7 +959,11 @@ ORYX.Plugins.ExtensionsFormEditing = Clazz.extend({
 	}
 
 });
+ORYX.Plugins.Extensions.Button = Ext.extend(Ext.Button,{
+    setSize: function() {
 
+    }
+});
 ORYX.Plugins.Extensions.CurvedEdge = ORYX.Core.Edge.extend({
 	_update : function(force) {
 		arguments.callee.$._update.apply(this, arguments);

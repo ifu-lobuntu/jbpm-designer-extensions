@@ -1,11 +1,15 @@
 package org.jbpm.designer.vdan;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
+import org.omg.smm.Measure;
 import org.omg.vdml.*;
+
+import java.util.List;
 
 public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
     public VdmlActivityNetworkJsonToEmfHelper(ShapeMap resource) {
@@ -28,6 +32,7 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     public Object caseActivity(Activity object) {
         object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
         object.setRecurrenceInterval(buildMeasuredCharacteristic("recurrenceIntervalMeasure"));
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseActivity(object);
     }
 

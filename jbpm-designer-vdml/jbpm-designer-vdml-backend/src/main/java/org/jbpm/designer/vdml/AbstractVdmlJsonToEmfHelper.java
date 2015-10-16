@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -21,6 +22,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
+import org.omg.smm.Characteristic;
 import org.omg.smm.Measure;
 import org.omg.vdml.Assignment;
 import org.omg.vdml.Attribute;
@@ -54,10 +56,38 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         MeasuredCharacteristic vm = null;
         if (valueMeasure != null && valueMeasure.getTrait() != null) {
             vm = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+            vm.setName(valueMeasure.getName());
             vm.setCharacteristicDefinition(valueMeasure.getTrait());
         }
         return vm;
     }
+    protected void setMeasuredCharacteristics(String name, EList<MeasuredCharacteristic> measuredCharacteristic) {
+        List<Measure> valueMeasures = (List<Measure>) sourceShape.getUnboundProperty(name);
+        measuredCharacteristic.clear();
+        if (valueMeasures != null) {
+            for (Measure valueMeasure : valueMeasures) {
+                if(valueMeasure.getTrait() != null){
+                    MeasuredCharacteristic vm = null;
+                    vm = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
+                    vm.setName(valueMeasure.getName());
+                    vm.setCharacteristicDefinition(valueMeasure.getTrait());
+                    measuredCharacteristic.add(vm);
+                }
+            }
+        }
+    }
+    protected void setCharacteristicDefinitions(String name, EList<Characteristic> characteristics) {
+        List<Measure> valueMeasures = (List<Measure>) sourceShape.getUnboundProperty(name);
+        characteristics.clear();
+        if (valueMeasures != null) {
+            for (Measure valueMeasure : valueMeasures) {
+                if(valueMeasure.getTrait() != null){
+                    characteristics.add(valueMeasure.getTrait());
+                }
+            }
+        }
+    }
+
 
     @Override
     public Object caseDeliverableFlow(DeliverableFlow object) {

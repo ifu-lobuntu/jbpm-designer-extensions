@@ -33,6 +33,7 @@ ORYX.Plugins.MEAS = ORYX.Plugins.AbstractExtensionsPlugin.extend(
         this.decoratorUpdaters["RescaledMeasure"]=this.updateRescaledMeasureDecorations.bind(this);
         this.decoratorUpdaters["BinaryMeasure"]=this.updateBinaryMeasureDecorations.bind(this);
         this.decoratorUpdaters["CollectiveMeasure"]=this.updateCollectiveMeasureDecorations.bind(this);
+        this.decoratorUpdaters["CountingMeasure"]=this.updateCountingMeasureDecorations.bind(this);
         this.decoratorUpdaters["RankingInterval"]=this.updateIntervalDecorations.bind(this);
         this.decoratorUpdaters["GradeInterval"]=this.updateIntervalDecorations.bind(this);
 		console.log("MEAS Initialized");
@@ -102,6 +103,22 @@ ORYX.Plugins.MEAS = ORYX.Plugins.AbstractExtensionsPlugin.extend(
                 shape.outgoing.forEach(function(edge){
                     if(edge.getStencil().idWithoutNs()=="BaseNMeasureRelationship"){
                         aggregator=aggregator+edge.outgoing[0].properties["oryx-name"]+",";
+                    }
+                });
+                aggregator=aggregator.slice(0,-1) +")";
+                label.text(aggregator);
+                label.update();
+            }
+        });
+    },
+    updateCountingMeasureDecorations : function(shape){
+        console.log(shape);
+        shape.getLabels().forEach(function(label){
+            if(label.id==shape.id+"keyword"){
+                var aggregator="COUNT(";
+                shape.outgoing.forEach(function(edge){
+                    if(edge.getStencil().idWithoutNs()=="CountingMeasureRelationship"){
+                        aggregator=aggregator+edge.outgoing[0].properties["oryx-name"]+"("+shape.properties["oryx-operation"] +")";
                     }
                 });
                 aggregator=aggregator.slice(0,-1) +")";

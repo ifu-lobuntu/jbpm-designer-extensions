@@ -100,6 +100,7 @@ public class AbstractSmmDiagramMarshallingTest {
         ignoreIdsOf.add(DCPackage.eINSTANCE.getColor());
         ignoreIdsOf.add(DCPackage.eINSTANCE.getBounds());
         ignoreIdsOf.add(SMMPackage.eINSTANCE.getCharacteristic());
+        ignoreIdsOf.add(SMMPackage.eINSTANCE.getOperation());
         try {
             new GenericEcoreComparator(inputResource.getContents().get(0), outputResource.getContents().get(0), ignoreIdsOf).validate();
         } catch (Error e) {

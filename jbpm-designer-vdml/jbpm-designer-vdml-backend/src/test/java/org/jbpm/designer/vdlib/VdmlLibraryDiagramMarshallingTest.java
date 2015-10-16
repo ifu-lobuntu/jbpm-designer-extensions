@@ -9,12 +9,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.junit.Test;
-import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.CapabilityDefinition;
-import org.omg.vdml.OrgUnit;
-import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.*;
 import org.eclipse.uml2.uml.Package;
 @SuppressWarnings("unused")
 public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagramTest {
@@ -62,10 +57,22 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagra
         UMLCompartment comp4 = addCompartmentFor(clss2,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
         UMLCompartment comp5 = addCompartmentFor(clss2,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
         Class clss3 = addCarrierClass("CapabilityCategory");
-        CapabilityDefinition cc = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition(clss3, vdm.getCapabilitylibrary().get(0));
+        CapabilityCategory cc = VdmlLibraryJsonToEmfHelper.createCapabilityCategory(clss3, vdm.getCapabilitylibrary().get(0));
         addShapeFor(clss3);
         UMLCompartment comp6 = addCompartmentFor(clss3,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
         UMLCompartment comp7 = addCompartmentFor(clss3,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Class clss4 = addCarrierClass("PoolDefinition");
+        PoolDefinition pd = VdmlLibraryJsonToEmfHelper.createPoolDefinition(clss4, vdm.getStoreLibrary().get(0));
+        addShapeFor(clss4);
+        UMLCompartment comp8 = addCompartmentFor(clss4,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        UMLCompartment comp9 = addCompartmentFor(clss4,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Class clss5 = addCarrierClass("StoreDefinition");
+        StoreDefinition sd = VdmlLibraryJsonToEmfHelper.createStoreDefinition(clss5, vdm.getStoreLibrary().get(0));
+        addShapeFor(clss5);
+        UMLCompartment comp10 = addCompartmentFor(clss5,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        sd.getCharacteristicDefinition().add(characteristic);
+        UMLCompartment comp11 = addCompartmentFor(clss5,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+
         saveCollaborationResource();
         assertOutputValid();
     }

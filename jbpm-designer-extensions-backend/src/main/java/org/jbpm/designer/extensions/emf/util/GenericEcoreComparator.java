@@ -1,6 +1,5 @@
 package org.jbpm.designer.extensions.emf.util;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,10 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
@@ -35,6 +32,7 @@ public class GenericEcoreComparator {
     Map<String, EObject> outputMap = new HashMap<String, EObject>();
     Map<String, EObject> inputMap = new HashMap<String, EObject>();
     Set<EClassifier> ignoreIdsFrom = new HashSet<EClassifier>();
+    Set<EStructuralFeature> ignoreFeatures = new HashSet<EStructuralFeature>();
     private IEmfDiagramProfile profile;
     private String json;
     {
@@ -48,7 +46,12 @@ public class GenericEcoreComparator {
     }
 
     public GenericEcoreComparator(EObject input, EObject output) {
-        this(input, output, Collections.<EClassifier> emptySet());
+        this(input, output, Collections.<EClassifier>emptySet());
+    }
+
+    public GenericEcoreComparator(XMLResource collaborationResource, XMLResource outputCollaborationResource, Set<EClassifier> idsToIgnore, Set<EStructuralFeature> featuresToIgnore) {
+        this(collaborationResource, outputCollaborationResource,idsToIgnore);
+        this.ignoreFeatures.addAll(featuresToIgnore);
     }
 
     public void setDebugInfo(Diagram json, IEmfDiagramProfile profile) {
@@ -109,7 +112,7 @@ public class GenericEcoreComparator {
             for (Entry<String, EObject> entry : inputMap.entrySet()) {
                 EObject found = outputMap.get(entry.getKey());
                 EObject expected = entry.getValue();
-                fail("Entry " + describeIdentity(expected) + " not found", found != null);
+                assertTrue("Entry " + describeIdentity(expected) + " not found", found != null);
                 validateAllFeatures(expected, found);
             }
             assertEquals(inputMap.size(), outputMap.size());
@@ -133,7 +136,7 @@ public class GenericEcoreComparator {
         }
     }
 
-    private void fail(String string, boolean b) {
+    private void assertTrue(String string, boolean b) {
         if (!b) {
             throw new AssertionError(string);
         }
@@ -148,7 +151,7 @@ public class GenericEcoreComparator {
 
     private void validateAllFeatures(EObject expected, EObject found) {
         for (EStructuralFeature f : expected.eClass().getEAllStructuralFeatures()) {
-            if (!(f.isDerived() || f instanceof EAttribute && ((EAttribute) f).isID())) {
+            if (!(ignoreFeatures.contains(f) || f.isDerived() || f instanceof EAttribute && ((EAttribute) f).isID())) {
                 assertEquals("Element not of the same type!", expected.eClass(), found.eClass());
                 validate(expected, f, expected.eGet(f), found.eGet(f));
             }
@@ -168,9 +171,9 @@ public class GenericEcoreComparator {
     private void validate(EObject value, EStructuralFeature f, Object expectedObject, Object foundObject) {
         String evaluating = "Feature " + f.getName() + " of " + describeIdentity(value);
         if (expectedObject == null) {
-            fail(evaluating + "Both values should be null:", foundObject == null);
+            assertTrue(evaluating + "Both values should be null:", foundObject == null);
         } else {
-            fail(evaluating + "Both values should be not-null:", foundObject != null);
+            assertTrue(evaluating + "Both values should be not-null:", foundObject != null);
             assertEquals(evaluating + "Value not of the same type!", expectedObject.getClass(), foundObject.getClass());
             if (expectedObject instanceof Number || expectedObject instanceof String || expectedObject instanceof Boolean
                     || expectedObject instanceof Enumerator) {
@@ -188,7 +191,7 @@ public class GenericEcoreComparator {
                     } else if (id1 == null && id2 == null) {
                         assertEObjectDirectStateEquals(expected, found);
                     } else {
-                        fail("Both IDs must either be null or not-null", false);
+                        assertTrue("Both IDs must either be null or not-null", false);
                     }
                 } else {
                     assertEObjectDirectStateEquals(expected, found);

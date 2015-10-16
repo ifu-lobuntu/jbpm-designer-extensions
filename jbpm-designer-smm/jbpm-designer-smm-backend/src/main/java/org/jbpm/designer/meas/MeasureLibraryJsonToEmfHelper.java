@@ -95,6 +95,9 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
     }
     @Override
     public Object caseCountingMeasure(CountingMeasure object) {
+        if(object.getOperation()!=null) {
+            owningLibrary.getMeasureElements().add(object.getOperation());
+        }
         return super.caseCountingMeasure(object);
     }
 

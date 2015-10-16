@@ -2,11 +2,13 @@ package org.jbpm.designer.vdan;
 
 import static org.junit.Assert.*;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.junit.Test;
+import org.omg.smm.Characteristic;
 import org.omg.vdml.*;
 
 public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDiagramMarshallingTest {
@@ -85,7 +87,7 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         addShapeFor(role1, activity1);
         addPorts("MyActivity1", role1, activity1);
         role1.getPerformedWork().add(activity1);
-        addPorts("MyCollaboration",role1,  collaboration);
+        addPorts("MyCollaboration", role1, collaboration);
 
         Role role2 = VDMLFactory.eINSTANCE.createPerformer();
         role2.setName("YourRole");
@@ -132,6 +134,8 @@ public class ActivityNetworkCollaborationManipulationTest extends AbstractVdanDi
         assertDiagramElementPresent(activity2.getContainedPort().get(0),diagramResource);
         assertDiagramElementPresent(activity2.getContainedPort().get(1),diagramResource);
     }
+
+
     @Test
     public void testDeliverableFlow() throws Exception{
         Role role = VDMLFactory.eINSTANCE.createPerformer();

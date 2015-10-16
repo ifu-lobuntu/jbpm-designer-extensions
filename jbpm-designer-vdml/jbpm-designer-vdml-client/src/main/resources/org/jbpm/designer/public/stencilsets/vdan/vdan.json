@@ -50,6 +50,28 @@
 				]
 			},
 			{
+				"name" : "measurableElement",
+			    "properties" : [
+				  {
+					"id" : "measures",
+					"type" : "eobjectref",
+					"title" : "Measures",
+					"value" : "",
+					"description" : "",
+					"readonly" : false,
+					"optional" : false,
+					"reference":{
+					  "targetProfile":"meas",
+					  "allowedElementTypes":"CountingMeasure|BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure|NamedMeasure|RescaledMeasure",
+					  "nameFeature" : "name",
+					  "multiSelect" : true,
+					  "filter" :"inScopeMeasures"
+					}
+				  }
+
+				]
+			},
+			{
 				"name" : "localStyle",
 				"properties" : [
 						{
@@ -281,7 +303,7 @@
 				"icon" : "diagram.png",
 				"mayBeRoot" : true,
 				"hide" : true,
-				"propertyPackages" : ["vdmlElement"
+				"propertyPackages" : ["vdmlElement","measurableElement"
 				],
 				"roles" : [
 					"collaboration"
@@ -335,7 +357,7 @@
 							}
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","measurableElement"
 				],
 				"properties" : [
                     {
@@ -372,7 +394,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle","port"
+						"vdmlElement","localStyle","port","measurableElement"
 				],
 				"properties" : [
 				]
@@ -386,7 +408,7 @@
 					"General"
 				],
 				"roles" : [
-					"collaborationOutputPort","port","outputPort"
+					"collaborationOutputPort","port","outputPort","measurableElement"
 				],
 				"description" : "Collaboration Output Port",
 				"view" : "collaboration_output_port.svg",
@@ -429,7 +451,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","measurableElement"
 				],
 				"properties" : [
                     {
@@ -467,7 +489,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle","port"
+						"vdmlElement","localStyle","port","measurableElement"
 				],
 				"properties" : [
 				]
@@ -482,7 +504,7 @@
 					"Activity"
 				],
 				"roles" : [
-					"activityOutputPort","activityPort","outputPort"
+					"activityOutputPort","activityPort","outputPort","measurableElement"
 				],
 				"description" : "Output Port",
 				"view" : "output_port.svg",
@@ -524,7 +546,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"localStyle"
+						"localStyle","measurableElement"
 				],
 				"properties" : [
 					{
@@ -590,6 +612,7 @@
 				"type" : "node",
 				"id" : "Store",
 				"title" : "Store",
+			    "hide": true,
 				"position" : 3,
 				"groups" : [
 					"Store"
@@ -629,6 +652,7 @@
 				"id" : "Pool",
 				"title" : "Pool",
 				"position" : 3,
+			    "hide" : true,
 				"groups" : [
 					"Store"
 				],
@@ -680,7 +704,7 @@
 			  "layout" : [
 			  ],
 			  "propertyPackages" : [
-				"vdmlElement","localStyle"
+				"vdmlElement","localStyle","measurableElement"
 			  ],
 			  "properties" : [
 				{
@@ -719,7 +743,7 @@
 			  "layout" : [
 			  ],
 			  "propertyPackages" : [
-				"vdmlElement","localStyle"
+				"vdmlElement","localStyle","measurableElement"
 			  ],
 			  "properties" : [
 				{
@@ -750,7 +774,7 @@
 					"Store"
 				],
 				"roles" : [
-					"storeInputPort","storePort"
+					"storeInputPort","storePort","measurableElement"
 				],
 				"description" : "Input Port to a Store",
 				"view" : "input_port.svg",
@@ -773,7 +797,7 @@
 					"Store"
 				],
 				"roles" : [
-					"storeOutputPort","storePort","outputPort"
+					"storeOutputPort","storePort","outputPort","measurableElement"
 				],
 				"description" : "Store Output Port",
 				"view" : "output_port.svg",
@@ -817,7 +841,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","measurableElement"
 				],
 				"properties" : [
 					{
@@ -881,7 +905,7 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"vdmlElement","localStyle"
+						"vdmlElement","localStyle","measurableElement"
 				],
 				"properties" : [
 						{

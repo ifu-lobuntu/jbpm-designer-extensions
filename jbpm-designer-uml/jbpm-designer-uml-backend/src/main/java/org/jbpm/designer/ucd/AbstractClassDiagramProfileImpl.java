@@ -143,7 +143,7 @@ public abstract class AbstractClassDiagramProfileImpl extends AbstractEmfDiagram
             String jarUri = "jar:file:" + zf.getName() +"!" + resourcePath;
             externalForm =new URL(jarUri).toExternalForm();
         } catch (Throwable t) {
-            LOGGER.warn("Could not calculate jar file path", t);
+            LOGGER.debug("Could not calculate jar file path", t);
         }
         URI cmmnTypesUri=null;
         if(externalForm.contains("vfs:/")) {

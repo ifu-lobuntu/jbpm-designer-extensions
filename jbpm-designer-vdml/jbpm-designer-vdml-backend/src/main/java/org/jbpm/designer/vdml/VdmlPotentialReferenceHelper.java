@@ -1,6 +1,7 @@
 package org.jbpm.designer.vdml;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
@@ -18,18 +20,7 @@ import org.omg.smm.CollectiveMeasure;
 import org.omg.smm.Measure;
 import org.omg.smm.RescaledMeasure;
 import org.omg.smm.RescaledMeasureRelationship;
-import org.omg.vdml.Activity;
-import org.omg.vdml.Assignment;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.DelegationContext;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.Port;
-import org.omg.vdml.PortContainer;
-import org.omg.vdml.Role;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.ValueElement;
-import org.omg.vdml.ValueProposition;
-import org.omg.vdml.ValuePropositionComponent;
+import org.omg.vdml.*;
 
 public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelper {
 
@@ -48,7 +39,9 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
                 e.printStackTrace();
             }
         } else {
-            if ("valueElementAggregatedFrom".equals(filter)) {
+            if ("inScopeMeasures".equals(filter)) {
+                return toEobjectReferenceJson(findInScopeMeasures(req, action, processId));
+            } else if ("valueElementAggregatedFrom".equals(filter)) {
                 return toEobjectReferenceJson(findPotentialAggregatedFrom(req));
             } else if ("valueElementAggregatedTo".equals(filter)) {
                 return toEobjectReferenceJson(findPotentialAggregatedTo(req));
@@ -61,13 +54,39 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
         return null;
     }
 
-    protected JSONObject toEobjectReferenceJson(List<? extends EObject> results) {
+    protected JSONObject toEobjectReferenceJson(Collection<? extends EObject> results) {
         return toEobjectReferenceJson(results, "name");
+    }
+    private Collection<? extends EObject> findInScopeMeasures(HttpServletRequest req,String action, String processId ) throws Exception {
+        EObject ve = getSourceElement(req);
+        IEmfDiagramProfile sourceProfile = getSourceProfile(req);
+        if(ve instanceof Activity ){
+            //AggregatedMeasures from CapabilityDefinition
+            //CalculatedMeasures from ValueAdds
+        }else if(ve instanceof OutputPort){
+            //CalculatedMeasures from ValueAdds, receiving inputs, other OutputPorts
+        }else if(ve instanceof ValueAdd){
+            //AggregatedMeasures from ValuePropositionComponent
+        }else if(ve instanceof ValuePropositionComponent){
+            //Top level scope - no constraints.
+        }else if(ve instanceof InputPort){
+            //CalculatedMeasures from ValueAdds, other inputs
+        }else if(ve instanceof ResourceUse){
+        }else if(ve instanceof DeliverableFlow){
+        }else if(ve instanceof BusinessItemDefinition || ve instanceof Capability || ve instanceof StoreDefinition ){
+            //TODO remember these would be UML Properties
+            //Top level scope - no constraints.
+        }
+        ResourceSet rst = buildResourceSet(req);
+        List<String> allPackageNames = getPackagesInScope(req);
+        loadApplicableResourcesInto(rst, allPackageNames);
+        Collection<EObject> results = findPotentialReferencesIn(req, rst);
+        return results;
     }
 
     /**
      * NB!! Expects calling EObjects to have a "vdmlElement" feature
-     * 
+     *
      * @param req
      * @return
      * @throws Exception
@@ -90,7 +109,7 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
     }
 
     private List<? extends EObject> findPotentialMeasure(HttpServletRequest req) throws Exception {
-        ValueElement ve = (ValueElement) getSourceElement(req);
+        ValueElement ve = getSourceElement(req);
         List<Measure> results = new ArrayList<Measure>();
         for (ValueElement valueElement : ve.getAggregatedTo()) {
             if (valueElement.getValueMeasurement() != null && valueElement.getValueMeasurement().getCharacteristicDefinition() != null) {
@@ -117,7 +136,7 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
             }
         } else if (measure instanceof RescaledMeasure) {
             RescaledMeasure rm = (RescaledMeasure) measure;
-            for (RescaledMeasureRelationship rel: rm.getRescalesFrom()) {
+            for (RescaledMeasureRelationship rel : rm.getRescalesFrom()) {
                 results.add(rel.getFromDimensionalMeasure());
             }
         } else {

@@ -6,6 +6,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.vdml.VdmlHelper;
 import org.junit.Test;
+import org.omg.smm.Characteristic;
 import org.omg.vdml.*;
 
 public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMarshallingTest {
@@ -32,8 +33,8 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         OutputPort op = (OutputPort) activity1.getContainedPort().get(1);
         op.getValueAdd().add(valueAdd);
         addShapeFor(op, valueAdd);
-        valueAdd.setValueMeasurement(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        valueAdd.getValueMeasurement().setCharacteristicDefinition(super.characteristic1);
+        Characteristic characteristic = super.characteristic1;
+        valueAdd.setValueMeasurement(buildMeasuredCharacteristic(characteristic));
         valueAdd.getAggregatedTo().add(vpc1);
         saveCollaborationResource();
 
@@ -54,6 +55,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         assertEquals(vpc2.getId(), foundValueAdd.getAggregatedTo().get(0).getId());
     }
 
+
     @Test
     public void testResourceUse() throws Exception {
         Role role = VDMLFactory.eINSTANCE.createPerformer();
@@ -73,8 +75,7 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         ResourceUse resourceUse = VDMLFactory.eINSTANCE.createResourceUse();
         resourceUse.setDeliverable(op);
         resourceUse.getResource().add(ip);
-        resourceUse.setQuantity(VDMLFactory.eINSTANCE.createMeasuredCharacteristic());
-        resourceUse.getQuantity().setCharacteristicDefinition(characteristic1);
+        resourceUse.setQuantity(buildMeasuredCharacteristic(characteristic1));
         activity1.getResourceUse().add(resourceUse);
         
         addEdge(resourceUse, ip, op);
@@ -113,6 +114,8 @@ public class ActivityNetworkDiagramMarshallingTest extends AbstractVdanDiagramMa
         activity1.setName("MyActivity1");
         activity1.setDescription("My Activity's description");
         collaboration.getActivity().add(activity1);
+        addMeasuredCharacteristic(this.characteristic1, activity1.getMeasuredCharacteristic());
+
         addShapeFor(role, activity1);
         addPorts("MyActivity1", role, activity1);
         role.getPerformedWork().add(activity1);

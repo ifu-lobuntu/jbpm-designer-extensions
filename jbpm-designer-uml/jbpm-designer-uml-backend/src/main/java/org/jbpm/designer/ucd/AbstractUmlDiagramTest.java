@@ -100,7 +100,7 @@ public class AbstractUmlDiagramTest {
         inputResource.getContents().add(inputDiagram);
     }
 
-    protected void assertOutputValid() throws IOException, Exception {
+    protected XMLResource assertOutputValid() throws IOException, Exception {
         String xmlString = buildXmlString(inputResource);
         String json = unmarshaller.parseModel(xmlString, profile, "");
         XMLResource outputResource = marshaller.getResource(json, "");
@@ -115,6 +115,7 @@ public class AbstractUmlDiagramTest {
         GenericEcoreComparator v = new GenericEcoreComparator(inputResource, outputResource,idsToIgnore);
         v.setDebugInfo(json, profile);
         v.validate();
+        return outputResource;
     }
 
     protected String buildXmlString(XMLResource resource) throws IOException {

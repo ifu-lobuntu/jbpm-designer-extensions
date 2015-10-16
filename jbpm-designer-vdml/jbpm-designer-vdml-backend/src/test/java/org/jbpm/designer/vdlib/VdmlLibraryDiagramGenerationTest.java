@@ -44,7 +44,7 @@ public class VdmlLibraryDiagramGenerationTest extends AbstractVdmlLibraryDiagram
         Class clss2 = addCarrierClass("CapabilityDefinition");
         CapabilityDefinition cd = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition( clss2, vdm.getCapabilitylibrary().get(0));
         Class clss3 = addCarrierClass("CapabilityCategory");
-        CapabilityDefinition cc = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition( clss3, vdm.getCapabilitylibrary().get(0));
+        CapabilityCategory cc = VdmlLibraryJsonToEmfHelper.createCapabilityCategory( clss3, vdm.getCapabilitylibrary().get(0));
         saveCollaborationResource();
         Diagram json = super.unmarshaller.convert(inputResource);
         assertNotNull( json.findChildShapeById(collaborationResource.getID(characteristicDef)));
