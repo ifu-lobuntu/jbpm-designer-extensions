@@ -13,9 +13,9 @@ import org.omg.vdml.*;
 import org.eclipse.uml2.uml.Package;
 @SuppressWarnings("unused")
 public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagramTest {
-    private OrgUnit externalOrgUnit;
+    private StoreDefinition externalStoreDefinition;
     private Package externalPackage;
-    private Class externalOrgUnitClass;
+    private Class externalStoreDefinitionClass;
     @Override
     public void setup() throws Exception {
         super.setup();
@@ -23,16 +23,17 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagra
         XMLResource res= (XMLResource) super.resourceSet.createResource(externalUri);
         ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         vdm.setName("123f");
-        vdm.getCollaboration().add(externalOrgUnit=VDMLFactory.eINSTANCE.createOrgUnit());
-        externalOrgUnit.setName("gqgqwregq");
+        vdm.getStoreLibrary().add(VDMLFactory.eINSTANCE.createStoreLibrary());
+        vdm.getStoreLibrary().get(0).getStoreDefinitions().add(externalStoreDefinition = VDMLFactory.eINSTANCE.createStoreDefinition());
+        externalStoreDefinition.setName("gqgqwregq");
         externalPackage=UMLFactory.eINSTANCE.createPackage();
-        externalPackage.setName(externalOrgUnit.getName());
+        externalPackage.setName(externalStoreDefinition.getName());
         res.getContents().add(vdm);
         res.getContents().add(externalPackage);
-        this.externalOrgUnitClass = UMLFactory.eINSTANCE.createClass();
-        externalPackage.getOwnedTypes().add(externalOrgUnitClass);
-        externalOrgUnitClass.setName(externalOrgUnit.getName());
-        externalOrgUnitClass.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(externalOrgUnit);
+        this.externalStoreDefinitionClass = UMLFactory.eINSTANCE.createClass();
+        externalPackage.getOwnedTypes().add(externalStoreDefinitionClass);
+        externalStoreDefinitionClass.setName(externalStoreDefinition.getName());
+        externalStoreDefinitionClass.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(externalStoreDefinition);
         res.save(tuh.createOutputStream(externalUri, profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
     }
     @Test
@@ -78,7 +79,7 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagra
     }
     @Test
     public void testExternalStuff() throws Exception {
-        addShapeFor(externalOrgUnitClass);
+        addShapeFor(externalStoreDefinitionClass);
         saveCollaborationResource();
         assertOutputValid();
     }

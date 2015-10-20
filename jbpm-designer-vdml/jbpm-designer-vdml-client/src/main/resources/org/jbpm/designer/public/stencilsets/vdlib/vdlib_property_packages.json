@@ -1,105 +1,177 @@
-	        {
-	        	"name" : "vdmlElementBase",
-	        	"properties": [
-					{
-						"id" : "name",
-						"type" : "String",
-						"title" : "Name",
-						"value" : "",
-						"description" : "The descriptive name of the VDML element.",
-						"readonly" : false,
-						"optional" : true,
-						"length" : "",
-						"wrapLines" : false,
-						"refToView" : [
-							"text_name"
-						]
-					},
-					{
-						"id" : "description",
-						"type" : "Text",
-						"title" : "Description",
-						"value" : "",
-						"description" : "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
-						"readonly" : false,
-						"optional" : true,
-						"length" : "",
-						"wrapLines" : true,
-						"popular" : true
-					}
-				]
-			},
-			{
-			    "name" : "vdmlElementType",
-			    "properties" :[
-	                    {
-	                        "id":"vdmlElementType",
-	                        "type":"Choice",
-	                        "title":"ElementType",
-	                        "value":"BusinessItemDefinition",
-	                        "description":"",
-	                        "readonly":true,
-	                        "optional":false,
-	                        "hidden":true,
-	                        "refToView":[],
-	                        "items": [
-	                            {
-	                                "id":"c1",
-	                                "title":"BusinessItemDefinition",
-	                                "value":"BusinessItemDefinition",
-	                                "refToView":"business_item_definition"
-	                            },
-	                            {
-	                                "id":"c2",
-	                                "title":"CapabilityDefinition",
-	                                "value":"CapabilityDefinition",
-	                                "refToView":"capability_definition"
-	                            },
-	                            {
-	                                "id":"c3",
-	                                "title":"CapabilityCategory",
-	                                "value":"CapabilityCategory",
-	                                "refToView":"capability_category"
-	                            },
-
-	                            {
-	                                "id":"c4",
-	                                "title":"Store",
-	                                "value":"Store",
-	                                "refToView":"store"
-	                            },
-	                            {
-	                                "id":"c5",
-	                                "title":"Pool",
-	                                "value":"Pool",
-	                                "refToView":"pool"
-	                            },
-								{
-								  "id":"c6",
-								  "title":"StoreDefinition",
-								  "value":"StoreDefinition",
-								  "refToView":"store_definition"
-								},
-								{
-								  "id":"c7",
-								  "title":"PoolDefinition",
-								  "value":"PoolDefinition",
-								  "refToView":"pool_definition"
-								},
-
-								{
-	                                "id":"c7",
-	                                "title":"OrgUnit",
-	                                "value":"OrgUnit",
-	                                "refToView":"org_unit"
-	                            },
-	                            {
-	                                "id":"c8",
-	                                "title":"CapabilityOffer",
-	                                "value":"CapabilityOffer",
-	                                "refToView":"capability_offer"
-	                            }
-	                        ]
-	                    }
-	               ]
-			},
+{
+    "propertyPackages": [
+        {
+            "name": "vdmlElementBase",
+            "properties": [
+                {
+                    "id": "name",
+                    "type": "String",
+                    "title": "Name",
+                    "value": "",
+                    "description": "The descriptive name of the VDML element.",
+                    "readonly": false,
+                    "optional": true,
+                    "length": "",
+                    "wrapLines": false,
+                    "refToView": [
+                        "text_name"
+                    ]
+                },
+                {
+                    "id": "description",
+                    "type": "Text",
+                    "title": "Description",
+                    "value": "",
+                    "description": "This attribute is used to annotate the VDML element, such as descriptions and other documentation.",
+                    "readonly": false,
+                    "optional": true,
+                    "length": "",
+                    "wrapLines": true,
+                    "popular": true
+                }
+            ]
+        },
+        {
+            "name": "store",
+            "properties": [
+                {
+                    "id": "inventoryLevel",
+                    "type": "eobjectref",
+                    "title": "InventoryLevel Measure",
+                    "value": "",
+                    "description": "The Inventory Level Measure.",
+                    "readonly": false,
+                    "optional": true,
+                    "reference": {
+                        "targetProfile": "meas",
+                        "allowedElementTypes": "DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure|RankingMeasure|NamedMeasure",
+                        "nameFeature": "name"
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "name": "exchangeConfiguration",
+            "properties": [
+                {
+                    "id": "exchangeMethod",
+                    "type": "eobjectref",
+                    "title": "Exchange Method",
+                    "value": "",
+                    "description": "The Capability Method used to facilitate the exchange.",
+                    "readonly": false,
+                    "optional": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "CapabilityMethod",
+                        "nameFeature": "name"
+                    },
+                    "length": ""
+                },
+                {
+                    "id": "supplierRole",
+                    "type": "eobjectref",
+                    "title": "Supplier Role",
+                    "value": "",
+                    "description": "The Role in the exchange Method that provides this store.",
+                    "readonly": false,
+                    "optional": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "Performer",
+                        "nameFeature": "name"
+                    },
+                    "length": ""
+                },
+                {
+                    "id": "exchangeMilestone",
+                    "type": "eobjectref",
+                    "title": "Exchange Milestone",
+                    "value": "",
+                    "description": "The Milestone in the exchange Method that represent the actual exchange.",
+                    "readonly": false,
+                    "optional": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "Milestone",
+                        "nameFeature": "name"
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "name": "vdmlElementType",
+            "properties": [
+                {
+                    "id": "vdmlElementType",
+                    "type": "Choice",
+                    "title": "ElementType",
+                    "value": "BusinessItemDefinition",
+                    "description": "",
+                    "readonly": true,
+                    "optional": false,
+                    "hidden": true,
+                    "refToView": [],
+                    "items": [
+                        {
+                            "id": "c1",
+                            "title": "BusinessItemDefinition",
+                            "value": "BusinessItemDefinition",
+                            "refToView": "business_item_definition"
+                        },
+                        {
+                            "id": "c2",
+                            "title": "CapabilityDefinition",
+                            "value": "CapabilityDefinition",
+                            "refToView": "capability_definition"
+                        },
+                        {
+                            "id": "c3",
+                            "title": "CapabilityCategory",
+                            "value": "CapabilityCategory",
+                            "refToView": "capability_category"
+                        },
+                        {
+                            "id": "c4",
+                            "title": "Store",
+                            "value": "Store",
+                            "refToView": "store"
+                        },
+                        {
+                            "id": "c5",
+                            "title": "Pool",
+                            "value": "Pool",
+                            "refToView": "pool"
+                        },
+                        {
+                            "id": "c6",
+                            "title": "StoreDefinition",
+                            "value": "StoreDefinition",
+                            "refToView": "store_definition"
+                        },
+                        {
+                            "id": "c7",
+                            "title": "PoolDefinition",
+                            "value": "PoolDefinition",
+                            "refToView": "pool_definition"
+                        },
+                        {
+                            "id": "c7",
+                            "title": "OrgUnit",
+                            "value": "OrgUnit",
+                            "refToView": "org_unit"
+                        },
+                        {
+                            "id": "c8",
+                            "title": "CapabilityOffer",
+                            "value": "CapabilityOffer",
+                            "refToView": "capability_offer"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

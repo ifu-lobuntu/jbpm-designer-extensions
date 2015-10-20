@@ -49,6 +49,28 @@
 				]
 			},
 			{
+			  "name" : "measurableElement",
+			  "properties" : [
+				{
+				  "id" : "measures",
+				  "type" : "eobjectref",
+				  "title" : "Measures",
+				  "value" : "",
+				  "description" : "",
+				  "readonly" : false,
+				  "optional" : false,
+				  "reference":{
+					"targetProfile":"meas",
+					"allowedElementTypes":"CountingMeasure|BinaryMeasure|CollectiveMeasure|DirectMeasure|GradeMeasure|RankingMeasure|NamedMeasure|RescaledMeasure",
+					"nameFeature" : "name",
+					"multiSelect" : true,
+					"filter" :"inScopeMeasures"
+				  }
+				}
+
+			  ]
+			},
+			{
 	        	"name" : "expandable",
 	        	"properties": [
 					{
@@ -239,7 +261,8 @@
 				"hide" : true,
 				"propertyPackages" : [
                       "elementBase",
-                      "localStyle"
+                      "localStyle",
+				      "measurableElement"
 				],
 				"roles" : [
 					"diagram"
@@ -285,7 +308,8 @@
 				],
 			    "propertyPackages" : [
 						"elementBase",
-						"localStyle"
+						"localStyle",
+				        "measurableElement"
 				],
 				"properties" : [
                     {
@@ -357,7 +381,8 @@
 				"layout" : [
 				],
 			    "propertyPackages" : [
-						"localStyle"
+						"localStyle",
+				        "measurableElement"
 				],
 				"properties" : [
 					{

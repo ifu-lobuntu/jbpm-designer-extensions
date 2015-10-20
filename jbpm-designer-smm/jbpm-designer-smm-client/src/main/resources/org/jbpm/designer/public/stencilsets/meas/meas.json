@@ -766,7 +766,7 @@
                     "countingMeasureRelationship"
                 ],
                 "description" : "Counting Measure Relationship",
-                "view" : "counting_mesure_relationship.svg",
+                "view" : "counting_measure_relationship.svg",
                 "icon" : "basen_measure_relationship.png",
                 "layout" : [
                 ],

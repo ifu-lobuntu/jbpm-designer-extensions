@@ -57,6 +57,8 @@ ORYX.Plugins.VDLib = ORYX.Plugins.UCD.extend(
         this.decoratorUpdaters["BusinessItemCategory"]=this.updateKeywordDecorations.bind(this);
         this.decoratorUpdaters["CapabilityDefinition"]=this.updateKeywordDecorations.bind(this);
         this.decoratorUpdaters["CapabilityCategory"]=this.updateKeywordDecorations.bind(this);
+        this.decoratorUpdaters["PoolDefinition"]=this.updateKeywordDecorations.bind(this);
+        this.decoratorUpdaters["StoreDefinition"]=this.updateKeywordDecorations.bind(this);
         this.decoratorUpdaters["RoleDefinition"]=this.updateKeywordDecorations.bind(this);
         this.decoratorUpdaters["RoleCategory"]=this.updateKeywordDecorations.bind(this);
         this.decoratorUpdaters["ValueDefinition"]=this.updateKeywordDecorations.bind(this);
@@ -66,22 +68,6 @@ ORYX.Plugins.VDLib = ORYX.Plugins.UCD.extend(
         console.log("VDLib Initialized");
     },
     updateCharacteristicDecorations : function(shape){
-        var labels=shape.getLabels();
-        for(var i=0 ; i < labels.length; i++){
-            if(labels[i].id==shape.id+"text_name"){
-                var name="";
-                for(var key in shape.properties){
-                    if(key.indexOf("measure")>=0){
-                        name=shape.properties[key];
-                        break;
-                    }
-                }
-                name=name.substring(0, name.indexOf("|"));
-                shape.properties["oryx-name"]=name;
-                labels[i].text(name);
-                labels[i].update();
-            }
-        }
     },
     updateImportDecorations : function(shape){
         arguments.callee.$.updateImportDecorations.apply(this, arguments);

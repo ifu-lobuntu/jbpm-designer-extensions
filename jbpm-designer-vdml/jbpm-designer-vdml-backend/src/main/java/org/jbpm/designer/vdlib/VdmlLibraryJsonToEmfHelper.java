@@ -39,11 +39,7 @@ import org.jbpm.uml2.dd.umldi.UMLShape;
 import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.omg.dd.di.DiagramElement;
-import org.omg.smm.Characteristic;
-import org.omg.smm.DirectMeasure;
-import org.omg.smm.GradeMeasure;
-import org.omg.smm.Measure;
-import org.omg.smm.RankingMeasure;
+import org.omg.smm.*;
 import org.omg.vdml.*;
 
 public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
@@ -74,6 +70,23 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
             cd.eResource().setModified(true);
         } else if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.STORE_DEFINITION.getStencilId())) {
             StoreDefinition cd = createStoreDefinition(object, owningStoreLibrary);
+            cd.eResource().setModified(true);
+            Measure inventoryLevel = (Measure) sourceShape.getUnboundProperty("inventoryLevel");
+            if(inventoryLevel!=null && inventoryLevel.getTrait()!=null){
+                cd.setInventoryLevel(inventoryLevel.getTrait());
+            }
+            CapabilityMethod exchangeMethod= (CapabilityMethod) sourceShape.getUnboundProperty("exchangeMethod");
+            if(exchangeMethod!=null) {
+                Milestone exchangeMilestone = (Milestone) sourceShape.getUnboundProperty("exchangeMilestone");
+                Performer supplierRole = (Performer) sourceShape.getUnboundProperty("supplierRole");
+                cd.setExchangeConfiguration(VDMLFactory.eINSTANCE.createExchangeConfiguration());
+                cd.getExchangeConfiguration().setExchangeMethod(exchangeMethod);
+                cd.getExchangeConfiguration().setSupplierRole(supplierRole);
+                cd.getExchangeConfiguration().setExchangeMilestone(exchangeMilestone);
+            }
+
+        } else if (sourceShape.getStencilId().equalsIgnoreCase(VdmlLibraryStencil.POOL_DEFINITION.getStencilId())) {
+            StoreDefinition cd = createPoolDefinition(object, owningStoreLibrary);
             cd.eResource().setModified(true);
         }
         return super.caseClass(object);
@@ -136,15 +149,15 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
                         resource.setID(object, EcoreUtil.generateUUID());
                     }
                 }
-                if (measure instanceof DirectMeasure) {
-                    if (cmmnTypes != null) {
-                        object.setType(cmmnTypes.getOwnedType("Double"));
-                    }
-                } else if (measure instanceof GradeMeasure || measure instanceof RankingMeasure) {
+                if (measure instanceof GradeMeasure || measure instanceof RankingMeasure) {
                     for (EObject e : measure.eResource().getContents()) {
                         if (e instanceof Package) {
                             object.setType(((Package) e).getOwnedType(measure.getName()));
                         }
+                    }
+                } else if (measure instanceof DimensionalMeasure) {
+                    if (cmmnTypes != null) {
+                        object.setType(cmmnTypes.getOwnedType("Double"));
                     }
                 }
             }
@@ -240,7 +253,7 @@ public class VdmlLibraryJsonToEmfHelper extends ClassDiagramJsonToEmfHelper {
             } else {
                 EList<Property> attributes = ((Classifier) type).getAttributes();
                 for (Property property : attributes) {
-                    if (!map.containsKey(property)) {
+                    if (!map.containsKey(property) && property.getAssociation()==null) {
                         propertiesToDelete.add(property);
                     }
                 }

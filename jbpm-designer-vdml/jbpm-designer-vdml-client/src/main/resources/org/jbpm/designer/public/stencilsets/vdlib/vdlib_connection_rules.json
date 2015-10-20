@@ -1,105 +1,87 @@
-        "connectionRules" : [
-			{
-				"role" : "interfaceRealization",
-				"connects" : [
-					{
-						"from" : "class",
-						"to" : [
-							"interface","importedInterface"
-						]
-					}
-				]
-			},
-			{
-				"role" : "generalization",
-				"connects" : [
-					{
-						"from" : "class",
-						"to" : [
-							"class","importedClass"
-						]
-					},
-                    {
-                        "from" : "businessItemDefinition",
-                        "to" : [
-                            "businessItemDefinition","importedBusinessItemDefinition"
-                        ]
-                    },
-                    {
-                        "from" : "capability",
-                        "to" : [
-                            "capability"
-                        ]
-                    },
-                    {
-                        "from" : "store",
-                        "to" : [
-                            "store","externalStore"
-                        ]
-                    },
-                    {
-                        "from" : "capabilityOffer",
-                        "to" : [
-                            "capabilityOffer","externalCapabilityOffer"
-                        ]
-                    },
-                    {
-                        "from" : "pool",
-                        "to" : [
-                            "pool","externalPool"
-                        ]
-                    },
-                    {
-                        "from" : "orgUnit",
-                        "to" : [
-                            "externalOrgUnit"
-                        ]
-                    },
-					{
-						"from" : "interface",
-						"to" : [
-							"interface","importedInterface"
-						]
-					}
-				]
-			},
-			{
-				"role" : "composition",
-				"connects" : [
-					{
-						"from" : "class",
-						"to" : [
-							"class"
-						]
-					},
-					{
-						"from" : "businessItemDefinition",
-						"to" : [
-							"businessItemDefinition"
-						]
-					}
-				]
-			},
-			{
-				"role" : "directedAssociation",
-				"connects" : [
-					{
-						"from" : "associationSource",
-						"to" : [
-							"associationTarget"
-						]
-					}
-				]
-			},
-			{
-				"role" : "biDirectionalAssociation",
-				"connects" : [
-				    {
-                        "from" : "associationSource",
-                        "to" : [
-                            "associationSource"
-                        ]
-				    }
-				]
-			}
-		],
+{
+    "connectionRules": [
+        {
+            "role": "interfaceRealization",
+            "connects": [
+                {
+                    "from": "class",
+                    "to": [
+                        "interface",
+                        "importedInterface"
+                    ]
+                }
+            ]
+        },
+        {
+            "role": "generalization",
+            "connects": [
+                {
+                    "from": "class",
+                    "to": [
+                        "class",
+                        "importedClass"
+                    ]
+                },
+                {
+                    "from": "businessItemDefinition",
+                    "to": [
+                        "businessItemDefinition",
+                        "importedBusinessItemDefinition"
+                    ]
+                },
+                {
+                    "from": "capability",
+                    "to": [
+                        "capability"
+                    ]
+                },
+                {
+                    "from": "interface",
+                    "to": [
+                        "interface",
+                        "importedInterface"
+                    ]
+                }
+            ]
+        },
+        {
+            "role": "composition",
+            "connects": [
+                {
+                    "from": "class",
+                    "to": [
+                        "class"
+                    ]
+                },
+                {
+                    "from": "businessItemDefinition",
+                    "to": [
+                        "businessItemDefinition"
+                    ]
+                }
+            ]
+        },
+        {
+            "role": "directedAssociation",
+            "connects": [
+                {
+                    "from": "associationSource",
+                    "to": [
+                        "associationTarget"
+                    ]
+                }
+            ]
+        },
+        {
+            "role": "biDirectionalAssociation",
+            "connects": [
+                {
+                    "from": "associationSource",
+                    "to": [
+                        "associationSource"
+                    ]
+                }
+            ]
+        }
+    ]
+}

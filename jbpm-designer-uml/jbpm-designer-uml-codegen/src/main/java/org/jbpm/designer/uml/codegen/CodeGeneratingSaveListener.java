@@ -39,6 +39,12 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
     private Repository repository;
 
     public CodeGeneratingSaveListener() {
+        if (codeGenerator instanceof JavaCodeGenerator) {
+            JavaCodeGenerator jcg = (JavaCodeGenerator) codeGenerator;
+            for (AbstractJavaCodeDecorator cd : decorators) {
+                jcg.addDecorator(cd);
+            }
+        }
     }
 
     @Override
@@ -46,12 +52,7 @@ public class CodeGeneratingSaveListener implements SaveResourceListener {
         try {
             String ps = resource.getURI().toPlatformString(true);
             String packageName = getPackageName(ps);
-            if (codeGenerator instanceof JavaCodeGenerator) {
-                JavaCodeGenerator jcg = (JavaCodeGenerator) codeGenerator;
-                for (AbstractJavaCodeDecorator cd : decorators) {
-                    jcg.addDecorator(cd);
-                }
-            }
+
             for (DefaultCodeModelBuilder b : this.builders) {
                 for (EObject o : resource.getContents()) {
                     if (o instanceof Package) {

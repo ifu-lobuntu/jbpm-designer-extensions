@@ -27,7 +27,7 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
         owningCollaboration.getSupplyingStore().addAll(object.getSupplyingStore());
         return super.caseRole(object);
     }
-    
+
     @Override
     public Object caseActivity(Activity object) {
         object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
@@ -40,18 +40,22 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     public Object casePool(Pool object) {
         return super.casePool(object);
     }
+
     @Override
     public Object caseSupplyingPool(SupplyingPool object) {
         return super.caseSupplyingPool(object);
     }
+
     @Override
     public Object caseSupplyingStore(SupplyingStore object) {
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseSupplyingStore(object);
     }
 
     @Override
     public Object caseValueAdd(ValueAdd object) {
         object.setValueMeasurement(buildMeasuredCharacteristic("valueMeasure"));
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseValueAdd(object);
     }
 
@@ -66,6 +70,7 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
         a.getResourceUse().add(object);
         object.setQuantity(buildMeasuredCharacteristic("quantityMeasure"));
         object.setPlanningPercentage(buildMeasuredCharacteristic("planningPercentageMeasure"));
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseResourceUse(object);
     }
 
@@ -85,25 +90,28 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
     public Object caseOutputDelegation(OutputDelegation object) {
         return super.caseOutputDelegation(object);
     }
+
     @Override
     public Object casePort(Port object) {
         object.setBatchSize(buildMeasuredCharacteristic("batchSizeMeasure"));
         object.setPlanningPercentage(buildMeasuredCharacteristic("planningPercentageMeasure"));
         object.setOffset(buildMeasuredCharacteristic("offsetMeasure"));
-        if(object.eResource()==null){
-            if(sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_INPUT_PORT.getStencilId()) || sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_OUTPUT_PORT.getStencilId())){
+        if (object.eResource() == null) {
+            if (sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_INPUT_PORT.getStencilId()) || sourceShape.getStencilId().equals(VdmlActivityNetworkStencil.COLLABORATION_OUTPUT_PORT.getStencilId())) {
                 owningCollaboration.getContainedPort().add(object);
             }
         }
-        if(object.eResource()!=null) {
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
+        if (object.eResource() != null) {
             object.eResource().setModified(true);//for stores
-        VDMLShape shape = (VDMLShape) shapeMap.getDiagramElement(sourceShape).eContainer();
-        if(shape.getVdmlElement() instanceof Role){
-            object.setHandler((Role) shape.getVdmlElement());
-        }
+            VDMLShape shape = (VDMLShape) shapeMap.getDiagramElement(sourceShape).eContainer();
+            if (shape.getVdmlElement() instanceof Role) {
+                object.setHandler((Role) shape.getVdmlElement());
+            }
         }
         return super.casePort(object);
     }
+
     @Override
     public Object caseInputPort(InputPort object) {
         return super.caseInputPort(object);

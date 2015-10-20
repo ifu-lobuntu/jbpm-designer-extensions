@@ -1,809 +1,644 @@
-            {
-                "type" : "node",
-                "id" : "BusinessItemDefinition",
-                "title" : "BusinessItemDefinition",
-                "childBinding" : "ownedType",
-                "position" : 1,
-                "groups" : [
-                    "BusinessItemDefinition"
-                ],
-                "roles" : [
-                    "businessItemDefinition","associationSource","associationTarget"
-                ],
-                "description" : "A BusinessItemDefinition",
-                "view" : "vdml_classifier.svg",
-                "icon" : "business_item_definition.png",
-                "layout" : [ 
-                            
-                            {
-                                "type" : "layout.compartments"
-                            }
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    },
-                    {
-                        "id" : "isFungible",
-                        "type" : "Boolean",
-                        "title": "Is Fungible",
-                        "value" : true,
-                        "readonly" : false,
-                        "hidden" : false
-                    },
-                    {
-                        "id" : "isShareable",
-                        "type" : "Boolean",
-                        "title": "Is Shareable",
-                        "value" : false,
-                        "readonly" : false,
-                        "hidden" : false
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ImportedBusinessItemDefinition",
-                "title" : "ImportedBusinessItemDefinition",
-                "position" : 1,
-                "groups" : [
-                    "BusinessItemDefinition"
-                ],
-                "roles" : [
-                    "importedBusinessItemDefinition","associationTarget"
-                ],
-                "description" : "An imported BusinessItemDefinition",
-                "view" : "vdml_classifier.svg",
-                "icon" : "business_item_definition.png",
-                "layout" : [ 
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedBusinessItemDefinition",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Imported Definition",
-                        "value" : "",
-                        "description" : "The Type of the Property.",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"BusinessItemDefinition",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "CapabilityDefinition",
-                "title" : "CapabilityDefinition",
-                "childBinding" : "ownedType",
-                "position" : 1,
-                "groups" : [
-                    "Capability"
-                ],
-                "roles" : [
-                    "capability","associationSource","associationTarget"
-                ],
-                "description" : "A Capability Definition",
-                "view" : "vdml_classifier.svg",
-                "icon" : "capability_definition.png",
-                "layout" : [ 
-                            {
-                                "type" : "layout.compartments"
-                            }
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "CapabilityCategory",
-                "title" : "CapabilityCategory",
-                "childBinding" : "ownedType",
-                "position" : 1,
-                "groups" : [
-                    "Capability"
-                ],
-                "roles" : [
-                    "capability","associationSource","associationTarget"
-                ],
-                "description" : "A Capability Category",
-                "view" : "vdml_classifier.svg",
-                "icon" : "capability_category.png",
-                "layout" : [
-
-                            {
-                                "type" : "layout.compartments"
-                            }
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ImportedCapabilityDefinition",
-                "title" : "Imported Capability Definition",
-                "position" : 1,
-                "groups" : [
-                    "Capability"
-                ],
-                "roles" : [
-                    "importedCapabilityDefinition","associationTarget"
-                ],
-                "description" : "An imported BusinessItemDefinition",
-                "view" : "vdml_classifier.svg",
-                "icon" : "capability_definition.png",
-                "layout" : [ 
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedCapabilityDefinition",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Imported Definition",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"CapabilityDefinition",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ImportedCapabilityCategory",
-                "title" : "Imported Capability Category",
-                "position" : 1,
-                "groups" : [
-                    "Capability"
-                ],
-                "roles" : [
-                    "importedCapabilityCategory","associationTarget"
-                ],
-                "description" : "An imported Capability Category",
-                "view" : "vdml_classifier.svg",
-                "icon" : "capability_definition.png",
-                "layout" : [
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedCapabilityCategpry",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Imported Category",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"CapabilityCategory",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "StoreDefinition",
-                "title" : "StoreDefinition",
-                "childBinding" : "ownedType",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "store","associationSource","associationTarget"
-                ],
-                "description" : "A Store Definition",
-                "view" : "vdml_classifier.svg",
-                "icon" : "store.png",
-                "layout" : [
-                    {
-                        "type" : "layout.compartments"
-                    }
-                ],
-                "propertyPackages" : [
-                    "elementBase","localStyle","vdmlElementType","name"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "PoolDefinition",
-                "title" : "PoolDefinition",
-                "childBinding" : "ownedType",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "pool","associationSource","associationTarget"
-                ],
-                "description" : "A Pool Definition",
-                "view" : "vdml_classifier.svg",
-                "icon" : "pool.png",
-                "layout" : [
-                    {
-                        "type" : "layout.compartments"
-                    }
-                ],
-                "propertyPackages" : [
-                    "elementBase","localStyle","vdmlElementType","name"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "Store",
-                "title" : "Store",
-                "hide" : true,
-                "position" : 1,
-                "groups" : [
-                "OrgStructures"
-                ],
-                "roles" : [
-                    "store","associationSource","associationTarget"
-                ],
-                "description" : "An Owned Store",
-                "view" : "vdml_classifier.svg",
-                "icon" : "store.png",
-                "layout" : [
+{
+    "stencils": [
+        {
+            "type": "node",
+            "id": "BusinessItemDefinition",
+            "title": "BusinessItemDefinition",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "BusinessItems"
+            ],
+            "roles": [
+                "businessItemDefinition",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A BusinessItemDefinition",
+            "view": "vdml_classifier.svg",
+            "icon": "business_item_definition.png",
+            "layout": [
                 {
-                    "type" : "layout.compartments"
+                    "type": "layout.compartments"
                 }
-                ],
-                "propertyPackages" : [
-                    "elementBase","localStyle","vdmlElementType","name"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "Pool",
-                "title" : "Pool",
-                "hide" : true,
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "pool","associationSource","associationTarget"
-                ],
-                "description" : "An Owned Pool",
-                "view" : "vdml_classifier.svg",
-                "icon" : "pool.png",
-                "layout" : [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
                 {
-                    "type" : "layout.compartments"
+                    "id": "hasForm",
+                    "type": "Boolean",
+                    "value": true,
+                    "readonly": true,
+                    "hidden": true
+                },
+                {
+                    "id": "isFungible",
+                    "type": "Boolean",
+                    "title": "Is Fungible",
+                    "value": true,
+                    "readonly": false,
+                    "hidden": false
+                },
+                {
+                    "id": "isShareable",
+                    "type": "Boolean",
+                    "title": "Is Shareable",
+                    "value": false,
+                    "readonly": false,
+                    "hidden": false
                 }
-                ],
-                "propertyPackages" : [
-                    "elementBase","localStyle","vdmlElementType","name"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "CapabilityOffer",
-                "title" : "Capability Offer",
-                "hide" : true,
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "capabilityOffer","associationSource","associationTarget"
-                ],
-                "description" : "An Offered Capability",
-                "view" : "vdml_classifier.svg",
-                "icon" : "capability_offer.png",
-                "layout" : [
-                    {
-                        "type" : "layout.compartments"
-                    }
-                ],
-                "propertyPackages" : [
-                        "elementBase","localStyle","vdmlElementType","name"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "OrgUnit",
-                "title" : "OrgUnit",
-                "hide" : true,
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "orgUnit","associationSource","associationTarget"
-                ],
-                "description" : "This OrgUnit",
-                "view" : "vdml_classifier.svg",
-                "icon" : "org_unit.png",
-                "layout" : [
-                    {
-                        "type" : "layout.compartments"
-                    }
-                ],
-                "propertyPackages" : [
-                        "elementBase","localStyle","vdmlElementType","name"
-                ],
-                "properties" : [
-                    {
-                        "id" : "hasForm",
-                        "type" : "Boolean",
-                        "value" : true,
-                        "readonly" : true,
-                        "hidden" : true
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ExternalStore",
-                "title" : "External Store",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "externalStore","associationTarget"
-                ],
-                "description" : "An external Store",
-                "view" : "vdml_classifier.svg",
-                "icon" : "external_store.png",
-                "layout" : [ 
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedStore",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Store",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"Store",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ExternalPool",
-                "title" : "External Pool",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "externalPool","associationTarget"
-                ],
-                "description" : "An external Pool",
-                "view" : "vdml_classifier.svg",
-                "icon" : "external_pool.png",
-                "layout" : [ 
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedPool",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Pool",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"Pool",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ImportedStoreDefinition",
-                "title" : "Imported Store Definition",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "externalStore","associationTarget"
-                ],
-                "description" : "An external Store",
-                "view" : "vdml_classifier.svg",
-                "icon" : "external_store.png",
-                "layout" : [
-                ],
-                "propertyPackages" : [
-                    "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedStore",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Store",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"Store",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "ImportedPoolDefinition",
-                "title" : "Imported Pool Definition",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "externalPool","associationTarget"
-                ],
-                "description" : "An external Pool",
-                "view" : "vdml_classifier.svg",
-                "icon" : "external_pool.png",
-                "layout" : [
-                ],
-                "propertyPackages" : [
-                    "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                    "id" : "importedPool",
-                    "type" : "eobjectref",
-                    "viewBinding" : "umlElement",
-                    "title" : "Pool",
-                    "value" : "",
-                    "description" : "",
-                    "readonly" : false,
-                    "optional" : false,
-                    "bindLate" : true,
-                    "reference" : {
-                        "targetProfile":"vdcol",
-                        "allowedElementTypes":"Pool",
-                        "nameFeature" : "qualifiedName",
-                        "matchFirstReference" : true
+            ]
+        },
+        {
+            "type": "node",
+            "id": "BusinessItemCategory",
+            "title": "BusinessItemCategory",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "BusinessItems"
+            ],
+            "roles": [
+                "businessItemCategory",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A BusinessItemCategory",
+            "view": "vdml_classifier.svg",
+            "icon": "business_item_definition.png",
+            "layout": [
+                {
+                    "type": "layout.compartments"
+                }
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+            ]
+        },
+        {
+            "type": "node",
+            "id": "ImportedBusinessItemDefinition",
+            "title": "ImportedBusinessItemDefinition",
+            "position": 1,
+            "groups": [
+                "BusinessItems"
+            ],
+            "roles": [
+                "importedBusinessItemDefinition",
+                "associationTarget"
+            ],
+            "description": "An imported BusinessItemDefinition",
+            "view": "vdml_classifier.svg",
+            "icon": "business_item_definition.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedBusinessItemDefinition",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Imported Definition",
+                    "value": "",
+                    "description": "The Type of the Property.",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "BusinessItemDefinition",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
                     },
-                    "length" : ""
-                    }
-                ]
-            },
-            {
-                "type" : "node",
-                "id" : "ExternalOrgUnit",
-                "title" : "External OrgUnit",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "externalOrgUnit","associationTarget"
-                ],
-                "description" : "An external OrgUnit",
-                "view" : "vdml_classifier.svg",
-                "icon" : "external_org_unit.png",
-                "layout" : [ 
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedOrgUnit",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "OrgUnit",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"OrgUnit",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-                "type" : "node",
-                "id" : "ExternalCapabilityOffer",
-                "title" : "External Capability Offer",
-                "position" : 1,
-                "groups" : [
-                    "OrgStructures"
-                ],
-                "roles" : [
-                    "externalCapabilityOffer","associationTarget"
-                ],
-                "description" : "An external OrgUnit",
-                "view" : "vdml_classifier.svg",
-                "icon" : "external_capability_offer.png",
-                "layout" : [ 
-                ],
-                "propertyPackages" : [
-                        "elementBase","name","localStyle","vdmlElementType"
-                ],
-                "properties" : [
-                    {
-                        "id" : "importedCapabilityOffer",
-                        "type" : "eobjectref",
-                        "viewBinding" : "umlElement",
-                        "title" : "Capability Offer",
-                        "value" : "",
-                        "description" : "",
-                        "readonly" : false,
-                        "optional" : false,
-                        "bindLate" : true,
-                        "reference" : {
-                            "targetProfile":"vdcol",
-                            "allowedElementTypes":"CapabilityOffer",
-                            "nameFeature" : "qualifiedName",
-                            "matchFirstReference" : true
-                        },
-                        "length" : ""
-                    }
-               ]
-            },
-            {
-				"type" : "node",
-				"id" : "CharacteristicDefinition",
-				"title" : "CharacteristicDefinition",
-				"position" : 2,
-				"groups" : [
-					"Compartments"
-				],
-				"roles" : [
-					"characteristicDefinition"
-				],
-				"description" : "The Characteristic Compartment",
-				"isCompartment":true,
-				"view" : "characteristic_definition.svg",
-				"icon" : "characteristic_definition.png",
-				"layout" : [
-					{
-						"type" : "layout.list"
-					},
-					{
-						"type" : "layout.collapsible"
-					}
-				],
-			    "propertyPackages" : [
-			          "compartment","localStyle"
-				],
-				"properties" : [
-					{
-						"id" : "name",
-						"type" : "String",
-						"value" : "Characteristics",
-						"readonly" : true,
-						"hidden" : true,
-						"refToView" : [
-							"text_name"
-						]
-					}
-				]
-			},
-            {
-                "type" : "node",
-                "id" : "CharacteristicDefinition",
-                "title" : "CharacteristicDefinition",
-                "position" : 2,
-                "groups" : [
-                    "Compartments"
-                ],
-                "roles" : [
-                    "characteristicDefinition"
-                ],
-                "description" : "The Characteristic Compartment",
-                "isCompartment":true,
-                "view" : "characteristic_definition.svg",
-                "icon" : "characteristic_definition.png",
-                "layout" : [
-                    {
-                        "type" : "layout.list"
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "ImportedBusinessItemCategory",
+            "title": "ImportedBusinessItemCategory",
+            "position": 1,
+            "groups": [
+                "BusinessItems"
+            ],
+            "roles": [
+                "importedBusinessItemCategory",
+                "associationTarget"
+            ],
+            "description": "An imported BusinessItemCategory",
+            "view": "vdml_classifier.svg",
+            "icon": "business_item_definition.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedBusinessItemCategory",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Imported Definition",
+                    "value": "",
+                    "description": "The Type of the Property.",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "BusinessItemCategory",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
                     },
-                    {
-                        "type" : "layout.collapsible"
-                    }
-                ],
-                "propertyPackages" : [
-                      "compartment","localStyle"
-                ],
-                "properties" : [
-                    {
-                        "id" : "name",
-                        "type" : "String",
-                        "value" : "Characteristics",
-                        "readonly" : true,
-                        "hidden" : true,
-                        "refToView" : [
-                            "text_name"
-                        ]
-                    }
-                ]
-            },
-
-			{
-				"type" : "node",
-				"id" : "Characteristic",
-				"title" : "Characteristic",
-				"childBinding" : "ownedAttribute",
-				"position" : 2,
-				"groups" : [
-					"Features"
-				],
-				"roles" : [
-					"characteristic"
-				],
-				"description" : "A Characteristic",
-				"view" : "characteristic.svg",
-				"icon" : "characteristic.png",
-				"layout" : [
-				],
-			    "propertyPackages" : [
-                         "elementBase",
-						"localStyle",
-						"multiplicity"
-				],
-				"properties" : [
-	                {
-						"id" : "measure",
-						"type" : "eobjectref",
-						"title" : "Measure",
-						"value" : "",
-						"description" : "The Measure.",
-						"readonly" : false,
-						"optional" : true,
-						"reference" : {
-							"targetProfile":"meas",
-							"allowedElementTypes":"DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure|RankingMeasure|NamedMeasure",
-							"nameFeature" : "name"
-						},
-
-						"length" : ""
-	                },
-                    {
-                        "id" : "name",
-                        "type" : "String",
-                        "title" : "Name",
-                        "value" : "CharacteristicDefinition1",
-                        "description" : "The descriptive name of the Characteristic Definition.",
-                        "readonly" : false,
-                        "optional" : true,
-                        "length" : "",
-                        "wrapLines" : false,
-                        "refToView" : [
-                            "text_name"
-                        ]
-                    }
-				]
-			},
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "CapabilityDefinition",
+            "title": "CapabilityDefinition",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "Capabilities"
+            ],
+            "roles": [
+                "capability",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A Capability Definition",
+            "view": "vdml_classifier.svg",
+            "icon": "capability_definition.png",
+            "layout": [
+                {
+                    "type": "layout.compartments"
+                }
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType",
+                "exchangeConfiguration"
+            ],
+            "properties": [
+                {
+                    "id": "hasForm",
+                    "type": "Boolean",
+                    "value": true,
+                    "readonly": true,
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "CapabilityCategory",
+            "title": "CapabilityCategory",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "Capabilities"
+            ],
+            "roles": [
+                "capability",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A Capability Category",
+            "view": "vdml_classifier.svg",
+            "icon": "capability_category.png",
+            "layout": [
+                {
+                    "type": "layout.compartments"
+                }
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "hasForm",
+                    "type": "Boolean",
+                    "value": true,
+                    "readonly": true,
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "ImportedCapabilityDefinition",
+            "title": "Imported Capability Definition",
+            "position": 1,
+            "groups": [
+                "Capabilities"
+            ],
+            "roles": [
+                "importedCapabilityDefinition",
+                "associationTarget"
+            ],
+            "description": "An imported BusinessItemDefinition",
+            "view": "vdml_classifier.svg",
+            "icon": "capability_definition.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedCapabilityDefinition",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Imported Definition",
+                    "value": "",
+                    "description": "",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "CapabilityDefinition",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "ImportedCapabilityCategory",
+            "title": "Imported Capability Category",
+            "position": 1,
+            "groups": [
+                "Capabilities"
+            ],
+            "roles": [
+                "importedCapabilityCategory",
+                "associationTarget"
+            ],
+            "description": "An imported Capability Category",
+            "view": "vdml_classifier.svg",
+            "icon": "capability_definition.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedCapabilityCategpry",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Imported Category",
+                    "value": "",
+                    "description": "",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "CapabilityCategory",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "StoreDefinition",
+            "title": "StoreDefinition",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "Stores"
+            ],
+            "roles": [
+                "store",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A Store Definition",
+            "view": "vdml_classifier.svg",
+            "icon": "store.png",
+            "layout": [
+                {
+                    "type": "layout.compartments"
+                }
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "localStyle",
+                "vdmlElementType",
+                "name",
+                "store",
+                "exchangeConfiguration"
+            ],
+            "properties": [
+                {
+                    "id": "hasForm",
+                    "type": "Boolean",
+                    "value": true,
+                    "readonly": true,
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "PoolDefinition",
+            "title": "PoolDefinition",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "Stores"
+            ],
+            "roles": [
+                "pool",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A Pool Definition",
+            "view": "vdml_classifier.svg",
+            "icon": "pool.png",
+            "layout": [
+                {
+                    "type": "layout.compartments"
+                }
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "localStyle",
+                "vdmlElementType",
+                "name",
+                "exchangeConfiguration"
+            ],
+            "properties": [
+                {
+                    "id": "hasForm",
+                    "type": "Boolean",
+                    "value": true,
+                    "readonly": true,
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "ImportedStoreDefinition",
+            "title": "Imported Store Definition",
+            "position": 1,
+            "groups": [
+                "Stores"
+            ],
+            "roles": [
+                "externalStore",
+                "associationTarget"
+            ],
+            "description": "An external Store",
+            "view": "vdml_classifier.svg",
+            "icon": "external_store.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedStore",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Store",
+                    "value": "",
+                    "description": "",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "Store",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "ImportedPoolDefinition",
+            "title": "Imported Pool Definition",
+            "position": 1,
+            "groups": [
+                "Stores"
+            ],
+            "roles": [
+                "externalPool",
+                "associationTarget"
+            ],
+            "description": "An external Pool",
+            "view": "vdml_classifier.svg",
+            "icon": "external_pool.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedPool",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Pool",
+                    "value": "",
+                    "description": "",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "Pool",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "CharacteristicDefinition",
+            "title": "CharacteristicDefinition",
+            "position": 2,
+            "groups": [
+                "Compartments"
+            ],
+            "roles": [
+                "characteristicDefinition"
+            ],
+            "description": "The Characteristic Compartment",
+            "isCompartment": true,
+            "view": "characteristic_definition.svg",
+            "icon": "characteristic_definition.png",
+            "layout": [
+                {
+                    "type": "layout.list"
+                },
+                {
+                    "type": "layout.collapsible"
+                }
+            ],
+            "propertyPackages": [
+                "compartment",
+                "localStyle"
+            ],
+            "properties": [
+                {
+                    "id": "name",
+                    "type": "String",
+                    "value": "Characteristics",
+                    "readonly": true,
+                    "hidden": true,
+                    "refToView": [
+                        "text_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "CharacteristicDefinition",
+            "title": "CharacteristicDefinition",
+            "position": 2,
+            "groups": [
+                "Compartments"
+            ],
+            "roles": [
+                "characteristicDefinition"
+            ],
+            "description": "The Characteristic Compartment",
+            "isCompartment": true,
+            "view": "characteristic_definition.svg",
+            "icon": "characteristic_definition.png",
+            "layout": [
+                {
+                    "type": "layout.list"
+                },
+                {
+                    "type": "layout.collapsible"
+                }
+            ],
+            "propertyPackages": [
+                "compartment",
+                "localStyle"
+            ],
+            "properties": [
+                {
+                    "id": "name",
+                    "type": "String",
+                    "value": "Characteristics",
+                    "readonly": true,
+                    "hidden": true,
+                    "refToView": [
+                        "text_name"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "node",
+            "id": "Characteristic",
+            "title": "Characteristic",
+            "childBinding": "ownedAttribute",
+            "position": 2,
+            "groups": [
+                "Features"
+            ],
+            "roles": [
+                "characteristic"
+            ],
+            "referenceProperty": "measure",
+            "description": "A Characteristic",
+            "view": "characteristic.svg",
+            "icon": "characteristic.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "localStyle",
+                "multiplicity"
+            ],
+            "properties": [
+                {
+                    "id": "measure",
+                    "type": "eobjectref",
+                    "title": "Measure",
+                    "value": "",
+                    "description": "The Measure.",
+                    "readonly": false,
+                    "optional": true,
+                    "reference": {
+                        "targetProfile": "meas",
+                        "allowedElementTypes": "DirectMeasure|BinaryMeasure|CollectiveMeasure|RescaledMeasure|GradeMeasure|RankingMeasure|NamedMeasure",
+                        "nameFeature": "name"
+                    },
+                    "length": ""
+                },
+                {
+                    "id": "name",
+                    "type": "String",
+                    "title": "Name",
+                    "value": "Select Measure...",
+                    "description": "The descriptive name of the Characteristic Definition.",
+                    "readonly": true,
+                    "optional": true,
+                    "length": "",
+                    "wrapLines": false,
+                    "refToView": [
+                        "text_name"
+                    ]
+                }
+            ]
+        }
+    ]
+}

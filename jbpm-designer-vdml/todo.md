@@ -6,50 +6,47 @@
 ##Value Proposition Exchange
 
 ##Library Modeling
- - OwnedPool
- - OwnedStore
- - OwnedCapabilityOffer
- - OrgUnit
- - ExternalPool
- - ExternalStore
- - ExternalCapabilityOffer
- - ExternalOrgUnit
  - BusinessItemCategory
  - ImportedBusinessItemCategory
- - ImportedBusinessItemDefinition
- - CapabilityDependency
- - ImportedCapabilityCategory
- - ImportedCapabilityDefinition
- - Actor
- - ImportedActor
- - RoleCategory
- - ImportedRoleCategory
- - RoleDefinition
- - ImportedRoleDefinition
- - ValueDefinition
- - ImportedValueDefinition
- - ValueCategory
- - ImportedValueCategory
+ - BusinessItemGeneralization
+ - CapabilityGeneralization
+ - StoreDefinitionGeneralization
+ - StoreDefinitionResource
  
-##Capability Management
- - Owned CapabilityMethod (need to solve containment issue)
- - Activity.appliedCapabilityOffer (do fromActivity in propertyEditor)
- - ExternalOrgUnit
- - ExternalPosition
- - ExternalCapabiltyOffer
 
 #2. Property Editors
 ##ActivityNetworks
  - ResourceUse.isExclusive
+ - ResourceUse.location
+ - DeliverableFlow.milestone
+ - CapabilityMethod.milestones
+ - Activity.delegationContext.contextCollaboration
+ - DeliverableFlow.multiplexing(manyToOne):demultiplexing (oneToMany)
+ - InputPort.inputDelegation.target
+ - OutputPort.delegatedOutput.source
+ - Role.assignment.roleResource - NB!!!! for role delegation in Activity.delegationContext.contextCollaboration 
 
 ##Role Collaboration
+ - DeliverableFlow.providingStore
+ - DeliverableFlow.receivingStore
 
 ##Value Proposition Exchange
  - ValueElement.valueDefinition - start thinking about repo of ValueDefinitions (UML Profile?)
  - ValueProposition.overallSatisfaction.measure (filtered, singleselect, eobjectref)
  - ValueElement.benchmark.measure (filtered, singleselect, eobjectref)
+ - ValueElement.aggregatedTo/From - allow capabilityMethods valueAdds to aggregate to ValueNetwork valueAdds
 
 ##Library Modeling
+ - StoreDefinition.exchangeConfiguration.exchangeMethod
+ - StoreDefinition.exchangeConfiguration.exchangeMilestone
+ - StoreDefinition.exchangeConfiguration.supplierRole
+ - PoolDefinition.exchangeConfiguration.resourceUseFromPool
+ - PoolDefinition.exchangeConfiguration.exchangeMethod
+ - PoolDefinition.exchangeConfiguration.exchangeMilestone
+ - PoolDefinition.exchangeConfiguration.supplierRole
+ - CapabilityDefinition.exchangeConfiguration.exchangeMethod
+ - CapabilityDefinition.exchangeConfiguration.exchangeMilestone
+ - CapabilityDefinition.exchangeConfiguration.supplierRole
 
 ##Capability Management
  - *Pool.position
@@ -61,6 +58,7 @@
 #3. Decorators
 ##ActivityNetworks
  - Has ValueAdds
+ - DeliverableFlow.milestone
 
 ##Role Collaboration
 
@@ -89,18 +87,11 @@
 #5. Automatic diagram generation
 
 ##Library Modeling
- - Generate shapes for each element directly contained in the current vdcol file
- - *OrgUnits
- - *Stores
- - *Pools
  - *BusinessItemDefinition
  - BusinessItemCategory
- - *MeasuredCharacteristic
  - *Characteristic
  - *Capability Definition
  - *Capability Category
- - Value Definition
- - Value Category
 
 ##Capability Management
 

@@ -60,7 +60,11 @@ ORYX.Plugins.AbstractExtensionsPlugin = ORYX.Plugins.AbstractPlugin.extend(
                     }else{
                         name=name.slice(0,name.indexOf("|"));
                     }
-                    shape.setProperty("oryx-name", name,true);
+                    if(name.trim().length == 0){
+                        shape.setProperty("oryx-name", "Select " + refProp,true);
+                    }else{
+                        shape.setProperty("oryx-name", name,true);
+                    }
                     shape.refresh();
                 }
             }

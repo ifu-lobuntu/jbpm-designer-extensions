@@ -14,36 +14,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum VdmlLibraryStencil implements VdmlStencilInfo {
+    //BusinessItemDefinitions
     BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "BusinessItemDefinition", false),
     BUSINESS_ITEM_CATEGORY(VDMLPackage.eINSTANCE.getBusinessItemCategory(), ClassDiagramStencil.CLASS, "BusinessItemCategory", false),
-    CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "CapabilityCategory", false),
-    CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "CapabilityDefinition", false),
-    POOL_DEFINITION(VDMLPackage.eINSTANCE.getPoolDefinition(), ClassDiagramStencil.CLASS, "PoolDefinition", false),
-    STORE_DEFINITION(VDMLPackage.eINSTANCE.getStoreDefinition(), ClassDiagramStencil.CLASS, "StoreDefinition", false),
+    BUSINESS_ITEM_GENERALIZATION(null, ClassDiagramStencil.GENERALIZATION, "BusinessItemGeneralization", false),
     IMPORTED_BUSINESS_ITEM_DEFINITION(VDMLPackage.eINSTANCE.getBusinessItemDefinition(), ClassDiagramStencil.CLASS, "ImportedBusinessItemDefinition", true),
     IMPORTED_BUSINESS_ITEM_CATEGORY(VDMLPackage.eINSTANCE.getBusinessItemCategory(), ClassDiagramStencil.CLASS, "ImportedBusinessItemCategory", true),
+
+    //CapabilityDefinitions
+    CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "CapabilityCategory", false),
+    CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "CapabilityDefinition", false),
+    CAPABILITY_GENERALIZATION(null, ClassDiagramStencil.GENERALIZATION, "CapabilityGeneralization", false),
     IMPORTED_CAPABILITY_CATEGORY(VDMLPackage.eINSTANCE.getCapabilityCategory(), ClassDiagramStencil.CLASS, "ImportedCapabilityCategory", true),
     IMPORTED_CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "ImportedCapabilityDefinition", true),
+
+    //StoreDefinitions
+    POOL_DEFINITION(VDMLPackage.eINSTANCE.getPoolDefinition(), ClassDiagramStencil.CLASS, "PoolDefinition", false),
+    STORE_DEFINITION(VDMLPackage.eINSTANCE.getStoreDefinition(), ClassDiagramStencil.CLASS, "StoreDefinition", false),
+    STORE_GENERALIZATION(null, ClassDiagramStencil.GENERALIZATION, "StoreGeneralization", false),
+    STORE_RESOURCE(null, ClassDiagramStencil.BI_DIRECTIONAL_ASSOCIATION, "StoreResource", false),
     IMPORTED_STORE_DEFINITION(VDMLPackage.eINSTANCE.getStoreDefinition(), ClassDiagramStencil.CLASS, "ImportedStoreDefinition", true),
     IMPORTED_POOL_DEFINITION(VDMLPackage.eINSTANCE.getPoolDefinition(), ClassDiagramStencil.CLASS, "ImportedPoolDefinition", true),
-    ROLE_DEFINITION(VDMLPackage.eINSTANCE.getRoleDefinition(), ClassDiagramStencil.CLASS, "RoleDefinition", false),
-    ROLE_CATEGORY(VDMLPackage.eINSTANCE.getRoleCategory(), ClassDiagramStencil.CLASS, "RoleCategory", false),
-    VALUE_DEFINITION(VDMLPackage.eINSTANCE.getValueDefinition(), ClassDiagramStencil.CLASS, "ValueDefinition", false),
-    VALUE_CATEGORY(VDMLPackage.eINSTANCE.getValueCategory(), ClassDiagramStencil.CLASS, "ValueCategory", false),
-    ACTOR(VDMLPackage.eINSTANCE.getActor(), ClassDiagramStencil.CLASS, "Actor", false),
-    IMPORTED_ACTOR(VDMLPackage.eINSTANCE.getActor(), ClassDiagramStencil.CLASS, "Actor", true),
-    IMPORTED_ROLE_DEFINITION(VDMLPackage.eINSTANCE.getRoleDefinition(), ClassDiagramStencil.CLASS, "ImportedRoleDefinition", true),
-    IMPORTED_ROLE_CATEGORY(VDMLPackage.eINSTANCE.getRoleCategory(), ClassDiagramStencil.CLASS, "ImportedRoleCategory", true),
-    IMPORTED_VALUE_DEFINITION(VDMLPackage.eINSTANCE.getValueDefinition(), ClassDiagramStencil.CLASS, "ImportedValueDefinition", true),
-    IMPORTED_VALUE_CATEGORY(VDMLPackage.eINSTANCE.getValueCategory(), ClassDiagramStencil.CLASS, "ImportedValueCategory", true),
-    STORE(VDMLPackage.eINSTANCE.getStore(), ClassDiagramStencil.CLASS, "Store", false),
-    POOL(VDMLPackage.eINSTANCE.getPool(), ClassDiagramStencil.CLASS, "Pool", false),
-    ORG_UNIT(VDMLPackage.eINSTANCE.getOrgUnit(), ClassDiagramStencil.CLASS, "OrgUnit", false),
-    CAPABILITY_OFFER(VDMLPackage.eINSTANCE.getCapabilityOffer(), ClassDiagramStencil.CLASS, "CapabilityOffer", false),
-    EXTERNAL_STORE(VDMLPackage.eINSTANCE.getStore(), ClassDiagramStencil.CLASS, "ExternalStore", true),
-    EXTERNAL_POOL(VDMLPackage.eINSTANCE.getPool(), ClassDiagramStencil.CLASS, "ExternalPool", true),
-    EXTERNAL_ORG_UNIT(VDMLPackage.eINSTANCE.getOrgUnit(), ClassDiagramStencil.CLASS, "ExternalOrgUnit", true),
-    EXTERNAL_CAPABILITY_OFFER(VDMLPackage.eINSTANCE.getCapabilityOffer(), ClassDiagramStencil.CLASS, "ExternalCapabilityOffer", true),
+
+    //Characteristic
     CHARACTERISTIC_DEFINITION(null, ClassDiagramStencil.OWNED_ATTRIBUTE, "CharacteristicDefinition", false),
     CHARACTERISTIC(SMMPackage.eINSTANCE.getCharacteristic(), ClassDiagramStencil.PROPERTY, "Characteristic", true);
 

@@ -30,7 +30,6 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
 
     @Override
     public Object caseCollaboration(Collaboration object) {
-        targetShape.getProperties().put("collaborationtype", object.eClass().getName());
         return super.caseCollaboration(object);
     }
 
@@ -48,9 +47,7 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     public Object caseActivity(Activity object) {
         putMeasuredCharacteristic("durationMeasure", object.getDuration());
         putMeasuredCharacteristic("recurrenceIntervalMeasure", object.getRecurrenceInterval());
-        String measures = "measures";
-        EList<MeasuredCharacteristic> measuredCharacteristic = object.getMeasuredCharacteristic();
-        putMeasuredCharacteristics(measures, measuredCharacteristic);
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseActivity(object);
     }
 
@@ -58,6 +55,7 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     @Override
     public Object caseValueAdd(ValueAdd object) {
         putMeasuredCharacteristic("valueMeasure", object.getValueMeasurement());
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseValueAdd(object);
     }
 
@@ -65,6 +63,7 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     public Object caseResourceUse(ResourceUse object) {
         putMeasuredCharacteristic("quantityMeasure", object.getQuantity());
         putMeasuredCharacteristic("planningPercentageMeasure", object.getPlanningPercentage());
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseResourceUse(object);
     }
 
@@ -73,7 +72,14 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
         putMeasuredCharacteristic("batchSizeMeasure", object.getBatchSize());
         putMeasuredCharacteristic("planningPercentageMeasure", object.getPlanningPercentage());
         putMeasuredCharacteristic("offsetMeasure", object.getOffset());
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.casePort(object);
+    }
+
+    @Override
+    public Object caseSupplyingStore(SupplyingStore object) {
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
+        return super.caseSupplyingStore(object);
     }
 
     @Override
@@ -100,6 +106,7 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     public Object caseDeliverableFlow(DeliverableFlow object) {
         putMeasuredCharacteristic("duration", object.getDuration());
         putBusinessItem(object.getDeliverable(), "deliverableDefinition");
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseDeliverableFlow(object);
     }
 

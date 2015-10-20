@@ -199,6 +199,7 @@ public class MeasureLibraryJsonToEmfHelper extends SMMSwitch<Object> implements 
             // NB!!! need to keep it static
             shapeMap.getResource().setID(ch, shapeMap.getId(m) + "trait");
             m.setTrait(ch);
+            System.out.println(shapeMap.getId(ch));
         }
         return super.caseMeasure(m);
     }

@@ -121,7 +121,7 @@ ORYX.Plugins.MEAS = ORYX.Plugins.AbstractExtensionsPlugin.extend(
                         aggregator=aggregator+edge.outgoing[0].properties["oryx-name"]+"("+shape.properties["oryx-operation"] +")";
                     }
                 });
-                aggregator=aggregator.slice(0,-1) +")";
+                aggregator=aggregator +")";
                 label.text(aggregator);
                 label.update();
             }

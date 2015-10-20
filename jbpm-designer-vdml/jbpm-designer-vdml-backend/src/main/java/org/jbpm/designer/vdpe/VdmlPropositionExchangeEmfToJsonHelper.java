@@ -24,16 +24,15 @@ public class VdmlPropositionExchangeEmfToJsonHelper extends AbstractVdmlEmfToJso
 
     @Override
     public Object caseCollaboration(Collaboration object) {
-        targetShape.getProperties().put("collaborationtype", object.eClass().getName());
         return super.caseCollaboration(object);
     }
-
     @Override
     public Object caseValuePropositionComponent(ValuePropositionComponent object) {
         Shape shape = shapeMap.get(JBPMECoreHelper.getID(object.eContainer()));
         putMeasuredCharacteristic("valueMeasure", object.getValueMeasurement());
         putMeasuredCharacteristic("satisfactionLevelMeausure", object.getSatisfactionLevel());
         putMeasuredCharacteristic("percentageWeightMeasure", object.getPercentageWeight());
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseValuePropositionComponent(object);
     }
 

@@ -3,10 +3,7 @@ package org.jbpm.designer.client.vdlib;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 
 
 public class ClassDiagramStencilsetImporter {
@@ -29,16 +26,16 @@ public class ClassDiagramStencilsetImporter {
             }
             if (line.equals("        \"connectionRules\" : [")) {
                 readingIgnoredConnectionRules = true;
-                fw.write(FileUtils.readFileToString(new File(vdmlPublicDir, path("stencilsets/vdlib/vdlib_connection_rules.json"))));
+                fw.write(chopOffRootDeclaration(vdmlPublicDir, "stencilsets/vdlib/vdlib_connection_rules.json",1));
             } else {
                 String out=line+"\n";
                 if (line.startsWith("    \"propertyPackages\" : [")) {
                     readingIgnoredConnectionRules = false;
-                    out+=FileUtils.readFileToString(new File(vdmlPublicDir, path("stencilsets/vdlib/vdlib_property_packages.json")));
+                    out+=chopOffRootDeclaration(vdmlPublicDir,"stencilsets/vdlib/vdlib_property_packages.json",2);
                 }
                 if (line.startsWith("    \"stencils\" : [")) {
                     readingIgnoredConnectionRules = false;
-                    out+=FileUtils.readFileToString(new File(vdmlPublicDir, path("stencilsets/vdlib/vdlib_stencils.json")));
+                    out+= chopOffRootDeclaration(vdmlPublicDir, "stencilsets/vdlib/vdlib_stencils.json",2);
                 }
                 if (line.equals("        \"morphingRules\": [")) {
                     readingIgnoredConnectionRules = false;
@@ -54,6 +51,17 @@ public class ClassDiagramStencilsetImporter {
             }
         }
         fw.flush();
+    }
+
+    protected String chopOffRootDeclaration(File vdmlPublicDir, String path, int lineCount) throws IOException {
+        String[] split = FileUtils.readFileToString(new File(vdmlPublicDir, path(path))).split("\\n");
+        StringBuilder sb = new StringBuilder();
+        for (int i = lineCount; i < split.length-lineCount; i++) {
+            sb.append(split[i]);
+            sb.append("\n");
+        }
+        sb.append(",");
+        return sb.toString();
     }
 
     private static String path(String path) {

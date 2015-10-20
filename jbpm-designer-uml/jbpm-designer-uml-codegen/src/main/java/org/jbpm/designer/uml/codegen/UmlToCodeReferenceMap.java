@@ -100,12 +100,25 @@ public class UmlToCodeReferenceMap {
         // TODO populate mappings
         CodePackageReference result = packagePaths.get(p);
         if (result == null) {
-            Namespace parent = p.getNamespace();
             Map<String, String> packageMappings = EmfClassifierUtil.getMappings(p);
-            if (parent == null) {
+            if(p.eResource().getURI().isPlatformResource()){
+                String resourcePath = "src/main/resources";
+                String ps = p.eResource().getURI().toPlatformString(true);
+                int indexOf = ps.indexOf(resourcePath);
+                CodePackageReference cp = null;
+                String packageName = null;
+                if (indexOf > 0) {
+                    packageName = ps.substring(indexOf + resourcePath.length()+1, ps.lastIndexOf("/")).replace('/', '.');
+                }
+                packageMappings.put("java",packageName);
                 packagePaths.put(p, result = new CodePackageReference(null, NameConverter.toValidVariableName(p.getName()).toLowerCase(), packageMappings));
-            } else {
-                packagePaths.put(p, result = new CodePackageReference(packagePathname(parent), NameConverter.toValidVariableName(p.getName()).toLowerCase(), packageMappings));
+            }else {
+                Namespace parent = p.getNamespace();
+                if (parent == null) {
+                    packagePaths.put(p, result = new CodePackageReference(null, NameConverter.toValidVariableName(p.getName()).toLowerCase(), packageMappings));
+                } else {
+                    packagePaths.put(p, result = new CodePackageReference(packagePathname(parent), NameConverter.toValidVariableName(p.getName()).toLowerCase(), packageMappings));
+                }
             }
 
         }

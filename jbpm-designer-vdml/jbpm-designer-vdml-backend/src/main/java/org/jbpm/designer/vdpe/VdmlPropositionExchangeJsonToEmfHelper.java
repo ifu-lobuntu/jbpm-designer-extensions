@@ -34,6 +34,7 @@ public class VdmlPropositionExchangeJsonToEmfHelper extends AbstractVdmlJsonToEm
         object.setValueMeasurement(buildMeasuredCharacteristic("valueMeasure"));
         object.setSatisfactionLevel(buildMeasuredCharacteristic("satisfactionLevelMeasure"));
         object.setPercentageWeight(buildMeasuredCharacteristic("percentageWeightMeasure"));
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseValuePropositionComponent(object);
     }
 

@@ -143,6 +143,13 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
             setMultiplicity("end2Multiplicity", object.getMemberEnds().get(1));
         } else {
             setMultiplicity("multiplicity", object.getMemberEnds().get(1));
+            if (sourceShape.getStencilId().equalsIgnoreCase(DIRECTED_ASSOCIATION.getStencilId())) {
+                object.getMemberEnds().get(0).setLower(0);
+                object.getMemberEnds().get(0).setUpper(-1);
+            } else if (sourceShape.getStencilId().equalsIgnoreCase(COMPOSITION.getStencilId())) {
+                object.getMemberEnds().get(0).setLower(1);
+                object.getMemberEnds().get(0).setUpper(1);
+            }
         }
         return super.caseAssociation(object);
     }

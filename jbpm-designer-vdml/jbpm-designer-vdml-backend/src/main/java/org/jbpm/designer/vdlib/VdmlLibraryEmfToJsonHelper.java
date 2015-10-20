@@ -20,6 +20,7 @@ import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.extensions.util.ShapeLayoutHelper;
 import org.jbpm.designer.ucd.ClassDiagramEmfToJsonHelper;
 import org.jbpm.designer.ucd.ClassDiagramStencil;
+import org.jbpm.designer.vdml.VdmlHelper;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDiagram;
@@ -30,7 +31,7 @@ import org.omg.dd.dc.DCFactory;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Characteristic;
 import org.omg.smm.Measure;
-import org.omg.vdml.BusinessItemDefinition;
+import org.omg.vdml.*;
 
 public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
 
@@ -130,7 +131,29 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
             BusinessItemDefinition bid = (BusinessItemDefinition) ann.getReferences().get(0);
             targetShape.putProperty("isShareable", bid.getIsShareable().toString());
             targetShape.putProperty("isFungible", bid.getIsFungible().toString());
+        } else if (targetShape.getStencilId().equals(VdmlLibraryStencil.STORE_DEFINITION.getStencilId()) ||  targetShape.getStencilId().equals(VdmlLibraryStencil.POOL_DEFINITION.getStencilId())) {
+            StoreDefinition sd = (StoreDefinition) ann.getReferences().get(0);
+            if(VdmlHelper.hasMeasure(sd.getInventoryLevel())) {
+                Measure measure = sd.getInventoryLevel().getMeasure().get(0);
+                targetShape.putProperty("inventoryLevel", measure.getName() +  "|" + measure.eResource().getURI().toPlatformString(true));
+            }
+            if(sd.getExchangeConfiguration()!=null){
+                if(sd.getExchangeConfiguration().getExchangeMethod()!=null) {
+                    CapabilityMethod cm =sd.getExchangeConfiguration().getExchangeMethod();
+                    targetShape.putProperty("exchangeMethod", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
+                }
+                if(sd.getExchangeConfiguration().getExchangeMilestone()!=null) {
+                    Milestone cm =sd.getExchangeConfiguration().getExchangeMilestone();
+                    targetShape.putProperty("exchangeMilestone", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
+                }
+                if(sd.getExchangeConfiguration().getSupplierRole()!=null) {
+                    Role cm =sd.getExchangeConfiguration().getSupplierRole();
+                    targetShape.putProperty("supplierRole", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
+                }
+
+            }
         }
+
         if (ann != null) {
             if (ann.getReferences().size() > 0) {
                 EObject ref = ann.getReferences().get(0);
@@ -148,7 +171,7 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
     public Object caseProperty(Property object) {
         if (targetShape.getStencilId().equals(VdmlLibraryStencil.CHARACTERISTIC.getStencilId())) {
             EAnnotation ann = object.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
-            Measure measure=null;
+            Measure measure = null;
             if (ann != null && ann.getReferences().size() > 0) {
                 Characteristic ch = (Characteristic) ann.getReferences().get(0);
                 if (ch.eResource() != null && ch.getMeasure().size() > 0) {
@@ -156,9 +179,9 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
                     targetShape.putProperty("measure", measure.getName() + "|" + ch.eResource().getURI().toPlatformString(true));
                 }
             }
-            if(measure==null){
+            if (measure == null) {
                 targetShape.putProperty("name", object.getName());
-            }else{
+            } else {
                 targetShape.putProperty("name", measure.getName());
             }
         }

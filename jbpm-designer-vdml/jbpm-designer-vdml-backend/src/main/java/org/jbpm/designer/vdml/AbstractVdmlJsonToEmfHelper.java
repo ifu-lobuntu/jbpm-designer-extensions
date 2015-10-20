@@ -24,17 +24,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLShape;
 import org.omg.dd.di.DiagramElement;
 import org.omg.smm.Characteristic;
 import org.omg.smm.Measure;
-import org.omg.vdml.Assignment;
-import org.omg.vdml.Attribute;
-import org.omg.vdml.BusinessItem;
-import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.DeliverableFlow;
-import org.omg.vdml.MeasuredCharacteristic;
-import org.omg.vdml.Participant;
-import org.omg.vdml.Role;
-import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.VDMLPackage;
-import org.omg.vdml.VdmlElement;
+import org.omg.vdml.*;
 
 public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHelper implements JsonToEmfHelper {
 
@@ -50,6 +40,12 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
     public AbstractVdmlJsonToEmfHelper(ShapeMap shapeMap, Class<? extends VdmlStencilInfo> stencil) {
         super(shapeMap, stencil);
     }
+    @Override
+    public Object caseCollaboration(Collaboration object) {
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
+        return super.caseCollaboration(object);
+    }
+
 
     protected MeasuredCharacteristic buildMeasuredCharacteristic(String name) {
         Measure valueMeasure = (Measure) sourceShape.getUnboundProperty(name);
@@ -95,12 +91,14 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         if (object.getDeliverable() != null) {
             object.setName(object.getDeliverable().getName());
         }
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseDeliverableFlow(object);
     }
 
     @Override
     public Object caseRole(Role object) {
         addAssignments(object);
+        setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         return super.caseRole(object);
     }
 

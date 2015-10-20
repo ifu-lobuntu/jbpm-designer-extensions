@@ -118,9 +118,16 @@ public abstract class AbstractVdmlEmfToJsonHelper extends AbstractVdmlJsonEmfHel
         putMeasuredCharacteristic("durationMeasure", object.getDuration());
         return super.caseDeliverableFlow(object);
     }
+    @Override
+    public Object caseCollaboration(Collaboration object) {
+        targetShape.getProperties().put("collaborationtype", object.eClass().getName());
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
+        return super.caseCollaboration(object);
+    }
 
     @Override
     public Object caseRole(Role object) {
+        putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
         putAssignedParticipants(object);
         return super.caseRole(object);
     }

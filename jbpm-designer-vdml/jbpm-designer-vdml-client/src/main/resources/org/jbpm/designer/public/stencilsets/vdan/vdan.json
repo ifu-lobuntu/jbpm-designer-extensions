@@ -504,7 +504,7 @@
 					"Activity"
 				],
 				"roles" : [
-					"activityOutputPort","activityPort","outputPort","measurableElement"
+					"activityOutputPort","activityPort","outputPort"
 				],
 				"description" : "Output Port",
 				"view" : "output_port.svg",
@@ -523,7 +523,7 @@
 					}
 				],
 			    "propertyPackages" : [
-						"localStyle","port","outputPort"
+						"localStyle","port","outputPort","measurableElement"
 				],
 				"properties" : [
 				]
