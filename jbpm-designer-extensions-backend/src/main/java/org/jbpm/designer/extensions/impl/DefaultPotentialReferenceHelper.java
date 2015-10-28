@@ -49,7 +49,26 @@ public class DefaultPotentialReferenceHelper implements IPotentialReferenceHelpe
         if (action.equals("getEmfElements")) {
             ResourceSet rst = buildResourceSet(req);
             List<String> allPackageNames = getPackagesInScope(req);
-            loadApplicableResourcesInto(rst, allPackageNames);
+//            loadApplicableResourcesInto(rst, allPackageNames);
+            //TODO put in separate method
+            String targetProfile = req.getParameter("targetProfile");
+            String modelExtension;
+            if (targetProfile == null || targetProfile.trim().isEmpty()) {
+                modelExtension = profile.getSerializedModelExtension();
+            } else {
+                modelExtension = profile.getOtherProfile(targetProfile).getSerializedModelExtension();
+            }
+            for (String packageName : allPackageNames) {
+                @SuppressWarnings("rawtypes")
+                Collection<Asset> listAssetsRecursively = profile.getRepository().listAssetsRecursively(packageName,
+                        new FilterByExtension("." + modelExtension));
+                for (Asset<?> asset : listAssetsRecursively) {
+                    String id = EMFVFSURIConverter.toPlatformRelativeString(asset.getUniqueId());
+                    URI uri = URI.createPlatformResourceURI(id, true);
+                    rst.getResource(uri, true);
+                }
+            }
+
             Collection<EObject> results = findPotentialReferencesIn(req, rst);
             return toEobjectReferenceJson(results, req.getParameter("nameFeature"));
         }

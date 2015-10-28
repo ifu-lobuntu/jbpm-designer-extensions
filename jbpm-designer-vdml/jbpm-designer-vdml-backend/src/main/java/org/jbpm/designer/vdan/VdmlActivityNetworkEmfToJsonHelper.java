@@ -1,6 +1,5 @@
 package org.jbpm.designer.vdan;
 
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
@@ -17,9 +16,11 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDIFactory;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.omg.dd.dc.Bounds;
 import org.omg.dd.dc.DCFactory;
-import org.omg.smm.Measure;
 import org.omg.vdml.*;
 
 public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHelper {
@@ -48,7 +49,31 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
         putMeasuredCharacteristic("durationMeasure", object.getDuration());
         putMeasuredCharacteristic("recurrenceIntervalMeasure", object.getRecurrenceInterval());
         putMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
+        DelegationContext dc = VdmlHelper.getDefaultDelegationContext(object);
+        if(dc!=null){
+            targetShape.putProperty("delegatedCollaboration", dc.getContextCollaboration().getName() + "|" + dc.getContextCollaboration().eResource().getURI().toPlatformString(true));
+            JSONObject roleMappings = buildRoleMappings(dc);
+            targetShape.putProperty("roleMappings",roleMappings.toString());
+        }
         return super.caseActivity(object);
+    }
+
+    protected JSONObject buildRoleMappings(DelegationContext dc) {
+        JSONObject roleMappings= null;
+        try {
+            roleMappings = new JSONObject();
+            JSONArray array = new JSONArray();
+            roleMappings.put("roleMappings", array);
+            for (Assignment a : dc.getContextBasedAssignment()) {
+                JSONObject roleMapping=new JSONObject();
+                roleMapping.put("fromRole", a.getParticipant().getName());
+                roleMapping.put("toRole", a.getAssignedRole().getName());
+                array.put(roleMapping);
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        return roleMappings;
     }
 
 
@@ -85,12 +110,20 @@ public class VdmlActivityNetworkEmfToJsonHelper extends AbstractVdmlEmfToJsonHel
     @Override
     public Object caseInputPort(InputPort object) {
         ensurePortShapePresent((VdmlElement) object.eContainer());
+        InputDelegation id=VdmlHelper.getDefaultDelegation(object);
+        if (id!=null) {
+            targetShape.putProperty("delegatedPort", id.getTarget().getName() +"|" + id.getTarget().eResource().getURI().toPlatformString(true));
+        }
         return super.caseInputPort(object);
     }
 
     @Override
     public Object caseOutputPort(OutputPort object) {
         ensurePortShapePresent((VdmlElement) object.eContainer());
+        OutputDelegation id=VdmlHelper.getDefaultDelegation(object);
+        if (id!=null) {
+            targetShape.putProperty("delegatedPort", id.getSource().getName() +"|" + id.getSource().eResource().getURI().toPlatformString(true));
+        }
         return super.caseOutputPort(object);
     }
 

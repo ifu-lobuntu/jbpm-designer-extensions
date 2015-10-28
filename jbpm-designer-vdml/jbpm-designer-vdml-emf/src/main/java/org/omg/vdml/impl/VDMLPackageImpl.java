@@ -71,8 +71,10 @@ import org.omg.vdml.RoleDefinition;
 import org.omg.vdml.RoleLibrary;
 import org.omg.vdml.Scenario;
 import org.omg.vdml.Store;
+import org.omg.vdml.StoreCategory;
 import org.omg.vdml.StoreDefinition;
 import org.omg.vdml.StoreLibrary;
+import org.omg.vdml.StoreLibraryElement;
 import org.omg.vdml.SupplyingPool;
 import org.omg.vdml.SupplyingStore;
 import org.omg.vdml.VDMLFactory;
@@ -583,6 +585,20 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * @generated
 	 */
 	private EClass milestoneEClass = null;
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass storeCategoryEClass = null;
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass storeLibraryElementEClass = null;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -3195,17 +3211,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStoreLibrary_StoreDefinitions() {
+	public EReference getStoreLibrary_StoreLibraryElement() {
 		return (EReference)storeLibraryEClass.getEStructuralFeatures().get(0);
-	}
-
-				/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStoreLibrary_Library() {
-		return (EReference)storeLibraryEClass.getEStructuralFeatures().get(1);
 	}
 
 				/**
@@ -3222,7 +3229,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStoreDefinition_Resource() {
+	public EReference getStoreDefinition_InventoryLevel() {
 		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -3231,7 +3238,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStoreDefinition_CharacteristicDefinition() {
+	public EReference getStoreDefinition_Duration() {
 		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3240,7 +3247,7 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStoreDefinition_InventoryLevel() {
+	public EReference getStoreDefinition_ExchangeConfiguration() {
 		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -3249,17 +3256,8 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStoreDefinition_Duration() {
+	public EReference getStoreDefinition_Category() {
 		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(3);
-	}
-
-				/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getStoreDefinition_ExchangeConfiguration() {
-		return (EReference)storeDefinitionEClass.getEStructuralFeatures().get(4);
 	}
 
 				/**
@@ -3440,6 +3438,69 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 	 */
 	public EReference getMilestone_Offset() {
 		return (EReference)milestoneEClass.getEStructuralFeatures().get(0);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStoreCategory() {
+		return storeCategoryEClass;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreCategory_ChildCategory() {
+		return (EReference)storeCategoryEClass.getEStructuralFeatures().get(0);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreCategory_ParentCategory() {
+		return (EReference)storeCategoryEClass.getEStructuralFeatures().get(1);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreCategory_CategoryStore() {
+		return (EReference)storeCategoryEClass.getEStructuralFeatures().get(2);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStoreLibraryElement() {
+		return storeLibraryElementEClass;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreLibraryElement_CharacteristicDefinition() {
+		return (EReference)storeLibraryElementEClass.getEStructuralFeatures().get(0);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getStoreLibraryElement_Resource() {
+		return (EReference)storeLibraryElementEClass.getEStructuralFeatures().get(1);
 	}
 
 				/**
@@ -3823,15 +3884,13 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		capabilityCategoryEClass = createEClass(CAPABILITY_CATEGORY);
 
 		storeLibraryEClass = createEClass(STORE_LIBRARY);
-		createEReference(storeLibraryEClass, STORE_LIBRARY__STORE_DEFINITIONS);
-		createEReference(storeLibraryEClass, STORE_LIBRARY__LIBRARY);
+		createEReference(storeLibraryEClass, STORE_LIBRARY__STORE_LIBRARY_ELEMENT);
 
 		storeDefinitionEClass = createEClass(STORE_DEFINITION);
-		createEReference(storeDefinitionEClass, STORE_DEFINITION__RESOURCE);
-		createEReference(storeDefinitionEClass, STORE_DEFINITION__CHARACTERISTIC_DEFINITION);
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__INVENTORY_LEVEL);
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__DURATION);
 		createEReference(storeDefinitionEClass, STORE_DEFINITION__EXCHANGE_CONFIGURATION);
+		createEReference(storeDefinitionEClass, STORE_DEFINITION__CATEGORY);
 
 		supplyingStoreEClass = createEClass(SUPPLYING_STORE);
 		createEReference(supplyingStoreEClass, SUPPLYING_STORE__SUPPLYING_ROLE);
@@ -3857,6 +3916,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 		milestoneEClass = createEClass(MILESTONE);
 		createEReference(milestoneEClass, MILESTONE__OFFSET);
+
+		storeCategoryEClass = createEClass(STORE_CATEGORY);
+		createEReference(storeCategoryEClass, STORE_CATEGORY__CHILD_CATEGORY);
+		createEReference(storeCategoryEClass, STORE_CATEGORY__PARENT_CATEGORY);
+		createEReference(storeCategoryEClass, STORE_CATEGORY__CATEGORY_STORE);
+
+		storeLibraryElementEClass = createEClass(STORE_LIBRARY_ELEMENT);
+		createEReference(storeLibraryElementEClass, STORE_LIBRARY_ELEMENT__CHARACTERISTIC_DEFINITION);
+		createEReference(storeLibraryElementEClass, STORE_LIBRARY_ELEMENT__RESOURCE);
 
 		// Create enums
 		resourceUseLocationEEnum = createEEnum(RESOURCE_USE_LOCATION);
@@ -3959,11 +4027,13 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		personEClass.getESuperTypes().add(this.getActor());
 		capabilityCategoryEClass.getESuperTypes().add(this.getCapability());
 		storeLibraryEClass.getESuperTypes().add(this.getVdmlElement());
-		storeDefinitionEClass.getESuperTypes().add(this.getVdmlElement());
+		storeDefinitionEClass.getESuperTypes().add(this.getStoreLibraryElement());
 		supplyingStoreEClass.getESuperTypes().add(this.getPortContainer());
 		poolDefinitionEClass.getESuperTypes().add(this.getStoreDefinition());
 		supplyingPoolEClass.getESuperTypes().add(this.getSupplyingStore());
 		milestoneEClass.getESuperTypes().add(this.getMeasurableElement());
+		storeCategoryEClass.getESuperTypes().add(this.getStoreLibraryElement());
+		storeLibraryElementEClass.getESuperTypes().add(this.getVdmlElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(valueDeliveryModelEClass, ValueDeliveryModel.class, "ValueDeliveryModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4310,15 +4380,13 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 		initEClass(capabilityCategoryEClass, CapabilityCategory.class, "CapabilityCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(storeLibraryEClass, StoreLibrary.class, "StoreLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStoreLibrary_StoreDefinitions(), this.getStoreDefinition(), null, "storeDefinitions", null, 0, -1, StoreLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStoreLibrary_Library(), this.getStoreLibrary(), null, "library", null, 0, 1, StoreLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStoreLibrary_StoreLibraryElement(), this.getStoreLibraryElement(), null, "storeLibraryElement", null, 0, -1, StoreLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(storeDefinitionEClass, StoreDefinition.class, "StoreDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStoreDefinition_Resource(), this.getBusinessItemDefinition(), null, "resource", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getStoreDefinition_CharacteristicDefinition(), theSMMPackage.getCharacteristic(), null, "characteristicDefinition", null, 0, -1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getStoreDefinition_InventoryLevel(), theSMMPackage.getCharacteristic(), null, "inventoryLevel", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStoreDefinition_Duration(), theSMMPackage.getCharacteristic(), null, "duration", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStoreDefinition_ExchangeConfiguration(), this.getExchangeConfiguration(), null, "exchangeConfiguration", null, 0, 1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStoreDefinition_Category(), this.getStoreCategory(), this.getStoreCategory_CategoryStore(), "category", null, 0, -1, StoreDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(supplyingStoreEClass, SupplyingStore.class, "SupplyingStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSupplyingStore_SupplyingRole(), this.getRole(), this.getRole_SupplyingStore(), "supplyingRole", null, 1, 1, SupplyingStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4344,6 +4412,15 @@ public class VDMLPackageImpl extends EPackageImpl implements VDMLPackage {
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMilestone_Offset(), this.getMeasuredCharacteristic(), null, "offset", null, 0, 1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(storeCategoryEClass, StoreCategory.class, "StoreCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStoreCategory_ChildCategory(), this.getStoreCategory(), this.getStoreCategory_ParentCategory(), "childCategory", null, 0, -1, StoreCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStoreCategory_ParentCategory(), this.getStoreCategory(), this.getStoreCategory_ChildCategory(), "parentCategory", null, 0, -1, StoreCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStoreCategory_CategoryStore(), this.getStoreDefinition(), this.getStoreDefinition_Category(), "categoryStore", null, 0, -1, StoreCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(storeLibraryElementEClass, StoreLibraryElement.class, "StoreLibraryElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStoreLibraryElement_CharacteristicDefinition(), theSMMPackage.getCharacteristic(), null, "characteristicDefinition", null, 0, -1, StoreLibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getStoreLibraryElement_Resource(), this.getBusinessItemLibraryElement(), null, "resource", null, 0, 1, StoreLibraryElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(resourceUseLocationEEnum, ResourceUseLocation.class, "ResourceUseLocation");

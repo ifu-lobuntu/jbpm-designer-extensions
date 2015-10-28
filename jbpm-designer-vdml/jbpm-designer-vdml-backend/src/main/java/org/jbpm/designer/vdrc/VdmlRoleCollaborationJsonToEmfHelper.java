@@ -9,7 +9,7 @@ import org.jbpm.designer.extensions.diagram.Shape;
 import org.jbpm.designer.extensions.diagram.ShapeReference;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.ucd.UmlHelper;
-import org.jbpm.designer.vdlib.VdmlLibHelper;
+import org.jbpm.designer.vdml.VdmlUmlHelper;
 import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
 import org.jbpm.designer.vdml.VDMLRoleCollaborationOrphanFilter;
@@ -114,7 +114,7 @@ public class VdmlRoleCollaborationJsonToEmfHelper extends AbstractVdmlJsonToEmfH
                 object.getDeliverable().getDefinition().setName(flowName);
             } else {
                 ValueDeliveryModel vdm = VdmlHelper.getValueDeliveryModelIn(object.eResource());
-                org.eclipse.uml2.uml.Class cls = VdmlLibHelper.findOrCreateBusinessItemDefinitionClass(flowName, vdm);
+                org.eclipse.uml2.uml.Class cls = VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass(flowName, vdm);
                 BusinessItemDefinition bid1 = (BusinessItemDefinition) cls.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
                 BusinessItem deliverable = VdmlHelper.findOrCreateBusinessItemFor(bid1, owningCollaboration);
                 object.setDeliverable(deliverable);

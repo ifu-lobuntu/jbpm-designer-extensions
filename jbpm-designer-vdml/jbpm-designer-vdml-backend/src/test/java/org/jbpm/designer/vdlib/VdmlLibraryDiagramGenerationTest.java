@@ -1,30 +1,14 @@
 package org.jbpm.designer.vdlib;
 
 import static org.junit.Assert.*;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.URIHandler;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Package;
 import org.jbpm.designer.extensions.diagram.Diagram;
-import org.jbpm.designer.extensions.emf.util.TestUriHandler;
-import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
-import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
-import org.jbpm.designer.ucd.AbstractUmlDiagramTest;
-import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
-import org.jbpm.uml2.dd.umldi.UMLDIFactory;
-import org.junit.Before;
+import org.jbpm.designer.vdml.VdmlUmlHelper;
 import org.junit.Test;
-import org.omg.smm.Characteristic;
-import org.omg.smm.DirectMeasure;
-import org.omg.smm.MeasureLibrary;
-import org.omg.smm.SMMFactory;
 import org.omg.vdml.*;
 
 public class VdmlLibraryDiagramGenerationTest extends AbstractVdmlLibraryDiagramTest {
@@ -32,7 +16,7 @@ public class VdmlLibraryDiagramGenerationTest extends AbstractVdmlLibraryDiagram
     @Test
     public void testIt() throws Exception {
         Class clss = addCarrierClass("MyBusinessItemDefinition");
-        BusinessItemDefinition def = VdmlLibraryJsonToEmfHelper.createBusinessDefinition( clss, vdm.getBusinessItemLibrary().get(0));
+        BusinessItemDefinition def = VdmlUmlHelper.createBusinessDefinition(clss, vdm.getBusinessItemLibrary().get(0));
         def.setIsFungible(false);
         def.setIsShareable(true);
         Property characteristicDef = UMLFactory.eINSTANCE.createProperty();
@@ -42,9 +26,9 @@ public class VdmlLibraryDiagramGenerationTest extends AbstractVdmlLibraryDiagram
         def.getCharacteristicDefinition().add(characteristic);
         characteristicDef.setType(AbstractClassDiagramProfileImpl.getCmmnTypes(resourceSet).getOwnedType("Double"));
         Class clss2 = addCarrierClass("CapabilityDefinition");
-        CapabilityDefinition cd = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition( clss2, vdm.getCapabilitylibrary().get(0));
+        CapabilityDefinition cd = VdmlUmlHelper.createCapabilityDefinition(clss2, vdm.getCapabilitylibrary().get(0));
         Class clss3 = addCarrierClass("CapabilityCategory");
-        CapabilityCategory cc = VdmlLibraryJsonToEmfHelper.createCapabilityCategory( clss3, vdm.getCapabilitylibrary().get(0));
+        CapabilityCategory cc = VdmlUmlHelper.createCapabilityCategory(clss3, vdm.getCapabilitylibrary().get(0));
         saveCollaborationResource();
         Diagram json = super.unmarshaller.convert(inputResource);
         assertNotNull( json.findChildShapeById(collaborationResource.getID(characteristicDef)));

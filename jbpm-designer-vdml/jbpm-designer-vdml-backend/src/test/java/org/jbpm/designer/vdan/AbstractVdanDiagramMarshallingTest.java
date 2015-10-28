@@ -47,26 +47,5 @@ public class AbstractVdanDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         return valueProposition;
     }
 
-    protected void assertOutputValid() throws IOException, Exception {
-        XMLResource outputResource = assertConversionValid(diagramResource);
-
-        Set<EClassifier> idsToIgnore = new HashSet<EClassifier>();
-        idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLDiagram());
-        idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLStyle());
-        idsToIgnore.add(DCPackage.eINSTANCE.getColor());
-        idsToIgnore.add(UMLPackage.eINSTANCE.getProperty());//for associations
-        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
-        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralInteger());
-        idsToIgnore.add(EcorePackage.eINSTANCE.getEAnnotation());
-        idsToIgnore.add(VDMLPackage.eINSTANCE.getMeasuredCharacteristic());
-        Set<EStructuralFeature> featuresToIgnore = new HashSet<EStructuralFeature>();
-        featuresToIgnore.add(VDMLPackage.eINSTANCE.getDeliverableFlow_Deliverable());
-        XMLResource outputCollaborationResource = (XMLResource) outputResource.getResourceSet().getResource(collaborationResource.getURI(), true);
-//        collaborationResource.save(System.out,null);
-//        outputCollaborationResource.save(System.out,null);
-        GenericEcoreComparator v = new GenericEcoreComparator(collaborationResource, outputCollaborationResource, idsToIgnore,featuresToIgnore);
-        v.setDebugInfo("", profile);
-        v.validate();
-    }
 
 }

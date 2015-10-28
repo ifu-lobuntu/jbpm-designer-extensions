@@ -244,6 +244,7 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
         if (eidAttribute != null && profile.useIdAttribute()) {
             modelElement.eSet(eidAttribute, shape.getResourceId());
         } else {
+            //TODO - this is not always the right resource
             shapeMap.getResource().setID(modelElement, shape.getResourceId());
         }
     }
@@ -500,6 +501,9 @@ public class GenericJsonToEmfDiagramMarshaller extends AbstractEmfJsonMarshaller
                 EList list = new BasicEList();
                 for (String ref : string.split("\\,")) {
                     EObject resolved = (EObject) resolveEObject(property, ref, targetType);
+                    if(resolved==null){
+                        System.out.println();
+                    }
                     if (!(resolved.eIsProxy() || resolved.eResource() == null)) {
                         list.add(resolved);
                     }

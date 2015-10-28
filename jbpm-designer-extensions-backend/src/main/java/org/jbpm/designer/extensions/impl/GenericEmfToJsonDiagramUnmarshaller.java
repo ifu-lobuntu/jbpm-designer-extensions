@@ -96,6 +96,9 @@ public final class GenericEmfToJsonDiagramUnmarshaller extends AbstractEmfJsonMa
         helper.preprocessResource();
         org.omg.dd.di.Diagram emfDiagram = helper.getDiagram();
         EObject modelElement = getModelElement(emfDiagram);
+        if(modelElement.eIsProxy()){
+            EcoreUtil.resolveAll(modelElement);
+        }
         Diagram result = new Diagram(shapeMap.getId(modelElement), new StencilType(profile.getDiagramStencilId()), new StencilSet(profile.getStencilSetURL(),
                 profile.getStencilSetNamespaceURL()));
         result.setBounds(new Bounds(new Point(0.0, 0.0), new Point(1400.0, 1000.0)));

@@ -562,6 +562,24 @@ public interface VDMLFactory extends EFactory {
 	Milestone createMilestone();
 
 				/**
+	 * Returns a new object of class '<em>Store Category</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Store Category</em>'.
+	 * @generated
+	 */
+	StoreCategory createStoreCategory();
+
+				/**
+	 * Returns a new object of class '<em>Store Library Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Store Library Element</em>'.
+	 * @generated
+	 */
+	StoreLibraryElement createStoreLibraryElement();
+
+				/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

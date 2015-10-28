@@ -1,10 +1,9 @@
 package org.jbpm.designer.vdml;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -233,6 +232,34 @@ public abstract class AbstractVdmlJsonToEmfHelper extends AbstractVdmlJsonEmfHel
         VdmlElementDeleter ved = new VdmlElementDeleter(owningCollaboration, getManagedClassSet());
         for (VdmlElement orphan : orphans) {
             ved.doSwitch(orphan);
+        }
+        TreeIterator<EObject> eObjectTreeIterator = this.getDiagram().eAllContents();
+        Set<EObject> shapesToDelete=new HashSet<EObject>();
+        while (eObjectTreeIterator.hasNext()){
+            EObject e=eObjectTreeIterator.next();
+            if(e instanceof VDMLEdge){
+                VDMLEdge edge =(VDMLEdge) e;
+                if(edge.getVdmlElement() instanceof DeliverableFlow){
+                    DeliverableFlow df = (DeliverableFlow) edge.getVdmlElement();
+                    if(df.getProvider()==null || df.getProvider().eResource()==null){
+                        shapesToDelete.add(edge);
+                        shapesToDelete.add(edge.getSourceShape());
+                        df.setProvider(null);//ensure it is registered as an orphan
+                    }
+                    if(df.getRecipient()==null || df.getRecipient().eResource()==null){
+                        shapesToDelete.add(edge);
+                        shapesToDelete.add(edge.getTargetShape());
+                        df.setRecipient(null);//ensure it is registered as an orphan
+                    }
+                }
+            }
+        }
+        shapesToDelete.remove(null);
+        for (EObject eObject : shapesToDelete) {
+            if(eObject.eContainer()!=null) {
+                EList list = (EList) eObject.eContainer().eGet(eObject.eContainingFeature());
+                list.remove(eObject);
+            }
         }
         ved.deleteOrphanedEdges();
     }

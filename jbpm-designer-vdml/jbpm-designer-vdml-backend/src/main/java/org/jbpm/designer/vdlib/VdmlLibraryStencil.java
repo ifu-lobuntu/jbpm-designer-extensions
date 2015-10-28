@@ -29,6 +29,7 @@ public enum VdmlLibraryStencil implements VdmlStencilInfo {
     IMPORTED_CAPABILITY_DEFINITION(VDMLPackage.eINSTANCE.getCapabilityDefinition(), ClassDiagramStencil.CLASS, "ImportedCapabilityDefinition", true),
 
     //StoreDefinitions
+    STORE_CATEGORY(VDMLPackage.eINSTANCE.getStoreCategory(), ClassDiagramStencil.CLASS, "StoreCategory", false),
     POOL_DEFINITION(VDMLPackage.eINSTANCE.getPoolDefinition(), ClassDiagramStencil.CLASS, "PoolDefinition", false),
     STORE_DEFINITION(VDMLPackage.eINSTANCE.getStoreDefinition(), ClassDiagramStencil.CLASS, "StoreDefinition", false),
     STORE_GENERALIZATION(null, ClassDiagramStencil.GENERALIZATION, "StoreGeneralization", false),

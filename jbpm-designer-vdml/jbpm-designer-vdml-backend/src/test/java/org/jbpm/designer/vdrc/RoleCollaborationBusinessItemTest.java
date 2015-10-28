@@ -8,7 +8,7 @@ import org.eclipse.uml2.uml.Class;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
-import org.jbpm.designer.vdlib.VdmlLibHelper;
+import org.jbpm.designer.vdml.VdmlUmlHelper;
 import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdml.AbstractVdmlDiagramMarshallingTest;
 import org.jbpm.designer.vdml.VdmlHelper;
@@ -52,7 +52,7 @@ public class RoleCollaborationBusinessItemTest extends AbstractVdmlDiagramMarsha
         Activity act1 = addActivity(role1, true);
         Activity act2 = addActivity(role2, true);
         DeliverableFlow df = addDeliverableFlow(act1, act2, "FromMeToYou");
-        Class bidClass = VdmlLibHelper.findOrCreateBusinessItemDefinitionClass(df.getName(), super.valueDeliveryModel);
+        Class bidClass = VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass(df.getName(), super.valueDeliveryModel);
         BusinessItemDefinition bid = (BusinessItemDefinition) bidClass.getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
         df.setDeliverable(VdmlHelper.findOrCreateBusinessItemFor(bid, super.collaboration));
         saveCollaborationResource();

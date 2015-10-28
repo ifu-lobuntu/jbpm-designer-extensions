@@ -1,16 +1,17 @@
 package org.jbpm.designer.vdlib;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.*;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Package;
 import org.jbpm.designer.ucd.AbstractClassDiagramProfileImpl;
+import org.jbpm.designer.vdml.VdmlUmlHelper;
 import org.jbpm.uml2.dd.umldi.UMLCompartment;
 import org.junit.Test;
 import org.omg.vdml.*;
-import org.eclipse.uml2.uml.Package;
+
 @SuppressWarnings("unused")
 public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagramTest {
     private StoreDefinition externalStoreDefinition;
@@ -24,7 +25,7 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagra
         ValueDeliveryModel vdm = VDMLFactory.eINSTANCE.createValueDeliveryModel();
         vdm.setName("123f");
         vdm.getStoreLibrary().add(VDMLFactory.eINSTANCE.createStoreLibrary());
-        vdm.getStoreLibrary().get(0).getStoreDefinitions().add(externalStoreDefinition = VDMLFactory.eINSTANCE.createStoreDefinition());
+        vdm.getStoreLibrary().get(0).getStoreLibraryElement().add(externalStoreDefinition = VDMLFactory.eINSTANCE.createStoreDefinition());
         externalStoreDefinition.setName("gqgqwregq");
         externalPackage=UMLFactory.eINSTANCE.createPackage();
         externalPackage.setName(externalStoreDefinition.getName());
@@ -37,43 +38,117 @@ public class VdmlLibraryDiagramMarshallingTest extends AbstractVdmlLibraryDiagra
         res.save(tuh.createOutputStream(externalUri, profile.buildDefaultResourceOptions()),profile.buildDefaultResourceOptions());
     }
     @Test
-    public void testIt() throws Exception {
-        Class clss1 = addCarrierClass("MyBusinessItemDefinition");
-        BusinessItemDefinition def = VdmlLibraryJsonToEmfHelper.createBusinessDefinition(clss1, vdm.getBusinessItemLibrary().get(0));
-        def.setIsFungible(false);
-        def.setIsShareable(true);
+    public void testClasses() throws Exception {
+        Class clss0 = addCarrierClass("MyBusinessItemDefinition");
+        BusinessItemDefinition bid = VdmlUmlHelper.createBusinessDefinition(clss0, vdm.getBusinessItemLibrary().get(0));
+        bid.setIsFungible(false);
+        bid.setIsShareable(true);
+        addShapeFor(clss0);
+        addCompartmentFor(clss0,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss0,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Class clss1 = addCarrierClass("MyBusinessItemCategory");
+        BusinessItemCategory bic = VdmlUmlHelper.createBusinessCategory(clss1, vdm.getBusinessItemLibrary().get(0));
         addShapeFor(clss1);
         UMLCompartment comp1 = addCompartmentFor(clss1,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
-        Property characteristicDef = UMLFactory.eINSTANCE.createProperty();
-        characteristicDef.setName(characteristic.getName());
-        characteristicDef.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(characteristic);
-        clss1.getOwnedAttributes().add(characteristicDef);
-        def.getCharacteristicDefinition().add(characteristic);
-        characteristicDef.setType(AbstractClassDiagramProfileImpl.getCmmnTypes(resourceSet).getOwnedType("Double"));
-        addShapeToCompartment(clss1, VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition(), characteristicDef);
+        Property characteristicDef1 = UMLFactory.eINSTANCE.createProperty();
+        characteristicDef1.setName(characteristic.getName());
+        characteristicDef1.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(characteristic);
+        clss1.getOwnedAttributes().add(characteristicDef1);
+        bic.getCharacteristicDefinition().add(characteristic);
+        characteristicDef1.setType(AbstractClassDiagramProfileImpl.getCmmnTypes(resourceSet).getOwnedType("Double"));
+        addShapeToCompartment(clss1, VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition(), characteristicDef1);
         UMLCompartment comp2 = addCompartmentFor(clss1,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
         Class clss2 = addCarrierClass("CapabilityDefinition");
-        CapabilityDefinition cd = VdmlLibraryJsonToEmfHelper.createCapabilityDefinition(clss2, vdm.getCapabilitylibrary().get(0));
+        CapabilityDefinition cd = VdmlUmlHelper.createCapabilityDefinition(clss2, vdm.getCapabilitylibrary().get(0));
         addShapeFor(clss2);
         UMLCompartment comp4 = addCompartmentFor(clss2,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
         UMLCompartment comp5 = addCompartmentFor(clss2,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
         Class clss3 = addCarrierClass("CapabilityCategory");
-        CapabilityCategory cc = VdmlLibraryJsonToEmfHelper.createCapabilityCategory(clss3, vdm.getCapabilitylibrary().get(0));
+        CapabilityCategory cc = VdmlUmlHelper.createCapabilityCategory(clss3, vdm.getCapabilitylibrary().get(0));
         addShapeFor(clss3);
         UMLCompartment comp6 = addCompartmentFor(clss3,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
         UMLCompartment comp7 = addCompartmentFor(clss3,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
         Class clss4 = addCarrierClass("PoolDefinition");
-        PoolDefinition pd = VdmlLibraryJsonToEmfHelper.createPoolDefinition(clss4, vdm.getStoreLibrary().get(0));
+        PoolDefinition pd = VdmlUmlHelper.createPoolDefinition(clss4, vdm.getStoreLibrary().get(0));
         addShapeFor(clss4);
         UMLCompartment comp8 = addCompartmentFor(clss4,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
         UMLCompartment comp9 = addCompartmentFor(clss4,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+
         Class clss5 = addCarrierClass("StoreDefinition");
-        StoreDefinition sd = VdmlLibraryJsonToEmfHelper.createStoreDefinition(clss5, vdm.getStoreLibrary().get(0));
+        StoreDefinition sd = VdmlUmlHelper.createStoreDefinition(clss5, vdm.getStoreLibrary().get(0));
         addShapeFor(clss5);
         UMLCompartment comp10 = addCompartmentFor(clss5,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
-        sd.getCharacteristicDefinition().add(characteristic);
-        UMLCompartment comp11 = addCompartmentFor(clss5,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Property characteristicDef2 = UMLFactory.eINSTANCE.createProperty();
+        characteristicDef2.setName(characteristic.getName());
+        characteristicDef2.createEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().add(characteristic);
+        clss5.getOwnedAttributes().add(characteristicDef2);
+        bic.getCharacteristicDefinition().add(characteristic);
+        characteristicDef2.setType(AbstractClassDiagramProfileImpl.getCmmnTypes(resourceSet).getOwnedType("Double"));
 
+        sd.getCharacteristicDefinition().add(characteristic);
+        addShapeToCompartment(clss5, VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition(),characteristicDef2);
+
+
+        UMLCompartment comp11 = addCompartmentFor(clss5,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        saveCollaborationResource();
+        assertOutputValid();
+    }
+    @Test
+    public void testBusinessItemRelationships() throws Exception{
+        Class clss0 = addCarrierClass("MyBusinessItemDefinition");
+        BusinessItemDefinition bid = VdmlUmlHelper.createBusinessDefinition(clss0, vdm.getBusinessItemLibrary().get(0));
+        bid.setIsFungible(false);
+        bid.setIsShareable(true);
+        addShapeFor(clss0);
+        addCompartmentFor(clss0,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss0,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Class clss1 = addCarrierClass("MyBusinessItemCategory");
+        BusinessItemCategory bic = VdmlUmlHelper.createBusinessCategory(clss1, vdm.getBusinessItemLibrary().get(0));
+        addShapeFor(clss1);
+        addCompartmentFor(clss1,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss1,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Generalization generalization = clss0.createGeneralization(clss1);
+        super.collaborationResource.setID(generalization, EcoreUtil.generateUUID());
+        addEdge(generalization, clss0, clss1);
+        bic.getCategoryItem().add(bid);
+        saveCollaborationResource();
+        assertOutputValid();
+    }
+    @Test
+    public void testCapabilityRelationships() throws Exception{
+        Class clss0 = addCarrierClass("CapabilityDefinition");
+        CapabilityDefinition bid = VdmlUmlHelper.createCapabilityDefinition(clss0, vdm.getCapabilitylibrary().get(0));
+        addShapeFor(clss0);
+        addCompartmentFor(clss0,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss0,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Class clss1 = addCarrierClass("CapabilityCategory");
+        CapabilityCategory bic = VdmlUmlHelper.createCapabilityCategory(clss1, vdm.getCapabilitylibrary().get(0));
+        addShapeFor(clss1);
+        addCompartmentFor(clss1,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss1,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Generalization generalization = clss0.createGeneralization(clss1);
+        super.collaborationResource.setID(generalization, EcoreUtil.generateUUID());
+        addEdge(generalization, clss0, clss1);
+        bic.getChildCapability().add(bid);
+        saveCollaborationResource();
+        assertOutputValid();
+    }
+    @Test
+    public void testStoreRelationships() throws Exception{
+        Class clss0 = addCarrierClass("PoolDefinition");
+        PoolDefinition bid = VdmlUmlHelper.createPoolDefinition(clss0, vdm.getStoreLibrary().get(0));
+        addShapeFor(clss0);
+        addCompartmentFor(clss0,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss0,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Class clss1 = addCarrierClass("PoolCategory");
+        StoreCategory bic = VdmlUmlHelper.createStoreCategory(clss1, vdm.getStoreLibrary().get(0));
+        addShapeFor(clss1);
+        addCompartmentFor(clss1,VDMLPackage.eINSTANCE.getMeasuredCharacteristic_CharacteristicDefinition());
+        addCompartmentFor(clss1,UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+        Generalization generalization = clss0.createGeneralization(clss1);
+        super.collaborationResource.setID(generalization, EcoreUtil.generateUUID());
+        addEdge(generalization, clss0, clss1);
+        bic.getCategoryStore().add(bid);
         saveCollaborationResource();
         assertOutputValid();
     }

@@ -319,7 +319,7 @@
 						"readonly" : true,
 						"optional" : true,
 						"reference" : {
-							"targetProfile":"vdrc",
+							"targetProfile":"vdcol",
 							"allowedElementTypes":"BusinessNetwork|CapabilityMethod|Community|OrgUnit",
 							"nameFeature" : "name"
 						},
@@ -468,7 +468,31 @@
                             "nameFeature" : "name",
                             "multiSelect" : false
                         }
-                    }
+                    },
+					{
+						"id" : "delegatedCollaboration",
+						"type" : "eobjectref",
+						"title" : "Delegated Collaboration",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"vdcol",
+							"allowedElementTypes":"CapabilityMethod",
+							"nameFeature" : "name",
+							"multiSelect" : false
+						}
+					},
+					{
+						"id" : "roleMappings",
+						"type" : "rolemappings",
+						"title" : "Role Mappings",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false
+					}
 				]
 			},
 			{
@@ -492,6 +516,23 @@
 						"vdmlElement","localStyle","port","measurableElement"
 				],
 				"properties" : [
+					{
+						"id" : "delegatedPort",
+						"type" : "eobjectref",
+						"title" : "Delegated Port",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"vdcol",
+							"allowedElementTypes":"InputPort",
+							"nameFeature" : "name",
+							"multiSelect" : false,
+							"filter" : "delegatedInputPort"
+						}
+					}
+
 				]
 			},
 			{
@@ -526,6 +567,22 @@
 						"localStyle","port","outputPort","measurableElement"
 				],
 				"properties" : [
+					{
+						"id" : "delegatedPort",
+						"type" : "eobjectref",
+						"title" : "Delegated Port",
+						"value" : "",
+						"description" : "",
+						"readonly" : false,
+						"optional" : false,
+						"reference":{
+							"targetProfile":"vdcol",
+							"allowedElementTypes":"OutputPort",
+							"nameFeature" : "name",
+							"multiSelect" : false,
+							"filter" : "delegatedOutputPort"
+						}
+					}
 				]
 			},
 			{
@@ -877,7 +934,7 @@
 						"readonly" : false,
 						"optional" : true,
 						"reference" : {
-							"targetProfile":"vdlib",
+							"targetProfile":"vdcol",
 							"allowedElementTypes":"BusinessItemDefinition",
 							"nameFeature" : "qualifiedName"
 						},

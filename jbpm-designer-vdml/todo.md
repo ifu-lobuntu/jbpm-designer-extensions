@@ -12,6 +12,7 @@
  - CapabilityGeneralization
  - StoreDefinitionGeneralization
  - StoreDefinitionResource
+ - CapabilityResource
  
 
 #2. Property Editors

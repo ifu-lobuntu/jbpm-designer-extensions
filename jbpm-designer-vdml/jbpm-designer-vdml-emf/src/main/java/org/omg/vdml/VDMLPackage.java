@@ -9348,22 +9348,13 @@ public interface VDMLPackage extends EPackage {
 	int STORE_LIBRARY__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
 
 				/**
-	 * The feature id for the '<em><b>Store Definitions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Store Library Element</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_LIBRARY__STORE_DEFINITIONS = VDML_ELEMENT_FEATURE_COUNT + 0;
-
-				/**
-	 * The feature id for the '<em><b>Library</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STORE_LIBRARY__LIBRARY = VDML_ELEMENT_FEATURE_COUNT + 1;
+	int STORE_LIBRARY__STORE_LIBRARY_ELEMENT = VDML_ELEMENT_FEATURE_COUNT + 0;
 
 				/**
 	 * The number of structural features of the '<em>Store Library</em>' class.
@@ -9372,7 +9363,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_LIBRARY_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 2;
+	int STORE_LIBRARY_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 1;
 
 				/**
 	 * The number of operations of the '<em>Store Library</em>' class.
@@ -9382,6 +9373,115 @@ public interface VDMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int STORE_LIBRARY_OPERATION_COUNT = VDML_ELEMENT_OPERATION_COUNT + 0;
+
+				/**
+	 * The meta object id for the '{@link org.omg.vdml.impl.StoreLibraryElementImpl <em>Store Library Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.vdml.impl.StoreLibraryElementImpl
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getStoreLibraryElement()
+	 * @generated
+	 */
+	int STORE_LIBRARY_ELEMENT = 71;
+
+				/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__NAME = VDML_ELEMENT__NAME;
+
+				/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__DESCRIPTION = VDML_ELEMENT__DESCRIPTION;
+
+				/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__ATTRIBUTE = VDML_ELEMENT__ATTRIBUTE;
+
+				/**
+	 * The feature id for the '<em><b>Represents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__REPRESENTS = VDML_ELEMENT__REPRESENTS;
+
+				/**
+	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__ANNOTATION = VDML_ELEMENT__ANNOTATION;
+
+				/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__ID = VDML_ELEMENT__ID;
+
+				/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
+
+				/**
+	 * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__CHARACTERISTIC_DEFINITION = VDML_ELEMENT_FEATURE_COUNT + 0;
+
+				/**
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT__RESOURCE = VDML_ELEMENT_FEATURE_COUNT + 1;
+
+				/**
+	 * The number of structural features of the '<em>Store Library Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 2;
+
+				/**
+	 * The number of operations of the '<em>Store Library Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_LIBRARY_ELEMENT_OPERATION_COUNT = VDML_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
 	 * The meta object id for the '{@link org.omg.vdml.impl.StoreDefinitionImpl <em>Store Definition</em>}' class.
@@ -9400,7 +9500,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__NAME = VDML_ELEMENT__NAME;
+	int STORE_DEFINITION__NAME = STORE_LIBRARY_ELEMENT__NAME;
 
 				/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -9409,7 +9509,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__DESCRIPTION = VDML_ELEMENT__DESCRIPTION;
+	int STORE_DEFINITION__DESCRIPTION = STORE_LIBRARY_ELEMENT__DESCRIPTION;
 
 				/**
 	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
@@ -9418,7 +9518,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__ATTRIBUTE = VDML_ELEMENT__ATTRIBUTE;
+	int STORE_DEFINITION__ATTRIBUTE = STORE_LIBRARY_ELEMENT__ATTRIBUTE;
 
 				/**
 	 * The feature id for the '<em><b>Represents</b></em>' attribute.
@@ -9427,7 +9527,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__REPRESENTS = VDML_ELEMENT__REPRESENTS;
+	int STORE_DEFINITION__REPRESENTS = STORE_LIBRARY_ELEMENT__REPRESENTS;
 
 				/**
 	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
@@ -9436,7 +9536,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__ANNOTATION = VDML_ELEMENT__ANNOTATION;
+	int STORE_DEFINITION__ANNOTATION = STORE_LIBRARY_ELEMENT__ANNOTATION;
 
 				/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -9445,7 +9545,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__ID = VDML_ELEMENT__ID;
+	int STORE_DEFINITION__ID = STORE_LIBRARY_ELEMENT__ID;
 
 				/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -9454,16 +9554,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__QUALIFIED_NAME = VDML_ELEMENT__QUALIFIED_NAME;
-
-				/**
-	 * The feature id for the '<em><b>Resource</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STORE_DEFINITION__RESOURCE = VDML_ELEMENT_FEATURE_COUNT + 0;
+	int STORE_DEFINITION__QUALIFIED_NAME = STORE_LIBRARY_ELEMENT__QUALIFIED_NAME;
 
 				/**
 	 * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
@@ -9472,7 +9563,16 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__CHARACTERISTIC_DEFINITION = VDML_ELEMENT_FEATURE_COUNT + 1;
+	int STORE_DEFINITION__CHARACTERISTIC_DEFINITION = STORE_LIBRARY_ELEMENT__CHARACTERISTIC_DEFINITION;
+
+				/**
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_DEFINITION__RESOURCE = STORE_LIBRARY_ELEMENT__RESOURCE;
 
 				/**
 	 * The feature id for the '<em><b>Inventory Level</b></em>' reference.
@@ -9481,7 +9581,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__INVENTORY_LEVEL = VDML_ELEMENT_FEATURE_COUNT + 2;
+	int STORE_DEFINITION__INVENTORY_LEVEL = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 0;
 
 				/**
 	 * The feature id for the '<em><b>Duration</b></em>' reference.
@@ -9490,7 +9590,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__DURATION = VDML_ELEMENT_FEATURE_COUNT + 3;
+	int STORE_DEFINITION__DURATION = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 1;
 
 				/**
 	 * The feature id for the '<em><b>Exchange Configuration</b></em>' containment reference.
@@ -9499,7 +9599,16 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION__EXCHANGE_CONFIGURATION = VDML_ELEMENT_FEATURE_COUNT + 4;
+	int STORE_DEFINITION__EXCHANGE_CONFIGURATION = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 2;
+
+				/**
+	 * The feature id for the '<em><b>Category</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_DEFINITION__CATEGORY = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 3;
 
 				/**
 	 * The number of structural features of the '<em>Store Definition</em>' class.
@@ -9508,7 +9617,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION_FEATURE_COUNT = VDML_ELEMENT_FEATURE_COUNT + 5;
+	int STORE_DEFINITION_FEATURE_COUNT = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 4;
 
 				/**
 	 * The number of operations of the '<em>Store Definition</em>' class.
@@ -9517,7 +9626,7 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STORE_DEFINITION_OPERATION_COUNT = VDML_ELEMENT_OPERATION_COUNT + 0;
+	int STORE_DEFINITION_OPERATION_COUNT = STORE_LIBRARY_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
 	 * The meta object id for the '{@link org.omg.vdml.impl.SupplyingStoreImpl <em>Supplying Store</em>}' class.
@@ -9756,15 +9865,6 @@ public interface VDMLPackage extends EPackage {
 	int POOL_DEFINITION__QUALIFIED_NAME = STORE_DEFINITION__QUALIFIED_NAME;
 
 				/**
-	 * The feature id for the '<em><b>Resource</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int POOL_DEFINITION__RESOURCE = STORE_DEFINITION__RESOURCE;
-
-				/**
 	 * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9772,6 +9872,15 @@ public interface VDMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int POOL_DEFINITION__CHARACTERISTIC_DEFINITION = STORE_DEFINITION__CHARACTERISTIC_DEFINITION;
+
+				/**
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL_DEFINITION__RESOURCE = STORE_DEFINITION__RESOURCE;
 
 				/**
 	 * The feature id for the '<em><b>Inventory Level</b></em>' reference.
@@ -9799,6 +9908,15 @@ public interface VDMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int POOL_DEFINITION__EXCHANGE_CONFIGURATION = STORE_DEFINITION__EXCHANGE_CONFIGURATION;
+
+				/**
+	 * The feature id for the '<em><b>Category</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POOL_DEFINITION__CATEGORY = STORE_DEFINITION__CATEGORY;
 
 				/**
 	 * The feature id for the '<em><b>Pool Size</b></em>' reference.
@@ -10191,6 +10309,142 @@ public interface VDMLPackage extends EPackage {
 	int MILESTONE_OPERATION_COUNT = MEASURABLE_ELEMENT_OPERATION_COUNT + 0;
 
 				/**
+	 * The meta object id for the '{@link org.omg.vdml.impl.StoreCategoryImpl <em>Store Category</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.omg.vdml.impl.StoreCategoryImpl
+	 * @see org.omg.vdml.impl.VDMLPackageImpl#getStoreCategory()
+	 * @generated
+	 */
+	int STORE_CATEGORY = 70;
+
+				/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__NAME = STORE_LIBRARY_ELEMENT__NAME;
+
+				/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__DESCRIPTION = STORE_LIBRARY_ELEMENT__DESCRIPTION;
+
+				/**
+	 * The feature id for the '<em><b>Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__ATTRIBUTE = STORE_LIBRARY_ELEMENT__ATTRIBUTE;
+
+				/**
+	 * The feature id for the '<em><b>Represents</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__REPRESENTS = STORE_LIBRARY_ELEMENT__REPRESENTS;
+
+				/**
+	 * The feature id for the '<em><b>Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__ANNOTATION = STORE_LIBRARY_ELEMENT__ANNOTATION;
+
+				/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__ID = STORE_LIBRARY_ELEMENT__ID;
+
+				/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__QUALIFIED_NAME = STORE_LIBRARY_ELEMENT__QUALIFIED_NAME;
+
+				/**
+	 * The feature id for the '<em><b>Characteristic Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__CHARACTERISTIC_DEFINITION = STORE_LIBRARY_ELEMENT__CHARACTERISTIC_DEFINITION;
+
+				/**
+	 * The feature id for the '<em><b>Resource</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__RESOURCE = STORE_LIBRARY_ELEMENT__RESOURCE;
+
+				/**
+	 * The feature id for the '<em><b>Child Category</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__CHILD_CATEGORY = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 0;
+
+				/**
+	 * The feature id for the '<em><b>Parent Category</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__PARENT_CATEGORY = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 1;
+
+				/**
+	 * The feature id for the '<em><b>Category Store</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY__CATEGORY_STORE = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 2;
+
+				/**
+	 * The number of structural features of the '<em>Store Category</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY_FEATURE_COUNT = STORE_LIBRARY_ELEMENT_FEATURE_COUNT + 3;
+
+				/**
+	 * The number of operations of the '<em>Store Category</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STORE_CATEGORY_OPERATION_COUNT = STORE_LIBRARY_ELEMENT_OPERATION_COUNT + 0;
+
+				/**
 	 * The meta object id for the '{@link org.omg.vdml.ResourceUseLocation <em>Resource Use Location</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10198,7 +10452,7 @@ public interface VDMLPackage extends EPackage {
 	 * @see org.omg.vdml.impl.VDMLPackageImpl#getResourceUseLocation()
 	 * @generated
 	 */
-	int RESOURCE_USE_LOCATION = 70;
+	int RESOURCE_USE_LOCATION = 72;
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.ValueDeliveryModel <em>Value Delivery Model</em>}'.
@@ -13228,26 +13482,15 @@ public interface VDMLPackage extends EPackage {
 	EClass getStoreLibrary();
 
 				/**
-	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.StoreLibrary#getStoreDefinitions <em>Store Definitions</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.omg.vdml.StoreLibrary#getStoreLibraryElement <em>Store Library Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Store Definitions</em>'.
-	 * @see org.omg.vdml.StoreLibrary#getStoreDefinitions()
+	 * @return the meta object for the containment reference list '<em>Store Library Element</em>'.
+	 * @see org.omg.vdml.StoreLibrary#getStoreLibraryElement()
 	 * @see #getStoreLibrary()
 	 * @generated
 	 */
-	EReference getStoreLibrary_StoreDefinitions();
-
-				/**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreLibrary#getLibrary <em>Library</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Library</em>'.
-	 * @see org.omg.vdml.StoreLibrary#getLibrary()
-	 * @see #getStoreLibrary()
-	 * @generated
-	 */
-	EReference getStoreLibrary_Library();
+	EReference getStoreLibrary_StoreLibraryElement();
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.StoreDefinition <em>Store Definition</em>}'.
@@ -13258,28 +13501,6 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStoreDefinition();
-
-				/**
-	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreDefinition#getResource <em>Resource</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Resource</em>'.
-	 * @see org.omg.vdml.StoreDefinition#getResource()
-	 * @see #getStoreDefinition()
-	 * @generated
-	 */
-	EReference getStoreDefinition_Resource();
-
-				/**
-	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreDefinition#getCharacteristicDefinition <em>Characteristic Definition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Characteristic Definition</em>'.
-	 * @see org.omg.vdml.StoreDefinition#getCharacteristicDefinition()
-	 * @see #getStoreDefinition()
-	 * @generated
-	 */
-	EReference getStoreDefinition_CharacteristicDefinition();
 
 				/**
 	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreDefinition#getInventoryLevel <em>Inventory Level</em>}'.
@@ -13313,6 +13534,17 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getStoreDefinition_ExchangeConfiguration();
+
+				/**
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreDefinition#getCategory <em>Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Category</em>'.
+	 * @see org.omg.vdml.StoreDefinition#getCategory()
+	 * @see #getStoreDefinition()
+	 * @generated
+	 */
+	EReference getStoreDefinition_Category();
 
 				/**
 	 * Returns the meta object for class '{@link org.omg.vdml.SupplyingStore <em>Supplying Store</em>}'.
@@ -13528,6 +13760,81 @@ public interface VDMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMilestone_Offset();
+
+				/**
+	 * Returns the meta object for class '{@link org.omg.vdml.StoreCategory <em>Store Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Store Category</em>'.
+	 * @see org.omg.vdml.StoreCategory
+	 * @generated
+	 */
+	EClass getStoreCategory();
+
+				/**
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreCategory#getChildCategory <em>Child Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Child Category</em>'.
+	 * @see org.omg.vdml.StoreCategory#getChildCategory()
+	 * @see #getStoreCategory()
+	 * @generated
+	 */
+	EReference getStoreCategory_ChildCategory();
+
+				/**
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreCategory#getParentCategory <em>Parent Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Parent Category</em>'.
+	 * @see org.omg.vdml.StoreCategory#getParentCategory()
+	 * @see #getStoreCategory()
+	 * @generated
+	 */
+	EReference getStoreCategory_ParentCategory();
+
+				/**
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreCategory#getCategoryStore <em>Category Store</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Category Store</em>'.
+	 * @see org.omg.vdml.StoreCategory#getCategoryStore()
+	 * @see #getStoreCategory()
+	 * @generated
+	 */
+	EReference getStoreCategory_CategoryStore();
+
+				/**
+	 * Returns the meta object for class '{@link org.omg.vdml.StoreLibraryElement <em>Store Library Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Store Library Element</em>'.
+	 * @see org.omg.vdml.StoreLibraryElement
+	 * @generated
+	 */
+	EClass getStoreLibraryElement();
+
+				/**
+	 * Returns the meta object for the reference list '{@link org.omg.vdml.StoreLibraryElement#getCharacteristicDefinition <em>Characteristic Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Characteristic Definition</em>'.
+	 * @see org.omg.vdml.StoreLibraryElement#getCharacteristicDefinition()
+	 * @see #getStoreLibraryElement()
+	 * @generated
+	 */
+	EReference getStoreLibraryElement_CharacteristicDefinition();
+
+				/**
+	 * Returns the meta object for the reference '{@link org.omg.vdml.StoreLibraryElement#getResource <em>Resource</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Resource</em>'.
+	 * @see org.omg.vdml.StoreLibraryElement#getResource()
+	 * @see #getStoreLibraryElement()
+	 * @generated
+	 */
+	EReference getStoreLibraryElement_Resource();
 
 				/**
 	 * Returns the meta object for enum '{@link org.omg.vdml.ResourceUseLocation <em>Resource Use Location</em>}'.
@@ -15939,20 +16246,12 @@ public interface VDMLPackage extends EPackage {
 		EClass STORE_LIBRARY = eINSTANCE.getStoreLibrary();
 
 								/**
-		 * The meta object literal for the '<em><b>Store Definitions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Store Library Element</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STORE_LIBRARY__STORE_DEFINITIONS = eINSTANCE.getStoreLibrary_StoreDefinitions();
-
-								/**
-		 * The meta object literal for the '<em><b>Library</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STORE_LIBRARY__LIBRARY = eINSTANCE.getStoreLibrary_Library();
+		EReference STORE_LIBRARY__STORE_LIBRARY_ELEMENT = eINSTANCE.getStoreLibrary_StoreLibraryElement();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.StoreDefinitionImpl <em>Store Definition</em>}' class.
@@ -15963,22 +16262,6 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STORE_DEFINITION = eINSTANCE.getStoreDefinition();
-
-								/**
-		 * The meta object literal for the '<em><b>Resource</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STORE_DEFINITION__RESOURCE = eINSTANCE.getStoreDefinition_Resource();
-
-								/**
-		 * The meta object literal for the '<em><b>Characteristic Definition</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference STORE_DEFINITION__CHARACTERISTIC_DEFINITION = eINSTANCE.getStoreDefinition_CharacteristicDefinition();
 
 								/**
 		 * The meta object literal for the '<em><b>Inventory Level</b></em>' reference feature.
@@ -16003,6 +16286,14 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference STORE_DEFINITION__EXCHANGE_CONFIGURATION = eINSTANCE.getStoreDefinition_ExchangeConfiguration();
+
+								/**
+		 * The meta object literal for the '<em><b>Category</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_DEFINITION__CATEGORY = eINSTANCE.getStoreDefinition_Category();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.impl.SupplyingStoreImpl <em>Supplying Store</em>}' class.
@@ -16173,6 +16464,66 @@ public interface VDMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MILESTONE__OFFSET = eINSTANCE.getMilestone_Offset();
+
+								/**
+		 * The meta object literal for the '{@link org.omg.vdml.impl.StoreCategoryImpl <em>Store Category</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.vdml.impl.StoreCategoryImpl
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getStoreCategory()
+		 * @generated
+		 */
+		EClass STORE_CATEGORY = eINSTANCE.getStoreCategory();
+
+								/**
+		 * The meta object literal for the '<em><b>Child Category</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_CATEGORY__CHILD_CATEGORY = eINSTANCE.getStoreCategory_ChildCategory();
+
+								/**
+		 * The meta object literal for the '<em><b>Parent Category</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_CATEGORY__PARENT_CATEGORY = eINSTANCE.getStoreCategory_ParentCategory();
+
+								/**
+		 * The meta object literal for the '<em><b>Category Store</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_CATEGORY__CATEGORY_STORE = eINSTANCE.getStoreCategory_CategoryStore();
+
+								/**
+		 * The meta object literal for the '{@link org.omg.vdml.impl.StoreLibraryElementImpl <em>Store Library Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.omg.vdml.impl.StoreLibraryElementImpl
+		 * @see org.omg.vdml.impl.VDMLPackageImpl#getStoreLibraryElement()
+		 * @generated
+		 */
+		EClass STORE_LIBRARY_ELEMENT = eINSTANCE.getStoreLibraryElement();
+
+								/**
+		 * The meta object literal for the '<em><b>Characteristic Definition</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_LIBRARY_ELEMENT__CHARACTERISTIC_DEFINITION = eINSTANCE.getStoreLibraryElement_CharacteristicDefinition();
+
+								/**
+		 * The meta object literal for the '<em><b>Resource</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference STORE_LIBRARY_ELEMENT__RESOURCE = eINSTANCE.getStoreLibraryElement_Resource();
 
 								/**
 		 * The meta object literal for the '{@link org.omg.vdml.ResourceUseLocation <em>Resource Use Location</em>}' enum.

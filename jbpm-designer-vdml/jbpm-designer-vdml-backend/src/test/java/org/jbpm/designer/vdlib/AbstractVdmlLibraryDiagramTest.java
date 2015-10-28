@@ -4,6 +4,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -18,6 +19,8 @@ import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
 import org.jbpm.designer.ucd.AbstractUmlDiagramTest;
 import org.jbpm.designer.ucd.ClassDiagramProfileImpl;
+import org.jbpm.designer.vdml.VdmlHelper;
+import org.jbpm.designer.vdml.VdmlUmlHelper;
 import org.jbpm.uml2.dd.umldi.UMLDIFactory;
 import org.jbpm.uml2.dd.umldi.UMLDIPackage;
 import org.junit.Before;
@@ -30,6 +33,7 @@ import org.omg.vdml.CapabilityMethod;
 import org.omg.vdml.VDMLFactory;
 import org.omg.vdml.ValueDeliveryModel;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -90,13 +94,13 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         measureLibrary.getMeasureElements().add(measure);
         measure.setTrait(characteristic);
         measureResource.getContents().add(measureLibrary);
-        vdm = VdmlLibraryJsonToEmfHelper.findOrcreateValueDeliveryModel(jbpmPackage);
+        vdm = VdmlUmlHelper.findOrcreateValueDeliveryModel(jbpmPackage);
         CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
         cm.setName("MyCapability");
         vdm.getCollaboration().add(cm);
-        VdmlLibraryJsonToEmfHelper.findOrCreateBusinessItemLibrary(jbpmPackage, vdm);
-        VdmlLibraryJsonToEmfHelper.findOrCreateCapabilityLibrary(jbpmPackage, vdm);
-        VdmlLibraryJsonToEmfHelper.findOrCreateStoreLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateBusinessItemLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateCapabilityLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateStoreLibrary(jbpmPackage, vdm);
         saveCollaborationResource();
         measureResource.save(tuh.createOutputStream(measureUri, profile.buildDefaultResourceOptions()), profile.buildDefaultResourceOptions());
     }
@@ -109,8 +113,9 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         collaborationResource.save(tuh.createOutputStream(getCollaborationUri(), profile.buildDefaultResourceOptions()), profile.buildDefaultResourceOptions());
     }
     protected XMLResource assertOutputValid() throws IOException, Exception {
-        XMLResource outputResource = super.assertOutputValid();
-        Set<EClassifier> idsToIgnore=new HashSet<EClassifier>();
+        String xmlString = buildXmlString(inputResource);
+        String json = unmarshaller.parseModel(xmlString, profile, "");
+        Set<EClassifier> idsToIgnore =new HashSet<EClassifier>();
         idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLDiagram());
         idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLStyle());
         idsToIgnore.add(DCPackage.eINSTANCE.getColor());
@@ -118,14 +123,35 @@ public class AbstractVdmlLibraryDiagramTest extends AbstractUmlDiagramTest {
         idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
         idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralInteger());
         idsToIgnore.add(EcorePackage.eINSTANCE.getEAnnotation());
+        saveEmptyCollaborationResource();
+        XMLResource outputResource = marshaller.getResource(json, "");
         XMLResource outputCollaborationResource = (XMLResource) outputResource.getResourceSet().getResource(getCollaborationUri(), true);
-//        collaborationResource.save(System.out,null);
-//        outputCollaborationResource.save(System.out,null);
-        GenericEcoreComparator v = new GenericEcoreComparator(collaborationResource, outputCollaborationResource,idsToIgnore);
+        outputCollaborationResource.save(System.out,null);
+        GenericEcoreComparator v = new GenericEcoreComparator(this.collaborationResource, outputCollaborationResource,idsToIgnore);
         v.setDebugInfo("",profile);
         v.validate();
         return outputResource;
     }
+
+    private void saveEmptyCollaborationResource() throws IOException {
+        ResourceSet rst =new ResourceSetImpl();
+        profile.prepareResourceSet(rst);
+        XMLResource tmpCollaborationResource= (XMLResource) rst.createResource(getCollaborationUri());
+        Package jbpmPackage = UMLFactory.eINSTANCE.createPackage();
+        tmpCollaborationResource= (XMLResource) resourceSet.createResource(getCollaborationUri());
+        tmpCollaborationResource.getContents().add(jbpmPackage);
+        tmpCollaborationResource.setID(jbpmPackage, this.collaborationResource.getID(this.jbpmPackage));
+        ValueDeliveryModel vdm = VdmlUmlHelper.findOrcreateValueDeliveryModel(jbpmPackage);
+        CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
+        cm.setName("MyCapability");
+        cm.setId(VdmlHelper.getCollaboration(this.collaborationResource).getId());
+        vdm.getCollaboration().add(cm);
+        VdmlUmlHelper.findOrCreateBusinessItemLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateCapabilityLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateStoreLibrary(jbpmPackage, vdm);
+        tmpCollaborationResource.save(new FileOutputStream(tuh.getFile(getCollaborationUri())), profile.buildDefaultResourceOptions());
+    }
+
     public Class addCarrierClass(String value) {
         Class clss = UMLFactory.eINSTANCE.createClass();
         clss.setName(value);

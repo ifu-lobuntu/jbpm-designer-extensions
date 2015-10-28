@@ -12,12 +12,11 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.omg.smm.Characteristic;
-
-import org.omg.vdml.BusinessItemDefinition;
 import org.omg.vdml.ExchangeConfiguration;
+import org.omg.vdml.StoreCategory;
 import org.omg.vdml.StoreDefinition;
 import org.omg.vdml.VDMLPackage;
 
@@ -29,36 +28,15 @@ import org.omg.vdml.VDMLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.omg.vdml.impl.StoreDefinitionImpl#getResource <em>Resource</em>}</li>
- *   <li>{@link org.omg.vdml.impl.StoreDefinitionImpl#getCharacteristicDefinition <em>Characteristic Definition</em>}</li>
  *   <li>{@link org.omg.vdml.impl.StoreDefinitionImpl#getInventoryLevel <em>Inventory Level</em>}</li>
  *   <li>{@link org.omg.vdml.impl.StoreDefinitionImpl#getDuration <em>Duration</em>}</li>
  *   <li>{@link org.omg.vdml.impl.StoreDefinitionImpl#getExchangeConfiguration <em>Exchange Configuration</em>}</li>
+ *   <li>{@link org.omg.vdml.impl.StoreDefinitionImpl#getCategory <em>Category</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinition {
-	/**
-	 * The cached value of the '{@link #getResource() <em>Resource</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResource()
-	 * @generated
-	 * @ordered
-	 */
-	protected BusinessItemDefinition resource;
-
-	/**
-	 * The cached value of the '{@link #getCharacteristicDefinition() <em>Characteristic Definition</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCharacteristicDefinition()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Characteristic> characteristicDefinition;
-
+public class StoreDefinitionImpl extends StoreLibraryElementImpl implements StoreDefinition {
 	/**
 	 * The cached value of the '{@link #getInventoryLevel() <em>Inventory Level</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -90,6 +68,16 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	protected ExchangeConfiguration exchangeConfiguration;
 
 	/**
+	 * The cached value of the '{@link #getCategory() <em>Category</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCategory()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<StoreCategory> category;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -106,56 +94,6 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	@Override
 	protected EClass eStaticClass() {
 		return VDMLPackage.Literals.STORE_DEFINITION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BusinessItemDefinition getResource() {
-		if (resource != null && resource.eIsProxy()) {
-			InternalEObject oldResource = (InternalEObject)resource;
-			resource = (BusinessItemDefinition)eResolveProxy(oldResource);
-			if (resource != oldResource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, VDMLPackage.STORE_DEFINITION__RESOURCE, oldResource, resource));
-			}
-		}
-		return resource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BusinessItemDefinition basicGetResource() {
-		return resource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResource(BusinessItemDefinition newResource) {
-		BusinessItemDefinition oldResource = resource;
-		resource = newResource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, VDMLPackage.STORE_DEFINITION__RESOURCE, oldResource, resource));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Characteristic> getCharacteristicDefinition() {
-		if (characteristicDefinition == null) {
-			characteristicDefinition = new EObjectResolvingEList<Characteristic>(Characteristic.class, this, VDMLPackage.STORE_DEFINITION__CHARACTERISTIC_DEFINITION);
-		}
-		return characteristicDefinition;
 	}
 
 	/**
@@ -282,11 +220,40 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<StoreCategory> getCategory() {
+		if (category == null) {
+			category = new EObjectWithInverseResolvingEList.ManyInverse<StoreCategory>(StoreCategory.class, this, VDMLPackage.STORE_DEFINITION__CATEGORY, VDMLPackage.STORE_CATEGORY__CATEGORY_STORE);
+		}
+		return category;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case VDMLPackage.STORE_DEFINITION__CATEGORY:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getCategory()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case VDMLPackage.STORE_DEFINITION__EXCHANGE_CONFIGURATION:
 				return basicSetExchangeConfiguration(null, msgs);
+			case VDMLPackage.STORE_DEFINITION__CATEGORY:
+				return ((InternalEList<?>)getCategory()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -299,11 +266,6 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case VDMLPackage.STORE_DEFINITION__RESOURCE:
-				if (resolve) return getResource();
-				return basicGetResource();
-			case VDMLPackage.STORE_DEFINITION__CHARACTERISTIC_DEFINITION:
-				return getCharacteristicDefinition();
 			case VDMLPackage.STORE_DEFINITION__INVENTORY_LEVEL:
 				if (resolve) return getInventoryLevel();
 				return basicGetInventoryLevel();
@@ -312,6 +274,8 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 				return basicGetDuration();
 			case VDMLPackage.STORE_DEFINITION__EXCHANGE_CONFIGURATION:
 				return getExchangeConfiguration();
+			case VDMLPackage.STORE_DEFINITION__CATEGORY:
+				return getCategory();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -325,13 +289,6 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case VDMLPackage.STORE_DEFINITION__RESOURCE:
-				setResource((BusinessItemDefinition)newValue);
-				return;
-			case VDMLPackage.STORE_DEFINITION__CHARACTERISTIC_DEFINITION:
-				getCharacteristicDefinition().clear();
-				getCharacteristicDefinition().addAll((Collection<? extends Characteristic>)newValue);
-				return;
 			case VDMLPackage.STORE_DEFINITION__INVENTORY_LEVEL:
 				setInventoryLevel((Characteristic)newValue);
 				return;
@@ -340,6 +297,10 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 				return;
 			case VDMLPackage.STORE_DEFINITION__EXCHANGE_CONFIGURATION:
 				setExchangeConfiguration((ExchangeConfiguration)newValue);
+				return;
+			case VDMLPackage.STORE_DEFINITION__CATEGORY:
+				getCategory().clear();
+				getCategory().addAll((Collection<? extends StoreCategory>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -353,12 +314,6 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.STORE_DEFINITION__RESOURCE:
-				setResource((BusinessItemDefinition)null);
-				return;
-			case VDMLPackage.STORE_DEFINITION__CHARACTERISTIC_DEFINITION:
-				getCharacteristicDefinition().clear();
-				return;
 			case VDMLPackage.STORE_DEFINITION__INVENTORY_LEVEL:
 				setInventoryLevel((Characteristic)null);
 				return;
@@ -367,6 +322,9 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 				return;
 			case VDMLPackage.STORE_DEFINITION__EXCHANGE_CONFIGURATION:
 				setExchangeConfiguration((ExchangeConfiguration)null);
+				return;
+			case VDMLPackage.STORE_DEFINITION__CATEGORY:
+				getCategory().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -380,16 +338,14 @@ public class StoreDefinitionImpl extends VdmlElementImpl implements StoreDefinit
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case VDMLPackage.STORE_DEFINITION__RESOURCE:
-				return resource != null;
-			case VDMLPackage.STORE_DEFINITION__CHARACTERISTIC_DEFINITION:
-				return characteristicDefinition != null && !characteristicDefinition.isEmpty();
 			case VDMLPackage.STORE_DEFINITION__INVENTORY_LEVEL:
 				return inventoryLevel != null;
 			case VDMLPackage.STORE_DEFINITION__DURATION:
 				return duration != null;
 			case VDMLPackage.STORE_DEFINITION__EXCHANGE_CONFIGURATION:
 				return exchangeConfiguration != null;
+			case VDMLPackage.STORE_DEFINITION__CATEGORY:
+				return category != null && !category.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

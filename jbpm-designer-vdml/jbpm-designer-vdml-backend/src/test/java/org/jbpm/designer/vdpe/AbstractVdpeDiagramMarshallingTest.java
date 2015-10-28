@@ -34,8 +34,7 @@ public class AbstractVdpeDiagramMarshallingTest extends AbstractVdmlDiagramMarsh
         return valueProposition;
     }
 
-    protected void assertOutputValid() throws IOException, Exception {
-        assertConversionValid(diagramResource);
+    protected XMLResource assertOutputValid() throws Exception {
+        return super.assertConversionValid(diagramResource);
     }
-
 }

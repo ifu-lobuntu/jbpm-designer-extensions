@@ -8,23 +8,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.omg.smm.Characteristic;
 import org.omg.smm.Measure;
-import org.omg.vdml.Activity;
-import org.omg.vdml.BusinessItem;
-import org.omg.vdml.BusinessItemDefinition;
-import org.omg.vdml.BusinessNetwork;
-import org.omg.vdml.CapabilityMethod;
-import org.omg.vdml.Collaboration;
-import org.omg.vdml.Community;
-import org.omg.vdml.InputPort;
-import org.omg.vdml.MeasuredCharacteristic;
-import org.omg.vdml.OrgUnit;
-import org.omg.vdml.OutputPort;
-import org.omg.vdml.Port;
-import org.omg.vdml.Role;
-import org.omg.vdml.Store;
-import org.omg.vdml.VDMLFactory;
-import org.omg.vdml.ValueAdd;
-import org.omg.vdml.ValueDeliveryModel;
+import org.omg.vdml.*;
 
 public class VdmlHelper {
     public static Collaboration getCollaboration(XMLResource r) {
@@ -153,5 +137,38 @@ public class VdmlHelper {
 
     public static boolean hasMeasure(Characteristic c) {
         return c!=null && c.getMeasure().size()>0;
+    }
+
+    public static DelegationContext getDefaultDelegationContext(Activity a) {
+        DelegationContext defaultDelegationContext = null;
+        for (DelegationContext delegationContext : a.getDelegationContext()) {
+            if (delegationContext.getParentContext() instanceof Scenario && Boolean.TRUE.equals(((Scenario) delegationContext.getParentContext()).getIsCommon())) {
+                defaultDelegationContext = delegationContext;
+                break;
+            }
+        }
+        return defaultDelegationContext;
+    }
+    public static OutputDelegation getDefaultDelegation(OutputPort p) {
+        for (OutputDelegation od : p.getDelegatedOutput()) {
+            if(od.eContainer() instanceof DelegationContext){
+                DelegationContext dc= (DelegationContext) od.eContainer();
+                if(dc.getParentContext() instanceof Scenario && Boolean.TRUE.equals(((Scenario)dc.getParentContext()).getIsCommon())){
+                    return od;
+                }
+            }
+        }
+        return null;
+    }
+    public static InputDelegation getDefaultDelegation(InputPort p) {
+        for (InputDelegation od : p.getInputDelegation()) {
+            if(od.eContainer() instanceof DelegationContext){
+                DelegationContext dc= (DelegationContext) od.eContainer();
+                if(dc.getParentContext() instanceof Scenario && Boolean.TRUE.equals(((Scenario)dc.getParentContext()).getIsCommon())){
+                    return od;
+                }
+            }
+        }
+        return null;
     }
 }

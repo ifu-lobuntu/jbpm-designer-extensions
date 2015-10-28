@@ -129,26 +129,26 @@ public class VdmlLibraryEmfToJsonHelper extends ClassDiagramEmfToJsonHelper {
         EAnnotation ann = object.getEAnnotation(VdmlLibraryStencil.VDLIB_URI);
         if (targetShape.getStencilId().equals(VdmlLibraryStencil.BUSINESS_ITEM_DEFINITION.getStencilId())) {
             BusinessItemDefinition bid = (BusinessItemDefinition) ann.getReferences().get(0);
-            targetShape.putProperty("isShareable", bid.getIsShareable().toString());
-            targetShape.putProperty("isFungible", bid.getIsFungible().toString());
+//            targetShape.putProperty("isShareable", bid.getIsShareable().toString());
+//            targetShape.putProperty("isFungible", bid.getIsFungible().toString());
         } else if (targetShape.getStencilId().equals(VdmlLibraryStencil.STORE_DEFINITION.getStencilId()) ||  targetShape.getStencilId().equals(VdmlLibraryStencil.POOL_DEFINITION.getStencilId())) {
             StoreDefinition sd = (StoreDefinition) ann.getReferences().get(0);
             if(VdmlHelper.hasMeasure(sd.getInventoryLevel())) {
                 Measure measure = sd.getInventoryLevel().getMeasure().get(0);
-                targetShape.putProperty("inventoryLevel", measure.getName() +  "|" + measure.eResource().getURI().toPlatformString(true));
+//                targetShape.putProperty("inventoryLevel", measure.getName() +  "|" + measure.eResource().getURI().toPlatformString(true));
             }
             if(sd.getExchangeConfiguration()!=null){
                 if(sd.getExchangeConfiguration().getExchangeMethod()!=null) {
                     CapabilityMethod cm =sd.getExchangeConfiguration().getExchangeMethod();
-                    targetShape.putProperty("exchangeMethod", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
+//                    targetShape.putProperty("exchangeMethod", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
                 }
                 if(sd.getExchangeConfiguration().getExchangeMilestone()!=null) {
                     Milestone cm =sd.getExchangeConfiguration().getExchangeMilestone();
-                    targetShape.putProperty("exchangeMilestone", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
+//                    targetShape.putProperty("exchangeMilestone", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
                 }
                 if(sd.getExchangeConfiguration().getSupplierRole()!=null) {
                     Role cm =sd.getExchangeConfiguration().getSupplierRole();
-                    targetShape.putProperty("supplierRole", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
+//                    targetShape.putProperty("supplierRole", cm.getName() + "|" + cm.eResource().getURI().toPlatformString(true));
                 }
 
             }

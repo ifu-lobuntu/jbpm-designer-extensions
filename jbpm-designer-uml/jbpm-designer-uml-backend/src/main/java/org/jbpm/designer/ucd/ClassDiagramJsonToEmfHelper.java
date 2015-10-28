@@ -56,20 +56,20 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
             Shape shape = shapeMap.get(shapeReference);
             ClassDiagramStencil stencil = ClassDiagramStencil.findStencilById(shape.getStencilId());
             switch (stencil) {
-            case COMPOSITION:
-            case DIRECTED_ASSOCIATION:
-            case BI_DIRECTIONAL_ASSOCIATION:
-                Association asso = (Association) getModelElement(shapeReference.getResourceId());
-                @SuppressWarnings("unchecked")
-                EList<Property> ownedAttributes = (EList<Property>) object.eGet(object.eClass().getEStructuralFeature("ownedAttribute"));
-                ownedAttributes.add(asso.getMemberEnds().get(1));
-                Property end1 = asso.getMemberEnds().get(0);
-                end1.setType(object);
-                if (stencil != BI_DIRECTIONAL_ASSOCIATION) {
-                    end1.setName(Introspector.decapitalize(end1.getType().getName()));
-                }
-                break;
-            default:
+                case COMPOSITION:
+                case DIRECTED_ASSOCIATION:
+                case BI_DIRECTIONAL_ASSOCIATION:
+                    Association asso = (Association) getModelElement(shapeReference.getResourceId());
+                    @SuppressWarnings("unchecked")
+                    EList<Property> ownedAttributes = (EList<Property>) object.eGet(object.eClass().getEStructuralFeature("ownedAttribute"));
+                    ownedAttributes.add(asso.getMemberEnds().get(1));
+                    Property end1 = asso.getMemberEnds().get(0);
+                    end1.setType(object);
+                    if (stencil != BI_DIRECTIONAL_ASSOCIATION) {
+                        end1.setName(Introspector.decapitalize(end1.getType().getName()));
+                    }
+                    break;
+                default:
             }
         }
     }
@@ -162,12 +162,10 @@ public class ClassDiagramJsonToEmfHelper extends UMLSwitch<Object> implements Js
     protected UMLDiagramElement createElements(String stencilId) {
         UMLDiagramElement de = ClassDiagramStencil.createDiagramElement(stencilId);
         Element modelElement = ClassDiagramStencil.createElement(stencilId);
-        if (de instanceof UMLShape) {
-            ((UMLShape) de).setUmlElement((Element) modelElement);
-        } else if (de instanceof UMLEdge) {
-            ((UMLEdge) de).setUmlElement((Element) modelElement);
-        } else if (de instanceof UMLCompartment) {
+        if (de instanceof UMLCompartment) {
             ((UMLCompartment) de).setFeatureName(Introspector.decapitalize(stencilId));
+        } else {
+            de.setUmlElement(modelElement);
         }
         de.setLocalStyle(UMLDIFactory.eINSTANCE.createUMLStyle());
         return de;

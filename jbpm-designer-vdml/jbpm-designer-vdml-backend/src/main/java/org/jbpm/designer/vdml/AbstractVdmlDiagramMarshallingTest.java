@@ -1,10 +1,13 @@
 package org.jbpm.designer.vdml;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -13,11 +16,17 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.uml2.uml.*;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Package;
 import org.jbpm.designer.dd.jbpmdd.BoundariedShape;
 import org.jbpm.designer.extensions.diagram.Diagram;
 import org.jbpm.designer.extensions.emf.util.GenericEcoreComparator;
@@ -25,7 +34,6 @@ import org.jbpm.designer.extensions.emf.util.TestUriHandler;
 import org.jbpm.designer.extensions.impl.AbstractEmfDiagramProfile;
 import org.jbpm.designer.extensions.impl.GenericEmfToJsonDiagramUnmarshaller;
 import org.jbpm.designer.extensions.impl.GenericJsonToEmfDiagramMarshaller;
-import org.jbpm.designer.vdlib.VdmlLibHelper;
 import org.jbpm.designer.vdlib.VdmlLibraryStencil;
 import org.jbpm.designer.vdrc.VdmlRoleCollaborationProfileImpl;
 import org.jbpm.smm.dd.smmdi.util.SMMDIResourceFactoryImpl;
@@ -36,10 +44,7 @@ import org.jbpm.vdml.dd.vdmldi.VDMLDiagram;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLEdge;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.dd.dc.Bounds;
-import org.omg.dd.dc.Color;
-import org.omg.dd.dc.DCFactory;
-import org.omg.dd.dc.Point;
+import org.omg.dd.dc.*;
 import org.omg.dd.di.DiagramElement;
 import org.omg.dd.di.Style;
 import org.omg.smm.Characteristic;
@@ -47,8 +52,8 @@ import org.omg.smm.DirectMeasure;
 import org.omg.smm.MeasureLibrary;
 import org.omg.smm.SMMFactory;
 import org.omg.vdml.*;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.omg.vdml.Activity;
+import org.omg.vdml.Collaboration;
 
 public abstract class AbstractVdmlDiagramMarshallingTest {
     protected Map<String, Object> emptyOptions;
@@ -124,6 +129,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         profile.prepareResourceSet(resourceSet);
         collaborationResource = (XMLResource) resourceSet.createResource(URI.createPlatformResourceURI(collaborationFile, true));
         valueDeliveryModel = VDMLFactory.eINSTANCE.createValueDeliveryModel();
+        valueDeliveryModel.setId(EcoreUtil.generateUUID());
         inputDiagram = createDiagram();
         collaborationResource.getContents().add(valueDeliveryModel);
         profile.loadLinkedStencilSet("../" + "jbpm-designer-vdml-client" + "/src/main/resources/org/jbpm/designer/public/" + profile.getStencilSetPath());
@@ -134,8 +140,15 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         collaboration.setName("MyCollaboration");
         valueDeliveryModel.getCollaboration().add(collaboration);
         elementDiagramElementMap.put(collaboration, inputDiagram);
+        collaborationResource.getContents().add(pkg = UMLFactory.eINSTANCE.createPackage());
+        pkg.setName("MyPackage");
+        collaborationResource.setID(pkg, EcoreUtil.generateUUID());
+
+        VdmlUmlHelper.findOrCreateBusinessItemLibrary(pkg, valueDeliveryModel);
+        VdmlUmlHelper.findOrCreateCapabilityLibrary(pkg, valueDeliveryModel);
+        VdmlUmlHelper.findOrCreateStoreLibrary(pkg, valueDeliveryModel);
         buildTestMeasureLibrary();
-        buildTestBusinessItemLibrary();
+        addBusinessItemDefs(this.valueDeliveryModel);
         saveCollaborationResource();
     }
 
@@ -163,17 +176,14 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         measureResource.save(tuh.createOutputStream(measureResource.getURI(), profile.buildDefaultResourceOptions()), profile.buildDefaultResourceOptions());
     }
 
-    protected void buildTestBusinessItemLibrary() throws IOException {
-        BusinessItemLibrary bil = VDMLFactory.eINSTANCE.createBusinessItemLibrary();
-        bil.setName("lib");
-        valueDeliveryModel.getBusinessItemLibrary().add(bil);
-        collaborationResource.getContents().add(pkg = UMLFactory.eINSTANCE.createPackage());
-        pkg.setName(bil.getName());
-        this.businessItemDefinition1 = (BusinessItemDefinition) VdmlLibHelper.findOrCreateBusinessItemDefinitionClass("Invoice", valueDeliveryModel)
+    private void addBusinessItemDefs(ValueDeliveryModel vdm) {
+        BusinessItemLibrary bil = vdm.getBusinessItemLibrary().get(0);
+        this.businessItemDefinition1 = (BusinessItemDefinition) VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass("Invoice", vdm)
                 .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
-        this.businessItemDefinition2 = (BusinessItemDefinition) VdmlLibHelper.findOrCreateBusinessItemDefinitionClass("Payment", valueDeliveryModel)
+        this.businessItemDefinition2 = (BusinessItemDefinition) VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass("Payment", vdm)
                 .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
     }
+
     protected void addMeasuredCharacteristic(Characteristic characteristic1, EList<MeasuredCharacteristic> measuredCharacteristic) {
         MeasuredCharacteristic mc = VDMLFactory.eINSTANCE.createMeasuredCharacteristic();
         mc.setCharacteristicDefinition(characteristic1);
@@ -212,13 +222,18 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected Role addRole(String value, boolean addShape) {
-        Role role1 = VdmlHelper.createRole(collaboration);
+        Role role1 = addRole(value, this.collaboration);
+        if (addShape) {
+            addShapeFor(this.collaboration, role1);
+        }
+        return role1;
+    }
+
+    protected Role addRole(String value, Collaboration c) {
+        Role role1 = VdmlHelper.createRole(c);
         role1.setName(value);
         role1.setDescription("My Role's Description");
-        collaboration.getCollaborationRole().add(role1);
-        if (addShape) {
-            addShapeFor(collaboration, role1);
-        }
+        c.getCollaborationRole().add(role1);
         return role1;
     }
 
@@ -333,9 +348,7 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
     }
 
     protected void addInputPort(VdmlElement parent, PortContainer pc, String inputPortName) {
-        InputPort activityInputPort = VDMLFactory.eINSTANCE.createInputPort();
-        activityInputPort.setName(inputPortName);
-        pc.getContainedPort().add(activityInputPort);
+        InputPort activityInputPort = addInputPort(pc, inputPortName);
         DiagramElement boundariedShape = this.elementDiagramElementMap.get(pc);
         VDMLShape portShape = addShapeFor(parent, activityInputPort);
         if (boundariedShape instanceof BoundariedShape) {
@@ -344,6 +357,13 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
         if(parent instanceof Role){
             activityInputPort.setHandler((Role) parent);
         }
+    }
+
+    protected InputPort addInputPort(PortContainer pc, String inputPortName) {
+        InputPort activityInputPort = VDMLFactory.eINSTANCE.createInputPort();
+        activityInputPort.setName(inputPortName);
+        pc.getContainedPort().add(activityInputPort);
+        return activityInputPort;
     }
 
     protected void print(Diagram json) throws Exception {
@@ -357,6 +377,68 @@ public abstract class AbstractVdmlDiagramMarshallingTest {
 
     protected void print(XMLResource resource) throws Exception {
         resource.save(System.out, profile.buildDefaultResourceOptions());
+    }
+    public static interface CollaborationInitializer{
+        void initialize(ValueDeliveryModel vdm);
+    }
+    protected XMLResource assertOutputValid(CollaborationInitializer initializer) throws IOException, Exception {
+        String xmlString = buildXmlString(diagramResource);
+        String json = unmarshaller.parseModel(xmlString, profile, "");
+        Set<EClassifier> idsToIgnore =new HashSet<EClassifier>();
+        idsToIgnore.add(VDMLPackage.eINSTANCE.getMeasuredCharacteristic());
+        idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLDiagram());
+        idsToIgnore.add(UMLDIPackage.eINSTANCE.getUMLStyle());
+        idsToIgnore.add(DCPackage.eINSTANCE.getColor());
+        idsToIgnore.add(UMLPackage.eINSTANCE.getProperty());//for associations
+        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
+        idsToIgnore.add(UMLPackage.eINSTANCE.getLiteralInteger());
+        idsToIgnore.add(EcorePackage.eINSTANCE.getEAnnotation());
+        idsToIgnore.add(VDMLPackage.eINSTANCE.getBusinessItem());
+        idsToIgnore.add(VDMLPackage.eINSTANCE.getDelegationContext());
+        idsToIgnore.add(VDMLPackage.eINSTANCE.getInputDelegation());
+        idsToIgnore.add(VDMLPackage.eINSTANCE.getOutputDelegation());
+        idsToIgnore.add(VDMLPackage.eINSTANCE.getAssignment());
+        saveEmptyCollaborationResource(initializer);
+        XMLResource outputResource = marshaller.getResource(json, "");
+        XMLResource outputCollaborationResource = (XMLResource) outputResource.getResourceSet().getResource(this.collaborationResource.getURI(), true);
+        GenericEcoreComparator v = new GenericEcoreComparator(this.collaborationResource, outputCollaborationResource,idsToIgnore);
+        v.setDebugInfo(json,profile);
+        v.validate();
+        return outputResource;
+    }
+
+    private void saveEmptyCollaborationResource(CollaborationInitializer initializer) throws IOException {
+        ResourceSet rst =new ResourceSetImpl();
+        profile.prepareResourceSet(rst);
+        XMLResource tmpCollaborationResource= (XMLResource) rst.createResource(this.collaborationResource.getURI());
+        tmpCollaborationResource= (XMLResource) resourceSet.createResource(this.collaborationResource.getURI());
+        Package jbpmPackage = UMLFactory.eINSTANCE.createPackage();
+        jbpmPackage.setName(pkg.getName());
+        tmpCollaborationResource.getContents().add(jbpmPackage);
+        tmpCollaborationResource.setID(jbpmPackage, this.collaborationResource.getID(this.pkg));
+        ValueDeliveryModel vdm = VdmlUmlHelper.findOrcreateValueDeliveryModel(jbpmPackage);
+        vdm.setId(this.valueDeliveryModel.getId());
+        CapabilityMethod cm = VDMLFactory.eINSTANCE.createCapabilityMethod();
+        cm.setName(collaboration.getName());
+        cm.setId(VdmlHelper.getCollaboration(this.collaborationResource).getId());
+        vdm.getCollaboration().add(cm);
+        VdmlUmlHelper.findOrCreateBusinessItemLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateCapabilityLibrary(jbpmPackage, vdm);
+        VdmlUmlHelper.findOrCreateStoreLibrary(jbpmPackage, vdm);
+        org.eclipse.uml2.uml.Class invoice = VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass("Invoice", vdm);
+        tmpCollaborationResource.setID(invoice, this.collaborationResource.getID(VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass("Invoice",this.valueDeliveryModel)));
+        BusinessItemDefinition bid1 = (BusinessItemDefinition) invoice
+                .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
+        bid1.setId(this.businessItemDefinition1.getId());
+        Class payment = VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass("Payment", vdm);
+        tmpCollaborationResource.setID(payment, this.collaborationResource.getID(VdmlUmlHelper.findOrCreateBusinessItemDefinitionClass("Payment",this.valueDeliveryModel)));
+        BusinessItemDefinition bid2 = (BusinessItemDefinition) payment
+                .getEAnnotation(VdmlLibraryStencil.VDLIB_URI).getReferences().get(0);
+        bid2.setId(this.businessItemDefinition2.getId());
+        if(initializer!=null){
+            initializer.initialize(vdm);
+        }
+        tmpCollaborationResource.save(new FileOutputStream(tuh.getFile(this.collaborationResource.getURI())), profile.buildDefaultResourceOptions());
     }
 
     protected XMLResource assertConversionValid(XMLResource drscasdf) throws IOException, Exception {

@@ -1,15 +1,16 @@
 package org.jbpm.designer.vdan;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.jbpm.designer.extensions.emf.util.ShapeMap;
 import org.jbpm.designer.vdml.AbstractVdmlJsonToEmfHelper;
+import org.jbpm.designer.vdml.VdmlHelper;
+import org.jbpm.designer.vdml.VdmlUmlHelper;
 import org.jbpm.vdml.dd.vdmldi.VDMLDiagramElement;
 import org.jbpm.vdml.dd.vdmldi.VDMLShape;
-import org.omg.smm.Measure;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.omg.vdml.*;
-
-import java.util.List;
 
 public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHelper {
     public VdmlActivityNetworkJsonToEmfHelper(ShapeMap resource) {
@@ -33,7 +34,54 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
         object.setDuration(buildMeasuredCharacteristic("durationMeasure"));
         object.setRecurrenceInterval(buildMeasuredCharacteristic("recurrenceIntervalMeasure"));
         setMeasuredCharacteristics("measures", object.getMeasuredCharacteristic());
+        Collaboration delegatedCollaboration= (Collaboration) sourceShape.getUnboundProperty("delegatedCollaboration");
+        if(delegatedCollaboration!=null){
+            ValueDeliveryModel vdm= VdmlHelper.getValueDeliveryModelIn(object.eResource());
+            Scenario scenario = VdmlUmlHelper.findOrCreateDefaultScenario(vdm);
+            DelegationContext delegationContext=VdmlHelper.getDefaultDelegationContext(object);
+            if(delegationContext==null){
+                delegationContext=VDMLFactory.eINSTANCE.createDelegationContext();
+                scenario.getDelegationtContext().add(delegationContext);
+                delegationContext.setDelegatedActivity(object);
+            }
+            delegationContext.setContextCollaboration(delegatedCollaboration);
+            String roleMappingString= sourceShape.getProperty("roleMappings");
+            if(roleMappingString!=null && roleMappingString.trim().length()>0){
+                setContextBasedAssignments(delegatedCollaboration, delegationContext, roleMappingString);
+            }
+            delegationContext.setName(object.getName() + "DelegationContext");
+        }
         return super.caseActivity(object);
+    }
+
+    protected void setContextBasedAssignments(Collaboration delegatedCollaboration, DelegationContext delegationContext, String roleMappingString) {
+        try {
+            JSONObject roleMappings=new JSONObject(roleMappingString);
+            JSONArray jsonArray = roleMappings.getJSONArray("roleMappings");
+            for(int i=0; i < jsonArray.length();i++){
+                JSONObject mapping=jsonArray.getJSONObject(i);
+                Role fromRole = findRole(owningCollaboration, mapping, "fromRole");
+                Role toRole = findRole(delegatedCollaboration, mapping, "toRole");
+                Assignment assignment = VDMLFactory.eINSTANCE.createAssignment();
+                assignment.setAssignedRole(toRole);
+                assignment.setParticipant(fromRole);
+                delegationContext.getContextBasedAssignment().add(assignment);
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Role findRole(Collaboration delegatedCollaboration, JSONObject mapping, String roleType2) throws JSONException {
+        Role toRole=null;
+        EList<Role> collaborationRole2 = delegatedCollaboration.getCollaborationRole();
+        for (Role role : collaborationRole2) {
+            if(role.getName().equals(mapping.getString(roleType2))){
+                toRole=role;
+                break;
+            }
+        }
+        return toRole;
     }
 
     @Override
@@ -114,11 +162,33 @@ public class VdmlActivityNetworkJsonToEmfHelper extends AbstractVdmlJsonToEmfHel
 
     @Override
     public Object caseInputPort(InputPort object) {
+        InputPort dp=(InputPort) sourceShape.getUnboundProperty("delegatedPort");
+        if(dp!=null){
+            InputDelegation delegation = VdmlHelper.getDefaultDelegation(object);
+            if(delegation==null) {
+                DelegationContext dc = VdmlHelper.getDefaultDelegationContext((Activity) object.eContainer());
+                delegation=VDMLFactory.eINSTANCE.createInputDelegation();
+                dc.getContextBasedPortDelegation().add(delegation);
+                delegation.setSource(object);
+            }
+            delegation.setTarget(dp);
+        }
         return super.caseInputPort(object);
     }
 
     @Override
     public Object caseOutputPort(OutputPort object) {
+        OutputPort dp=(OutputPort) sourceShape.getUnboundProperty("delegatedPort");
+        if(dp!=null){
+            OutputDelegation delegation = VdmlHelper.getDefaultDelegation(object);
+            if(delegation==null) {
+                DelegationContext dc = VdmlHelper.getDefaultDelegationContext((Activity) object.eContainer());
+                delegation=VDMLFactory.eINSTANCE.createOutputDelegation();
+                dc.getContextBasedPortDelegation().add(delegation);
+                delegation.setTarget(object);
+            }
+            delegation.setSource(dp);
+        }
         return super.caseOutputPort(object);
     }
 

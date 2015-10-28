@@ -39,6 +39,7 @@
                 {
                     "id": "isFungible",
                     "type": "Boolean",
+                    "binding":"eAnnotations[0].references[0].isFungible",
                     "title": "Is Fungible",
                     "value": true,
                     "readonly": false,
@@ -48,6 +49,7 @@
                     "id": "isShareable",
                     "type": "Boolean",
                     "title": "Is Shareable",
+                    "binding":"eAnnotations[0].references[0].isShareable",
                     "value": false,
                     "readonly": false,
                     "hidden": false
@@ -340,6 +342,44 @@
         },
         {
             "type": "node",
+            "id": "StoreCategory",
+            "title": "StoreCategory",
+            "childBinding": "ownedType",
+            "position": 1,
+            "groups": [
+                "Stores"
+            ],
+            "roles": [
+                "storeCategory",
+                "associationSource",
+                "associationTarget"
+            ],
+            "description": "A Store Category",
+            "view": "vdml_classifier.svg",
+            "icon": "store.png",
+            "layout": [
+                {
+                    "type": "layout.compartments"
+                }
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "localStyle",
+                "vdmlElementType",
+                "name"
+            ],
+            "properties": [
+                {
+                    "id": "hasForm",
+                    "type": "Boolean",
+                    "value": true,
+                    "readonly": true,
+                    "hidden": true
+                }
+            ]
+        },
+        {
+            "type": "node",
             "id": "StoreDefinition",
             "title": "StoreDefinition",
             "childBinding": "ownedType",
@@ -348,7 +388,7 @@
                 "Stores"
             ],
             "roles": [
-                "store",
+                "storeDefinition",
                 "associationSource",
                 "associationTarget"
             ],
@@ -388,7 +428,7 @@
                 "Stores"
             ],
             "roles": [
-                "pool",
+                "poolDefinition",
                 "associationSource",
                 "associationTarget"
             ],
@@ -419,6 +459,50 @@
         },
         {
             "type": "node",
+            "id": "ImportedStoreCategory",
+            "title": "Imported Store Category",
+            "position": 1,
+            "groups": [
+                "Stores"
+            ],
+            "roles": [
+                "importedStoreCategory",
+                "associationTarget"
+            ],
+            "description": "An Imported Store Category",
+            "view": "vdml_classifier.svg",
+            "icon": "external_store.png",
+            "layout": [
+            ],
+            "propertyPackages": [
+                "elementBase",
+                "name",
+                "localStyle",
+                "vdmlElementType"
+            ],
+            "properties": [
+                {
+                    "id": "importedStore",
+                    "type": "eobjectref",
+                    "viewBinding": "umlElement",
+                    "title": "Store",
+                    "value": "",
+                    "description": "",
+                    "readonly": false,
+                    "optional": false,
+                    "bindLate": true,
+                    "reference": {
+                        "targetProfile": "vdcol",
+                        "allowedElementTypes": "Store",
+                        "nameFeature": "qualifiedName",
+                        "matchFirstReference": true
+                    },
+                    "length": ""
+                }
+            ]
+        },
+        {
+            "type": "node",
             "id": "ImportedStoreDefinition",
             "title": "Imported Store Definition",
             "position": 1,
@@ -426,7 +510,7 @@
                 "Stores"
             ],
             "roles": [
-                "externalStore",
+                "importedStoreDefinition",
                 "associationTarget"
             ],
             "description": "An external Store",
@@ -470,7 +554,7 @@
                 "Stores"
             ],
             "roles": [
-                "externalPool",
+                "importedPoolDefinition",
                 "associationTarget"
             ],
             "description": "An external Pool",

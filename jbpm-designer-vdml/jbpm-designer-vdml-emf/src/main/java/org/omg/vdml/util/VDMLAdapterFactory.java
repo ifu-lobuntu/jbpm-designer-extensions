@@ -409,6 +409,14 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 				return createMilestoneAdapter();
 			}
 			@Override
+			public Adapter caseStoreCategory(StoreCategory object) {
+				return createStoreCategoryAdapter();
+			}
+			@Override
+			public Adapter caseStoreLibraryElement(StoreLibraryElement object) {
+				return createStoreLibraryElementAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -1405,6 +1413,34 @@ public class VDMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMilestoneAdapter() {
+		return null;
+	}
+
+				/**
+	 * Creates a new adapter for an object of class '{@link org.omg.vdml.StoreCategory <em>Store Category</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.vdml.StoreCategory
+	 * @generated
+	 */
+	public Adapter createStoreCategoryAdapter() {
+		return null;
+	}
+
+				/**
+	 * Creates a new adapter for an object of class '{@link org.omg.vdml.StoreLibraryElement <em>Store Library Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.omg.vdml.StoreLibraryElement
+	 * @generated
+	 */
+	public Adapter createStoreLibraryElementAdapter() {
 		return null;
 	}
 

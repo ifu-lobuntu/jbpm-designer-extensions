@@ -114,7 +114,6 @@ public class VdmlLibraryProfileImpl extends AbstractClassDiagramProfileImpl impl
 
     @Override
     public Diagram buildDiagramStub(ResourceSet rst, URI uri) {
-        EList<Resource> resources = rst.getResources();
         Package pkg = null;
         for (EObject eo : rst.getResource(uri.trimFileExtension().appendFileExtension("vdcol"), true).getContents()) {
             if (eo instanceof Package) {

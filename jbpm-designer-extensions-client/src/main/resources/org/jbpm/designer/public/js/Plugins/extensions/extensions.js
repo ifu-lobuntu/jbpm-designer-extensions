@@ -633,7 +633,6 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(
                                                 var grid = new Ext.grid.EditorGridPanel(
                                                     {
                                                         autoScroll : true,
-                                                        autoHeight : true,
                                                         selModel:new Ext.grid.RowSelectionModel(),
                                                         store : potentialReferenceStore,
                                                         id : gridId,
@@ -656,12 +655,12 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(
                                                         }
                                                     ]
                                                 });
+                                                grid.getSelectionModel().singleSelect=this.singleSelect;
                                                 selectedStore.load();
 
                                                 var selectedGrid = new Ext.grid.EditorGridPanel(
                                                     {
                                                         autoScroll : true,
-                                                        autoHeight : true,
                                                         selModel:new Ext.grid.RowSelectionModel(),
                                                         store : selectedStore,
                                                         id : gridId+'1',
@@ -681,8 +680,12 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(
                                                         },
                                                         items : [
                                                             new ORYX.Plugins.Extensions.Button({
-                                                                text:'Add',
+                                                                text:this.singleSelect?'Select':'Add',
                                                                 handler:function(){
+                                                                    if(grid.getSelectionModel().singleSelect){
+                                                                        potentialReferenceStore.add(selectedStore.data.items);
+                                                                        selectedStore.removeAll();
+                                                                    }
                                                                     grid.getSelections().each(function(record) {
                                                                         selectedStore.add(record);
                                                                         selectedStore.sort('name', 'ASC');
@@ -723,7 +726,6 @@ ORYX.Plugins.Extensions.EObjectRefField = Ext.extend(
 														});
 													}
 												}.bind(this));
-												grid.getSelectionModel().singleSelect=this.singleSelect;
 
 												var calledElementsPanel = new Ext.Panel({
 													id : 'calledElementsPanel',

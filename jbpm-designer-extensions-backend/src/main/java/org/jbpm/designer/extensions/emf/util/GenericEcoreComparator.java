@@ -115,6 +115,12 @@ public class GenericEcoreComparator {
                 assertTrue("Entry " + describeIdentity(expected) + " not found", found != null);
                 validateAllFeatures(expected, found);
             }
+            for (Entry<String, EObject> entry : outputMap.entrySet()) {
+                EObject found = inputMap.get(entry.getKey());
+                EObject expected = entry.getValue();
+                assertTrue("Unexpected entry found: " + describeIdentity(expected), found != null);
+                validateAllFeatures(expected, found);
+            }
             assertEquals(inputMap.size(), outputMap.size());
         } catch (AssertionError e) {
             try {
@@ -200,8 +206,8 @@ public class GenericEcoreComparator {
                     validateAllFeatures(expected, found);
                 }
             } else if (expectedObject instanceof EList) {
-                List<Object> eList = new ArrayList<Object>((EList<?>) expectedObject);
-                List<Object> eList2 = new ArrayList<Object>((EList<?>) foundObject);
+                List<Object> expectedList = new ArrayList<Object>((EList<?>) expectedObject);
+                List<Object> foundList = new ArrayList<Object>((EList<?>) foundObject);
                 if (f.getEType() instanceof EClass) {
                     EClass ec = (EClass) f.getEType();
                     EAttribute comparableFeature = ec.getEIDAttribute();
@@ -223,15 +229,15 @@ public class GenericEcoreComparator {
                             }
 
                         };
-                        Collections.sort(eList, comparator);
-                        Collections.sort(eList2, comparator);
+                        Collections.sort(expectedList, comparator);
+                        Collections.sort(foundList, comparator);
                     }
                 }
-                assertEquals(evaluating + " lists not the same size: ", eList.size(), eList2.size());
-                for (int i = 0; i < eList.size(); i++) {
-                    validate(value, f, eList.get(i), eList2.get(i));
+                assertEquals(evaluating + " lists not the same size: ", expectedList.size(), foundList.size());
+                for (int i = 0; i < expectedList.size(); i++) {
+                    validate(value, f, expectedList.get(i), foundList.get(i));
                     if (f instanceof EReference && ((EReference) f).isContainment()) {
-                        validateAllFeatures((EObject) eList.get(i), (EObject) eList2.get(i));
+                        validateAllFeatures((EObject) expectedList.get(i), (EObject) foundList.get(i));
                     }
                 }
             }

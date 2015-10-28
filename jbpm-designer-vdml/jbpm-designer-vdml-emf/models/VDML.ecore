@@ -566,19 +566,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Person" eSuperTypes="#//Actor"/>
   <eClassifiers xsi:type="ecore:EClass" name="CapabilityCategory" eSuperTypes="#//Capability"/>
   <eClassifiers xsi:type="ecore:EClass" name="StoreLibrary" eSuperTypes="#//VdmlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="storeDefinitions" upperBound="-1"
-        eType="#//StoreDefinition" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="library" eType="#//StoreLibrary"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeLibraryElement" upperBound="-1"
+        eType="#//StoreLibraryElement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StoreDefinition" eSuperTypes="#//VdmlElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" ordered="false"
-        eType="#//BusinessItemDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
-        ordered="false" upperBound="-1" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StoreDefinition" eSuperTypes="#//StoreLibraryElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inventoryLevel" eType="ecore:EClass SMM.ecore#//Characteristic"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="duration" eType="ecore:EClass SMM.ecore#//Characteristic"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exchangeConfiguration"
         eType="#//ExchangeConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="category" upperBound="-1"
+        eType="#//StoreCategory" eOpposite="#//StoreCategory/categoryStore"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SupplyingStore" eSuperTypes="#//PortContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="supplyingRole" ordered="false"
@@ -619,5 +616,24 @@
     <eLiterals name="receivingStore" value="2"/>
     <eLiterals name="resource" value="3"/>
     <eLiterals name="collaboration" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StoreCategory" eSuperTypes="#//StoreLibraryElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="childCategory" upperBound="-1"
+        eType="#//StoreCategory" eOpposite="#//StoreCategory/parentCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parentCategory" upperBound="-1"
+        eType="#//StoreCategory" eOpposite="#//StoreCategory/childCategory"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="categoryStore" upperBound="-1"
+        eType="#//StoreDefinition" eOpposite="#//StoreDefinition/category"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StoreLibraryElement" eSuperTypes="#//VdmlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="characteristicDefinition"
+        ordered="false" upperBound="-1" eType="ecore:EClass SMM.ecore#//Characteristic"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resource" ordered="false"
+        eType="#//BusinessItemLibraryElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RoleDelegation" eSuperTypes="#//VdmlElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromRole" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="toRole" eType="#//Role"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromRole" eType="#//Role"/>
   </eClassifiers>
 </ecore:EPackage>

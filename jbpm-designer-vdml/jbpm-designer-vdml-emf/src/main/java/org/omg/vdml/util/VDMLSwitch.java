@@ -648,6 +648,7 @@ public class VDMLSwitch<T> extends Switch<T> {
 			case VDMLPackage.STORE_DEFINITION: {
 				StoreDefinition storeDefinition = (StoreDefinition)theEObject;
 				T result = caseStoreDefinition(storeDefinition);
+				if (result == null) result = caseStoreLibraryElement(storeDefinition);
 				if (result == null) result = caseVdmlElement(storeDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -665,6 +666,7 @@ public class VDMLSwitch<T> extends Switch<T> {
 				PoolDefinition poolDefinition = (PoolDefinition)theEObject;
 				T result = casePoolDefinition(poolDefinition);
 				if (result == null) result = caseStoreDefinition(poolDefinition);
+				if (result == null) result = caseStoreLibraryElement(poolDefinition);
 				if (result == null) result = caseVdmlElement(poolDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -690,6 +692,21 @@ public class VDMLSwitch<T> extends Switch<T> {
 				T result = caseMilestone(milestone);
 				if (result == null) result = caseMeasurableElement(milestone);
 				if (result == null) result = caseVdmlElement(milestone);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VDMLPackage.STORE_CATEGORY: {
+				StoreCategory storeCategory = (StoreCategory)theEObject;
+				T result = caseStoreCategory(storeCategory);
+				if (result == null) result = caseStoreLibraryElement(storeCategory);
+				if (result == null) result = caseVdmlElement(storeCategory);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case VDMLPackage.STORE_LIBRARY_ELEMENT: {
+				StoreLibraryElement storeLibraryElement = (StoreLibraryElement)theEObject;
+				T result = caseStoreLibraryElement(storeLibraryElement);
+				if (result == null) result = caseVdmlElement(storeLibraryElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1744,6 +1761,36 @@ public class VDMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMilestone(Milestone object) {
+		return null;
+	}
+
+				/**
+	 * Returns the result of interpreting the object as an instance of '<em>Store Category</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Store Category</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStoreCategory(StoreCategory object) {
+		return null;
+	}
+
+				/**
+	 * Returns the result of interpreting the object as an instance of '<em>Store Library Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Store Library Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStoreLibraryElement(StoreLibraryElement object) {
 		return null;
 	}
 

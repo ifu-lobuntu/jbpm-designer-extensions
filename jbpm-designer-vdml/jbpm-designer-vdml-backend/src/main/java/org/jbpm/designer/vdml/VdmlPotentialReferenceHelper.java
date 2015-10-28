@@ -1,9 +1,6 @@
 package org.jbpm.designer.vdml;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +10,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.jbpm.designer.extensions.api.IEmfDiagramProfile;
 import org.jbpm.designer.extensions.api.IEmfProfile;
 import org.jbpm.designer.extensions.impl.DefaultPotentialReferenceHelper;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.omg.smm.BaseNMeasureRelationship;
 import org.omg.smm.BinaryMeasure;
@@ -49,6 +47,32 @@ public class VdmlPotentialReferenceHelper extends DefaultPotentialReferenceHelpe
                 return toEobjectReferenceJson(findPotentialMeasure(req));
             } else if ("activitiesInCollaboration".equals(filter)) {
                 return toEobjectReferenceJson(findActivitiesInCollaboration(req));
+            } else if ("roleMappings".equals(filter)) {
+                Activity activity= getSourceElement(req);
+                Map<String,String> mapping = new HashMap<String,String>();
+                if(activity.getDelegationContext().size()==1){
+                    Collaboration contextCollaboration = activity.getDelegationContext().get(0).getContextCollaboration();
+                    if(contextCollaboration!=null){
+                        for (Assignment assignment : activity.getDelegationContext().get(0).getContextBasedAssignment()) {
+                            mapping.put(assignment.getAssignedRole().getName(), assignment.getParticipant().getName());
+                        }
+                        for (Role role : contextCollaboration.getCollaborationRole()) {
+                            if(!mapping.containsKey(role.getName())){
+                                mapping.put(role.getName(), "");
+                            }
+                        }
+                    }
+                }
+                JSONArray a=new JSONArray();
+                for (Map.Entry<String, String> stringStringEntry : mapping.entrySet()) {
+                    JSONObject row = new JSONObject();
+                    row.put("toRole", stringStringEntry.getKey());
+                    row.put("fromRole", stringStringEntry.getValue());
+                    a.put(row);
+                }
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("roleMappings", a);
+                return jsonObject;
             }
         }
         return null;
