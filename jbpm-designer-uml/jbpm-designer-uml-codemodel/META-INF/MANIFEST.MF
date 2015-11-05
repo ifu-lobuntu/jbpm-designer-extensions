@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1446608893004
+Bnd-LastModified: 1446696854109
 Build-Jdk: 1.7.0_79
-Build-Timestamp: Wed, 4 Nov 2015 05:47:29 +0200
+Build-Timestamp: Thu, 5 Nov 2015 06:13:16 +0200
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,14 +12,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codemodel
 Bundle-SymbolicName: org.jbpm.uml.codemodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201511040347
+Bundle-Version: 6.4.0.201511050413
 Created-By: Apache Maven Bundle Plugin
 Export-Package: org.jbpm.designer.uml.code.metamodel;version="6.4.0.2015
- 11040347",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.4.
- 0.201511040347",org.jbpm.designer.uml.code.metamodel.expressions;versio
- n="6.4.0.201511040347",org.jbpm.designer.uml.code.metamodel.relationald
- b;version="6.4.0.201511040347",org.jbpm.designer.uml.code.metamodel.sta
- tements;version="6.4.0.201511040347"
+ 11050413",org.jbpm.designer.uml.code.metamodel.documentdb;version="6.4.
+ 0.201511050413",org.jbpm.designer.uml.code.metamodel.expressions;versio
+ n="6.4.0.201511050413",org.jbpm.designer.uml.code.metamodel.relationald
+ b;version="6.4.0.201511050413",org.jbpm.designer.uml.code.metamodel.sta
+ tements;version="6.4.0.201511050413"
 Implementation-Title: jBPM Designer Metamodel for Code generation
 Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
  cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
@@ -39,7 +39,7 @@ Private-Package: org.jbpm.designer.uml.code.metamodel;org.jbpm.designer.
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-uml/jbpm-designer-uml-codemodel
-Scm-Revision: d2e0ed5703d6ebc2bd4ea03b0f54cf35c5eb22f8
+Scm-Revision: 99cf5aeae18ef8f38174f3e4bf85c269ef697889
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-uml
  /jbpm-designer-uml-codemodel
