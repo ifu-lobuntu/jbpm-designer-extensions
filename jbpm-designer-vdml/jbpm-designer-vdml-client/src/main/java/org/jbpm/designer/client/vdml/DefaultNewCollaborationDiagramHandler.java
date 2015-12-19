@@ -25,6 +25,7 @@ import org.uberfire.ext.editor.commons.client.validation.ValidatorWithReasonCall
 import org.uberfire.ext.widgets.common.client.callbacks.DefaultErrorCallback;
 import org.uberfire.ext.widgets.common.client.common.BusyIndicatorView;
 import org.uberfire.ext.widgets.common.client.common.popups.errors.ErrorPopup;
+import org.uberfire.mvp.Command;
 import org.uberfire.mvp.PlaceRequest;
 import org.uberfire.mvp.impl.PathPlaceRequest;
 import org.uberfire.workbench.events.NotificationEvent;
@@ -62,7 +63,15 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
 
     @Inject
     private BusyIndicatorView busyIndicatorView;
-
+    @Override
+    public Command getCommand(final NewResourcePresenter newResourcePresenter ) {
+        return new Command() {
+            @Override
+            public void execute() {
+                newResourcePresenter.show( DefaultNewCollaborationDiagramHandler.this );
+            }
+        };
+    }
     @PostConstruct
     private void setupExtensions() {
         this.extensions.add(Pair.newPair("Collaboration", collaborationsListBox));

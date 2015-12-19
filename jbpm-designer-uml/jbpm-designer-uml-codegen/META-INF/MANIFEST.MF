@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1447050216023
-Build-Jdk: 1.7.0_79
-Build-Timestamp: Mon, 9 Nov 2015 08:22:20 +0200
+Bnd-LastModified: 1450428797296
+Build-Jdk: 1.8.0_66
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,15 +11,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codegen
 Bundle-SymbolicName: org.jbpm.uml.codegen
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201511090622
+Bundle-Version: 6.4.0.201512180852
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.jbpm.designer.uml.codegen;version="6.4.0.20151109062
- 2",org.jbpm.designer.uml.codegen.codemodel;version="6.4.0.201511090622"
- ,org.jbpm.designer.uml.codegen.java;version="6.4.0.201511090622",org.jb
- pm.designer.uml.codegen.jpa;version="6.4.0.201511090622",org.jbpm.desig
- ner.uml.codegen.util;version="6.4.0.201511090622",org.jbpm.designer.uml
- .codegen.util.emulated;version="6.4.0.201511090622",org.pavanecce.commo
- n.test.util;version="6.4.0.201511090622"
+Export-Package: org.jbpm.designer.uml.codegen;version="6.4.0",org.jbpm.d
+ esigner.uml.codegen.jpa;version="6.4.0",org.jbpm.designer.uml.codegen.j
+ ava;version="6.4.0",org.jbpm.designer.uml.codegen.codemodel;version="6.
+ 4.0",org.jbpm.designer.uml.codegen.util;version="6.4.0",org.jbpm.design
+ er.uml.codegen.util.emulated;version="6.4.0",org.pavanecce.common.test.
+ util;version="6.4.0"
 Implementation-Title: jBPM Designer UML Class Diagram Code Generation
 Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
  cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
@@ -44,19 +42,20 @@ Imported-Package: !org.eclipse.uml2.*,
 Include-Resource: ErraiApp.properties=src/main/resources/ErraiApp.proper
  ties,META-INF/beans.xml=src/main/resources/META-INF/beans.xml
 Java-Vendor: Oracle Corporation
-Java-Version: 1.7.0_79
+Java-Version: 1.8.0_66
 Os-Arch: amd64
 Os-Name: Linux
-Os-Version: 4.1.7-200.fc22.x86_64
-Private-Package: .
+Os-Version: 4.2.0-21-generic
+Private-Package: ErraiApp.properties
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-uml/jbpm-designer-uml-codegen
-Scm-Revision: fce730823373cb7ddfcf18338761e42156799191
+Scm-Revision: 751c3b4d4cd915a98ec8bbaccaca9ac13a3fa24a
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-uml
  /jbpm-designer-uml-codegen
 Specification-Title: jBPM Designer UML Class Diagram Code Generation
 Specification-Vendor: JBoss by Red Hat
 Specification-Version: 6.4.0-SNAPSHOT
-Tool: Bnd-1.50.0
+Tool: Bnd-2.3.0.201405100607

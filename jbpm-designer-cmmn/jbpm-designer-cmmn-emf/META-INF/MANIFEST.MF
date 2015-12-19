@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1447050173440
-Build-Jdk: 1.7.0_79
-Build-Timestamp: Mon, 9 Nov 2015 08:22:20 +0200
+Bnd-LastModified: 1450428773661
+Build-Jdk: 1.8.0_66
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -12,8 +11,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: jBPM Designer CMMN EMF Metamodel
 Bundle-SymbolicName: org.jbpm.cmmn.emf.metamodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201511090622
+Bundle-Version: 6.4.0.201512180852
 Created-By: Apache Maven Bundle Plugin
+Export-Package: org.omg.spec.cmmn._20131201.model;version="6.4.0"
 Implementation-Title: jBPM Designer CMMN EMF Metamodel
 Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
  cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
@@ -31,22 +31,23 @@ Import-Package: javax.xml.datatype,javax.xml.namespace,org.eclipse.emf.c
  pmdd,org.jbpm.designer.dd.util,org.omg.dd.di,org.omg.dd.di.impl,org.xml
  .sax.helpers
 Java-Vendor: Oracle Corporation
-Java-Version: 1.7.0_79
+Java-Version: 1.8.0_66
 Os-Arch: amd64
 Os-Name: Linux
-Os-Version: 4.1.7-200.fc22.x86_64
-Private-Package: org.jbpm.cmmn.jbpmext.util,org.jbpm.cmmn.dd.cmmndi,org.
- omg.cmmn,org.jbpm.cmmn.dd.cmmndi.impl,org.omg.cmmn.impl,org.jbpm.cmmn.j
- bpmext.impl,org.jbpm.cmmn.jbpmext,org.jbpm.cmmn.dd.cmmndi.util,org.omg.
+Os-Version: 4.2.0-21-generic
+Private-Package: org.jbpm.cmmn.dd.cmmndi,org.jbpm.cmmn.dd.cmmndi.impl,or
+ g.jbpm.cmmn.dd.cmmndi.util,org.jbpm.cmmn.jbpmext,org.jbpm.cmmn.jbpmext.
+ impl,org.jbpm.cmmn.jbpmext.util,org.omg.cmmn,org.omg.cmmn.impl,org.omg.
  cmmn.util
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-cmmn/jbpm-designer-cmmn-emf
-Scm-Revision: fce730823373cb7ddfcf18338761e42156799191
+Scm-Revision: 751c3b4d4cd915a98ec8bbaccaca9ac13a3fa24a
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-cmm
  n/jbpm-designer-cmmn-emf
 Specification-Title: jBPM Designer CMMN EMF Metamodel
 Specification-Vendor: JBoss by Red Hat
 Specification-Version: 6.4.0-SNAPSHOT
-Tool: Bnd-1.50.0
+Tool: Bnd-2.3.0.201405100607
