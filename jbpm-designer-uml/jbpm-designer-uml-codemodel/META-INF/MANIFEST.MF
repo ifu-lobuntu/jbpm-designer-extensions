@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Bnd-LastModified: 1450428791928
-Build-Jdk: 1.8.0_66
+Bnd-LastModified: 1470235957863
+Build-Jdk: 1.8.0_101
 Built-By: ampie
 Bundle-Description: The parent with dependencies imports the CMMN extens
  ions to the jBPM platform.    All the CMMN extension modules extend thi
@@ -11,38 +11,38 @@ Bundle-ManifestVersion: 2
 Bundle-Name: org.jbpm.uml.codemodel
 Bundle-SymbolicName: org.jbpm.uml.codemodel
 Bundle-Vendor: JBoss by Red Hat
-Bundle-Version: 6.4.0.201512180852
+Bundle-Version: 7.0.0.201608031451
 Created-By: Apache Maven Bundle Plugin
-Export-Package: org.jbpm.designer.uml.code.metamodel;version="6.4.0",org
- .jbpm.designer.uml.code.metamodel.documentdb;version="6.4.0",org.jbpm.d
- esigner.uml.code.metamodel.relationaldb;version="6.4.0",org.jbpm.design
- er.uml.code.metamodel.statements;version="6.4.0",org.jbpm.designer.uml.
- code.metamodel.expressions;version="6.4.0"
+Export-Package: org.jbpm.designer.uml.code.metamodel;version="7.0.0",org
+ .jbpm.designer.uml.code.metamodel.statements;version="7.0.0",org.jbpm.d
+ esigner.uml.code.metamodel.expressions;version="7.0.0",org.jbpm.designe
+ r.uml.code.metamodel.relationaldb;version="7.0.0",org.jbpm.designer.uml
+ .code.metamodel.documentdb;version="7.0.0"
 Implementation-Title: jBPM Designer Metamodel for Code generation
-Implementation-URL: http://www.jboss.org/drools/kie-parent-with-dependen
- cies/jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-
- designer-extensions/jbpm-designer-uml/jbpm-designer-uml-codemodel
+Implementation-URL: http://www.kiegroup.org/kie-parent-with-dependencies
+ /jbpm-cmmn-parent-metadata/jbpm-cmmn-parent-with-dependencies/jbpm-desi
+ gner-extensions/jbpm-designer-uml/jbpm-designer-uml-codemodel
 Implementation-Vendor: JBoss by Red Hat
 Implementation-Vendor-Id: org.jbpm
-Implementation-Version: 6.4.0-SNAPSHOT
+Implementation-Version: 7.0.0-SNAPSHOT
 Java-Vendor: Oracle Corporation
-Java-Version: 1.8.0_66
+Java-Version: 1.8.0_101
 Os-Arch: amd64
 Os-Name: Linux
-Os-Version: 4.2.0-21-generic
+Os-Version: 4.2.0-42-generic
 Private-Package: org.jbpm.designer.uml.code.metamodel,org.jbpm.designer.
- uml.code.metamodel.documentdb,org.jbpm.designer.uml.code.metamodel.rela
- tionaldb,org.jbpm.designer.uml.code.metamodel.statements,org.jbpm.desig
- ner.uml.code.metamodel.expressions
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.6))"
+ uml.code.metamodel.statements,org.jbpm.designer.uml.code.metamodel.expr
+ essions,org.jbpm.designer.uml.code.metamodel.relationaldb,org.jbpm.desi
+ gner.uml.code.metamodel.documentdb
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
 Scm-Connection: scm:git:git@github.com:ifu-lobuntu/jbpm-cmmn-build-boots
  trap.git/jbpm-cmmn-parent-with-dependencies/jbpm-designer-extensions/jb
  pm-designer-uml/jbpm-designer-uml-codemodel
-Scm-Revision: 751c3b4d4cd915a98ec8bbaccaca9ac13a3fa24a
+Scm-Revision: 78b84ab490ece3e7bffcebe0c24f221f1cea4dae
 Scm-Url: https://github.com/ifu-lobuntu/jbpm-cmmn-build-bootstrap/jbpm-c
  mmn-parent-with-dependencies/jbpm-designer-extensions/jbpm-designer-uml
  /jbpm-designer-uml-codemodel
 Specification-Title: jBPM Designer Metamodel for Code generation
 Specification-Vendor: JBoss by Red Hat
-Specification-Version: 6.4.0-SNAPSHOT
+Specification-Version: 7.0.0-SNAPSHOT
 Tool: Bnd-2.3.0.201405100607

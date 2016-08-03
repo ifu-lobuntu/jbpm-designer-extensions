@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jbpm</groupId>
     <artifactId>jbpm-designer-extensions</artifactId>
-    <version>6.4.0-SNAPSHOT</version>
+    <version>7.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>jbpm-designer-extensions-showcase</artifactId>
   <name>jBPM Designer Extensions Showcase</name>

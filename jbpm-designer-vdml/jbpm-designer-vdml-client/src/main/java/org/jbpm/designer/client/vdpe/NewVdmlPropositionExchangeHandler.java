@@ -3,6 +3,7 @@ package org.jbpm.designer.client.vdpe;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import com.google.gwt.core.client.Callback;
 import org.jbpm.designer.client.vdml.DefaultNewCollaborationDiagramHandler;
 import org.uberfire.workbench.type.ResourceTypeDefinition;
 
@@ -29,6 +30,8 @@ public class NewVdmlPropositionExchangeHandler extends DefaultNewCollaborationDi
     public ResourceTypeDefinition getResourceType() {
         return resourceType;
     }
+
+
     @Override
     public String getProfileName() {
         return "vdpe";

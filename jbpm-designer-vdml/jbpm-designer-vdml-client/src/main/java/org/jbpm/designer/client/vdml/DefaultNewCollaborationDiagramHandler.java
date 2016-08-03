@@ -82,6 +82,10 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
         this.collaborationsListBox.setContext(context, getProfileName());
         return this.extensions;
     }
+    @Override
+    public boolean canCreate() {
+        return true;
+    }
 
     public abstract String getProfileName();
 
@@ -114,7 +118,7 @@ public abstract class DefaultNewCollaborationDiagramHandler implements NewResour
     }
 
     @Override
-    public void acceptContext(final ProjectContext context, final Callback<Boolean, Void> callback) {
+    public void acceptContext(final Callback<Boolean, Void> callback) {
         callback.onSuccess(context != null && context.getActivePackage() != null);
     }
 
