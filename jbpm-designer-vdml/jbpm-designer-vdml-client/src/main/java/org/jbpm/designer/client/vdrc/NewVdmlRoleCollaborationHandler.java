@@ -13,7 +13,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 public class NewVdmlRoleCollaborationHandler extends DefaultNewCollaborationDiagramHandler {
 
     @Inject
-    private VdmlRoleCollaborationTypeDefinition resourceType;
+    private VdmlRoleCollaborationType resourceType;
 
     @Override
     public String getDescription() {

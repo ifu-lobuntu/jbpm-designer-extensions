@@ -36,7 +36,7 @@ public class NewVdmlCollaborationHandler extends DefaultNewResourceHandler {
     private PlaceManager placeManager;
 
     @Inject
-    private VdmlCollaborationTypeDefinition resourceType;
+    private VdmlCollaborationType resourceType;
 
     private ListBox collaborationTypeListBox = new ListBox();
     private ListBox collaborationDiagramTypeListBox = new ListBox();
